@@ -8,7 +8,7 @@
 
 #include "ResourceManager.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     ResourceManager::ResourceManager()
     {

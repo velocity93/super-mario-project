@@ -8,7 +8,7 @@
 
 #include "Item.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Item::Item()
     {

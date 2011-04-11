@@ -8,7 +8,7 @@
 
 #include "Particle.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Particle::Particle()
     {

@@ -8,7 +8,7 @@
 
 #include "EntityMovable.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     EntityMovable::EntityMovable()
     {

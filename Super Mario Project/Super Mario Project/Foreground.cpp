@@ -8,7 +8,7 @@
 
 #include "Foreground.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Foreground::Foreground()
     {

@@ -8,7 +8,7 @@
 
 #include "Drawable.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Drawable::Drawable()
     {

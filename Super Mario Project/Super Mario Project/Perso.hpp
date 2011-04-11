@@ -10,7 +10,7 @@
 #ifndef HPP_PERSO
 #define HPP_PERSO
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Perso
     {

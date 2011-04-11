@@ -10,7 +10,7 @@
 #ifndef HPP_ITEM
 #define HPP_ITEM
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Item
     {

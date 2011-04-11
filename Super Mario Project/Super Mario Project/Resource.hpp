@@ -10,7 +10,7 @@
 #ifndef HPP_RESOURCE
 #define HPP_RESOURCE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Resource
     {

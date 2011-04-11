@@ -10,7 +10,7 @@
 #ifndef HPP_PROJECTILE
 #define HPP_PROJECTILE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Projectile
     {

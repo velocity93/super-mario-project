@@ -10,7 +10,7 @@
 #ifndef HPP_BLOCKOCCURRENCE
 #define HPP_BLOCKOCCURRENCE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class BlockOccurrence
     {

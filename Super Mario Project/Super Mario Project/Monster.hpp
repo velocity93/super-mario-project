@@ -10,7 +10,7 @@
 #ifndef HPP_MONSTER
 #define HPP_MONSTER
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Monster
     {

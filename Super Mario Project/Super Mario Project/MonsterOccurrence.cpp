@@ -8,7 +8,7 @@
 
 #include "MonsterOccurrence.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     MonsterOccurrence::MonsterOccurrence()
     {

@@ -10,7 +10,7 @@
 #ifndef HPP_DOOR
 #define HPP_DOOR
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Door
     {

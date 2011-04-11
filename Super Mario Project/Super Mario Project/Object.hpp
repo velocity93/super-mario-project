@@ -10,7 +10,7 @@
 #ifndef HPP_OBJECT
 #define HPP_OBJECT
 
-namespace SuperMarioProject
+namespace Rendering
 {
     class Object
     {

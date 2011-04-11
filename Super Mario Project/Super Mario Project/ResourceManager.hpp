@@ -10,7 +10,7 @@
 #ifndef HPP_RESOURCEMANAGER
 #define HPP_RESOURCEMANAGER
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class ResourceManager
     {

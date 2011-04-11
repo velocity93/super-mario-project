@@ -10,7 +10,7 @@
 #ifndef HPP_COLLISIONABLE
 #define HPP_COLLISIONABLE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Collisionable
     {

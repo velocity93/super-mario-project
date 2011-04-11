@@ -10,8 +10,9 @@
 #ifndef HPP_DRAWABLE
 #define HPP_DRAWABLE
 
-namespace SuperMarioProject
+namespace Rendering
 {
+
     class Drawable
     {
     public:

@@ -8,7 +8,7 @@
 
 #include "CollisionManager.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     CollisionManager::CollisionManager()
     {

@@ -8,7 +8,7 @@
 
 #include "Perso.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Perso::Perso()
     {

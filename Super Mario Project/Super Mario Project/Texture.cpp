@@ -8,7 +8,7 @@
 
 #include "Texture.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Texture::Texture()
     {

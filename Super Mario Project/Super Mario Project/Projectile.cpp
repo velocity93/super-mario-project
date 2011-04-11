@@ -8,7 +8,7 @@
 
 #include "Projectile.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Projectile::Projectile()
     {

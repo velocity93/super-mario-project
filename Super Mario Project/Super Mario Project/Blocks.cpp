@@ -8,7 +8,7 @@
 
 #include "Blocks.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Blocks::Blocks()
     {

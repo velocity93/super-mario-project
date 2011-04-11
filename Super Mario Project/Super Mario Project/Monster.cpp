@@ -8,7 +8,7 @@
 
 #include "Monster.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Monster::Monster()
     {

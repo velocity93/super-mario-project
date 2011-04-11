@@ -8,7 +8,7 @@
 
 #include "ItemOccurrence.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     ItemOccurrence::ItemOccurrence()
     {

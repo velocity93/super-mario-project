@@ -8,7 +8,7 @@
 
 #include "Background.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Background::Background()
     {

@@ -10,7 +10,7 @@
 #ifndef HPP_TEXTURE
 #define HPP_TEXTURE
 
-namespace SuperMarioProject
+namespace Rendering
 {
     class Texture
     {

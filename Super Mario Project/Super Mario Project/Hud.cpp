@@ -8,7 +8,7 @@
 
 #include "Hud.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Hud::Hud()
     {

@@ -8,7 +8,7 @@
 
 #include "Finish.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Finish::Finish()
     {

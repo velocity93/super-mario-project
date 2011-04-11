@@ -8,7 +8,7 @@
 
 #include "ProjectileOccurrence.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     ProjectileOccurrence::ProjectileOccurrence()
     {

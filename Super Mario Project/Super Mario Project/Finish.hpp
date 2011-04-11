@@ -10,7 +10,7 @@
 #ifndef HPP_FINISH
 #define HPP_FINISH
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Finish
     {

@@ -10,7 +10,7 @@
 #ifndef HPP_PROJECTILEOCCURRENCE
 #define HPP_PROJECTILEOCCURRENCE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class ProjectileOccurrence
     {
