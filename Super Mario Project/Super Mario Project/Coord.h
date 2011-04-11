@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Blocks.hpp
+// Background.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,26 +7,30 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_BLOCKS
-#define HPP_BLOCKS
+#ifndef HPP_COORD
+#define HPP_COORD
 
-namespace Collisions
+namespace Utils
 {
-	enum Block_state {
-		UNMOVABLE,
-		PUSHED_TO_LEFT,
-		PUSHED_TO_RIGHT,
-		PUSHED_TO_TOP,
-	};
-
-    class Blocks
+    template<int> class Coordi
     {
     public:
-        Blocks();
-        ~Blocks();
+		int x, y;
+        Coordi();
+        ~Coordi();
+		
+    private:
+    };
+
+	template<float> class Coordf
+    {
+    public:
+		float x, y;
+        Coordf();
+        ~Coordf();
 		
     private:
     };
 } // namespace
 
-#endif // HPP_BLOCKS
+#endif // HPP_COORD

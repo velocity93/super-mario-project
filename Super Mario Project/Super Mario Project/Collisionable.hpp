@@ -12,6 +12,19 @@
 
 namespace Collisions
 {
+
+	enum Collision_type {
+		FROM_BOTTOM,
+		FROM_LEFT,
+		FROM_RIGHT,
+		FROM_TOP,
+		SUPERPOSITION,
+		INCLINE_FROM_BOTTOM,
+		INCLINE_FROM_LEFT,
+		INCLINE_FROM_RIGHT,
+		NONE_COLLISION
+	};
+
     class Collisionable
     {
     public:

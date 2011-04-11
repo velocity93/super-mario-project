@@ -12,6 +12,24 @@
 
 namespace Collisions
 {
+	enum Item_type
+	{
+		COIN,
+		MUSHROOM,
+		FLOWER,
+		ICE_FLOWER,
+		MINI_MUSHROOM,
+		POISON_MUSHROOM,
+		STAR,
+		LIFE_MUSHROOM
+	};
+
+	enum Item_state
+	{
+		NORMAL,
+		GET_OUT_FROM_BLOC
+	};
+
     class ItemOccurrence
     {
     public:
