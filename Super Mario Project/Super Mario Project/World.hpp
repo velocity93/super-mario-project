@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Resource.hpp
+// World.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,19 +7,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_RESOURCE
-#define HPP_RESOURCE
+#ifndef HPP_WORLD
+#define HPP_WORLD
 
 namespace SuperMarioProject
 {
-    class Resource
+    class World
     {
     public:
-        Resource();
-        ~Resource();
+        World();
+        ~World();
 		
     private:
     };
 } // namespace
 
-#endif // HPP_RESOURCE
+#endif // HPP_WORLD
