@@ -10,7 +10,7 @@
 #ifndef HPP_HUD
 #define HPP_HUD
 
-namespace SuperMarioProject
+namespace Rendering
 {
     class Hud
     {

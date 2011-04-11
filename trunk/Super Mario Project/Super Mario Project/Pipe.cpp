@@ -8,7 +8,7 @@
 
 #include "Pipe.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Pipe::Pipe()
     {

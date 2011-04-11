@@ -10,7 +10,7 @@
 #ifndef HPP_BACKGROUND
 #define HPP_BACKGROUND
 
-namespace SuperMarioProject
+namespace Rendering
 {
     class Background
     {

@@ -10,7 +10,7 @@
 #ifndef HPP_ENTITYMOVABLE
 #define HPP_ENTITYMOVABLE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class EntityMovable
     {

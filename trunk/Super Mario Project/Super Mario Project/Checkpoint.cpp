@@ -1,21 +1,21 @@
 ////////////////////////////////////////////////////////////////////////
-// Checpoint.cpp
+// Checkpoint.cpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
-#include "Checpoint.hpp"
+#include "Checkpoint.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
-    Checpoint::Checpoint()
+    Checkpoint::Checkpoint()
     {
     }
 
 
-    Checpoint::~Checpoint()
+    Checkpoint::~Checkpoint()
     {
     }
 } // namespace

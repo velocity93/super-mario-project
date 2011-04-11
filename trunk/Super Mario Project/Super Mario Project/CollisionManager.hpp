@@ -10,7 +10,7 @@
 #ifndef HPP_COLLISIONMANAGER
 #define HPP_COLLISIONMANAGER
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class CollisionManager
     {

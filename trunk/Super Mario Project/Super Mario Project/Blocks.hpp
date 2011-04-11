@@ -10,7 +10,7 @@
 #ifndef HPP_BLOCKS
 #define HPP_BLOCKS
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Blocks
     {

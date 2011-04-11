@@ -10,7 +10,7 @@
 #ifndef HPP_SCREEN
 #define HPP_SCREEN
 
-namespace SuperMarioProject
+namespace Rendering
 {
     class Screen
     {

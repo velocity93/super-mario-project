@@ -77,7 +77,7 @@
     <ClInclude Include="Background.hpp" />
     <ClInclude Include="BlockOccurrence.hpp" />
     <ClInclude Include="Blocks.hpp" />
-    <ClInclude Include="Checpoint.hpp" />
+    <ClInclude Include="Checkpoint.hpp" />
     <ClInclude Include="Collisionable.hpp" />
     <ClInclude Include="CollisionManager.hpp" />
     <ClInclude Include="Door.hpp" />
@@ -106,7 +106,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BlockOccurrence.cpp" />
     <ClCompile Include="Blocks.cpp" />
-    <ClCompile Include="Checpoint.cpp" />
+    <ClCompile Include="Checkpoint.cpp" />
     <ClCompile Include="Collisionable.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Door.cpp" />

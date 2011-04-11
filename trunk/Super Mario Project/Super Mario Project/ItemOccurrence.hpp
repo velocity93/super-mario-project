@@ -10,7 +10,7 @@
 #ifndef HPP_ITEMOCCURRENCE
 #define HPP_ITEMOCCURRENCE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class ItemOccurrence
     {

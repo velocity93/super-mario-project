@@ -10,7 +10,7 @@
 #ifndef HPP_PARTICLEGENERATOR
 #define HPP_PARTICLEGENERATOR
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class ParticleGenerator
     {

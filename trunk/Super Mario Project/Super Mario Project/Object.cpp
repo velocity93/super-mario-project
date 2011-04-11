@@ -8,7 +8,7 @@
 
 #include "Object.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Object::Object()
     {

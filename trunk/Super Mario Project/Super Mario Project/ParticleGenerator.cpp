@@ -8,7 +8,7 @@
 
 #include "ParticleGenerator.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     ParticleGenerator::ParticleGenerator()
     {

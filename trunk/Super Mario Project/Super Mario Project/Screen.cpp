@@ -8,7 +8,7 @@
 
 #include "Screen.hpp"
 
-namespace SuperMarioProject
+namespace Rendering
 {
     Screen::Screen()
     {

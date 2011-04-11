@@ -8,7 +8,7 @@
 
 #include "Collisionable.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Collisionable::Collisionable()
     {

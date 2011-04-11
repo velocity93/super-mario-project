@@ -10,7 +10,7 @@
 #ifndef HPP_MONSTEROCCURRENCE
 #define HPP_MONSTEROCCURRENCE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class MonsterOccurrence
     {

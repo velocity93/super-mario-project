@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Checpoint.hpp
+// Checkpoint.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,19 +7,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_CHECPOINT
-#define HPP_CHECPOINT
+#ifndef HPP_CHECKPOINT
+#define HPP_CHECKPOINT
 
-namespace SuperMarioProject
+namespace Collisions
 {
-    class Checpoint
+    class Checkpoint
     {
     public:
-        Checpoint();
-        ~Checpoint();
+        Checkpoint();
+        ~Checkpoint();
 		
     private:
     };
 } // namespace
 
-#endif // HPP_CHECPOINT
+#endif // HPP_CHECKPOINT

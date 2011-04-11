@@ -8,7 +8,7 @@
 
 #include "Door.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     Door::Door()
     {

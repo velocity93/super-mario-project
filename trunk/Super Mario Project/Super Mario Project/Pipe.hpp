@@ -10,7 +10,7 @@
 #ifndef HPP_PIPE
 #define HPP_PIPE
 
-namespace SuperMarioProject
+namespace Collisions
 {
     class Pipe
     {

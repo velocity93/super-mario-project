@@ -8,7 +8,7 @@
 
 #include "BlockOccurrence.hpp"
 
-namespace SuperMarioProject
+namespace Collisions
 {
     BlockOccurrence::BlockOccurrence()
     {
