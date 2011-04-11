@@ -12,6 +12,12 @@
 
 namespace Collisions
 {
+	enum Checkpoint_state
+	{
+		PASSED,
+		NOT_PASSED
+	};
+
     class Checkpoint
     {
     public:

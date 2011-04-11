@@ -12,6 +12,23 @@
 
 namespace Collisions
 {
+	enum Projectile_Sender {
+		LEVEL,
+		GENTILE,
+		VILAIN
+	};
+
+	enum Projectile_Type {
+		FRAGMENT,
+		FIREBALL,
+		SPECIAL_FIREBALL,
+		ICEBALL,
+		THUNDER_BALL,
+		SUPER_FIREBALL,
+		HYPER_FIREBALL,
+		SHURIKEN
+	};
+
     class Projectile
     {
     public:

@@ -12,6 +12,20 @@
 
 namespace Collisions
 {
+	enum Pipe_state
+	{
+		OPEN,
+		CLOSED
+	};
+
+	enum Pipe_direction
+	{
+		TO_TOP,
+		TO_LEFT,
+		TO_RIGHT,
+		TO_BOTTOM
+	};
+
     class Pipe
     {
     public:

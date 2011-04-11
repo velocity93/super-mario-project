@@ -13,6 +13,26 @@
 namespace Rendering
 {
 
+	enum Layer
+	{
+		BACKGROUND_LAYER,
+		BACKGROUND_PARTICLES_LAYER,
+		OBJECTS_LAYER,
+		BLOC_LAYER_1,
+		ITEM_LAYER,
+		BLOC_LAYER_2,
+		FOREGROUND_LAYER,
+		FOREGROUND_PARTICLES_LAYER
+	};
+
+	enum Angle
+	{
+		ANGLE_0,
+		ANGLE_90,
+		ANGLE_180,
+		ANGLE_270
+	};
+
     class Drawable
     {
     public:
