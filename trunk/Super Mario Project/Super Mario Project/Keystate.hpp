@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Resource.hpp
+// Keystate.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,19 +7,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_RESOURCE
-#define HPP_RESOURCE
+#ifndef HPP_KEYSTATE
+#define HPP_KEYSTATE
 
 namespace SuperMarioProject
 {
-    class Resource
+    class Keystate
     {
     public:
-        Resource();
-        ~Resource();
+        Keystate();
+        ~Keystate();
 		
     private:
     };
 } // namespace
 
-#endif // HPP_RESOURCE
+#endif // HPP_KEYSTATE

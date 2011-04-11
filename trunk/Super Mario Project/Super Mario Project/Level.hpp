@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Resource.hpp
+// Level.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,19 +7,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_RESOURCE
-#define HPP_RESOURCE
+#ifndef HPP_LEVEL
+#define HPP_LEVEL
 
 namespace SuperMarioProject
 {
-    class Resource
+    class Level
     {
     public:
-        Resource();
-        ~Resource();
+        Level();
+        ~Level();
 		
     private:
     };
 } // namespace
 
-#endif // HPP_RESOURCE
+#endif // HPP_LEVEL

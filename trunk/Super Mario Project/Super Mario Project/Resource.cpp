@@ -8,7 +8,7 @@
 
 #include "Resource.hpp"
 
-namespace Collisions
+namespace SuperMarioProject
 {
     Resource::Resource()
     {
