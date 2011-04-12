@@ -105,7 +105,7 @@
     <ClInclude Include="Coord.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HUDs.hpp">
+    <ClInclude Include="HUD.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -200,7 +200,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HUDs.cpp">
+    <ClCompile Include="HUD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
