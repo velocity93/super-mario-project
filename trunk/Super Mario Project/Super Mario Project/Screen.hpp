@@ -10,15 +10,52 @@
 #ifndef HPP_SCREEN
 #define HPP_SCREEN
 
+#include "Coord.hpp"
+
+using namespace Utils;
+
 namespace Rendering
 {
     class Screen
     {
     public:
-        Screen();
-        ~Screen();
+		Screen() : origine(Coord<int>(0, 0)), size(Coord<int>(0, 0)), scrolling(Coord<float>(0, 0)) { }
+		Screen(Coord<int> Origine, Coord<int> Size, Coord<float> Scrolling) : origine(Origine), size(Size), scrolling(Scrolling) { }
+        Coord<int> GetOrigine()
+		{
+			return origine;
+		}
+
+		Coord<int> GetSize()
+		{
+			return size;
+		}
+
+		Coord<float> GetScrolling()
+		{
+			return scrolling;
+		}
+
+		void SetOrigine(Coord<int> Origine)
+		{
+			origine = Origine;
+		}
+
+		void SetSize(Coord<int> Size)
+		{
+			size = Size;
+		}
+
+		void SetScrolling(Coord<float> Scrolling)
+		{
+			scrolling = Scrolling;
+		}
+
 		
     private:
+		Coord<int> origine;
+		Coord<int> size;
+		Coord<float> scrolling;
     };
 } // namespace
 

@@ -10,12 +10,5 @@
 
 namespace Rendering
 {
-    Screen::Screen()
-    {
-    }
-
-
-    Screen::~Screen()
-    {
-    }
+    
 } // namespace

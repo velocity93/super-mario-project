@@ -105,7 +105,7 @@
     <ClInclude Include="Keystate.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coord.h">
+    <ClInclude Include="Coord.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

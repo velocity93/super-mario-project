@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Background.hpp
+// Coord.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -12,25 +12,32 @@
 
 namespace Utils
 {
-    template<int> class Coordi
+    template<class C> class Coord
     {
-    public:
-		int x, y;
-        Coordi();
-        ~Coordi();
+	public:
+		Coord() : x(0), y (0) { }
+		Coord(C X, C Y) : x(X), y(Y) { }
+		C GetX() 
+		{ 
+			return x; 
+		}
+
+		C GetY() 
+		{ 
+			return y; 
+		}
+
+		void Set(C X, C Y)
+		{
+			x = X;
+			y = Y;
+		}
 		
     private:
+		C x, y;
     };
 
-	template<float> class Coordf
-    {
-    public:
-		float x, y;
-        Coordf();
-        ~Coordf();
-		
-    private:
-    };
+	
 } // namespace
 
 #endif // HPP_COORD

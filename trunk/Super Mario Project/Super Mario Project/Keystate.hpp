@@ -10,6 +10,10 @@
 #ifndef HPP_KEYSTATE
 #define HPP_KEYSTATE
 
+#include <SFML\Graphics.hpp>
+
+using namespace sf;
+
 namespace SuperMarioProject
 {
 	enum Keys
@@ -17,16 +21,16 @@ namespace SuperMarioProject
 		NONE = -1,
 		LEFT,
 		RIGHT,
-		TOP,
-		BOTTOM,
+		UP,
+		DOWN,
 		JUMP,
 		RUN,
-		CLICK_G,
-		CLICK_D,
+		LEFT_CLICK,
+		RIGHT_CLICK,
 		ENTER,
 		ESCAPE,
-		CTRL_G,
-		ERASE,
+		LEFT_CTRL,
+		SUPPR,
 		CUT,
 		COPY,
 		PASTE,
@@ -36,10 +40,22 @@ namespace SuperMarioProject
     class Keystate
     {
     public:
-        Keystate();
-        ~Keystate();
-		
+		Keystate();
+		void Update(RenderWindow App);
+
+		bool* GetActual()
+		{
+			return actual;
+		};
+
+		bool* GetPrevious()
+		{
+			return previous;
+		};
+
     private:
+		bool actual[NB_KEYS];
+		bool previous[NB_KEYS];
     };
 } // namespace
 
