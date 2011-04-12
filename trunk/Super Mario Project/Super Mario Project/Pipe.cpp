@@ -10,10 +10,13 @@
 
 namespace Collisions
 {
-    Pipe::Pipe()
+	void Pipe::Update()
     {
     }
 
+	void Pipe::Render()
+    {
+    }
 
     Pipe::~Pipe()
     {

@@ -14,10 +14,19 @@
 
 namespace Collisions
 {
+	enum IO_state
+	{
+		OPEN,
+		CLOSED
+	};
+
 	class Door : Collisionable
     {
     public:
-        Door();
+		Door() : Collisionable(), indexDoorDestination(-1), state(CLOSED), levelDestination("") { }
+		Door(Coord<float> Position, int IndexDoorDestination, string LevelDestination, IO_state State) 
+			: Collisionable(Position), indexDoorDestination(IndexDoorDestination), levelDestination(LevelDestination), state(State) { }
+
 		int GetIndexDoorDestination()
 		{
 			return indexDoorDestination;
@@ -26,6 +35,11 @@ namespace Collisions
 		string GetLevelDestination()
 		{
 			return levelDestination;
+		}
+
+		IO_state GetState()
+		{
+			return state;
 		}
 
 		void SetIndexDoorDestination(int IndexDoorDestination)
@@ -38,6 +52,11 @@ namespace Collisions
 			levelDestination = LevelDestination;
 		}
 
+		void SetState(IO_state State)
+		{
+			state = State;
+		}
+
 		void Update();
 		void Render();
 
@@ -46,6 +65,7 @@ namespace Collisions
     private:
 		int indexDoorDestination;
 		string levelDestination;
+		IO_state state;
     };
 } // namespace
 

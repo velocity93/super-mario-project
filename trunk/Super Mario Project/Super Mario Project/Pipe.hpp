@@ -10,14 +10,11 @@
 #ifndef HPP_PIPE
 #define HPP_PIPE
 
+#include "Door.hpp"
+#include "Monster.hpp"
+
 namespace Collisions
 {
-	enum Pipe_state
-	{
-		OPEN,
-		CLOSED
-	};
-
 	enum Pipe_direction
 	{
 		TO_TOP,
@@ -26,13 +23,51 @@ namespace Collisions
 		TO_BOTTOM
 	};
 
-    class Pipe
+    class Pipe : Door
     {
     public:
-        Pipe();
+		Pipe() : Door(), direction(TO_TOP), monster(Monster()), monsterExitTime(0) { }
+		Pipe(Coord<float> Position, int IndexDoorDestination, string LevelDestination, IO_state State, Pipe_direction Direction, Monster Monster, int MonsterExitTime) 
+			: Door(Position, IndexDoorDestination, LevelDestination, State), direction(Direction), monster(Monster), monsterExitTime(MonsterExitTime) { }
+
+		Pipe_direction GetDirection()
+		{
+			return direction;
+		}
+
+		Monster GetMonster()
+		{
+			return monster;
+		}
+
+		int GetMonsterExitTime()
+		{
+			return monsterExitTime;
+		}
+
+		void SetDirection(Pipe_direction Direction)
+		{
+			direction = Direction;
+		}
+
+		void SetMonster(Monster Monster)
+		{
+			monster = Monster;
+		}
+
+		void SetMonsterExitTime(int MonsterExitTime)
+		{
+			monsterExitTime = MonsterExitTime;
+		}
+
+		void Update();
+		void Render();
         ~Pipe();
 		
     private:
+		Pipe_direction direction;
+		Monster monster;
+		int monsterExitTime;
     };
 } // namespace
 
