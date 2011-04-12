@@ -19,7 +19,7 @@ namespace Rendering
     class Screen
     {
     public:
-		Screen() : origine(Coord<int>(0, 0)), size(Coord<int>(0, 0)), scrolling(Coord<float>(0, 0)) { }
+		Screen() : origine(Coord<int>()), size(Coord<int>()), scrolling(Coord<float>()) { }
 		Screen(Coord<int> Origine, Coord<int> Size, Coord<float> Scrolling) : origine(Origine), size(Size), scrolling(Scrolling) { }
         Coord<int> GetOrigine()
 		{

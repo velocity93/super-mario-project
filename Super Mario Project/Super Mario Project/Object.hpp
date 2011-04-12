@@ -10,12 +10,16 @@
 #ifndef HPP_OBJECT
 #define HPP_OBJECT
 
+#include "Drawable.hpp"
+
 namespace Rendering
 {
-    class Object
+    class Object : Drawable
     {
     public:
-        Object();
+		Object() : Drawable() { }
+		void Update();
+		void Render();
         ~Object();
 		
     private:
