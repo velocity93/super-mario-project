@@ -10,12 +10,10 @@
 
 namespace Rendering
 {
-    Texture::Texture()
-    {
-    }
+	void Texture::LoadTexture(string Name)
+	{
+		SetName(Name);
 
-
-    Texture::~Texture()
-    {
-    }
+		/* To do */
+	}
 } // namespace

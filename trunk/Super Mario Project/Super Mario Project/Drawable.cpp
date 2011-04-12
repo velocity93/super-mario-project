@@ -10,11 +10,6 @@
 
 namespace Rendering
 {
-    Drawable::Drawable()
-    {
-    }
-
-
     Drawable::~Drawable()
     {
     }

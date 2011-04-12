@@ -10,10 +10,15 @@
 
 namespace Rendering
 {
-    Object::Object()
-    {
-    }
+	void Object::Update()
+	{
 
+	}
+
+	void Object::Render()
+	{
+
+	}
 
     Object::~Object()
     {
