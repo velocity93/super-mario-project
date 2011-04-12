@@ -10,12 +10,12 @@
 
 namespace Rendering
 {
-	void Object::Update()
+	void Object::Render()
 	{
 
 	}
-
-	void Object::Render()
+	
+	void Object::Update()
 	{
 
 	}

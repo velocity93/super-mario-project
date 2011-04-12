@@ -18,8 +18,9 @@ namespace Rendering
     {
     public:
 		Object() : Drawable() { }
-		void Update();
 		void Render();
+		void Update();
+
         ~Object();
 		
     private:
