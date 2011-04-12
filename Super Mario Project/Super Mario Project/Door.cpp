@@ -10,8 +10,14 @@
 
 namespace Collisions
 {
-    Door::Door()
+    void Door::Update()
     {
+
+    }
+
+	void Door::Render()
+    {
+
     }
 
 

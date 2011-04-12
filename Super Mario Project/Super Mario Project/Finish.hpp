@@ -10,12 +10,17 @@
 #ifndef HPP_FINISH
 #define HPP_FINISH
 
+#include "Collisionable.hpp"
+
 namespace Collisions
 {
-    class Finish
+    class Finish : Collisionable
     {
     public:
-        Finish();
+		Finish() : Collisionable() { }
+
+		void Update();
+		void Render();
         ~Finish();
 		
     private:

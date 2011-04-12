@@ -10,8 +10,14 @@
 
 namespace Collisions
 {
-    Checkpoint::Checkpoint()
+    void Checkpoint::Update()
     {
+
+    }
+
+	void Checkpoint::Render()
+    {
+
     }
 
 

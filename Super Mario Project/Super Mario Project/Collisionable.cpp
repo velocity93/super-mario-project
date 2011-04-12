@@ -10,12 +10,8 @@
 
 namespace Collisions
 {
-    Collisionable::Collisionable()
-    {
-    }
-
-
     Collisionable::~Collisionable()
     {
+		
     }
 } // namespace

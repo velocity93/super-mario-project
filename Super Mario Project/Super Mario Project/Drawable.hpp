@@ -62,22 +62,22 @@ namespace Rendering
 			texture = Texture;
 		}
 
-		void GetSpriteNumbers(vector<int> SpriteNumbers)
+		void SetSpriteNumbers(vector<int> SpriteNumbers)
 		{
 			spriteNumbers = SpriteNumbers;
 		}
 
-		void GetAnimationSpeeds(vector<int> AnimationSpeeds)
+		void SetAnimationSpeeds(vector<int> AnimationSpeeds)
 		{
 			animationSpeeds = AnimationSpeeds;
 		}
 
 		/* It will be defined in subclasses */
-		/* Draw actual object state */
-		virtual void Render() { }
-		
 		/* Update drawable object context */
 		virtual void Update() { }
+		
+		/* Draw actual object state */
+		virtual void Render() { }
 		
         ~Drawable();
 		
