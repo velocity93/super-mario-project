@@ -10,15 +10,31 @@
 #ifndef HPP_BACKGROUND
 #define HPP_BACKGROUND
 
+#include "Object.hpp"
+
 namespace Rendering
 {
-    class Background
+    class Background : Object
     {
     public:
-        Background();
+		Background() : verticalRepetition(false), Object() { }
+		Background(bool VerticalRepetition) : verticalRepetition(VerticalRepetition), Object() { }
+		bool GetVerticalRepetition()
+		{
+			return verticalRepetition;
+		}
+
+		void SetVerticalRepetition(bool VerticalRepetition)
+		{
+			verticalRepetition = VerticalRepetition;
+		}
+
+		void Render();
+		void Update();
         ~Background();
 		
     private:
+		bool verticalRepetition;
     };
 } // namespace
 

@@ -10,12 +10,18 @@
 
 namespace Rendering
 {
-    Background::Background()
-    {
-    }
+	void Background::Render()
+	{
 
+	}
+
+	void Background::Update()
+	{
+
+	}
 
     Background::~Background()
     {
     }
+
 } // namespace

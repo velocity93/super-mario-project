@@ -73,11 +73,12 @@ namespace Rendering
 		}
 
 		/* It will be defined in subclasses */
-		/* Update drawable object context */
-		virtual void Update() { }
-
 		/* Draw actual object state */
 		virtual void Render() { }
+		
+		/* Update drawable object context */
+		virtual void Update() { }
+		
         ~Drawable();
 		
     private:
