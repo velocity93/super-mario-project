@@ -10,6 +10,10 @@
 #ifndef HPP_WORLD
 #define HPP_WORLD
 
+#include "Screen.hpp"
+#include "Perso.hpp"
+#include "Level.hpp"
+
 namespace SuperMarioProject
 {
     class World
