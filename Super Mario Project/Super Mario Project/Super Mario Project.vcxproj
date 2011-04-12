@@ -89,7 +89,7 @@
     <ClInclude Include="EntityMovable.hpp" />
     <ClInclude Include="Finish.hpp" />
     <ClInclude Include="Foreground.hpp" />
-    <ClInclude Include="HUDs.hpp" />
+    <ClInclude Include="HUD.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
     <ClInclude Include="Keystate.hpp" />
@@ -121,7 +121,7 @@
     <ClCompile Include="EntityMovable.cpp" />
     <ClCompile Include="Finish.cpp" />
     <ClCompile Include="Foreground.cpp" />
-    <ClCompile Include="HUDs.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemOccurrence.cpp" />
     <ClCompile Include="Keystate.cpp" />
