@@ -10,8 +10,8 @@
 #ifndef HPP_TEXTURE
 #define HPP_TEXTURE
 
-#include <string>
 #include "Coord.hpp"
+#include <string>
 
 using namespace Utils;
 using namespace std;

@@ -10,10 +10,13 @@
 
 namespace Collisions
 {
-    Finish::Finish()
+	void Finish::Update()
     {
     }
 
+	void Finish::Render()
+    {
+    }
 
     Finish::~Finish()
     {

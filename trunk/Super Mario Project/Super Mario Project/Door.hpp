@@ -10,15 +10,42 @@
 #ifndef HPP_DOOR
 #define HPP_DOOR
 
+#include "Collisionable.hpp"
+
 namespace Collisions
 {
-    class Door
+	class Door : Collisionable
     {
     public:
         Door();
+		int GetIndexDoorDestination()
+		{
+			return indexDoorDestination;
+		}
+
+		string GetLevelDestination()
+		{
+			return levelDestination;
+		}
+
+		void SetIndexDoorDestination(int IndexDoorDestination)
+		{
+			indexDoorDestination = IndexDoorDestination;
+		}
+
+		void SetLevelDestination(string LevelDestination)
+		{
+			levelDestination = LevelDestination;
+		}
+
+		void Update();
+		void Render();
+
         ~Door();
 		
     private:
+		int indexDoorDestination;
+		string levelDestination;
     };
 } // namespace
 

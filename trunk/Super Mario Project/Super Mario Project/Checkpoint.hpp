@@ -10,6 +10,8 @@
 #ifndef HPP_CHECKPOINT
 #define HPP_CHECKPOINT
 
+#include "Collisionable.hpp"
+
 namespace Collisions
 {
 	enum Checkpoint_state
@@ -18,13 +20,17 @@ namespace Collisions
 		NOT_PASSED
 	};
 
-    class Checkpoint
+	class Checkpoint : Collisionable
     {
     public:
-        Checkpoint();
+		Checkpoint() : Collisionable(), state(NOT_PASSED) { }
+
+		void Update();
+		void Render();
         ~Checkpoint();
 		
     private:
+		Checkpoint_state state;
     };
 } // namespace
 
