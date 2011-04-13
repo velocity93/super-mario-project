@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    EntityMovable::EntityMovable()
-    {
-    }
-
-
     EntityMovable::~EntityMovable()
     {
     }

@@ -32,6 +32,32 @@ namespace Utils
 			x = X;
 			y = Y;
 		}
+
+			
+    private:
+		C x, y;
+    };
+
+	template<class C> class Vect
+    {
+	public:
+		Vect() : x(0), y (0) { }
+		Vect(C X, C Y) : x(X), y(Y) { }
+		C GetX() 
+		{ 
+			return x; 
+		}
+
+		C GetY() 
+		{ 
+			return y; 
+		}
+
+		void Set(C X, C Y)
+		{
+			x = X;
+			y = Y;
+		}
 		
     private:
 		C x, y;
