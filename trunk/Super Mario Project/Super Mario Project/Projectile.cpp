@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    Projectile::Projectile()
-    {
-    }
-
-
     Projectile::~Projectile()
     {
     }

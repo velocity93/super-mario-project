@@ -16,11 +16,18 @@ using namespace Utils;
 
 namespace Collisions
 {
+
+	enum Side {
+		LEFT_SIDE,
+		RIGHT_SIDE
+	};
+
     class EntityMovable : Collisionable
     {
     public:
-		EntityMovable() : Collisionable(), previousPosition(Coord<float>()), speed(Vect<float>()) { }
-		
+		EntityMovable() : Collisionable(), previousPosition(Coord<float>()), speed(Vect<float>()), side(RIGHT_SIDE) { }
+		EntityMovable(Coord<float> Position) : Collisionable(Position), previousPosition(Position), speed(Vect<float>()), side(RIGHT_SIDE) { }
+
 		Coord<float> GetPreviousPosition()
 		{
 			return previousPosition;
@@ -29,6 +36,11 @@ namespace Collisions
 		Vect<float> GetSpeed()
 		{
 			return speed;
+		}
+
+		Side GetSide()
+		{
+			return side;
 		}
 
 		void GetPreviousPosition(Coord<float> PreviousPosition)
@@ -41,11 +53,18 @@ namespace Collisions
 			speed = Speed;
 		}
 
+		void SetSide(Side Side)
+		{
+			side = Side;
+		}
+
+
         ~EntityMovable();
 		
     private:
 		Coord<float> previousPosition;
 		Vect<float> speed;
+		Side side;
     };
 } // namespace
 

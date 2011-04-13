@@ -95,7 +95,7 @@ namespace Collisions
 		
     private:
 		Coord<int> particleSize;
-		//queue<Particle> particles;
+		queue<Particle> particles;
 		int nbMaxParticles;
 		int flow;
 		bool hasGravity;

@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    ProjectileOccurrence::ProjectileOccurrence()
-    {
-    }
-
-
     ProjectileOccurrence::~ProjectileOccurrence()
     {
     }

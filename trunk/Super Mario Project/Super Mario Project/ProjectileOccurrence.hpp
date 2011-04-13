@@ -10,15 +10,37 @@
 #ifndef HPP_PROJECTILEOCCURRENCE
 #define HPP_PROJECTILEOCCURRENCE
 
+#include "EntityMovable.hpp"
+
+
 namespace Collisions
 {
-    class ProjectileOccurrence
+	enum Projectile_Sender {
+		GENTILE,
+		VILAIN
+	};
+
+	class ProjectileOccurrence : EntityMovable
     {
     public:
-        ProjectileOccurrence();
+		ProjectileOccurrence() : EntityMovable(), sender(GENTILE) { }
+		ProjectileOccurrence(Coord<float> Position) : EntityMovable(Position), sender(GENTILE) { }
+
+		Projectile_Sender GetSender()
+		{
+			return sender;
+		}
+
+		void SetSender(Projectile_Sender Sender)
+		{
+			sender = Sender;
+		}
+
         ~ProjectileOccurrence();
 		
     private:
+		Projectile_Sender sender;
+		//Projectile model;
     };
 } // namespace
 

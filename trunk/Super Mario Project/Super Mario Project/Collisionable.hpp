@@ -12,6 +12,8 @@
 
 #include "Drawable.hpp"
 
+using namespace Rendering;
+
 namespace Collisions
 {
 
@@ -27,7 +29,7 @@ namespace Collisions
 		NONE_COLLISION
 	};
 
-    class Collisionable
+    class Collisionable : Drawable
     {
     public:
 		Collisionable() : position(Coord<float>()), hitboxPosition(Coord<float>()), hitboxSize(Coord<int>()) { }

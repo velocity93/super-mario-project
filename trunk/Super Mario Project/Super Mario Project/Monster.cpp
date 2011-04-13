@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    Monster::Monster()
-    {
-    }
-
-
     Monster::~Monster()
     {
     }
