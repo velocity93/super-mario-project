@@ -10,15 +10,32 @@
 #ifndef HPP_PARTICLE
 #define HPP_PARTICLE
 
+#include "EntityMovable.hpp"
+
 namespace Collisions
 {
-    class Particle
+    class Particle : EntityMovable
     {
     public:
-        Particle();
+		Particle() : EntityMovable(), life(0) { }
+
+		int GetLife()
+		{
+			return life;
+		}
+
+		void SetLife(int Life)
+		{
+			life = Life;
+		}
+
+		void Update();
+		void Render();
+
         ~Particle();
 		
     private:
+		int life;
     };
 } // namespace
 

@@ -10,10 +10,13 @@
 
 namespace Collisions
 {
-    ParticleGenerator::ParticleGenerator()
+    void ParticleGenerator::Update()
     {
     }
 
+	void ParticleGenerator::Render()
+    {
+    }
 
     ParticleGenerator::~ParticleGenerator()
     {

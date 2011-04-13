@@ -10,15 +10,42 @@
 #ifndef HPP_ENTITYMOVABLE
 #define HPP_ENTITYMOVABLE
 
+#include "Collisionable.hpp"
+
+using namespace Utils;
+
 namespace Collisions
 {
-    class EntityMovable
+    class EntityMovable : Collisionable
     {
     public:
-        EntityMovable();
+		EntityMovable() : Collisionable(), previousPosition(Coord<float>()), speed(Vect<float>()) { }
+		
+		Coord<float> GetPreviousPosition()
+		{
+			return previousPosition;
+		}
+
+		Vect<float> GetSpeed()
+		{
+			return speed;
+		}
+
+		void GetPreviousPosition(Coord<float> PreviousPosition)
+		{
+			previousPosition = PreviousPosition;
+		}
+
+		void GetSpeed(Vect<float> Speed)
+		{
+			speed = Speed;
+		}
+
         ~EntityMovable();
 		
     private:
+		Coord<float> previousPosition;
+		Vect<float> speed;
     };
 } // namespace
 

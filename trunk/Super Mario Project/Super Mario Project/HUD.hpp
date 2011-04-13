@@ -12,11 +12,10 @@
 
 #define NB_POINTS 7
 
-#include "Item.hpp"
 #include <string>
+#include <queue>
 
 using namespace std;
-using namespace Collisions;
 
 namespace Rendering
 {
@@ -24,7 +23,6 @@ namespace Rendering
     {
     public:
 		HUD();
-
         ~HUD();
 		
     private:
@@ -38,7 +36,7 @@ namespace Rendering
 		int nbMonstersKilled;
 		int nbMonstersKilledByShell;
 		int points[NB_POINTS]; // pour les points à la suite
-		//int file_points; pour la file des points affiches à l'écran
+		queue<int> queue_points;
 
     };
 } // namespace
