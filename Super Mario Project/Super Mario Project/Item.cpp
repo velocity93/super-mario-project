@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    Item::Item()
-    {
-    }
-
-
     Item::~Item()
     {
     }

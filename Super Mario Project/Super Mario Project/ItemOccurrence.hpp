@@ -10,33 +10,50 @@
 #ifndef HPP_ITEMOCCURRENCE
 #define HPP_ITEMOCCURRENCE
 
+#include "EntityMovable.hpp"
+
 namespace Collisions
 {
-	enum Item_type
-	{
-		COIN,
-		MUSHROOM,
-		FLOWER,
-		ICE_FLOWER,
-		MINI_MUSHROOM,
-		POISON_MUSHROOM,
-		STAR,
-		LIFE_MUSHROOM
-	};
-
 	enum Item_state
 	{
 		NORMAL,
 		GET_OUT_FROM_BLOC
 	};
 
-    class ItemOccurrence
+    class ItemOccurrence : EntityMovable
     {
     public:
-        ItemOccurrence();
+		ItemOccurrence() : EntityMovable(), state(NORMAL), isActive(true) { }
+		ItemOccurrence(Coord<float> Position, Item_state State, bool IsActive)
+			: EntityMovable(Position), state(State), isActive(IsActive) { }
+
+		Item_state GetState()
+		{
+			return state;
+		}
+
+		bool GetIsActive()
+		{
+			return isActive;
+		}
+
+		void SetState(Item_state State)
+		{
+			state = State;
+		}
+
+		void SetIsActive(bool IsActive)
+		{
+			isActive = IsActive;
+		}
+
+		void Update();
+		void Render();
         ~ItemOccurrence();
 		
     private:
+		Item_state state;
+		bool isActive;
     };
 } // namespace
 

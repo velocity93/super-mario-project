@@ -10,14 +10,13 @@
 #ifndef HPP_PROJECTILE
 #define HPP_PROJECTILE
 
+#include "ProjectileOccurrence.hpp"
+#include <list>
+
+using namespace std;
+
 namespace Collisions
 {
-	enum Projectile_Sender {
-		LEVEL,
-		GENTILE,
-		VILAIN
-	};
-
 	enum Projectile_Type {
 		FRAGMENT,
 		FIREBALL,
@@ -32,10 +31,29 @@ namespace Collisions
     class Projectile
     {
     public:
-        Projectile();
+		Projectile() : type(FRAGMENT), submission(0) { }
+
+		int GetSubmission()
+		{
+			return submission;
+		}
+
+		list<ProjectileOccurrence> GetProjectileOccurrences()
+		{
+			return projectileOccurences;
+		}
+
+		void SetSubmission(int Submission)
+		{
+			submission = Submission;
+		}
+
         ~Projectile();
 		
     private:
+		Projectile_Type type;
+		int submission;
+		list<ProjectileOccurrence> projectileOccurences;
     };
 } // namespace
 

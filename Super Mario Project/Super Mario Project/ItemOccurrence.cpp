@@ -10,10 +10,14 @@
 
 namespace Collisions
 {
-    ItemOccurrence::ItemOccurrence()
+	void ItemOccurrence::Update()
     {
     }
 
+	void ItemOccurrence::Render()
+    {
+		
+    }
 
     ItemOccurrence::~ItemOccurrence()
     {

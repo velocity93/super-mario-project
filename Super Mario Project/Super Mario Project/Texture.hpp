@@ -57,11 +57,6 @@ namespace Rendering
 			name = Name;
 		}
 
-		void SetId(int Id)
-		{
-			Id = id;
-		}
-
 		void LoadTexture(string Name);
 
 		

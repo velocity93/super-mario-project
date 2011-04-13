@@ -20,7 +20,7 @@ namespace Rendering
 		 nbMonstersKilled = 0;
 		 nbMonstersKilledByShell = 0;
 
-		 /* Initialization of points tab */
+		 /* Initialization of points tab  */
 		 points[0] = 200;
 		 points[1] = 400;
 		 points[2] = 800;

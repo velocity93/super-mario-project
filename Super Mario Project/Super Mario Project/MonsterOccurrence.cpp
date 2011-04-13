@@ -10,11 +10,6 @@
 
 namespace Collisions
 {
-    MonsterOccurrence::MonsterOccurrence()
-    {
-    }
-
-
     MonsterOccurrence::~MonsterOccurrence()
     {
     }
