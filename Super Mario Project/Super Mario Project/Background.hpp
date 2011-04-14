@@ -29,8 +29,9 @@ namespace Rendering
 			verticalRepetition = VerticalRepetition;
 		}
 
+		void Update(float time);
 		void Render();
-		void Update();
+		
         ~Background();
 		
     private:

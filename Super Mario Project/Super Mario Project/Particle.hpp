@@ -29,7 +29,7 @@ namespace Collisions
 			life = Life;
 		}
 
-		void Update();
+		void Update(float time);
 		void Render();
 
         ~Particle();

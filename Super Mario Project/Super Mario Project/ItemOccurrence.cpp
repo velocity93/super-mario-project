@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	void ItemOccurrence::Update()
+	void ItemOccurrence::Update(float time)
     {
     }
 

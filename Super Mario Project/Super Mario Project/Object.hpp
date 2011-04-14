@@ -18,8 +18,9 @@ namespace Rendering
     {
     public:
 		Object() : Drawable() { }
+		
+		void Update(float time);
 		void Render();
-		void Update();
 
         ~Object();
 		

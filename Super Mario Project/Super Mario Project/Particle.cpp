@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	void Particle::Update()
+	void Particle::Update(float time)
     {
     }
 

@@ -89,8 +89,9 @@ namespace Collisions
 			endColor = EndColor;
 		}
 
-		void Update();
+		void Update(float time);
 		void Render();
+
         ~ParticleGenerator();
 		
     private:

@@ -60,8 +60,9 @@ namespace Collisions
 			monsterExitTime = MonsterExitTime;
 		}
 
-		void Update();
+		void Update(float time);
 		void Render();
+
         ~Pipe();
 		
     private:

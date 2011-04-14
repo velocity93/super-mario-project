@@ -10,7 +10,14 @@
 
 namespace Collisions
 {
-    Perso::Perso()
+    void Perso::Update(float time)
+    {
+		/* Save actual position as previous position */
+		this->GetPreviousPosition().Set(this->GetPosition().GetX(), this->GetPosition().GetY());
+
+    }
+
+	void Perso::Render()
     {
     }
 
