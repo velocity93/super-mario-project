@@ -57,7 +57,7 @@ namespace Collisions
 			state = State;
 		}
 
-		void Update();
+		void Update(float time);
 		void Render();
 
         ~Door();

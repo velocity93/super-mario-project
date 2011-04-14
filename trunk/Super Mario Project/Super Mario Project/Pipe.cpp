@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	void Pipe::Update()
+	void Pipe::Update(float time)
     {
     }
 

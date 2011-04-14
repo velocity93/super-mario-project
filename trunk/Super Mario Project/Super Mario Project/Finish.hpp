@@ -19,7 +19,7 @@ namespace Collisions
     public:
 		Finish() : Collisionable() { }
 
-		void Update();
+		void Update(float time);
 		void Render();
         ~Finish();
 		

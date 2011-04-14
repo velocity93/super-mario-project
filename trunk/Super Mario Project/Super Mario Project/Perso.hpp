@@ -10,6 +10,14 @@
 #ifndef HPP_PERSO
 #define HPP_PERSO
 
+#include "HUD.hpp"
+#include "EntityMovable.hpp"
+#include "MonsterOccurrence.hpp"
+#include "Pipe.hpp"
+#include "Checkpoint.hpp"
+
+using namespace Rendering;
+
 namespace Collisions
 {
 	enum Environment
@@ -54,11 +62,6 @@ namespace Collisions
 		NB_STATE
 	};
 
-	enum Perso_side {
-		LEFT_SIDE,
-		RIGHT_SIDE,
-	};
-
 	enum Perso_sounds {
 		SND_JUMP,
 		SND_HURT,
@@ -95,13 +98,211 @@ namespace Collisions
 		NB_TRANSFORMATIONS
 	};
 
-    class Perso
+	class Perso : EntityMovable
     {
     public:
-        Perso();
+		/* Constructors */
+		Perso() : EntityMovable(), environment(GROUND), transformation(SMALL_MARIO),
+			hud(HUD()), canClimb(false), acceleration(Vect<float>()), invincibleTime(0), invincibleStarTime(0),
+			transformationTime(0), attackTime(0), specialAttackTime(0), throwShellTime(0), deathTime(0), finishTime(0),
+			jumpTime(0) { }
+		Perso(Coord<float> Position) : EntityMovable(Position), environment(GROUND), transformation(SMALL_MARIO),
+			hud(HUD()), canClimb(false), acceleration(Vect<float>()), invincibleTime(0), invincibleStarTime(0),
+			transformationTime(0), attackTime(0), specialAttackTime(0), throwShellTime(0), deathTime(0), finishTime(0),
+			jumpTime(0) { }
+
+		/* Getters and setters */
+		HUD GetHUD()
+		{
+			return hud;
+		}
+
+		Environment GetEnvironment()
+		{
+			return environment;
+		}
+
+		Perso_transformations GetTransformation()
+		{
+			return transformation;
+		}
+
+		bool GetCanClimb()
+		{
+			return canClimb;
+		}
+
+		Vect<float> GetAcceleration()
+		{
+			return acceleration;
+		}
+
+		MonsterOccurrence GetBroughtMonster()
+		{
+			return broughtMonster;
+		}
+
+		Pipe GetInsidePipe()
+		{
+			return insidePipe;
+		}
+
+		Checkpoint GetCheckPointPassed()
+		{
+			return checkpointPassed;
+		}
+
+		int GetInvincibleTime()
+		{
+			return invincibleTime;
+		}
+
+		int GetInvincibleStarTime()
+		{
+			return invincibleStarTime;
+		}
+
+		int GetTransformationTime()
+		{
+			return transformationTime;
+		}
+
+		int GetAttackTime()
+		{
+			return attackTime;
+		}
+
+		int GetSpecialAttackTime()
+		{
+			return specialAttackTime;
+		}
+
+		int GetThrowShellTime()
+		{
+			return throwShellTime;
+		}
+
+		int GetDeathTime()
+		{
+			return deathTime;
+		}
+
+		int GetFinishTime()
+		{
+			return finishTime;
+		}
+
+		int GetJumpTime()
+		{
+			return jumpTime;
+		}
+
+		void SetHUD(HUD HUD)
+		{
+			hud = HUD;
+		}
+
+		void SetEnvironment(Environment Environment)
+		{
+			environment = Environment;
+		}
+
+		void SetTransformation(Perso_transformations Transformation)
+		{
+			transformation = Transformation;
+		}
+
+		void SetCanClimb(bool CanClimb)
+		{
+			canClimb = CanClimb;
+		}
+
+		void SetBroughtMonster(MonsterOccurrence Monster)
+		{
+			broughtMonster = Monster;
+		}
+
+		void SetInsidePipe(Pipe Pipe)
+		{
+			insidePipe = Pipe;
+		}
+
+		void SetCheckPointPassed(Checkpoint Checkpoint)
+		{
+			checkpointPassed = Checkpoint;
+		}
+
+		void SetInvincibleTime(int InvincibleTime)
+		{
+			invincibleTime = InvincibleTime;
+		}
+
+		void SetInvincibleStarTime(int InvincibleStarTime)
+		{
+			invincibleStarTime = InvincibleStarTime;
+		}
+
+		void SetTransformationTime(int TransformationTime)
+		{
+			transformationTime = TransformationTime;
+		}
+
+		void SetAttackTime(int AttackTime)
+		{
+			attackTime = AttackTime;
+		}
+
+		void SetSpecialAttackTime(int SpecialAttackTime)
+		{
+			specialAttackTime = SpecialAttackTime;
+		}
+
+		void SetThrowShellTime(int ThrowShellTime)
+		{
+			throwShellTime = ThrowShellTime;
+		}
+
+		void SetDeathTime(int DeathTime)
+		{
+			deathTime = DeathTime;
+		}
+
+		void SetFinishTime(int FinishTime)
+		{
+			finishTime = FinishTime;
+		}
+
+		void SetJumpTime(int JumpTime)
+		{
+			jumpTime = JumpTime;
+		}
+
+		/* Methods */
+		void Update(float time);
+		void Render();
+
+		/* Destructor */
         ~Perso();
 		
     private:
+		HUD hud;
+		Environment environment;
+		Perso_transformations transformation;
+		bool canClimb;
+		Vect<float> acceleration;
+		MonsterOccurrence broughtMonster;
+		Pipe insidePipe;
+		Checkpoint checkpointPassed;
+		//sounds
+		int invincibleTime;
+		int invincibleStarTime;
+		int transformationTime;
+		int attackTime;
+		int specialAttackTime;
+		int throwShellTime;
+		int deathTime;
+		int finishTime;
+		int jumpTime;
     };
 } // namespace
 

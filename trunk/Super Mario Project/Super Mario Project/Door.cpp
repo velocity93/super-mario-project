@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-    void Door::Update()
+    void Door::Update(float time)
     {
 
     }

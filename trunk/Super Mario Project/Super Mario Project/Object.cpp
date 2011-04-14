@@ -10,12 +10,12 @@
 
 namespace Rendering
 {
-	void Object::Render()
+	void Object::Update(float time)
 	{
 
 	}
 	
-	void Object::Update()
+	void Object::Render()
 	{
 
 	}

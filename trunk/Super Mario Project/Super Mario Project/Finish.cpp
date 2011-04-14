@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	void Finish::Update()
+	void Finish::Update(float time)
     {
     }
 

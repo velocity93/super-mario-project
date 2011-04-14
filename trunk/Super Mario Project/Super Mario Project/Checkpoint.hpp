@@ -26,7 +26,7 @@ namespace Collisions
 		Checkpoint() : Collisionable(), state(NOT_PASSED) { }
 		Checkpoint(Coord<float> Position, Checkpoint_state State) : Collisionable(Position), state(State) { }
 
-		void Update();
+		void Update(float time);
 		void Render();
         ~Checkpoint();
 		

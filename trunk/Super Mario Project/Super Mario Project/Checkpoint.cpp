@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-    void Checkpoint::Update()
+    void Checkpoint::Update(float time)
     {
 
     }

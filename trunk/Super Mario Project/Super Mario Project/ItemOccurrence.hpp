@@ -47,8 +47,9 @@ namespace Collisions
 			isActive = IsActive;
 		}
 
-		void Update();
+		void Update(float time);
 		void Render();
+
         ~ItemOccurrence();
 		
     private:

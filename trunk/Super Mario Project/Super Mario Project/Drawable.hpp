@@ -74,7 +74,7 @@ namespace Rendering
 
 		/* It will be defined in subclasses */
 		/* Update drawable object context */
-		virtual void Update() { }
+		virtual void Update(float time) { }
 		
 		/* Draw actual object state */
 		virtual void Render() { }

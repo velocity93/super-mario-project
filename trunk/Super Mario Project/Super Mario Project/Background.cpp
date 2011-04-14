@@ -10,12 +10,11 @@
 
 namespace Rendering
 {
-	void Background::Render()
+	void Background::Update(float time)
 	{
 
 	}
-
-	void Background::Update()
+	void Background::Render()
 	{
 
 	}

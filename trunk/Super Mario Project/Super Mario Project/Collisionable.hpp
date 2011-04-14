@@ -32,8 +32,11 @@ namespace Collisions
     class Collisionable : Drawable
     {
     public:
+		/* Constructors */
 		Collisionable() : position(Coord<float>()), hitboxPosition(Coord<float>()), hitboxSize(Coord<int>()) { }
 		Collisionable(Coord<float> Position) : position(Position), hitboxPosition(Coord<float>()), hitboxSize(Coord<int>()) { }
+
+		/* Getters and setters */
 		Coord<float> GetPosition()
 		{
 			return position;
@@ -64,6 +67,7 @@ namespace Collisions
 			hitboxSize = HitboxSize;
 		}
 
+		/* Destructors */
         ~Collisionable();
 		
     private:

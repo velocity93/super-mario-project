@@ -22,12 +22,14 @@ namespace Collisions
 		RIGHT_SIDE
 	};
 
-    class EntityMovable : Collisionable
+    class EntityMovable : public Collisionable
     {
     public:
+		/* Constructors */
 		EntityMovable() : Collisionable(), previousPosition(Coord<float>()), speed(Vect<float>()), side(RIGHT_SIDE) { }
 		EntityMovable(Coord<float> Position) : Collisionable(Position), previousPosition(Position), speed(Vect<float>()), side(RIGHT_SIDE) { }
 
+		/* Getters and setters */
 		Coord<float> GetPreviousPosition()
 		{
 			return previousPosition;
@@ -58,7 +60,7 @@ namespace Collisions
 			side = Side;
 		}
 
-
+		/* Destructors */
         ~EntityMovable();
 		
     private:
