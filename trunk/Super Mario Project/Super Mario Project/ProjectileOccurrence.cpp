@@ -10,7 +10,27 @@
 
 namespace Collisions
 {
-    ProjectileOccurrence::~ProjectileOccurrence()
-    {
-    }
+	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()
+	{
+		return _sender;
+	}
+
+	void ProjectileOccurrence::setSender(Sender sender)
+	{
+		_sender = sender;
+	}
+
+	void ProjectileOccurrence::update(float time)
+	{
+
+	}
+
+	void ProjectileOccurrence::render()
+	{
+
+	}
+
+	ProjectileOccurrence::~ProjectileOccurrence()
+	{
+	}
 } // namespace

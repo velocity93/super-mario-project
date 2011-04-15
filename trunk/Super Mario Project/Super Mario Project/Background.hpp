@@ -17,25 +17,23 @@ namespace Rendering
     class Background : Object
     {
     public:
-		Background() : verticalRepetition(false), Object() { }
-		Background(bool VerticalRepetition) : verticalRepetition(VerticalRepetition), Object() { }
-		bool GetVerticalRepetition()
-		{
-			return verticalRepetition;
-		}
-
-		void SetVerticalRepetition(bool VerticalRepetition)
-		{
-			verticalRepetition = VerticalRepetition;
-		}
-
-		void Update(float time);
-		void Render();
+		/* Constructors */
+		Background() : Object(), _verticalRepetition(false) { }
+		Background(bool verticalRepetition) : Object(), _verticalRepetition(verticalRepetition) { }
 		
+		/* getter and setter */
+		bool getVerticalRepetition();
+		void setVerticalRepetition(bool verticalRepetition);
+
+		/* Methods */
+		void update(float time);
+		void render();
+		
+		/* Destructor */
         ~Background();
 		
     private:
-		bool verticalRepetition;
+		bool _verticalRepetition;
     };
 } // namespace
 

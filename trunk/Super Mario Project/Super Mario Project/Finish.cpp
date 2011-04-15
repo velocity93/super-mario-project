@@ -10,11 +10,11 @@
 
 namespace Collisions
 {
-	void Finish::Update(float time)
+	void Finish::update(float time)
     {
     }
 
-	void Finish::Render()
+	void Finish::render()
     {
     }
 

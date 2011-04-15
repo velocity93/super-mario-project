@@ -21,87 +21,44 @@ using namespace sf;
 
 namespace Collisions
 {
-    class ParticleGenerator : Collisionable
+    class ParticleGenerator : public Collisionable
     {
     public:
-		ParticleGenerator() : Collisionable(), nbMaxParticles(0), flow(0), hasGravity(false), 
-			startColor(Color(0, 0, 0)), endColor(Color(0, 0, 0)) { }
-		ParticleGenerator(Coord<float> Position, int NbMaxParticles, int Flow, bool HasGravity, Color StartColor, Color EndColor) 
-			: Collisionable(Position), nbMaxParticles(NbMaxParticles), flow(Flow), hasGravity(HasGravity), startColor(StartColor), endColor(EndColor) { }
+		/* Constructors */ 
+		ParticleGenerator() : Collisionable(), _nbMaxParticles(0), _flow(0), _hasGravity(false), 
+			_startColor(Color(0, 0, 0)), _endColor(Color(0, 0, 0)) { }
+		ParticleGenerator(Coord<float> position, int nbMaxParticles, int flow, bool hasGravity, Color startColor, Color endColor) 
+			: Collisionable(position), _nbMaxParticles(nbMaxParticles), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor) { }
 
-		Coord<int> GetParticleSize()
-		{
-			return particleSize;
-		}
+		/* getters and setters */
+		Coord<int> getParticleSize();
+		int getNbMaxParticles();
+		int getFlow();
+		bool getHasGravity();
+		Color getStartColor();
+		Color getEndColor();
+		void setParticleSize(Coord<int> particleSize);
+		void setNbMaxParticles(int nbMaxParticles);
+		void setFlow(int flow);
+		void setHasGravity(bool hasGravity);
+		void setStartColor(Color& startColor);
+		void setEndColor(Color& endColor);
 
-		int GetNbMaxParticles()
-		{
-			return nbMaxParticles;
-		}
+		/* Methods */
+		void update(float time);
+		void render();
 
-		int GetFlow()
-		{
-			return flow;
-		}
-
-		bool GetHasGravity()
-		{
-			return hasGravity;
-		}
-
-		Color GetStartColor()
-		{
-			return startColor;
-		}
-
-		Color GetEndColor()
-		{
-			return endColor;
-		}
-
-		void SetParticleSize(Coord<int> ParticleSize)
-		{
-			particleSize= ParticleSize;
-		}
-
-		void SetNbMaxParticles(int NbMaxParticles)
-		{
-			nbMaxParticles = NbMaxParticles;
-		}
-
-		void SetFlow(int Flow)
-		{
-			flow = Flow;
-		}
-
-		void SetHasGravity(bool HasGravity)
-		{
-			hasGravity = HasGravity;
-		}
-
-		void SetStartColor(Color StartColor)
-		{
-			startColor = StartColor;
-		}
-
-		void SetEndColor(Color EndColor)
-		{
-			endColor = EndColor;
-		}
-
-		void Update(float time);
-		void Render();
-
+		/* Destructor */
         ~ParticleGenerator();
 		
     private:
-		Coord<int> particleSize;
-		queue<Particle> particles;
-		int nbMaxParticles;
-		int flow;
-		bool hasGravity;
-		Color startColor;
-		Color endColor;
+		Coord<int> _particleSize;
+		queue<Particle> _particles;
+		int _nbMaxParticles;
+		int _flow;
+		bool _hasGravity;
+		Color _startColor;
+		Color _endColor;
     };
 } // namespace
 

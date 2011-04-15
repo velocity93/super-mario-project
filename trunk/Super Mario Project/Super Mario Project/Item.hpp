@@ -10,62 +10,47 @@
 #ifndef HPP_ITEM
 #define HPP_ITEM
 
-#include"ItemOccurrence.hpp"
+#include "ItemOccurrence.hpp"
 #include <list>
 
 using namespace std;
 
 namespace Collisions
 {
-	enum Item_type
+	class Item
 	{
-		COIN,
-		MUSHROOM,
-		FLOWER,
-		ICE_FLOWER,
-		MINI_MUSHROOM,
-		POISON_MUSHROOM,
-		STAR,
-		LIFE_MUSHROOM
+		enum Type
+		{
+			COIN,
+			MUSHROOM,
+			FLOWER,
+			ICE_FLOWER,
+			MINI_MUSHROOM,
+			POISON_MUSHROOM,
+			STAR,
+			LIFE_MUSHROOM
+		};
+
+
+	public:
+		/* Constructor */
+		Item() : _type(COIN), _submission(0) { }
+
+		/* Getters and setters */
+		Type getType();
+		int getSubmission();
+		list<ItemOccurrence> getItemOccurrences();
+		void setType(Type type);
+		void setSubmission(int submission);
+
+		/* Destructor */
+		~Item();
+
+	private:
+		Type _type;
+		int _submission;
+		list<ItemOccurrence> _itemOccurences;
 	};
-
-    class Item
-    {
-    public:
-		Item() : type(COIN), submission(0) { }
-
-		Item_type GetType()
-		{
-			return type;
-		}
-
-		int GetSubmission()
-		{
-			return submission;
-		}
-
-		list<ItemOccurrence> GetItemOccurrences()
-		{
-			return itemOccurences;
-		}
-
-		void SetType(Item_type Type)
-		{
-			type = Type;
-		}
-
-		void SetSubmission(int Submission)
-		{
-			submission = Submission;
-		}
-
-        ~Item();
-		
-    private:
-		Item_type type;
-		int submission;
-		list<ItemOccurrence> itemOccurences;
-    };
 } // namespace
 
 #endif // HPP_ITEM

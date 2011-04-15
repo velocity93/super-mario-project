@@ -10,6 +10,22 @@
 
 namespace Collisions
 {
+
+	int Projectile::getSubmission()
+	{
+		return _submission;
+	}
+
+	list<ProjectileOccurrence> Projectile::getProjectileOccurrences()
+	{
+		return _projectileOccurences;
+	}
+
+	void Projectile::setSubmission(int submission)
+	{
+		_submission = submission;
+	}
+
     Projectile::~Projectile()
     {
     }

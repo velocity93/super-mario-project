@@ -15,32 +15,33 @@
 
 namespace Collisions
 {
-	enum Projectile_Sender {
+	class Projectile;
+
+	class ProjectileOccurrence : public EntityMovable
+    {
+	enum Sender {
 		GENTILE,
 		VILAIN
 	};
 
-	class ProjectileOccurrence : EntityMovable
-    {
     public:
-		ProjectileOccurrence() : EntityMovable(), sender(GENTILE) { }
-		ProjectileOccurrence(Coord<float> Position) : EntityMovable(Position), sender(GENTILE) { }
+		/* Constructors */
+		ProjectileOccurrence() : EntityMovable(), _sender(GENTILE) { }
+		ProjectileOccurrence(Coord<float> position) : EntityMovable(position), _sender(GENTILE) { }
 
-		Projectile_Sender GetSender()
-		{
-			return sender;
-		}
+		/* Getter and setter */
+		Sender getSender();
+		void setSender(Sender sender);
 
-		void SetSender(Projectile_Sender Sender)
-		{
-			sender = Sender;
-		}
+		/* Methods */
+		void update(float time);
+		void render();
 
         ~ProjectileOccurrence();
 		
     private:
-		Projectile_Sender sender;
-		//Projectile model;
+		Sender _sender;
+		Projectile* model;
     };
 } // namespace
 

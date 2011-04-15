@@ -10,12 +10,22 @@
 
 namespace Collisions
 {
-    void Checkpoint::Update(float time)
+	Checkpoint::State Checkpoint::getState()
+	{
+		return _state;
+	}
+	
+	void Checkpoint::setState(State state)
+	{
+		_state = state;
+	}
+
+    void Checkpoint::update(float time)
     {
 
     }
 
-	void Checkpoint::Render()
+	void Checkpoint::render()
     {
 
     }

@@ -17,7 +17,12 @@ using namespace std;
 
 namespace Collisions
 {
-	enum Projectile_Type {
+	
+
+    class Projectile
+    {
+	
+		enum Type {
 		FRAGMENT,
 		FIREBALL,
 		SPECIAL_FIREBALL,
@@ -28,32 +33,23 @@ namespace Collisions
 		SHURIKEN
 	};
 
-    class Projectile
-    {
+
     public:
-		Projectile() : type(FRAGMENT), submission(0) { }
+		/* Constructor */
+		Projectile() : _type(FRAGMENT), _submission(0) { }
 
-		int GetSubmission()
-		{
-			return submission;
-		}
+		/* getters and setters */
+		int getSubmission();
+		list<ProjectileOccurrence> getProjectileOccurrences();
+		void setSubmission(int submission);
 
-		list<ProjectileOccurrence> GetProjectileOccurrences()
-		{
-			return projectileOccurences;
-		}
-
-		void SetSubmission(int Submission)
-		{
-			submission = Submission;
-		}
-
+		/* Destructor */
         ~Projectile();
 		
     private:
-		Projectile_Type type;
-		int submission;
-		list<ProjectileOccurrence> projectileOccurences;
+		Type _type;
+		int _submission;
+		list<ProjectileOccurrence> _projectileOccurences;
     };
 } // namespace
 

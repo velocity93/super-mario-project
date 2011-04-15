@@ -10,6 +10,31 @@
 
 namespace Collisions
 {
+	Item::Type Item::getType()
+	{
+		return _type;
+	}
+
+	int Item::getSubmission()
+	{
+		return _submission;
+	}
+
+	list<ItemOccurrence> Item::getItemOccurrences()
+	{
+		return _itemOccurences;
+	}
+
+	void Item::setType(Type type)
+	{
+		_type = type;
+	}
+
+	void Item::setSubmission(int submission)
+	{
+		_submission = submission;
+	}
+
     Item::~Item()
     {
     }

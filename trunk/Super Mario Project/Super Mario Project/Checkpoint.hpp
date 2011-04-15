@@ -14,24 +14,28 @@
 
 namespace Collisions
 {
-	enum Checkpoint_state
-	{
-		PASSED,
-		NOT_PASSED
-	};
-
 	class Checkpoint : Collisionable
-    {
-    public:
-		Checkpoint() : Collisionable(), state(NOT_PASSED) { }
-		Checkpoint(Coord<float> Position, Checkpoint_state State) : Collisionable(Position), state(State) { }
+	{
+		enum State
+		{
+			PASSED,
+			NOT_PASSED
+		};
 
-		void Update(float time);
-		void Render();
+    public:
+		Checkpoint() : Collisionable(), _state(NOT_PASSED) { }
+		Checkpoint(Coord<float> position, State state) : Collisionable(position), _state(state) { }
+
+		State getState();
+		void setState(State state);
+
+		void update(float time);
+		void render();
+
         ~Checkpoint();
 		
     private:
-		Checkpoint_state state;
+		State _state;
     };
 } // namespace
 

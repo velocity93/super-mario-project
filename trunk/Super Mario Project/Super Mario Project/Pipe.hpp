@@ -15,60 +15,42 @@
 
 namespace Collisions
 {
-	enum Pipe_direction
-	{
-		TO_TOP,
-		TO_LEFT,
-		TO_RIGHT,
-		TO_BOTTOM
-	};
-
-    class Pipe : Door
+	class Pipe : public Door
     {
+		enum Direction
+		{
+			TO_TOP,
+			TO_LEFT,
+			TO_RIGHT,
+			TO_BOTTOM
+		};
+
+
     public:
-		Pipe() : Door(), direction(TO_TOP), monster(Monster()), monsterExitTime(0) { }
-		Pipe(Coord<float> Position, int IndexDoorDestination, string LevelDestination, IO_state State, Pipe_direction Direction, Monster Monster, int MonsterExitTime) 
-			: Door(Position, IndexDoorDestination, LevelDestination, State), direction(Direction), monster(Monster), monsterExitTime(MonsterExitTime) { }
+		/* Constructors */
+		Pipe() : Door(), _direction(TO_TOP), _monster(Monster()), _monsterExitTime(0) { }
+		Pipe(Coord<float> position, int indexDoorDestination, string levelDestination, State state, Direction direction, Monster& monster, int monsterExitTime) 
+			: Door(position, indexDoorDestination, levelDestination, state), _direction(direction), _monster(monster), _monsterExitTime(monsterExitTime) { }
 
-		Pipe_direction GetDirection()
-		{
-			return direction;
-		}
+		/* getters and setters */
+		Direction getDirection();
+		Monster getMonster();
+		int getMonsterExitTime();
+		void setDirection(Direction Direction);
+		void setMonster(Monster& Monster);
+		void setMonsterExitTime(int MonsterExitTime);
 
-		Monster GetMonster()
-		{
-			return monster;
-		}
+		/* Methods */
+		void update(float time);
+		void render();
 
-		int GetMonsterExitTime()
-		{
-			return monsterExitTime;
-		}
-
-		void SetDirection(Pipe_direction Direction)
-		{
-			direction = Direction;
-		}
-
-		void SetMonster(Monster Monster)
-		{
-			monster = Monster;
-		}
-
-		void SetMonsterExitTime(int MonsterExitTime)
-		{
-			monsterExitTime = MonsterExitTime;
-		}
-
-		void Update(float time);
-		void Render();
-
+		/* Destructor */
         ~Pipe();
 		
     private:
-		Pipe_direction direction;
-		Monster monster;
-		int monsterExitTime;
+		Direction _direction;
+		Monster _monster;
+		int _monsterExitTime;
     };
 } // namespace
 

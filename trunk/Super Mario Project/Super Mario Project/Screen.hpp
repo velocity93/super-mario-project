@@ -19,43 +19,25 @@ namespace Rendering
     class Screen
     {
     public:
-		Screen() : origine(Coord<int>()), size(Coord<int>()), scrolling(Coord<float>()) { }
-		Screen(Coord<int> Origine, Coord<int> Size, Coord<float> Scrolling) : origine(Origine), size(Size), scrolling(Scrolling) { }
-        Coord<int> GetOrigine()
-		{
-			return origine;
-		}
+		/* Constructors */
+		Screen() : _origine(Coord<int>()), _size(Coord<int>()), _scrolling(Coord<float>()) { }
+		Screen(Coord<int> origine, Coord<int> size, Coord<float> scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
 
-		Coord<int> GetSize()
-		{
-			return size;
-		}
+		/* getters and setters */
+        Coord<int> getOrigine();
+		Coord<int> getSize();
+		Coord<float> getScrolling();
+		void setOrigine(Coord<int> Origine);
+		void setSize(Coord<int> Size);
+		void setScrolling(Coord<float> Scrolling);
 
-		Coord<float> GetScrolling()
-		{
-			return scrolling;
-		}
-
-		void SetOrigine(Coord<int> Origine)
-		{
-			origine = Origine;
-		}
-
-		void SetSize(Coord<int> Size)
-		{
-			size = Size;
-		}
-
-		void SetScrolling(Coord<float> Scrolling)
-		{
-			scrolling = Scrolling;
-		}
-
+		/* Destructor */
+		~Screen();
 		
     private:
-		Coord<int> origine;
-		Coord<int> size;
-		Coord<float> scrolling;
+		Coord<int> _origine;
+		Coord<int> _size;
+		Coord<float> _scrolling;
     };
 } // namespace
 

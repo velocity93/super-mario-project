@@ -26,17 +26,17 @@ namespace Rendering
         ~HUD();
 		
     private:
-		int idPerso;
-		int nbLives;
-		int score;
-		int time;
-		string levelName;
+		int _idPerso;
+		int _nbLives;
+		int _score;
+		int _time;
+		string _levelName;
 		//Item item;
 		//font_2d* font;
-		int nbMonstersKilled;
-		int nbMonstersKilledByShell;
-		int points[NB_POINTS]; // pour les points à la suite
-		queue<int> queue_points;
+		int _nbMonstersKilled;
+		int _nbMonstersKilledByShell;
+		int _points[NB_POINTS]; // pour les points à la suite
+		queue<int> _queue_points;
 
     };
 } // namespace

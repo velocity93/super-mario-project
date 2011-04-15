@@ -21,50 +21,29 @@ namespace Rendering
     class Texture
     {
     public:
-		Texture() : spriteSize(Coord<int>()), name(""), id(-1) { }
-		Coord<int> GetSpriteSize()
-		{
-			return spriteSize;
-		}
+		/* Constructor */
+		Texture() : _spriteSize(Coord<int>()), _name(""), _id(-1) { }
 
-		Coord<int> GetSize()
-		{
-			return size;
-		}
+		/* getters and setters */
+		Coord<int> getSpriteSize();
+		Coord<int> getSize();
+		string getName();
+		int getId();
+		void setSpriteSize(Coord<int> spriteSize);
+		void setSize(Coord<int> size);
+		void setName(string name);
 
-		string GetName()
-		{
-			return name;
-		}
-
-		int GetId()
-		{
-			return id;
-		}
-
-		void SetSpriteSize(Coord<int> SpriteSize)
-		{
-			spriteSize = SpriteSize;
-		}
-
-		void SetSize(Coord<int> Size)
-		{
-			size = Size;
-		}
-
-		void SetName(string Name)
-		{
-			name = Name;
-		}
-
+		/* Method */
 		void LoadTexture(string Name);
 
+		/* Destructor */
+		~Texture();
 		
     private:
-		Coord<int> spriteSize;
-		Coord<int> size;
-		string name;
-		int id;
+		Coord<int> _spriteSize;
+		Coord<int> _size;
+		string _name;
+		int _id;
     };
 } // namespace
 

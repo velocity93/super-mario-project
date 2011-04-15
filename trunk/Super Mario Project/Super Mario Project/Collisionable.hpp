@@ -16,64 +16,28 @@ using namespace Rendering;
 
 namespace Collisions
 {
-
-	enum Collision_type {
-		FROM_BOTTOM,
-		FROM_LEFT,
-		FROM_RIGHT,
-		FROM_TOP,
-		SUPERPOSITION,
-		INCLINE_FROM_BOTTOM,
-		INCLINE_FROM_LEFT,
-		INCLINE_FROM_RIGHT,
-		NONE_COLLISION
-	};
-
     class Collisionable : Drawable
     {
-    public:
+	public:
 		/* Constructors */
-		Collisionable() : position(Coord<float>()), hitboxPosition(Coord<float>()), hitboxSize(Coord<int>()) { }
-		Collisionable(Coord<float> Position) : position(Position), hitboxPosition(Coord<float>()), hitboxSize(Coord<int>()) { }
+		Collisionable() : _position(Coord<float>()), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
+		Collisionable(Coord<float> position) : _position(position), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
 
-		/* Getters and setters */
-		Coord<float> GetPosition()
-		{
-			return position;
-		}
-
-		Coord<float> GetHitboxPosition()
-		{
-			return hitboxPosition;
-		}
-
-		Coord<int> GetHitboxSize()
-		{
-			return hitboxSize;
-		}
-
-		void SetPosition(Coord<float> Position)
-		{
-			position = Position;
-		}
-
-		void SetHitboxPosition(Coord<float> HitboxPosition)
-		{
-			hitboxPosition = HitboxPosition;
-		}
-
-		void SetHitboxSize(Coord<int> HitboxSize)
-		{
-			hitboxSize = HitboxSize;
-		}
+		/* getters and setters */
+		Coord<float> getPosition();
+		Coord<float> getHitboxPosition();
+		Coord<int> getHitboxSize();
+		void setPosition(Coord<float> position);
+		void setHitboxPosition(Coord<float> hitboxPosition);
+		void setHitboxSize(Coord<int> hitboxSize);
 
 		/* Destructors */
         ~Collisionable();
 		
     private:
-		Coord<float> position;
-		Coord<float> hitboxPosition;
-		Coord<int> hitboxSize;
+		Coord<float> _position;
+		Coord<float> _hitboxPosition;
+		Coord<int> _hitboxSize;
     };
 } // namespace
 

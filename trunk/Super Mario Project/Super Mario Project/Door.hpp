@@ -14,58 +14,40 @@
 
 namespace Collisions
 {
-	enum IO_state
-	{
-		OPEN,
-		CLOSED
-	};
-
-	class Door : Collisionable
+	class Door : public Collisionable
     {
+		
     public:
-		Door() : Collisionable(), indexDoorDestination(-1), state(CLOSED), levelDestination("") { }
-		Door(Coord<float> Position, int IndexDoorDestination, string LevelDestination, IO_state State) 
-			: Collisionable(Position), indexDoorDestination(IndexDoorDestination), levelDestination(LevelDestination), state(State) { }
-
-		int GetIndexDoorDestination()
+		enum State
 		{
-			return indexDoorDestination;
-		}
+			OPEN,
+			CLOSED
+		};
 
-		string GetLevelDestination()
-		{
-			return levelDestination;
-		}
 
-		IO_state GetState()
-		{
-			return state;
-		}
+		/* Constructors */
+		Door() : Collisionable(), _indexDoorDestination(-1), _state(CLOSED), _levelDestination("") { }
+		Door(Coord<float> position, int indexDoorDestination, string levelDestination, State state) 
+			: Collisionable(position), _indexDoorDestination(indexDoorDestination), _levelDestination(levelDestination), _state(state) { }
 
-		void SetIndexDoorDestination(int IndexDoorDestination)
-		{
-			indexDoorDestination = IndexDoorDestination;
-		}
+		/* getters and setters */
+		int getIndexDoorDestination();
+		string getLevelDestination();
+		State getState();
+		void setIndexDoorDestination(int indexDoorDestination);
+		void setLevelDestination(string levelDestination);
+		void setState(State state);
 
-		void SetLevelDestination(string LevelDestination)
-		{
-			levelDestination = LevelDestination;
-		}
-
-		void SetState(IO_state State)
-		{
-			state = State;
-		}
-
-		void Update(float time);
-		void Render();
+		/* Methods */
+		void update(float time);
+		void render();
 
         ~Door();
 		
     private:
-		int indexDoorDestination;
-		string levelDestination;
-		IO_state state;
+		int _indexDoorDestination;
+		string _levelDestination;
+		State _state;
     };
 } // namespace
 
