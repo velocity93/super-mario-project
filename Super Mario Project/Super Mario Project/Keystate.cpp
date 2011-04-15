@@ -16,35 +16,45 @@ namespace SuperMarioProject
     {
 		for(int i = 0; i < NB_KEYS; i++)
 		{
-			actual[i] = false;
-			previous[i] = false;
+			_actual[i] = false;
+			_previous[i] = false;
 		}
     }
 
-	void Keystate::Update(RenderWindow App)
+	bool* Keystate::getActual()
+	{
+		return _actual;
+	}
+
+	bool* Keystate::getPrevious()
+	{
+		return _previous;
+	}
+
+	void Keystate::update(RenderWindow App)
 	{
 		const sf::Input& Input = App.GetInput();
 
 		for(int i = 0; i < NB_KEYS; i++)
 		{
-			previous[i] = actual[i];
+			_previous[i] = _actual[i];
 		}
 
-		actual[LEFT] = Input.IsKeyDown(Key::Left);
-		actual[RIGHT] = Input.IsKeyDown(Key::Right);
-		actual[UP] = Input.IsKeyDown(Key::Up);
-		actual[DOWN] = Input.IsKeyDown(Key::Down);
-		actual[JUMP] = Input.IsKeyDown(Key::Space);
-		actual[RUN] = Input.IsKeyDown(Key::B);
-		actual[LEFT_CLICK] = Input.IsMouseButtonDown(Mouse::Left);
-		actual[RIGHT_CLICK] = Input.IsMouseButtonDown(Mouse::Right);
-		actual[ENTER] = Input.IsKeyDown(Key::Return);
-		actual[ESCAPE] = Input.IsKeyDown(Key::Escape);
-		actual[LEFT_CTRL] = Input.IsKeyDown(Key::LControl);
-		actual[SUPPR] = Input.IsKeyDown(Key::Delete);
-		actual[CUT] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::X);
-		actual[COPY] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::C);
-		actual[PASTE] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::V);
+		_actual[LEFT] = Input.IsKeyDown(Key::Left);
+		_actual[RIGHT] = Input.IsKeyDown(Key::Right);
+		_actual[UP] = Input.IsKeyDown(Key::Up);
+		_actual[DOWN] = Input.IsKeyDown(Key::Down);
+		_actual[JUMP] = Input.IsKeyDown(Key::Space);
+		_actual[RUN] = Input.IsKeyDown(Key::B);
+		_actual[LEFT_CLICK] = Input.IsMouseButtonDown(Mouse::Left);
+		_actual[RIGHT_CLICK] = Input.IsMouseButtonDown(Mouse::Right);
+		_actual[ENTER] = Input.IsKeyDown(Key::Return);
+		_actual[ESCAPE] = Input.IsKeyDown(Key::Escape);
+		_actual[LEFT_CTRL] = Input.IsKeyDown(Key::LControl);
+		_actual[SUPPR] = Input.IsKeyDown(Key::Delete);
+		_actual[CUT] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::X);
+		_actual[COPY] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::C);
+		_actual[PASTE] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::V);
 
 
 

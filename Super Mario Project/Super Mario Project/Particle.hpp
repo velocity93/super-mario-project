@@ -14,28 +14,22 @@
 
 namespace Collisions
 {
-    class Particle : EntityMovable
+    class Particle : public EntityMovable
     {
     public:
-		Particle() : EntityMovable(), life(0) { }
+		Particle() : EntityMovable(), _life(0) { }
+		Particle(Coord<float> position) : EntityMovable(position), _life(0) { }
 
-		int GetLife()
-		{
-			return life;
-		}
+		int getLife();
+		void setLife(int life);
 
-		void SetLife(int Life)
-		{
-			life = Life;
-		}
-
-		void Update(float time);
-		void Render();
+		void update(float time);
+		void render();
 
         ~Particle();
 		
     private:
-		int life;
+		int _life;
     };
 } // namespace
 

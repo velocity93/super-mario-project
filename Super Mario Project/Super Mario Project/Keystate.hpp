@@ -16,46 +16,41 @@ using namespace sf;
 
 namespace SuperMarioProject
 {
-	enum Keys
-	{
-		NONE = -1,
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
-		JUMP,
-		RUN,
-		LEFT_CLICK,
-		RIGHT_CLICK,
-		ENTER,
-		ESCAPE,
-		LEFT_CTRL,
-		SUPPR,
-		CUT,
-		COPY,
-		PASTE,
-		NB_KEYS,
-	};
+	
 
     class Keystate
     {
+		enum Keys
+		{
+			NONE = -1,
+			LEFT,
+			RIGHT,
+			UP,
+			DOWN,
+			JUMP,
+			RUN,
+			LEFT_CLICK,
+			RIGHT_CLICK,
+			ENTER,
+			ESCAPE,
+			LEFT_CTRL,
+			SUPPR,
+			CUT,
+			COPY,
+			PASTE,
+			NB_KEYS,
+		};
+
     public:
 		Keystate();
-		void Update(RenderWindow App);
+		void update(RenderWindow App);
 
-		bool* GetActual()
-		{
-			return actual;
-		};
-
-		bool* GetPrevious()
-		{
-			return previous;
-		};
+		bool* getActual();
+		bool* getPrevious();
 
     private:
-		bool actual[NB_KEYS];
-		bool previous[NB_KEYS];
+		bool _actual[NB_KEYS];
+		bool _previous[NB_KEYS];
     };
 } // namespace
 

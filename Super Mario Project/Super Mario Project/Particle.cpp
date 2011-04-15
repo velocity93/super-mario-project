@@ -10,15 +10,25 @@
 
 namespace Collisions
 {
-	void Particle::Update(float time)
-    {
-    }
+	int Particle::getLife()
+	{
+		return _life;
+	}
 
-	void Particle::Render()
-    {
-    }
+	void Particle::setLife(int life)
+	{
+		_life = life;
+	}
 
-    Particle::~Particle()
-    {
-    }
+	void Particle::update(float time)
+	{
+	}
+
+	void Particle::render()
+	{
+	}
+
+	Particle::~Particle()
+	{
+	}
 } // namespace

@@ -14,13 +14,13 @@
 
 namespace Rendering
 {
-    class Object : Drawable
+    class Object : public Drawable
     {
     public:
 		Object() : Drawable() { }
 		
-		void Update(float time);
-		void Render();
+		void update(float time);
+		void render();
 
         ~Object();
 		

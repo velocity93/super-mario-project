@@ -10,11 +10,41 @@
 
 namespace Collisions
 {
-	void Pipe::Update(float time)
+	Pipe::Direction Pipe::getDirection()
+	{
+		return _direction;
+	}
+
+	Monster Pipe::getMonster()
+	{
+		return _monster;
+	}
+
+	int Pipe::getMonsterExitTime()
+	{
+		return _monsterExitTime;
+	}
+
+	void Pipe::setDirection(Pipe::Direction direction)
+	{
+		_direction = direction;
+	}
+
+	void Pipe::setMonster(Monster& monster)
+	{
+		_monster = monster;
+	}
+
+	void Pipe::setMonsterExitTime(int monsterExitTime)
+	{
+		_monsterExitTime = monsterExitTime;
+	}
+
+	void Pipe::update(float time)
     {
     }
 
-	void Pipe::Render()
+	void Pipe::render()
     {
     }
 

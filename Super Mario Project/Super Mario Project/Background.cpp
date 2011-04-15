@@ -10,11 +10,21 @@
 
 namespace Rendering
 {
-	void Background::Update(float time)
+	bool Background::getVerticalRepetition()
+	{
+		return _verticalRepetition;
+	}
+
+	void Background::setVerticalRepetition(bool verticalRepetition)
+	{
+		_verticalRepetition = verticalRepetition;
+	}
+
+	void Background::update(float time)
 	{
 
 	}
-	void Background::Render()
+	void Background::render()
 	{
 
 	}

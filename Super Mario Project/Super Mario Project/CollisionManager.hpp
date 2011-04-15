@@ -12,14 +12,26 @@
 
 namespace Collisions
 {
-    class CollisionManager
-    {
-    public:
-        CollisionManager();
-        ~CollisionManager();
-		
-    private:
-    };
+	class CollisionManager
+	{
+		enum Type {
+			FROM_BOTTOM,
+			FROM_LEFT,
+			FROM_RIGHT,
+			FROM_TOP,
+			SUPERPOSITION,
+			INCLINE_FROM_BOTTOM,
+			INCLINE_FROM_LEFT,
+			INCLINE_FROM_RIGHT,
+			NONE_COLLISION
+		};
+
+	public:
+		CollisionManager();
+		~CollisionManager();
+
+	private:
+	};
 } // namespace
 
 #endif // HPP_COLLISIONMANAGER

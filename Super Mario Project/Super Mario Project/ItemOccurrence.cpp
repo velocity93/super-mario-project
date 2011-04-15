@@ -10,16 +10,36 @@
 
 namespace Collisions
 {
-	void ItemOccurrence::Update(float time)
-    {
-    }
+	ItemOccurrence::State ItemOccurrence::getState()
+	{
+		return _state;
+	}
 
-	void ItemOccurrence::Render()
-    {
-		
-    }
+	bool ItemOccurrence::getIsActive()
+	{
+		return _isActive;
+	}
 
-    ItemOccurrence::~ItemOccurrence()
-    {
-    }
+	void ItemOccurrence::setState(State state)
+	{
+		_state = state;
+	}
+
+	void ItemOccurrence::setIsActive(bool isActive)
+	{
+		_isActive = isActive;
+	}
+
+	void ItemOccurrence::update(float time)
+	{
+	}
+
+	void ItemOccurrence::render()
+	{
+
+	}
+
+	ItemOccurrence::~ItemOccurrence()
+	{
+	}
 } // namespace

@@ -16,57 +16,33 @@ using namespace Utils;
 
 namespace Collisions
 {
-
-	enum Side {
-		LEFT_SIDE,
-		RIGHT_SIDE
-	};
-
     class EntityMovable : public Collisionable
     {
+		enum Side {
+			LEFT_SIDE,
+			RIGHT_SIDE
+		};
+
     public:
 		/* Constructors */
-		EntityMovable() : Collisionable(), previousPosition(Coord<float>()), speed(Vect<float>()), side(RIGHT_SIDE) { }
-		EntityMovable(Coord<float> Position) : Collisionable(Position), previousPosition(Position), speed(Vect<float>()), side(RIGHT_SIDE) { }
+		EntityMovable() : Collisionable(), _previousPosition(Coord<float>()), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
+		EntityMovable(Coord<float> position) : Collisionable(position), _previousPosition(position), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
 
-		/* Getters and setters */
-		Coord<float> GetPreviousPosition()
-		{
-			return previousPosition;
-		}
-
-		Vect<float> GetSpeed()
-		{
-			return speed;
-		}
-
-		Side GetSide()
-		{
-			return side;
-		}
-
-		void GetPreviousPosition(Coord<float> PreviousPosition)
-		{
-			previousPosition = PreviousPosition;
-		}
-
-		void GetSpeed(Vect<float> Speed)
-		{
-			speed = Speed;
-		}
-
-		void SetSide(Side Side)
-		{
-			side = Side;
-		}
+		/* getters and setters */
+		Coord<float> getPreviousPosition();
+		Vect<float> getSpeed();
+		Side getSide();
+		void getPreviousPosition(Coord<float> previousPosition);
+		void getSpeed(Vect<float> speed);
+		void setSide(Side side);
 
 		/* Destructors */
         ~EntityMovable();
 		
     private:
-		Coord<float> previousPosition;
-		Vect<float> speed;
-		Side side;
+		Coord<float> _previousPosition;
+		Vect<float> _speed;
+		Side _side;
     };
 } // namespace
 

@@ -10,28 +10,28 @@
 
 namespace Rendering
 {
-    HUD::HUD()
-    {
-		 idPerso = -1;
-		 nbLives = 0;
-		 score = 0;
-		 time = 0;
-		 levelName = "";
-		 nbMonstersKilled = 0;
-		 nbMonstersKilledByShell = 0;
+	HUD::HUD()
+	{
+		_idPerso = -1;
+		_nbLives = 0;
+		_score = 0;
+		_time = 0;
+		_levelName = "";
+		_nbMonstersKilled = 0;
+		_nbMonstersKilledByShell = 0;
 
-		 /* Initialization of points tab  */
-		 points[0] = 200;
-		 points[1] = 400;
-		 points[2] = 800;
-		 points[3] = 1000;
-		 points[4] = 2000;
-		 points[5] = 4000;
-		 points[6] = 8000;
-    }
+		/* Initialization of points tab  */
+		_points[0] = 200;
+		_points[1] = 400;
+		_points[2] = 800;
+		_points[3] = 1000;
+		_points[4] = 2000;
+		_points[5] = 4000;
+		_points[6] = 8000;
+	}
 
 
-    HUD::~HUD()
-    {
-    }
+	HUD::~HUD()
+	{
+	}
 } // namespace

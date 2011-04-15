@@ -17,75 +17,54 @@ using namespace std;
 
 namespace Rendering
 {
-
-	enum Layer
+	class Drawable
 	{
-		BACKGROUND_LAYER,
-		BACKGROUND_PARTICLES_LAYER,
-		OBJECTS_LAYER,
-		BLOC_LAYER_1,
-		ITEM_LAYER,
-		BLOC_LAYER_2,
-		FOREGROUND_LAYER,
-		FOREGROUND_PARTICLES_LAYER
-	};
-
-	enum Angle
-	{
-		ANGLE_0,
-		ANGLE_90,
-		ANGLE_180,
-		ANGLE_270
-	};
-
-    class Drawable
-    {
-    public:
-		Drawable() : texture(Texture()), spriteNumbers(vector<int>()), animationSpeeds(vector<int>()) { }
-		Texture GetTexture()
+		enum Layer
 		{
-			return texture;
-		}
+			BACKGROUND_LAYER,
+			BACKGROUND_PARTICLES_LAYER,
+			OBJECTS_LAYER,
+			BLOC_LAYER_1,
+			ITEM_LAYER,
+			BLOC_LAYER_2,
+			FOREGROUND_LAYER,
+			FOREGROUND_PARTICLES_LAYER
+		};
 
-		vector<int> GetSpriteNumbers()
+		enum Angle
 		{
-			return spriteNumbers;
-		}
+			ANGLE_0,
+			ANGLE_90,
+			ANGLE_180,
+			ANGLE_270
+		};
 
-		vector<int> GetAnimationSpeeds()
-		{
-			return animationSpeeds;
-		}
+	public:
+		/* Constructor */
+		Drawable() : _texture(Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()) { }
 
-		void SetTexture(Texture Texture)
-		{
-			texture = Texture;
-		}
-
-		void SetSpriteNumbers(vector<int> SpriteNumbers)
-		{
-			spriteNumbers = SpriteNumbers;
-		}
-
-		void SetAnimationSpeeds(vector<int> AnimationSpeeds)
-		{
-			animationSpeeds = AnimationSpeeds;
-		}
+		/* getters and setters */
+		Texture getTexture();
+		vector<int> getSpriteNumbers();
+		vector<int> getAnimationSpeeds();
+		void setTexture(Texture texture);
+		void setSpriteNumbers(vector<int> spriteNumbers);
+		void setAnimationSpeeds(vector<int> animationSpeeds);
 
 		/* It will be defined in subclasses */
-		/* Update drawable object context */
-		virtual void Update(float time) { }
-		
+		/* update drawable object context */
+		virtual void update(float time) = 0;
+
 		/* Draw actual object state */
-		virtual void Render() { }
-		
-        ~Drawable();
-		
-    private:
-		Texture texture;
-		vector<int> spriteNumbers;
-		vector<int> animationSpeeds;
-    };
+		virtual void render() = 0;
+
+		~Drawable();
+
+	private:
+		Texture _texture;
+		vector<int> _spriteNumbers;
+		vector<int> _animationSpeeds;
+	};
 } // namespace
 
 #endif // HPP_DRAWABLE

@@ -17,17 +17,17 @@ namespace Utils
 	public:
 		Coord() : x(0), y (0) { }
 		Coord(C X, C Y) : x(X), y(Y) { }
-		C GetX() 
+		C getX() 
 		{ 
 			return x; 
 		}
 
-		C GetY() 
+		C getY() 
 		{ 
 			return y; 
 		}
 
-		void Set(C X, C Y)
+		void set(C X, C Y)
 		{
 			x = X;
 			y = Y;
@@ -43,17 +43,17 @@ namespace Utils
 	public:
 		Vect() : x(0), y (0) { }
 		Vect(C X, C Y) : x(X), y(Y) { }
-		C GetX() 
+		C getX() 
 		{ 
 			return x; 
 		}
 
-		C GetY() 
+		C getY() 
 		{ 
 			return y; 
 		}
 
-		void Set(C X, C Y)
+		void set(C X, C Y)
 		{
 			x = X;
 			y = Y;

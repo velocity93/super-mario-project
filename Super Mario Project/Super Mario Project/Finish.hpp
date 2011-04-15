@@ -14,13 +14,14 @@
 
 namespace Collisions
 {
-    class Finish : Collisionable
+    class Finish : public Collisionable
     {
     public:
 		Finish() : Collisionable() { }
 
-		void Update(float time);
-		void Render();
+		void update(float time);
+		void render();
+
         ~Finish();
 		
     private:

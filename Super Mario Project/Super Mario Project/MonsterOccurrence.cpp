@@ -10,6 +10,16 @@
 
 namespace Collisions
 {
+	void MonsterOccurrence::update(float time)
+	{
+
+	}
+
+	void MonsterOccurrence::render()
+	{
+
+	}
+
     MonsterOccurrence::~MonsterOccurrence()
     {
     }

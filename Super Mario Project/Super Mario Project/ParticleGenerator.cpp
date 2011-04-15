@@ -10,15 +10,75 @@
 
 namespace Collisions
 {
-    void ParticleGenerator::Update(float time)
-    {
-    }
+	Coord<int> ParticleGenerator::getParticleSize()
+	{
+		return _particleSize;
+	}
 
-	void ParticleGenerator::Render()
-    {
-    }
+	int ParticleGenerator::getNbMaxParticles()
+	{
+		return _nbMaxParticles;
+	}
 
-    ParticleGenerator::~ParticleGenerator()
-    {
-    }
+	int ParticleGenerator::getFlow()
+	{
+		return _flow;
+	}
+
+	bool ParticleGenerator::getHasGravity()
+	{
+		return _hasGravity;
+	}
+
+	Color ParticleGenerator::getStartColor()
+	{
+		return _startColor;
+	}
+
+	Color ParticleGenerator::getEndColor()
+	{
+		return _endColor;
+	}
+
+	void ParticleGenerator::setParticleSize(Coord<int> particleSize)
+	{
+		_particleSize= particleSize;
+	}
+
+	void ParticleGenerator::setNbMaxParticles(int nbMaxParticles)
+	{
+		_nbMaxParticles = nbMaxParticles;
+	}
+
+	void ParticleGenerator::setFlow(int flow)
+	{
+		_flow = flow;
+	}
+
+	void ParticleGenerator::setHasGravity(bool hasGravity)
+	{
+		_hasGravity = hasGravity;
+	}
+
+	void ParticleGenerator::setStartColor(Color& startColor)
+	{
+		_startColor = startColor;
+	}
+
+	void ParticleGenerator::setEndColor(Color& endColor)
+	{
+		_endColor = endColor;
+	}
+
+	void ParticleGenerator::update(float time)
+	{
+	}
+
+	void ParticleGenerator::render()
+	{
+	}
+
+	ParticleGenerator::~ParticleGenerator()
+	{
+	}
 } // namespace

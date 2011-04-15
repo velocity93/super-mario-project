@@ -14,47 +14,35 @@
 
 namespace Collisions
 {
-	enum Item_state
-	{
-		NORMAL,
-		GET_OUT_FROM_BLOC
-	};
+	class Item;
 
-    class ItemOccurrence : EntityMovable
+	class ItemOccurrence : public EntityMovable
     {
+		enum State
+		{
+			NORMAL,
+			GET_OUT_FROM_BLOC
+		};
+
     public:
-		ItemOccurrence() : EntityMovable(), state(NORMAL), isActive(true) { }
-		ItemOccurrence(Coord<float> Position, Item_state State, bool IsActive)
-			: EntityMovable(Position), state(State), isActive(IsActive) { }
+		ItemOccurrence() : EntityMovable(), _state(NORMAL), _isActive(true) { }
+		ItemOccurrence(Coord<float> position, State state, bool isActive)
+			: EntityMovable(position), _state(state), _isActive(isActive) { }
 
-		Item_state GetState()
-		{
-			return state;
-		}
+		State getState();
+		bool getIsActive();
+		void setState(State state);
+		void setIsActive(bool isActive);
 
-		bool GetIsActive()
-		{
-			return isActive;
-		}
-
-		void SetState(Item_state State)
-		{
-			state = State;
-		}
-
-		void SetIsActive(bool IsActive)
-		{
-			isActive = IsActive;
-		}
-
-		void Update(float time);
-		void Render();
+		void update(float time);
+		void render();
 
         ~ItemOccurrence();
 		
     private:
-		Item_state state;
-		bool isActive;
+		State _state;
+		bool _isActive;
+		Item* _item;
     };
 } // namespace
 
