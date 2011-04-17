@@ -25,17 +25,17 @@ namespace Rendering
 		return _scrolling;
 	}
 
-	void Screen::setOrigine(Coord<int> origine)
+	void Screen::setOrigine(Coord<int>& origine)
 	{
 		_origine = origine;
 	}
 
-	void Screen::setSize(Coord<int> size)
+	void Screen::setSize(Coord<int>& size)
 	{
 		_size = size;
 	}
 
-	void Screen::setScrolling(Coord<float> scrolling)
+	void Screen::setScrolling(Coord<float>& scrolling)
 	{
 		_scrolling = scrolling;
 	}

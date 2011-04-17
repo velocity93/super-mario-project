@@ -16,7 +16,7 @@ namespace Rendering
     {
     public:
         Foreground();
-        ~Foreground();
+        virtual ~Foreground();
 		
     private:
     };

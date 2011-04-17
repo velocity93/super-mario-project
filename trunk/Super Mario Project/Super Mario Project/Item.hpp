@@ -44,7 +44,7 @@ namespace Collisions
 		void setSubmission(int submission);
 
 		/* Destructor */
-		~Item();
+		virtual ~Item();
 
 	private:
 		Type _type;

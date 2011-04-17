@@ -25,7 +25,7 @@ namespace Rendering
 		return _animationSpeeds;
 	}
 
-	void Drawable::setTexture(Texture texture)
+	void Drawable::setTexture(Texture& texture)
 	{
 		_texture = texture;
 	}

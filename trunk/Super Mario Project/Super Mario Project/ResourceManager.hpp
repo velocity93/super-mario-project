@@ -16,7 +16,7 @@ namespace SuperMarioProject
     {
     public:
         ResourceManager();
-        ~ResourceManager();
+        virtual ~ResourceManager();
 		
     private:
     };

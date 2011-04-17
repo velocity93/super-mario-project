@@ -22,7 +22,7 @@ namespace Collisions
 		void update(float time);
 		void render();
 
-        ~Finish();
+        virtual ~Finish();
 		
     private:
     };

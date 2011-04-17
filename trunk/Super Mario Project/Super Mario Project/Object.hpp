@@ -22,7 +22,7 @@ namespace Rendering
 		void update(float time);
 		void render();
 
-        ~Object();
+        virtual ~Object();
 		
     private:
     };

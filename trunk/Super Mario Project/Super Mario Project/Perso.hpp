@@ -153,7 +153,7 @@ namespace Collisions
 		void render();
 
 		/* Destructor */
-        ~Perso();
+        virtual ~Perso();
 		
     private:
 		HUD _hud;

@@ -23,7 +23,7 @@ namespace Collisions
     {
     public:
         Blocks();
-        ~Blocks();
+        virtual ~Blocks();
 		
     private:
     };

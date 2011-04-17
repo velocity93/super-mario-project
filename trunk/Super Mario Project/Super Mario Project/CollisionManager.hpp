@@ -28,7 +28,7 @@ namespace Collisions
 
 	public:
 		CollisionManager();
-		~CollisionManager();
+		virtual ~CollisionManager();
 
 	private:
 	};

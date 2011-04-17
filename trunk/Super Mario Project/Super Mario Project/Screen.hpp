@@ -27,12 +27,12 @@ namespace Rendering
         Coord<int> getOrigine();
 		Coord<int> getSize();
 		Coord<float> getScrolling();
-		void setOrigine(Coord<int> Origine);
-		void setSize(Coord<int> Size);
-		void setScrolling(Coord<float> Scrolling);
+		void setOrigine(Coord<int>& Origine);
+		void setSize(Coord<int>& Size);
+		void setScrolling(Coord<float>& Scrolling);
 
 		/* Destructor */
-		~Screen();
+		virtual ~Screen();
 		
     private:
 		Coord<int> _origine;

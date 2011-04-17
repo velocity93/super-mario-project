@@ -16,7 +16,7 @@ namespace SuperMarioProject
     {
     public:
         Level();
-        ~Level();
+        virtual ~Level();
 		
     private:
     };

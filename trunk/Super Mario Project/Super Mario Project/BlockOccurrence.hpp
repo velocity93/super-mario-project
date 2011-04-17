@@ -16,7 +16,7 @@ namespace Collisions
     {
     public:
         BlockOccurrence();
-        ~BlockOccurrence();
+        virtual ~BlockOccurrence();
 		
     private:
     };

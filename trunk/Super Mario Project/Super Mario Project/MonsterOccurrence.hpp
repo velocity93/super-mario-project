@@ -40,7 +40,7 @@ namespace Collisions
 
 	public:
 		MonsterOccurrence();
-		~MonsterOccurrence();
+		virtual ~MonsterOccurrence();
 
 		void update(float time);
 		void render();
