@@ -16,7 +16,7 @@ namespace Collisions
     {
     public:
         Monster();
-        ~Monster();
+        virtual ~Monster();
 		
     private:
     };

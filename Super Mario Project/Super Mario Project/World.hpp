@@ -20,7 +20,7 @@ namespace SuperMarioProject
     {
     public:
         World();
-        ~World();
+        virtual ~World();
 		
     private:
     };

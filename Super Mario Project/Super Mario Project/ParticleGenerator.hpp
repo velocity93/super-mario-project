@@ -37,7 +37,7 @@ namespace Collisions
 		bool getHasGravity();
 		Color getStartColor();
 		Color getEndColor();
-		void setParticleSize(Coord<int> particleSize);
+		void setParticleSize(Coord<int>& particleSize);
 		void setNbMaxParticles(int nbMaxParticles);
 		void setFlow(int flow);
 		void setHasGravity(bool hasGravity);
@@ -49,7 +49,7 @@ namespace Collisions
 		void render();
 
 		/* Destructor */
-        ~ParticleGenerator();
+        virtual ~ParticleGenerator();
 		
     private:
 		Coord<int> _particleSize;

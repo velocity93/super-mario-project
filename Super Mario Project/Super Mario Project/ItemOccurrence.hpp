@@ -37,7 +37,7 @@ namespace Collisions
 		void update(float time);
 		void render();
 
-        ~ItemOccurrence();
+        virtual ~ItemOccurrence();
 		
     private:
 		State _state;

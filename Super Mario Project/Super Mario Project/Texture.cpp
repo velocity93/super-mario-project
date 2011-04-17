@@ -30,12 +30,12 @@ namespace Rendering
 		return _id;
 	}
 
-	void Texture::setSpriteSize(Coord<int> spriteSize)
+	void Texture::setSpriteSize(Coord<int>& spriteSize)
 	{
 		_spriteSize = spriteSize;
 	}
 
-	void Texture::setSize(Coord<int> size)
+	void Texture::setSize(Coord<int>& size)
 	{
 		_size = size;
 	}

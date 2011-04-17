@@ -29,15 +29,15 @@ namespace Rendering
 		Coord<int> getSize();
 		string getName();
 		int getId();
-		void setSpriteSize(Coord<int> spriteSize);
-		void setSize(Coord<int> size);
+		void setSpriteSize(Coord<int>& spriteSize);
+		void setSize(Coord<int>& size);
 		void setName(string name);
 
 		/* Method */
 		void LoadTexture(string Name);
 
 		/* Destructor */
-		~Texture();
+		virtual ~Texture();
 		
     private:
 		Coord<int> _spriteSize;

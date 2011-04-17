@@ -37,7 +37,7 @@ namespace Collisions
 		void setSide(Side side);
 
 		/* Destructors */
-        ~EntityMovable();
+        virtual ~EntityMovable();
 		
     private:
 		Coord<float> _previousPosition;

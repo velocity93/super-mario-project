@@ -45,7 +45,7 @@ namespace Collisions
 		void render();
 
 		/* Destructor */
-        ~Pipe();
+        virtual ~Pipe();
 		
     private:
 		Direction _direction;

@@ -47,7 +47,7 @@ namespace Rendering
 		Texture getTexture();
 		vector<int> getSpriteNumbers();
 		vector<int> getAnimationSpeeds();
-		void setTexture(Texture texture);
+		void setTexture(Texture& texture);
 		void setSpriteNumbers(vector<int> spriteNumbers);
 		void setAnimationSpeeds(vector<int> animationSpeeds);
 
@@ -58,7 +58,7 @@ namespace Rendering
 		/* Draw actual object state */
 		virtual void render() = 0;
 
-		~Drawable();
+		virtual ~Drawable();
 
 	private:
 		Texture _texture;

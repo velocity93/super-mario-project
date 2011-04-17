@@ -30,7 +30,7 @@ namespace Rendering
 		void render();
 		
 		/* Destructor */
-        ~Background();
+        virtual ~Background();
 		
     private:
 		bool _verticalRepetition;

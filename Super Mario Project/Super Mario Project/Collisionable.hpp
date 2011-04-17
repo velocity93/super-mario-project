@@ -27,12 +27,12 @@ namespace Collisions
 		Coord<float> getPosition();
 		Coord<float> getHitboxPosition();
 		Coord<int> getHitboxSize();
-		void setPosition(Coord<float> position);
-		void setHitboxPosition(Coord<float> hitboxPosition);
-		void setHitboxSize(Coord<int> hitboxSize);
+		void setPosition(Coord<float>& position);
+		void setHitboxPosition(Coord<float>& hitboxPosition);
+		void setHitboxSize(Coord<int>& hitboxSize);
 
 		/* Destructors */
-        ~Collisionable();
+        virtual ~Collisionable();
 		
     private:
 		Coord<float> _position;

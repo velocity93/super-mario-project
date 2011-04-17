@@ -25,17 +25,17 @@ namespace Collisions
 		return _hitboxSize;
 	}
 
-	void Collisionable::setPosition(Coord<float> position)
+	void Collisionable::setPosition(Coord<float>& position)
 	{
 		_position = position;
 	}
 
-	void Collisionable::setHitboxPosition(Coord<float> hitboxPosition)
+	void Collisionable::setHitboxPosition(Coord<float>& hitboxPosition)
 	{
 		_hitboxPosition = hitboxPosition;
 	}
 
-	void Collisionable::setHitboxSize(Coord<int> hitboxSize)
+	void Collisionable::setHitboxSize(Coord<int>& hitboxSize)
 	{
 		_hitboxSize = hitboxSize;
 	}

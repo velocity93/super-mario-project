@@ -37,7 +37,7 @@ namespace Collisions
 		void update(float time);
 		void render();
 
-        ~ProjectileOccurrence();
+        virtual ~ProjectileOccurrence();
 		
     private:
 		Sender _sender;

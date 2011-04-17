@@ -23,7 +23,7 @@ namespace Rendering
     {
     public:
 		HUD();
-        ~HUD();
+        virtual ~HUD();
 		
     private:
 		int _idPerso;

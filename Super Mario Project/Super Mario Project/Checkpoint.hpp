@@ -32,7 +32,7 @@ namespace Collisions
 		void update(float time);
 		void render();
 
-        ~Checkpoint();
+        virtual ~Checkpoint();
 		
     private:
 		State _state;
