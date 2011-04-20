@@ -23,13 +23,17 @@ namespace Rendering
     {
     public:
 		HUD();
+
+		int getTime();
+		void setTime(float time);
+
         virtual ~HUD();
 		
     private:
 		int _idPerso;
 		int _nbLives;
 		int _score;
-		int _time;
+		float _time;
 		string _levelName;
 		//Item item;
 		//font_2d* font;

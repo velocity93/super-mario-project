@@ -44,7 +44,7 @@ namespace Collisions
     {
     }
 
-	void Pipe::render()
+	void Pipe::render(RenderWindow& app)
     {
     }
 

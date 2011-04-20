@@ -11,9 +11,12 @@
 #define HPP_DRAWABLE
 
 #include "Texture.hpp"
+#include <SFML\Graphics.hpp>
+
 #include <vector>
 
 using namespace std;
+using namespace sf;
 
 namespace Rendering
 {
@@ -56,7 +59,7 @@ namespace Rendering
 		virtual void update(float time) = 0;
 
 		/* Draw actual object state */
-		virtual void render() = 0;
+		virtual void render(RenderWindow& app) = 0;
 
 		virtual ~Drawable();
 

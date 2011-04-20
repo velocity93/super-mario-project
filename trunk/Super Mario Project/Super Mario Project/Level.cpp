@@ -10,10 +10,25 @@
 
 namespace SuperMarioProject
 {
-    Level::Level()
-    {
-    }
+	Coord<int> Level::getSize()
+	{
+		return _size;
+	}
 
+	Coord<int> Level::getBlockSize()
+	{
+		return _blockSize;
+	}
+
+	void Level::update(float time)
+	{
+
+	}
+
+	void Level::render(RenderWindow& app)
+	{
+
+	}
 
     Level::~Level()
     {

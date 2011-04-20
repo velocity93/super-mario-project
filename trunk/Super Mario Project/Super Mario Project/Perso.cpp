@@ -15,6 +15,11 @@ namespace Collisions
 		return _hud;
 	}
 
+	Perso::State Perso::getState()
+	{
+		return _state;
+	}
+
 	Perso::Environment Perso::getEnvironment()
 	{
 		return _environment;
@@ -95,9 +100,9 @@ namespace Collisions
 		return _jumpTime;
 	}
 
-	void Perso::setHUD(HUD& hud)
+	void Perso::getState(Perso::State state)
 	{
-		_hud = hud;
+		_state = state;
 	}
 
 	void Perso::setEnvironment(Environment environment)
@@ -183,7 +188,7 @@ namespace Collisions
 
 	}
 
-	void Perso::render()
+	void Perso::render(RenderWindow& app)
 	{
 	}
 

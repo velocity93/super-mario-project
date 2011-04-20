@@ -30,6 +30,16 @@ namespace Rendering
 		_points[6] = 8000;
 	}
 
+	int HUD::getTime()
+	{
+		return _time;
+	}
+
+	void HUD::setTime(float time)
+	{
+		_time = time;
+	}
+
 
 	HUD::~HUD()
 	{

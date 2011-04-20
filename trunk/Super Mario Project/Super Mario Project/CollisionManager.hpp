@@ -10,6 +10,11 @@
 #ifndef HPP_COLLISIONMANAGER
 #define HPP_COLLISIONMANAGER
 
+#include "EntityMovable.hpp"
+#include "Level.hpp"
+
+using namespace SuperMarioProject;
+
 namespace Collisions
 {
 	class CollisionManager
@@ -26,11 +31,24 @@ namespace Collisions
 			NONE_COLLISION
 		};
 
+		struct Collisions_info
+		{
+			Type type;
+			bool isFirstEntityTouched;
+			bool isSecondEntityTouched;
+		};
+
 	public:
 		CollisionManager();
+
+		static void solveCollisions(Collisionable* c1, Collisionable* c2, Level* level);
+
 		virtual ~CollisionManager();
 
 	private:
+		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level);
+		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level);
+		static void detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info);
 	};
 } // namespace
 

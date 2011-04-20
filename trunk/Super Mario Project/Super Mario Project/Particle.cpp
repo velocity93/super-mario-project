@@ -24,7 +24,7 @@ namespace Collisions
 	{
 	}
 
-	void Particle::render()
+	void Particle::render(RenderWindow& app)
 	{
 	}
 
