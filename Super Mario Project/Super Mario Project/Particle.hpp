@@ -24,7 +24,7 @@ namespace Collisions
 		void setLife(int life);
 
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
         virtual ~Particle();
 		

@@ -15,7 +15,7 @@ namespace Collisions
 
 	}
 
-	void MonsterOccurrence::render()
+	void MonsterOccurrence::render(RenderWindow& app)
 	{
 
 	}

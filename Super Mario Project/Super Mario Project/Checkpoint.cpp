@@ -25,7 +25,7 @@ namespace Collisions
 
     }
 
-	void Checkpoint::render()
+	void Checkpoint::render(RenderWindow& app)
     {
 
     }

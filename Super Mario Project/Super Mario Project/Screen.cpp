@@ -40,4 +40,9 @@ namespace Rendering
 		_scrolling = scrolling;
 	}
 
+	Screen::~Screen()
+	{
+
+	}
+
 } // namespace

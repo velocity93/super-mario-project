@@ -20,7 +20,7 @@ namespace Rendering
 		Object() : Drawable() { }
 		
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
         virtual ~Object();
 		

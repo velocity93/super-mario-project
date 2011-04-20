@@ -14,7 +14,7 @@ namespace Collisions
     {
     }
 
-	void Finish::render()
+	void Finish::render(RenderWindow& app)
     {
     }
 

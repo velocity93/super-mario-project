@@ -7,6 +7,9 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Object.hpp"
+#include <SFML\Graphics.hpp>
+
+using namespace sf;
 
 namespace Rendering
 {
@@ -15,8 +18,9 @@ namespace Rendering
 
 	}
 	
-	void Object::render()
+	void Object::render(RenderWindow& app)
 	{
+		
 
 	}
 

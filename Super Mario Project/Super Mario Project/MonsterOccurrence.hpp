@@ -43,7 +43,7 @@ namespace Collisions
 		virtual ~MonsterOccurrence();
 
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
 	private:
 	};

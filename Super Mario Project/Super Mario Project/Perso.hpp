@@ -22,6 +22,8 @@ namespace Collisions
 {
 	class Perso : public EntityMovable
     {
+
+	public:
 		enum Environment
 		{
 			GROUND,
@@ -100,8 +102,6 @@ namespace Collisions
 			NB_TRANSFORMATIONS
 		};
 
-
-    public:
 		/* Constructors */
 		Perso() : EntityMovable(), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
 			_hud(HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
@@ -131,7 +131,7 @@ namespace Collisions
 		int getDeathTime();
 		int getFinishTime();
 		int getJumpTime();
-		void setHUD(HUD& HUD);
+		void getState(State state);
 		void setEnvironment(Environment environment);
 		void setTransformation(Transformations transformation);
 		void setCanClimb(bool canClimb);
@@ -150,7 +150,7 @@ namespace Collisions
 
 		/* Methods */
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
 		/* Destructor */
         virtual ~Perso();

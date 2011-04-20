@@ -31,7 +31,7 @@ namespace SuperMarioProject
 		return _previous;
 	}
 
-	void Keystate::update(RenderWindow App)
+	void Keystate::update(RenderWindow& App)
 	{
 		const sf::Input& Input = App.GetInput();
 

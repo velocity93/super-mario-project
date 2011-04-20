@@ -20,7 +20,7 @@ namespace Collisions
 		Finish() : Collisionable() { }
 
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
         virtual ~Finish();
 		

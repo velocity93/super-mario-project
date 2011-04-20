@@ -45,7 +45,7 @@ namespace Collisions
 
 	}
 
-	void Door::render()
+	void Door::render(RenderWindow& app)
 	{
 
 	}

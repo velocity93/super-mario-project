@@ -16,7 +16,7 @@ using namespace Rendering;
 
 namespace Collisions
 {
-    class Collisionable : Drawable
+    class Collisionable : public Rendering::Drawable
     {
 	public:
 		/* Constructors */

@@ -34,7 +34,7 @@ namespace Collisions
 	{
 	}
 
-	void ItemOccurrence::render()
+	void ItemOccurrence::render(RenderWindow& app)
 	{
 
 	}

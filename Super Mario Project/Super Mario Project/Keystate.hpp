@@ -16,8 +16,6 @@ using namespace sf;
 
 namespace SuperMarioProject
 {
-	
-
     class Keystate
     {
 		enum Keys
@@ -43,7 +41,7 @@ namespace SuperMarioProject
 
     public:
 		Keystate();
-		void update(RenderWindow App);
+		void update(RenderWindow& App);
 
 		bool* getActual();
 		bool* getPrevious();

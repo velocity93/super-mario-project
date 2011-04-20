@@ -30,7 +30,7 @@ namespace Collisions
 		void setState(State state);
 
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
         virtual ~Checkpoint();
 		

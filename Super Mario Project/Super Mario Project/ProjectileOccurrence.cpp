@@ -25,7 +25,7 @@ namespace Collisions
 
 	}
 
-	void ProjectileOccurrence::render()
+	void ProjectileOccurrence::render(RenderWindow& app)
 	{
 
 	}

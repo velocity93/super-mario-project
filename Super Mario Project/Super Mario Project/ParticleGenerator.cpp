@@ -74,7 +74,7 @@ namespace Collisions
 	{
 	}
 
-	void ParticleGenerator::render()
+	void ParticleGenerator::render(RenderWindow& app)
 	{
 	}
 

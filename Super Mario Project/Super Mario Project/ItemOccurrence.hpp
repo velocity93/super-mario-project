@@ -35,7 +35,7 @@ namespace Collisions
 		void setIsActive(bool isActive);
 
 		void update(float time);
-		void render();
+		void render(RenderWindow& app);
 
         virtual ~ItemOccurrence();
 		
