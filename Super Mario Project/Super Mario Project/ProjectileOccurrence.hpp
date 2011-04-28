@@ -11,20 +11,21 @@
 #define HPP_PROJECTILEOCCURRENCE
 
 #include "EntityMovable.hpp"
-
+#include "Projectile.hpp"
 
 namespace Collisions
 {
-	class Projectile;
-
+	
 	class ProjectileOccurrence : public EntityMovable
     {
-	enum Sender {
+
+	public:
+		enum Sender {
 		GENTILE,
 		VILAIN
-	};
+		};
 
-    public:
+    
 		/* Constructors */
 		ProjectileOccurrence() : EntityMovable(), _sender(GENTILE) { }
 		ProjectileOccurrence(Coord<float> position) : EntityMovable(position), _sender(GENTILE) { }

@@ -31,11 +31,13 @@ namespace SuperMarioProject
     class World
     {
     public:
-		World() : _keystate(Keystate()), _levelNames(vector<string>()), _persos(vector<Perso>()),
+		World() : _keystate(new Keystate()), _levelNames(vector<string>()), _persos(vector<Perso*>()),
 			_screen(Screen()), _windowSize(Coord<int>()), _fpsTime(0), _actualTime(0), _previousTime(0), 
-			_elapsedTime(0), _previousElapsedTime(0), _fps(0), _nbFramesCalculated(0), _clock(Clock()) { }
+			_elapsedTime(0), _previousElapsedTime(0), _fps(0), _nbFramesCalculated(0), _clock(Clock()),
+			_level(new Level()) { }
 
-		Keystate getKeystate();
+		Keystate* getKeystate();
+		Level* getLevel();
 
 		/* Methods */
 		void update();
@@ -44,10 +46,10 @@ namespace SuperMarioProject
         virtual ~World();
 		
     private:
-		Keystate _keystate;
+		Keystate* _keystate;
 		vector<string> _levelNames;
-		vector<Perso> _persos;
-		Level _level;
+		vector<Perso*> _persos;
+		Level* _level;
 		Screen _screen;
 		Coord<int> _windowSize;
 		Clock _clock;

@@ -11,13 +11,16 @@
 #define HPP_KEYSTATE
 
 #include <SFML\Graphics.hpp>
+#include <vector>
 
 using namespace sf;
+using namespace std;
 
 namespace SuperMarioProject
 {
     class Keystate
     {
+	public:
 		enum Keys
 		{
 			NONE = -1,
@@ -39,16 +42,16 @@ namespace SuperMarioProject
 			NB_KEYS,
 		};
 
-    public:
+    
 		Keystate();
 		void update(RenderWindow& App);
 
-		bool* getActual();
-		bool* getPrevious();
+		vector<bool> getActual();
+		vector<bool> getPrevious();
 
     private:
-		bool _actual[NB_KEYS];
-		bool _previous[NB_KEYS];
+		vector<bool> _actual;
+		vector<bool> _previous;
     };
 } // namespace
 

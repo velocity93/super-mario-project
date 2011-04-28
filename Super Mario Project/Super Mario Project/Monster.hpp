@@ -10,15 +10,34 @@
 #ifndef HPP_MONSTER
 #define HPP_MONSTER
 
+#include "Coord.hpp"
+
+#include <vector>
+
+
+using namespace Utils;
+using namespace std;
+
 namespace Collisions
 {
-    class Monster
+	class MonsterOccurrence;
+
+	class Monster
     {
     public:
         Monster();
         virtual ~Monster();
 		
     private:
+		Coord<int> _size;
+		int _canBeKilledByFire;
+		int _canBeKilledByJump;
+		int _canBeJumpedOn;
+		int _stayOnPlateForm;
+		int _disappearingTime;
+		vector<MonsterOccurrence*> _monsterOccurrences;
+		// sounds
+		// Texture ????
     };
 } // namespace
 

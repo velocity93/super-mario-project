@@ -14,7 +14,7 @@
 
 namespace Rendering
 {
-    class Background : Object
+    class Background : public Object
     {
     public:
 		/* Constructors */

@@ -15,19 +15,14 @@ namespace Rendering
 		return _spriteSize;
 	}
 
-	Coord<int> Texture::getSize()
-	{
-		return _size;
-	}
-
 	string Texture::getName()
 	{
 		return _name;
 	}
 
-	int Texture::getId()
+	Image Texture::getImage()
 	{
-		return _id;
+		return _image;
 	}
 
 	void Texture::setSpriteSize(Coord<int>& spriteSize)
@@ -35,21 +30,18 @@ namespace Rendering
 		_spriteSize = spriteSize;
 	}
 
-	void Texture::setSize(Coord<int>& size)
-	{
-		_size = size;
-	}
-
 	void Texture::setName(string name)
 	{
 		_name = name;
 	}
 
-	void Texture::LoadTexture(string Name)
+	Texture* Texture::loadTexture(string name)
 	{
-		setName(Name);
+		Texture* texture = new Texture();
+		texture->setName(name);
+		texture->getImage().LoadFromFile(name);
 
-		/* To do */
+		return texture;
 	}
 
 	Texture::~Texture()

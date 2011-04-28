@@ -10,18 +10,19 @@
 #ifndef HPP_PROJECTILE
 #define HPP_PROJECTILE
 
-#include "ProjectileOccurrence.hpp"
-#include <list>
+#include <vector>
+#include <SFML\Graphics.hpp>
 
 using namespace std;
+using namespace sf;
 
 namespace Collisions
 {
-	
-
-    class Projectile
+	class ProjectileOccurrence;
+	class Projectile
     {
 	
+	public:
 		enum Type {
 		FRAGMENT,
 		FIREBALL,
@@ -34,14 +35,17 @@ namespace Collisions
 	};
 
 
-    public:
+    
 		/* Constructor */
 		Projectile() : _type(FRAGMENT), _submission(0) { }
 
 		/* getters and setters */
 		int getSubmission();
-		list<ProjectileOccurrence> getProjectileOccurrences();
+		vector<ProjectileOccurrence*> getProjectileOccurrences();
 		void setSubmission(int submission);
+
+		void update(float time);
+		void render(RenderWindow& App);
 
 		/* Destructor */
         virtual ~Projectile();
@@ -49,7 +53,7 @@ namespace Collisions
     private:
 		Type _type;
 		int _submission;
-		list<ProjectileOccurrence> _projectileOccurences;
+		vector<ProjectileOccurrence*> _projectileOccurences;
     };
 } // namespace
 

@@ -14,19 +14,24 @@ namespace SuperMarioProject
 {
     Keystate::Keystate()
     {
-		for(int i = 0; i < NB_KEYS; i++)
+		int i = 0;
+		_actual = vector<bool>();
+		_previous = vector<bool>();
+
+		while(i < NB_KEYS)
 		{
-			_actual[i] = false;
-			_previous[i] = false;
+			_actual.push_back(false);
+			_previous.push_back(false);
+			i++;
 		}
     }
 
-	bool* Keystate::getActual()
+	vector<bool> Keystate::getActual()
 	{
 		return _actual;
 	}
 
-	bool* Keystate::getPrevious()
+	vector<bool> Keystate::getPrevious()
 	{
 		return _previous;
 	}
@@ -35,9 +40,13 @@ namespace SuperMarioProject
 	{
 		const sf::Input& Input = App.GetInput();
 
-		for(int i = 0; i < NB_KEYS; i++)
+		vector<bool>::iterator itActual;
+		vector<bool>::iterator itPrevious;
+
+		for(itActual = _actual.begin(), itPrevious = _previous.begin();
+			itActual < _actual.end(); itActual++, itPrevious++)
 		{
-			_previous[i] = _actual[i];
+			(*itPrevious) = (*itActual);
 		}
 
 		_actual[LEFT] = Input.IsKeyDown(Key::Left);
@@ -55,8 +64,5 @@ namespace SuperMarioProject
 		_actual[CUT] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::X);
 		_actual[COPY] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::C);
 		_actual[PASTE] = Input.IsKeyDown(Key::LControl) && Input.IsKeyDown(Key::V);
-
-
-
 	}
 } // namespace

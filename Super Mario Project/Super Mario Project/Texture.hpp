@@ -11,10 +11,12 @@
 #define HPP_TEXTURE
 
 #include "Coord.hpp"
+#include <SFML\Graphics.hpp>
 #include <string>
 
 using namespace Utils;
 using namespace std;
+using namespace sf;
 
 namespace Rendering
 {
@@ -22,28 +24,25 @@ namespace Rendering
     {
     public:
 		/* Constructor */
-		Texture() : _spriteSize(Coord<int>()), _name(""), _id(-1) { }
+		Texture() : _spriteSize(Coord<int>()), _name("") { }
 
 		/* getters and setters */
 		Coord<int> getSpriteSize();
-		Coord<int> getSize();
 		string getName();
-		int getId();
+		Image getImage();
 		void setSpriteSize(Coord<int>& spriteSize);
-		void setSize(Coord<int>& size);
 		void setName(string name);
 
 		/* Method */
-		void LoadTexture(string Name);
+		static Texture* loadTexture(string name);
 
 		/* Destructor */
 		virtual ~Texture();
 		
     private:
 		Coord<int> _spriteSize;
-		Coord<int> _size;
 		string _name;
-		int _id;
+		Image _image;
     };
 } // namespace
 

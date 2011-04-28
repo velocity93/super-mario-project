@@ -11,6 +11,9 @@
 #define HPP_OBJECT
 
 #include "Drawable.hpp"
+#include <SFML\Graphics.hpp>
+
+using namespace sf;
 
 namespace Rendering
 {
@@ -18,9 +21,11 @@ namespace Rendering
     {
     public:
 		Object() : Drawable() { }
+		Object(string name) : Drawable() { loadObject(name);}
 		
 		void update(float time);
 		void render(RenderWindow& app);
+		void loadObject(string name);
 
         virtual ~Object();
 		

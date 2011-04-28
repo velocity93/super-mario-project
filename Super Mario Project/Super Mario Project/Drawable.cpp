@@ -10,7 +10,12 @@
 
 namespace Rendering
 {
-	Texture Drawable::getTexture()
+	Coord<float> Drawable::getPosition()
+	{
+		return _position;
+	}
+	
+	Texture* Drawable::getTexture()
 	{
 		return _texture;
 	}
@@ -25,7 +30,7 @@ namespace Rendering
 		return _animationSpeeds;
 	}
 
-	void Drawable::setTexture(Texture& texture)
+	void Drawable::setTexture(Texture* texture)
 	{
 		_texture = texture;
 	}

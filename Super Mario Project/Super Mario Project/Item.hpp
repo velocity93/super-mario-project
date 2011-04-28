@@ -10,15 +10,20 @@
 #ifndef HPP_ITEM
 #define HPP_ITEM
 
-#include "ItemOccurrence.hpp"
-#include <list>
+#include <SFML\Graphics.hpp>
+#include <vector>
 
 using namespace std;
+using namespace sf;
 
 namespace Collisions
 {
+	class ItemOccurrence;
+
 	class Item
 	{
+	
+	public:
 		enum Type
 		{
 			COIN,
@@ -30,18 +35,20 @@ namespace Collisions
 			STAR,
 			LIFE_MUSHROOM
 		};
-
-
-	public:
+	
 		/* Constructor */
 		Item() : _type(COIN), _submission(0) { }
 
 		/* Getters and setters */
 		Type getType();
 		int getSubmission();
-		list<ItemOccurrence> getItemOccurrences();
+		vector<ItemOccurrence*> getItemOccurrences();
 		void setType(Type type);
 		void setSubmission(int submission);
+
+		/* Methods */
+		void update(float time);
+		void render(RenderWindow &App);
 
 		/* Destructor */
 		virtual ~Item();
@@ -49,7 +56,7 @@ namespace Collisions
 	private:
 		Type _type;
 		int _submission;
-		list<ItemOccurrence> _itemOccurences;
+		vector<ItemOccurrence*> _itemOccurences;
 	};
 } // namespace
 
