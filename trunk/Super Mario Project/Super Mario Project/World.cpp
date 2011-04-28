@@ -10,19 +10,24 @@
 
 namespace SuperMarioProject
 {
-    Keystate World::getKeystate()
+    Keystate* World::getKeystate()
 	{
 		return _keystate;
 	}
 
+	Level* World::getLevel()
+	{
+		return _level;
+	}
+
 	void World::update()
 	{
-		this->_level.update(this->_elapsedTime);
+		this->_level->update(this->_elapsedTime);
 
-		vector<Perso>::iterator it;
+		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); it++)
-			(*it).update(this->_elapsedTime);
+			(*it)->update(this->_elapsedTime);
 
 		updateTime();
 		
@@ -53,16 +58,16 @@ namespace SuperMarioProject
            _elapsedTime = 0;
         }
 
-		vector<Perso>::iterator it;
+		vector<Perso*>::iterator it;
 		
-		for (it= this->_persos.begin(); it < this->_persos.end(); it++)
+		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
 		{
-			if((*it).getState() != Perso::FINISH && (*it).getState() != Perso::FINISH_CASTLE && (*it).getState() != Perso::DEAD
-				&& (*it).getHUD().getTime() > 0)
+			if((*it)->getState() != Perso::FINISH && (*it)->getState() != Perso::FINISH_CASTLE && (*it)->getState() != Perso::DEAD
+				&& (*it)->getHUD()->getTime() > 0)
 			{
-				(*it).getHUD().setTime((*it).getHUD().getTime() - _elapsedTime / 10);
-				if((*it).getHUD().getTime() < 0)
-					(*it).getHUD().setTime(0);
+				(*it)->getHUD()->setTime((*it)->getHUD()->getTime() - _elapsedTime / 10);
+				if((*it)->getHUD()->getTime() < 0)
+					(*it)->getHUD()->setTime(0);
 			}
 		}
 
@@ -71,44 +76,51 @@ namespace SuperMarioProject
 
 	void World::render(RenderWindow& app)
 	{
-		this->_level.render(app);
+		vector<Perso*>::iterator it;
+
+		this->_level->render(app);
+
+		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
+		{
+			(*it)->render(app);
+		}
 	}
 
 	void World::updateScreen()
 	{
 		/* General Case */
         /* horizontal */
-		if((_persos.front().getPosition().getX() - _screen.getScrolling().getX()) > _screen.getSize().getX() * SCROLLING_AV)
-			_screen.getScrolling().set(_persos.front().getPosition().getX() - _screen.getSize().getX() * SCROLLING_AV, _screen.getScrolling().getY());
+		if((_persos.front()->getPosition().getX() - _screen.getScrolling().getX()) > _screen.getSize().getX() * SCROLLING_AV)
+			_screen.getScrolling().set(_persos.front()->getPosition().getX() - _screen.getSize().getX() * SCROLLING_AV, _screen.getScrolling().getY());
 
-        else if((_persos.front().getPosition().getX() - _screen.getScrolling().getX()) < _screen.getSize().getX() * SCROLLING_AR)
-			_screen.getScrolling().set(_persos.front().getPosition().getX() - _screen.getSize().getX() * SCROLLING_AR, _screen.getScrolling().getY());
+        else if((_persos.front()->getPosition().getX() - _screen.getScrolling().getX()) < _screen.getSize().getX() * SCROLLING_AR)
+			_screen.getScrolling().set(_persos.front()->getPosition().getX() - _screen.getSize().getX() * SCROLLING_AR, _screen.getScrolling().getY());
 
         /* vertical */
-        if((_persos.front().getPosition().getY() - _screen.getScrolling().getY()) > _screen.getSize().getY() * SCROLLING_HAUT)
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front().getPosition().getY() - _screen.getSize().getY() * SCROLLING_HAUT);
+        if((_persos.front()->getPosition().getY() - _screen.getScrolling().getY()) > _screen.getSize().getY() * SCROLLING_HAUT)
+			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front()->getPosition().getY() - _screen.getSize().getY() * SCROLLING_HAUT);
 
-        else if((_persos.front().getPosition().getY() - _screen.getScrolling().getY()) < _screen.getSize().getY() * SCROLLING_BAS)
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front().getPosition().getY() - _screen.getSize().getY() * SCROLLING_BAS);
+        else if((_persos.front()->getPosition().getY() - _screen.getScrolling().getY()) < _screen.getSize().getY() * SCROLLING_BAS)
+			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front()->getPosition().getY() - _screen.getSize().getY() * SCROLLING_BAS);
 
 		/* particular case for level limits and if level is smaller than screen */
         /* horizontal */
-		if(_screen.getScrolling().getX() > (_level.getSize().getX() * _level.getBlockSize().getX() - _screen.getSize().getX()))
-			_screen.getScrolling().set(_level.getSize().getX() * _level.getBlockSize().getX() - _screen.getSize().getX(), _screen.getScrolling().getY());
+		if(_screen.getScrolling().getX() > (_level->getSize().getX() * _level->getBlockSize().getX() - _screen.getSize().getX()))
+			_screen.getScrolling().set(_level->getSize().getX() * _level->getBlockSize().getX() - _screen.getSize().getX(), _screen.getScrolling().getY());
         if(_screen.getScrolling().getX() < 0)
                 _screen.getScrolling().set(0, _screen.getScrolling().getY());
 
         /* vertical */
-       if(_screen.getScrolling().getY() > (_level.getSize().getY() * _level.getBlockSize().getY() - _screen.getSize().getY()))
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _level.getSize().getY() * _level.getBlockSize().getY() - _screen.getSize().getY());
+       if(_screen.getScrolling().getY() > (_level->getSize().getY() * _level->getBlockSize().getY() - _screen.getSize().getY()))
+			_screen.getScrolling().set(_screen.getScrolling().getX(), _level->getSize().getY() * _level->getBlockSize().getY() - _screen.getSize().getY());
         if(_screen.getScrolling().getY() < 0)
             _screen.getScrolling().set( _screen.getScrolling().getY(), 0);
-
-
-
 	}
 
     World::~World()
     {
+		delete _level;
+
+
     }
 } // namespace

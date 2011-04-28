@@ -18,6 +18,7 @@ namespace Collisions
     {
     public:
 		Finish() : Collisionable() { }
+		Finish(Coord<float> position) : Collisionable(position) { }
 
 		void update(float time);
 		void render(RenderWindow& app);

@@ -20,7 +20,7 @@ namespace Collisions
 		return _submission;
 	}
 
-	list<ItemOccurrence> Item::getItemOccurrences()
+	vector<ItemOccurrence*> Item::getItemOccurrences()
 	{
 		return _itemOccurences;
 	}
@@ -33,6 +33,16 @@ namespace Collisions
 	void Item::setSubmission(int submission)
 	{
 		_submission = submission;
+	}
+
+	void Item::update(float time)
+	{
+
+	}
+
+	void Item::render(RenderWindow &App)
+	{
+
 	}
 
     Item::~Item()

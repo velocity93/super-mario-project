@@ -10,9 +10,9 @@
 
 namespace Collisions
 {
-	int Door::getIndexDoorDestination()
+	int Door::getIndexDestination()
 	{
-		return _indexDoorDestination;
+		return _indexDestination;
 	}
 
 	string Door::getLevelDestination()
@@ -25,9 +25,9 @@ namespace Collisions
 		return _state;
 	}
 
-	void Door::setIndexDoorDestination(int indexDoorDestination)
+	void Door::setIndexDestination(int indexDestination)
 	{
-		_indexDoorDestination = indexDoorDestination;
+		_indexDestination = indexDestination;
 	}
 
 	void Door::setLevelDestination(string levelDestination)
@@ -48,6 +48,16 @@ namespace Collisions
 	void Door::render(RenderWindow& app)
 	{
 
+	}
+
+	Door* Door::loadDoor(Coord<float> position, int indexDestination, string levelDestination, State state)
+	{
+		Door* door = new Door(position, indexDestination, levelDestination, state);
+
+		// Load texture with the 'name' parameter
+		// door->loadTexture(name);
+
+		return door;
 	}
 
 

@@ -19,6 +19,7 @@ namespace Collisions
 {
 	class CollisionManager
 	{
+		public:
 		enum Type {
 			FROM_BOTTOM,
 			FROM_LEFT,
@@ -38,7 +39,7 @@ namespace Collisions
 			bool isSecondEntityTouched;
 		};
 
-	public:
+	
 		CollisionManager();
 
 		static void solveCollisions(Collisionable* c1, Collisionable* c2, Level* level);

@@ -15,7 +15,7 @@ namespace Collisions
 		return _direction;
 	}
 
-	Monster Pipe::getMonster()
+	Monster* Pipe::getMonster()
 	{
 		return _monster;
 	}
@@ -30,7 +30,7 @@ namespace Collisions
 		_direction = direction;
 	}
 
-	void Pipe::setMonster(Monster& monster)
+	void Pipe::setMonster(Monster* monster)
 	{
 		_monster = monster;
 	}
@@ -47,6 +47,17 @@ namespace Collisions
 	void Pipe::render(RenderWindow& app)
     {
     }
+
+	Pipe* Pipe::loadPipe(string name, Direction direction, int lenght, Coord<float> position, State state, 
+			int indexDestination, string levelDestination, Monster* monster)
+	{
+		Pipe* pipe = new Pipe(position, indexDestination, levelDestination, state, direction, monster);
+
+		// Load texture with the 'name' parameter
+		// pipe->loadTexture(name);
+
+		return pipe;
+	}
 
     Pipe::~Pipe()
     {

@@ -22,6 +22,8 @@ namespace Rendering
 {
 	class Drawable
 	{
+	
+	public:
 		enum Layer
 		{
 			BACKGROUND_LAYER,
@@ -41,16 +43,20 @@ namespace Rendering
 			ANGLE_180,
 			ANGLE_270
 		};
-
-	public:
+	
 		/* Constructor */
-		Drawable() : _texture(Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()) { }
+		Drawable() : _texture(new Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()),
+					 _position(Coord<float>()) { }
+		Drawable(Coord<float> position) :  _texture(new Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()),
+			_position(position) { }
 
 		/* getters and setters */
-		Texture getTexture();
+		Coord<float> getPosition();
+		Texture* getTexture();
 		vector<int> getSpriteNumbers();
 		vector<int> getAnimationSpeeds();
-		void setTexture(Texture& texture);
+		void setPosition(Coord<float>& position);
+		void setTexture(Texture* texture);
 		void setSpriteNumbers(vector<int> spriteNumbers);
 		void setAnimationSpeeds(vector<int> animationSpeeds);
 
@@ -64,7 +70,8 @@ namespace Rendering
 		virtual ~Drawable();
 
 	private:
-		Texture _texture;
+		Texture* _texture;
+		Coord<float> _position;
 		vector<int> _spriteNumbers;
 		vector<int> _animationSpeeds;
 	};

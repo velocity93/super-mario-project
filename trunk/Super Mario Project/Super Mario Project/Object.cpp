@@ -7,9 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Object.hpp"
-#include <SFML\Graphics.hpp>
-
-using namespace sf;
 
 namespace Rendering
 {
@@ -20,8 +17,16 @@ namespace Rendering
 	
 	void Object::render(RenderWindow& app)
 	{
-		
+		Sprite sprite;
+		sprite.SetImage(getTexture()->getImage());
+		sprite.SetPosition(this->getPosition().getX(), this->getPosition().getY());
 
+		app.Draw(sprite);
+	}
+
+	void Object::loadObject(string name)
+	{
+		getTexture()->loadTexture(name);
 	}
 
     Object::~Object()

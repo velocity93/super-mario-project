@@ -26,7 +26,7 @@ namespace Rendering
 	}
 	void Background::render(RenderWindow& app)
 	{
-
+		
 	}
 
     Background::~Background()

@@ -104,24 +104,24 @@ namespace Collisions
 
 		/* Constructors */
 		Perso() : EntityMovable(), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
+			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { }
 		Perso(Coord<float> Position) : EntityMovable(Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
+			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { }
 
 		/* getters and setters */
-		HUD getHUD();
+		HUD* getHUD();
 		State getState();
 		Environment getEnvironment();
 		Transformations getTransformation();
 		bool getCanClimb();
 		Vect<float> getAcceleration();
-		MonsterOccurrence getBroughtMonster();
-		Pipe getInsidePipe();
-		Checkpoint getCheckPointPassed();
+		MonsterOccurrence* getBroughtMonster();
+		Pipe* getInsidePipe();
+		Checkpoint* getCheckPointPassed();
 		int getInvincibleTime();
 		int getInvincibleStarTime();
 		int getTransformationTime();
@@ -131,13 +131,13 @@ namespace Collisions
 		int getDeathTime();
 		int getFinishTime();
 		int getJumpTime();
-		void getState(State state);
+		void setState(State state);
 		void setEnvironment(Environment environment);
 		void setTransformation(Transformations transformation);
 		void setCanClimb(bool canClimb);
-		void setBroughtMonster(MonsterOccurrence& monster);
-		void setInsidePipe(Pipe& pipe);
-		void setCheckPointPassed(Checkpoint& checkpoint);
+		void setBroughtMonster(MonsterOccurrence* monster);
+		void setInsidePipe(Pipe* pipe);
+		void setCheckPointPassed(Checkpoint* checkpoint);
 		void setInvincibleTime(int invincibleTime);
 		void setInvincibleStarTime(int invincibleStarTime);
 		void setTransformationTime(int transformationTime);
@@ -156,15 +156,15 @@ namespace Collisions
         virtual ~Perso();
 		
     private:
-		HUD _hud;
+		HUD* _hud;
 		State _state;
 		Environment _environment;
 		Transformations _transformation;
 		bool _canClimb;
 		Vect<float> _acceleration;
-		MonsterOccurrence _broughtMonster;
-		Pipe _insidePipe;
-		Checkpoint _checkpointPassed;
+		MonsterOccurrence* _broughtMonster;
+		Pipe* _insidePipe;
+		Checkpoint* _checkpointPassed;
 		//sounds
 		int _invincibleTime;
 		int _invincibleStarTime;

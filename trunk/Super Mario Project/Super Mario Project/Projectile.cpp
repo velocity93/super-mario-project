@@ -16,7 +16,7 @@ namespace Collisions
 		return _submission;
 	}
 
-	list<ProjectileOccurrence> Projectile::getProjectileOccurrences()
+	vector<ProjectileOccurrence*> Projectile::getProjectileOccurrences()
 	{
 		return _projectileOccurences;
 	}
@@ -25,6 +25,17 @@ namespace Collisions
 	{
 		_submission = submission;
 	}
+
+	void Projectile::update(float time)
+	{
+
+	}
+
+	void Projectile::render(RenderWindow& App)
+	{
+
+	}
+
 
     Projectile::~Projectile()
     {

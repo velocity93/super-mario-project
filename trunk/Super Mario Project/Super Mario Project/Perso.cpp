@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	HUD Perso::getHUD()
+	HUD* Perso::getHUD()
 	{
 		return _hud;
 	}
@@ -40,17 +40,17 @@ namespace Collisions
 		return _acceleration;
 	}
 
-	MonsterOccurrence Perso::getBroughtMonster()
+	MonsterOccurrence* Perso::getBroughtMonster()
 	{
 		return _broughtMonster;
 	}
 
-	Pipe Perso::getInsidePipe()
+	Pipe* Perso::getInsidePipe()
 	{
 		return _insidePipe;
 	}
 
-	Checkpoint Perso::getCheckPointPassed()
+	Checkpoint* Perso::getCheckPointPassed()
 	{
 		return _checkpointPassed;
 	}
@@ -100,7 +100,7 @@ namespace Collisions
 		return _jumpTime;
 	}
 
-	void Perso::getState(Perso::State state)
+	void Perso::setState(Perso::State state)
 	{
 		_state = state;
 	}
@@ -120,17 +120,17 @@ namespace Collisions
 		_canClimb = canClimb;
 	}
 
-	void Perso::setBroughtMonster(MonsterOccurrence& monster)
+	void Perso::setBroughtMonster(MonsterOccurrence* monster)
 	{
 		_broughtMonster = monster;
 	}
 
-	void Perso::setInsidePipe(Pipe& pipe)
+	void Perso::setInsidePipe(Pipe* pipe)
 	{
 		_insidePipe = pipe;
 	}
 
-	void Perso::setCheckPointPassed(Checkpoint& checkpoint)
+	void Perso::setCheckPointPassed(Checkpoint* checkpoint)
 	{
 		_checkpointPassed = checkpoint;
 	}

@@ -11,11 +11,14 @@
 #define HPP_MONSTEROCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Monster.hpp"
 
 namespace Collisions
 {
 	class MonsterOccurrence : public EntityMovable
 	{
+
+	public:
 		enum State 
 		{
 			M_WALK,
@@ -38,7 +41,7 @@ namespace Collisions
 			NB_M_SOUNDS
 		};
 
-	public:
+	
 		MonsterOccurrence();
 		virtual ~MonsterOccurrence();
 
@@ -46,6 +49,8 @@ namespace Collisions
 		void render(RenderWindow& app);
 
 	private:
+		Monster* _monster;
+		State _state;
 	};
 } // namespace
 

@@ -14,15 +14,16 @@
 
 namespace Collisions
 {
-	class Checkpoint : Collisionable
+	class Checkpoint : public Collisionable
 	{
+	
+	public:
 		enum State
 		{
 			PASSED,
 			NOT_PASSED
 		};
 
-    public:
 		Checkpoint() : Collisionable(), _state(NOT_PASSED) { }
 		Checkpoint(Coord<float> position, State state) : Collisionable(position), _state(state) { }
 

@@ -11,20 +11,21 @@
 #define HPP_ITEMOCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Item.hpp"
 
 namespace Collisions
 {
-	class Item;
-
 	class ItemOccurrence : public EntityMovable
     {
+	
+	public:
 		enum State
 		{
 			NORMAL,
 			GET_OUT_FROM_BLOC
 		};
 
-    public:
+   
 		ItemOccurrence() : EntityMovable(), _state(NORMAL), _isActive(true) { }
 		ItemOccurrence(Coord<float> position, State state, bool isActive)
 			: EntityMovable(position), _state(state), _isActive(isActive) { }

@@ -20,14 +20,12 @@ namespace Collisions
     {
 	public:
 		/* Constructors */
-		Collisionable() : _position(Coord<float>()), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
-		Collisionable(Coord<float> position) : _position(position), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
+		Collisionable() : Drawable(), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
+		Collisionable(Coord<float> position) : Drawable(position), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
 
 		/* getters and setters */
-		Coord<float> getPosition();
 		Coord<float> getHitboxPosition();
 		Coord<int> getHitboxSize();
-		void setPosition(Coord<float>& position);
 		void setHitboxPosition(Coord<float>& hitboxPosition);
 		void setHitboxSize(Coord<int>& hitboxSize);
 
@@ -35,7 +33,6 @@ namespace Collisions
         virtual ~Collisionable();
 		
     private:
-		Coord<float> _position;
 		Coord<float> _hitboxPosition;
 		Coord<int> _hitboxSize;
     };

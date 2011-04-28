@@ -26,26 +26,27 @@ namespace Collisions
 
 
 		/* Constructors */
-		Door() : Collisionable(), _indexDoorDestination(-1), _state(CLOSED), _levelDestination("") { }
-		Door(Coord<float> position, int indexDoorDestination, string levelDestination, State state) 
-			: Collisionable(position), _indexDoorDestination(indexDoorDestination), _levelDestination(levelDestination), _state(state) { }
+		Door() : Collisionable(), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
+		Door(Coord<float> position, int indexDestination, string levelDestination, State state) 
+			: Collisionable(position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
 
 		/* getters and setters */
-		int getIndexDoorDestination();
+		int getIndexDestination();
 		string getLevelDestination();
 		State getState();
-		void setIndexDoorDestination(int indexDoorDestination);
+		void setIndexDestination(int indexDestination);
 		void setLevelDestination(string levelDestination);
 		void setState(State state);
 
 		/* Methods */
 		void update(float time);
 		void render(RenderWindow& app);
+		static Door* loadDoor(Coord<float> position, int indexDestination, string levelDestination, State state);
 
         virtual ~Door();
 		
     private:
-		int _indexDoorDestination;
+		int _indexDestination;
 		string _levelDestination;
 		State _state;
     };
