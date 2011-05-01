@@ -115,7 +115,13 @@ namespace SuperMarioProject
     World::~World()
     {
 		delete _level;
+		vector<Perso*>::iterator itPersos;
 
+		/* Persos */
+		for(itPersos = this->_persos.begin(); itPersos < this->_persos.end(); itPersos++)
+		{
+			delete (*itPersos);
+		}
 
     }
 } // namespace

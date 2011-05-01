@@ -17,5 +17,12 @@ namespace Collisions
 
     Monster::~Monster()
     {
+		vector<MonsterOccurrence*>::iterator itMonsters;
+
+		/* Objects */
+		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		{
+			delete (*itMonsters);
+		}
     }
 } // namespace
