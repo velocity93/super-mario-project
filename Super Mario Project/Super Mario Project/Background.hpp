@@ -18,8 +18,8 @@ namespace Rendering
     {
     public:
 		/* Constructors */
-		Background() : Object(), _verticalRepetition(false) { }
-		Background(bool verticalRepetition) : Object(), _verticalRepetition(verticalRepetition) { }
+		Background(string textureName) : Object(textureName), _verticalRepetition(false) { }
+		Background(string textureName, bool verticalRepetition) : Object(textureName), _verticalRepetition(verticalRepetition) { }
 		
 		/* getter and setter */
 		bool getVerticalRepetition();

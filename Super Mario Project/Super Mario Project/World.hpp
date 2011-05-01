@@ -13,7 +13,6 @@
 #include "Screen.hpp"
 #include "Perso.hpp"
 #include "Level.hpp"
-#include "Keystate.hpp"
 #include "Coord.hpp"
 #include <string>
 #include <SFML\Config.hpp>
@@ -31,22 +30,20 @@ namespace SuperMarioProject
     class World
     {
     public:
-		World() : _keystate(new Keystate()), _levelNames(vector<string>()), _persos(vector<Perso*>()),
+		World() : _levelNames(vector<string>()), _persos(vector<Perso*>()),
 			_screen(Screen()), _windowSize(Coord<int>()), _fpsTime(0), _actualTime(0), _previousTime(0), 
 			_elapsedTime(0), _previousElapsedTime(0), _fps(0), _nbFramesCalculated(0), _clock(Clock()),
 			_level(new Level()) { }
 
-		Keystate* getKeystate();
 		Level* getLevel();
 
 		/* Methods */
-		void update();
+		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
         virtual ~World();
 		
     private:
-		Keystate* _keystate;
 		vector<string> _levelNames;
 		vector<Perso*> _persos;
 		Level* _level;

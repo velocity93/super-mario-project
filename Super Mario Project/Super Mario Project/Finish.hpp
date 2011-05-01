@@ -17,8 +17,8 @@ namespace Collisions
     class Finish : public Collisionable
     {
     public:
-		Finish() : Collisionable() { }
-		Finish(Coord<float> position) : Collisionable(position) { }
+		Finish(string textureName) : Collisionable(textureName) { }
+		Finish(string textureName, Coord<float> position) : Collisionable(textureName, position) { }
 
 		void update(float time);
 		void render(RenderWindow& app);

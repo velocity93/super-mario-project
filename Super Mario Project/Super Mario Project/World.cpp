@@ -10,24 +10,19 @@
 
 namespace SuperMarioProject
 {
-    Keystate* World::getKeystate()
-	{
-		return _keystate;
-	}
-
 	Level* World::getLevel()
 	{
 		return _level;
 	}
 
-	void World::update()
+	void World::update(RenderWindow& app)
 	{
-		this->_level->update(this->_elapsedTime);
+		this->_level->update(app.GetFrameTime());
 
 		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); it++)
-			(*it)->update(this->_elapsedTime);
+			(*it)->update(app.GetFrameTime());
 
 		updateTime();
 		

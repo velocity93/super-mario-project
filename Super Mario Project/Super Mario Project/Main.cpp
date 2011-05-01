@@ -19,27 +19,48 @@ int main(int argc, char* argv[])
 	argv;
 
 	// Create the main window
-     sf::RenderWindow App(sf::VideoMode(800, 600), "Super Mario project");
+	sf::RenderWindow App(sf::VideoMode(800, 600), "Super Mario project");
 
-	 // Start the game loop
-     while (App.IsOpened())
-     {
-         w->getKeystate()->update(App);		 
- 
-         // Clear screen
-         App.Clear();
+	// Start the game loop
+	while (App.IsOpened())
+	{
+		Event event;
+		// Static Events
+		while(App.GetEvent(event)) 
+		{
+			switch(event.Type)
+			{
+			case Event::Closed : 
+				App.Close();
+				break;
 
-		 // Update World
-		 w->update();
- 
-         // Draw the sprite
-		 w->render(App);
- 
-         // Update the window
-         App.Display();
-     }
+			case Event::KeyPressed : 
+				{
+					switch(event.Key.Code)
+					{
+					case Key::Escape :
+						App.Close();
+						break;
+					}
+				}
+				break;
+			}
+		}
 
-	 delete w;
- 
-     return EXIT_SUCCESS;
+		// Clear screen
+		App.Clear();
+
+		// Update World
+		w->update(App);
+
+		// Draw World
+		//w->render(App);
+
+		// Update the window
+		App.Display();
+	}
+
+	delete w;
+
+	return EXIT_SUCCESS;
 }

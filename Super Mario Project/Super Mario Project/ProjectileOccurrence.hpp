@@ -27,8 +27,8 @@ namespace Collisions
 
     
 		/* Constructors */
-		ProjectileOccurrence() : EntityMovable(), _sender(GENTILE) { }
-		ProjectileOccurrence(Coord<float> position) : EntityMovable(position), _sender(GENTILE) { }
+		ProjectileOccurrence(string textureName) : EntityMovable(textureName), _sender(GENTILE) { }
+		ProjectileOccurrence(string textureName, Coord<float> position) : EntityMovable(textureName, position), _sender(GENTILE) { }
 
 		/* Getter and setter */
 		Sender getSender();

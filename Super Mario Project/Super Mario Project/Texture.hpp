@@ -13,6 +13,7 @@
 #include "Coord.hpp"
 #include <SFML\Graphics.hpp>
 #include <string>
+#include <iostream>
 
 using namespace Utils;
 using namespace std;
@@ -24,7 +25,7 @@ namespace Rendering
     {
     public:
 		/* Constructor */
-		Texture() : _spriteSize(Coord<int>()), _name("") { }
+		Texture(string name);
 
 		/* getters and setters */
 		Coord<int> getSpriteSize();
@@ -33,9 +34,6 @@ namespace Rendering
 		void setSpriteSize(Coord<int>& spriteSize);
 		void setName(string name);
 
-		/* Method */
-		static Texture* loadTexture(string name);
-
 		/* Destructor */
 		virtual ~Texture();
 		
@@ -43,6 +41,7 @@ namespace Rendering
 		Coord<int> _spriteSize;
 		string _name;
 		Image _image;
+
     };
 } // namespace
 

@@ -20,16 +20,15 @@ namespace Rendering
     class Object : public Drawable
     {
     public:
-		Object() : Drawable() { }
-		Object(string name) : Drawable() { loadObject(name);}
+		Object(string name) : Drawable(name) { loadObject(name);}
 		
 		void update(float time);
 		void render(RenderWindow& app);
-		void loadObject(string name);
 
         virtual ~Object();
 		
     private:
+		void loadObject(string name);
     };
 } // namespace
 

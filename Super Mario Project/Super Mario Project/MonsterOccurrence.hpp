@@ -11,10 +11,12 @@
 #define HPP_MONSTEROCCURRENCE
 
 #include "EntityMovable.hpp"
-#include "Monster.hpp"
+
+#define MONSTER_EXIT_SPEED 0.05F
 
 namespace Collisions
 {
+	class Monster;
 	class MonsterOccurrence : public EntityMovable
 	{
 
@@ -42,11 +44,16 @@ namespace Collisions
 		};
 
 	
-		MonsterOccurrence();
-		virtual ~MonsterOccurrence();
+		MonsterOccurrence(string textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr) { }
+		MonsterOccurrence(string textureName, Coord<float> position) : EntityMovable(textureName, position), _state(M_WALK), _monster(nullptr) { }
 
 		void update(float time);
 		void render(RenderWindow& app);
+
+		State getState();
+		void setState(State state);
+
+		virtual ~MonsterOccurrence();
 
 	private:
 		Monster* _monster;

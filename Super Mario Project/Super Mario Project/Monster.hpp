@@ -11,9 +11,8 @@
 #define HPP_MONSTER
 
 #include "Coord.hpp"
-
+#include "MonsterOccurrence.hpp"
 #include <vector>
-
 
 using namespace Utils;
 using namespace std;
@@ -27,9 +26,10 @@ namespace Collisions
     public:
         Monster();
         virtual ~Monster();
+
+		vector<MonsterOccurrence*> getMonsterOccurrences();
 		
-    private:
-		Coord<int> _size;
+    private:		
 		int _canBeKilledByFire;
 		int _canBeKilledByJump;
 		int _canBeJumpedOn;

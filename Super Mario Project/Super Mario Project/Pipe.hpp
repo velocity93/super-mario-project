@@ -13,10 +13,14 @@
 #include "Door.hpp"
 #include "Monster.hpp"
 
+#define MONSTER_EXIT_TIME 4000
+
 namespace Collisions
 {
 	class Pipe : public Door
     {
+
+	public:
 		enum Direction
 		{
 			TO_TOP,
@@ -24,27 +28,23 @@ namespace Collisions
 			TO_RIGHT,
 			TO_BOTTOM
 		};
-
-
-    public:
+    
 		/* Constructors */
-		Pipe() : Door(), _direction(TO_TOP), _monster(nullptr), _monsterExitTime(0) { }
-		Pipe(Coord<float> position, int indexDoorDestination, string levelDestination, State state, Direction direction, Monster* monster) 
-			: Door(position, indexDoorDestination, levelDestination, state), _direction(direction), _monster(monster) { }
+		Pipe(string textureName) : Door(textureName), _direction(TO_TOP), _monster(nullptr), _monsterExitDuration(0) { }
+		Pipe(string textureName, Coord<float> position, int indexDoorDestination, string levelDestination, State state, Direction direction, Monster* monster) 
+			: Door(textureName, position, indexDoorDestination, levelDestination, state), _direction(direction), _monster(monster) { }
 
 		/* getters and setters */
 		Direction getDirection();
 		Monster* getMonster();
-		int getMonsterExitTime();
+		int getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);
-		void setMonsterExitTime(int MonsterExitTime);
+		void setMonsterExitDuration(int MonsterExitTime);
 
 		/* Methods */
 		void update(float time);
 		void render(RenderWindow& app);
-		static Pipe* loadPipe(string name, Direction direction, int lenght, Coord<float> position, State state, 
-			int indexDestination, string levelDestination, Monster* monster);
 
 		/* Destructor */
         virtual ~Pipe();
@@ -53,7 +53,7 @@ namespace Collisions
 		Direction _direction;
 		Monster* _monster;
 		int _lenght;
-		int _monsterExitTime;
+		int _monsterExitDuration;
     };
 } // namespace
 

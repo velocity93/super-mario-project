@@ -103,11 +103,11 @@ namespace Collisions
 		};
 
 		/* Constructors */
-		Perso() : EntityMovable(), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
+		Perso(string textureName) : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
 			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { }
-		Perso(Coord<float> Position) : EntityMovable(Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
+		Perso(string textureName, Coord<float> Position) : EntityMovable(textureName, Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
 			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { }
