@@ -20,9 +20,9 @@ namespace Rendering
 		return _texture;
 	}
 
-	vector<int> Drawable::getSpriteNumbers()
+	vector<int> Drawable::getSpriteNumbersByState()
 	{
-		return Drawable::_spriteNumbers;
+		return Drawable::_spriteNumbersByState;
 	}
 
 	vector<int> Drawable::getAnimationSpeeds()
@@ -33,16 +33,6 @@ namespace Rendering
 	void Drawable::setTexture(Texture* texture)
 	{
 		_texture = texture;
-	}
-
-	void Drawable::setSpriteNumbers(vector<int> spriteNumbers)
-	{
-		_spriteNumbers = spriteNumbers;
-	}
-
-	void Drawable::setAnimationSpeeds(vector<int> animationSpeeds)
-	{
-		_animationSpeeds = animationSpeeds;
 	}
 
 	Drawable::~Drawable()

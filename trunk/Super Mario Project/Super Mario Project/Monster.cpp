@@ -10,6 +10,11 @@
 
 namespace Collisions
 {
+	vector<MonsterOccurrence*> Monster::getMonsterOccurrences()
+	{
+		return _monsterOccurrences;
+	}
+
     Monster::~Monster()
     {
     }

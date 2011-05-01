@@ -17,11 +17,10 @@ namespace Collisions
     class Particle : public EntityMovable
     {
     public:
-		Particle() : EntityMovable(), _life(0) { }
-		Particle(Coord<float> position) : EntityMovable(position), _life(0) { }
+		Particle(string textureName) : EntityMovable(textureName), _life(0) { }
+		Particle(string textureName, Coord<float> position) : EntityMovable(textureName, position), _life(0) { }
 
 		int getLife();
-		void setLife(int life);
 
 		void update(float time);
 		void render(RenderWindow& app);

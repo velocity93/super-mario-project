@@ -25,10 +25,10 @@ namespace Collisions
     {
     public:
 		/* Constructors */ 
-		ParticleGenerator() : Collisionable(), _nbMaxParticles(0), _flow(0), _hasGravity(false), 
+		ParticleGenerator(string textureName) : Collisionable(textureName), _nbMaxParticles(0), _flow(0), _hasGravity(false), 
 			_startColor(Color(0, 0, 0)), _endColor(Color(0, 0, 0)) { }
-		ParticleGenerator(Coord<float> position, int nbMaxParticles, int flow, bool hasGravity, Color startColor, Color endColor) 
-			: Collisionable(position), _nbMaxParticles(nbMaxParticles), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor) { }
+		ParticleGenerator(string textureName, Coord<float> position, int nbMaxParticles, int flow, bool hasGravity, Color startColor, Color endColor) 
+			: Collisionable(textureName, position), _nbMaxParticles(nbMaxParticles), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor) { }
 
 		/* getters and setters */
 		Coord<int> getParticleSize();

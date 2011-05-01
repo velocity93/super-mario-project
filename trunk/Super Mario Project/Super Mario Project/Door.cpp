@@ -50,16 +50,6 @@ namespace Collisions
 
 	}
 
-	Door* Door::loadDoor(Coord<float> position, int indexDestination, string levelDestination, State state)
-	{
-		Door* door = new Door(position, indexDestination, levelDestination, state);
-
-		// Load texture with the 'name' parameter
-		// door->loadTexture(name);
-
-		return door;
-	}
-
 
 	Door::~Door()
 	{

@@ -15,13 +15,9 @@ namespace Collisions
 		return _life;
 	}
 
-	void Particle::setLife(int life)
-	{
-		_life = life;
-	}
-
 	void Particle::update(float time)
 	{
+		_life -= time;
 	}
 
 	void Particle::render(RenderWindow& app)

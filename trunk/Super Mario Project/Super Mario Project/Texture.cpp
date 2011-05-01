@@ -10,6 +10,18 @@
 
 namespace Rendering
 {
+	Texture::Texture(string name)
+	{
+		 _spriteSize = Coord<int>();
+		 _name = name;
+
+		 /* Load texture */
+		 if(!_image.LoadFromFile(name))
+		 {
+			 cout << "Erreur de chargement de la texture " << name;
+		 }
+	}
+
 	Coord<int> Texture::getSpriteSize()
 	{
 		return _spriteSize;
@@ -33,15 +45,6 @@ namespace Rendering
 	void Texture::setName(string name)
 	{
 		_name = name;
-	}
-
-	Texture* Texture::loadTexture(string name)
-	{
-		Texture* texture = new Texture();
-		texture->setName(name);
-		texture->getImage().LoadFromFile(name);
-
-		return texture;
 	}
 
 	Texture::~Texture()

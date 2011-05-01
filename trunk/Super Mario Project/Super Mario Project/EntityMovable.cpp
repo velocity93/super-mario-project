@@ -25,14 +25,19 @@ namespace Collisions
 		return _side;
 	}
 
-	void EntityMovable::getPreviousPosition(Coord<float> previousPosition)
+	void EntityMovable::getPreviousPosition(Coord<float>& previousPosition)
 	{
-		_previousPosition = previousPosition;
+		_previousPosition.set(previousPosition);
 	}
 
-	void EntityMovable::getSpeed(Vect<float> speed)
+	void EntityMovable::setSpeed(Vect<float>& speed)
 	{
-		_speed = speed;
+		_speed.set(speed);
+	}
+
+	void EntityMovable::setSpeed(float x, float y)
+	{
+		_speed.set(x, y);
 	}
 
 	void EntityMovable::setSide(Side side)

@@ -32,11 +32,22 @@ namespace Collisions
 
 	void ItemOccurrence::update(float time)
 	{
+		/* Update physic position */
+		/* Save actual position in previous prosition */
+		this->getPreviousPosition().set(this->getPosition());
+
+		/* Compute new position */
+		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
+
+		/* Update graphics data */
+		// TODO
+
 	}
 
 	void ItemOccurrence::render(RenderWindow& app)
 	{
-
+		Sprite sprite(getTexture()->getImage());
+		app.Draw(sprite);
 	}
 
 	ItemOccurrence::~ItemOccurrence()

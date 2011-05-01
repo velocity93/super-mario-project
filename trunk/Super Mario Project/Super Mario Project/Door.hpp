@@ -26,9 +26,9 @@ namespace Collisions
 
 
 		/* Constructors */
-		Door() : Collisionable(), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
-		Door(Coord<float> position, int indexDestination, string levelDestination, State state) 
-			: Collisionable(position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
+		Door(string textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
+		Door(string textureName, Coord<float> position, int indexDestination, string levelDestination, State state) 
+			: Collisionable(textureName, position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
 
 		/* getters and setters */
 		int getIndexDestination();
@@ -41,7 +41,6 @@ namespace Collisions
 		/* Methods */
 		void update(float time);
 		void render(RenderWindow& app);
-		static Door* loadDoor(Coord<float> position, int indexDestination, string levelDestination, State state);
 
         virtual ~Door();
 		

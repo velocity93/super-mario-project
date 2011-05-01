@@ -15,52 +15,75 @@ namespace Utils
     template<class C> class Coord
     {
 	public:
-		Coord() : x(0), y (0) { }
-		Coord(C X, C Y) : x(X), y(Y) { }
+		Coord() : _x(0), _y(0) { }
+		Coord(C x, C y) : _x(x), _y(y) { }
 		C getX() 
 		{ 
-			return x; 
+			return _x; 
 		}
 
 		C getY() 
 		{ 
-			return y; 
+			return _y; 
 		}
 
-		void set(C X, C Y)
+		void set(C x, C y)
 		{
-			x = X;
-			y = Y;
+			_x = x;
+			_y = y;
+		}
+
+		void set(Coord<C>& c1)
+		{
+			_x = c1.getX();
+			_y = c1.getY();
+		}
+
+		void operator=(Coord<C>& c1)
+		{
+			this->set(c1.getX(), c1.getY());
 		}
 
 			
     private:
-		C x, y;
+		C _x, _y;
     };
 
 	template<class C> class Vect
     {
 	public:
-		Vect() : x(0), y (0) { }
-		Vect(C X, C Y) : x(X), y(Y) { }
+		Vect() : _x(0), _y(0) { }
+		Vect(C x, C y) : _x(x), _y(y) { }
+
 		C getX() 
 		{ 
-			return x; 
+			return _x; 
 		}
 
 		C getY() 
 		{ 
-			return y; 
+			return _y; 
 		}
 
-		void set(C X, C Y)
+		void set(C x, C y)
 		{
-			x = X;
-			y = Y;
+			_x = x;
+			_y = y;
+		}
+
+		void set(Vect<C>& c1)
+		{
+			_x = c1.getX();
+			_y = c1.getY();
+		}
+
+		void operator=(Vect<C>& c1)
+		{
+			this->set(c1.getX(), c1.getY());
 		}
 		
     private:
-		C x, y;
+		C _x, _y;
     };
 
 	

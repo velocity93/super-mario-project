@@ -12,8 +12,9 @@
 
 #include "Texture.hpp"
 #include <SFML\Graphics.hpp>
-
 #include <vector>
+
+#define BLOCK_WIDTH 32
 
 using namespace std;
 using namespace sf;
@@ -45,20 +46,18 @@ namespace Rendering
 		};
 	
 		/* Constructor */
-		Drawable() : _texture(new Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()),
+		Drawable(string textureName) : _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
 					 _position(Coord<float>()) { }
-		Drawable(Coord<float> position) :  _texture(new Texture()), _spriteNumbers(vector<int>()), _animationSpeeds(vector<int>()),
+		Drawable(string textureName, Coord<float> position) :  _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
 			_position(position) { }
 
 		/* getters and setters */
 		Coord<float> getPosition();
 		Texture* getTexture();
-		vector<int> getSpriteNumbers();
+		vector<int> getSpriteNumbersByState();
 		vector<int> getAnimationSpeeds();
 		void setPosition(Coord<float>& position);
 		void setTexture(Texture* texture);
-		void setSpriteNumbers(vector<int> spriteNumbers);
-		void setAnimationSpeeds(vector<int> animationSpeeds);
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */
@@ -72,7 +71,7 @@ namespace Rendering
 	private:
 		Texture* _texture;
 		Coord<float> _position;
-		vector<int> _spriteNumbers;
+		vector<int> _spriteNumbersByState;
 		vector<int> _animationSpeeds;
 	};
 } // namespace

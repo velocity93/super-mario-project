@@ -12,7 +12,8 @@ namespace Rendering
 {
 	void Object::update(float time)
 	{
-
+		/* Update graphic data */
+		//TODO
 	}
 	
 	void Object::render(RenderWindow& app)
@@ -22,11 +23,6 @@ namespace Rendering
 		sprite.SetPosition(this->getPosition().getX(), this->getPosition().getY());
 
 		app.Draw(sprite);
-	}
-
-	void Object::loadObject(string name)
-	{
-		getTexture()->loadTexture(name);
 	}
 
     Object::~Object()
