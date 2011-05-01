@@ -39,5 +39,12 @@ namespace Collisions
 
     Projectile::~Projectile()
     {
+		vector<ProjectileOccurrence*>::iterator itProjectiles;
+		
+		/* ItemsOccurrences */
+		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+		{
+			delete (*itProjectiles);
+		}
     }
 } // namespace

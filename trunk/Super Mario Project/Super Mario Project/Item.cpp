@@ -47,5 +47,12 @@ namespace Collisions
 
     Item::~Item()
     {
+		vector<ItemOccurrence*>::iterator itItems;
+		
+		/* ItemsOccurrences */
+		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+		{
+			delete (*itItems);
+		}
     }
 } // namespace
