@@ -10,7 +10,7 @@
 
 namespace Rendering
 {
-	Texture::Texture(string name)
+	Texture::Texture(const string& name)
 	{
 		 _spriteSize = Coord<int>();
 		 _name = name;
@@ -42,7 +42,7 @@ namespace Rendering
 		_spriteSize = spriteSize;
 	}
 
-	void Texture::setName(string name)
+	void Texture::setName(const string& name)
 	{
 		_name = name;
 	}

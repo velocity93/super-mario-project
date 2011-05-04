@@ -24,8 +24,8 @@ namespace Collisions
 			NOT_PASSED
 		};
 
-		Checkpoint(string textureName) : Collisionable(textureName), _state(NOT_PASSED) { }
-		Checkpoint(string textureName, Coord<float> position, State state) : Collisionable(textureName, position), _state(state) { }
+		Checkpoint(const string& textureName) : Collisionable(textureName), _state(NOT_PASSED) { }
+		Checkpoint(const string& textureName, Coord<float> position, State state) : Collisionable(textureName, position), _state(state) { }
 
 		State getState();
 		void setState(State state);

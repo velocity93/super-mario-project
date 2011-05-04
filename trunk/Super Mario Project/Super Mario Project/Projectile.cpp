@@ -28,12 +28,24 @@ namespace Collisions
 
 	void Projectile::update(float time)
 	{
-
+		vector<ProjectileOccurrence*>::iterator itProjectiles;
+		
+		/* ItemsOccurrences */
+		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+		{
+			(*itProjectiles)->update(time);
+		}
 	}
 
-	void Projectile::render(RenderWindow& App)
+	void Projectile::render(RenderWindow& app)
 	{
-
+		vector<ProjectileOccurrence*>::iterator itProjectiles;
+		
+		/* ItemsOccurrences */
+		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+		{
+			(*itProjectiles)->render(app);
+		}
 	}
 
 

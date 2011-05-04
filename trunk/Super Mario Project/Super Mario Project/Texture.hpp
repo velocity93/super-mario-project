@@ -25,14 +25,14 @@ namespace Rendering
     {
     public:
 		/* Constructor */
-		Texture(string name);
+		Texture(const string& name);
 
 		/* getters and setters */
 		Coord<int> getSpriteSize();
 		string getName();
 		Image getImage();
 		void setSpriteSize(Coord<int>& spriteSize);
-		void setName(string name);
+		void setName(const string& name);
 
 		/* Destructor */
 		virtual ~Texture();

@@ -13,9 +13,11 @@
 #define NB_POINTS 7
 
 #include <string>
-#include <queue>
+#include <vector>
+#include <SFML\Graphics.hpp>
 
 using namespace std;
+using namespace sf;
 
 namespace Rendering
 {
@@ -25,7 +27,12 @@ namespace Rendering
 		HUD();
 
 		int getTime();
+		int getNbLives();
 		void setTime(float time);
+		void setNbLives(int nbLives);
+
+		void update(float time);
+		void render(RenderWindow& app);
 
         virtual ~HUD();
 		
@@ -35,12 +42,11 @@ namespace Rendering
 		int _score;
 		float _time;
 		string _levelName;
-		//Item item;
-		//font_2d* font;
+		//Item* item;
 		int _nbMonstersKilled;
 		int _nbMonstersKilledByShell;
-		int _points[NB_POINTS]; // pour les points à la suite
-		queue<int> _queue_points;
+		vector<int> _points; 
+		vector<int> _queue_points;
 
     };
 } // namespace

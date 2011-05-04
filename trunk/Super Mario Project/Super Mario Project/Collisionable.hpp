@@ -20,8 +20,8 @@ namespace Collisions
     {
 	public:
 		/* Constructors */
-		Collisionable(string textureName) : Drawable(textureName), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
-		Collisionable(string textureName, Coord<float> position) : Drawable(textureName, position), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
+		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
+		Collisionable(const string& textureName, Coord<float> position) : Drawable(textureName, position), _hitboxPosition(Coord<float>()), _hitboxSize(Coord<int>()) { }
 
 		/* getters and setters */
 		Coord<float> getHitboxPosition();

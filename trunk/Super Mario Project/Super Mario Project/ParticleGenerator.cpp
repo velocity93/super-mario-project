@@ -76,16 +76,10 @@ namespace Collisions
 
 	void ParticleGenerator::render(RenderWindow& app)
 	{
+		
 	}
 
 	ParticleGenerator::~ParticleGenerator()
 	{
-		vector<Monster*>::iterator itMonsters;
-
-		/* Objects */
-		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
-		{
-			delete (*itObjects);
-		}
 	}
 } // namespace

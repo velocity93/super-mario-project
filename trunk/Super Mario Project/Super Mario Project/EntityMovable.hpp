@@ -27,8 +27,8 @@ namespace Collisions
 
     
 		/* Constructors */
-		EntityMovable(string textureName) : Collisionable(textureName), _previousPosition(Coord<float>()), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
-		EntityMovable(string textureName, Coord<float> position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName) : Collisionable(textureName), _previousPosition(Coord<float>()), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName, Coord<float> position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
 
 		/* getters and setters */
 		Coord<float> getPreviousPosition();

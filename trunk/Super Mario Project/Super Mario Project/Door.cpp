@@ -30,7 +30,7 @@ namespace Collisions
 		_indexDestination = indexDestination;
 	}
 
-	void Door::setLevelDestination(string levelDestination)
+	void Door::setLevelDestination(const string& levelDestination)
 	{
 		_levelDestination = levelDestination;
 	}

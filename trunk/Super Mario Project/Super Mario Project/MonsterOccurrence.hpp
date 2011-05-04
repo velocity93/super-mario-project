@@ -44,8 +44,8 @@ namespace Collisions
 		};
 
 	
-		MonsterOccurrence(string textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr) { }
-		MonsterOccurrence(string textureName, Coord<float> position) : EntityMovable(textureName, position), _state(M_WALK), _monster(nullptr) { }
+		MonsterOccurrence(const string& textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr) { }
+		MonsterOccurrence(const string& textureName, Coord<float> position) : EntityMovable(textureName, position), _state(M_WALK), _monster(nullptr) { }
 
 		void update(float time);
 		void render(RenderWindow& app);

@@ -17,8 +17,8 @@ namespace Collisions
     class Particle : public EntityMovable
     {
     public:
-		Particle(string textureName) : EntityMovable(textureName), _life(0) { }
-		Particle(string textureName, Coord<float> position) : EntityMovable(textureName, position), _life(0) { }
+		Particle(const string& textureName) : EntityMovable(textureName), _life(0) { }
+		Particle(const string& textureName, Coord<float> position) : EntityMovable(textureName, position), _life(0) { }
 
 		int getLife();
 

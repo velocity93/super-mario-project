@@ -43,9 +43,8 @@ namespace SuperMarioProject
 			_nbFramesCalculated = 0;
 		}
 
-		/* Si la différence de temps entre deux images est supérieure à 0.5s
-                alors on remet le temps précédent en temps actuel
-                pour qu'il n'y ait pas de collisions (il n'y a pas eu de déplacement) */
+		/* If difference beetween actual and previous frame is greater than 0.5s, 
+			then we assign previousTime to actual time*/
         if(_elapsedTime > 500)
         {
 			_previousTime = _clock.GetElapsedTime();

@@ -10,6 +10,7 @@
 #ifndef HPP_PROJECTILE
 #define HPP_PROJECTILE
 
+#include "ProjectileOccurrence.hpp"
 #include <vector>
 #include <SFML\Graphics.hpp>
 
@@ -18,7 +19,6 @@ using namespace sf;
 
 namespace Collisions
 {
-	class ProjectileOccurrence;
 	class Projectile
     {
 	

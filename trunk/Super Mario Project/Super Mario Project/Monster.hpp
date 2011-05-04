@@ -10,11 +10,9 @@
 #ifndef HPP_MONSTER
 #define HPP_MONSTER
 
-#include "Coord.hpp"
 #include "MonsterOccurrence.hpp"
 #include <vector>
 
-using namespace Utils;
 using namespace std;
 
 namespace Collisions
@@ -28,6 +26,9 @@ namespace Collisions
         virtual ~Monster();
 
 		vector<MonsterOccurrence*> getMonsterOccurrences();
+
+		void update(float time);
+		void render(RenderWindow& app);
 		
     private:		
 		int _canBeKilledByFire;
