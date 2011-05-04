@@ -37,12 +37,24 @@ namespace Collisions
 
 	void Item::update(float time)
 	{
-
+		vector<ItemOccurrence*>::iterator itItems;
+		
+		/* ItemsOccurrences */
+		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+		{
+			(*itItems)->update(time);
+		}
 	}
 
 	void Item::render(RenderWindow &App)
 	{
-
+		vector<ItemOccurrence*>::iterator itItems;
+		
+		/* ItemsOccurrences */
+		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+		{
+			(*itItems)->render(App);
+		}
 	}
 
     Item::~Item()

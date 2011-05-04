@@ -10,6 +10,7 @@
 #ifndef HPP_ITEM
 #define HPP_ITEM
 
+#include "ItemOccurrence.hpp"
 #include <SFML\Graphics.hpp>
 #include <vector>
 
@@ -18,8 +19,6 @@ using namespace sf;
 
 namespace Collisions
 {
-	class ItemOccurrence;
-
 	class Item
 	{
 	

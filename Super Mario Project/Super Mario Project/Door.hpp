@@ -26,8 +26,8 @@ namespace Collisions
 
 
 		/* Constructors */
-		Door(string textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
-		Door(string textureName, Coord<float> position, int indexDestination, string levelDestination, State state) 
+		Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
+		Door(const string& textureName, Coord<float> position, int indexDestination, const string& levelDestination, State state) 
 			: Collisionable(textureName, position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
 
 		/* getters and setters */
@@ -35,7 +35,7 @@ namespace Collisions
 		string getLevelDestination();
 		State getState();
 		void setIndexDestination(int indexDestination);
-		void setLevelDestination(string levelDestination);
+		void setLevelDestination(const string& levelDestination);
 		void setState(State state);
 
 		/* Methods */

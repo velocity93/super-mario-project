@@ -11,11 +11,10 @@
 #define HPP_PROJECTILEOCCURRENCE
 
 #include "EntityMovable.hpp"
-#include "Projectile.hpp"
 
 namespace Collisions
 {
-	
+	class Projectile;
 	class ProjectileOccurrence : public EntityMovable
     {
 
@@ -27,8 +26,8 @@ namespace Collisions
 
     
 		/* Constructors */
-		ProjectileOccurrence(string textureName) : EntityMovable(textureName), _sender(GENTILE) { }
-		ProjectileOccurrence(string textureName, Coord<float> position) : EntityMovable(textureName, position), _sender(GENTILE) { }
+		ProjectileOccurrence(const string& textureName) : EntityMovable(textureName), _sender(GENTILE) { }
+		ProjectileOccurrence(const string& textureName, Coord<float> position) : EntityMovable(textureName, position), _sender(GENTILE) { }
 
 		/* Getter and setter */
 		Sender getSender();

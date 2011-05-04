@@ -21,13 +21,13 @@ namespace Rendering
 		_nbMonstersKilledByShell = 0;
 
 		/* Initialization of points tab  */
-		_points[0] = 200;
-		_points[1] = 400;
-		_points[2] = 800;
-		_points[3] = 1000;
-		_points[4] = 2000;
-		_points[5] = 4000;
-		_points[6] = 8000;
+		_points.push_back(200);
+		_points.push_back(400);
+		_points.push_back(800);
+		_points.push_back(1000);
+		_points.push_back(2000);
+		_points.push_back(4000);
+		_points.push_back(8000);
 	}
 
 	int HUD::getTime()
@@ -35,9 +35,33 @@ namespace Rendering
 		return _time;
 	}
 
+	int HUD::getNbLives()
+	{
+		return _nbLives;
+	}
+
 	void HUD::setTime(float time)
 	{
 		_time = time;
+	}
+
+	void HUD::setNbLives(int nbLives)
+	{
+		_nbLives = nbLives;
+	}
+
+	void HUD::update(float time)
+	{
+		_time -= time;
+	}
+
+	void HUD::render(RenderWindow& app)
+	{
+		/*sf::String Text;
+		sf::Unicode::Text txt;
+		Text.SetText("Lives x" + _nbLives);
+		Text.SetFont(sf::Font::GetDefaultFont());
+		Text.SetSize(50);*/
 	}
 
 

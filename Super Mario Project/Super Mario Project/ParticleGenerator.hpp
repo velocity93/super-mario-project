@@ -10,14 +10,9 @@
 #ifndef HPP_PARTICLEGENERATOR
 #define HPP_PARTICLEGENERATOR
 
-#include "Coord.hpp"
 #include "Particle.hpp"
 #include "Collisionable.hpp"
-#include <SFML\Graphics.hpp>
-#include <queue>
 
-using namespace Utils;
-using namespace sf;
 
 namespace Collisions
 {
@@ -25,9 +20,9 @@ namespace Collisions
     {
     public:
 		/* Constructors */ 
-		ParticleGenerator(string textureName) : Collisionable(textureName), _nbMaxParticles(0), _flow(0), _hasGravity(false), 
+		ParticleGenerator(const string& textureName) : Collisionable(textureName), _nbMaxParticles(0), _flow(0), _hasGravity(false), 
 			_startColor(Color(0, 0, 0)), _endColor(Color(0, 0, 0)) { }
-		ParticleGenerator(string textureName, Coord<float> position, int nbMaxParticles, int flow, bool hasGravity, Color startColor, Color endColor) 
+		ParticleGenerator(const string& textureName, Coord<float> position, int nbMaxParticles, int flow, bool hasGravity, Color startColor, Color endColor) 
 			: Collisionable(textureName, position), _nbMaxParticles(nbMaxParticles), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor) { }
 
 		/* getters and setters */
@@ -53,7 +48,7 @@ namespace Collisions
 		
     private:
 		Coord<int> _particleSize;
-		queue<Particle> _particles;
+		vector<Particle> _particles;
 		int _nbMaxParticles;
 		int _flow;
 		bool _hasGravity;

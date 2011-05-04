@@ -20,7 +20,7 @@ namespace Rendering
     class Object : public Drawable
     {
     public:
-		Object(string name) : Drawable(name) { loadObject(name);}
+		Object(const string& name) : Drawable(name) { loadObject(name);}
 		
 		void update(float time);
 		void render(RenderWindow& app);
@@ -28,7 +28,7 @@ namespace Rendering
         virtual ~Object();
 		
     private:
-		void loadObject(string name);
+		void loadObject(const string& name);
     };
 } // namespace
 

@@ -30,8 +30,8 @@ namespace Collisions
 		};
     
 		/* Constructors */
-		Pipe(string textureName) : Door(textureName), _direction(TO_TOP), _monster(nullptr), _monsterExitDuration(0) { }
-		Pipe(string textureName, Coord<float> position, int indexDoorDestination, string levelDestination, State state, Direction direction, Monster* monster) 
+		Pipe(const string& textureName) : Door(textureName), _direction(TO_TOP), _monster(nullptr), _monsterExitDuration(0) { }
+		Pipe(const string& textureName, Coord<float> position, int indexDoorDestination, const string& levelDestination, State state, Direction direction, Monster* monster) 
 			: Door(textureName, position, indexDoorDestination, levelDestination, state), _direction(direction), _monster(monster) { }
 
 		/* getters and setters */
@@ -53,7 +53,7 @@ namespace Collisions
 		Direction _direction;
 		Monster* _monster;
 		int _lenght;
-		int _monsterExitDuration;
+		float _monsterExitDuration;
     };
 } // namespace
 

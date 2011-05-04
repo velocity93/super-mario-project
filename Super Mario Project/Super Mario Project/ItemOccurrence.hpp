@@ -11,10 +11,10 @@
 #define HPP_ITEMOCCURRENCE
 
 #include "EntityMovable.hpp"
-#include "Item.hpp"
 
 namespace Collisions
 {
+	class Item;
 	class ItemOccurrence : public EntityMovable
     {
 	
@@ -26,8 +26,8 @@ namespace Collisions
 		};
 
    
-		ItemOccurrence(string textureName) : EntityMovable(textureName), _state(NORMAL), _isActive(true) { }
-		ItemOccurrence(string textureName, Coord<float> position, State state, bool isActive)
+		ItemOccurrence(const string& textureName) : EntityMovable(textureName), _state(NORMAL), _isActive(true) { }
+		ItemOccurrence(const string& textureName, Coord<float> position, State state, bool isActive)
 			: EntityMovable(textureName, position), _state(state), _isActive(isActive) { }
 
 		State getState();

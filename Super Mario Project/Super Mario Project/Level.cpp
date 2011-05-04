@@ -27,7 +27,43 @@ namespace SuperMarioProject
 
 	void Level::update(float time)
 	{
+		/* Iterators Declarations */
+		vector<Object*>::iterator itObjects;
+		vector<Checkpoint*>::iterator itCheckpoints;
+		vector<Pipe*>::iterator itPipes;
+		vector<Item*>::iterator itItems;
+		vector<Projectile*>::iterator itProjectiles;
+		vector<Monster*>::iterator itMonsters;
+		
+		/* Objects */
+		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
+		{
+			(*itObjects)->update(time);
+		}
 
+		/* CheckPoints */
+		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		{
+			(*itCheckpoints)->update(time);
+		}
+
+		/* Pipes */
+		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		{
+			(*itPipes)->update(time);
+		}
+
+		/* Items */
+		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
+		{
+			(*itItems)->update(time);
+		}
+
+		/* Projectiles */
+		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
+		{
+			(*itProjectiles)->update(time);
+		}
 	}
 
 	void Level::render(RenderWindow& app)

@@ -46,9 +46,9 @@ namespace Rendering
 		};
 	
 		/* Constructor */
-		Drawable(string textureName) : _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
+		Drawable(const string& textureName) : _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
 					 _position(Coord<float>()) { }
-		Drawable(string textureName, Coord<float> position) :  _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
+		Drawable(const string& textureName, Coord<float> position) :  _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
 			_position(position) { }
 
 		/* getters and setters */
