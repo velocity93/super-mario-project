@@ -11,6 +11,8 @@
 #define HPP_DRAWABLE
 
 #include "Texture.hpp"
+#include "Coord.hpp"
+#include "Screen.hpp"
 #include <SFML\Graphics.hpp>
 #include <vector>
 
@@ -18,6 +20,7 @@
 
 using namespace std;
 using namespace sf;
+using namespace Utils;
 
 namespace Rendering
 {
@@ -45,11 +48,9 @@ namespace Rendering
 			ANGLE_270
 		};
 	
-		/* Constructor */
-		Drawable(const string& textureName) : _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
-					 _position(Coord<float>()) { }
-		Drawable(const string& textureName, Coord<float> position) :  _texture(new Texture(textureName)), _spriteNumbersByState(vector<int>()), _animationSpeeds(vector<int>()),
-			_position(position) { }
+		/* Constructors */
+		Drawable(const string& textureName);
+		Drawable(const string& textureName, Coord<float> position);
 
 		/* getters and setters */
 		Coord<float> getPosition();
@@ -59,12 +60,15 @@ namespace Rendering
 		void setPosition(Coord<float>& position);
 		void setTexture(Texture* texture);
 
+		void addSpriteNumber(int number);
+
 		/* It will be defined in subclasses */
 		/* update drawable object context */
 		virtual void update(float time) = 0;
 
 		/* Draw actual object state */
-		virtual void render(RenderWindow& app) = 0;
+		virtual void render(RenderWindow& app, Screen& screen) = 0;
+
 
 		virtual ~Drawable();
 
@@ -73,6 +77,8 @@ namespace Rendering
 		Coord<float> _position;
 		vector<int> _spriteNumbersByState;
 		vector<int> _animationSpeeds;
+
+		void InitializeDrawable(const string& textureName);
 	};
 } // namespace
 

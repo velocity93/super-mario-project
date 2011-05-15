@@ -16,6 +16,9 @@
 #include "Pipe.hpp"
 #include "Checkpoint.hpp"
 
+#define SPEED_Y_MAX						0.008F
+#define GRAVITY							0.002F
+
 using namespace Rendering;
 
 namespace Collisions
@@ -106,7 +109,7 @@ namespace Collisions
 		Perso(const string& textureName) : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
 			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-			_jumpTime(0) { }
+			_jumpTime(0) { loadPerso(textureName); }
 		Perso(const string& textureName, Coord<float> Position) : EntityMovable(textureName, Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
 			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
@@ -150,7 +153,7 @@ namespace Collisions
 
 		/* Methods */
 		void update(float time);
-		void render(RenderWindow& app);
+		void render(RenderWindow& app, Screen& screen);
 
 		/* Destructor */
         virtual ~Perso();
@@ -175,6 +178,9 @@ namespace Collisions
 		int _deathTime;
 		int _finishTime;
 		int _jumpTime;
+
+		void loadPerso(const string& textureName);
+		void gravity(Vect<float>* speed, float time);
     };
 } // namespace
 

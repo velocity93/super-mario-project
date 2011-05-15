@@ -31,7 +31,7 @@ namespace Collisions
 		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
 	}
 
-	void MonsterOccurrence::render(RenderWindow& app)
+	void MonsterOccurrence::render(RenderWindow& app, Screen& screen)
 	{
 		this->setSide(Side::LEFT_SIDE);
 	}

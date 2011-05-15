@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Perso.hpp"
+#include <fstream>
 
 namespace Collisions
 {
@@ -183,13 +184,41 @@ namespace Collisions
 
 	void Perso::update(float time)
 	{
+		gravity(&this->getSpeed(), time);
+
 		/* Save actual position as previous position */
-		this->Perso::getPreviousPosition().set(this->Perso::getPosition().getX(), this->Perso::getPosition().getY());
+		this->getPreviousPosition().set(this->getPosition().getX(), this->getPosition().getY());
+
+		/* Compute new position */
+		this->getPosition().set(this->getPosition().getX() + time * getSpeed().getX(), this->getPosition().getY() + time * getSpeed().getY());
 
 	}
 
-	void Perso::render(RenderWindow& app)
+	void Perso::gravity(Vect<float>* speed, float time)
 	{
+		speed->set(speed->getX(), speed->getY() - GRAVITY * time);
+
+		if(speed->getY() < -SPEED_Y_MAX)
+			speed->set(speed->getX(), -SPEED_Y_MAX);
+	}
+
+	void Perso::render(RenderWindow& app, Screen& screen)
+	{
+
+	}
+
+	void Perso::loadPerso(const string& textureName)
+	{
+		ifstream stream("");
+
+		if(stream)
+		{
+
+		}
+		else
+		{
+
+		}
 	}
 
 

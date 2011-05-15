@@ -22,11 +22,18 @@ namespace Rendering
 
 	void Background::update(float time)
 	{
+		int nbSprites = this->getSpriteNumbersByState().front();
+		int spriteHeight = (this->getTexture()->getImage().GetHeight() / nbSprites);
+
+		/* Compute coord sprite according to elapsedTime */
+		this->getTexture()->setCoordSprite(0, (((int)time) % nbSprites) * spriteHeight, this->getTexture()->getImage().GetWidth(), (1 + (((int)time) % nbSprites)) * spriteHeight);
+		
 
 	}
-	void Background::render(RenderWindow& app)
+
+	void Background::render(RenderWindow& app, Screen& screen)
 	{
-		
+		app.Draw(this->getTexture()->getSprite());
 	}
 
     Background::~Background()

@@ -46,14 +46,14 @@ namespace Collisions
 		}
 	}
 
-	void Item::render(RenderWindow &App)
+	void Item::render(RenderWindow& App, Screen& screen)
 	{
 		vector<ItemOccurrence*>::iterator itItems;
 		
 		/* ItemsOccurrences */
 		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
 		{
-			(*itItems)->render(App);
+			(*itItems)->render(App, screen);
 		}
 	}
 

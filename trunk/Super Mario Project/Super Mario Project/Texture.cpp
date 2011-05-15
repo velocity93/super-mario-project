@@ -12,19 +12,18 @@ namespace Rendering
 {
 	Texture::Texture(const string& name)
 	{
-		 _spriteSize = Coord<int>();
 		 _name = name;
+		 _image = sf::Image();
+		 _sprite = sf::Sprite();
 
 		 /* Load texture */
-		 if(!_image.LoadFromFile(name))
+		 if(!_image.LoadFromFile(name + ".png"))
 		 {
 			 cout << "Erreur de chargement de la texture " << name;
 		 }
-	}
+		 _image.SetSmooth(false);
 
-	Coord<int> Texture::getSpriteSize()
-	{
-		return _spriteSize;
+		 _sprite.SetImage(_image);
 	}
 
 	string Texture::getName()
@@ -37,14 +36,19 @@ namespace Rendering
 		return _image;
 	}
 
-	void Texture::setSpriteSize(Coord<int>& spriteSize)
+	Sprite Texture::getSprite()
 	{
-		_spriteSize = spriteSize;
+		return _sprite;
 	}
 
 	void Texture::setName(const string& name)
 	{
 		_name = name;
+	}
+
+	void Texture::setCoordSprite(int left, int top, int right, int bottom)
+	{
+		_sprite.SetSubRect(IntRect(left, top, right, bottom));
 	}
 
 	Texture::~Texture()

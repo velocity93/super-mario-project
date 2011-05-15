@@ -10,6 +10,25 @@
 
 namespace Rendering
 {
+	Drawable::Drawable(const string& textureName)
+	{
+		InitializeDrawable(textureName);
+	}
+
+	Drawable::Drawable(const string& textureName, Coord<float> position)
+	{
+		InitializeDrawable(textureName);
+		_position = position;
+	}
+
+	void Drawable::InitializeDrawable(const string& textureName)
+	{
+		_texture = new Texture(textureName);
+		_spriteNumbersByState = vector<int>();
+		_animationSpeeds = vector<int>();
+		_position = Coord<float>();
+	}
+
 	Coord<float> Drawable::getPosition()
 	{
 		return _position;
@@ -22,7 +41,12 @@ namespace Rendering
 
 	vector<int> Drawable::getSpriteNumbersByState()
 	{
-		return Drawable::_spriteNumbersByState;
+		return _spriteNumbersByState;
+	}
+
+	void Drawable::addSpriteNumber(int number)
+	{
+		_spriteNumbersByState.push_back(number);
 	}
 
 	vector<int> Drawable::getAnimationSpeeds()

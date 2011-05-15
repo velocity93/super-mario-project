@@ -72,11 +72,23 @@ namespace Collisions
 
 	void ParticleGenerator::update(float time)
 	{
+		vector<Particle>::iterator itParticles;
+
+		/* Update Physics position */
+		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
+		{			
+			(*itParticles).update(time, _hasGravity);
+		}
 	}
 
-	void ParticleGenerator::render(RenderWindow& app)
+	void ParticleGenerator::render(RenderWindow& app, Screen& screen)
 	{
-		
+		vector<Particle>::iterator itParticles;
+
+		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
+		{
+			(*itParticles).render(app, screen);
+		}
 	}
 
 	ParticleGenerator::~ParticleGenerator()

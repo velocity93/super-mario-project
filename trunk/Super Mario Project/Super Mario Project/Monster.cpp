@@ -26,14 +26,14 @@ namespace Collisions
 		}
 	}
 
-	void Monster::render(RenderWindow& app)
+	void Monster::render(RenderWindow& app, Screen& screen)
 	{
 		vector<MonsterOccurrence*>::iterator itMonsters;
 
 		/* MonsterOccurrences */
 		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
 		{
-			(*itMonsters)->render(app);
+			(*itMonsters)->render(app, screen);
 		}
 	}
 

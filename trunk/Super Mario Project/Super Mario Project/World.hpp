@@ -10,12 +10,13 @@
 #ifndef HPP_WORLD
 #define HPP_WORLD
 
+#include <string>
+#include <SFML\Config.hpp>
+#include <fstream>
+#include <iostream>
 #include "Screen.hpp"
 #include "Perso.hpp"
 #include "Level.hpp"
-#include "Coord.hpp"
-#include <string>
-#include <SFML\Config.hpp>
 
 #define SCROLLING_AV                            (float)0.5
 #define SCROLLING_AR                            (float)0.2
@@ -30,16 +31,17 @@ namespace SuperMarioProject
     class World
     {
     public:
-		World() : _levelNames(vector<string>()), _persos(vector<Perso*>()),
-			_screen(Screen()), _windowSize(Coord<int>()), _fpsTime(0), _actualTime(0), _previousTime(0), 
-			_elapsedTime(0), _previousElapsedTime(0), _fps(0), _nbFramesCalculated(0), _clock(Clock()),
-			_level(new Level()) { }
+		World();
 
 		Level* getLevel();
 
 		/* Methods */
 		void update(RenderWindow& app);
-		void render(RenderWindow& app);
+		void render(RenderWindow& app, Screen& screen);
+
+		float getElapsedTime();
+
+		void loadWorld();
 
         virtual ~World();
 		

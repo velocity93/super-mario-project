@@ -30,7 +30,7 @@ namespace Collisions
 		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
 	}
 
-	void ProjectileOccurrence::render(RenderWindow& app)
+	void ProjectileOccurrence::render(RenderWindow& app, Screen& screen)
 	{
 
 	}

@@ -10,12 +10,10 @@
 #ifndef HPP_TEXTURE
 #define HPP_TEXTURE
 
-#include "Coord.hpp"
 #include <SFML\Graphics.hpp>
 #include <string>
 #include <iostream>
 
-using namespace Utils;
 using namespace std;
 using namespace sf;
 
@@ -28,19 +26,20 @@ namespace Rendering
 		Texture(const string& name);
 
 		/* getters and setters */
-		Coord<int> getSpriteSize();
 		string getName();
 		Image getImage();
-		void setSpriteSize(Coord<int>& spriteSize);
+		Sprite getSprite();
 		void setName(const string& name);
+
+		void setCoordSprite(int left, int top, int right, int bottom);
 
 		/* Destructor */
 		virtual ~Texture();
 		
     private:
-		Coord<int> _spriteSize;
 		string _name;
 		Image _image;
+		Sprite _sprite;
 
     };
 } // namespace

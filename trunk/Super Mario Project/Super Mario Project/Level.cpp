@@ -66,7 +66,7 @@ namespace SuperMarioProject
 		}
 	}
 
-	void Level::render(RenderWindow& app)
+	void Level::render(RenderWindow& app, Screen& screen)
 	{
 		/* Iterators Declarations */
 		vector<Object*>::iterator itObjects;
@@ -79,31 +79,31 @@ namespace SuperMarioProject
 		/* Objects */
 		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
 		{
-			(*itObjects)->render(app);
+			(*itObjects)->render(app, screen);
 		}
 
 		/* CheckPoints */
 		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
 		{
-			(*itCheckpoints)->render(app);
+			(*itCheckpoints)->render(app, screen);
 		}
 
 		/* Pipes */
 		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
 		{
-			(*itPipes)->render(app);
+			(*itPipes)->render(app, screen);
 		}
 
 		/* Items */
 		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
 		{
-			(*itItems)->render(app);
+			(*itItems)->render(app, screen);
 		}
 
 		/* Projectiles */
 		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
 		{
-			(*itProjectiles)->render(app);
+			(*itProjectiles)->render(app, screen);
 		}
 	}
 
