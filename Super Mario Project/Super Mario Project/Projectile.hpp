@@ -45,7 +45,7 @@ namespace Collisions
 		void setSubmission(int submission);
 
 		void update(float time);
-		void render(RenderWindow& App);
+		void render(RenderWindow& app, Screen& screen);
 
 		/* Destructor */
         virtual ~Projectile();

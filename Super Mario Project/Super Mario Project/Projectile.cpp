@@ -37,14 +37,14 @@ namespace Collisions
 		}
 	}
 
-	void Projectile::render(RenderWindow& app)
+	void Projectile::render(RenderWindow& app, Screen& screen)
 	{
 		vector<ProjectileOccurrence*>::iterator itProjectiles;
 		
 		/* ItemsOccurrences */
 		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
 		{
-			(*itProjectiles)->render(app);
+			(*itProjectiles)->render(app, screen);
 		}
 	}
 

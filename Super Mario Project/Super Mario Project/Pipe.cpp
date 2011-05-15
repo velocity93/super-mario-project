@@ -89,7 +89,7 @@ namespace Collisions
 		}
     }
 
-	void Pipe::render(RenderWindow& app)
+	void Pipe::render(RenderWindow& app, Screen& screen)
     {
 		{/* Body of pipe */
 			Sprite sprite;

@@ -7,6 +7,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Object.hpp"
+#include <fstream>
+#include <iostream>
 
 namespace Rendering
 {
@@ -16,13 +18,31 @@ namespace Rendering
 		//TODO
 	}
 	
-	void Object::render(RenderWindow& app)
+	void Object::render(RenderWindow& app, Screen& screen)
 	{
-		Sprite sprite;
-		sprite.SetImage(getTexture()->getImage());
-		sprite.SetPosition(this->getPosition().getX(), this->getPosition().getY());
+		app.Draw(Sprite(getTexture()->getImage()));
+	}
 
-		app.Draw(sprite);
+	void Object::loadObject(const string& textureName)
+	{
+		string fileName = textureName + ".obj";
+		
+		ifstream stream(fileName.c_str());
+		
+		if(stream)
+		{
+			string line;
+			while(getline(stream, line))
+			{
+				string lineSubstr = line.substr(line.find(":") + 2);				
+				this->addSpriteNumber(atoi(lineSubstr.c_str()));
+			}
+		}
+		else
+		{
+			cout << "ERROR : Impossible to open file " << fileName << endl;
+		}
+
 	}
 
     Object::~Object()

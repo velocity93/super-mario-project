@@ -8,6 +8,10 @@
 
 #include "World.hpp"
 #include <SFML\Graphics.hpp>
+#include <SFML\Window.hpp>
+
+#define WINDOW_WIDTH		1024
+#define WINDOW_HEIGHT		768
 
 using namespace SuperMarioProject;
 using namespace sf;
@@ -15,20 +19,21 @@ using namespace sf;
 int main(int argc, char* argv[])
 {
 	World* w = new World();
+	Background background = Background("Edge");
 	argc;
 	argv;
 
 	// Create the main window
-	sf::RenderWindow App(sf::VideoMode(800, 600), "Super Mario project");
+	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 
 	// Start the game loop
 	while (App.IsOpened())
 	{
-		Event event;
+		sf::Event Event;
 		// Static Events
-		while(App.GetEvent(event)) 
+		while(App.GetEvent(Event)) 
 		{
-			switch(event.Type)
+			switch(Event.Type)
 			{
 			case Event::Closed : 
 				App.Close();
@@ -36,7 +41,7 @@ int main(int argc, char* argv[])
 
 			case Event::KeyPressed : 
 				{
-					switch(event.Key.Code)
+					switch(Event.Key.Code)
 					{
 					case Key::Escape :
 						App.Close();
@@ -47,14 +52,13 @@ int main(int argc, char* argv[])
 			}
 		}
 
-		// Clear screen
-		App.Clear();
-
 		// Update World
-		w->update(App);
+		//w->update(App);
+		background.update(w->getElapsedTime());
 
 		// Draw World
 		//w->render(App);
+		background.render(App, Screen());
 
 		// Update the window
 		App.Display();

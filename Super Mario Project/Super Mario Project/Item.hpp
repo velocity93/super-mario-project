@@ -47,7 +47,7 @@ namespace Collisions
 
 		/* Methods */
 		void update(float time);
-		void render(RenderWindow &App);
+		void Item::render(RenderWindow& App, Screen& screen);
 
 		/* Destructor */
 		virtual ~Item();

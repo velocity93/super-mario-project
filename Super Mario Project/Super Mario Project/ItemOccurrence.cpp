@@ -44,7 +44,7 @@ namespace Collisions
 
 	}
 
-	void ItemOccurrence::render(RenderWindow& app)
+	void ItemOccurrence::render(RenderWindow& app, Screen& screen)
 	{
 		Sprite sprite(getTexture()->getImage());
 		app.Draw(sprite);

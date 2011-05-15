@@ -31,7 +31,7 @@ namespace Collisions
 		void setState(State state);
 
 		void update(float time);
-		void render(RenderWindow& app);
+		void render(RenderWindow& app, Screen& screen);
 
         virtual ~Checkpoint();
 		

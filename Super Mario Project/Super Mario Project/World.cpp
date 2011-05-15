@@ -10,9 +10,33 @@
 
 namespace SuperMarioProject
 {
+	World::World()
+	{
+		_levelNames = vector<string>();
+		_persos = vector<Perso*>();
+		_screen = Screen();
+		_windowSize = Coord<int>();
+		_fpsTime = 0;
+		_actualTime = 0;
+		_previousTime = 0; 
+		_elapsedTime = 0;
+		_previousElapsedTime = 0;
+		_fps = 0;
+		_nbFramesCalculated = 0;
+		_clock = Clock();
+		_level = new Level();
+
+		loadWorld();
+	}
+
 	Level* World::getLevel()
 	{
 		return _level;
+	}
+
+	float World::getElapsedTime()
+	{
+		return _clock.GetElapsedTime();
 	}
 
 	void World::update(RenderWindow& app)
@@ -68,15 +92,15 @@ namespace SuperMarioProject
 		_nbFramesCalculated++;
 	}
 
-	void World::render(RenderWindow& app)
+	void World::render(RenderWindow& app, Screen& screen)
 	{
 		vector<Perso*>::iterator it;
 
-		this->_level->render(app);
+		this->_level->render(app, screen);
 
 		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
 		{
-			(*it)->render(app);
+			(*it)->render(app, screen);
 		}
 	}
 
@@ -109,6 +133,26 @@ namespace SuperMarioProject
 			_screen.getScrolling().set(_screen.getScrolling().getX(), _level->getSize().getY() * _level->getBlockSize().getY() - _screen.getSize().getY());
         if(_screen.getScrolling().getY() < 0)
             _screen.getScrolling().set( _screen.getScrolling().getY(), 0);
+	}
+
+	void World::loadWorld()
+	{
+		ifstream file("world1.wld");
+
+		if(file)
+		{
+			string line;
+
+			while(getline(file, line))
+			{
+				_levelNames.push_back(line);
+				cout << line << endl;
+			}
+		}
+		else
+		{
+			cout << "ERROR: Unable to open file world1.wld" << endl;
+		}
 	}
 
     World::~World()
