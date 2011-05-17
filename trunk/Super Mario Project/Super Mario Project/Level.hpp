@@ -10,7 +10,6 @@
 #ifndef HPP_LEVEL
 #define HPP_LEVEL
 
-#include "Coord.hpp"
 #include "Checkpoint.hpp"
 #include "Background.hpp"
 #include "Foreground.hpp"
@@ -22,7 +21,6 @@
 #include "Projectile.hpp"
 #include "Finish.hpp"
 #include "Pipe.hpp"
-#include "Object.hpp"
 
 #include <string>
 
@@ -34,27 +32,53 @@ namespace SuperMarioProject
     class Level
     {
     public:
-        Level() : _levelName(""), _musicTitle(""), _size(Coord<int>()), _spawn(Coord<int>()),
+        Level() : _levelName(""), _musicTitle(""), _size(Vector2f()), _spawn(Vector2f()),
 			_checkpoints(vector<Checkpoint*>()), _projectiles(vector<Projectile*>()),
 			_monsters(vector<Monster*>()), _pipes(vector<Pipe*>())
 			//_finishes(vector<Finish*>()), _backgrounds(vector<Background*>()), 
 		{ }
 
-		Coord<int> getSize();
-		Coord<int> getBlockSize();
+		/* Size of level */
+		Vector2f getSize();
+
+		/* Size of each block */
+		Vector2f getBlockSize();
+
+		/* All objects */
 		vector<Object*> getObjects();
 
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		/* All Checkpoints */
+		vector<Checkpoint*> getCheckpoints();
+
+		/* All Projectiles */
+		vector<Projectile*> getProjectiles();
+
+		/* All monsters */
+		vector<Monster*> getMonsters();
+
+		/* All pipes */
+		vector<Pipe*> getPipes();
+
+		/* All items */
+		vector<Item*> getItems();
+
+		/* All blocks */
+		vector<Blocks*> getBlocks();
+
+		/* Update data */
+		void update(RenderWindow& app);
+		
+		/* Render all objects */
+		void render(RenderWindow& app);
 
         virtual ~Level();
 		
     private:
 		string _levelName;
 		string _musicTitle;
-		Coord<int> _size;
-		Coord<int> _spawn;
-		Coord<int> _blockSize;
+		Vector2f _size;
+		Vector2f _spawn;
+		Vector2f _blockSize;
 		vector<Checkpoint*> _checkpoints;
 		//vector<Background*> _backgrounds:
 		//vector<Finish*> _finishes;

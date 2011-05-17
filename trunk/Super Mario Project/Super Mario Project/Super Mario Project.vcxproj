@@ -142,10 +142,6 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Edge.obj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Edge.png" />
     <None Include="world1.wld" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

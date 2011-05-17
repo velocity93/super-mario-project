@@ -16,9 +16,6 @@
 #include "Pipe.hpp"
 #include "Checkpoint.hpp"
 
-#define SPEED_Y_MAX						0.008F
-#define GRAVITY							0.002F
-
 using namespace Rendering;
 
 namespace Collisions
@@ -107,11 +104,11 @@ namespace Collisions
 
 		/* Constructors */
 		Perso(const string& textureName) : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
+			_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { loadPerso(textureName); }
-		Perso(const string& textureName, Coord<float> Position) : EntityMovable(textureName, Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(new HUD()), _canClimb(false), _acceleration(Vect<float>()), _invincibleTime(0), _invincibleStarTime(0),
+		Perso(const string& textureName, Coord<float>& Position) : EntityMovable(textureName, Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
+			_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0) { }
 
@@ -121,7 +118,7 @@ namespace Collisions
 		Environment getEnvironment();
 		Transformations getTransformation();
 		bool getCanClimb();
-		Vect<float> getAcceleration();
+		Vector2f getAcceleration();
 		MonsterOccurrence* getBroughtMonster();
 		Pipe* getInsidePipe();
 		Checkpoint* getCheckPointPassed();
@@ -152,8 +149,8 @@ namespace Collisions
 		void setJumpTime(int jumpTime);
 
 		/* Methods */
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		/* Destructor */
         virtual ~Perso();
@@ -164,7 +161,7 @@ namespace Collisions
 		Environment _environment;
 		Transformations _transformation;
 		bool _canClimb;
-		Vect<float> _acceleration;
+		Vector2f _acceleration;
 		MonsterOccurrence* _broughtMonster;
 		Pipe* _insidePipe;
 		Checkpoint* _checkpointPassed;
@@ -180,7 +177,6 @@ namespace Collisions
 		int _jumpTime;
 
 		void loadPerso(const string& textureName);
-		void gravity(Vect<float>* speed, float time);
     };
 } // namespace
 

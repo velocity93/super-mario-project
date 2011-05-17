@@ -21,7 +21,7 @@ namespace Rendering
     public:
 		/* Constructors */
 		Screen() : _origine(Coord<int>()), _size(Coord<int>()), _scrolling(Coord<float>()) { }
-		Screen(Coord<int> origine, Coord<int> size, Coord<float> scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
+		Screen(Coord<int>& origine, Coord<int>& size, Coord<float>& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
 
 		/* getters and setters */
         Coord<int> getOrigine();

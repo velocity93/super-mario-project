@@ -20,17 +20,17 @@ namespace Collisions
 		_sender = sender;
 	}
 
-	void ProjectileOccurrence::update(float time)
+	void ProjectileOccurrence::update(RenderWindow& app)
 	{
 		/* Update physic position */
 		/* Save actual position in previous prosition */
-		this->getPreviousPosition().set(this->getPosition());
+		this->setPreviousPosition(this->getPosition());
 
 		/* Compute new position */
-		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
+		this->setPosition(this->getPosition().getX() + this->getSpeed().x * app.GetFrameTime(), this->getPosition().getY() + this->getSpeed().x * app.GetFrameTime());
 	}
 
-	void ProjectileOccurrence::render(RenderWindow& app, Screen& screen)
+	void ProjectileOccurrence::render(RenderWindow& app)
 	{
 
 	}

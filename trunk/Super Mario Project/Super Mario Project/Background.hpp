@@ -18,23 +18,23 @@ namespace Rendering
     {
     public:
 		/* Constructors */
-		Background(const string& textureName) : Object(textureName), _verticalRepetition(false) { }
-		Background(const string& textureName, bool verticalRepetition) : Object(textureName), 
-			_verticalRepetition(verticalRepetition) {  }
+		Background(const string& textureName);
+		Background(const string& textureName, Coord<float>& position);
 		
 		/* getter and setter */
 		bool getVerticalRepetition();
-		void setVerticalRepetition(bool verticalRepetition);
 
 		/* Methods */
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 		
 		/* Destructor */
         virtual ~Background();
 		
     private:
-		bool _verticalRepetition;		
+		bool _verticalRepetition;
+
+		void loadCfgBackground(const string& textureName);
     };
 } // namespace
 

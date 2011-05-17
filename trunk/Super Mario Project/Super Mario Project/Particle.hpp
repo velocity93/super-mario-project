@@ -18,13 +18,13 @@ namespace Collisions
     {
     public:
 		Particle(const string& textureName) : EntityMovable(textureName), _life(0) { }
-		Particle(const string& textureName, Coord<float> position) : EntityMovable(textureName, position), _life(0) { }
+		Particle(const string& textureName, Coord<float>& position) : EntityMovable(textureName, position), _life(0) { }
 
 		int getLife();		
 
-		void update(float time);
+		void update(RenderWindow& app);
 		void update(float time, bool hasGravity);
-		void render(RenderWindow& app, Screen& screen);
+		void render(RenderWindow& app);
 
         virtual ~Particle();
 		

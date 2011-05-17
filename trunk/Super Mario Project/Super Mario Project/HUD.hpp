@@ -31,7 +31,7 @@ namespace Rendering
 		void setTime(float time);
 		void setNbLives(int nbLives);
 
-		void update(float time);
+		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
         virtual ~HUD();

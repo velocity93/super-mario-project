@@ -21,30 +21,41 @@ namespace Collisions
 		return _projectileOccurences;
 	}
 
-	void Projectile::setSubmission(int submission)
+	void Projectile::addProjectileOccurrence(ProjectileOccurrence* projectile)
 	{
-		_submission = submission;
+		_projectileOccurences.push_back(projectile);
 	}
 
-	void Projectile::update(float time)
+	void Projectile::removeProjectileOccurrence(ProjectileOccurrence* projectile)
 	{
-		vector<ProjectileOccurrence*>::iterator itProjectiles;
-		
-		/* ItemsOccurrences */
-		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+		vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
+
+		for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence < _projectileOccurences.end(); itProjectileOccurrence++)
 		{
-			(*itProjectiles)->update(time);
+			if((*itProjectileOccurrence) == projectile)
+				_projectileOccurences.erase(itProjectileOccurrence);
 		}
 	}
 
-	void Projectile::render(RenderWindow& app, Screen& screen)
+	void Projectile::update(RenderWindow& app)
 	{
 		vector<ProjectileOccurrence*>::iterator itProjectiles;
 		
-		/* ItemsOccurrences */
+		/* ProjectilesOccurrences */
 		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
 		{
-			(*itProjectiles)->render(app, screen);
+			(*itProjectiles)->update(app);
+		}
+	}
+
+	void Projectile::render(RenderWindow& app)
+	{
+		vector<ProjectileOccurrence*>::iterator itProjectiles;
+		
+		/* ProjectilesOccurrences */
+		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+		{
+			(*itProjectiles)->render(app);
 		}
 	}
 
@@ -53,7 +64,7 @@ namespace Collisions
     {
 		vector<ProjectileOccurrence*>::iterator itProjectiles;
 		
-		/* ItemsOccurrences */
+		/* ProjectilesOccurrences */
 		for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
 		{
 			delete (*itProjectiles);

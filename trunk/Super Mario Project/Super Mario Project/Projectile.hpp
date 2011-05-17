@@ -24,28 +24,37 @@ namespace Collisions
 	
 	public:
 		enum Type {
-		FRAGMENT,
-		FIREBALL,
-		SPECIAL_FIREBALL,
-		ICEBALL,
-		THUNDER_BALL,
-		SUPER_FIREBALL,
-		HYPER_FIREBALL,
-		SHURIKEN
-	};
+			FRAGMENT,
+			FIREBALL,
+			SPECIAL_FIREBALL,
+			ICEBALL,
+			THUNDER_BALL,
+			SUPER_FIREBALL,
+			HYPER_FIREBALL,
+			SHURIKEN
+		};
 
-
-    
 		/* Constructor */
 		Projectile() : _type(FRAGMENT), _submission(0) { }
+		Projectile(Type type, int submission) : _type(type), _submission(submission) { }
 
-		/* getters and setters */
+		/* Physic submission */
 		int getSubmission();
-		vector<ProjectileOccurrence*> getProjectileOccurrences();
-		void setSubmission(int submission);
 
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		/* List of occurences */
+		vector<ProjectileOccurrence*> getProjectileOccurrences();
+
+		/* Add occurrence to list */
+		void addProjectileOccurrence(ProjectileOccurrence* projectile);
+
+		/* Remove occurrence to list */
+		void removeProjectileOccurrence(ProjectileOccurrence* projectile);
+
+		/* Update data */
+		void update(RenderWindow& app);
+
+		/* Render all occurrences */
+		void render(RenderWindow& app);
 
 		/* Destructor */
         virtual ~Projectile();

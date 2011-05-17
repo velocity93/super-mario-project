@@ -48,44 +48,6 @@ namespace Utils
     private:
 		C _x, _y;
     };
-
-	template<class C> class Vect
-    {
-	public:
-		Vect() : _x(0), _y(0) { }
-		Vect(C x, C y) : _x(x), _y(y) { }
-
-		C getX() 
-		{ 
-			return _x; 
-		}
-
-		C getY() 
-		{ 
-			return _y; 
-		}
-
-		void set(C x, C y)
-		{
-			_x = x;
-			_y = y;
-		}
-
-		void set(Vect<C>& c1)
-		{
-			_x = c1.getX();
-			_y = c1.getY();
-		}
-
-		void operator=(Vect<C>& c1)
-		{
-			this->set(c1.getX(), c1.getY());
-		}
-		
-    private:
-		C _x, _y;
-    };
-
 	
 } // namespace
 

@@ -15,7 +15,7 @@ namespace Rendering
 		InitializeDrawable(textureName);
 	}
 
-	Drawable::Drawable(const string& textureName, Coord<float> position)
+	Drawable::Drawable(const string& textureName, Coord<float>& position)
 	{
 		InitializeDrawable(textureName);
 		_position = position;
@@ -54,9 +54,19 @@ namespace Rendering
 		return _animationSpeeds;
 	}
 
+	void Drawable::addAnimationSpeed(int number)
+	{
+		return _animationSpeeds.push_back(number);
+	}
+
 	void Drawable::setTexture(Texture* texture)
 	{
 		_texture = texture;
+	}
+
+	void Drawable::setPosition(float x, float y)
+	{
+		_position.set(x, y);
 	}
 
 	Drawable::~Drawable()

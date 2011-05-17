@@ -10,9 +10,10 @@
 #ifndef HPP_ENTITYMOVABLE
 #define HPP_ENTITYMOVABLE
 
-#include "Collisionable.hpp"
+#define SPEED_Y_MAX						0.008F
+#define GRAVITY							0.002F
 
-using namespace Utils;
+#include "Collisionable.hpp"
 
 namespace Collisions
 {
@@ -27,24 +28,26 @@ namespace Collisions
 
     
 		/* Constructors */
-		EntityMovable(const string& textureName) : Collisionable(textureName), _previousPosition(Coord<float>()), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
-		EntityMovable(const string& textureName, Coord<float> position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vect<float>()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName) : Collisionable(textureName), _previousPosition(Coord<float>()), _speed(Vector2f()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName, Coord<float>& position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vector2f()), _side(RIGHT_SIDE) { }
 
 		/* getters and setters */
 		Coord<float> getPreviousPosition();
-		Vect<float> getSpeed();
+		Vector2f getSpeed();
 		Side getSide();
-		void getPreviousPosition(Coord<float>& previousPosition);
-		void setSpeed(Vect<float>& speed);
+		void setPreviousPosition(Coord<float>& previousPosition);
+		void setSpeed(Vector2f& speed);
 		void setSpeed(float x, float y);
 		void setSide(Side side);
+
+		void gravity(Vector2f* speed, float time);
 
 		/* Destructors */
         virtual ~EntityMovable();
 		
     private:
 		Coord<float> _previousPosition;
-		Vect<float> _speed;
+		Vector2f _speed;
 		Side _side;
     };
 } // namespace

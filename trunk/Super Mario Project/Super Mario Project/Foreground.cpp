@@ -10,9 +10,20 @@
 
 namespace Rendering
 {
-    Foreground::Foreground()
-    {
-    }
+	Foreground::Foreground(const string& textureName) : Object(textureName)
+	{ 
+		Object::loadCfgObject(textureName);
+	}
+
+	void Foreground::update(RenderWindow& app)
+	{
+		Object::update(app);
+	}
+
+	void Foreground::render(RenderWindow& App)
+	{
+		Object::render(App);
+	}
 
 
     Foreground::~Foreground()

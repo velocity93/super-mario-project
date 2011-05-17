@@ -36,7 +36,7 @@ namespace Collisions
 		return _canClimb;
 	}
 
-	Vect<float> Perso::getAcceleration()
+	Vector2f Perso::getAcceleration()
 	{
 		return _acceleration;
 	}
@@ -182,27 +182,20 @@ namespace Collisions
 	}
 
 
-	void Perso::update(float time)
+	void Perso::update(RenderWindow& app)
 	{
-		gravity(&this->getSpeed(), time);
+		gravity(&this->getSpeed(), app.GetFrameTime());
 
 		/* Save actual position as previous position */
-		this->getPreviousPosition().set(this->getPosition().getX(), this->getPosition().getY());
+		this->setPreviousPosition(this->getPosition());
 
 		/* Compute new position */
-		this->getPosition().set(this->getPosition().getX() + time * getSpeed().getX(), this->getPosition().getY() + time * getSpeed().getY());
+		this->setPosition(this->getPosition().getX() + app.GetFrameTime() * getSpeed().x, 
+			this->getPosition().getY() + app.GetFrameTime() * getSpeed().y);
 
 	}
 
-	void Perso::gravity(Vect<float>* speed, float time)
-	{
-		speed->set(speed->getX(), speed->getY() - GRAVITY * time);
-
-		if(speed->getY() < -SPEED_Y_MAX)
-			speed->set(speed->getX(), -SPEED_Y_MAX);
-	}
-
-	void Perso::render(RenderWindow& app, Screen& screen)
+	void Perso::render(RenderWindow& app)
 	{
 
 	}

@@ -25,35 +25,41 @@ namespace Collisions
 		return _itemOccurences;
 	}
 
-	void Item::setType(Type type)
+	void Item::addItemOccurrence(ItemOccurrence* item)
 	{
-		_type = type;
+		_itemOccurences.push_back(item);
 	}
 
-	void Item::setSubmission(int submission)
+	void Item::removeItemOccurrence(ItemOccurrence* item)
 	{
-		_submission = submission;
-	}
+		vector<ItemOccurrence*>::iterator itItemOccurrence;
 
-	void Item::update(float time)
-	{
-		vector<ItemOccurrence*>::iterator itItems;
-		
-		/* ItemsOccurrences */
-		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+		for(itItemOccurrence = _itemOccurences.begin(); itItemOccurrence < _itemOccurences.end(); itItemOccurrence++)
 		{
-			(*itItems)->update(time);
+			if((*itItemOccurrence) == item)
+				_itemOccurences.erase(itItemOccurrence);
 		}
 	}
 
-	void Item::render(RenderWindow& App, Screen& screen)
+	void Item::update(RenderWindow& app)
 	{
 		vector<ItemOccurrence*>::iterator itItems;
 		
 		/* ItemsOccurrences */
 		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
 		{
-			(*itItems)->render(App, screen);
+			(*itItems)->update(app);
+		}
+	}
+
+	void Item::render(RenderWindow& App)
+	{
+		vector<ItemOccurrence*>::iterator itItems;
+		
+		/* ItemsOccurrences */
+		for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+		{
+			(*itItems)->render(App);
 		}
 	}
 
