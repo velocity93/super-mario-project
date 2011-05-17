@@ -10,12 +10,24 @@
 #ifndef HPP_FOREGROUND
 #define HPP_FOREGROUND
 
+#include "Object.hpp"
+#include "Screen.hpp"
+#include <SFML\Graphics.hpp>
+#include <string>
+
 namespace Rendering
 {
-    class Foreground
+	class Foreground : public Object
     {
     public:
-        Foreground();
+        /* Constructors */
+		Foreground(const string& textureName);
+
+		/* Methods */
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
+		
+		/* Destructor */
         virtual ~Foreground();
 		
     private:

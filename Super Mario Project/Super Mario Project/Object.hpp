@@ -20,15 +20,17 @@ namespace Rendering
     class Object : public Drawable
     {
     public:
-		Object(const string& textureName) : Drawable(textureName) { loadObject(textureName); }
+		Object(const string& textureName);
+		Object(const string& textureName, Coord<float>& position);
 		
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
         virtual ~Object();
 		
-    private:
-		void loadObject(const string& textureName);
+    protected:
+		void loadCfgObject(const string& textureName);
+		
     };
 } // namespace
 

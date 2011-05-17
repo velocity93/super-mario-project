@@ -24,19 +24,21 @@ namespace Collisions
 			NOT_PASSED
 		};
 
-		Checkpoint(const string& textureName) : Collisionable(textureName), _state(NOT_PASSED) { }
-		Checkpoint(const string& textureName, Coord<float> position, State state) : Collisionable(textureName, position), _state(state) { }
+		Checkpoint(const string& textureName);
+		Checkpoint(const string& textureName, Coord<float>& position, State state);
 
 		State getState();
 		void setState(State state);
 
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
         virtual ~Checkpoint();
 		
     private:
 		State _state;
+
+		void loadCfgCheckpoint(const string& textureName);
     };
 } // namespace
 

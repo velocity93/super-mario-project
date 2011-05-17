@@ -30,24 +30,24 @@ namespace Collisions
 		_isActive = isActive;
 	}
 
-	void ItemOccurrence::update(float time)
+	void ItemOccurrence::update(RenderWindow& app)
 	{
 		/* Update physic position */
 		/* Save actual position in previous prosition */
-		this->getPreviousPosition().set(this->getPosition());
+		this->setPreviousPosition(this->getPosition());
 
 		/* Compute new position */
-		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
+		this->setPosition(this->getPosition().getX() + this->getSpeed().x * app.GetFrameTime(), 
+			this->getPosition().getY() + this->getSpeed().y * app.GetFrameTime());
 
 		/* Update graphics data */
 		// TODO
 
 	}
 
-	void ItemOccurrence::render(RenderWindow& app, Screen& screen)
+	void ItemOccurrence::render(RenderWindow& app)
 	{
-		Sprite sprite(getTexture()->getImage());
-		app.Draw(sprite);
+		app.Draw(this->getTexture()->getSprite());
 	}
 
 	ItemOccurrence::~ItemOccurrence()

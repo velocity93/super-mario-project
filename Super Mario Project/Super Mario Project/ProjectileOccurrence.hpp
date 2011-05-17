@@ -27,15 +27,15 @@ namespace Collisions
     
 		/* Constructors */
 		ProjectileOccurrence(const string& textureName) : EntityMovable(textureName), _sender(GENTILE) { }
-		ProjectileOccurrence(const string& textureName, Coord<float> position) : EntityMovable(textureName, position), _sender(GENTILE) { }
+		ProjectileOccurrence(const string& textureName, Coord<float>& position) : EntityMovable(textureName, position), _sender(GENTILE) { }
 
 		/* Getter and setter */
 		Sender getSender();
 		void setSender(Sender sender);
 
 		/* Methods */
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
         virtual ~ProjectileOccurrence();
 		

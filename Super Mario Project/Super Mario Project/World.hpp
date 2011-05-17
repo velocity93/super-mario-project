@@ -18,6 +18,8 @@
 #include "Perso.hpp"
 #include "Level.hpp"
 
+#define WINDOW_WIDTH							800
+#define WINDOW_HEIGHT							600
 #define SCROLLING_AV                            (float)0.5
 #define SCROLLING_AR                            (float)0.2
 #define SCROLLING_HAUT                          (float)0.5
@@ -37,10 +39,9 @@ namespace SuperMarioProject
 
 		/* Methods */
 		void update(RenderWindow& app);
-		void render(RenderWindow& app, Screen& screen);
+		void render(RenderWindow& app);
 
 		float getElapsedTime();
-
 		void loadWorld();
 
         virtual ~World();
@@ -49,7 +50,6 @@ namespace SuperMarioProject
 		vector<string> _levelNames;
 		vector<Perso*> _persos;
 		Level* _level;
-		Screen _screen;
 		Coord<int> _windowSize;
 		Clock _clock;
 		float _fpsTime;
@@ -62,9 +62,6 @@ namespace SuperMarioProject
 
 		/* Update data time in world */
 		void updateTime();
-		
-		/* Update  */
-		void updateScreen();
     };
 } // namespace
 

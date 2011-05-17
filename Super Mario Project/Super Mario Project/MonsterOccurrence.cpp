@@ -21,17 +21,18 @@ namespace Collisions
 	}
 
 
-	void MonsterOccurrence::update(float time)
+	void MonsterOccurrence::update(RenderWindow& app)
 	{
 		/* Update physic position */
 		/* Save actual position in previous prosition */
-		this->getPreviousPosition().set(this->getPosition());
+		this->setPreviousPosition(this->getPosition());
 
 		/* Compute new position */
-		this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
+		this->setPosition(this->getPosition().getX() + this->getSpeed().x * app.GetFrameTime(), 
+			this->getPosition().getY() + this->getSpeed().y * app.GetFrameTime());
 	}
 
-	void MonsterOccurrence::render(RenderWindow& app, Screen& screen)
+	void MonsterOccurrence::render(RenderWindow& app)
 	{
 		this->setSide(Side::LEFT_SIDE);
 	}

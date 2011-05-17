@@ -15,9 +15,9 @@ namespace Collisions
 		return _life;
 	}
 
-	void Particle::update(float time)
+	void Particle::update(RenderWindow& app)
 	{
-		update(time, false);
+		update(app.GetFrameTime(), false);
 	}
 
 	void Particle::update(float time, bool hasGravity)
@@ -28,17 +28,16 @@ namespace Collisions
 		{
 			/* Update physic position */
 			/* Save actual position in previous prosition */
-			this->getPreviousPosition().set(this->getPosition());
+			this->setPreviousPosition(this->getPosition());
 
 			/* Compute new position */
-			this->getPosition().set(this->getPosition().getX() + this->getSpeed().getX() * time, this->getPosition().getY() + this->getSpeed().getY() * time);
+			this->setPosition(this->getPosition().getX() + this->getSpeed().x * time, this->getPosition().getY() + this->getSpeed().y * time);
 		}
 	}
 
-	void Particle::render(RenderWindow& app, Screen& screen)
+	void Particle::render(RenderWindow& app)
 	{
-		Sprite sprite(getTexture()->getImage());
-		app.Draw(sprite);
+		app.Draw(this->getTexture()->getSprite());
 	}
 
 	Particle::~Particle()

@@ -20,9 +20,9 @@ namespace Collisions
 		return _monster;
 	}
 
-	int Pipe::getMonsterExitDuration()
+	float Pipe::getMonsterExitDuration()
 	{
-		return _monsterExitDuration;
+		return _monsterExitDuration.GetElapsedTime();
 	}
 
 	void Pipe::setDirection(Pipe::Direction direction)
@@ -35,42 +35,37 @@ namespace Collisions
 		_monster = monster;
 	}
 
-	void Pipe::setMonsterExitDuration(int monsterExitDuration)
-	{
-		_monsterExitDuration = monsterExitDuration;
-	}
-
-	void Pipe::update(float time)
+	void Pipe::update(RenderWindow& app)
     {
 		if(_monster != nullptr)
 		{
-			if(_monsterExitDuration <= 0)
+			if(_monsterExitDuration.GetElapsedTime() >= MONSTER_EXIT_TIME)
 			{
-				MonsterOccurrence* monster = nullptr;
+				MonsterOccurrence* monsterOccurrence = nullptr;
 				switch(_direction)
 				{
 				case TO_TOP:
-					monster = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
-					monster->setSpeed(0, MONSTER_EXIT_SPEED);
-					monster->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
+					monsterOccurrence->setSpeed(0, MONSTER_EXIT_SPEED);
+					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_BOTTOM:
-					monster = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
-					monster->setSpeed(0, -MONSTER_EXIT_SPEED);
-					monster->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
+					monsterOccurrence->setSpeed(0, -MONSTER_EXIT_SPEED);
+					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_LEFT:
-					monster = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
-					monster->setSpeed(-MONSTER_EXIT_SPEED, 0);
-					monster->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
+					monsterOccurrence->setSpeed(-MONSTER_EXIT_SPEED, 0);
+					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_RIGHT:
-					monster = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
-					monster->setSpeed(MONSTER_EXIT_SPEED, 0);
-					monster->setSide(Collisions::MonsterOccurrence::Side::RIGHT_SIDE);
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), Coord<float>(this->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH / 2, this->getPosition().getY() * BLOCK_WIDTH));
+					monsterOccurrence->setSpeed(MONSTER_EXIT_SPEED, 0);
+					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::RIGHT_SIDE);
 					break;
 
 				default:
@@ -78,74 +73,91 @@ namespace Collisions
 				}
 				
 				//occ_m->tps_sortie_tuyau = occ_m->type_monstre->tps_sortie_tuyau;
-				monster->setState(MonsterOccurrence::State::M_GET_OUT_FROM_PIPE);
-				_monster->getMonsterOccurrences().push_back(monster);
-				_monsterExitDuration = MONSTER_EXIT_TIME;
-			}
-			else
-			{
-				_monsterExitDuration -= time;
+				monsterOccurrence->setState(MonsterOccurrence::State::M_GET_OUT_FROM_PIPE);
+				_monster->addMonsterOccurrence(monsterOccurrence);
+				_monsterExitDuration.Reset();
 			}
 		}
     }
 
-	void Pipe::render(RenderWindow& app, Screen& screen)
+	void Pipe::render(RenderWindow& app)
     {
-		{/* Body of pipe */
-			Sprite sprite;
-			sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
-			sprite.SetImage(this->getTexture()->getImage());
-			
-			sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), 0));
-			sprite.SetScaleY(this->_lenght);
+		Sprite sprite = this->getTexture()->getSprite();
 
-			/* According to direction, we rotate the sprite */
-			switch(_direction)
+		switch(_direction)
+		{
+		case TO_BOTTOM:
+			sprite.FlipX(true);
+
+			/* Body */
+			for(int step = 0; step < _lenght; step++)
 			{
-			case TO_BOTTOM:
-				sprite.FlipX(true);
-				break;
-
-			case TO_RIGHT:
-				sprite.Rotate(90);
-				break;
-
-			case TO_LEFT:
-				sprite.Rotate(270);
-				break;
-
-			default:
-				break;
+				sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, (this->getPosition().getY() + step) * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+				app.Draw(sprite);
 			}
-			app.Draw(sprite);
-		}
 
-		{/* Top of pipe */
-			Sprite sprite;
+			/* Top of pipe */
 			sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, (this->getPosition().getY() + _lenght) * BLOCK_WIDTH);
-			sprite.SetImage(this->getTexture()->getImage());
+			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
 
-			sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight(), sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
-
-			/* According to direction, we rotate the sprite */
-			switch(_direction)
-			{
-			case TO_BOTTOM:
-				sprite.FlipX(true);
-				break;
-
-			case TO_RIGHT:
-				sprite.Rotate(90);
-				break;
-
-			case TO_LEFT:
-				sprite.Rotate(270);
-				break;
-
-			default:
-				break;
-			}
 			app.Draw(sprite);
+			break;
+
+		case TO_RIGHT:
+			sprite.FlipX(true);
+			sprite.SetCenter(0, sprite.GetImage()->GetHeight() / 2);
+			sprite.Rotate(270);
+
+			/* Body */
+			for(int step = 0; step < _lenght; step++)
+			{
+				sprite.SetPosition((this->getPosition().getX() + step) * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+				app.Draw(sprite);
+			}
+
+			/* Top of pipe */
+			sprite.SetPosition((this->getPosition().getX() + _lenght) * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
+			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+
+			app.Draw(sprite);
+			break;
+
+		case TO_LEFT:
+			sprite.SetCenter(sprite.GetImage()->GetWidth(), 0);
+			sprite.Rotate(90);
+
+			/* Top of pipe */
+			sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
+			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+
+			app.Draw(sprite);
+
+			/* Body */
+			for(int step = 1; step <= _lenght; step++)
+			{
+				sprite.SetPosition((this->getPosition().getX() + step) * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+				app.Draw(sprite);
+			}
+			break;
+
+		default:
+			/* Top of pipe */
+			sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, this->getPosition().getY() * BLOCK_WIDTH);
+			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+
+			app.Draw(sprite);
+
+			/* Body */
+			for(int step = 1; step <= _lenght; step++)
+			{
+				sprite.SetPosition(this->getPosition().getX() * BLOCK_WIDTH, (this->getPosition().getY() + step) * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+				app.Draw(sprite);
+			}
+			break;
 		}
     }
 

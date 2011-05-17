@@ -50,9 +50,9 @@ namespace Rendering
 		_nbLives = nbLives;
 	}
 
-	void HUD::update(float time)
+	void HUD::update(RenderWindow& app)
 	{
-		_time -= time;
+		_time -= app.GetFrameTime();
 	}
 
 	void HUD::render(RenderWindow& app)

@@ -42,8 +42,8 @@ namespace Collisions
 		void setEndColor(Color& endColor);
 
 		/* Methods */
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		/* Destructor */
         virtual ~ParticleGenerator();

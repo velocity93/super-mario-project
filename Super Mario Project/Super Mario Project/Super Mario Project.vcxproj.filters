@@ -199,14 +199,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Edge.obj">
-      <Filter>Resource Files</Filter>
-    </Object>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Edge.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="world1.wld">
       <Filter>Resource Files</Filter>
     </None>

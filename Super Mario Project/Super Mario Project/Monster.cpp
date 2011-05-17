@@ -10,30 +10,46 @@
 
 namespace Collisions
 {
+	void Monster::addMonsterOccurrence(MonsterOccurrence* monster)
+	{
+		_monsterOccurrences.push_back(monster);
+	}
+
 	vector<MonsterOccurrence*> Monster::getMonsterOccurrences()
 	{
 		return _monsterOccurrences;
 	}
-
-	void Monster::update(float time)
+	
+	void Monster::removeMonsterOccurrence(MonsterOccurrence* monster)
 	{
-		vector<MonsterOccurrence*>::iterator itMonsters;
+		vector<MonsterOccurrence*>::iterator itMonsterOccurrence;
 
-		/* MonsterOccurrences */
-		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence < _monsterOccurrences.end(); itMonsterOccurrence++)
 		{
-			(*itMonsters)->update(time);
+			if((*itMonsterOccurrence) == monster)
+				_monsterOccurrences.erase(itMonsterOccurrence);
 		}
 	}
 
-	void Monster::render(RenderWindow& app, Screen& screen)
+	void Monster::update(RenderWindow& app)
 	{
 		vector<MonsterOccurrence*>::iterator itMonsters;
 
 		/* MonsterOccurrences */
 		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
 		{
-			(*itMonsters)->render(app, screen);
+			(*itMonsters)->update(app);
+		}
+	}
+
+	void Monster::render(RenderWindow& app)
+	{
+		vector<MonsterOccurrence*>::iterator itMonsters;
+
+		/* MonsterOccurrences */
+		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		{
+			(*itMonsters)->render(app);
 		}
 	}
 

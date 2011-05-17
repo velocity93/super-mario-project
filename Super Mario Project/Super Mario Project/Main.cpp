@@ -10,16 +10,14 @@
 #include <SFML\Graphics.hpp>
 #include <SFML\Window.hpp>
 
-#define WINDOW_WIDTH		1024
-#define WINDOW_HEIGHT		768
-
 using namespace SuperMarioProject;
 using namespace sf;
 
 int main(int argc, char* argv[])
 {
 	World* w = new World();
-	Background background = Background("Edge");
+	//Background background = Background("textures\\backgrounds\\skyBlueHills");
+	//Background background2 = Background("textures\\backgrounds\\blueHills");
 	argc;
 	argv;
 
@@ -54,11 +52,13 @@ int main(int argc, char* argv[])
 
 		// Update World
 		//w->update(App);
-		background.update(w->getElapsedTime());
+		//background.update(App);
+		//background2.update(App);
 
 		// Draw World
 		//w->render(App);
-		background.render(App, Screen());
+		//background.render(App);
+		//background2.render(App);
 
 		// Update the window
 		App.Display();

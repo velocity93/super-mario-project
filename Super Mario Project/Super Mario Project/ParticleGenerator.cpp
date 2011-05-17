@@ -70,24 +70,24 @@ namespace Collisions
 		_endColor = endColor;
 	}
 
-	void ParticleGenerator::update(float time)
+	void ParticleGenerator::update(RenderWindow& app)
 	{
 		vector<Particle>::iterator itParticles;
 
 		/* Update Physics position */
 		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
 		{			
-			(*itParticles).update(time, _hasGravity);
+			(*itParticles).update(app.GetFrameTime(), _hasGravity);
 		}
 	}
 
-	void ParticleGenerator::render(RenderWindow& app, Screen& screen)
+	void ParticleGenerator::render(RenderWindow& app)
 	{
 		vector<Particle>::iterator itParticles;
 
 		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
 		{
-			(*itParticles).render(app, screen);
+			(*itParticles).render(app);
 		}
 	}
 

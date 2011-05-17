@@ -51,6 +51,16 @@ namespace Rendering
 		_sprite.SetSubRect(IntRect(left, top, right, bottom));
 	}
 
+	void Texture::setPositionSprite(float x, float y)
+	{
+		_sprite.SetPosition(x, y);
+	}
+
+	void Texture::setPositionSprite(const Vector2f& position)
+	{
+		_sprite.SetPosition(position);
+	}
+
 	Texture::~Texture()
 	{
 

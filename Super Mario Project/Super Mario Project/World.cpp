@@ -14,7 +14,6 @@ namespace SuperMarioProject
 	{
 		_levelNames = vector<string>();
 		_persos = vector<Perso*>();
-		_screen = Screen();
 		_windowSize = Coord<int>();
 		_fpsTime = 0;
 		_actualTime = 0;
@@ -41,15 +40,14 @@ namespace SuperMarioProject
 
 	void World::update(RenderWindow& app)
 	{
-		this->_level->update(app.GetFrameTime());
+		this->_level->update(app);
 
 		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); it++)
-			(*it)->update(app.GetFrameTime());
+			(*it)->update(app);
 
 		updateTime();
-		
 	}
 
 	void World::updateTime()
@@ -92,47 +90,16 @@ namespace SuperMarioProject
 		_nbFramesCalculated++;
 	}
 
-	void World::render(RenderWindow& app, Screen& screen)
+	void World::render(RenderWindow& app)
 	{
 		vector<Perso*>::iterator it;
 
-		this->_level->render(app, screen);
+		this->_level->render(app);
 
 		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
 		{
-			(*it)->render(app, screen);
+			(*it)->render(app);
 		}
-	}
-
-	void World::updateScreen()
-	{
-		/* General Case */
-        /* horizontal */
-		if((_persos.front()->getPosition().getX() - _screen.getScrolling().getX()) > _screen.getSize().getX() * SCROLLING_AV)
-			_screen.getScrolling().set(_persos.front()->getPosition().getX() - _screen.getSize().getX() * SCROLLING_AV, _screen.getScrolling().getY());
-
-        else if((_persos.front()->getPosition().getX() - _screen.getScrolling().getX()) < _screen.getSize().getX() * SCROLLING_AR)
-			_screen.getScrolling().set(_persos.front()->getPosition().getX() - _screen.getSize().getX() * SCROLLING_AR, _screen.getScrolling().getY());
-
-        /* vertical */
-        if((_persos.front()->getPosition().getY() - _screen.getScrolling().getY()) > _screen.getSize().getY() * SCROLLING_HAUT)
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front()->getPosition().getY() - _screen.getSize().getY() * SCROLLING_HAUT);
-
-        else if((_persos.front()->getPosition().getY() - _screen.getScrolling().getY()) < _screen.getSize().getY() * SCROLLING_BAS)
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _persos.front()->getPosition().getY() - _screen.getSize().getY() * SCROLLING_BAS);
-
-		/* particular case for level limits and if level is smaller than screen */
-        /* horizontal */
-		if(_screen.getScrolling().getX() > (_level->getSize().getX() * _level->getBlockSize().getX() - _screen.getSize().getX()))
-			_screen.getScrolling().set(_level->getSize().getX() * _level->getBlockSize().getX() - _screen.getSize().getX(), _screen.getScrolling().getY());
-        if(_screen.getScrolling().getX() < 0)
-                _screen.getScrolling().set(0, _screen.getScrolling().getY());
-
-        /* vertical */
-       if(_screen.getScrolling().getY() > (_level->getSize().getY() * _level->getBlockSize().getY() - _screen.getSize().getY()))
-			_screen.getScrolling().set(_screen.getScrolling().getX(), _level->getSize().getY() * _level->getBlockSize().getY() - _screen.getSize().getY());
-        if(_screen.getScrolling().getY() < 0)
-            _screen.getScrolling().set( _screen.getScrolling().getY(), 0);
 	}
 
 	void World::loadWorld()

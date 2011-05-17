@@ -10,12 +10,13 @@
 
 namespace Collisions
 {
-	void Finish::update(float time)
+	void Finish::update(RenderWindow& app)
     {
     }
 
-	void Finish::render(RenderWindow& app, Screen& screen)
+	void Finish::render(RenderWindow& app, const View& view)
     {
+		app.Draw(this->getTexture()->getSprite());
     }
 
     Finish::~Finish()

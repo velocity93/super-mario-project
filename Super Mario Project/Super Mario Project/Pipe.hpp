@@ -30,21 +30,20 @@ namespace Collisions
 		};
     
 		/* Constructors */
-		Pipe(const string& textureName) : Door(textureName), _direction(TO_TOP), _monster(nullptr), _monsterExitDuration(0) { }
-		Pipe(const string& textureName, Coord<float> position, int indexDoorDestination, const string& levelDestination, State state, Direction direction, Monster* monster) 
-			: Door(textureName, position, indexDoorDestination, levelDestination, state), _direction(direction), _monster(monster) { }
+		Pipe(const string& textureName) : Door(textureName), _direction(TO_LEFT), _monster(nullptr), _monsterExitDuration(Clock()), _lenght(5) { }
+		Pipe(const string& textureName, Coord<float> position, int indexDoorDestination, const string& levelDestination, State state, int lenght, Direction direction, Monster* monster) 
+			: Door(textureName, position, indexDoorDestination, levelDestination, state), _lenght(lenght), _direction(direction), _monster(monster) { }
 
 		/* getters and setters */
 		Direction getDirection();
 		Monster* getMonster();
-		int getMonsterExitDuration();
+		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);
-		void setMonsterExitDuration(int MonsterExitTime);
 
 		/* Methods */
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		/* Destructor */
         virtual ~Pipe();
@@ -53,7 +52,7 @@ namespace Collisions
 		Direction _direction;
 		Monster* _monster;
 		int _lenght;
-		float _monsterExitDuration;
+		Clock _monsterExitDuration;
     };
 } // namespace
 

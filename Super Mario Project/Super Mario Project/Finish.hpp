@@ -18,10 +18,10 @@ namespace Collisions
     {
     public:
 		Finish(const string& textureName) : Collisionable(textureName) { }
-		Finish(const string& textureName, Coord<float> position) : Collisionable(textureName, position) { }
+		Finish(const string& textureName, Coord<float>& position) : Collisionable(textureName, position) { }
 
-		void update(float time);
-		void render(RenderWindow& app, Screen& screen);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app, const View& view);
 
         virtual ~Finish();
 		

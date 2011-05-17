@@ -50,7 +50,7 @@ namespace Rendering
 	
 		/* Constructors */
 		Drawable(const string& textureName);
-		Drawable(const string& textureName, Coord<float> position);
+		Drawable(const string& textureName, Coord<float>& position);
 
 		/* getters and setters */
 		Coord<float> getPosition();
@@ -58,16 +58,18 @@ namespace Rendering
 		vector<int> getSpriteNumbersByState();
 		vector<int> getAnimationSpeeds();
 		void setPosition(Coord<float>& position);
+		void setPosition(float x, float y);
 		void setTexture(Texture* texture);
 
 		void addSpriteNumber(int number);
+		void addAnimationSpeed(int number);
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */
-		virtual void update(float time) = 0;
+		virtual void update(RenderWindow& app) = 0;
 
 		/* Draw actual object state */
-		virtual void render(RenderWindow& app, Screen& screen) = 0;
+		virtual void render(RenderWindow& app) = 0;
 
 
 		virtual ~Drawable();

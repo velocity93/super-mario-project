@@ -35,19 +35,30 @@ namespace Collisions
 			LIFE_MUSHROOM
 		};
 	
-		/* Constructor */
+		/* Constructors */
 		Item() : _type(COIN), _submission(0) { }
+		Item(Type type, int submission) : _type(type), _submission(submission) { }
 
-		/* Getters and setters */
+		/* Item type */
 		Type getType();
-		int getSubmission();
-		vector<ItemOccurrence*> getItemOccurrences();
-		void setType(Type type);
-		void setSubmission(int submission);
 
-		/* Methods */
-		void update(float time);
-		void Item::render(RenderWindow& App, Screen& screen);
+		/* Physic submission */
+		int getSubmission();
+
+		/* List of items occurrences */
+		vector<ItemOccurrence*> getItemOccurrences();
+
+		/* Add Item Occurrence */
+		void addItemOccurrence(ItemOccurrence* item);
+		
+		/* Remove Item Occurrence */
+		void removeItemOccurrence(ItemOccurrence* item);
+
+		/* Update data */
+		void update(RenderWindow& app);
+
+		/* Render all occurrences */
+		void Item::render(RenderWindow& App);
 
 		/* Destructor */
 		virtual ~Item();

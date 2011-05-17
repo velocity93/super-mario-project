@@ -25,29 +25,30 @@ namespace Collisions
 		return _state;
 	}
 
-	void Door::setIndexDestination(int indexDestination)
-	{
-		_indexDestination = indexDestination;
-	}
-
-	void Door::setLevelDestination(const string& levelDestination)
-	{
-		_levelDestination = levelDestination;
-	}
-
 	void Door::setState(State state)
 	{
 		_state = state;
 	}
 
-	void Door::update(float time)
+	void Door::update(RenderWindow& app)
 	{
 
 	}
 
-	void Door::render(RenderWindow& app, Screen& screen)
+	void Door::render(RenderWindow& app)
 	{
+		Sprite sprite = this->getTexture()->getSprite();
 
+		if(_state == CLOSED)
+		{
+			sprite.SetSubRect(IntRect(0, 0, this->getTexture()->getImage().GetWidth(), this->getTexture()->getImage().GetHeight() / 2));
+		}
+		else
+		{
+			sprite.SetSubRect(IntRect(0, this->getTexture()->getImage().GetHeight(), this->getTexture()->getImage().GetWidth(), this->getTexture()->getImage().GetHeight()));
+		}
+
+		app.Draw(sprite);
 	}
 
 
