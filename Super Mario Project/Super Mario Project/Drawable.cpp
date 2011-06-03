@@ -29,39 +29,14 @@ namespace Rendering
 		_position = Coord<float>();
 	}
 
-	Coord<float> Drawable::getPosition()
-	{
-		return _position;
-	}
-	
 	Texture* Drawable::getTexture()
 	{
 		return _texture;
 	}
 
-	vector<int> Drawable::getSpriteNumbersByState()
+	Coord<float> Drawable::getPosition()
 	{
-		return _spriteNumbersByState;
-	}
-
-	void Drawable::addSpriteNumber(int number)
-	{
-		_spriteNumbersByState.push_back(number);
-	}
-
-	vector<int> Drawable::getAnimationSpeeds()
-	{
-		return _animationSpeeds;
-	}
-
-	void Drawable::addAnimationSpeed(int number)
-	{
-		return _animationSpeeds.push_back(number);
-	}
-
-	void Drawable::setTexture(Texture* texture)
-	{
-		_texture = texture;
+		return _position;
 	}
 
 	void Drawable::setPosition(float x, float y)

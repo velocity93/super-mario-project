@@ -10,8 +10,21 @@
 #ifndef HPP_ENTITYMOVABLE
 #define HPP_ENTITYMOVABLE
 
+/* Physics constants */
 #define SPEED_Y_MAX						0.008F
 #define GRAVITY							0.002F
+
+/* Frictions constants */
+#define SLIDE_COEFF_FRICTION			0.3F
+#define CLASSIC_COEFF_FRICTION			0.005F
+#define ICE_COEFF_FRICTION				0.004F
+#define AIR_COEFF_FRICTION				0.0005F
+
+/* Submissions */
+#define GROUND_SUBMISSION			    0x0000001
+#define GRAVITY_SUBMISSION              0x0000002
+#define RETURN_SENDER_SUBMISSION        0x0000004
+
 
 #include "Collisionable.hpp"
 
@@ -37,7 +50,8 @@ namespace Collisions
 		Side getSide();
 		void setPreviousPosition(Coord<float>& previousPosition);
 		void setSpeed(Vector2f& speed);
-		void setSpeed(float x, float y);
+		void setSpeedX(float x);
+		void setSpeedY(float y);
 		void setSide(Side side);
 
 		void gravity(Vector2f* speed, float time);
@@ -45,7 +59,7 @@ namespace Collisions
 		/* Destructors */
         virtual ~EntityMovable();
 		
-    private:
+    protected:
 		Coord<float> _previousPosition;
 		Vector2f _speed;
 		Side _side;

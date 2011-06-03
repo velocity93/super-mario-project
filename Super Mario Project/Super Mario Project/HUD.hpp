@@ -30,6 +30,8 @@ namespace Rendering
 		int getNbLives();
 		void setTime(float time);
 		void setNbLives(int nbLives);
+		void setNbMonstersKilled(int NbMonstersKilled);
+		void setNbMonstersKilledByShell(int NbMonstersKilledByShell);
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);

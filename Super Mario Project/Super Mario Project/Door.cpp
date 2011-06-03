@@ -37,15 +37,15 @@ namespace Collisions
 
 	void Door::render(RenderWindow& app)
 	{
-		Sprite sprite = this->getTexture()->getSprite();
+		Sprite sprite = _texture->getSprite();
 
 		if(_state == CLOSED)
 		{
-			sprite.SetSubRect(IntRect(0, 0, this->getTexture()->getImage().GetWidth(), this->getTexture()->getImage().GetHeight() / 2));
+			sprite.SetSubRect(IntRect(0, 0, _texture->getImage().GetWidth(), _texture->getImage().GetHeight() / 2));
 		}
 		else
 		{
-			sprite.SetSubRect(IntRect(0, this->getTexture()->getImage().GetHeight(), this->getTexture()->getImage().GetWidth(), this->getTexture()->getImage().GetHeight()));
+			sprite.SetSubRect(IntRect(0, _texture->getImage().GetHeight(), _texture->getImage().GetWidth(), _texture->getImage().GetHeight()));
 		}
 
 		app.Draw(sprite);

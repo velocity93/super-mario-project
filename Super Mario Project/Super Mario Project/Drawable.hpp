@@ -54,15 +54,8 @@ namespace Rendering
 
 		/* getters and setters */
 		Coord<float> getPosition();
-		Texture* getTexture();
-		vector<int> getSpriteNumbersByState();
-		vector<int> getAnimationSpeeds();
-		void setPosition(Coord<float>& position);
+		Texture* Drawable::getTexture();
 		void setPosition(float x, float y);
-		void setTexture(Texture* texture);
-
-		void addSpriteNumber(int number);
-		void addAnimationSpeed(int number);
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */
@@ -71,10 +64,9 @@ namespace Rendering
 		/* Draw actual object state */
 		virtual void render(RenderWindow& app) = 0;
 
-
 		virtual ~Drawable();
 
-	private:
+	protected:
 		Texture* _texture;
 		Coord<float> _position;
 		vector<int> _spriteNumbersByState;

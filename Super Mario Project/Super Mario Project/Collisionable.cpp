@@ -15,7 +15,7 @@ namespace Collisions
 		return _hitboxPosition;
 	}
 
-	Coord<int> Collisionable::getHitboxSize()
+	Vector2i Collisionable::getHitboxSize()
 	{
 		return _hitboxSize;
 	}
@@ -25,7 +25,7 @@ namespace Collisions
 		_hitboxPosition = hitboxPosition;
 	}
 
-	void Collisionable::setHitboxSize(Coord<int>& hitboxSize)
+	void Collisionable::setHitboxSize(Vector2i& hitboxSize)
 	{
 		_hitboxSize = hitboxSize;
 	}

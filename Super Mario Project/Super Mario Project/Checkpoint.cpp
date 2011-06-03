@@ -38,16 +38,16 @@ namespace Collisions
 
 	void Checkpoint::render(RenderWindow& app)
     {
-		Sprite sprite = this->getTexture()->getSprite();
-		int right = this->getTexture()->getImage().GetWidth() / max(this->getSpriteNumbersByState()[NOT_PASSED], this->getSpriteNumbersByState()[PASSED]);
+		Sprite sprite = _texture->getSprite();
+		int right = _texture->getImage().GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
 
 		if(_state == NOT_PASSED)
 		{
-			sprite.SetSubRect(IntRect(0, 0, right, this->getTexture()->getImage().GetHeight() / 2));
+			sprite.SetSubRect(IntRect(0, 0, right, _texture->getImage().GetHeight() / 2));
 		}
 		else
 		{
-			sprite.SetSubRect(IntRect(0, this->getTexture()->getImage().GetHeight() / 2, right, this->getTexture()->getImage().GetHeight()));
+			sprite.SetSubRect(IntRect(0, _texture->getImage().GetHeight() / 2, right, _texture->getImage().GetHeight()));
 		}
 
 		app.Draw(sprite);
@@ -72,7 +72,7 @@ namespace Collisions
 				if(word == "nb_sprites_active=")
 				{
 					stream >> value;
-					this->addSpriteNumber(value);
+					_spriteNumbersByState.push_back(value);
 					value = 0;
 				}
 				else
@@ -83,7 +83,7 @@ namespace Collisions
 				if(word == "nb_sprites_inactive=")
 				{
 					stream >> value;
-					this->addSpriteNumber(value);
+					_spriteNumbersByState.push_back(value);
 					value = 0;
 				}
 				else
@@ -94,7 +94,7 @@ namespace Collisions
 				if(word == "v_anim=")
 				{
 					stream >> value;
-					this->addAnimationSpeed(value);
+					_animationSpeeds.push_back(value);
 				}
 				else
 					throw exception("\"v_anim=\" keyword is missing", 1);

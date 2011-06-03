@@ -19,7 +19,7 @@ namespace Rendering
 		 /* Load texture */
 		 if(!_image.LoadFromFile(name + ".png"))
 		 {
-			 cout << "Erreur de chargement de la texture " << name;
+			 cout << "Error in loading texture " << name;
 		 }
 		 _image.SetSmooth(false);
 
@@ -41,24 +41,20 @@ namespace Rendering
 		return _sprite;
 	}
 
-	void Texture::setName(const string& name)
-	{
-		_name = name;
-	}
-
-	void Texture::setCoordSprite(int left, int top, int right, int bottom)
+	void Texture::setSubRect(int left, int top, int right, int bottom)
 	{
 		_sprite.SetSubRect(IntRect(left, top, right, bottom));
 	}
 
-	void Texture::setPositionSprite(float x, float y)
+	void Texture::setPosition(float x, float y)
 	{
 		_sprite.SetPosition(x, y);
 	}
+	
 
-	void Texture::setPositionSprite(const Vector2f& position)
+	void Texture::setName(const string& name)
 	{
-		_sprite.SetPosition(position);
+		_name = name;
 	}
 
 	Texture::~Texture()

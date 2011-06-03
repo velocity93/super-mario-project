@@ -36,7 +36,7 @@ namespace Collisions
 			}
 			else
 			{
-				throw exception("Problème dans les collisions");
+				throw exception("Error in collisions");
 			}
 		}
 	}
@@ -53,7 +53,7 @@ namespace Collisions
 
 	void CollisionManager::detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info)
 	{
-
+		
 	}
 
 } // namespace
