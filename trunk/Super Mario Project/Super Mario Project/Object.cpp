@@ -25,26 +25,25 @@ namespace Rendering
 
 	void Object::update(RenderWindow& app)
 	{
-		time;
-	}
-	
-	void Object::render(RenderWindow& app)
-	{
 		/* Compute coord sprite according to elapsedTime */
 		const View& view = app.GetDefaultView();
-		int nbSprites = this->getSpriteNumbersByState().front();
-		int spriteHeight = (this->getTexture()->getImage().GetHeight() / nbSprites);		
-		Sprite sprite = this->getTexture()->getSprite();
+		int nbSprites = _spriteNumbersByState.front();
+		int spriteHeight = _texture->getImage().GetHeight() / nbSprites;
+		Sprite sprite = _texture->getSprite();
 		int cpt = 0;
 
 		/* If object is smaller than screen size */
 		while(sprite.GetPosition().x < view.GetRect().Right)
 		{
-			sprite.SetPosition(getPosition().getX() + getTexture()->getImage().GetWidth() * cpt, getPosition().getY());
-			sprite.SetSubRect(IntRect(0, (((int)time) % nbSprites) * spriteHeight, this->getTexture()->getImage().GetWidth(), (1 + (((int)time) % nbSprites)) * spriteHeight));
-			app.Draw(sprite);
+			sprite.SetPosition(_position.getX() + _texture->getImage().GetWidth() * cpt, _position.getY());
+			sprite.SetSubRect(IntRect(0, (((int)time) % nbSprites) * spriteHeight, _texture->getImage().GetWidth(), (1 + (((int)time) % nbSprites)) * spriteHeight));
 			cpt++;
 		}
+	}
+	
+	void Object::render(RenderWindow& app)
+	{
+		app.Draw(_texture->getSprite());
 	}
 
 	void Object::loadCfgObject(const string& textureName)
@@ -65,19 +64,19 @@ namespace Rendering
 				if(word == "nb_sprites=")
 				{
 					stream >> value;
-					this->addSpriteNumber(value);
+					_spriteNumbersByState.push_back(value);
 					value = 0;
 				}
 				else
 					throw exception(" \"nb_sprites=\" keyword is missing", 1);
 
-				if(this->getSpriteNumbersByState()[0] > 1)
+				if(_spriteNumbersByState[0] > 1)
 				{
 					stream >> word;
 					if(word == "v_anim=")
 					{
 						stream >> value;
-						this->addAnimationSpeed(value);
+						_animationSpeeds.push_back(value);
 					}
 					else
 						throw exception("\"v_anim=\" keyword is missing", 1);

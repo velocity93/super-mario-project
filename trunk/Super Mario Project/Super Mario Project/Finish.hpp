@@ -21,7 +21,7 @@ namespace Collisions
 		Finish(const string& textureName, Coord<float>& position) : Collisionable(textureName, position) { }
 
 		void update(RenderWindow& app);
-		void render(RenderWindow& app, const View& view);
+		void render(RenderWindow& app);
 
         virtual ~Finish();
 		

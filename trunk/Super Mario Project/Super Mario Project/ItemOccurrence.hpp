@@ -26,9 +26,9 @@ namespace Collisions
 		};
 
    
-		ItemOccurrence(const string& textureName) : EntityMovable(textureName), _state(NORMAL), _isActive(true) { }
-		ItemOccurrence(const string& textureName, Coord<float> position, State state, bool isActive)
-			: EntityMovable(textureName, position), _state(state), _isActive(isActive) { }
+		ItemOccurrence(const string& textureName) : EntityMovable(textureName), _state(NORMAL), _isActive(true), _blockExitTime(0) { }
+		ItemOccurrence(const string& textureName, Coord<float> position, State state)
+			: EntityMovable(textureName, position), _state(state), _isActive(true), _blockExitTime(0) { }
 
 		State getState();
 		bool getIsActive();
@@ -43,6 +43,7 @@ namespace Collisions
     private:
 		State _state;
 		bool _isActive;
+		int _blockExitTime;
 		Item* _item;
     };
 } // namespace

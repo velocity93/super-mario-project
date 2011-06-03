@@ -12,7 +12,8 @@
 
 #include "EntityMovable.hpp"
 
-#define MONSTER_EXIT_SPEED 0.05F
+#define MONSTER_EXIT_SPEED			0.05F
+#define M_SPEED_WALK_MIN			0.008F
 
 namespace Collisions
 {
@@ -44,20 +45,25 @@ namespace Collisions
 		};
 
 	
-		MonsterOccurrence(const string& textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr) { }
-		MonsterOccurrence(const string& textureName, Coord<float>& position) : EntityMovable(textureName, position), _state(M_WALK), _monster(nullptr) { }
-
-		void update(RenderWindow& app);
-		void render(RenderWindow& app);
+		MonsterOccurrence(const string& textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr), _isActive(true) { }
+		MonsterOccurrence(const string& textureName, Coord<float>& position) 
+			: EntityMovable(textureName, position), _initialPosition(position), _state(M_WALK), _monster(nullptr), _isActive(true) { }
 
 		State getState();
 		void setState(State state);
+
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		virtual ~MonsterOccurrence();
 
 	private:
 		Monster* _monster;
+		bool _isActive;
+		Coord<float> _initialPosition;
 		State _state;
+
+		void updateMonsterActivity(RenderWindow& app);
 	};
 } // namespace
 

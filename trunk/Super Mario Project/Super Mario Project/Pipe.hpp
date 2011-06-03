@@ -37,6 +37,7 @@ namespace Collisions
 		/* getters and setters */
 		Direction getDirection();
 		Monster* getMonster();
+		int getLenght();
 		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);

@@ -34,20 +34,18 @@ namespace Collisions
 	{
 		/* Update physic position */
 		/* Save actual position in previous prosition */
-		this->setPreviousPosition(this->getPosition());
+		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(this->getPosition().getX() + this->getSpeed().x * app.GetFrameTime(), 
-			this->getPosition().getY() + this->getSpeed().y * app.GetFrameTime());
-
-		/* Update graphics data */
-		// TODO
+		this->setPosition(_position.getX() + _speed.x * app.GetFrameTime(), 
+			_position.getY() + _speed.y * app.GetFrameTime());
 
 	}
 
 	void ItemOccurrence::render(RenderWindow& app)
 	{
-		app.Draw(this->getTexture()->getSprite());
+		Sprite sprite = _texture->getSprite();
+		app.Draw(sprite);
 	}
 
 	ItemOccurrence::~ItemOccurrence()

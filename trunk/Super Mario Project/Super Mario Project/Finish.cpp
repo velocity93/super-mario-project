@@ -14,9 +14,9 @@ namespace Collisions
     {
     }
 
-	void Finish::render(RenderWindow& app, const View& view)
+	void Finish::render(RenderWindow& app)
     {
-		app.Draw(this->getTexture()->getSprite());
+		app.Draw(_texture->getSprite());
     }
 
     Finish::~Finish()

@@ -24,10 +24,11 @@ namespace Collisions
 	{
 		/* Update physic position */
 		/* Save actual position in previous prosition */
-		this->setPreviousPosition(this->getPosition());
+		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(this->getPosition().getX() + this->getSpeed().x * app.GetFrameTime(), this->getPosition().getY() + this->getSpeed().x * app.GetFrameTime());
+		this->setPosition(_position.getX() + _speed.x * app.GetFrameTime(), 
+			_position.getY() + _speed.x * app.GetFrameTime());
 	}
 
 	void ProjectileOccurrence::render(RenderWindow& app)

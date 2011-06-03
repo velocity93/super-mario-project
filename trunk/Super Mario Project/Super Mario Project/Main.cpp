@@ -16,13 +16,19 @@ using namespace sf;
 int main(int argc, char* argv[])
 {
 	World* w = new World();
-	//Background background = Background("textures\\backgrounds\\skyBlueHills");
-	//Background background2 = Background("textures\\backgrounds\\blueHills");
 	argc;
 	argv;
 
 	// Create the main window
 	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
+
+	App.SetView(View(FloatRect(0,0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+
+	Background background = Background("textures\\backgrounds\\skyBlueHills",App.GetDefaultView());
+	Background background2 = Background("textures\\backgrounds\\BlueHills", App.GetDefaultView());
+
+	// Limit to 60 FPS
+	App.SetFramerateLimit(60);
 
 	// Start the game loop
 	while (App.IsOpened())
@@ -51,14 +57,12 @@ int main(int argc, char* argv[])
 		}
 
 		// Update World
-		//w->update(App);
-		//background.update(App);
-		//background2.update(App);
+		background.update(App);
+
+		App.Clear();
 
 		// Draw World
-		//w->render(App);
-		//background.render(App);
-		//background2.render(App);
+		background.render(App);
 
 		// Update the window
 		App.Display();

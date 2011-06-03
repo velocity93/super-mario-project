@@ -50,6 +50,16 @@ namespace Rendering
 		_nbLives = nbLives;
 	}
 
+	void HUD::setNbMonstersKilled(int nbMonstersKilled)
+	{
+		_nbMonstersKilled = nbMonstersKilled;
+	}
+
+	void HUD::setNbMonstersKilledByShell(int nbMonstersKilledByShell)
+	{
+		_nbMonstersKilledByShell = nbMonstersKilledByShell;
+	}
+
 	void HUD::update(RenderWindow& app)
 	{
 		_time -= app.GetFrameTime();

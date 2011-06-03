@@ -20,6 +20,11 @@ namespace Collisions
 		return _submission;
 	}
 
+	Vector2f Item::getInitialSpeed()
+	{
+		return _initialSpeed;
+	}
+
 	vector<ItemOccurrence*> Item::getItemOccurrences()
 	{
 		return _itemOccurences;

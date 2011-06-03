@@ -10,6 +10,9 @@
 #ifndef HPP_PERSO
 #define HPP_PERSO
 
+/* Physic constant */
+#define SPEED_X_MIN						0.008F
+
 #include "HUD.hpp"
 #include "EntityMovable.hpp"
 #include "MonsterOccurrence.hpp"
@@ -52,7 +55,7 @@ namespace Collisions
 			LOWERED,
 			LOWERED_JUMP,
 			SIT_DOWN,
-			SAUT_DESCENDANT,
+			JUMP_FALLING,
 			RUN_1,
 			SKID,
 			SLIDE,
@@ -103,14 +106,8 @@ namespace Collisions
 		};
 
 		/* Constructors */
-		Perso(const string& textureName) : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-			_jumpTime(0) { loadPerso(textureName); }
-		Perso(const string& textureName, Coord<float>& Position) : EntityMovable(textureName, Position), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-			_jumpTime(0) { }
+		Perso(const string& textureName);
+		Perso(const string& textureName, Coord<float>& position);
 
 		/* getters and setters */
 		HUD* getHUD();
@@ -152,6 +149,9 @@ namespace Collisions
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
+		/* Loading character configuration */
+		void loadPerso(const string& textureName);
+
 		/* Destructor */
         virtual ~Perso();
 		
@@ -165,7 +165,6 @@ namespace Collisions
 		MonsterOccurrence* _broughtMonster;
 		Pipe* _insidePipe;
 		Checkpoint* _checkpointPassed;
-		//sounds
 		int _invincibleTime;
 		int _invincibleStarTime;
 		int _transformationTime;
@@ -175,8 +174,16 @@ namespace Collisions
 		int _deathTime;
 		int _finishTime;
 		int _jumpTime;
+		vector<string> _keywords;
 
-		void loadPerso(const string& textureName);
+		/* Move management */
+		void lateral_move(RenderWindow& app);
+
+		/* Frictions management */
+		void frictions(float time);
+
+		/* Update character state when he is inside a pipe */
+		void updateInPipe();
     };
 } // namespace
 

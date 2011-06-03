@@ -34,8 +34,8 @@ namespace SuperMarioProject
     public:
         Level() : _levelName(""), _musicTitle(""), _size(Vector2f()), _spawn(Vector2f()),
 			_checkpoints(vector<Checkpoint*>()), _projectiles(vector<Projectile*>()),
-			_monsters(vector<Monster*>()), _pipes(vector<Pipe*>())
-			//_finishes(vector<Finish*>()), _backgrounds(vector<Background*>()), 
+			_monsters(vector<Monster*>()), _pipes(vector<Pipe*>()), _foregrounds(vector<Foreground*>()),
+			_finishes(vector<Finish*>()), _backgrounds(vector<Background*>())
 		{ }
 
 		/* Size of level */
@@ -65,6 +65,15 @@ namespace SuperMarioProject
 		/* All blocks */
 		vector<Blocks*> getBlocks();
 
+		/* All backgrounds */
+		vector<Background*> getBackgrounds();
+
+		/* All foregrounds */
+		vector<Foreground*> getForegrounds();
+
+		/* All finishes */
+		vector<Finish*> getFinishes();
+
 		/* Update data */
 		void update(RenderWindow& app);
 		
@@ -80,8 +89,9 @@ namespace SuperMarioProject
 		Vector2f _spawn;
 		Vector2f _blockSize;
 		vector<Checkpoint*> _checkpoints;
-		//vector<Background*> _backgrounds:
-		//vector<Finish*> _finishes;
+		vector<Background*> _backgrounds;
+		vector<Foreground*> _foregrounds;
+		vector<Finish*> _finishes;
 		vector<Projectile*> _projectiles;
 		vector<Monster*> _monsters;
 		vector<Pipe*> _pipes;

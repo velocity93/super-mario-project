@@ -45,6 +45,9 @@ namespace Collisions
 		/* Physic submission */
 		int getSubmission();
 
+		/* Initial Speed of Item */
+		Vector2f getInitialSpeed();
+
 		/* List of items occurrences */
 		vector<ItemOccurrence*> getItemOccurrences();
 
@@ -66,6 +69,7 @@ namespace Collisions
 	private:
 		Type _type;
 		int _submission;
+		Vector2f _initialSpeed;
 		vector<ItemOccurrence*> _itemOccurences;
 	};
 } // namespace

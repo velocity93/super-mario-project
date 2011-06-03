@@ -31,9 +31,8 @@ namespace Rendering
 		Sprite getSprite();
 		void setName(const string& name);
 
-		void setCoordSprite(int left, int top, int right, int bottom);
-		void setPositionSprite(float x, float y);
-		void setPositionSprite(const Vector2f& position);
+		void setSubRect(int left, int top, int right, int bottom);
+		void setPosition(float x, float y);
 
 		/* Destructor */
 		virtual ~Texture();

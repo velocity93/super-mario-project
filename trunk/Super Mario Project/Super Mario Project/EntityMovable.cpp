@@ -35,9 +35,13 @@ namespace Collisions
 		_speed = speed;
 	}
 
-	void EntityMovable::setSpeed(float x, float y)
+	void EntityMovable::setSpeedX(float x)
 	{
 		_speed.x = x;
+	}
+
+	void EntityMovable::setSpeedY(float y)
+	{
 		_speed.y = y;
 	}
 
@@ -53,7 +57,6 @@ namespace Collisions
 		if(speed->y < -SPEED_Y_MAX)
 			speed->y = -SPEED_Y_MAX;
 	}
-
 
 	EntityMovable::~EntityMovable()
 	{

@@ -55,33 +55,28 @@ namespace SuperMarioProject
 		return _blocks;
 	}
 
+	vector<Background*> Level::getBackgrounds()
+	{
+		return _backgrounds;
+	}
+
+	vector<Foreground*> Level::getForegrounds()
+	{
+		return _foregrounds;
+	}
+
+	vector<Finish*> Level::getFinishes()
+	{
+		return _finishes;
+	}
+
 	void Level::update(RenderWindow& app)
 	{
 		/* Iterators Declarations */
-		vector<Object*>::iterator itObjects;
-		vector<Checkpoint*>::iterator itCheckpoints;
 		vector<Pipe*>::iterator itPipes;
 		vector<Item*>::iterator itItems;
 		vector<Projectile*>::iterator itProjectiles;
 		vector<Monster*>::iterator itMonsters;
-		
-		/* Objects */
-		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
-		{
-			(*itObjects)->update(app);
-		}
-
-		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
-		{
-			(*itCheckpoints)->update(app);
-		}
-
-		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
-		{
-			(*itPipes)->update(app);
-		}
 
 		/* Items */
 		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
@@ -89,39 +84,60 @@ namespace SuperMarioProject
 			(*itItems)->update(app);
 		}
 
+		// BLOCKS ??
+
+		/* Monsters */
+		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		{
+			(*itMonsters)->update(app);
+		}
+
 		/* Projectiles */
 		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
 		{
 			(*itProjectiles)->update(app);
+		}
+
+		// Persos ??
+		
+		/* Pipes */
+		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		{
+			(*itPipes)->update(app);
 		}
 	}
 
 	void Level::render(RenderWindow& app)
 	{
 		/* Iterators Declarations */
+		vector<Background*>::iterator itBackgrounds;
 		vector<Object*>::iterator itObjects;
-		vector<Checkpoint*>::iterator itCheckpoints;
-		vector<Pipe*>::iterator itPipes;
+		vector<Finish*>::iterator itFinish;
 		vector<Item*>::iterator itItems;
-		vector<Projectile*>::iterator itProjectiles;
+		vector<Checkpoint*>::iterator itCheckpoints;
 		vector<Monster*>::iterator itMonsters;
-		
+		vector<Projectile*>::iterator itProjectiles;
+		vector<Pipe*>::iterator itPipes;
+		vector<Foreground*>::iterator itForegrounds;
+
+		// background_generators ?
+
+		/* Backgrounds */
+		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds < this->_backgrounds.end(); itBackgrounds++)
+		{
+			(*itBackgrounds)->render(app);
+		}
+
 		/* Objects */
 		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
 		{
 			(*itObjects)->render(app);
 		}
-
-		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		
+		/* Finish */
+		for(itFinish = this->_finishes.begin(); itFinish < this->_finishes.end(); itFinish++)
 		{
-			(*itCheckpoints)->render(app);
-		}
-
-		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
-		{
-			(*itPipes)->render(app);
+			(*itFinish)->render(app);
 		}
 
 		/* Items */
@@ -130,39 +146,74 @@ namespace SuperMarioProject
 			(*itItems)->render(app);
 		}
 
+		// BLOCKS 
+
+		/* CheckPoints */
+		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		{
+			(*itCheckpoints)->render(app);
+		}
+
+		/* Monsters */
+		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		{
+			(*itMonsters)->render(app);
+		}
+
 		/* Projectiles */
 		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
 		{
 			(*itProjectiles)->render(app);
+		}
+
+		// Persos ??
+		
+		/* Pipes */
+		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		{
+			(*itPipes)->render(app);
+		}
+
+		// foreground_generators ?
+
+		/* Foregrounds */
+		for(itForegrounds = this->_foregrounds.begin(); itForegrounds < this->_foregrounds.end(); itForegrounds++)
+		{
+			(*itForegrounds)->render(app);
 		}
 	}
 
     Level::~Level()
     {
 		/* Iterators Declarations */
+		vector<Background*>::iterator itBackgrounds;
 		vector<Object*>::iterator itObjects;
-		vector<Checkpoint*>::iterator itCheckpoints;
-		vector<Pipe*>::iterator itPipes;
+		vector<Finish*>::iterator itFinish;
 		vector<Item*>::iterator itItems;
-		vector<Projectile*>::iterator itProjectiles;
+		vector<Checkpoint*>::iterator itCheckpoints;
 		vector<Monster*>::iterator itMonsters;
+		vector<Projectile*>::iterator itProjectiles;
+		vector<Pipe*>::iterator itPipes;
+		vector<Foreground*>::iterator itForegrounds;
+
+		// background_generators ?
+
+		/* Backgrounds */
+		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds < this->_backgrounds.end(); itBackgrounds++)
+		{
+			delete (*itBackgrounds);
+		}
 
 		/* Objects */
 		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
 		{
 			delete (*itObjects);
 		}
-
-		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		
+		/* Finish */
+		for(itFinish = this->_finishes.begin(); itFinish < this->_finishes.end(); itFinish++)
 		{
-			delete (*itCheckpoints);
-		}
-
-		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
-		{
-			delete (*itPipes);
+			delete (*itFinish);
 		}
 
 		/* Items */
@@ -171,11 +222,41 @@ namespace SuperMarioProject
 			delete (*itItems);
 		}
 
+		// BLOCKS 
+
+		/* CheckPoints */
+		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		{
+			delete (*itCheckpoints);
+		}
+
+		/* Monsters */
+		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		{
+			delete (*itMonsters);
+		}
+
 		/* Projectiles */
 		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
 		{
 			delete (*itProjectiles);
 		}
+
+		// Persos ??
+		
+		/* Pipes */
+		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		{
+			delete (*itPipes);
+		}
+
+		/* Foregrounds */
+		for(itForegrounds = this->_foregrounds.begin(); itForegrounds < this->_foregrounds.end(); itForegrounds++)
+		{
+			delete (*itForegrounds);
+		}
+
+		// foreground_generators ?
 
     }
 } // namespace
