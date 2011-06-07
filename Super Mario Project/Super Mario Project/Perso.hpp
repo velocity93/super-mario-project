@@ -182,6 +182,12 @@ namespace Collisions
 		/* Frictions management */
 		void frictions(float time);
 
+		/* Perso Hurted */
+		void hurted();
+
+		/* Transform */
+		void transform(Transformations nextTransformation);
+
 		/* Update character state when he is inside a pipe */
 		void updateInPipe();
     };

@@ -12,6 +12,7 @@
 
 /* Physics constants */
 #define SPEED_Y_MAX						0.008F
+#define EJECTION_SPEED_Y				0.2F
 #define GRAVITY							0.002F
 
 /* Frictions constants */
