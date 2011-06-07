@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "ItemOccurrence.hpp"
+#include "Item.hpp"
 
 namespace Collisions
 {
@@ -32,6 +33,10 @@ namespace Collisions
 
 	void ItemOccurrence::update(RenderWindow& app)
 	{
+		/* Submissions */
+		if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
+			gravity(&this->_speed, app.GetFrameTime());
+
 		/* Update physic position */
 		/* Save actual position in previous prosition */
 		_previousPosition = _position;

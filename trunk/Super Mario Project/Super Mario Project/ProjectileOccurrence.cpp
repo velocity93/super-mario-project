@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "ProjectileOccurrence.hpp"
+#include "Projectile.hpp"
 
 namespace Collisions
 {
@@ -22,6 +23,10 @@ namespace Collisions
 
 	void ProjectileOccurrence::update(RenderWindow& app)
 	{
+		/* Submissions */
+		if(this->model->getSubmission() & GRAVITY_SUBMISSION)
+			gravity(&this->_speed, app.GetFrameTime());
+
 		/* Update physic position */
 		/* Save actual position in previous prosition */
 		_previousPosition = _position;

@@ -211,6 +211,8 @@ namespace Collisions
 	void Perso::update(RenderWindow& app)
 	{
 		gravity(&this->getSpeed(), app.GetFrameTime());
+
+		/* Lateral movements management */
 		lateral_move(app);
 
 		/* Save actual position as previous position */
@@ -219,6 +221,11 @@ namespace Collisions
 		/* Compute new position */
 		this->setPosition(this->getPosition().getX() + app.GetFrameTime() * getSpeed().x, 
 			this->getPosition().getY() + app.GetFrameTime() * getSpeed().y);
+
+	}
+
+	void Perso::render(RenderWindow& app)
+	{
 
 	}
 
@@ -379,6 +386,65 @@ namespace Collisions
 		}
 	}
 
+	void Perso::hurted()
+	{
+		if(_transformation >= FIRE_MARIO)
+		{
+			transform(SUPER_MARIO);
+			/*p->tps_invincible = 2000;
+			p->tps_transformation = 1000;
+			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_TOUCHE]);*/
+		}
+		else if(_transformation == SMALL_MARIO)
+		{
+			transform(SUPER_MARIO);
+			_state = DEAD;
+			_speed.x = 0;
+			_speed.y = EJECTION_SPEED_Y * 5;
+			/*p->tps_mort = TPS_MORT;
+			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_DIE]);
+			FSOUND_Stream_Stop(n->musique);*/
+		}
+		else
+		{
+			transform(SMALL_MARIO);
+			/*p->tps_invincible = 2000;
+			p->tps_transformation = 1000;
+			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_TOUCHE]);*/
+		}
+	}
+
+	void Perso::transform(Transformations nextTransformation)
+	{
+		/* Selon le futur état du personnage,
+	on charge la texture appropriée */
+	switch(nextTransformation) {
+		case SMALL_MARIO :
+			loadPerso("small_mario");
+			_transformation = SMALL_MARIO;
+
+			/* Faire correspondre les deux coins bas_gauche de la hitbox */
+			//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
+			break;
+		case SUPER_MARIO :
+			loadPerso("super_mario");
+			_transformation = SUPER_MARIO;
+
+			/* Faire correspondre les deux coins bas_gauche de la hitbox */
+			//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
+			break;
+		case FIRE_MARIO :
+			loadPerso("fire_mario");
+			_transformation = FIRE_MARIO;
+			break;
+		case ICE_MARIO :
+			loadPerso("ice_mario");
+			_transformation = ICE_MARIO;
+			break;
+		default : break;
+	}
+	}
+
 	void Perso::frictions(float time)
 	{
 		float coeff;
@@ -432,11 +498,6 @@ namespace Collisions
 			break;
 		}
 		// Play sound pipe here !
-	}
-
-	void Perso::render(RenderWindow& app)
-	{
-
 	}
 
 	void Perso::loadPerso(const string& textureName)
@@ -514,96 +575,6 @@ namespace Collisions
 						}
 					}
 				}
-
-				//stream >> word;
-				//if(word == "nb_sprites_marche=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_marche=\" keyword is missing", 1);
-
-				//stream >> word;
-				//if(word == "nb_sprites_course=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_course=\" keyword is missing", 1);
-
-				//stream >> word;
-				//if(word == "nb_sprites_saut=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_saut=\" keyword is missing", 1);
-
-				//stream >> word;
-				//if(word == "nb_sprites_verticaux=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_verticaux=\" keyword is missing", 1);
-
-
-				//stream >> word;
-				//if(word == "nb_sprites_echelle=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_echelle=\" keyword is missing", 1);
-
-
-				//stream >> word;
-				//if(word == "nb_sprites_marche_carapace=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_marche_carapace=\" keyword is missing", 1);
-
-
-				//stream >> word;
-				//if(word == "nb_sprites_carapace=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-				//else
-				//	throw exception(" \"nb_sprites_carapace=\" keyword is missing", 1);
-
-				///* Optional keywords */
-				//stream >> word;
-				//if(word == "nb_sprites_attaque=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
-
-				//stream >> word;
-				//if(word == "nb_sprites_attaque_speciale=")
-				//{
-				//	stream >> value;
-				//	_spriteNumbersByState.push_back(value);
-				//	value = INT_MAX;
-				//}
 			}
 			catch(exception& e)
 			{
