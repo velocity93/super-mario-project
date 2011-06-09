@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	Coord<float> EntityMovable::getPreviousPosition()
+	Coordf EntityMovable::getPreviousPosition()
 	{
 		return _previousPosition;
 	}
@@ -25,12 +25,12 @@ namespace Collisions
 		return _side;
 	}
 
-	void EntityMovable::setPreviousPosition(Coord<float>& previousPosition)
+	void EntityMovable::setPreviousPosition(const Coordf& previousPosition)
 	{
-		_previousPosition.set(previousPosition);
+		_previousPosition = previousPosition;
 	}
 
-	void EntityMovable::setSpeed(Vector2f& speed)
+	void EntityMovable::setSpeed(const Vector2f& speed)
 	{
 		_speed = speed;
 	}
@@ -45,17 +45,17 @@ namespace Collisions
 		_speed.y = y;
 	}
 
-	void EntityMovable::setSide(Side side)
+	void EntityMovable::setSide(const Side &side)
 	{
 		_side = side;
 	}
 
-	void EntityMovable::gravity(Vector2f* speed, float time)
+	void EntityMovable::gravity(Vector2f &speed, float time)
 	{
-		speed->y -= GRAVITY * time;
+		speed.y -= GRAVITY * time;
 
-		if(speed->y < -SPEED_Y_MAX)
-			speed->y = -SPEED_Y_MAX;
+		if(speed.y < -SPEED_Y_MAX)
+			speed.y = -SPEED_Y_MAX;
 	}
 
 	EntityMovable::~EntityMovable()

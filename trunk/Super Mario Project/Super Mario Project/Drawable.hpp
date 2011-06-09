@@ -50,10 +50,10 @@ namespace Rendering
 	
 		/* Constructors */
 		Drawable(const string& textureName);
-		Drawable(const string& textureName, Coord<float>& position);
+		Drawable(const string& textureName,Coordf& position);
 
 		/* getters and setters */
-		Coord<float> getPosition();
+		Coordf getPosition();
 		Texture* Drawable::getTexture();
 		void setPosition(float x, float y);
 
@@ -68,7 +68,7 @@ namespace Rendering
 
 	protected:
 		Texture* _texture;
-		Coord<float> _position;
+		Coordf _position;
 		vector<int> _spriteNumbersByState;
 		vector<int> _animationSpeeds;
 

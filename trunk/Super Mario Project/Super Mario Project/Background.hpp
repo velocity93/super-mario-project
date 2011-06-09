@@ -19,7 +19,7 @@ namespace Rendering
     public:
 		/* Constructors */
 		Background(const string& textureName, const View& view);
-		Background(const string& textureName, const View& view, Coord<float>& position);
+		Background(const string& textureName, const View& view,Coordf& position);
 		
 		/* getter and setter */
 		bool getVerticalRepetition();

@@ -30,8 +30,8 @@ namespace Collisions
 		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(_position.getX() + _speed.x * app.GetFrameTime(), 
-			_position.getY() + _speed.y * app.GetFrameTime());
+		this->setPosition(_position.x + _speed.x * app.GetFrameTime(), 
+			_position.y + _speed.y * app.GetFrameTime());
 	}
 
 	void MonsterOccurrence::render(RenderWindow& app)
@@ -43,23 +43,23 @@ namespace Collisions
 	{
 		const View& view = app.GetDefaultView();
 
-		if(this->getHitboxPosition().getX() < view.GetCenter().x - view.GetHalfSize().x
-			|| this->getHitboxPosition().getX() + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
-			|| this->getHitboxPosition().getY() > view.GetCenter().y + view.GetHalfSize().y
-			|| this->getHitboxPosition().getY() + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
+		if(this->getHitboxPosition().x < view.GetCenter().x - view.GetHalfSize().x
+			|| this->getHitboxPosition().x + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
+			|| this->getHitboxPosition().y > view.GetCenter().y + view.GetHalfSize().y
+			|| this->getHitboxPosition().y + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
 		{
 			
-			if(this->_initialPosition.getX() < view.GetCenter().x - view.GetHalfSize().x
-			|| this->_initialPosition.getX() + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
-			|| this->_initialPosition.getY() > view.GetCenter().y + view.GetHalfSize().y
-			|| this->_initialPosition.getY() + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
+			if(this->_initialPosition.x < view.GetCenter().x - view.GetHalfSize().x
+			|| this->_initialPosition.x + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
+			|| this->_initialPosition.y > view.GetCenter().y + view.GetHalfSize().y
+			|| this->_initialPosition.y + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
 			{
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
 				_position = _initialPosition;
 				_previousPosition = _initialPosition;
 				_state = M_WALK;
 				_speed.x = -M_SPEED_WALK_MIN;
-				_side = Side::LEFT_SIDE;
+				_side = LEFT_SIDE;
 			}
 
 			_isActive = false;

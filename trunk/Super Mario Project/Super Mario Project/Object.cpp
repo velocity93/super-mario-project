@@ -18,7 +18,7 @@ namespace Rendering
 		loadCfgObject(textureName);
 	}
 
-	Object::Object(const string& textureName, Coord<float>& position) : Drawable(textureName, position)
+	Object::Object(const string& textureName,Coordf& position) : Drawable(textureName, position)
 	{ 
 		loadCfgObject(textureName);
 	}
@@ -35,7 +35,7 @@ namespace Rendering
 		/* If object is smaller than screen size */
 		while(sprite.GetPosition().x < view.GetRect().Right)
 		{
-			sprite.SetPosition(_position.getX() + _texture->getImage().GetWidth() * cpt, _position.getY());
+			sprite.SetPosition(_position.x + _texture->getImage().GetWidth() * cpt, _position.y);
 			sprite.SetSubRect(IntRect(0, (((int)time) % nbSprites) * spriteHeight, _texture->getImage().GetWidth(), (1 + (((int)time) % nbSprites)) * spriteHeight));
 			cpt++;
 		}

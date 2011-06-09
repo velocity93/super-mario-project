@@ -46,7 +46,7 @@ namespace Collisions
 
 	
 		MonsterOccurrence(const string& textureName) : EntityMovable(textureName), _state(M_WALK), _monster(nullptr), _isActive(true) { }
-		MonsterOccurrence(const string& textureName, Coord<float>& position) 
+		MonsterOccurrence(const string& textureName, Coordf& position) 
 			: EntityMovable(textureName, position), _initialPosition(position), _state(M_WALK), _monster(nullptr), _isActive(true) { }
 
 		State getState();
@@ -60,7 +60,7 @@ namespace Collisions
 	private:
 		Monster* _monster;
 		bool _isActive;
-		Coord<float> _initialPosition;
+		Coordf _initialPosition;
 		State _state;
 
 		void updateMonsterActivity(RenderWindow& app);

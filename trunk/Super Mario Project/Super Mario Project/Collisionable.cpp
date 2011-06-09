@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	Coord<float> Collisionable::getHitboxPosition()
+	Coordf Collisionable::getHitboxPosition()
 	{
 		return _hitboxPosition;
 	}
@@ -20,12 +20,12 @@ namespace Collisions
 		return _hitboxSize;
 	}
 
-	void Collisionable::setHitboxPosition(Coord<float>& hitboxPosition)
+	void Collisionable::setHitboxPosition(const Coordf& hitboxPosition)
 	{
 		_hitboxPosition = hitboxPosition;
 	}
 
-	void Collisionable::setHitboxSize(Vector2i& hitboxSize)
+	void Collisionable::setHitboxSize(const Vector2i& hitboxSize)
 	{
 		_hitboxSize = hitboxSize;
 	}

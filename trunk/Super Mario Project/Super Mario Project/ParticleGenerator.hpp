@@ -23,18 +23,18 @@ namespace Collisions
 		ParticleGenerator(const string& textureName) : Collisionable(textureName), _flow(0), _hasGravity(false), 
 			_startColor(Color(0, 0, 0)), _endColor(Color(0, 0, 0)) , _particleLife(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1),
 			_eTBeforeCreatingParticles(0) { }
-		ParticleGenerator(const string& textureName, Coord<float> position, int particleLife, int flow, bool hasGravity, Color startColor, Color endColor) 
+		ParticleGenerator(const string& textureName,Coordf position, int particleLife, int flow, bool hasGravity, Color startColor, Color endColor) 
 			: Collisionable(textureName, position), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor), _particleLife(particleLife),
 			_eTBeforeCreatingParticles(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1) { }
 
 		/* getters and setters */
-		Coord<int> getParticleSize();
+		Coordi getParticleSize();
 		int getNbMaxParticles();
 		int getFlow();
 		bool getHasGravity();
 		Color getStartColor();
 		Color getEndColor();
-		void setParticleSize(Coord<int>& particleSize);
+		void setParticleSize(Coordi& particleSize);
 		void setNbMaxParticles(int nbMaxParticles);
 		void setFlow(int flow);
 		void setHasGravity(bool hasGravity);
@@ -49,7 +49,7 @@ namespace Collisions
         virtual ~ParticleGenerator();
 		
     private:
-		Coord<int> _particleSize;
+		Coordi _particleSize;
 		vector<Particle> _particles;
 		int _particleLife;
 		int _nbMaxParticles;
