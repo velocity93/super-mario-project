@@ -29,7 +29,7 @@ namespace Collisions
 		loadPerso(textureName);
 	}
 
-	Perso::Perso(const string& textureName, Coord<float>& position) : EntityMovable(textureName, position), _environment(GROUND), _transformation(SMALL_MARIO), 
+	Perso::Perso(const string& textureName,Coordf& position) : EntityMovable(textureName, position), _environment(GROUND), _transformation(SMALL_MARIO), 
 		_state(STANDING), _hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
 			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
 			_jumpTime(0)
@@ -132,12 +132,12 @@ namespace Collisions
 		_state = state;
 	}
 
-	void Perso::setEnvironment(Environment environment)
+	void Perso::setEnvironment(const Environment &environment)
 	{
 		_environment = environment;
 	}
 
-	void Perso::setTransformation(Transformations transformation)
+	void Perso::setTransformation(const Transformations &transformation)
 	{
 		_transformation = transformation;
 	}
@@ -208,9 +208,9 @@ namespace Collisions
 	}
 
 
-	void Perso::update(RenderWindow& app)
+	void Perso::update(const RenderWindow& app)
 	{
-		gravity(&this->getSpeed(), app.GetFrameTime());
+        gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
 		lateral_move(app);
@@ -219,17 +219,17 @@ namespace Collisions
 		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(this->getPosition().getX() + app.GetFrameTime() * getSpeed().x, 
-			this->getPosition().getY() + app.GetFrameTime() * getSpeed().y);
+		this->setPosition(this->getPosition().x + app.GetFrameTime() * getSpeed().x, 
+			this->getPosition().y + app.GetFrameTime() * getSpeed().y);
 
 	}
 
-	void Perso::render(RenderWindow& app)
+	void Perso::render(const RenderWindow& app)
 	{
 
 	}
 
-	void Perso::lateral_move(RenderWindow& app)
+	void Perso::lateral_move(const RenderWindow& app)
 	{
 		int time = app.GetFrameTime();
 		const Input& input = app.GetInput();
@@ -239,9 +239,9 @@ namespace Collisions
 			if(_state != FINISH)
 			{
 				if(input.IsKeyDown(Key::Right))
-					_side = Side::RIGHT_SIDE;
+					_side = RIGHT_SIDE;
 				else
-					_side = Side::LEFT_SIDE;
+					_side = LEFT_SIDE;
 
 				if(input.IsKeyDown(Key::Right))
 				{
@@ -249,7 +249,7 @@ namespace Collisions
 					{
 						if(_speed.x < 0)
 						{
-							if(_environment != AIR && _broughtMonster == nullptr && _state != State::SKID)
+							if(_environment != AIR && _broughtMonster == nullptr && _state != SKID)
 							{
 								_state = SKID;
 								// play a sound here !
@@ -293,7 +293,7 @@ namespace Collisions
 					{
 						if(_speed.x > 0)
 						{
-							if(_environment != AIR && _broughtMonster == nullptr && _state != State::SKID)
+							if(_environment != AIR && _broughtMonster == nullptr && _state != SKID)
 							{
 								_state = SKID;
 								// play a sound here !
@@ -469,29 +469,29 @@ namespace Collisions
 	{
 		switch(_insidePipe->getDirection())
 		{
-		case Pipe::Direction::TO_TOP:
-			_state = State::GET_OUT_FROM_PIPE_VERTICAL;
-			setPosition(_insidePipe->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
-				_insidePipe->getPosition().getY() * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - getHitboxSize().y);
+		case Pipe::TO_TOP:
+			_state = GET_OUT_FROM_PIPE_VERTICAL;
+			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
+				_insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - getHitboxSize().y);
 			break;
 
-		case Pipe::Direction::TO_BOTTOM:
-			_state = State::GET_OUT_FROM_PIPE_VERTICAL;
-			setPosition(_insidePipe->getPosition().getX() * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
-				_insidePipe->getPosition().getY() * BLOCK_WIDTH);
+		case Pipe::TO_BOTTOM:
+			_state = GET_OUT_FROM_PIPE_VERTICAL;
+			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
+				_insidePipe->getPosition().y * BLOCK_WIDTH);
 			break;
 
-		case Pipe::Direction::TO_LEFT:
-			_side = Side::RIGHT_SIDE;
-			_state = State::GET_OUT_FROM_PIPE_HORIZONTAL;
-			setPosition((_insidePipe->getPosition().getX() + _insidePipe->getLenght()) * BLOCK_WIDTH, 
-				_insidePipe->getPosition().getY() * BLOCK_WIDTH);
+		case Pipe::TO_LEFT:
+			_side = RIGHT_SIDE;
+			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
+			setPosition((_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
+				_insidePipe->getPosition().y * BLOCK_WIDTH);
 			break;
 
-		case Pipe::Direction::TO_RIGHT:
-			_side = Side::LEFT_SIDE;
-			_state = State::GET_OUT_FROM_PIPE_HORIZONTAL;
-			setPosition(_insidePipe->getPosition().getX() * BLOCK_WIDTH, _insidePipe->getPosition().getY() * BLOCK_WIDTH);
+		case Pipe::TO_RIGHT:
+			_side = LEFT_SIDE;
+			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
+			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH, _insidePipe->getPosition().y * BLOCK_WIDTH);
 			break;
 
 		default :

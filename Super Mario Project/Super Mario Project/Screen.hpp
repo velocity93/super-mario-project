@@ -20,24 +20,24 @@ namespace Rendering
     {
     public:
 		/* Constructors */
-		Screen() : _origine(Coord<int>()), _size(Coord<int>()), _scrolling(Coord<float>()) { }
-		Screen(Coord<int>& origine, Coord<int>& size, Coord<float>& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
+		Screen() : _origine(Coordi()), _size(Coordi()), _scrolling(Coordf()) { }
+		Screen(Coordi& origine,Coordi& size,Coordf& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
 
 		/* getters and setters */
-        Coord<int> getOrigine();
-		Coord<int> getSize();
-		Coord<float> getScrolling();
-		void setOrigine(Coord<int>& Origine);
-		void setSize(Coord<int>& Size);
-		void setScrolling(Coord<float>& Scrolling);
+       Coordi getOrigine();
+		Coordi getSize();
+		Coordf getScrolling();
+		void setOrigine(Coordi& Origine);
+		void setSize(Coordi& Size);
+		void setScrolling(Coordf& Scrolling);
 
 		/* Destructor */
 		virtual ~Screen();
 		
     private:
-		Coord<int> _origine;
-		Coord<int> _size;
-		Coord<float> _scrolling;
+		Coordi _origine;
+		Coordi _size;
+		Coordf _scrolling;
     };
 } // namespace
 

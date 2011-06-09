@@ -42,26 +42,26 @@ namespace Collisions
 
     
 		/* Constructors */
-		EntityMovable(const string& textureName) : Collisionable(textureName), _previousPosition(Coord<float>()), _speed(Vector2f()), _side(RIGHT_SIDE) { }
-		EntityMovable(const string& textureName, Coord<float>& position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vector2f()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName) : Collisionable(textureName), _previousPosition(Coordf()), _speed(Vector2f()), _side(RIGHT_SIDE) { }
+		EntityMovable(const string& textureName, Coordf& position) : Collisionable(textureName, position), _previousPosition(position), _speed(Vector2f()), _side(RIGHT_SIDE) { }
 
 		/* getters and setters */
-		Coord<float> getPreviousPosition();
+		Coordf getPreviousPosition();
 		Vector2f getSpeed();
 		Side getSide();
-		void setPreviousPosition(Coord<float>& previousPosition);
-		void setSpeed(Vector2f& speed);
+		void setPreviousPosition(const Coordf& previousPosition);
+		void setSpeed(const Vector2f& speed);
 		void setSpeedX(float x);
 		void setSpeedY(float y);
-		void setSide(Side side);
+		void setSide(const Side &side);
 
-		void gravity(Vector2f* speed, float time);
+		void gravity(Vector2f &speed, float time);
 
 		/* Destructors */
         virtual ~EntityMovable();
 		
     protected:
-		Coord<float> _previousPosition;
+		Coordf _previousPosition;
 		Vector2f _speed;
 		Side _side;
     };

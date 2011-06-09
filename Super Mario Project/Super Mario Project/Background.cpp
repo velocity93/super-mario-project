@@ -16,7 +16,7 @@ namespace Rendering
 		configureBackground(textureName, view);
 	}
 
-	Background::Background(const string& textureName, const View& view, Coord<float>& position) : Object(textureName, position), _verticalRepetition(false)
+	Background::Background(const string& textureName, const View& view,Coordf& position) : Object(textureName, position), _verticalRepetition(false)
 	{
 		configureBackground(textureName, view);
 	}
@@ -38,12 +38,12 @@ namespace Rendering
 			{
 				for(int j = 0; j < heightFactor; j++)
 				{
-					sprite.SetPosition(_position.getX() + spriteWidth * i, _position.getY() + _texture->getImage().GetHeight() * j);
+					sprite.SetPosition(_position.x + spriteWidth * i, _position.y + _texture->getImage().GetHeight() * j);
 					_sprites.push_back(sprite);
 				}
 			}
 
-			sprite.SetPosition(_position.getX() + spriteWidth * i, _position.getY());
+			sprite.SetPosition(_position.x + spriteWidth * i, _position.y);
 			_sprites.push_back(sprite);
 		}
 	}

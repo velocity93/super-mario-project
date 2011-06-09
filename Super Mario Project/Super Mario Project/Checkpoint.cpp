@@ -16,7 +16,7 @@ namespace Collisions
 		loadCfgCheckpoint(textureName);
 	}
 
-	Checkpoint::Checkpoint(const string& textureName, Coord<float>& position, State state) : Collisionable(textureName, position), _state(state)
+	Checkpoint::Checkpoint(const string& textureName, Coordf& position, State state) : Collisionable(textureName, position), _state(state)
 	{
 		loadCfgCheckpoint(textureName);
 	}
@@ -26,7 +26,7 @@ namespace Collisions
 		return _state;
 	}
 	
-	void Checkpoint::setState(State state)
+	void Checkpoint::setState(const State &state)
 	{
 		_state = state;
 	}

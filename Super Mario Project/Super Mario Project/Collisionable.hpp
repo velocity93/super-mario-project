@@ -20,20 +20,20 @@ namespace Collisions
     {
 	public:
 		/* Constructors */
-		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Coord<float>()), _hitboxSize(Vector2i()) { }
-		Collisionable(const string& textureName, Coord<float>& position) : Drawable(textureName, position), _hitboxPosition(Coord<float>()), _hitboxSize(Vector2i()) { }
+		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Coordf()), _hitboxSize(Vector2i()) { }
+		Collisionable(const string& textureName,Coordf& position) : Drawable(textureName, position), _hitboxPosition(Coordf()), _hitboxSize(Vector2i()) { }
 
 		/* getters and setters */
-		Coord<float> getHitboxPosition();
+		Coordf getHitboxPosition();
 		Vector2i getHitboxSize();
-		void setHitboxPosition(Coord<float>& hitboxPosition);
-		void setHitboxSize(Vector2i& hitboxSize);
+		void setHitboxPosition(const Coordf& hitboxPosition);
+		void setHitboxSize(const Vector2i& hitboxSize);
 
 		/* Destructors */
         virtual ~Collisionable();
 		
     protected:
-		Coord<float> _hitboxPosition;
+		Coordf _hitboxPosition;
 		Vector2i _hitboxSize;
     };
 } // namespace

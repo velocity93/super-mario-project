@@ -14,7 +14,7 @@ namespace SuperMarioProject
 	{
 		_levelNames = vector<string>();
 		_persos = vector<Perso*>();
-		_windowSize = Coord<int>();
+		_windowSize =Coordi();
 		_fpsTime = 0;
 		_actualTime = 0;
 		_previousTime = 0; 

@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	Coord<int> ParticleGenerator::getParticleSize()
+	Coordi ParticleGenerator::getParticleSize()
 	{
 		return _particleSize;
 	}
@@ -40,7 +40,7 @@ namespace Collisions
 		return _endColor;
 	}
 
-	void ParticleGenerator::setParticleSize(Coord<int>& particleSize)
+	void ParticleGenerator::setParticleSize(Coordi& particleSize)
 	{
 		_particleSize= particleSize;
 	}

@@ -18,7 +18,7 @@ namespace Collisions
     {
     public:
 		Finish(const string& textureName) : Collisionable(textureName) { }
-		Finish(const string& textureName, Coord<float>& position) : Collisionable(textureName, position) { }
+		Finish(const string& textureName,Coordf& position) : Collisionable(textureName, position) { }
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);

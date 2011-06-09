@@ -107,7 +107,7 @@ namespace Collisions
 
 		/* Constructors */
 		Perso(const string& textureName);
-		Perso(const string& textureName, Coord<float>& position);
+		Perso(const string& textureName,Coordf& position);
 
 		/* getters and setters */
 		HUD* getHUD();
@@ -129,8 +129,8 @@ namespace Collisions
 		int getFinishTime();
 		int getJumpTime();
 		void setState(State state);
-		void setEnvironment(Environment environment);
-		void setTransformation(Transformations transformation);
+		void setEnvironment(const Environment &environment);
+		void setTransformation(const Transformations &transformation);
 		void setCanClimb(bool canClimb);
 		void setBroughtMonster(MonsterOccurrence* monster);
 		void setInsidePipe(Pipe* pipe);
@@ -146,8 +146,8 @@ namespace Collisions
 		void setJumpTime(int jumpTime);
 
 		/* Methods */
-		void update(RenderWindow& app);
-		void render(RenderWindow& app);
+		void update(const RenderWindow& app);
+		void render(const RenderWindow& app);
 
 		/* Loading character configuration */
 		void loadPerso(const string& textureName);
@@ -177,7 +177,7 @@ namespace Collisions
 		vector<string> _keywords;
 
 		/* Move management */
-		void lateral_move(RenderWindow& app);
+		void lateral_move(const RenderWindow& app);
 
 		/* Frictions management */
 		void frictions(float time);

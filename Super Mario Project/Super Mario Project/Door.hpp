@@ -27,7 +27,7 @@ namespace Collisions
 
 		/* Constructors */
 		Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
-		Door(const string& textureName, Coord<float> position, int indexDestination, const string& levelDestination, State state) 
+		Door(const string& textureName,Coordf position, int indexDestination, const string& levelDestination, State state) 
 			: Collisionable(textureName, position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
 
 		/* getters and setters */

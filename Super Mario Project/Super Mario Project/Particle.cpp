@@ -27,11 +27,11 @@ namespace Collisions
 		if(hasGravity)
 		{
 			/* Update physic position */
-			/* Save actual position in previous prosition */
-			this->setPreviousPosition(this->getPosition());
+			/* Save actual position in previous position */
+			setPreviousPosition(getPosition());
 
 			/* Compute new position */
-			this->setPosition(this->getPosition().getX() + this->getSpeed().x * time, this->getPosition().getY() + this->getSpeed().y * time);
+			setPosition(getPosition().x + getSpeed().x * time, getPosition().y + getSpeed().y * time);
 		}
 	}
 
