@@ -18,7 +18,7 @@ namespace Rendering
 		loadCfgObject(textureName);
 	}
 
-	Object::Object(const string& textureName,Coordf& position) : Drawable(textureName, position)
+	Object::Object(const string& textureName,Vector2f& position) : Drawable(textureName, position)
 	{ 
 		loadCfgObject(textureName);
 	}

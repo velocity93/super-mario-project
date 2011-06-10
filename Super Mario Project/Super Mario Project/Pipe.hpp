@@ -31,7 +31,7 @@ namespace Collisions
     
 		/* Constructors */
 		Pipe(const string& textureName) : Door(textureName), _direction(TO_LEFT), _monster(nullptr), _monsterExitDuration(Clock()), _lenght(5) { }
-		Pipe(const string& textureName,Coordf position, int indexDoorDestination, const string& levelDestination, State state, int lenght, Direction direction, Monster* monster) 
+		Pipe(const string& textureName,Vector2f position, int indexDoorDestination, const string& levelDestination, State state, int lenght, Direction direction, Monster* monster) 
 			: Door(textureName, position, indexDoorDestination, levelDestination, state), _lenght(lenght), _direction(direction), _monster(monster) { }
 
 		/* getters and setters */

@@ -21,7 +21,7 @@ namespace Rendering
     {
     public:
 		Object(const string& textureName);
-		Object(const string& textureName,Coordf& position);
+		Object(const string& textureName,Vector2f& position);
 		
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);

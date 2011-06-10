@@ -10,32 +10,32 @@
 
 namespace Rendering
 {
-	Coordi Screen::getOrigine()
+	Vector2i Screen::getOrigine()
 	{
 		return _origine;
 	}
 
-	Coordi Screen::getSize()
+	Vector2i Screen::getSize()
 	{
 		return _size;
 	}
 
-	Coordf Screen::getScrolling()
+	Vector2f Screen::getScrolling()
 	{
 		return _scrolling;
 	}
 
-	void Screen::setOrigine(Coordi& origine)
+	void Screen::setOrigine(Vector2i& origine)
 	{
 		_origine = origine;
 	}
 
-	void Screen::setSize(Coordi& size)
+	void Screen::setSize(Vector2i& size)
 	{
 		_size = size;
 	}
 
-	void Screen::setScrolling(Coordf& scrolling)
+	void Screen::setScrolling(Vector2f& scrolling)
 	{
 		_scrolling = scrolling;
 	}

@@ -50,7 +50,7 @@ namespace SuperMarioProject
 		vector<string> _levelNames;
 		vector<Perso*> _persos;
 		Level* _level;
-		Coordi _windowSize;
+		Vector2i _windowSize;
 		Clock _clock;
 		float _fpsTime;
 		float _actualTime;

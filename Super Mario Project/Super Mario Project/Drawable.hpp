@@ -11,8 +11,6 @@
 #define HPP_DRAWABLE
 
 #include "Texture.hpp"
-#include "Coord.hpp"
-#include "Screen.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 
@@ -20,7 +18,6 @@
 
 using namespace std;
 using namespace sf;
-using namespace Utils;
 
 namespace Rendering
 {
@@ -50,10 +47,10 @@ namespace Rendering
 	
 		/* Constructors */
 		Drawable(const string& textureName);
-		Drawable(const string& textureName,Coordf& position);
+		Drawable(const string& textureName,Vector2f& position);
 
 		/* getters and setters */
-		Coordf getPosition();
+		Vector2f getPosition();
 		Texture* Drawable::getTexture();
 		void setPosition(float x, float y);
 
@@ -68,7 +65,7 @@ namespace Rendering
 
 	protected:
 		Texture* _texture;
-		Coordf _position;
+		Vector2f _position;
 		vector<int> _spriteNumbersByState;
 		vector<int> _animationSpeeds;
 

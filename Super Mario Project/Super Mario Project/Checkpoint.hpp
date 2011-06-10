@@ -25,7 +25,7 @@ namespace Collisions
 		};
 
 		Checkpoint(const string& textureName);
-		Checkpoint(const string& textureName, Coordf& position, State state);
+		Checkpoint(const string& textureName, Vector2f& position, State state);
 
 		State getState();
 		void setState(const State &state);

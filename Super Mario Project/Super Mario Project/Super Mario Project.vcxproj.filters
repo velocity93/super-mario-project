@@ -99,9 +99,6 @@
     <ClInclude Include="World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coord.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HUD.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

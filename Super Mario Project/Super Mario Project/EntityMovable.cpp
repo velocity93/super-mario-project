@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	Coordf EntityMovable::getPreviousPosition()
+	Vector2f EntityMovable::getPreviousPosition()
 	{
 		return _previousPosition;
 	}

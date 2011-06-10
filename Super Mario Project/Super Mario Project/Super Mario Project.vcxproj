@@ -86,7 +86,6 @@
     <ClInclude Include="Checkpoint.hpp" />
     <ClInclude Include="Collisionable.hpp" />
     <ClInclude Include="CollisionManager.hpp" />
-    <ClInclude Include="Coord.hpp" />
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Drawable.hpp" />
     <ClInclude Include="EntityMovable.hpp" />
