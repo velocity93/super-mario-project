@@ -20,14 +20,14 @@ namespace Collisions
     {
 	public:
 		/* Constructors */
-		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Coordf()), _hitboxSize(Vector2i()) { }
-		Collisionable(const string& textureName,Coordf& position) : Drawable(textureName, position), _hitboxPosition(Coordf()), _hitboxSize(Vector2i()) { }
+		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
+		Collisionable(const string& textureName,Vector2f& position) : Drawable(textureName, position), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
 
 		/* Destructors */
         virtual ~Collisionable();
 		
     protected:
-		Coordf _hitboxPosition;
+		Vector2f _hitboxPosition;
 		Vector2i _hitboxSize;
     };
 } // namespace

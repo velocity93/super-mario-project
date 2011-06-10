@@ -16,7 +16,7 @@ namespace Rendering
 		configureBackground(textureName, view);
 	}
 
-	Background::Background(const string& textureName, const View& view,Coordf& position) : Object(textureName, position), _verticalRepetition(false)
+	Background::Background(const string& textureName, const View& view,Vector2f& position) : Object(textureName, position), _verticalRepetition(false)
 	{
 		configureBackground(textureName, view);
 	}

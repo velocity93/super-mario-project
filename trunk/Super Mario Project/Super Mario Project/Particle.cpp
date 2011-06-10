@@ -31,7 +31,8 @@ namespace Collisions
 			_previousPosition = _position;
 
 			/* Compute new position */
-			_position = _position.x + _speed.x * time, _position.y + _speed.y * time;
+			_position.x = _position.x + _speed.x * time;
+			_position.y = _position.y + _speed.y * time;
 		}
 	}
 

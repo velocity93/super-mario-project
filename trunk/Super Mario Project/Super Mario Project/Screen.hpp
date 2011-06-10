@@ -10,9 +10,9 @@
 #ifndef HPP_SCREEN
 #define HPP_SCREEN
 
-#include "Coord.hpp"
+#include <SFML/Graphics.hpp>
 
-using namespace Utils;
+using namespace sf;
 
 namespace Rendering
 {
@@ -20,24 +20,24 @@ namespace Rendering
     {
     public:
 		/* Constructors */
-		Screen() : _origine(Coordi()), _size(Coordi()), _scrolling(Coordf()) { }
-		Screen(Coordi& origine,Coordi& size,Coordf& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
+		Screen() : _origine(Vector2i()), _size(Vector2i()), _scrolling(Vector2f()) { }
+		Screen(Vector2i& origine,Vector2i& size,Vector2f& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
 
 		/* getters and setters */
-       Coordi getOrigine();
-		Coordi getSize();
-		Coordf getScrolling();
-		void setOrigine(Coordi& Origine);
-		void setSize(Coordi& Size);
-		void setScrolling(Coordf& Scrolling);
+		Vector2i getOrigine();
+		Vector2i getSize();
+		Vector2f getScrolling();
+		void setOrigine(Vector2i& Origine);
+		void setSize(Vector2i& Size);
+		void setScrolling(Vector2f& Scrolling);
 
 		/* Destructor */
 		virtual ~Screen();
 		
     private:
-		Coordi _origine;
-		Coordi _size;
-		Coordf _scrolling;
+		Vector2i _origine;
+		Vector2i _size;
+		Vector2f _scrolling;
     };
 } // namespace
 

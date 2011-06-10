@@ -15,7 +15,7 @@ namespace Rendering
 		InitializeDrawable(textureName);
 	}
 
-	Drawable::Drawable(const string& textureName,Coordf& position)
+	Drawable::Drawable(const string& textureName, Vector2f& position)
 	{
 		InitializeDrawable(textureName);
 		_position = position;
@@ -26,7 +26,7 @@ namespace Rendering
 		_texture = new Texture(textureName);
 		_spriteNumbersByState = vector<int>();
 		_animationSpeeds = vector<int>();
-		_position =Coordf();
+		_position = Vector2f();
 	}
 
 	Texture* Drawable::getTexture()
@@ -34,14 +34,14 @@ namespace Rendering
 		return _texture;
 	}
 
-	Coordf Drawable::getPosition()
+	Vector2f Drawable::getPosition()
 	{
 		return _position;
 	}
 
 	void Drawable::setPosition(float x, float y)
 	{
-		_position = Coordf(x, y);
+		_position = Vector2f(x, y);
 	}
 
 	Drawable::~Drawable()
