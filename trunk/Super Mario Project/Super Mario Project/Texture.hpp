@@ -10,7 +10,7 @@
 #ifndef HPP_TEXTURE
 #define HPP_TEXTURE
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
 

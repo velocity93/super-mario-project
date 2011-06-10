@@ -13,7 +13,7 @@
 #include "Texture.hpp"
 #include "Coord.hpp"
 #include "Screen.hpp"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 #define BLOCK_WIDTH 32

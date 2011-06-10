@@ -12,7 +12,7 @@
 
 #include "ProjectileOccurrence.hpp"
 #include <vector>
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 using namespace sf;

@@ -11,7 +11,7 @@
 #define HPP_ITEM
 
 #include "ItemOccurrence.hpp"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 using namespace std;

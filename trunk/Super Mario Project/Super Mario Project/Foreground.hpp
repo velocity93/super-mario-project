@@ -12,7 +12,7 @@
 
 #include "Object.hpp"
 #include "Screen.hpp"
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <string>
 
 namespace Rendering

@@ -11,7 +11,7 @@
 #define HPP_WORLD
 
 #include <string>
-#include <SFML\Config.hpp>
+#include <SFML/Config.hpp>
 #include <fstream>
 #include <iostream>
 #include "Screen.hpp"
