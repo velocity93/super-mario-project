@@ -35,7 +35,7 @@ namespace Collisions
 		_itemOccurences.push_back(item);
 	}
 
-	void Item::removeItemOccurrence(ItemOccurrence* item)
+	void Item::removeItemOccurrence(const ItemOccurrence* item)
 	{
 		vector<ItemOccurrence*>::iterator itItemOccurrence;
 

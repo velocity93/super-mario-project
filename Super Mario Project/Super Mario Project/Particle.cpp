@@ -28,10 +28,10 @@ namespace Collisions
 		{
 			/* Update physic position */
 			/* Save actual position in previous position */
-			setPreviousPosition(getPosition());
+			_previousPosition = _position;
 
 			/* Compute new position */
-			setPosition(getPosition().x + getSpeed().x * time, getPosition().y + getSpeed().y * time);
+			_position = _position.x + _speed.x * time, _position.y + _speed.y * time;
 		}
 	}
 

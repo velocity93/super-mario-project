@@ -23,8 +23,12 @@ namespace Collisions
 
 	void ProjectileOccurrence::update(RenderWindow& app)
 	{
+		/* If it falls in hole */
+		if(_hitboxPosition.y + _hitboxSize.y < 0)
+			_projectile->removeProjectileOccurrence(this);
+
 		/* Submissions */
-		if(this->model->getSubmission() & GRAVITY_SUBMISSION)
+		if(_projectile->getSubmission() & GRAVITY_SUBMISSION)
 			gravity(_speed, app.GetFrameTime());
 
 		/* Update physic position */

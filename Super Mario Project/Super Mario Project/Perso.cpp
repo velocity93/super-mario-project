@@ -471,27 +471,28 @@ namespace Collisions
 		{
 		case Pipe::TO_TOP:
 			_state = GET_OUT_FROM_PIPE_VERTICAL;
-			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
-				_insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - getHitboxSize().y);
+			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
+			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - _hitboxSize.y;
 			break;
 
 		case Pipe::TO_BOTTOM:
 			_state = GET_OUT_FROM_PIPE_VERTICAL;
-			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - getHitboxSize().x / 2, 
-				_insidePipe->getPosition().y * BLOCK_WIDTH);
+			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
+			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		case Pipe::TO_LEFT:
 			_side = RIGHT_SIDE;
 			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
-			setPosition((_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
-				_insidePipe->getPosition().y * BLOCK_WIDTH);
+			_position.x = (_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
+			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		case Pipe::TO_RIGHT:
 			_side = LEFT_SIDE;
 			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
-			setPosition(_insidePipe->getPosition().x * BLOCK_WIDTH, _insidePipe->getPosition().y * BLOCK_WIDTH);
+			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH;
+			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		default :

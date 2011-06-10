@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "MonsterOccurrence.hpp"
+#include "Monster.hpp"
 
 namespace Collisions
 {
@@ -24,6 +25,10 @@ namespace Collisions
 	void MonsterOccurrence::update(RenderWindow& app)
 	{
 		updateMonsterActivity(app);
+
+		/* If it falls in hole */
+		if(_hitboxPosition.y + _hitboxSize.y < 0)
+			_monster->removeMonsterOccurrence(this);
 
 		/* Update physic position */
 		/* Save actual position in previous prosition */
@@ -43,16 +48,16 @@ namespace Collisions
 	{
 		const View& view = app.GetDefaultView();
 
-		if(this->getHitboxPosition().x < view.GetCenter().x - view.GetHalfSize().x
-			|| this->getHitboxPosition().x + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
-			|| this->getHitboxPosition().y > view.GetCenter().y + view.GetHalfSize().y
-			|| this->getHitboxPosition().y + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
+		if(_hitboxPosition.x < view.GetCenter().x - view.GetHalfSize().x
+			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x + view.GetHalfSize().x
+			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
+			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
 		{
 			
 			if(this->_initialPosition.x < view.GetCenter().x - view.GetHalfSize().x
-			|| this->_initialPosition.x + this->getHitboxSize().x < view.GetCenter().x + view.GetHalfSize().x
+			|| this->_initialPosition.x + _hitboxSize.x < view.GetCenter().x + view.GetHalfSize().x
 			|| this->_initialPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| this->_initialPosition.y + this->getHitboxSize().y < view.GetCenter().y - view.GetHalfSize().y)
+			|| this->_initialPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
 			{
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
 				_position = _initialPosition;
