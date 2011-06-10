@@ -20,7 +20,7 @@ namespace Collisions
 		return _monsterOccurrences;
 	}
 	
-	void Monster::removeMonsterOccurrence(MonsterOccurrence* monster)
+	void Monster::removeMonsterOccurrence(const MonsterOccurrence* monster)
 	{
 		vector<MonsterOccurrence*>::iterator itMonsterOccurrence;
 

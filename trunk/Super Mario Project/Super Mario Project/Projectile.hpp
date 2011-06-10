@@ -48,7 +48,7 @@ namespace Collisions
 		void addProjectileOccurrence(ProjectileOccurrence* projectile);
 
 		/* Remove occurrence to list */
-		void removeProjectileOccurrence(ProjectileOccurrence* projectile);
+		void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile);
 
 		/* Update data */
 		void update(RenderWindow& app);

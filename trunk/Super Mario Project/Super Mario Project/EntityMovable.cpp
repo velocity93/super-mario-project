@@ -25,24 +25,9 @@ namespace Collisions
 		return _side;
 	}
 
-	void EntityMovable::setPreviousPosition(const Coordf& previousPosition)
-	{
-		_previousPosition = previousPosition;
-	}
-
 	void EntityMovable::setSpeed(const Vector2f& speed)
 	{
 		_speed = speed;
-	}
-
-	void EntityMovable::setSpeedX(float x)
-	{
-		_speed.x = x;
-	}
-
-	void EntityMovable::setSpeedY(float y)
-	{
-		_speed.y = y;
 	}
 
 	void EntityMovable::setSide(const Side &side)

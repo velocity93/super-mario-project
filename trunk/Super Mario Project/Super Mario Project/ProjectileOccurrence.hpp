@@ -41,7 +41,7 @@ namespace Collisions
 		
     private:
 		Sender _sender;
-		Projectile* model;
+		Projectile* _projectile;
     };
 } // namespace
 

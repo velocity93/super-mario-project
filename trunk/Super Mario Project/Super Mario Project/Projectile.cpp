@@ -26,7 +26,7 @@ namespace Collisions
 		_projectileOccurences.push_back(projectile);
 	}
 
-	void Projectile::removeProjectileOccurrence(ProjectileOccurrence* projectile)
+	void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)
 	{
 		vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
 

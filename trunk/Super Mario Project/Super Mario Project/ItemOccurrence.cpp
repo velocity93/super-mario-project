@@ -33,6 +33,10 @@ namespace Collisions
 
 	void ItemOccurrence::update(RenderWindow& app)
 	{
+		/* If it falls in hole */
+		if(_hitboxPosition.y + _hitboxSize.y < 0)
+			_item->removeItemOccurrence(this);
+
 		/* Submissions */
 		if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
 			gravity(_speed, app.GetFrameTime());

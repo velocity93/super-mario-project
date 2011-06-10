@@ -55,7 +55,7 @@ namespace Collisions
 		void addItemOccurrence(ItemOccurrence* item);
 		
 		/* Remove Item Occurrence */
-		void removeItemOccurrence(ItemOccurrence* item);
+		void removeItemOccurrence(const ItemOccurrence* item);
 
 		/* Update data */
 		void update(RenderWindow& app);
