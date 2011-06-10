@@ -49,10 +49,7 @@ namespace Collisions
 		Coordf getPreviousPosition();
 		Vector2f getSpeed();
 		Side getSide();
-		void setPreviousPosition(const Coordf& previousPosition);
 		void setSpeed(const Vector2f& speed);
-		void setSpeedX(float x);
-		void setSpeedY(float y);
 		void setSide(const Side &side);
 
 		void gravity(Vector2f &speed, float time);
