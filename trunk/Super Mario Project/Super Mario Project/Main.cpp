@@ -15,7 +15,7 @@ using namespace sf;
 
 int main(int argc, char* argv[])
 {
-	World* w = new World();
+	World w;
 	argc;
 	argv;
 
@@ -67,8 +67,6 @@ int main(int argc, char* argv[])
 		// Update the window
 		App.Display();
 	}
-
-	delete w;
 
 	return EXIT_SUCCESS;
 }
