@@ -41,11 +41,11 @@ namespace Collisions
 
 		if(_state == CLOSED)
 		{
-			sprite.SetSubRect(IntRect(0, 0, _texture->getImage().GetWidth(), _texture->getImage().GetHeight() / 2));
+			sprite.SetSubRect(IntRect(0, 0, _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight() / 2));
 		}
 		else
 		{
-			sprite.SetSubRect(IntRect(0, _texture->getImage().GetHeight(), _texture->getImage().GetWidth(), _texture->getImage().GetHeight()));
+			sprite.SetSubRect(IntRect(0, _texture->getImage()->GetHeight(), _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight()));
 		}
 
 		app.Draw(sprite);

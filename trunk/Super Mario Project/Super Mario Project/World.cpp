@@ -14,7 +14,7 @@ namespace SuperMarioProject
 	{
 		_levelNames = vector<string>();
 		_persos = vector<Perso*>();
-		_windowSize =Vector2i();
+		_windowSize = Vector2i();
 		_fpsTime = 0;
 		_actualTime = 0;
 		_previousTime = 0; 
@@ -113,12 +113,11 @@ namespace SuperMarioProject
 			while(getline(file, line))
 			{
 				_levelNames.push_back(line);
-				cout << line << endl;
 			}
 		}
 		else
 		{
-			cout << "ERROR: Unable to open file world1.wld" << endl;
+			throw exception("Unable to open file world1.wld");
 		}
 	}
 

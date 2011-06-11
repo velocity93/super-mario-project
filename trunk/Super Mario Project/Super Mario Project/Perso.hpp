@@ -190,6 +190,7 @@ namespace Collisions
 
 		/* Update character state when he is inside a pipe */
 		void updateInPipe();
+
     };
 } // namespace
 

@@ -30,42 +30,51 @@ int main(int argc, char* argv[])
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);
 
-	// Start the game loop
-	while (App.IsOpened())
+	try
 	{
-		sf::Event Event;
-		// Static Events
-		while(App.GetEvent(Event)) 
+		// Start the game loop
+		while (App.IsOpened())
 		{
-			switch(Event.Type)
+			sf::Event Event;
+			// Static Events
+			while(App.GetEvent(Event)) 
 			{
-			case Event::Closed : 
-				App.Close();
-				break;
-
-			case Event::KeyPressed : 
+				switch(Event.Type)
 				{
-					switch(Event.Key.Code)
+				case Event::Closed : 
+					App.Close();
+					break;
+
+				case Event::KeyPressed : 
 					{
-					case Key::Escape :
-						App.Close();
-						break;
+						switch(Event.Key.Code)
+						{
+						case Key::Escape :
+							App.Close();
+							break;
+						}
 					}
+					break;
 				}
-				break;
 			}
+
+			cout << "FPS :" << App.GetFrameTime() << endl;
+
+			// Update World
+			background.update(App);
+
+			App.Clear();
+
+			// Draw World
+			background.render(App);
+
+			// Update the window
+			App.Display();
 		}
-
-		// Update World
-		background.update(App);
-
-		App.Clear();
-
-		// Draw World
-		background.render(App);
-
-		// Update the window
-		App.Display();
+	}
+	catch(exception e)
+	{
+		cout << e.what() << endl;
 	}
 
 	return EXIT_SUCCESS;

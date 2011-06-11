@@ -39,15 +39,15 @@ namespace Collisions
 	void Checkpoint::render(RenderWindow& app)
     {
 		Sprite sprite = _texture->getSprite();
-		int right = _texture->getImage().GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
+		int right = _texture->getImage()->GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
 
 		if(_state == NOT_PASSED)
 		{
-			sprite.SetSubRect(IntRect(0, 0, right, _texture->getImage().GetHeight() / 2));
+			sprite.SetSubRect(IntRect(0, 0, right, _texture->getImage()->GetHeight() / 2));
 		}
 		else
 		{
-			sprite.SetSubRect(IntRect(0, _texture->getImage().GetHeight() / 2, right, _texture->getImage().GetHeight()));
+			sprite.SetSubRect(IntRect(0, _texture->getImage()->GetHeight() / 2, right, _texture->getImage()->GetHeight()));
 		}
 
 		app.Draw(sprite);
@@ -62,55 +62,46 @@ namespace Collisions
 		/* test if the stream is open*/
 		if(stream)
 		{
-			try
+
+			string word;
+			int value = 0;
+
+			/* 'nb_sprites_active' keyword */
+			stream >> word;
+			if(word == "nb_sprites_active=")
 			{
-				string word;
-				int value = 0;
-
-				/* 'nb_sprites_active' keyword */
-				stream >> word;
-				if(word == "nb_sprites_active=")
-				{
-					stream >> value;
-					_spriteNumbersByState.push_back(value);
-					value = 0;
-				}
-				else
-					throw exception(" \"nb_sprites_active=\" keyword is missing", 1);
-
-				/* 'nb_sprites_inactive' keyword */
-				stream >> word;
-				if(word == "nb_sprites_inactive=")
-				{
-					stream >> value;
-					_spriteNumbersByState.push_back(value);
-					value = 0;
-				}
-				else
-					throw exception(" \"nb_sprites_inactive=\" keyword is missing", 1);
-
-				/* 'v_anim' keyword */
-				stream >> word;
-				if(word == "v_anim=")
-				{
-					stream >> value;
-					_animationSpeeds.push_back(value);
-				}
-				else
-					throw exception("\"v_anim=\" keyword is missing", 1);
+				stream >> value;
+				_spriteNumbersByState.push_back(value);
+				value = 0;
 			}
-			catch(exception& e)
+			else
+				throw exception(" \"nb_sprites_active=\" keyword is missing", 1);
+
+			/* 'nb_sprites_inactive' keyword */
+			stream >> word;
+			if(word == "nb_sprites_inactive=")
 			{
-				cout << "Exception occured while reading " << fileName << " : " << e.what() << endl;
-				getchar();
-				exit(1);
+				stream >> value;
+				_spriteNumbersByState.push_back(value);
+				value = 0;
 			}
+			else
+				throw exception(" \"nb_sprites_inactive=\" keyword is missing", 1);
+
+			/* 'v_anim' keyword */
+			stream >> word;
+			if(word == "v_anim=")
+			{
+				stream >> value;
+				_animationSpeeds.push_back(value);
+			}
+			else
+				throw exception("\"v_anim=\" keyword is missing", 1);
 		}
 		else
 		{
-			cout << "Exception occured while opening " << fileName << " : file doesn't exist." << endl;
-			getchar();
-			exit(1);
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
 		}
 	}
 
