@@ -27,7 +27,7 @@ namespace Rendering
 
 		/* getters and setters */
 		string getName();
-		Image getImage();
+		Image* getImage();
 		Sprite getSprite();
 		void setName(const string& name);
 

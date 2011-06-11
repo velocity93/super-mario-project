@@ -28,9 +28,9 @@ namespace Rendering
 
 		/* Compute max number of displayed sprites */
 		Sprite sprite = _texture->getSprite();
-		int spriteWidth = _texture->getImage().GetWidth() / _spriteNumbersByState.front();
-		float widthFactor = ceil((view.GetRect().GetWidth() / _texture->getImage().GetWidth()));
-		float heightFactor = ceil((view.GetRect().GetWidth() / _texture->getImage().GetHeight()));
+		int spriteWidth = _texture->getImage()->GetWidth() / _spriteNumbersByState.front();
+		float widthFactor = ceil((view.GetRect().GetWidth() / _texture->getImage()->GetWidth()));
+		float heightFactor = ceil((view.GetRect().GetWidth() / _texture->getImage()->GetHeight()));
 
 		for(int i = 0; i < widthFactor; i++)
 		{
@@ -38,7 +38,7 @@ namespace Rendering
 			{
 				for(int j = 0; j < heightFactor; j++)
 				{
-					sprite.SetPosition(_position.x + spriteWidth * i, _position.y + _texture->getImage().GetHeight() * j);
+					sprite.SetPosition(_position.x + spriteWidth * i, _position.y + _texture->getImage()->GetHeight() * j);
 					_sprites.push_back(sprite);
 				}
 			}
@@ -57,10 +57,10 @@ namespace Rendering
 
 	void Background::update(RenderWindow& app)
 	{
-		//const View& view = app.GetDefaultView();
+		/*const View& view = app.GetDefaultView();*/
 
 		//int nbSprites = _spriteNumbersByState.front();
-		//int spriteHeight = (_texture->getImage().GetHeight() / nbSprites);
+		//int spriteHeight = _texture->getImage()->)->GetHeight();
 		//Sprite sprite = _texture->getSprite();
 		//vector<Sprite>::iterator itSprites;
 
@@ -77,7 +77,7 @@ namespace Rendering
 	{
 		vector<Sprite>::iterator itSprites;
 
-		for(itSprites = _sprites.begin(); itSprites < _sprites.end(); itSprites++)
+		for(itSprites = _sprites.begin(); itSprites < _sprites.end(); ++itSprites)
 			app.Draw(*itSprites);
 	}
 
@@ -88,8 +88,6 @@ namespace Rendering
 		
 		if(stream)
 		{
-			try
-			{
 				string word;
 				int nbWords;
 
@@ -110,23 +108,15 @@ namespace Rendering
 				}
 				else
 					throw exception(" \"vertical_repetition=\" keyword is missing", 1);
-			}
-			catch(exception& e)
-			{
-				cout << "Exception occured while reading " << fileName << " : " << e.what() << endl;
-				getchar();
-				exit(1);
-			}
 		}
 		else
 		{
-			cout << "Exception occured while opening " << fileName << " : file doesn't exist." << endl;
-			getchar();
-			exit(1);
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
 		}
 
 		/* initialization to upper sprite */
-		_texture->setSubRect(0, 0, _texture->getImage().GetWidth(), _texture->getImage().GetHeight() / _spriteNumbersByState.front());
+		_texture->setSubRect(0, 0, _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight() / _spriteNumbersByState.front());
 	}
 
     Background::~Background()

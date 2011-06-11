@@ -31,9 +31,9 @@ namespace Rendering
 		return _name;
 	}
 
-	Image Texture::getImage()
+	Image* Texture::getImage()
 	{
-		return _image;
+		return &_image;
 	}
 
 	Sprite Texture::getSprite()

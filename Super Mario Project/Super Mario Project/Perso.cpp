@@ -12,9 +12,9 @@
 namespace Collisions
 {
 	Perso::Perso(const string& textureName)  : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-			_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-			_jumpTime(0) 
+		_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
+		_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
+		_jumpTime(0) 
 	{
 		_keywords.push_back("marche");
 		_keywords.push_back("course");
@@ -31,8 +31,8 @@ namespace Collisions
 
 	Perso::Perso(const string& textureName,Vector2f& position) : EntityMovable(textureName, position), _environment(GROUND), _transformation(SMALL_MARIO), 
 		_state(STANDING), _hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-			_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-			_jumpTime(0)
+		_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
+		_jumpTime(0)
 	{
 		loadPerso(textureName);
 	}
@@ -210,7 +210,7 @@ namespace Collisions
 
 	void Perso::update(const RenderWindow& app)
 	{
-        gravity(_speed, app.GetFrameTime());
+		gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
 		lateral_move(app);
@@ -350,7 +350,7 @@ namespace Collisions
 							if(_environment == GROUND)
 							{
 								/*if(k->precedent[BAS] && k->actuel[BAS])*/
-									_state = LOWERED_JUMP;
+								_state = LOWERED_JUMP;
 							}
 							else
 							{
@@ -364,7 +364,7 @@ namespace Collisions
 						if(_environment == AIR)
 						{
 							//if(k->precedent[BAS] && k->actuel[BAS])
-								_state = LOWERED_JUMP_SHELL;
+							_state = LOWERED_JUMP_SHELL;
 						}
 						else
 						{
@@ -417,8 +417,8 @@ namespace Collisions
 	void Perso::transform(Transformations nextTransformation)
 	{
 		/* Selon le futur état du personnage,
-	on charge la texture appropriée */
-	switch(nextTransformation) {
+		on charge la texture appropriée */
+		switch(nextTransformation) {
 		case SMALL_MARIO :
 			loadPerso("small_mario");
 			_transformation = SMALL_MARIO;
@@ -442,7 +442,7 @@ namespace Collisions
 			_transformation = ICE_MARIO;
 			break;
 		default : break;
-	}
+		}
 	}
 
 	void Perso::frictions(float time)
@@ -485,7 +485,7 @@ namespace Collisions
 			_side = RIGHT_SIDE;
 			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
 			_position.x = (_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
-			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
+				_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		case Pipe::TO_RIGHT:
@@ -510,86 +510,75 @@ namespace Collisions
 
 		if(stream)
 		{
-			try
+			string word, wordToCompare;
+			int value = INT_MAX;
+
+			/* Important keywords */
+			stream >> word;
+			if(word == "abscisse_bas=")
 			{
-				string word, wordToCompare;
-				int value = INT_MAX;
+				stream >> abscisse_bas;
+			}
+			else
+				throw exception(" \"abscisse_bas=\" keyword is missing");
 
-				/* Important keywords */
+			stream >> word;
+			if(word == "ordonnee_haut=")
+			{
+				stream >> ordonnee_haut;
+			}
+			else
+				throw exception(" \"ordonnee_haut=\" keyword is missing");
+
+			// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
+			for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
+			{
 				stream >> word;
-				if(word == "abscisse_bas=")
+				wordToCompare = "nb_sprites_" + *itKeywords + "=";
+				if(word == wordToCompare)
 				{
-					stream >> abscisse_bas;
+					stream >> value;
+					_spriteNumbersByState.push_back(value);
+
+					// To compute Sprite size
+					if(value > nb_sprites_max)
+						nb_sprites_max = value;
+
+					value = INT_MIN;
 				}
 				else
-					throw exception(" \"abscisse_bas=\" keyword is missing");
+				{
+					if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
+					{
+						wordToCompare = "\"" + wordToCompare;
+						wordToCompare += "\" keyword is missing";
+						throw exception(wordToCompare.c_str());
+					}
+				}
 
 				stream >> word;
-				if(word == "ordonnee_haut=")
+				wordToCompare = "v_anim" + *itKeywords + "=";
+				if(word == wordToCompare)
 				{
-					stream >> ordonnee_haut;
+					stream >> value;
+					_animationSpeeds.push_back(value);
+					value = 0;
 				}
 				else
-					throw exception(" \"ordonnee_haut=\" keyword is missing");
-
-				// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
-				for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
 				{
-					stream >> word;
-					wordToCompare = "nb_sprites_" + *itKeywords + "=";
-					if(word == wordToCompare)
+					if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
 					{
-						stream >> value;
-						_spriteNumbersByState.push_back(value);
-						
-						// To compute Sprite size
-						if(value > nb_sprites_max)
-							nb_sprites_max = value;
-
-						value = INT_MIN;
-					}
-					else
-					{
-						if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
-						{
-							wordToCompare = "\"" + wordToCompare;
-							wordToCompare += "\" keyword is missing";
-							throw exception(wordToCompare.c_str());
-						}
-					}
-
-					stream >> word;
-					wordToCompare = "v_anim" + *itKeywords + "=";
-					if(word == wordToCompare)
-					{
-						stream >> value;
-						_animationSpeeds.push_back(value);
-						value = 0;
-					}
-					else
-					{
-						if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
-						{
-							wordToCompare = "\"" + wordToCompare;
-							wordToCompare += "\" keyword is missing";
-							throw exception(wordToCompare.c_str());
-						}
+						wordToCompare = "\"" + wordToCompare;
+						wordToCompare += "\" keyword is missing";
+						throw exception(wordToCompare.c_str());
 					}
 				}
 			}
-			catch(exception& e)
-			{
-				cout << "Exception occured while reading " << fileName << " : " << e.what() << endl;
-				getchar();
-				exit(1);
-			}
-
 		}
 		else
 		{
-			cout << "Exception occured while opening " << fileName << " : file doesn't exist." << endl;
-			getchar();
-			exit(1);
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
 		}
 	}
 
