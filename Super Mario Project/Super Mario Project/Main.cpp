@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	/*Background background = Background("textures/backgrounds/skyBlueHills", App.GetDefaultView());
 	Background background2 = Background("textures/backgrounds/BlueHills", App.GetDefaultView());*/
 
-	Item itm = Item("champignon");
+	Projectile proj = Projectile("debris");
 
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);
