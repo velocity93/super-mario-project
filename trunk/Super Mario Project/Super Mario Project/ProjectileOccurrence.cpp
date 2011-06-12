@@ -11,6 +11,21 @@
 
 namespace Collisions
 {
+	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Projectile* projectile) : EntityMovable(textureName), _sender(GENTILE)
+	{
+		_projectile = projectile;
+		_hitboxPosition.x = 0;
+		_hitboxPosition.y = 0;
+		/* Compute HitboxSize */
+	}
+
+	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Projectile* projectile, Vector2f& position) : EntityMovable(textureName, position), _sender(GENTILE)
+	{
+		_projectile = projectile;
+		_hitboxPosition = position;
+		/* Compute HitboxSize */
+	}
+
 	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()
 	{
 		return _sender;

@@ -557,7 +557,7 @@ namespace Collisions
 				}
 
 				stream >> word;
-				wordToCompare = "v_anim" + *itKeywords + "=";
+				wordToCompare = "v_anim_" + *itKeywords + "=";
 				if(word == wordToCompare)
 				{
 					stream >> value;
