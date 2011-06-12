@@ -7,9 +7,22 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Projectile.hpp"
+#include <fstream>
 
 namespace Collisions
 {
+
+	Projectile::Projectile(const string& textureName) : _type(FRAGMENT), _submission(0), _initialSpeed(Vector2f())
+	{
+		_textureName = textureName;
+		loadProjectile();
+	}
+
+	Projectile::Projectile(const string& textureName, Type type, int submission) : _type(type), _submission(submission), _initialSpeed(Vector2f())
+	{
+		_textureName = textureName;
+		loadProjectile();
+	}
 
 	int Projectile::getSubmission()
 	{
@@ -21,9 +34,9 @@ namespace Collisions
 		return _projectileOccurences;
 	}
 
-	void Projectile::addProjectileOccurrence(ProjectileOccurrence* projectile)
+	void Projectile::addNewProjectileOccurrence()
 	{
-		_projectileOccurences.push_back(projectile);
+		_projectileOccurences.push_back(new ProjectileOccurrence(_textureName));
 	}
 
 	void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)
@@ -35,6 +48,11 @@ namespace Collisions
 			if((*itProjectileOccurrence) == projectile)
 				_projectileOccurences.erase(itProjectileOccurrence);
 		}
+	}
+
+	void Projectile::loadProjectile()
+	{
+		
 	}
 
 	void Projectile::update(RenderWindow& app)

@@ -24,8 +24,10 @@ int main(int argc, char* argv[])
 
 	App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-	Background background = Background("textures/backgrounds/skyBlueHills", App.GetDefaultView());
-	Background background2 = Background("textures/backgrounds/BlueHills", App.GetDefaultView());
+	/*Background background = Background("textures/backgrounds/skyBlueHills", App.GetDefaultView());
+	Background background2 = Background("textures/backgrounds/BlueHills", App.GetDefaultView());*/
+
+	Item itm = Item("champignon");
 
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);
@@ -58,15 +60,11 @@ int main(int argc, char* argv[])
 				}
 			}
 
-			cout << "FPS :" << App.GetFrameTime() << endl;
-
 			// Update World
-			background.update(App);
-
-			App.Clear();
+			//background.update(App);
 
 			// Draw World
-			background.render(App);
+			//background.render(App);
 
 			// Update the window
 			App.Display();

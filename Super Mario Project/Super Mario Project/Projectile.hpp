@@ -35,8 +35,8 @@ namespace Collisions
 		};
 
 		/* Constructor */
-		Projectile() : _type(FRAGMENT), _submission(0) { }
-		Projectile(Type type, int submission) : _type(type), _submission(submission) { }
+		Projectile(const string& textureName);
+		Projectile(const string& textureName, Type type, int submission);
 
 		/* Physic submission */
 		int getSubmission();
@@ -45,10 +45,10 @@ namespace Collisions
 		vector<ProjectileOccurrence*> getProjectileOccurrences();
 
 		/* Add occurrence to list */
-		void addProjectileOccurrence(ProjectileOccurrence* projectile);
+		void addNewProjectileOccurrence();
 
 		/* Remove occurrence to list */
-		void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile);
+		void removeProjectileOccurrence(const ProjectileOccurrence* projectile);
 
 		/* Update data */
 		void update(RenderWindow& app);
@@ -61,8 +61,14 @@ namespace Collisions
 		
     private:
 		Type _type;
+		Vector2f _initialSpeed;
 		int _submission;
+		int _nbSprites;
+		string _textureName;
 		vector<ProjectileOccurrence*> _projectileOccurences;
+
+		/* Loading Projectile */
+		void loadProjectile();
     };
 } // namespace
 

@@ -36,8 +36,8 @@ namespace Collisions
 		};
 	
 		/* Constructors */
-		Item() : _type(COIN), _submission(0) { }
-		Item(Type type, int submission) : _type(type), _submission(submission) { }
+		Item(const string& textureName);
+		Item(const string& textureName, Type type, int submission);
 
 		/* Item type */
 		Type getType();
@@ -51,8 +51,11 @@ namespace Collisions
 		/* List of items occurrences */
 		vector<ItemOccurrence*> getItemOccurrences();
 
-		/* Add Item Occurrence */
-		void addItemOccurrence(ItemOccurrence* item);
+		/* Add New Item Occurrence */
+		void addNewItemOccurrence();
+
+		/* Add New Item Occurrence */
+		void addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state);
 		
 		/* Remove Item Occurrence */
 		void removeItemOccurrence(const ItemOccurrence* item);
@@ -61,7 +64,7 @@ namespace Collisions
 		void update(RenderWindow& app);
 
 		/* Render all occurrences */
-		void Item::render(RenderWindow& App);
+		void render(RenderWindow& App);
 
 		/* Destructor */
 		virtual ~Item();
@@ -69,8 +72,13 @@ namespace Collisions
 	private:
 		Type _type;
 		int _submission;
+		int _nbSprites;
+		string _textureName;
 		Vector2f _initialSpeed;
 		vector<ItemOccurrence*> _itemOccurences;
+
+		/* Loading Item */
+		void loadItem();
 	};
 } // namespace
 
