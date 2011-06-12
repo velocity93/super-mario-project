@@ -520,7 +520,7 @@ namespace Collisions
 				stream >> abscisse_bas;
 			}
 			else
-				throw exception(" \"abscisse_bas=\" keyword is missing");
+				throw exception("\"abscisse_bas=\" keyword is missing");
 
 			stream >> word;
 			if(word == "ordonnee_haut=")
@@ -528,7 +528,7 @@ namespace Collisions
 				stream >> ordonnee_haut;
 			}
 			else
-				throw exception(" \"ordonnee_haut=\" keyword is missing");
+				throw exception("\"ordonnee_haut=\" keyword is missing");
 
 			// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
 			for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
@@ -580,6 +580,9 @@ namespace Collisions
 			string exceptionName = "Exception occured while opening " + fileName;
 			throw exception(exceptionName.c_str());
 		}
+
+		_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
+		_hitboxSize.y = ordonnee_haut;
 	}
 
 

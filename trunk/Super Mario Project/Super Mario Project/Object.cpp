@@ -66,7 +66,7 @@ namespace Rendering
 				value = 0;
 			}
 			else
-				throw exception(" \"nb_sprites=\" keyword is missing", 1);
+				throw exception(" \"nb_sprites=\" keyword is missing");
 
 			if(_spriteNumbersByState[0] > 1)
 			{
@@ -77,7 +77,7 @@ namespace Rendering
 					_animationSpeeds.push_back(value);
 				}
 				else
-					throw exception("\"v_anim=\" keyword is missing", 1);
+					throw exception("\"v_anim=\" keyword is missing");
 			}
 		}
 		else

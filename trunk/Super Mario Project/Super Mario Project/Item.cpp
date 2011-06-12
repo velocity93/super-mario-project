@@ -7,9 +7,22 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Item.hpp"
+#include <fstream>
 
 namespace Collisions
 {
+	Item::Item(const string& textureName) : _type(COIN), _submission(0)
+	{
+		_textureName = "textures\\items\\" + textureName;
+		loadItem();
+	}
+
+	 Item::Item(const string& textureName, Type type, int submission) :  _type(type), _submission(submission)
+	 {
+		_textureName = "textures\\items\\" + textureName;
+		 loadItem();
+	 }
+
 	Item::Type Item::getType()
 	{
 		return _type;
@@ -30,9 +43,14 @@ namespace Collisions
 		return _itemOccurences;
 	}
 
-	void Item::addItemOccurrence(ItemOccurrence* item)
+	void Item::addNewItemOccurrence()
 	{
-		_itemOccurences.push_back(item);
+		_itemOccurences.push_back(new ItemOccurrence(_textureName, this));
+	}
+
+	void Item::addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state)
+	{
+		_itemOccurences.push_back(new ItemOccurrence(_textureName, this, position, state));
 	}
 
 	void Item::removeItemOccurrence(const ItemOccurrence* item)
@@ -43,6 +61,55 @@ namespace Collisions
 		{
 			if((*itItemOccurrence) == item)
 				_itemOccurences.erase(itItemOccurrence);
+		}
+	}
+
+	void Item::loadItem()
+	{
+		string fileName = _textureName + ".item";
+		ifstream stream(fileName.c_str());
+		
+		if(stream)
+		{
+			string word;
+
+			stream >> word;
+			if(word == "speed_x=")
+			{
+				stream >> _initialSpeed.x;
+			}
+			else
+				throw exception(" \"speed_x=\" keyword is missing");
+
+			stream >> word;
+			if(word == "speed_y=")
+			{
+				stream >> _initialSpeed.y;
+			}
+			else
+				throw exception("\"speed_y=\" keyword is missing");
+
+			stream >> word;
+			if(word == "submission=")
+			{
+				/* Read hexadecimal number with 'hex' manipulator */
+				stream >> hex >> _submission;
+			}
+			else
+				throw exception("\"submission=\" keyword is missing");
+
+			stream >> word;
+			if(word == "nb_sprites=")
+			{
+				stream >> _nbSprites;
+			}
+			else
+				throw exception("\"nb_sprites=\" keyword is missing");
+		}
+		else
+		{
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
 		}
 	}
 
