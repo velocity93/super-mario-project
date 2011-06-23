@@ -174,7 +174,7 @@ namespace Collisions
 		int _deathTime;
 		int _finishTime;
 		int _jumpTime;
-		vector<string> _keywords;
+		vector<string> _keywords; // Concerns loading config file
 
 		/* Move management */
 		void lateral_move(const RenderWindow& app);
