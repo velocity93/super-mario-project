@@ -10,55 +10,59 @@
 
 namespace Rendering
 {
-	Texture::Texture(const string& name)
-	{
-		 _name = name;
-		 _image = sf::Image();
-		 _sprite = sf::Sprite();
+    Texture::Texture(const string& name)
+    {
+        _name = name;
+        _image = sf::Image();
+        _sprite = sf::Sprite();
 
-		 /* Load texture */
-		 if(!_image.LoadFromFile(name + ".png"))
-		 {
-			 cout << "Error in loading texture " << name;
-		 }
-		 _image.SetSmooth(false);
+        /* Load texture */
+        if(!_image.LoadFromFile(name + ".png"))
+        {
+            cout << "Error in loading texture " << name;
+        }
+        _image.SetSmooth(false);
 
-		 _sprite.SetImage(_image);
-	}
+        _sprite.SetImage(_image);
 
-	string Texture::getName()
-	{
-		return _name;
-	}
+        _image.Bind();
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    }
 
-	Image* Texture::getImage()
-	{
-		return &_image;
-	}
+    string Texture::getName()
+    {
+        return _name;
+    }
 
-	Sprite Texture::getSprite()
-	{
-		return _sprite;
-	}
+    Image* Texture::getImage()
+    {
+        return &_image;
+    }
 
-	void Texture::setSubRect(int left, int top, int right, int bottom)
-	{
-		_sprite.SetSubRect(IntRect(left, top, right, bottom));
-	}
+    Sprite Texture::getSprite()
+    {
+        return _sprite;
+    }
 
-	void Texture::setPosition(float x, float y)
-	{
-		_sprite.SetPosition(x, y);
-	}
-	
+    void Texture::setSubRect(int left, int top, int right, int bottom)
+    {
+        _sprite.SetSubRect(IntRect(left, top, right, bottom));
+    }
 
-	void Texture::setName(const string& name)
-	{
-		_name = name;
-	}
+    void Texture::setPosition(float x, float y)
+    {
+        _sprite.SetPosition(x, y);
+    }
 
-	Texture::~Texture()
-	{
 
-	}
+    void Texture::setName(const string& name)
+    {
+        _name = name;
+    }
+
+    Texture::~Texture()
+    {
+
+    }
 } // namespace
