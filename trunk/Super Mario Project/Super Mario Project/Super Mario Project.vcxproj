@@ -92,6 +92,7 @@
     <ClInclude Include="Finish.hpp" />
     <ClInclude Include="Foreground.hpp" />
     <ClInclude Include="HUD.hpp" />
+    <ClInclude Include="InputState.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
     <ClInclude Include="Level.hpp" />
@@ -123,6 +124,7 @@
     <ClCompile Include="Finish.cpp" />
     <ClCompile Include="Foreground.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="InputState.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemOccurrence.cpp" />
     <ClCompile Include="Level.cpp" />
