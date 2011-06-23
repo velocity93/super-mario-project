@@ -102,6 +102,9 @@
     <ClInclude Include="HUD.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InputState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -192,6 +195,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
