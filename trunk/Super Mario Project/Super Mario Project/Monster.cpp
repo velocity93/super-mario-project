@@ -7,12 +7,25 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Monster.hpp"
+#include <fstream>
 
 namespace Collisions
 {
-	void Monster::addMonsterOccurrence(MonsterOccurrence* monster)
+	Monster::Monster(const string& textureName) : _textureName("textures\\monsters\\" + textureName), _canBeKilledByFire(false), 
+		_canBeKilledByJump(false), _canBeJumpedOn(false), _stayOnPlateForm(false)
 	{
-		_monsterOccurrences.push_back(monster);
+		loadMonster();
+	}
+
+	Monster::Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn, bool stayOnPlateForm) :
+		_textureName("textures\\monsters\\" + textureName), _canBeKilledByFire(canBeKilledByFire), _canBeKilledByJump(canBeKilledByJump), _canBeJumpedOn(canBeJumpedOn), _stayOnPlateForm(stayOnPlateForm)
+		{
+			loadMonster();
+		}
+
+	void Monster::addMonsterOccurrence(MonsterOccurrence* monsterOccurrence)
+	{
+		_monsterOccurrences.push_back(monsterOccurrence);
 	}
 
 	vector<MonsterOccurrence*> Monster::getMonsterOccurrences()
@@ -24,19 +37,36 @@ namespace Collisions
 	{
 		vector<MonsterOccurrence*>::iterator itMonsterOccurrence;
 
-		for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence < _monsterOccurrences.end(); itMonsterOccurrence++)
+		for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence < _monsterOccurrences.end(); ++itMonsterOccurrence)
 		{
 			if((*itMonsterOccurrence) == monster)
 				_monsterOccurrences.erase(itMonsterOccurrence);
 		}
 	}
 
+	void Monster::loadMonster()
+	{
+		string fileName = _textureName + ".item";
+		ifstream stream(fileName.c_str());
+		
+		if(stream)
+		{
+
+		}
+		else
+		{
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
+		}
+	}
+
+
 	void Monster::update(RenderWindow& app)
 	{
 		vector<MonsterOccurrence*>::iterator itMonsters;
 
 		/* MonsterOccurrences */
-		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
 		{
 			(*itMonsters)->update(app);
 		}
@@ -47,7 +77,7 @@ namespace Collisions
 		vector<MonsterOccurrence*>::iterator itMonsters;
 
 		/* MonsterOccurrences */
-		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
 		{
 			(*itMonsters)->render(app);
 		}
@@ -58,7 +88,7 @@ namespace Collisions
 		vector<MonsterOccurrence*>::iterator itMonsters;
 
 		/* MonsterOccurrences */
-		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); itMonsters++)
+		for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
 		{
 			delete (*itMonsters);
 		}

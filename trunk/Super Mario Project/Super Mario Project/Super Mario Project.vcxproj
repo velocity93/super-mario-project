@@ -98,6 +98,7 @@
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Monster.hpp" />
     <ClInclude Include="MonsterOccurrence.hpp" />
+    <ClInclude Include="MonsterTypes.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Particle.hpp" />
     <ClInclude Include="ParticleGenerator.hpp" />

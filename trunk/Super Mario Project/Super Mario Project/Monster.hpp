@@ -20,9 +20,8 @@ namespace Collisions
 	class Monster
     {
     public:
-		Monster() : _canBeKilledByFire(false), _canBeKilledByJump(false), _canBeJumpedOn(false), _stayOnPlateForm(false) { }
-		Monster(bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn, bool stayOnPlateForm) :
-		_canBeKilledByFire(canBeKilledByFire), _canBeKilledByJump(canBeKilledByJump), _canBeJumpedOn(canBeJumpedOn), _stayOnPlateForm(stayOnPlateForm) { }
+		Monster(const string& textureName);
+		Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn, bool stayOnPlateForm);
 
 		/* List of all occurrences */
 		vector<MonsterOccurrence*> getMonsterOccurrences();
@@ -42,13 +41,17 @@ namespace Collisions
 		/* Destructor */
 		virtual ~Monster();
 		
-    private:		
+    private:
 		bool _canBeKilledByFire;
 		bool _canBeKilledByJump;
 		bool _canBeJumpedOn;
 		bool _stayOnPlateForm;
-		int _disappearingTime;
+		//int _disappearingTime;
+		string _textureName;
 		vector<MonsterOccurrence*> _monsterOccurrences;
+
+		/* Load monster configuration */
+		void loadMonster();
 
     };
 } // namespace
