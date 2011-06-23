@@ -30,8 +30,6 @@ namespace Rendering
 		Image* getImage();
 		Sprite getSprite();
 		void setName(const string& name);
-        void setRepeat(bool repeat);
-
 		void setSubRect(int left, int top, int right, int bottom);
 		void setPosition(float x, float y);
 
