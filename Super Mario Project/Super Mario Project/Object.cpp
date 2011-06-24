@@ -14,7 +14,7 @@
 namespace Rendering
 {
 	Object::Object(const string& textureName) : Drawable(textureName) 
-	{ 
+	{
 		loadCfgObject(textureName);
 	}
 

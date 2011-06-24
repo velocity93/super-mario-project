@@ -8,6 +8,7 @@
 
 #include "Item.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -73,38 +74,38 @@ namespace Collisions
 		{
 			string word;
 
-			stream >> word;
-			if(word == "speed_x=")
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
 			{
-				stream >> _initialSpeed.x;
-			}
-			else
-				throw exception(" \"speed_x=\" keyword is missing");
+				int found = word.find("speed_x=");
+				if(found != string::npos)
+				{
+					_initialSpeed.x = atoi(word.substr(found + 8).c_str());
+					continue;
+				}
 
-			stream >> word;
-			if(word == "speed_y=")
-			{
-				stream >> _initialSpeed.y;
-			}
-			else
-				throw exception("\"speed_y=\" keyword is missing");
+				found = word.find("speed_y=");
+				if(found != string::npos)
+				{
+					_initialSpeed.y = atoi(word.substr(found + 8).c_str());
+					continue;
+				}
 
-			stream >> word;
-			if(word == "submission=")
-			{
-				/* Read hexadecimal number with 'hex' manipulator */
-				stream >> hex >> _submission;
-			}
-			else
-				throw exception("\"submission=\" keyword is missing");
+				/* Read hexadecimal value */
+				found = word.find("submission=");
+				if(found != string::npos)
+				{
+					istringstream submission(word.substr(found + 11));
+					submission >> hex >> _submission;
+				}
 
-			stream >> word;
-			if(word == "nb_sprites=")
-			{
-				stream >> _nbSprites;
+				/* Manage sprites numbers here */
+				found = word.find("nb_sprites=");
+				if(found != string::npos)
+				{
+					/* where put value ? */
+				}
 			}
-			else
-				throw exception("\"nb_sprites=\" keyword is missing");
 		}
 		else
 		{
