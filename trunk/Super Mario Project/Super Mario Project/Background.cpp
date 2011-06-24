@@ -88,26 +88,18 @@ namespace Rendering
 		
 		if(stream)
 		{
-				string word;
-				int nbWords;
+			string word;
 
-				/* According to number of sprites, we count how many words we avdance in file */
-				if(_spriteNumbersByState[0] > 1)
-					nbWords = 4;
-				else
-					nbWords = 2;
-
-				/* We put cursor on the keyword */
-				for(int i = 0; i < nbWords; i++)
-					stream >> word;
-
-				stream >> word;
-				if(word == "vertical_repetition=")
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
+			{
+				int found = word.find("vertical_repetition=");
+				if(found != string::npos)
 				{
-					stream >> _verticalRepetition;
+					_verticalRepetition = atoi(word.substr(found + 20).c_str());
+					break; // We don't have to read more
 				}
-				else
-					throw exception(" \"vertical_repetition=\" keyword is missing", 1);
+			}
 		}
 		else
 		{
