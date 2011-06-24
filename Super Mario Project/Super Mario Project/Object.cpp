@@ -52,32 +52,25 @@ namespace Rendering
 		
 		ifstream stream(fileName.c_str());
 		
-		/* test if the stream is open*/
 		if(stream)
 		{
 			string word;
-			int value = 0;
 
-			stream >> word;
-			if(word == "nb_sprites=")
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
 			{
-				stream >> value;
-				_spriteNumbersByState.push_back(value);
-				value = 0;
-			}
-			else
-				throw exception(" \"nb_sprites=\" keyword is missing");
-
-			if(_spriteNumbersByState[0] > 1)
-			{
-				stream >> word;
-				if(word == "v_anim=")
+				int found = word.find("nb_sprites=");
+				if(found != string::npos)
 				{
-					stream >> value;
-					_animationSpeeds.push_back(value);
+					_spriteNumbersByState.push_back(atoi(word.substr(found + 11).c_str()));
+					continue;
 				}
-				else
-					throw exception("\"v_anim=\" keyword is missing");
+
+				found = word.find("v_anim=");
+				if(found != string::npos)
+				{
+					_animationSpeeds.push_back(atoi(word.substr(found + 7).c_str()));
+				}
 			}
 		}
 		else
