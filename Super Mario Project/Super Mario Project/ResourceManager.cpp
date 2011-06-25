@@ -10,6 +10,8 @@
 
 namespace SuperMarioProject
 {
+    std::map<std::string, Resource*> ResourceManager::_resources = std::map<std::string, Resource*>();
+
     ResourceManager::ResourceManager()
     {
     }
@@ -17,5 +19,25 @@ namespace SuperMarioProject
 
     ResourceManager::~ResourceManager()
     {
+    }
+
+
+    Rendering::Texture *ResourceManager::getTexture(const std::string &name)
+    {
+        return get<Rendering::Texture>(name);
+    }
+
+
+    void ResourceManager::remove(Resource *res)
+    {
+        string name = res->name();
+
+        if(_resources.find(name) == _resources.end())
+            // une exception serait pas mal ici
+            std::cerr << "La ressource " + name + " n'est pas presente dans le gestionnaire: suppression impossible" << std::endl;
+        else
+            _resources.erase(name);
+
+        delete res;
     }
 } // namespace

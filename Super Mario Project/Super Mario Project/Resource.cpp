@@ -7,10 +7,13 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Resource.hpp"
+#include "ResourceManager.hpp"
 
 namespace SuperMarioProject
 {
-    Resource::Resource()
+    Resource::Resource(std::string name)
+        : _name(name),
+        _refCount(0)
     {
     }
 
@@ -18,4 +21,23 @@ namespace SuperMarioProject
     Resource::~Resource()
     {
     }
+
+    const std::string &Resource::name() const
+    {
+        return _name;
+    }
+
+     void Resource::addRef()
+     {
+         _refCount++;
+     }
+       
+     
+     void Resource::release()
+     {
+         _refCount--;
+
+         if(_refCount == 0)
+             ResourceManager::remove(this);
+     }
 } // namespace
