@@ -60,19 +60,6 @@ namespace Collisions
 		{
 			string word;
 
-			/* Important keywords */
-			stream >> word;
-			if(word == "abscisse_bas=")
-			{
-				stream >> abscisse_bas;
-			}
-
-			stream >> word;
-			if(word == "ordonnee_haut=")
-			{
-				stream >> ordonnee_haut;
-			}
-
 			/* We read file to search keywords and read his value */
 			while(getline(stream, word))
 			{
