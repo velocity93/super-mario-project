@@ -73,7 +73,7 @@ namespace Collisions
 		Type _type;
 		int _submission;
 		int _nbSprites;
-		string _textureName;
+		string _textureName; // without extension
 		Vector2f _initialSpeed;
 		vector<ItemOccurrence*> _itemOccurences;
 
