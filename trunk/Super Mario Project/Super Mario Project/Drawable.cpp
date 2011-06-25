@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Drawable.hpp"
+#include "ResourceManager.hpp"
 
 namespace Rendering
 {
@@ -23,7 +24,7 @@ namespace Rendering
 
 	void Drawable::InitializeDrawable(const string& textureName)
 	{
-		_texture = new Texture(textureName);
+        _texture = SuperMarioProject::ResourceManager::getTexture(textureName);
 		_spriteNumbersByState = vector<int>();
 		_animationSpeeds = vector<int>();
 		_position = Vector2f();
@@ -46,5 +47,6 @@ namespace Rendering
 
 	Drawable::~Drawable()
 	{
+        _texture->release();
 	}
 } // namespace

@@ -10,15 +10,24 @@
 #ifndef HPP_RESOURCE
 #define HPP_RESOURCE
 
+#include <string>
+
 namespace SuperMarioProject
 {
+    class ResourceManager;
+
     class Resource
     {
     public:
-        Resource();
-        virtual ~Resource();
-		
+        Resource(std::string name);
+        virtual ~Resource() = 0;
+        const std::string &name() const;
+		void addRef();
+        void release();
+
     private:
+        std::string _name;
+        int _refCount;
     };
 } // namespace
 

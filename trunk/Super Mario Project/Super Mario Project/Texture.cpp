@@ -11,8 +11,8 @@
 namespace Rendering
 {
     Texture::Texture(const string& name)
+        : Resource(name)
     {
-        _name = name;
         _image = sf::Image();
         _sprite = sf::Sprite();
 
@@ -28,11 +28,6 @@ namespace Rendering
         _image.Bind();
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    }
-
-    string Texture::getName()
-    {
-        return _name;
     }
 
     Image* Texture::getImage()
@@ -53,12 +48,6 @@ namespace Rendering
     void Texture::setPosition(float x, float y)
     {
         _sprite.SetPosition(x, y);
-    }
-
-
-    void Texture::setName(const string& name)
-    {
-        _name = name;
     }
 
     Texture::~Texture()

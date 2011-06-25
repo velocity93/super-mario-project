@@ -10,16 +10,33 @@
 #ifndef HPP_RESOURCEMANAGER
 #define HPP_RESOURCEMANAGER
 
+#include <map>
+#include <string>
+#include "Resource.hpp"
+#include "Texture.hpp"
+#include "Item.hpp"
+
 namespace SuperMarioProject
 {
     class ResourceManager
     {
     public:
         ResourceManager();
-        virtual ~ResourceManager();
-		
+        ~ResourceManager();
+
+        static void remove(Resource *res);
+        static Rendering::Texture *getTexture(const std::string &name);
+        static Collisions::Item *getItem(const std::string &name);
+
     private:
+        template <typename T>
+        static T *get(const std::string &name);
+
+        static std::map<std::string, Resource*> _resources;
     };
+
+#include "ResourceManager.inl"
+
 } // namespace
 
 #endif // HPP_RESOURCEMANAGER

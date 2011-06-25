@@ -50,25 +50,25 @@ namespace Collisions
 				switch(_direction)
 				{
 				case TO_TOP:
-                    monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), _monster,  Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
+                    monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->name(), _monster,  Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
 					monsterOccurrence->setSpeed(Vector2f(0, MONSTER_EXIT_SPEED));
 					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_BOTTOM:
-					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->name(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
 					monsterOccurrence->setSpeed(Vector2f(0, -MONSTER_EXIT_SPEED));
 					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_LEFT:
-					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->name(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
 					monsterOccurrence->setSpeed(Vector2f(-MONSTER_EXIT_SPEED, 0));
 					monsterOccurrence->setSide(Collisions::MonsterOccurrence::Side::LEFT_SIDE);
 					break;
 
 				case TO_RIGHT:
-					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->getName(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
+					monsterOccurrence = new MonsterOccurrence(_monster->getMonsterOccurrences().front()->getTexture()->name(), _monster, Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH));
 					monsterOccurrence->setSpeed(Vector2f(MONSTER_EXIT_SPEED, 0));
 					monsterOccurrence->setSide(Collisions::MonsterOccurrence::RIGHT_SIDE);
 					break;
