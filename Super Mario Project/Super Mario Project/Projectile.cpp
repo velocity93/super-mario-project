@@ -8,6 +8,7 @@
 
 #include "Projectile.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -54,23 +55,10 @@ namespace Collisions
 		int abscisse_bas = 0, ordonnee_haut = 0, nb_sprites_max = 0;
 		string fileName = _textureName + ".proj";
 		ifstream stream(fileName.c_str());
-		vector<string> keywords;
-		keywords.push_back("marche");
-		keywords.push_back("mort");
-		vector<string>::iterator itKeywords;
 		
 		if(stream)
 		{
-			string word, wordToCompare;
-			int value = INT_MIN;
-
-			stream >> word;
-			if(word == "speed_x=")
-			{
-				stream >> _initialSpeed.x;
-			}
-			else
-				throw exception(" \"speed_x=\" keyword is missing");
+			string word;
 
 			/* Important keywords */
 			stream >> word;
@@ -78,67 +66,85 @@ namespace Collisions
 			{
 				stream >> abscisse_bas;
 			}
-			else
-				throw exception("\"abscisse_bas=\" keyword is missing");
 
 			stream >> word;
 			if(word == "ordonnee_haut=")
 			{
 				stream >> ordonnee_haut;
 			}
-			else
-				throw exception("\"ordonnee_haut=\" keyword is missing");
 
-			for(itKeywords = keywords.begin(); itKeywords < keywords.end(); ++itKeywords)
+			/* We read file to search keywords and read his value */
+			while(getline(stream, word))
 			{
-				stream >> word;
-				wordToCompare = "nb_sprites_" + *itKeywords + "=";
-				if(word == wordToCompare)
+				int found = word.find("speed_x=");
+				if(found != string::npos)
 				{
-					stream >> value;
-
-					// To compute Sprite size
-					if(value > nb_sprites_max)
-						nb_sprites_max = value;
-
-					value = INT_MIN;
-				}
-				else
-				{
-					wordToCompare = "\"" + wordToCompare;
-					wordToCompare += "\" keyword is missing";
-					throw exception(wordToCompare.c_str());
+					istringstream InitialSpeedX(word.substr(found + 8));
+					InitialSpeedX >> _initialSpeed.x;
 				}
 
-				stream >> word;
-				wordToCompare = "v_anim_" + *itKeywords + "=";
-				if(word == wordToCompare)
+				int found = word.find("abscisse_bas=");
+				if(found != string::npos)
 				{
-					stream >> value;
-					value = 0;
+					istringstream abscisseBas(word.substr(found + 13));
+					abscisseBas >> abscisse_bas;
+					continue;
 				}
-				else
+
+				int found = word.find("ordonne_haut=");
+				if(found != string::npos)
 				{
-					wordToCompare = "\"" + wordToCompare;
-					wordToCompare += "\" keyword is missing";
-					throw exception(wordToCompare.c_str());
+					istringstream ordonneeHaut(word.substr(found + 13));
+					ordonneeHaut >> ordonnee_haut;
+					continue;
 				}
+
+				found = word.find("submission=");
+				if(found != string::npos)
+				{
+					/* Read hexadecimal value */
+					istringstream submission(word.substr(found + 11));
+					submission >> hex >> _submission;
+					continue;
+				}
+
+				/* Manage sprites numbers here */
+				found = word.find("nb_sprites_marche=");
+				if(found != string::npos)
+				{
+					istringstream nbWalkingSprites(word.substr(found + 18));
+					/* where put value ? */
+					continue;
+				}
+
+				/* Manage sprites numbers here */
+				found = word.find("nb_sprites_mort=");
+				if(found != string::npos)
+				{
+					istringstream nbDeadSprites(word.substr(found + 16));
+					/* where put value ? */
+					continue;
+				}
+
+				/* Manage speed of animation numbers here */
+				found = word.find("v_anim_marche=");
+				if(found != string::npos)
+				{
+					istringstream vWalkingAnim(word.substr(found + 14));
+					/* where put value ? */
+					continue;
+				}
+
+				/* Manage speed of animation numbers here */
+				found = word.find("v_anim_mort=");
+				if(found != string::npos)
+				{
+					istringstream vDeadAnim(word.substr(found + 12));
+					/* where put value ? */
+				}
+
+				/* Add apparition_time and disappearing_time later */
 			}
-
-			stream >> word;
-			if(word == "submission=")
-			{
-				/* Read hexadecimal number with 'hex' manipulator */
-				stream >> hex >> _submission;
-			}
-			else
-				throw exception("\"submission=\" keyword is missing");
-
-			
-			
-			/* Add apparition_time and disappearing_time later */
-
-
 		}
 		else
 		{
