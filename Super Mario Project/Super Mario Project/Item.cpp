@@ -80,14 +80,16 @@ namespace Collisions
 				int found = word.find("speed_x=");
 				if(found != string::npos)
 				{
-					_initialSpeed.x = atoi(word.substr(found + 8).c_str());
+					istringstream initialSpeedX(word.substr(found + 8));
+					initialSpeedX >> _initialSpeed.x;
 					continue;
 				}
 
 				found = word.find("speed_y=");
 				if(found != string::npos)
 				{
-					_initialSpeed.y = atoi(word.substr(found + 8).c_str());
+					istringstream initialSpeedY(word.substr(found + 8));
+					initialSpeedY >> _initialSpeed.y;
 					continue;
 				}
 

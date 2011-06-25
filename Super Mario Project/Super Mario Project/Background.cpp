@@ -8,6 +8,7 @@
 
 #include "Background.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Rendering
 {
@@ -96,7 +97,8 @@ namespace Rendering
 				int found = word.find("vertical_repetition=");
 				if(found != string::npos)
 				{
-					_verticalRepetition = atoi(word.substr(found + 20).c_str());
+					istringstream verticalRepetition(word.substr(found + 20));
+					verticalRepetition >> _verticalRepetition;
 					break; // We don't have to read more
 				}
 			}

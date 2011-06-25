@@ -8,6 +8,7 @@
 
 #include "Monster.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -47,10 +48,47 @@ namespace Collisions
 	void Monster::loadMonster()
 	{
 		string fileName = _textureName + ".item";
+		int abscisse_bas = 0;
 		ifstream stream(fileName.c_str());
 		
 		if(stream)
 		{
+			string word;
+
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
+			{
+				int found = word.find("abscisse_bas=");
+				if(found != string::npos)
+				{
+					istringstream abscisseBas(word.substr(found + 13));
+					abscisseBas >> abscisse_bas;
+					continue;
+				}
+
+				found = word.find("canBeJumpedOn=");
+				if(found != string::npos)
+				{
+					istringstream canBeJumpedOn(word.substr(found + 14));
+					canBeJumpedOn >> _canBeJumpedOn;
+					continue;
+				}
+
+				found = word.find("canBeKilledByJump=");
+				if(found != string::npos)
+				{
+					istringstream canBeKilledByJump(word.substr(found + 18));
+					canBeKilledByJump >> _canBeKilledByJump;
+					continue;
+				}
+
+				found = word.find("canBeKilledByFire=");
+				if(found != string::npos)
+				{
+					istringstream canBeKilledByFire(word.substr(found + 18));
+					canBeKilledByFire >> _canBeKilledByFire;
+				}
+			}
 
 		}
 		else

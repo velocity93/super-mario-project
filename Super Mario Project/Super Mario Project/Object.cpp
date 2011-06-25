@@ -8,7 +8,7 @@
 
 #include "Object.hpp"
 #include <fstream>
-#include <iostream>
+#include <sstream>
 #include <exception>
 
 namespace Rendering
@@ -49,7 +49,6 @@ namespace Rendering
 	void Object::loadCfgObject(const string& textureName)
 	{
 		string fileName = textureName + ".obj";
-		
 		ifstream stream(fileName.c_str());
 		
 		if(stream)
@@ -62,14 +61,20 @@ namespace Rendering
 				int found = word.find("nb_sprites=");
 				if(found != string::npos)
 				{
-					_spriteNumbersByState.push_back(atoi(word.substr(found + 11).c_str()));
+					int nb_sprites = 0;
+					istringstream nbSprites(word.substr(found + 11));
+					nbSprites >> nb_sprites;
+					_spriteNumbersByState.push_back(nb_sprites);
 					continue;
 				}
 
 				found = word.find("v_anim=");
 				if(found != string::npos)
 				{
-					_animationSpeeds.push_back(atoi(word.substr(found + 7).c_str()));
+					int v_anim = 0;
+					istringstream nbSprites(word.substr(found + 7));
+					nbSprites >> v_anim;
+					_animationSpeeds.push_back(v_anim);
 				}
 			}
 		}
