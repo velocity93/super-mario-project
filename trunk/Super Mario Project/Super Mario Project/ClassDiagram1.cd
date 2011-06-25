@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Rendering::Background">
-    <Position X="0.5" Y="8" Width="5.25" />
+    <Position X="0.5" Y="10" Width="5.25" />
     <TypeIdentifier>
       <HashCode>ABIAgAAAAAAAAAAAAAAAAgAAAAAAAAACEAAgAAAUAAA=</HashCode>
       <FileName>Background.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::Drawable">
-    <Position X="31.75" Y="0.5" Width="4" />
+    <Position X="11.5" Y="1" Width="4" />
     <NestedTypes>
       <Enum Name="Rendering::Drawable::Layer" Collapsed="true">
         <TypeIdentifier>
@@ -27,56 +27,56 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::Foreground">
-    <Position X="6.5" Y="8" Width="3" />
+    <Position X="6.5" Y="10" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUQAA=</HashCode>
       <FileName>Foreground.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::HUD" Collapsed="true">
-    <Position X="73.5" Y="0.5" Width="1.5" />
+    <Position X="56.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQBAQAACIAAgAgIAwAAAAAAAACEAAQAAAAACAAEUAAQ=</HashCode>
       <FileName>HUD.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::Object">
-    <Position X="3" Y="5.25" Width="3.75" />
+    <Position X="5.25" Y="6.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAgAAAAAAAUAAA=</HashCode>
       <FileName>Object.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::Screen" Collapsed="true">
-    <Position X="73.5" Y="2.5" Width="1.5" />
+    <Position X="58.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAACAAFAIAAAAgABAAAAAAAAEAAAAAUAAAAAAIAAAA=</HashCode>
       <FileName>Screen.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Rendering::Texture">
-    <Position X="74.5" Y="6" Width="3" />
+    <Position X="30" Y="4.75" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAgAgAABAAAAACAAAAQABAAAMEAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAgAABAAAAACAAAAQAAAAAMAAAAAAAA=</HashCode>
       <FileName>Texture.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::BlockOccurrence" Collapsed="true">
-    <Position X="68.25" Y="0.5" Width="1.5" />
+    <Position X="56.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAA=</HashCode>
       <FileName>BlockOccurrence.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Collisions::Blocks">
-    <Position X="76.25" Y="2.5" Width="1.5" />
+  <Class Name="Collisions::Blocks" Collapsed="true">
+    <Position X="58.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Blocks.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Checkpoint">
-    <Position X="62.5" Y="8.25" Width="4.75" />
+    <Position X="29.25" Y="14.75" Width="4.75" />
     <NestedTypes>
       <Enum Name="Collisions::Checkpoint::State" Collapsed="true">
         <TypeIdentifier>
@@ -90,21 +90,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Collisionable">
-    <Position X="36.75" Y="5.25" Width="4" />
+    <Position X="21.25" Y="6.75" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAKAAAAAAAA=</HashCode>
       <FileName>Collisionable.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::CollisionManager" Collapsed="true">
-    <Position X="71.75" Y="0.5" Width="1.5" />
+    <Position X="60" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAAACAAIA=</HashCode>
       <FileName>CollisionManager.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Door">
-    <Position X="11.75" Y="8.25" Width="7.25" />
+    <Position X="9.75" Y="14.75" Width="7.25" />
     <NestedTypes>
       <Enum Name="Collisions::Door::State" Collapsed="true">
         <TypeIdentifier>
@@ -118,7 +118,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::EntityMovable">
-    <Position X="32.5" Y="8.25" Width="4.25" />
+    <Position X="44" Y="14.75" Width="4.25" />
     <NestedTypes>
       <Enum Name="Collisions::EntityMovable::Side" Collapsed="true">
         <TypeIdentifier>
@@ -132,14 +132,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Finish">
-    <Position X="48.75" Y="8.25" Width="3.75" />
+    <Position X="35.5" Y="14.75" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAg=</HashCode>
       <FileName>Finish.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Item">
-    <Position X="78" Y="5.75" Width="4.25" />
+    <Position X="43.5" Y="4.75" Width="4.25" />
     <NestedTypes>
       <Enum Name="Collisions::Item::Type" Collapsed="true">
         <TypeIdentifier>
@@ -153,7 +153,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::ItemOccurrence">
-    <Position X="42.5" Y="12.75" Width="5.5" />
+    <Position X="53" Y="21" Width="5.5" />
     <NestedTypes>
       <Enum Name="Collisions::ItemOccurrence::State" Collapsed="true">
         <TypeIdentifier>
@@ -167,14 +167,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Monster">
-    <Position X="69.25" Y="9.75" Width="6.5" />
+    <Position X="34.5" Y="4.75" Width="8.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQACAAAAgAAAAAIAAEQAgAAFIA0AAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAgAAAAAIAAEQAgAAFIA0AAA=</HashCode>
       <FileName>Monster.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::MonsterOccurrence">
-    <Position X="21.25" Y="12.75" Width="4.5" />
+    <Position X="31.75" Y="21" Width="5.5" />
     <NestedTypes>
       <Enum Name="Collisions::MonsterOccurrence::State" Collapsed="true">
         <TypeIdentifier>
@@ -193,21 +193,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Particle">
-    <Position X="33" Y="12.75" Width="3.75" />
+    <Position X="48.75" Y="21" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAVAAA=</HashCode>
       <FileName>Particle.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::ParticleGenerator">
-    <Position X="53.25" Y="8.25" Width="8.5" />
+    <Position X="19" Y="14.75" Width="8.5" />
     <TypeIdentifier>
       <HashCode>AAAAABCMAAEABAQKBABSIgAEAEBAABAFQAAAQAAUAAA=</HashCode>
       <FileName>ParticleGenerator.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Perso">
-    <Position X="37.5" Y="12.75" Width="4.25" />
+    <Position X="44" Y="21" Width="4.25" />
     <NestedTypes>
       <Enum Name="Collisions::Perso::Environment" Collapsed="true">
         <TypeIdentifier>
@@ -236,7 +236,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Pipe">
-    <Position X="10.25" Y="13.25" Width="10.25" />
+    <Position X="8.25" Y="22" Width="10.25" />
     <NestedTypes>
       <Enum Name="Collisions::Pipe::Direction" Collapsed="true">
         <TypeIdentifier>
@@ -250,7 +250,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::Projectile">
-    <Position X="79" Y="1" Width="3.75" />
+    <Position X="48.5" Y="4.75" Width="4.75" />
     <NestedTypes>
       <Enum Name="Collisions::Projectile::Type" Collapsed="true">
         <TypeIdentifier>
@@ -264,7 +264,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Collisions::ProjectileOccurrence">
-    <Position X="26.5" Y="12.75" Width="5.75" />
+    <Position X="37.75" Y="21" Width="5.75" />
     <NestedTypes>
       <Enum Name="Collisions::ProjectileOccurrence::Sender" Collapsed="true">
         <TypeIdentifier>
@@ -278,56 +278,56 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SuperMarioProject::Level" Collapsed="true">
-    <Position X="71.75" Y="1.5" Width="1.5" />
+    <Position X="60" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gQSAQAEAIYAAAIACAEAAAAAEIBwABQABEQIABQIUAAA=</HashCode>
       <FileName>Level.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SuperMarioProject::Resource">
-    <Position X="68.5" Y="2.5" Width="1.5" />
+    <Position X="40.5" Y="1.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAgIAAEIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Resource.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SuperMarioProject::ResourceManager" Collapsed="true">
-    <Position X="71.75" Y="2.5" Width="1.5" />
+    <Position X="56.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAQAAAgAAAAAAEAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <HashCode>AAAAAAAAQgAAAgAEAAAAUAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
       <FileName>ResourceManager.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SuperMarioProject::World">
-    <Position X="69.75" Y="4" Width="4.25" />
+  <Class Name="SuperMarioProject::World" Collapsed="true">
+    <Position X="60" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAABAAABAAAAAAABEQARCAAAKKQQBAEAEAAAAUAAA=</HashCode>
       <FileName>World.hpp</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SuperMarioProject::InputState" Collapsed="true">
-    <Position X="68.25" Y="1.5" Width="1.5" />
+    <Position X="58.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAgAAAAAAAAAAAAAAAEEAAAAAAgAAAAAEAAA=</HashCode>
       <FileName>InputState.hpp</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Collisions::Block_state">
-    <Position X="68.25" Y="4.75" Width="1.5" />
+  <Enum Name="Collisions::Block_state" Collapsed="true">
+    <Position X="56.5" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAABAAAAAAAAAAAAAAAAAABAgAAAAAAAAA=</HashCode>
       <FileName>Blocks.hpp</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="SuperMarioProject::KeyState">
-    <Position X="71.75" Y="4.75" Width="1.5" />
+  <Enum Name="SuperMarioProject::KeyState" Collapsed="true">
+    <Position X="60" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InputState.hpp</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="SuperMarioProject::Key">
-    <Position X="70" Y="4.75" Width="1.5" />
+  <Enum Name="SuperMarioProject::Key" Collapsed="true">
+    <Position X="58.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAEAAAAgACAAAAAJAAABAQAAAAAABAAA=</HashCode>
       <FileName>InputState.hpp</FileName>

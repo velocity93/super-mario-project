@@ -28,6 +28,24 @@ namespace SuperMarioProject
     }
 
 
+    Collisions::Item *ResourceManager::getItem(const std::string &name)
+    {
+        return get<Collisions::Item>(name);
+    }
+
+
+    Collisions::Monster *ResourceManager::getMonster(const std::string &name)
+    {
+        return get<Collisions::Monster>(name);
+    }
+
+
+    Collisions::Projectile *ResourceManager::getProjectile(const std::string &name)
+    {
+        return get<Collisions::Projectile>(name);
+    }
+
+
     void ResourceManager::remove(Resource *res)
     {
         string name = res->name();
