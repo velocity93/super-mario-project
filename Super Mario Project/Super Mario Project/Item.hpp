@@ -11,15 +11,17 @@
 #define HPP_ITEM
 
 #include "ItemOccurrence.hpp"
+#include "Resource.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+
 
 using namespace std;
 using namespace sf;
 
 namespace Collisions
 {
-	class Item
+	class Item : public SuperMarioProject::Resource
 	{
 	
 	public:
@@ -36,8 +38,7 @@ namespace Collisions
 		};
 	
 		/* Constructors */
-		Item(const string& textureName);
-		Item(const string& textureName, Type type, int submission);
+        Item(const string& textureName, Type type = COIN, int submission = 0);
 
 		/* Item type */
 		Type getType();
@@ -73,7 +74,6 @@ namespace Collisions
 		Type _type;
 		int _submission;
 		int _nbSprites;
-		string _textureName; // without extension
 		Vector2f _initialSpeed;
 		vector<ItemOccurrence*> _itemOccurences;
 

@@ -11,6 +11,7 @@
 #define HPP_PROJECTILE
 
 #include "ProjectileOccurrence.hpp"
+#include "Resource.hpp"
 #include <vector>
 #include <SFML/Graphics.hpp>
 
@@ -19,7 +20,7 @@ using namespace sf;
 
 namespace Collisions
 {
-	class Projectile
+    class Projectile : public SuperMarioProject::Resource
     {
 	
 	public:
@@ -35,8 +36,7 @@ namespace Collisions
 		};
 
 		/* Constructor */
-		Projectile(const string& textureName);
-		Projectile(const string& textureName, Type type, int submission);
+		Projectile(const string& textureName, Type type = FRAGMENT, int submission = 0);
 
 		/* Physic submission */
 		int getSubmission();
@@ -64,7 +64,6 @@ namespace Collisions
 		Vector2f _initialSpeed;
 		int _submission;
 		int _nbSprites;
-		string _textureName;
 		vector<ProjectileOccurrence*> _projectileOccurences;
 
 		/* Loading Projectile */

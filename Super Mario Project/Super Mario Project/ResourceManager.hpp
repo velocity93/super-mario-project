@@ -15,6 +15,8 @@
 #include "Resource.hpp"
 #include "Texture.hpp"
 #include "Item.hpp"
+#include "Monster.hpp"
+#include "Projectile.hpp"
 
 namespace SuperMarioProject
 {
@@ -27,6 +29,8 @@ namespace SuperMarioProject
         static void remove(Resource *res);
         static Rendering::Texture *getTexture(const std::string &name);
         static Collisions::Item *getItem(const std::string &name);
+        static Collisions::Monster *getMonster(const std::string &name);
+        static Collisions::Projectile *getProjectile(const std::string &name);
 
     private:
         template <typename T>

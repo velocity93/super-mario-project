@@ -10,18 +10,18 @@
 #ifndef HPP_MONSTER
 #define HPP_MONSTER
 
-#include "MonsterOccurrence.hpp"
 #include <vector>
+#include "MonsterOccurrence.hpp"
+#include "Resource.hpp"
 
 using namespace std;
 
 namespace Collisions
 {
-	class Monster
+    class Monster : public SuperMarioProject::Resource
     {
     public:
-		Monster(const string& textureName);
-		Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn, bool stayOnPlateForm);
+		Monster(const string& textureName, bool canBeKilledByFire = false, bool canBeKilledByJump = false, bool canBeJumpedOn = false, bool stayOnPlateForm = false);
 
 		/* List of all occurrences */
 		vector<MonsterOccurrence*> getMonsterOccurrences();
@@ -47,7 +47,6 @@ namespace Collisions
 		bool _canBeJumpedOn;
 		bool _stayOnPlateForm;
 		//int _disappearingTime;
-		string _textureName;
 		vector<MonsterOccurrence*> _monsterOccurrences;
 
 		/* Load monster configuration */
