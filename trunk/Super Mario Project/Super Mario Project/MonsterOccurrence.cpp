@@ -6,11 +6,26 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "ResourceManager.hpp"
 #include "MonsterOccurrence.hpp"
 #include "Monster.hpp"
 
+using namespace SuperMarioProject;
+
 namespace Collisions
 {
+	MonsterOccurrence::MonsterOccurrence(const string& textureName) 
+		: EntityMovable(textureName), _state(M_WALK), _isActive(true)
+	{ 
+		_monster = ResourceManager::getMonster(textureName);
+	}
+
+	MonsterOccurrence::MonsterOccurrence(const string& textureName, Vector2f& position) 
+			: EntityMovable(textureName, position), _initialPosition(position), _state(M_WALK), _isActive(true)
+	{
+		_monster = ResourceManager::getMonster(textureName);
+	}
+
 	MonsterOccurrence::State MonsterOccurrence::getState()
 	{
 		return _state;

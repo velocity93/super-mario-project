@@ -36,7 +36,7 @@ namespace Collisions
 		};
 
 		/* Constructor */
-		Projectile(const string& textureName, Type type = FRAGMENT, int submission = 0);
+		Projectile(const string& textureName, Type type = FRAGMENT);
 
 		/* Physic submission */
 		int getSubmission();

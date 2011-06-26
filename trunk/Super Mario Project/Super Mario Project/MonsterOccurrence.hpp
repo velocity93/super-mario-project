@@ -45,9 +45,8 @@ namespace Collisions
 		};
 
 	
-		MonsterOccurrence(const string& textureName, Monster* monster) : EntityMovable(textureName), _state(M_WALK), _monster(monster), _isActive(true) { }
-		MonsterOccurrence(const string& textureName, Monster* monster, Vector2f& position) 
-			: EntityMovable(textureName, position), _initialPosition(position), _state(M_WALK), _monster(monster), _isActive(true) { }
+		MonsterOccurrence(const string& textureName);
+		MonsterOccurrence(const string& textureName, Vector2f& position);
 
 		State getState();
 		void setState(State state);

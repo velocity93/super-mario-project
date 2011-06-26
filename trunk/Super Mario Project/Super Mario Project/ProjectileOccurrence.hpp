@@ -26,12 +26,11 @@ namespace Collisions
 
     
 		/* Constructors */
-		ProjectileOccurrence(const string& textureName, Projectile* projectile);
-		ProjectileOccurrence(const string& textureName, Projectile* projectile, Vector2f& position);
+		ProjectileOccurrence(const string& textureName);
+		ProjectileOccurrence(const string& textureName, Vector2f& position);
 
 		/* Getter and setter */
 		Sender getSender();
-		void setSender(Sender sender);
 
 		/* Methods */
 		void update(RenderWindow& app);

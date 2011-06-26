@@ -6,11 +6,26 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "ResourceManager.hpp"
 #include "ItemOccurrence.hpp"
 #include "Item.hpp"
 
+using namespace SuperMarioProject;
+
 namespace Collisions
 {
+	ItemOccurrence::ItemOccurrence(const string& textureName) :  
+	EntityMovable(textureName), _state(NORMAL), _isActive(true), _blockExitTime(0)
+	{
+		_item = ResourceManager::getItem(textureName);
+	}
+
+	ItemOccurrence::ItemOccurrence(const string& textureName, Vector2f position, State state)
+			: EntityMovable(textureName, position), _state(state), _isActive(true), _blockExitTime(0)
+	{
+		_item = ResourceManager::getItem(textureName);
+	}
+
 	ItemOccurrence::State ItemOccurrence::getState()
 	{
 		return _state;
