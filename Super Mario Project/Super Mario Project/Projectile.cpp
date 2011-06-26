@@ -12,10 +12,9 @@
 
 namespace Collisions
 {
-    Projectile::Projectile(const string& textureName, Type type, int submission)
+    Projectile::Projectile(const string& textureName, Type type)
         : Resource("textures\\projectiles\\" + textureName),
-        _type(type), _submission(submission),
-        _initialSpeed(Vector2f())
+        _type(type), _initialSpeed(Vector2f())
     {
         loadProjectile();
     }
@@ -32,7 +31,7 @@ namespace Collisions
 
     void Projectile::addNewProjectileOccurrence()
     {
-        _projectileOccurences.push_back(new ProjectileOccurrence(name(), this));
+        _projectileOccurences.push_back(new ProjectileOccurrence(name()));
     }
 
     void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)
@@ -48,13 +47,13 @@ namespace Collisions
 
     void Projectile::loadProjectile()
     {
-        int abscisse_bas = 0, ordonnee_haut = 0, nb_sprites_max = 0;
+        int abscisse_bas = 0, ordonnee_haut = 0;
         string fileName = name() + ".proj";
         ifstream stream(fileName.c_str());
-
-        if(stream)
-        {
-            string word;
+		
+		if(stream)
+		{
+			string word;
 
             /* We read file to search keywords and read his value */
             while(getline(stream, word))

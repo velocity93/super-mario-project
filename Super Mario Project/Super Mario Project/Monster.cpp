@@ -45,7 +45,7 @@ namespace Collisions
 
     void Monster::loadMonster()
     {
-        string fileName = name() + ".item";// TODO c'est pas .mstr plutot???
+        string fileName = name() + ".mstr";
         int abscisse_bas = 0;
         ifstream stream(fileName.c_str());
 

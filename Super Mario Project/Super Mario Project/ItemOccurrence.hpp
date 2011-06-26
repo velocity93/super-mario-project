@@ -26,9 +26,8 @@ namespace Collisions
 		};
 
    
-		ItemOccurrence(const string& textureName, Item* item) :  EntityMovable(textureName), _state(NORMAL), _isActive(true), _blockExitTime(0), _item(item) { }
-		ItemOccurrence(const string& textureName, Item* item, Vector2f position, State state)
-			: EntityMovable(textureName, position), _state(state), _isActive(true), _blockExitTime(0), _item(item) { }
+		ItemOccurrence(const string& textureName);
+		ItemOccurrence(const string& textureName, Vector2f position, State state);
 
 		State getState();
 		bool getIsActive();

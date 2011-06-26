@@ -42,12 +42,12 @@ namespace Collisions
 
     void Item::addNewItemOccurrence()
     {
-        _itemOccurences.push_back(new ItemOccurrence(name(), this));
+        _itemOccurences.push_back(new ItemOccurrence(name()));
     }
 
     void Item::addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state)
     {
-        _itemOccurences.push_back(new ItemOccurrence(name(), this, position, state));
+        _itemOccurences.push_back(new ItemOccurrence(name(), position, state));
     }
 
     void Item::removeItemOccurrence(const ItemOccurrence* item)
@@ -95,6 +95,7 @@ namespace Collisions
                 {
                     istringstream submission(word.substr(found + 11));
                     submission >> hex >> _submission;
+					continue;
                 }
 
                 /* Manage sprites numbers here */

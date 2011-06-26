@@ -6,34 +6,34 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "ResourceManager.hpp"
 #include "ProjectileOccurrence.hpp"
 #include "Projectile.hpp"
 
+using namespace SuperMarioProject;
+
 namespace Collisions
 {
-	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Projectile* projectile) : EntityMovable(textureName), _sender(GENTILE)
+	ProjectileOccurrence::ProjectileOccurrence(const string& textureName)
+		: EntityMovable(textureName), _sender(GENTILE)
 	{
-		_projectile = projectile;
-		_hitboxPosition.x = 0;
-		_hitboxPosition.y = 0;
-		/* Compute HitboxSize */
+		_projectile = ResourceManager::getProjectile(textureName);
+		_position.x = 0;
+		_position.y = 0;
+		/* Compute Hitbox */
 	}
 
-	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Projectile* projectile, Vector2f& position) : EntityMovable(textureName, position), _sender(GENTILE)
+	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Vector2f& position)
+		: EntityMovable(textureName, position), _sender(GENTILE)
 	{
-		_projectile = projectile;
-		_hitboxPosition = position;
-		/* Compute HitboxSize */
+		_projectile = ResourceManager::getProjectile(textureName);
+		_position = position;
+		/* Compute Hitbox */
 	}
 
 	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()
 	{
 		return _sender;
-	}
-
-	void ProjectileOccurrence::setSender(Sender sender)
-	{
-		_sender = sender;
 	}
 
 	void ProjectileOccurrence::update(RenderWindow& app)
