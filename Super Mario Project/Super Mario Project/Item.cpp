@@ -35,6 +35,11 @@ namespace Collisions
         return _initialSpeed;
     }
 
+	int Item::getNbSprites()
+	{
+		return _nbSprites;
+	}
+
     vector<ItemOccurrence*> Item::getItemOccurrences()
     {
         return _itemOccurences;
@@ -102,7 +107,8 @@ namespace Collisions
                 found = word.find("nb_sprites=");
                 if(found != string::npos)
                 {
-                    /* where put value ? */
+                    istringstream nbSprites(word.substr(found + 11));
+                    nbSprites >> _nbSprites;
                 }
             }
         }

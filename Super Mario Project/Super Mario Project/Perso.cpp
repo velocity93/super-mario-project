@@ -581,6 +581,7 @@ namespace Collisions
 			throw exception(exceptionName.c_str());
 		}
 
+		/* Compute Hitbox Size */
 		_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
 		_hitboxSize.y = ordonnee_haut;
 	}

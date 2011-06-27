@@ -24,6 +24,21 @@ namespace Collisions
         return _submission;
     }
 
+	int Projectile::getNbSpritesMax()
+	{
+		return max(_nbWalkingSprites, _nbDeadSprites);
+	}
+
+	int Projectile::getBottomLeft()
+	{
+		return _bottomLeft;
+	}
+
+	int Projectile::getTop()
+	{
+		return _top;
+	}
+
     vector<ProjectileOccurrence*> Projectile::getProjectileOccurrences()
     {
         return _projectileOccurences;
@@ -47,7 +62,6 @@ namespace Collisions
 
     void Projectile::loadProjectile()
     {
-        int abscisse_bas = 0, ordonnee_haut = 0;
         string fileName = name() + ".proj";
         ifstream stream(fileName.c_str());
 		
@@ -69,15 +83,15 @@ namespace Collisions
                 if(found != string::npos)
                 {
                     istringstream abscisseBas(word.substr(found + 13));
-                    abscisseBas >> abscisse_bas;
+                    abscisseBas >> _bottomLeft;
                     continue;
                 }
 
-                found = word.find("ordonne_haut=");
+                found = word.find("ordonnee_haut=");
                 if(found != string::npos)
                 {
                     istringstream ordonneeHaut(word.substr(found + 13));
-                    ordonneeHaut >> ordonnee_haut;
+					ordonneeHaut >> _top;
                     continue;
                 }
 
@@ -95,7 +109,7 @@ namespace Collisions
                 if(found != string::npos)
                 {
                     istringstream nbWalkingSprites(word.substr(found + 18));
-                    /* where put value ? */
+					nbWalkingSprites >> _nbWalkingSprites;
                     continue;
                 }
 
@@ -104,7 +118,7 @@ namespace Collisions
                 if(found != string::npos)
                 {
                     istringstream nbDeadSprites(word.substr(found + 16));
-                    /* where put value ? */
+					nbDeadSprites >> _nbDeadSprites;
                     continue;
                 }
 
