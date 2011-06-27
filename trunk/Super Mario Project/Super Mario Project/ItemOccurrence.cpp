@@ -18,12 +18,20 @@ namespace Collisions
 	EntityMovable(textureName), _state(NORMAL), _isActive(true), _blockExitTime(0)
 	{
 		_item = ResourceManager::getItem(textureName);
+
+		_position = _hitboxPosition = Vector2f(0, 0);
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _item->getNbSprites();
+		_hitboxSize.y = _texture->getImage()->GetHeight();
 	}
 
-	ItemOccurrence::ItemOccurrence(const string& textureName, Vector2f position, State state)
+	ItemOccurrence::ItemOccurrence(const string& textureName, Vector2f& position, State state)
 			: EntityMovable(textureName, position), _state(state), _isActive(true), _blockExitTime(0)
 	{
 		_item = ResourceManager::getItem(textureName);
+
+		_position = _hitboxPosition = position;
+		_hitboxSize.x = _texture->getImage()->GetWidth()/ _item->getNbSprites();
+		_hitboxSize.y = _texture->getImage()->GetHeight();
 	}
 
 	ItemOccurrence::State ItemOccurrence::getState()

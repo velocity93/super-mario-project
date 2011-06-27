@@ -27,7 +27,7 @@ namespace Collisions
 
    
 		ItemOccurrence(const string& textureName);
-		ItemOccurrence(const string& textureName, Vector2f position, State state);
+		ItemOccurrence(const string& textureName, Vector2f& position, State state);
 
 		State getState();
 		bool getIsActive();

@@ -18,9 +18,9 @@ namespace Collisions
 		: EntityMovable(textureName), _sender(GENTILE)
 	{
 		_projectile = ResourceManager::getProjectile(textureName);
-		_position.x = 0;
-		_position.y = 0;
-		/* Compute Hitbox */
+		_position.x = _position.y = 0;
+		_hitboxSize.y = _projectile->getTop();
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
 	}
 
 	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Vector2f& position)
@@ -28,7 +28,8 @@ namespace Collisions
 	{
 		_projectile = ResourceManager::getProjectile(textureName);
 		_position = position;
-		/* Compute Hitbox */
+		_hitboxSize.y = _projectile->getTop();
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
 	}
 
 	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()

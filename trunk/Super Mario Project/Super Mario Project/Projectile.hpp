@@ -41,8 +41,17 @@ namespace Collisions
 		/* Physic submission */
 		int getSubmission();
 
+		/* Sprites Max on the line */
+		int getNbSpritesMax();
+
 		/* List of occurences */
 		vector<ProjectileOccurrence*> getProjectileOccurrences();
+
+		/* Bottom Left of hitbox size from left of sprite */
+		int getBottomLeft();
+
+		/* Top of hitbox size */
+		int getTop();
 
 		/* Add occurrence to list */
 		void addNewProjectileOccurrence();
@@ -62,8 +71,11 @@ namespace Collisions
     private:
 		Type _type;
 		Vector2f _initialSpeed;
+		int _bottomLeft;
+		int _top;
 		int _submission;
-		int _nbSprites;
+		int _nbWalkingSprites;
+		int _nbDeadSprites;
 		vector<ProjectileOccurrence*> _projectileOccurences;
 
 		/* Loading Projectile */

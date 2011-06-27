@@ -49,6 +49,9 @@ namespace Collisions
 		/* Initial Speed of Item */
 		Vector2f getInitialSpeed();
 
+		/* Number of sprites in texture */
+		int getNbSprites();
+
 		/* List of items occurrences */
 		vector<ItemOccurrence*> getItemOccurrences();
 

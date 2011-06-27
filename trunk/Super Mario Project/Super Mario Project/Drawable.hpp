@@ -51,7 +51,7 @@ namespace Rendering
 
 		/* getters and setters */
 		Vector2f getPosition();
-		Texture* Drawable::getTexture();
+		Texture* getTexture();
 		void setPosition(float x, float y);
 
 		/* It will be defined in subclasses */
