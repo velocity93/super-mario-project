@@ -8,6 +8,7 @@
 
 #include "Perso.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -513,65 +514,56 @@ namespace Collisions
 			string word, wordToCompare;
 			int value = INT_MAX;
 
-			/* Important keywords */
-			stream >> word;
-			if(word == "abscisse_bas=")
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
 			{
-				stream >> abscisse_bas;
-			}
-			else
-				throw exception("\"abscisse_bas=\" keyword is missing");
 
-			stream >> word;
-			if(word == "ordonnee_haut=")
-			{
-				stream >> ordonnee_haut;
-			}
-			else
-				throw exception("\"ordonnee_haut=\" keyword is missing");
-
-			// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
-			for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
-			{
-				stream >> word;
-				wordToCompare = "nb_sprites_" + *itKeywords + "=";
-				if(word == wordToCompare)
+				/* Important keywords */
+				int found = word.find("abscisse_bas=");
+				if(found != string::npos)
 				{
-					stream >> value;
-					_spriteNumbersByState.push_back(value);
-
-					// To compute Sprite size
-					if(value > nb_sprites_max)
-						nb_sprites_max = value;
-
-					value = INT_MIN;
+					istringstream abscisseBas(word.substr(found + 13));
+					abscisseBas >> abscisse_bas;
 				}
-				else
+				
+				found = word.find("ordonnee_haut=");
+				if(found != string::npos)
 				{
-					if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
+					istringstream ordonneeHaut(word.substr(found + 14));
+					ordonneeHaut >> ordonnee_haut;
+				}
+			
+
+				// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
+				for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
+				{
+					wordToCompare = "nb_sprites_" + *itKeywords + "=";
+					found = word.find(wordToCompare);
+					if(found != string::npos)
 					{
-						wordToCompare = "\"" + wordToCompare;
-						wordToCompare += "\" keyword is missing";
-						throw exception(wordToCompare.c_str());
-					}
-				}
+						istringstream nbSprites(word.substr(found + wordToCompare.length()));
+						nbSprites >> value;
+						//_spriteNumbersByState.push_back(value);
 
-				stream >> word;
-				wordToCompare = "v_anim_" + *itKeywords + "=";
-				if(word == wordToCompare)
-				{
-					stream >> value;
-					_animationSpeeds.push_back(value);
-					value = 0;
-				}
-				else
-				{
-					if((*itKeywords) != "attaque" || (*itKeywords) != "attaque_speciale")
-					{
-						wordToCompare = "\"" + wordToCompare;
-						wordToCompare += "\" keyword is missing";
-						throw exception(wordToCompare.c_str());
+						// To compute Sprite size
+						if(value > nb_sprites_max)
+							nb_sprites_max = value;
+
+						value = INT_MIN;
+						break;
 					}
+					
+
+					wordToCompare = "v_anim_" + *itKeywords + "=";
+					found = word.find(wordToCompare);
+					if(word == wordToCompare)
+					{
+						istringstream VAnim(word.substr(found +  wordToCompare.length()));
+						VAnim >> value;
+						//_animationSpeeds.push_back(value);
+						break;
+					}
+					
 				}
 			}
 		}

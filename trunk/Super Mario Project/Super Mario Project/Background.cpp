@@ -28,7 +28,7 @@ namespace Rendering
 		loadCfgBackground(textureName);
 
 		/* Compute max number of displayed sprites */
-		Sprite sprite = _texture->getSprite();
+		/*Sprite sprite = _texture->getSprite();
 		int spriteWidth = _texture->getImage()->GetWidth() / _spriteNumbersByState.front();
 		float widthFactor = ceil((view.GetRect().GetWidth() / _texture->getImage()->GetWidth()));
 		float heightFactor = ceil((view.GetRect().GetWidth() / _texture->getImage()->GetHeight()));
@@ -46,7 +46,7 @@ namespace Rendering
 
 			sprite.SetPosition(_position.x + spriteWidth * i, _position.y);
 			_sprites.push_back(sprite);
-		}
+		}*/
 	}
 
 
@@ -110,7 +110,7 @@ namespace Rendering
 		}
 
 		/* initialization to upper sprite */
-		_texture->setSubRect(0, 0, _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight() / _spriteNumbersByState.front());
+		//_texture->setSubRect(0, 0, _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight() / _spriteNumbersByState.front());
 	}
 
     Background::~Background()

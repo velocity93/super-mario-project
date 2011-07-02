@@ -66,8 +66,8 @@ namespace Rendering
 	protected:
 		Texture* _texture;
 		Vector2f _position;
-		vector<int> _spriteNumbersByState;
-		vector<int> _animationSpeeds;
+		/*vector<int> _spriteNumbersByState;
+		vector<int> _animationSpeeds;*/
 
 		void InitializeDrawable(const string& textureName);
 	};
