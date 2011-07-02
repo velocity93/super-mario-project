@@ -8,6 +8,7 @@
 
 #include "Checkpoint.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -55,48 +56,42 @@ namespace Collisions
 
 	void Checkpoint::loadCfgCheckpoint(const string& textureName)
 	{
-		string fileName = textureName + ".obj";
-		
+		string fileName = textureName + ".obj";		
 		ifstream stream(fileName.c_str());
 		
 		/* test if the stream is open*/
 		if(stream)
 		{
-
 			string word;
-			int value = 0;
 
-			/* 'nb_sprites_active' keyword */
-			stream >> word;
-			if(word == "nb_sprites_active=")
+			/* We read file to search keywords and read his value */
+			while(getline(stream, word))
 			{
-				stream >> value;
-				_spriteNumbersByState.push_back(value);
-				value = 0;
-			}
-			else
-				throw exception(" \"nb_sprites_active=\" keyword is missing", 1);
+				int found = word.find("nb_sprites_active=");
+				if(found != string::npos)
+                {
+					istringstream nbActiveSprites(word.substr(found + 18));
+					//nbActiveSprites >> ??;
+					continue;
+				}
 
-			/* 'nb_sprites_inactive' keyword */
-			stream >> word;
-			if(word == "nb_sprites_inactive=")
-			{
-				stream >> value;
-				_spriteNumbersByState.push_back(value);
-				value = 0;
-			}
-			else
-				throw exception(" \"nb_sprites_inactive=\" keyword is missing", 1);
+				/* 'nb_sprites_inactive' keyword */
+				found = word.find("nb_sprites_inactive=");
+				if(found != string::npos)
+                {
+					istringstream nbInactiveSprites(word.substr(found + 20));
+					//nbInactiveSprites >> ??;
+					continue;
+				}
 
-			/* 'v_anim' keyword */
-			stream >> word;
-			if(word == "v_anim=")
-			{
-				stream >> value;
-				_animationSpeeds.push_back(value);
+				/* 'v_anim' keyword */
+				found = word.find("v_anim=");
+                if(found != string::npos)
+                {
+                    istringstream vAnim(word.substr(found + 7));
+                    // vAnim >> ??;
+                }
 			}
-			else
-				throw exception("\"v_anim=\" keyword is missing", 1);
 		}
 		else
 		{
