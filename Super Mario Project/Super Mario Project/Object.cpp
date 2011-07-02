@@ -26,19 +26,19 @@ namespace Rendering
 	void Object::update(RenderWindow& app)
 	{
 		/* Compute coord sprite according to elapsedTime */
-		const View& view = app.GetDefaultView();
+		/*const View& view = app.GetDefaultView();
 		int nbSprites = _spriteNumbersByState.front();
 		int spriteHeight = _texture->getImage()->GetHeight() / nbSprites;
 		Sprite sprite = _texture->getSprite();
-		int cpt = 0;
+		int cpt = 0;*/
 
 		/* If object is smaller than screen size */
-		while(sprite.GetPosition().x < view.GetRect().Right)
+		/*while(sprite.GetPosition().x < view.GetRect().Right)
 		{
 			sprite.SetPosition(_position.x + _texture->getImage()->GetWidth() * cpt, _position.y);
 			sprite.SetSubRect(IntRect(0, (((int)time) % nbSprites) * spriteHeight, _texture->getImage()->GetWidth(), (1 + (((int)time) % nbSprites)) * spriteHeight));
 			cpt++;
-		}
+		}*/
 	}
 	
 	void Object::render(RenderWindow& app)
@@ -63,8 +63,8 @@ namespace Rendering
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 11));
-					nbSprites >> nb_sprites;
-					_spriteNumbersByState.push_back(nb_sprites);
+					//nbSprites >> nb_sprites;
+					//_spriteNumbersByState.push_back(nb_sprites);
 					continue;
 				}
 
@@ -73,8 +73,8 @@ namespace Rendering
 				{
 					int v_anim = 0;
 					istringstream nbSprites(word.substr(found + 7));
-					nbSprites >> v_anim;
-					_animationSpeeds.push_back(v_anim);
+					//nbSprites >> v_anim;
+					//_animationSpeeds.push_back(v_anim);
 				}
 			}
 		}

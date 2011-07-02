@@ -40,7 +40,7 @@ namespace Collisions
 	void Checkpoint::render(RenderWindow& app)
     {
 		Sprite sprite = _texture->getSprite();
-		int right = _texture->getImage()->GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
+		/*int right = _texture->getImage()->GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
 
 		if(_state == NOT_PASSED)
 		{
@@ -49,7 +49,7 @@ namespace Collisions
 		else
 		{
 			sprite.SetSubRect(IntRect(0, _texture->getImage()->GetHeight() / 2, right, _texture->getImage()->GetHeight()));
-		}
+		}*/
 
 		app.Draw(sprite);
     }
