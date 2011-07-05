@@ -41,12 +41,6 @@ namespace Collisions
 		/* Physic submission */
 		int getSubmission();
 
-		/* Sprites Max on the line */
-		int getNbSpritesMax();
-
-		/* List of occurences */
-		vector<ProjectileOccurrence*> getProjectileOccurrences();
-
 		/* Bottom Left of hitbox size from left of sprite */
 		int getBottomLeft();
 
@@ -54,7 +48,7 @@ namespace Collisions
 		int getTop();
 
 		/* Add occurrence to list */
-		void addNewProjectileOccurrence();
+		void addNewProjectileOccurrence(Vector2f& position = Vector2f(0,0), ProjectileOccurrence::State state = ProjectileOccurrence::State::LAUNCHED);
 
 		/* Remove occurrence to list */
 		void removeProjectileOccurrence(const ProjectileOccurrence* projectile);
@@ -74,9 +68,9 @@ namespace Collisions
 		int _bottomLeft;
 		int _top;
 		int _submission;
-		int _nbWalkingSprites;
-		int _nbDeadSprites;
 		vector<ProjectileOccurrence*> _projectileOccurences;
+		map<ProjectileOccurrence::State, int> _nbSpritesByState;
+		map<ProjectileOccurrence::State, int> _vAnimByState;
 
 		/* Loading Projectile */
 		void loadProjectile();

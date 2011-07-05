@@ -15,7 +15,8 @@ namespace Collisions
     Item::Item(const string& textureName, Type type, int submission)
         : Resource("textures\\items\\" + textureName),
         _type(type),
-        _submission(submission)
+        _submission(submission),
+		_nbSpritesByState(map<ItemOccurrence::State, int>())
     {
         loadItem();
     }
@@ -35,34 +36,24 @@ namespace Collisions
         return _initialSpeed;
     }
 
-	int Item::getNbSprites()
-	{
-		return _nbSprites;
-	}
-
     vector<ItemOccurrence*> Item::getItemOccurrences()
     {
-        return _itemOccurences;
+        return _itemOccurrences;
     }
 
-    void Item::addNewItemOccurrence()
+	void Item::addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state)
     {
-        _itemOccurences.push_back(new ItemOccurrence(name()));
-    }
-
-    void Item::addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state)
-    {
-        _itemOccurences.push_back(new ItemOccurrence(name(), position, state));
+        _itemOccurrences.push_back(new ItemOccurrence(name(), position, state, _nbSpritesByState, _vAnimByState));
     }
 
     void Item::removeItemOccurrence(const ItemOccurrence* item)
     {
         vector<ItemOccurrence*>::iterator itItemOccurrence;
 
-        for(itItemOccurrence = _itemOccurences.begin(); itItemOccurrence < _itemOccurences.end(); itItemOccurrence++)
+        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence < _itemOccurrences.end(); itItemOccurrence++)
         {
             if((*itItemOccurrence) == item)
-                _itemOccurences.erase(itItemOccurrence);
+                _itemOccurrences.erase(itItemOccurrence);
         }
     }
 
@@ -107,8 +98,10 @@ namespace Collisions
                 found = word.find("nb_sprites=");
                 if(found != string::npos)
                 {
+					int _nbSprites;
                     istringstream nbSprites(word.substr(found + 11));
                     nbSprites >> _nbSprites;
+					_nbSpritesByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::State::NORMAL, _nbSprites));
                 }
             }
         }
@@ -124,7 +117,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
         {
             (*itItems)->update(app);
         }
@@ -135,7 +128,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
         {
             (*itItems)->render(App);
         }
@@ -146,7 +139,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurences.begin(); itItems < this->_itemOccurences.end(); itItems++)
+        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
         {
             delete (*itItems);
         }

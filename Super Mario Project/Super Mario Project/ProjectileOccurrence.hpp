@@ -20,14 +20,20 @@ namespace Collisions
 
 	public:
 		enum Sender {
-		GENTILE,
-		VILAIN
+			GENTILE,
+			VILAIN
 		};
 
+		enum State {
+			CHARGING,
+			LAUNCHED,
+			DEAD
+		};
     
 		/* Constructors */
-		ProjectileOccurrence(const string& textureName);
-		ProjectileOccurrence(const string& textureName, Vector2f& position);
+		ProjectileOccurrence(const string& textureName, Vector2f& position, State state,
+			map<ProjectileOccurrence::State, int> nbSpritesByState,
+			map<ProjectileOccurrence::State, int> vAnimByState);
 
 		/* Getter and setter */
 		Sender getSender();

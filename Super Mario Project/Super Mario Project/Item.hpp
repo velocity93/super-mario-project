@@ -49,17 +49,11 @@ namespace Collisions
 		/* Initial Speed of Item */
 		Vector2f getInitialSpeed();
 
-		/* Number of sprites in texture */
-		int getNbSprites();
-
 		/* List of items occurrences */
 		vector<ItemOccurrence*> getItemOccurrences();
 
 		/* Add New Item Occurrence */
-		void addNewItemOccurrence();
-
-		/* Add New Item Occurrence */
-		void addNewItemOccurrence(Vector2f& position, ItemOccurrence::State state);
+		void Item::addNewItemOccurrence(Vector2f& position = Vector2f(0,0), ItemOccurrence::State state = ItemOccurrence::State::NORMAL);
 		
 		/* Remove Item Occurrence */
 		void removeItemOccurrence(const ItemOccurrence* item);
@@ -76,9 +70,10 @@ namespace Collisions
 	private:
 		Type _type;
 		int _submission;
-		int _nbSprites;
 		Vector2f _initialSpeed;
-		vector<ItemOccurrence*> _itemOccurences;
+		vector<ItemOccurrence*> _itemOccurrences;
+		map<ItemOccurrence::State, int> _nbSpritesByState;
+		map<ItemOccurrence::State, int> _vAnimByState;
 
 		/* Loading Item */
 		void loadItem();
