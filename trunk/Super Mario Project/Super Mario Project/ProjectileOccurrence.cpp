@@ -14,22 +14,19 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	ProjectileOccurrence::ProjectileOccurrence(const string& textureName)
-		: EntityMovable(textureName), _sender(GENTILE)
-	{
-		_projectile = ResourceManager::getProjectile(textureName);
-		_position.x = _position.y = 0;
-		_hitboxSize.y = _projectile->getTop();
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
-	}
-
-	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Vector2f& position)
+	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Vector2f& position, State state,
+			map<ProjectileOccurrence::State, int> nbSpritesByState,
+			map<ProjectileOccurrence::State, int> vAnimByState)
 		: EntityMovable(textureName, position), _sender(GENTILE)
 	{
 		_projectile = ResourceManager::getProjectile(textureName);
 		_position = position;
 		_hitboxSize.y = _projectile->getTop();
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
+		//_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
+
+		// Initialize animationClass with the two map passing in arguments
+		nbSpritesByState;
+		vAnimByState;
 	}
 
 	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()

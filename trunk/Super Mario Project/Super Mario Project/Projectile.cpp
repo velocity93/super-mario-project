@@ -24,11 +24,6 @@ namespace Collisions
         return _submission;
     }
 
-	int Projectile::getNbSpritesMax()
-	{
-		return max(_nbWalkingSprites, _nbDeadSprites);
-	}
-
 	int Projectile::getBottomLeft()
 	{
 		return _bottomLeft;
@@ -39,21 +34,16 @@ namespace Collisions
 		return _top;
 	}
 
-    vector<ProjectileOccurrence*> Projectile::getProjectileOccurrences()
+	void Projectile::addNewProjectileOccurrence(Vector2f& position, ProjectileOccurrence::State state)
     {
-        return _projectileOccurences;
-    }
-
-    void Projectile::addNewProjectileOccurrence()
-    {
-        _projectileOccurences.push_back(new ProjectileOccurrence(name()));
+		_projectileOccurences.push_back(new ProjectileOccurrence(name(), position, state, _nbSpritesByState, _vAnimByState));
     }
 
     void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)
     {
         vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
 
-        for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence < _projectileOccurences.end(); itProjectileOccurrence++)
+        for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence < _projectileOccurences.end(); ++itProjectileOccurrence)
         {
             if((*itProjectileOccurrence) == projectile)
                 _projectileOccurences.erase(itProjectileOccurrence);
@@ -108,8 +98,10 @@ namespace Collisions
                 found = word.find("nb_sprites_marche=");
                 if(found != string::npos)
                 {
+					int _nbWalkingSprites;
                     istringstream nbWalkingSprites(word.substr(found + 18));
 					nbWalkingSprites >> _nbWalkingSprites;
+					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _nbWalkingSprites));
                     continue;
                 }
 
@@ -117,8 +109,10 @@ namespace Collisions
                 found = word.find("nb_sprites_mort=");
                 if(found != string::npos)
                 {
+					int _nbDeadSprites;
                     istringstream nbDeadSprites(word.substr(found + 16));
 					nbDeadSprites >> _nbDeadSprites;
+					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _nbDeadSprites));
                     continue;
                 }
 
@@ -126,8 +120,10 @@ namespace Collisions
                 found = word.find("v_anim_marche=");
                 if(found != string::npos)
                 {
+					int _vWalkingAnim;
                     istringstream vWalkingAnim(word.substr(found + 14));
-                    /* where put value ? */
+					vWalkingAnim >> _vWalkingAnim;
+					_vAnimByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _vWalkingAnim));
                     continue;
                 }
 
@@ -135,8 +131,10 @@ namespace Collisions
                 found = word.find("v_anim_mort=");
                 if(found != string::npos)
                 {
-                    istringstream vDeadAnim(word.substr(found + 12));
-                    /* where put value ? */
+					int _vDeadAnim;
+					istringstream vDeadAnim(word.substr(found + 12));
+                    vDeadAnim >> _vDeadAnim;
+					_vAnimByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _vDeadAnim));
                 }
 
                 /* Add apparition_time and disappearing_time later */
@@ -154,7 +152,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
         {
             (*itProjectiles)->update(app);
         }
@@ -165,7 +163,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
         {
             (*itProjectiles)->render(app);
         }
@@ -177,7 +175,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); itProjectiles++)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
         {
             delete (*itProjectiles);
         }
