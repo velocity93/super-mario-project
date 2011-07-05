@@ -18,32 +18,42 @@ namespace Collisions
 {
 	class WalkingMonster : public Monster
 	{
-
 	public :
-		WalkingMonster(const string& textureName) : Monster(textureName) { }
+		WalkingMonster(const string& textureName, 
+			bool canBeKilledByJump = false, 
+			bool canBeKilledByFire = false, 
+			bool canBeJumpedOn = false, 
+			bool stayOnPlateForm = false);
 
 	private :
 		void loadWalkingMonster();
-	}
+	};
 
 	class ShellMonster : public WalkingMonster
 	{
 
 	public :
-		ShellMonster(const string& textureName) : WalkingMonster(textureName) { }
+		ShellMonster(const string& textureName, 
+			bool canBeKilledByJump = false, 
+			bool canBeKilledByFire = false, 
+			bool canBeJumpedOn = false, 
+			bool stayOnPlateForm = false);
 
 	private :
 		void loadShellMonster();
-	}
+	};
 
 	class FlyingMonster : public Monster
 	{
 	public :
-		FlyingMonster(const string& textureName) : Monster(textureName) { }
+		FlyingMonster(const string& textureName, 
+			bool canBeKilledByJump = false, 
+			bool canBeKilledByFire = false, 
+			bool canBeJumpedOn = false, 
+			bool stayOnPlateForm = false);
 
 	private:
 		void loadFlyingMonster();
-	}
+	};
 }
-
 #endif

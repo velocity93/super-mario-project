@@ -32,7 +32,7 @@ namespace Collisions
 			M_DEAD,
 			M_DEAD_BY_JUMP_ON,
 			M_RETRACTED_REVERSED,
-			M_RETRACTED_INCLINED,
+			M_RETRACTED_INCLINED, // monster brought
 			M_GET_OUT_FROM_PIPE
 		};
 
@@ -44,9 +44,13 @@ namespace Collisions
 			NB_M_SOUNDS
 		};
 
-	
-		MonsterOccurrence(const string& textureName);
-		MonsterOccurrence(const string& textureName, Vector2f& position);
+		MonsterOccurrence(const string& textureName, 
+			Vector2f& position, 
+			Vector2f& speed, 
+			MonsterOccurrence::State state,
+			MonsterOccurrence::Side side,
+			map<MonsterOccurrence::State, int> nbSpritesByState,
+			map<MonsterOccurrence::State, int> vAnimByState);
 
 		State getState();
 		void setState(State state);

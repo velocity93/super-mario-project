@@ -22,14 +22,9 @@ namespace Collisions
         loadMonster();
     }
 
-    void Monster::addMonsterOccurrence(MonsterOccurrence* monsterOccurrence)
+	void Monster::addMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
     {
-        _monsterOccurrences.push_back(monsterOccurrence);
-    }
-
-    vector<MonsterOccurrence*> Monster::getMonsterOccurrences()
-    {
-        return _monsterOccurrences;
+		_monsterOccurrences.push_back(new MonsterOccurrence(name(), position, speed, state, side, _nbSpritesByState, _vAnimByState));
     }
 
     void Monster::removeMonsterOccurrence(const MonsterOccurrence* monster)
@@ -95,7 +90,6 @@ namespace Collisions
             throw exception(exceptionName.c_str());
         }
     }
-
 
     void Monster::update(RenderWindow& app)
     {
