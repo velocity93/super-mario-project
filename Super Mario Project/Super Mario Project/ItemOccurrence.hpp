@@ -25,7 +25,12 @@ namespace Collisions
 			GET_OUT_FROM_BLOC
 		};
 
-		ItemOccurrence(const string& textureName, Vector2f& position, State state, const map<ItemOccurrence::State, int>& nbSpritesByState,
+		ItemOccurrence(const string& textureName, 
+			Vector2f& position, 
+			Vector2f& speed, 
+			State state, 
+			Side side, 
+			const map<ItemOccurrence::State, int>& nbSpritesByState,
 			const map<ItemOccurrence::State, int>& vAnimByState);
 
 		State getState();

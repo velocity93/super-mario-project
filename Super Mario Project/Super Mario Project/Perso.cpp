@@ -12,10 +12,22 @@
 
 namespace Collisions
 {
-	Perso::Perso(const string& textureName)  : EntityMovable(textureName), _environment(GROUND), _transformation(SMALL_MARIO), _state(STANDING),
-		_hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-		_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-		_jumpTime(0) 
+	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), 
+		_environment(GROUND), 
+		_transformation(SMALL_MARIO), 
+		_state(STANDING), 
+		_hud(new HUD()), 
+		_canClimb(false), 
+		_acceleration(Vector2f()), 
+		_invincibleTime(0), 
+		_invincibleStarTime(0),
+		_transformationTime(0), 
+		_attackTime(0), 
+		_specialAttackTime(0), 
+		_throwShellTime(0), 
+		_deathTime(0), 
+		_finishTime(0),
+		_jumpTime(0)
 	{
 		_keywords.push_back("marche");
 		_keywords.push_back("course");
@@ -27,14 +39,6 @@ namespace Collisions
 		_keywords.push_back("attaque");
 		_keywords.push_back("attaque_speciale");
 
-		loadPerso(textureName);
-	}
-
-	Perso::Perso(const string& textureName,Vector2f& position) : EntityMovable(textureName, position), _environment(GROUND), _transformation(SMALL_MARIO), 
-		_state(STANDING), _hud(new HUD()), _canClimb(false), _acceleration(Vector2f()), _invincibleTime(0), _invincibleStarTime(0),
-		_transformationTime(0), _attackTime(0), _specialAttackTime(0), _throwShellTime(0), _deathTime(0), _finishTime(0),
-		_jumpTime(0)
-	{
 		loadPerso(textureName);
 	}
 

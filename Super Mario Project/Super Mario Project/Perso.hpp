@@ -106,8 +106,7 @@ namespace Collisions
 		};
 
 		/* Constructors */
-		Perso(const string& textureName);
-		Perso(const string& textureName,Vector2f& position);
+		Perso(const string& textureName, Vector2f& position);
 
 		/* getters and setters */
 		HUD* getHUD();

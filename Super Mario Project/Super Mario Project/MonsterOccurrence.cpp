@@ -14,16 +14,23 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	MonsterOccurrence::MonsterOccurrence(const string& textureName) 
-		: EntityMovable(textureName), _state(M_WALK), _isActive(true)
-	{ 
-		_monster = ResourceManager::getMonster(textureName);
-	}
-
-	MonsterOccurrence::MonsterOccurrence(const string& textureName, Vector2f& position) 
-			: EntityMovable(textureName, position), _initialPosition(position), _state(M_WALK), _isActive(true)
+	MonsterOccurrence::MonsterOccurrence(
+		const string& textureName, 
+		Vector2f& position,
+		Vector2f& speed,
+		MonsterOccurrence::State state,
+		MonsterOccurrence::Side side,
+		map<MonsterOccurrence::State, int> nbSpritesByState,
+		map<MonsterOccurrence::State, int> vAnimByState)
+			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _isActive(true)
 	{
 		_monster = ResourceManager::getMonster(textureName);
+
+		// Use AnimationClass with maps passed in arguments
+		nbSpritesByState;
+		vAnimByState;
+
+		// Define hitbox size here
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()

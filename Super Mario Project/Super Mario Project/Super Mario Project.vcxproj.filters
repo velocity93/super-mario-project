@@ -206,6 +206,9 @@
     <ClCompile Include="InputState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterTypes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="world1.wld">

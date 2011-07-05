@@ -21,13 +21,16 @@ namespace Collisions
     class Monster : public SuperMarioProject::Resource
     {
     public:
-		Monster(const string& textureName, bool canBeKilledByFire = false, bool canBeKilledByJump = false, bool canBeJumpedOn = false, bool stayOnPlateForm = false);
-
-		/* List of all occurrences */
-		vector<MonsterOccurrence*> getMonsterOccurrences();
+		Monster(const string& textureName, 
+			bool canBeKilledByJump = false, 
+			bool canBeKilledByFire = false, 
+			bool canBeJumpedOn = false, 
+			bool stayOnPlateForm = false);
 
 		/* Add Occurrence */
-		void addMonsterOccurrence(MonsterOccurrence* monster);
+		void addMonsterOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
+			MonsterOccurrence::State state = MonsterOccurrence::State::M_WALK,
+			MonsterOccurrence::Side side = MonsterOccurrence::Side::LEFT_SIDE);
 
 		/* Remove occurrence */
 		void removeMonsterOccurrence(const MonsterOccurrence* monster);
@@ -41,6 +44,10 @@ namespace Collisions
 		/* Destructor */
 		virtual ~Monster();
 		
+	protected :
+		map<MonsterOccurrence::State, int> _nbSpritesByState;
+		map<MonsterOccurrence::State, int> _vAnimByState;
+
     private:
 		bool _canBeKilledByFire;
 		bool _canBeKilledByJump;
