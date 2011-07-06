@@ -28,7 +28,7 @@ namespace Collisions
 			bool stayOnPlateForm = false);
 
 		/* Add Occurrence */
-		void addMonsterOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
+		void addNewMonsterOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			MonsterOccurrence::State state = MonsterOccurrence::State::M_WALK,
 			MonsterOccurrence::Side side = MonsterOccurrence::Side::LEFT_SIDE);
 

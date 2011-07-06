@@ -36,11 +36,6 @@ namespace Collisions
         return _initialSpeed;
     }
 
-    vector<ItemOccurrence*> Item::getItemOccurrences()
-    {
-        return _itemOccurrences;
-    }
-
 	void Item::addNewItemOccurrence(Vector2f& position, Vector2f& speed, ItemOccurrence::State state, ItemOccurrence::Side side)
     {
         _itemOccurrences.push_back(new ItemOccurrence(name(), position, speed, state, side, _nbSpritesByState, _vAnimByState));

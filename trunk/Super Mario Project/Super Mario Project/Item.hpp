@@ -49,9 +49,6 @@ namespace Collisions
 		/* Initial Speed of Item */
 		Vector2f getInitialSpeed();
 
-		/* List of items occurrences */
-		vector<ItemOccurrence*> getItemOccurrences();
-
 		/* Add New Item Occurrence */
 		void Item::addNewItemOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			ItemOccurrence::State state = ItemOccurrence::State::NORMAL, ItemOccurrence::Side side = ItemOccurrence::Side::RIGHT_SIDE);

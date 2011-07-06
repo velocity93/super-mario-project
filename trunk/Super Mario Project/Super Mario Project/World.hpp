@@ -10,13 +10,13 @@
 #ifndef HPP_WORLD
 #define HPP_WORLD
 
-#include <string>
-#include <SFML/Config.hpp>
-#include <fstream>
-#include <iostream>
 #include "Screen.hpp"
 #include "Perso.hpp"
 #include "Level.hpp"
+#include <SFML/Config.hpp>
+#include <string>
+#include <fstream>
+#include <iostream>
 
 #define WINDOW_WIDTH							800
 #define WINDOW_HEIGHT							600

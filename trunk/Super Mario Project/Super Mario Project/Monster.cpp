@@ -22,7 +22,7 @@ namespace Collisions
         loadMonster();
     }
 
-	void Monster::addMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
+	void Monster::addNewMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
     {
 		_monsterOccurrences.push_back(new MonsterOccurrence(name(), position, speed, state, side, _nbSpritesByState, _vAnimByState));
     }
