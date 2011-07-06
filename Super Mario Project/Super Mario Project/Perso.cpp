@@ -29,16 +29,6 @@ namespace Collisions
 		_finishTime(0),
 		_jumpTime(0)
 	{
-		_keywords.push_back("marche");
-		_keywords.push_back("course");
-		_keywords.push_back("saut");
-		_keywords.push_back("verticaux");
-		_keywords.push_back("echelle");
-		_keywords.push_back("marche_carapace");
-		_keywords.push_back("carapace");
-		_keywords.push_back("attaque");
-		_keywords.push_back("attaque_speciale");
-
 		loadPerso(textureName);
 	}
 
@@ -211,7 +201,6 @@ namespace Collisions
 	{
 		_jumpTime = jumpTime;
 	}
-
 
 	void Perso::update(const RenderWindow& app)
 	{
@@ -508,26 +497,24 @@ namespace Collisions
 
 	void Perso::loadPerso(const string& textureName)
 	{
-		int abscisse_bas = 0, ordonnee_haut = 0, nb_sprites_max = 0;
+		int abscisse_bas = 0, ordonnee_haut = 0;
 		string fileName = textureName + ".perso";
 		ifstream stream(fileName.c_str());
-		vector<string>::iterator itKeywords;
 
 		if(stream)
 		{
-			string word, wordToCompare;
-			int value = INT_MAX;
+			string word;
 
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-
-				/* Important keywords */
+				/* Main keywords */
 				int found = word.find("abscisse_bas=");
 				if(found != string::npos)
 				{
 					istringstream abscisseBas(word.substr(found + 13));
 					abscisseBas >> abscisse_bas;
+					continue;
 				}
 				
 				found = word.find("ordonnee_haut=");
@@ -535,39 +522,200 @@ namespace Collisions
 				{
 					istringstream ordonneeHaut(word.substr(found + 14));
 					ordonneeHaut >> ordonnee_haut;
+					continue;
 				}
-			
 
-				// Optimization of reading file required each 'v_anim' follows 'nb_sprites'
-				for(itKeywords = _keywords.begin(); itKeywords < _keywords.end(); itKeywords++)
-				{
-					wordToCompare = "nb_sprites_" + *itKeywords + "=";
-					found = word.find(wordToCompare);
+				{ /* 'nb_sprites_xxx' keyword */
+					
+					found = word.find("nb_sprites_marche=");
 					if(found != string::npos)
 					{
-						istringstream nbSprites(word.substr(found + wordToCompare.length()));
-						nbSprites >> value;
-						//_spriteNumbersByState.push_back(value);
-
-						// To compute Sprite size
-						if(value > nb_sprites_max)
-							nb_sprites_max = value;
-
-						value = INT_MIN;
-						break;
+						int nbSprites = 0;
+						istringstream nbWalkingSpritesStream(word.substr(found + 18));
+						nbWalkingSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::WALK, nbSprites));
+						continue;
 					}
-					
 
-					wordToCompare = "v_anim_" + *itKeywords + "=";
-					found = word.find(wordToCompare);
-					if(word == wordToCompare)
+					found = word.find("nb_sprites_course_1=");
+					if(found != string::npos)
 					{
-						istringstream VAnim(word.substr(found +  wordToCompare.length()));
-						VAnim >> value;
-						//_animationSpeeds.push_back(value);
-						break;
+						int nbSprites = 0;
+						istringstream nbRunningSpritesStream(word.substr(found + 20));
+						nbRunningSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_1, nbSprites));
+						continue;
 					}
-					
+
+					found = word.find("nb_sprites_course_2=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbRunningSpritesStream(word.substr(found + 20));
+						nbRunningSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_2, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_derape=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSkidSpritesStream(word.substr(found + 18));
+						nbSkidSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::SKID, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_saut=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbJumpSpritesStream(word.substr(found + 16));
+						nbJumpSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_saut_descendant=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbJumpSpritesStream(word.substr(found + 27));
+						nbJumpSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP_FALLING, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_nage=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSwimmingSpritesStream(word.substr(found + 16));
+						nbSwimmingSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::SWIMMING, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_face=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbFaceSpritesStream(word.substr(found + 16));
+						nbFaceSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::GET_IN_FROM_PIPE_VERTICAL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_back=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbBackSpritesStream(word.substr(found + 16));
+						nbBackSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::BACK, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_look_top=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 20));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOOK_TOP, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_lowered=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 20));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOWERED, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_climb_ladder=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 24));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::CLIMB_LADDER, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_standing_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 26));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::STANDING_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_walk_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 22));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::WALK_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_push_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 22));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::PUSH_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_lowered_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 24));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOWERED_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_look_top_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 26));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOOK_TOP_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_attack=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 18));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::ATTACK, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_special_attack=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 26));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::SPECIAL_ATTACK, nbSprites));
+						continue;
+					}
 				}
 			}
 		}
@@ -578,7 +726,7 @@ namespace Collisions
 		}
 
 		/* Compute Hitbox Size */
-		_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
+		//_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
 		_hitboxSize.y = ordonnee_haut;
 	}
 

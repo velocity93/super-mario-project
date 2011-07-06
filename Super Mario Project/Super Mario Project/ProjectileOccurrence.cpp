@@ -14,10 +14,15 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	ProjectileOccurrence::ProjectileOccurrence(const string& textureName, Vector2f& position, State state,
-			map<ProjectileOccurrence::State, int> nbSpritesByState,
-			map<ProjectileOccurrence::State, int> vAnimByState)
-		: EntityMovable(textureName, position), _sender(GENTILE)
+	ProjectileOccurrence::ProjectileOccurrence(
+		const string& textureName, 
+		Vector2f& position, 
+		Vector2f& speed, 
+		State state,
+		Side side,
+		const map<ProjectileOccurrence::State, int>& nbSpritesByState,
+		const map<ProjectileOccurrence::State, int>& vAnimByState)
+		: EntityMovable(textureName, position, speed, side), _sender(GENTILE)
 	{
 		_projectile = ResourceManager::getProjectile(textureName);
 		_position = position;

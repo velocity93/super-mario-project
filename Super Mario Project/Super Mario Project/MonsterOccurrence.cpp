@@ -20,8 +20,8 @@ namespace Collisions
 		Vector2f& speed,
 		MonsterOccurrence::State state,
 		MonsterOccurrence::Side side,
-		map<MonsterOccurrence::State, int> nbSpritesByState,
-		map<MonsterOccurrence::State, int> vAnimByState)
+		const map<MonsterOccurrence::State, int>& nbSpritesByState,
+		const map<MonsterOccurrence::State, int>& vAnimByState)
 			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _isActive(true)
 	{
 		_monster = ResourceManager::getMonster(textureName);

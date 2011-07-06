@@ -42,7 +42,7 @@ namespace Collisions
 
     
 		/* Constructors */
-		EntityMovable(const string& textureName, Vector2f& position, Vector2f& speed = Vector2f(0,0), EntityMovable::Side side = EntityMovable::Side::RIGHT_SIDE) :
+		EntityMovable(const string& textureName, Vector2f& position, Vector2f& speed = Vector2f(0,0), Side side = RIGHT_SIDE) :
 			Collisionable(textureName, position), 
 			_previousPosition(position),
 			_speed(speed), 

@@ -44,7 +44,7 @@ namespace SuperMarioProject
 
 		vector<Perso*>::iterator it;
 		
-		for (it= this->_persos.begin(); it < this->_persos.end(); it++)
+		for (it= this->_persos.begin(); it < this->_persos.end(); ++it)
 			(*it)->update(app);
 
 		updateTime();
@@ -96,7 +96,7 @@ namespace SuperMarioProject
 
 		this->_level->render(app);
 
-		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
+		for (it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
 			(*it)->render(app);
 		}
@@ -127,7 +127,7 @@ namespace SuperMarioProject
 		vector<Perso*>::iterator itPersos;
 
 		/* Persos */
-		for(itPersos = this->_persos.begin(); itPersos < this->_persos.end(); itPersos++)
+		for(itPersos = this->_persos.begin(); itPersos < this->_persos.end(); ++itPersos)
 		{
 			delete (*itPersos);
 		}

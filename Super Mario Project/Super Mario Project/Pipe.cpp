@@ -50,7 +50,7 @@ namespace Collisions
 				switch(_direction)
 				{
 				case TO_TOP:
-                    _monster->addMonsterOccurrence(
+                    _monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						Vector2f(0, MONSTER_EXIT_SPEED), 
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
@@ -58,7 +58,7 @@ namespace Collisions
 					break;
 
 				case TO_BOTTOM:
-					 _monster->addMonsterOccurrence(
+					 _monster->addNewMonsterOccurrence(
 						 Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						 Vector2f(0, -MONSTER_EXIT_SPEED), 
 						 MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
@@ -66,7 +66,7 @@ namespace Collisions
 					break;
 
 				case TO_LEFT:
-					_monster->addMonsterOccurrence(
+					_monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						Vector2f(-MONSTER_EXIT_SPEED, 0),
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE,
@@ -74,7 +74,7 @@ namespace Collisions
 					break;
 
 				case TO_RIGHT:
-					_monster->addMonsterOccurrence(
+					_monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						Vector2f(MONSTER_EXIT_SPEED, 0),
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE,

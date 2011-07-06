@@ -66,7 +66,7 @@ namespace Collisions
 			gravity(_speed, app.GetFrameTime());
 
 		/* Update physic position */
-		/* Save actual position in previous prosition */
+		/* Save actual position in previous position */
 		_previousPosition = _position;
 
 		/* Compute new position */

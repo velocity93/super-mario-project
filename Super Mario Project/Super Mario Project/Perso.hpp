@@ -45,7 +45,6 @@ namespace Collisions
 			PUSH_SHELL,
 			ATTACK,
 			SPECIAL_ATTACK,
-			NB_STATE_TEXTURE, // Nombre d'états max en hauteur pour la texture du personnage
 			STANDING_SHELL,
 			JUMP_SHELL,
 			LOWERED_SHELL,
@@ -64,8 +63,10 @@ namespace Collisions
 			GET_IN_FROM_PIPE_HORIZONTAL,
 			GET_OUT_FROM_PIPE_VERTICAL,
 			GET_IN_FROM_PIPE_VERTICAL,
+			BACK,
 			FINISH,
 			FINISH_CASTLE,
+			SWIMMING,
 			NB_STATE
 		};
 
@@ -173,7 +174,8 @@ namespace Collisions
 		int _deathTime;
 		int _finishTime;
 		int _jumpTime;
-		vector<string> _keywords; // Concerns loading config file
+		map<Perso::State, int> _nbSpritesByState;
+		map<Perso::State, int> _vAnimByState;
 
 		/* Move management */
 		void lateral_move(const RenderWindow& app);

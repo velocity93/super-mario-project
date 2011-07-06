@@ -44,13 +44,14 @@ namespace Collisions
 			NB_M_SOUNDS
 		};
 
-		MonsterOccurrence(const string& textureName, 
-			Vector2f& position, 
-			Vector2f& speed, 
+		MonsterOccurrence(
+			const string& textureName, 
+			Vector2f& position,
+			Vector2f& speed,
 			MonsterOccurrence::State state,
 			MonsterOccurrence::Side side,
-			map<MonsterOccurrence::State, int> nbSpritesByState,
-			map<MonsterOccurrence::State, int> vAnimByState);
+			const map<MonsterOccurrence::State, int>& nbSpritesByState,
+			const map<MonsterOccurrence::State, int>& vAnimByState);
 
 		State getState();
 		void setState(State state);
