@@ -15,7 +15,6 @@ using namespace sf;
 
 int main(int argc, char* argv[])
 {
-	World w;
 	argc;
 	argv;
 
@@ -29,6 +28,9 @@ int main(int argc, char* argv[])
 
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);
+
+	// Create world
+	World w(&App);
 
 	try
 	{
@@ -49,7 +51,7 @@ int main(int argc, char* argv[])
 					{
 						switch(Event.Key.Code)
 						{
-						case Key::Escape :
+						case sf::Key::Escape :
 							App.Close();
 							break;
 						}

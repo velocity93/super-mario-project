@@ -7,8 +7,11 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Perso.hpp"
+#include "InputState.hpp"
 #include <fstream>
 #include <sstream>
+
+using namespace SuperMarioProject;
 
 namespace Collisions
 {
@@ -204,6 +207,11 @@ namespace Collisions
 
 	void Perso::update(const RenderWindow& app)
 	{
+		updatePerso(app, nullptr);
+	}
+
+	void Perso::updatePerso(const RenderWindow& app, InputState* inputState)
+	{
 		gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
@@ -215,7 +223,6 @@ namespace Collisions
 		/* Compute new position */
 		this->setPosition(this->getPosition().x + app.GetFrameTime() * getSpeed().x, 
 			this->getPosition().y + app.GetFrameTime() * getSpeed().y);
-
 	}
 
 	void Perso::render(const RenderWindow& app)
@@ -232,14 +239,14 @@ namespace Collisions
 		{
 			if(_state != FINISH)
 			{
-				if(input.IsKeyDown(Key::Right))
+				if(input.IsKeyDown(sf::Key::Right))
 					_side = RIGHT_SIDE;
 				else
 					_side = LEFT_SIDE;
 
-				if(input.IsKeyDown(Key::Right))
+				if(input.IsKeyDown(sf::Key::Right))
 				{
-					if(!input.IsKeyDown(Key::Down))
+					if(!input.IsKeyDown(sf::Key::Down))
 					{
 						if(_speed.x < 0)
 						{
@@ -258,7 +265,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if(input.IsKeyDown(Key::B))
+										if(input.IsKeyDown(sf::Key::B))
 										{
 											_state = RUN_1;
 										}
@@ -281,9 +288,9 @@ namespace Collisions
 						_speed.x = _speed.x + _acceleration.x * time;
 					}
 				}
-				else if(input.IsKeyDown(Key::Left))
+				else if(input.IsKeyDown(sf::Key::Left))
 				{
-					if(!input.IsKeyDown(Key::Down))
+					if(!input.IsKeyDown(sf::Key::Down))
 					{
 						if(_speed.x > 0)
 						{
@@ -302,7 +309,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if(input.IsKeyDown(Key::B))
+										if(input.IsKeyDown(sf::Key::B))
 										{
 											_state = RUN_1;
 										}
@@ -331,9 +338,9 @@ namespace Collisions
 					{
 						if(_state == CLIMB_LADDER)
 						{
-							if(input.IsKeyDown(Key::Down))
+							if(input.IsKeyDown(sf::Key::Down))
 								_speed.y = _speed.y - _acceleration.y * time;
-							else if(input.IsKeyDown(Key::Up))
+							else if(input.IsKeyDown(sf::Key::Up))
 								_speed.y = _speed.y + _acceleration.y * time;
 							else
 								_speed.y = 0;
@@ -369,8 +376,8 @@ namespace Collisions
 				}
 			}
 
-			if((!input.IsKeyDown(Key::Right) && !input.IsKeyDown(Key::Left))
-				|| (input.IsKeyDown(Key::Down) && _environment == GROUND))
+			if((!input.IsKeyDown(sf::Key::Right) && !input.IsKeyDown(sf::Key::Left))
+				|| (input.IsKeyDown(sf::Key::Down) && _environment == GROUND))
 				frictions(time);
 		}
 		else

@@ -10,23 +10,24 @@
 
 namespace SuperMarioProject
 {
-	World::World()
-	{
-		_levelNames = vector<string>();
-		_persos = vector<Perso*>();
-		_windowSize = Vector2i();
-		_fpsTime = 0;
-		_actualTime = 0;
-		_previousTime = 0; 
-		_elapsedTime = 0;
-		_previousElapsedTime = 0;
-		_fps = 0;
-		_nbFramesCalculated = 0;
-		_clock = Clock();
-		_level = new Level();
+	World::World(const Window* window) :
+		_levelNames(vector<string>()),
+		_persos(vector<Perso*>()),
+		_windowSize(Vector2i()),
+		_fpsTime(0),
+		_actualTime(0),
+		_previousTime(0),
+		_elapsedTime(0),
+		_previousElapsedTime(0),
+		_fps(0),
+		_nbFramesCalculated(0),
+		_clock(Clock()),
+		_level(new Level()),
+		_inputState(new InputState(window))
+		{
 
 		loadWorld();
-	}
+		}
 
 	Level* World::getLevel()
 	{
@@ -45,7 +46,7 @@ namespace SuperMarioProject
 		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); ++it)
-			(*it)->update(app);
+			(*it)->updatePerso(app, _inputState);
 
 		updateTime();
 	}

@@ -18,8 +18,10 @@
 #include "MonsterOccurrence.hpp"
 #include "Pipe.hpp"
 #include "Checkpoint.hpp"
+#include "InputState.hpp"
 
 using namespace Rendering;
+using namespace SuperMarioProject;
 
 namespace Collisions
 {
@@ -144,6 +146,8 @@ namespace Collisions
 		void setDeathTime(int deathTime);
 		void setFinishTime(int finishTime);
 		void setJumpTime(int jumpTime);
+
+		void updatePerso(const RenderWindow& app, InputState* inputState);
 
 		/* Methods */
 		void update(const RenderWindow& app);
