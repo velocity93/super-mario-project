@@ -20,9 +20,9 @@ namespace Rendering
 		Object::update(app);
 	}
 
-	void Foreground::render(RenderWindow& App)
+	void Foreground::render(RenderWindow& app)
 	{
-		Object::render(App);
+		Object::render(app);
 	}
 
 

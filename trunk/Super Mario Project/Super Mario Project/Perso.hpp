@@ -130,6 +130,7 @@ namespace Collisions
 		int getDeathTime();
 		int getFinishTime();
 		int getJumpTime();
+
 		void setState(State state);
 		void setEnvironment(const Environment &environment);
 		void setTransformation(const Transformations &transformation);
@@ -147,11 +148,11 @@ namespace Collisions
 		void setFinishTime(int finishTime);
 		void setJumpTime(int jumpTime);
 
-		void updatePerso(const RenderWindow& app, InputState* inputState);
+		void updatePerso(RenderWindow& app, InputState* inputState);
 
 		/* Methods */
-		void update(const RenderWindow& app);
-		void render(const RenderWindow& app);
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		/* Loading character configuration */
 		void loadPerso(const string& textureName);
@@ -160,15 +161,7 @@ namespace Collisions
         virtual ~Perso();
 		
     private:
-		HUD* _hud;
-		State _state;
-		Environment _environment;
-		Transformations _transformation;
 		bool _canClimb;
-		Vector2f _acceleration;
-		MonsterOccurrence* _broughtMonster;
-		Pipe* _insidePipe;
-		Checkpoint* _checkpointPassed;
 		int _invincibleTime;
 		int _invincibleStarTime;
 		int _transformationTime;
@@ -178,11 +171,22 @@ namespace Collisions
 		int _deathTime;
 		int _finishTime;
 		int _jumpTime;
+		string _textureName;
+
+		HUD* _hud;
+		State _state;
+		Environment _environment;
+		Transformations _transformation;
+		Vector2f _acceleration;
+		MonsterOccurrence* _broughtMonster;
+		Pipe* _insidePipe;
+		Checkpoint* _checkpointPassed;
+
 		map<Perso::State, int> _nbSpritesByState;
 		map<Perso::State, int> _vAnimByState;
 
 		/* Move management */
-		void lateral_move(const RenderWindow& app);
+		void lateral_move(RenderWindow& app, InputState* inputState);
 
 		/* Frictions management */
 		void frictions(float time);

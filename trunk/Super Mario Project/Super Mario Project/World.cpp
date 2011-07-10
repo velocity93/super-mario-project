@@ -7,6 +7,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "World.hpp"
+#include <fstream>
+#include <iostream>
 
 namespace SuperMarioProject
 {
@@ -27,6 +29,9 @@ namespace SuperMarioProject
 		{
 
 		loadWorld();
+		
+		/* Add default perso */
+		_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()

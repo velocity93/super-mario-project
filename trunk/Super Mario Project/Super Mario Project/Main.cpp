@@ -20,11 +20,9 @@ int main(int argc, char* argv[])
 
 	// Create the main window
 	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
-
 	App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
 	Background background = Background("textures/backgrounds/skyBlueHills", App.GetDefaultView());
-	//Background background2 = Background("textures/backgrounds/BlueHills", App.GetDefaultView());
 
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);

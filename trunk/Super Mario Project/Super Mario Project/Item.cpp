@@ -118,14 +118,14 @@ namespace Collisions
         }
     }
 
-    void Item::render(RenderWindow& App)
+    void Item::render(RenderWindow& app)
     {
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
         for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
         {
-            (*itItems)->render(App);
+            (*itItems)->render(app);
         }
     }
 
