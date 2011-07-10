@@ -15,13 +15,13 @@ namespace SuperMarioProject
         _states(KEY_NB_KEYS, KEY_STATE_RELEASED),
         _sfmlKeys()
     {
-        _sfmlKeys[KEY_BACKWARD] = sf::Key::Left;
-        _sfmlKeys[KEY_FORWARD] = sf::Key::Right;
-        _sfmlKeys[KEY_UP] = sf::Key::Up;
-        _sfmlKeys[KEY_DOWN] = sf::Key::Down;
-        _sfmlKeys[KEY_JUMP] = sf::Key::Space;
-        _sfmlKeys[KEY_RUN] = sf::Key::B;
-        _sfmlKeys[KEY_ESCAPE] = sf::Key::Escape;
+		_sfmlKeys.push_back(sf::Key::Left);		// KEY_BACKWARD
+		_sfmlKeys.push_back(sf::Key::Right);	// KEY_FORWARD
+		_sfmlKeys.push_back(sf::Key::Up);		// KEY_UP
+		_sfmlKeys.push_back(sf::Key::Down);		// KEY_DOWN
+		_sfmlKeys.push_back(sf::Key::Space);	// KEY_JUMP
+		_sfmlKeys.push_back(sf::Key::B);		// KEY_RUN
+		_sfmlKeys.push_back(sf::Key::Escape);	// KEY_ESCAPE
     }
 
 

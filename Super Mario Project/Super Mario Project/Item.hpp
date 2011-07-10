@@ -60,7 +60,7 @@ namespace Collisions
 		void update(RenderWindow& app);
 
 		/* Render all occurrences */
-		void render(RenderWindow& App);
+		void render(RenderWindow& app);
 
 		/* Destructor */
 		virtual ~Item();

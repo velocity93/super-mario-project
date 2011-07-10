@@ -15,7 +15,8 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), 
+	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable("textures\\persos\\" + textureName, position),
+		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
 		_state(STANDING), 
@@ -32,7 +33,7 @@ namespace Collisions
 		_finishTime(0),
 		_jumpTime(0)
 	{
-		loadPerso(textureName);
+		loadPerso(_textureName);
 	}
 
 	HUD* Perso::getHUD()
@@ -205,17 +206,17 @@ namespace Collisions
 		_jumpTime = jumpTime;
 	}
 
-	void Perso::update(const RenderWindow& app)
+	void Perso::update(RenderWindow& app)
 	{
 		updatePerso(app, nullptr);
 	}
 
-	void Perso::updatePerso(const RenderWindow& app, InputState* inputState)
+	void Perso::updatePerso(RenderWindow& app, InputState* inputState)
 	{
 		gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
-		lateral_move(app);
+		lateral_move(app, inputState);
 
 		/* Save actual position as previous position */
 		_previousPosition = _position;
@@ -225,28 +226,27 @@ namespace Collisions
 			this->getPosition().y + app.GetFrameTime() * getSpeed().y);
 	}
 
-	void Perso::render(const RenderWindow& app)
+	void Perso::render(RenderWindow& app)
 	{
 
 	}
 
-	void Perso::lateral_move(const RenderWindow& app)
+	void Perso::lateral_move(RenderWindow& app, InputState* inputState)
 	{
 		int time = app.GetFrameTime();
-		const Input& input = app.GetInput();
 
 		if(_state != FINISH_CASTLE)
 		{
 			if(_state != FINISH)
 			{
-				if(input.IsKeyDown(sf::Key::Right))
+				if((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED)
 					_side = RIGHT_SIDE;
 				else
 					_side = LEFT_SIDE;
 
-				if(input.IsKeyDown(sf::Key::Right))
+				if((*inputState)[KEY_FORWARD] == KEY_STATE_PRESSED)
 				{
-					if(!input.IsKeyDown(sf::Key::Down))
+					if((*inputState)[KEY_DOWN] == KEY_STATE_RELEASED)
 					{
 						if(_speed.x < 0)
 						{
@@ -265,7 +265,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if(input.IsKeyDown(sf::Key::B))
+										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
 										{
 											_state = RUN_1;
 										}
@@ -288,9 +288,9 @@ namespace Collisions
 						_speed.x = _speed.x + _acceleration.x * time;
 					}
 				}
-				else if(input.IsKeyDown(sf::Key::Left))
+				else if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
 				{
-					if(!input.IsKeyDown(sf::Key::Down))
+					if((*inputState)[KEY_DOWN] == KEY_STATE_RELEASED)
 					{
 						if(_speed.x > 0)
 						{
@@ -309,7 +309,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if(input.IsKeyDown(sf::Key::B))
+										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
 										{
 											_state = RUN_1;
 										}
@@ -338,9 +338,9 @@ namespace Collisions
 					{
 						if(_state == CLIMB_LADDER)
 						{
-							if(input.IsKeyDown(sf::Key::Down))
+							if((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED)
 								_speed.y = _speed.y - _acceleration.y * time;
-							else if(input.IsKeyDown(sf::Key::Up))
+							else if((*inputState)[KEY_UP] == KEY_STATE_PRESSED)
 								_speed.y = _speed.y + _acceleration.y * time;
 							else
 								_speed.y = 0;
@@ -350,7 +350,7 @@ namespace Collisions
 						{
 							if(_environment == GROUND)
 							{
-								/*if(k->precedent[BAS] && k->actuel[BAS])*/
+								if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
 								_state = LOWERED_JUMP;
 							}
 							else
@@ -364,7 +364,7 @@ namespace Collisions
 					{
 						if(_environment == AIR)
 						{
-							//if(k->precedent[BAS] && k->actuel[BAS])
+							if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
 							_state = LOWERED_JUMP_SHELL;
 						}
 						else
@@ -376,8 +376,8 @@ namespace Collisions
 				}
 			}
 
-			if((!input.IsKeyDown(sf::Key::Right) && !input.IsKeyDown(sf::Key::Left))
-				|| (input.IsKeyDown(sf::Key::Down) && _environment == GROUND))
+			if(((*inputState)[KEY_FORWARD] == KEY_STATE_RELEASED && (*inputState)[KEY_BACKWARD] == KEY_STATE_RELEASED)
+				|| ((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED && _environment == GROUND))
 				frictions(time);
 		}
 		else
@@ -505,6 +505,7 @@ namespace Collisions
 	void Perso::loadPerso(const string& textureName)
 	{
 		int abscisse_bas = 0, ordonnee_haut = 0;
+
 		string fileName = textureName + ".perso";
 		ifstream stream(fileName.c_str());
 
@@ -534,47 +535,47 @@ namespace Collisions
 
 				{ /* 'nb_sprites_xxx' keyword */
 					
-					found = word.find("nb_sprites_marche=");
+					found = word.find("nb_sprites_walk=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbWalkingSpritesStream(word.substr(found + 18));
+						istringstream nbWalkingSpritesStream(word.substr(found + 16));
 						nbWalkingSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::WALK, nbSprites));
 						continue;
 					}
 
-					found = word.find("nb_sprites_course_1=");
+					found = word.find("nb_sprites_run_1=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbRunningSpritesStream(word.substr(found + 20));
+						istringstream nbRunningSpritesStream(word.substr(found + 17));
 						nbRunningSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_1, nbSprites));
 						continue;
 					}
 
-					found = word.find("nb_sprites_course_2=");
+					found = word.find("nb_sprites_run_2=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbRunningSpritesStream(word.substr(found + 20));
+						istringstream nbRunningSpritesStream(word.substr(found + 17));
 						nbRunningSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_2, nbSprites));
 						continue;
 					}
 
-					found = word.find("nb_sprites_derape=");
+					found = word.find("nb_sprites_skid=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbSkidSpritesStream(word.substr(found + 18));
+						istringstream nbSkidSpritesStream(word.substr(found + 16));
 						nbSkidSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::SKID, nbSprites));
 						continue;
 					}
 
-					found = word.find("nb_sprites_saut=");
+					found = word.find("nb_sprites_jump=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
@@ -584,17 +585,17 @@ namespace Collisions
 						continue;
 					}
 
-					found = word.find("nb_sprites_saut_descendant=");
+					found = word.find("nb_sprites_jump_falling=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbJumpSpritesStream(word.substr(found + 27));
+						istringstream nbJumpSpritesStream(word.substr(found + 24));
 						nbJumpSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP_FALLING, nbSprites));
 						continue;
 					}
 
-					found = word.find("nb_sprites_nage=");
+					found = word.find("nb_sprites_swim=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
