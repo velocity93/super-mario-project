@@ -13,6 +13,7 @@
 #include "Screen.hpp"
 #include "Perso.hpp"
 #include "Level.hpp"
+#include "InputState.hpp"
 #include <SFML/Config.hpp>
 #include <string>
 #include <fstream>
@@ -33,7 +34,7 @@ namespace SuperMarioProject
     class World
     {
     public:
-		World();
+		World(const Window* window);
 
 		Level* getLevel();
 
@@ -50,6 +51,7 @@ namespace SuperMarioProject
 		vector<string> _levelNames;
 		vector<Perso*> _persos;
 		Level* _level;
+		InputState* _inputState;
 		Vector2i _windowSize;
 		Clock _clock;
 		float _fpsTime;
