@@ -639,7 +639,7 @@ namespace Collisions
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbSpriteStream(word.substr(found + 20));
+						istringstream nbSpriteStream(word.substr(found + 19));
 						nbSpriteStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOWERED, nbSprites));
 						continue;
@@ -705,6 +705,16 @@ namespace Collisions
 						continue;
 					}
 
+					found = word.find("nb_sprites_dead=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 16));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::DEAD, nbSprites));
+						continue;
+					}
+
 					found = word.find("nb_sprites_attack=");
 					if(found != string::npos)
 					{
@@ -722,20 +732,19 @@ namespace Collisions
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::SPECIAL_ATTACK, nbSprites));
-						continue;
 					}
 				}
 			}
+			
+			/* Compute Hitbox Size */
+			//_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
+			_hitboxSize.y = ordonnee_haut;
 		}
 		else
 		{
 			string exceptionName = "Exception occured while opening " + fileName;
 			throw exception(exceptionName.c_str());
 		}
-
-		/* Compute Hitbox Size */
-		//_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
-		_hitboxSize.y = ordonnee_haut;
 	}
 
 

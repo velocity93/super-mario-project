@@ -25,8 +25,6 @@ namespace Rendering
 	void Drawable::InitializeDrawable(const string& textureName)
 	{
         _texture = SuperMarioProject::ResourceManager::getTexture(textureName);
-		/*_spriteNumbersByState = vector<int>();
-		_animationSpeeds = vector<int>();*/
 		_position = Vector2f();
 	}
 

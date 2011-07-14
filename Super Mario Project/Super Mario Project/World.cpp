@@ -48,6 +48,8 @@ namespace SuperMarioProject
 	{
 		this->_level->update(app);
 
+		this->_inputState->update();
+
 		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); ++it)

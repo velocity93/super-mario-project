@@ -179,5 +179,7 @@ namespace Collisions
         {
             delete (*itProjectiles);
         }
+
+		release();
     }
 } // namespace

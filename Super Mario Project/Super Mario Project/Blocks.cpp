@@ -7,23 +7,22 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Blocks.hpp"
+#include <fstream>
 
 using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	Blocks::Blocks(const string& textureName, int type) : Resource("textures\\blocs\\" + textureName),
+	Blocks::Blocks(const string& textureName) : Resource("textures\\blocs\\" + textureName),
 		_blockOccurrences(vector<BlockOccurrence*>()),
-		_nbSpritesByState(map<BlockOccurrence::State, int>()),
-		_vAnimByState(map<BlockOccurrence::State, int>()),
-		_type(type)
+		_nbSprites(Vector2i())
 	{
-		loadBlockConfiguration();
+		loadBlockConfiguration(textureName);
     }
 
-	void Blocks::addNewBlockOccurrence(Vector2f &position, Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
+	void Blocks::addNewBlockOccurrence(int physicIndex, Vector2f &position, Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
 	{
-		_blockOccurrences.push_back(new BlockOccurrence(name(), position, speed, state, side, _nbSpritesByState, _vAnimByState));
+		_blockOccurrences.push_back(new BlockOccurrence(name(), position, speed, state, side, _nbSprites, _vAnim, physicIndex));
 	}
 
 	void Blocks::removeBlockOccurrence(const BlockOccurrence* block)
@@ -36,6 +35,11 @@ namespace Collisions
                 _blockOccurrences.erase(itBlockOccurrence);
         }
     }
+
+	int Blocks::getPhysic(int index)
+	{
+		return _physics[index];
+	}
 
 	void Blocks::update(RenderWindow& app)
 	{
@@ -57,12 +61,32 @@ namespace Collisions
         }
 	}
 
-	void Blocks::loadBlockConfiguration()
+	void Blocks::loadBlockConfiguration(const string& textureName)
 	{
+		string fileName = "textures\\blocs\\" + textureName.substr(0, textureName.find_first_of("\\")) + "\\" + textureName.substr(0, textureName.find_first_of("\\")) + ".cfg";
+		ifstream stream(fileName);
 
+		if(stream)
+		{
+			/* Number of sprites in width and height */
+			stream >> _nbSprites.y;
+			stream >> _nbSprites.x;
+
+			for(int i = 0; i < _nbSprites.x * _nbSprites.y; ++i)
+			{
+				int phys;
+				stream >> hex >> phys;
+				_physics.push_back(phys);
+			}
+		}
+		else
+		{
+			// Exception
+		}
 	}
 
     Blocks::~Blocks()
     {
+		release();
     }
 } // namespace
