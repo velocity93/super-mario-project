@@ -7,22 +7,32 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "BlockOccurrence.hpp"
+#include "Blocks.hpp"
 
 namespace Collisions
 {
 	BlockOccurrence::BlockOccurrence(
 		const string& textureName, 
 		Vector2f& position, 
-		Vector2f& speed, 
+		Vector2f& speed,
 		State state, 
 		Side side,
-		const map<BlockOccurrence::State, int>& nbSpritesByState,
-		const map<BlockOccurrence::State, int>& vAnimByState) 
+		Vector2i& _nbSprites,
+		int vAnim,
+		int physicIndex)
 		: EntityMovable(textureName, position, speed, side),
-		_state(UNMOVABLE)
+		_state(UNMOVABLE),
+		_physicIndex(physicIndex)
     {
-
+		/* Compute blocs coords into the texture */
+		_coordSprite.y = physicIndex / _nbSprites.x;
+		_coordSprite.x = physicIndex % _nbSprites.x - 1;
     }
+
+	int BlockOccurrence::getPhysic()
+	{
+		return _actualBlock->getPhysic(_physicIndex);
+	}
 
 	void BlockOccurrence::update(RenderWindow& app)
 	{

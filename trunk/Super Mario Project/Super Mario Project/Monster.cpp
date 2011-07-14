@@ -122,5 +122,7 @@ namespace Collisions
         {
             delete (*itMonsters);
         }
+
+		release();
     }
 } // namespace

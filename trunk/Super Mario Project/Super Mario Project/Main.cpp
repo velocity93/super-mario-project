@@ -28,7 +28,8 @@ int main(int argc, char* argv[])
 	App.SetFramerateLimit(60);
 
 	// Create world
-	World w(&App);
+	//World w(&App);
+	Blocks block("classiques\\grass");
 
 	try
 	{

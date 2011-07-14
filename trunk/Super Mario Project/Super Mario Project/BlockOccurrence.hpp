@@ -27,9 +27,16 @@ namespace Collisions
 			PUSHED_TO_TOP,
 		};
 
-		BlockOccurrence(const string& textureName, Vector2f& position, Vector2f& speed, State state, Side side,
-			const map<BlockOccurrence::State, int>& nbSpritesByState,
-			const map<BlockOccurrence::State, int>& vAnimByState);
+		BlockOccurrence(const string& textureName, 
+			Vector2f& position, 
+			Vector2f& speed, 
+			State state, 
+			Side side,
+			Vector2i& _nbSprites,
+			int vAnim,
+			int physicIndex);
+
+		int getPhysic();
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
@@ -37,6 +44,8 @@ namespace Collisions
         virtual ~BlockOccurrence();
 		
     private:
+		int _physicIndex;
+		Vector2i _coordSprite;
 		State _state;
 		Blocks* _actualBlock;
 		Blocks* _alternativeBlock;

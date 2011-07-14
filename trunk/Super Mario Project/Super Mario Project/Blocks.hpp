@@ -24,13 +24,15 @@ namespace Collisions
 	class Blocks : public SuperMarioProject::Resource
     {
     public:
-        Blocks(const string& textureName, int type);
+        Blocks(const string& textureName);
 
-		void addNewBlockOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
+		void addNewBlockOccurrence(int physicIndex, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
 			BlockOccurrence::Side side = BlockOccurrence::Side::RIGHT_SIDE);
 
-		void Blocks::removeBlockOccurrence(const BlockOccurrence* block);
+		void removeBlockOccurrence(const BlockOccurrence* block);
+
+		int getPhysic(int index);
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
@@ -38,13 +40,12 @@ namespace Collisions
         virtual ~Blocks();
 		
     private:
-		int _physic;
-		int _type;
+		Vector2i _nbSprites;
+		int _vAnim;
+		vector<int> _physics;
 		vector<BlockOccurrence*> _blockOccurrences;
-		map<BlockOccurrence::State, int> _nbSpritesByState;
-		map<BlockOccurrence::State, int> _vAnimByState;
 		
-		void loadBlockConfiguration();
+		void loadBlockConfiguration(const string& textureName);
 		
     };
 } // namespace

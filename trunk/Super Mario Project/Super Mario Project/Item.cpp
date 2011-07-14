@@ -138,5 +138,7 @@ namespace Collisions
         {
             delete (*itItems);
         }
+
+		release();
     }
 } // namespace

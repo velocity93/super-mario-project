@@ -17,9 +17,10 @@ namespace Rendering
         _sprite = sf::Sprite();
 
         /* Load texture */
+		
         if(!_image.LoadFromFile(name + ".png"))
         {
-            cout << "Error in loading texture " << name;
+            cout << "Error in loading texture " << name << endl;
         }
         _image.SetSmooth(false);
 
@@ -52,6 +53,6 @@ namespace Rendering
 
     Texture::~Texture()
     {
-
+		release();
     }
 } // namespace
