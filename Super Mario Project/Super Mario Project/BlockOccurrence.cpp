@@ -26,7 +26,7 @@ namespace Collisions
     {
 		/* Compute blocs coords into the texture */
 		_coordSprite.y = physicIndex / _nbSprites.x;
-		_coordSprite.x = physicIndex % _nbSprites.x - 1;
+		_coordSprite.x = physicIndex % _nbSprites.x;
     }
 
 	int BlockOccurrence::getPhysic()
