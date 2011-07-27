@@ -24,13 +24,13 @@ namespace Collisions
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
 		_invincibleTime(0), 
-		_invincibleStarTime(0),
+		_invincibleStarTime(0), 
 		_transformationTime(0), 
 		_attackTime(0), 
 		_specialAttackTime(0), 
 		_throwShellTime(0), 
 		_deathTime(0), 
-		_finishTime(0),
+		_finishTime(0), 
 		_jumpTime(0)
 	{
 		loadPerso(_textureName);
@@ -545,22 +545,13 @@ namespace Collisions
 						continue;
 					}
 
-					found = word.find("nb_sprites_run_1=");
+					found = word.find("nb_sprites_run=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbRunningSpritesStream(word.substr(found + 17));
+						istringstream nbRunningSpritesStream(word.substr(found + 15));
 						nbRunningSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_1, nbSprites));
-						continue;
-					}
-
-					found = word.find("nb_sprites_run_2=");
-					if(found != string::npos)
-					{
-						int nbSprites = 0;
-						istringstream nbRunningSpritesStream(word.substr(found + 17));
-						nbRunningSpritesStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_2, nbSprites));
 						continue;
 					}
@@ -682,6 +673,16 @@ namespace Collisions
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
 						_nbSpritesByState.insert(pair<Perso::State, int>(State::PUSH_SHELL, nbSprites));
+						continue;
+					}
+
+					found = word.find("nb_sprites_jump_shell=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 22));
+						nbSpriteStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP_SHELL, nbSprites));
 						continue;
 					}
 
