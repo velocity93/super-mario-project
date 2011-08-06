@@ -79,7 +79,7 @@ namespace SuperMarioProject
 		vector<Monster*>::iterator itMonsters;
 
 		/* Items */
-		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
+		for(itItems = this->_items.begin(); itItems != this->_items.end(); itItems++)
 		{
 			(*itItems)->update(app);
 		}
@@ -87,13 +87,13 @@ namespace SuperMarioProject
 		// BLOCKS ??
 
 		/* Monsters */
-		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)
 		{
 			(*itMonsters)->update(app);
 		}
 
 		/* Projectiles */
-		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
+		for(itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); itProjectiles++)
 		{
 			(*itProjectiles)->update(app);
 		}
@@ -101,7 +101,7 @@ namespace SuperMarioProject
 		// Persos ??
 		
 		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
 		{
 			(*itPipes)->update(app);
 		}
@@ -123,25 +123,25 @@ namespace SuperMarioProject
 		// background_generators ?
 
 		/* Backgrounds */
-		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds < this->_backgrounds.end(); itBackgrounds++)
+		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); itBackgrounds++)
 		{
 			(*itBackgrounds)->render(app);
 		}
 
 		/* Objects */
-		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
+		for(itObjects = this->_objects.begin(); itObjects != this->_objects.end(); itObjects++)
 		{
 			(*itObjects)->render(app);
 		}
 		
 		/* Finish */
-		for(itFinish = this->_finishes.begin(); itFinish < this->_finishes.end(); itFinish++)
+		for(itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); itFinish++)
 		{
 			(*itFinish)->render(app);
 		}
 
 		/* Items */
-		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
+		for(itItems = this->_items.begin(); itItems != this->_items.end(); itItems++)
 		{
 			(*itItems)->render(app);
 		}
@@ -149,19 +149,19 @@ namespace SuperMarioProject
 		// BLOCKS 
 
 		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints++)
 		{
 			(*itCheckpoints)->render(app);
 		}
 
 		/* Monsters */
-		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)
 		{
 			(*itMonsters)->render(app);
 		}
 
 		/* Projectiles */
-		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
+		for(itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); itProjectiles++)
 		{
 			(*itProjectiles)->render(app);
 		}
@@ -169,7 +169,7 @@ namespace SuperMarioProject
 		// Persos ??
 		
 		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
 		{
 			(*itPipes)->render(app);
 		}
@@ -177,7 +177,7 @@ namespace SuperMarioProject
 		// foreground_generators ?
 
 		/* Foregrounds */
-		for(itForegrounds = this->_foregrounds.begin(); itForegrounds < this->_foregrounds.end(); itForegrounds++)
+		for(itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); itForegrounds++)
 		{
 			(*itForegrounds)->render(app);
 		}
@@ -199,25 +199,25 @@ namespace SuperMarioProject
 		// background_generators ?
 
 		/* Backgrounds */
-		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds < this->_backgrounds.end(); itBackgrounds++)
+		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); itBackgrounds++)
 		{
 			delete (*itBackgrounds);
 		}
 
 		/* Objects */
-		for(itObjects = this->_objects.begin(); itObjects < this->_objects.end(); itObjects++)
+		for(itObjects = this->_objects.begin(); itObjects != this->_objects.end(); itObjects++)
 		{
 			delete (*itObjects);
 		}
 		
 		/* Finish */
-		for(itFinish = this->_finishes.begin(); itFinish < this->_finishes.end(); itFinish++)
+		for(itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); itFinish++)
 		{
 			delete (*itFinish);
 		}
 
 		/* Items */
-		for(itItems = this->_items.begin(); itItems < this->_items.end(); itItems++)
+		for(itItems = this->_items.begin(); itItems != this->_items.end(); itItems++)
 		{
 			delete (*itItems);
 		}
@@ -225,19 +225,19 @@ namespace SuperMarioProject
 		// BLOCKS 
 
 		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints < this->_checkpoints.end(); itCheckpoints++)
+		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints++)
 		{
 			delete (*itCheckpoints);
 		}
 
 		/* Monsters */
-		for(itMonsters = this->_monsters.begin(); itMonsters < this->_monsters.end(); itMonsters++)
+		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)
 		{
 			delete (*itMonsters);
 		}
 
 		/* Projectiles */
-		for(itProjectiles = this->_projectiles.begin(); itProjectiles < this->_projectiles.end(); itProjectiles++)
+		for(itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); itProjectiles++)
 		{
 			delete (*itProjectiles);
 		}
@@ -245,13 +245,13 @@ namespace SuperMarioProject
 		// Persos ??
 		
 		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes < this->_pipes.end(); itPipes++)
+		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
 		{
 			delete (*itPipes);
 		}
 
 		/* Foregrounds */
-		for(itForegrounds = this->_foregrounds.begin(); itForegrounds < this->_foregrounds.end(); itForegrounds++)
+		for(itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); itForegrounds++)
 		{
 			delete (*itForegrounds);
 		}

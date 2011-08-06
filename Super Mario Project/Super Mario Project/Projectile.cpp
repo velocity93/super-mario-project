@@ -43,7 +43,7 @@ namespace Collisions
     {
         vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
 
-        for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence < _projectileOccurences.end(); ++itProjectileOccurrence)
+        for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); ++itProjectileOccurrence)
         {
             if((*itProjectileOccurrence) == projectile)
                 _projectileOccurences.erase(itProjectileOccurrence);
@@ -152,7 +152,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
         {
             (*itProjectiles)->update(app);
         }
@@ -163,7 +163,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
         {
             (*itProjectiles)->render(app);
         }
@@ -175,7 +175,7 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles < this->_projectileOccurences.end(); ++itProjectiles)
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
         {
             delete (*itProjectiles);
         }

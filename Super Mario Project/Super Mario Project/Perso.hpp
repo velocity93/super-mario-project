@@ -19,6 +19,7 @@
 #include "Pipe.hpp"
 #include "Checkpoint.hpp"
 #include "InputState.hpp"
+#include "Animation.hpp"
 
 using namespace Rendering;
 using namespace SuperMarioProject;
@@ -175,6 +176,7 @@ namespace Collisions
 		int _jumpTime;
 		string _textureName;
 
+		Animation<State> _animation;
 		HUD* _hud;
 		State _state;
 		Environment _environment;

@@ -45,7 +45,7 @@ namespace Collisions
     {
         vector<ItemOccurrence*>::iterator itItemOccurrence;
 
-        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence < _itemOccurrences.end(); itItemOccurrence++)
+        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence != _itemOccurrences.end(); itItemOccurrence++)
         {
             if((*itItemOccurrence) == item)
                 _itemOccurrences.erase(itItemOccurrence);
@@ -112,7 +112,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
+        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
             (*itItems)->update(app);
         }
@@ -123,7 +123,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
+        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
             (*itItems)->render(app);
         }
@@ -134,7 +134,7 @@ namespace Collisions
         vector<ItemOccurrence*>::iterator itItems;
 
         /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems < this->_itemOccurrences.end(); ++itItems)
+        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
             delete (*itItems);
         }

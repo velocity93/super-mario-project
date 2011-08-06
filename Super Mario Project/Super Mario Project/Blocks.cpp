@@ -29,7 +29,7 @@ namespace Collisions
     {
         vector<BlockOccurrence*>::iterator itBlockOccurrence;
 
-        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence < _blockOccurrences.end(); ++itBlockOccurrence)
+        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
         {
             if((*itBlockOccurrence) == block)
                 _blockOccurrences.erase(itBlockOccurrence);
@@ -45,7 +45,7 @@ namespace Collisions
 	{
 		vector<BlockOccurrence*>::iterator itBlockOccurrence;
 
-        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence < _blockOccurrences.end(); ++itBlockOccurrence)
+        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
         {
 			(*itBlockOccurrence)->update(app);
         }
@@ -55,7 +55,7 @@ namespace Collisions
 	{
 		vector<BlockOccurrence*>::iterator itBlockOccurrence;
 
-        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence < _blockOccurrences.end(); ++itBlockOccurrence)
+        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
         {
 			(*itBlockOccurrence)->render(app);
         }

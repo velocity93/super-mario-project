@@ -31,7 +31,7 @@ namespace Collisions
     {
         vector<MonsterOccurrence*>::iterator itMonsterOccurrence;
 
-        for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence < _monsterOccurrences.end(); ++itMonsterOccurrence)
+        for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence != _monsterOccurrences.end(); ++itMonsterOccurrence)
         {
             if((*itMonsterOccurrence) == monster)
                 _monsterOccurrences.erase(itMonsterOccurrence);
@@ -96,7 +96,7 @@ namespace Collisions
         vector<MonsterOccurrence*>::iterator itMonsters;
 
         /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
+        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
             (*itMonsters)->update(app);
         }
@@ -107,7 +107,7 @@ namespace Collisions
         vector<MonsterOccurrence*>::iterator itMonsters;
 
         /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
+        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
             (*itMonsters)->render(app);
         }
@@ -118,7 +118,7 @@ namespace Collisions
         vector<MonsterOccurrence*>::iterator itMonsters;
 
         /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters < this->_monsterOccurrences.end(); ++itMonsters)
+        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
             delete (*itMonsters);
         }
