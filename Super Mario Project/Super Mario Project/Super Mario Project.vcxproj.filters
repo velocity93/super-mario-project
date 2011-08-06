@@ -224,5 +224,11 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
+    <None Include="textures\persos\small_mario.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\persos\small_mario.perso">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
