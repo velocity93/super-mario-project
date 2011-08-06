@@ -11,6 +11,7 @@
 #define HPP_PROJECTILEOCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
@@ -32,11 +33,13 @@ namespace Collisions
     
 		/* Constructors */
 		ProjectileOccurrence(const string& textureName, Vector2f& position, Vector2f& speed, State state, Side side,
-			const map<ProjectileOccurrence::State, int>& nbSpritesByState,
-			const map<ProjectileOccurrence::State, int>& vAnimByState);
+			map<ProjectileOccurrence::State, int>& nbSpritesByState,
+			map<ProjectileOccurrence::State, int>& vAnimByState);
 
 		/* Getter and setter */
 		Sender getSender();
+		State getState();
+		void setState(State state);
 
 		/* Methods */
 		void update(RenderWindow& app);
@@ -45,7 +48,9 @@ namespace Collisions
         virtual ~ProjectileOccurrence();
 		
     private:
+		Animation<State> _animation;
 		Sender _sender;
+		State _state;
 		Projectile* _projectile;
     };
 } // namespace

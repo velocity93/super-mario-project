@@ -31,14 +31,14 @@ namespace Rendering
 		void setMapVAnim(map<T, int>& vAnimByState);
 		void setCurrentState(T state);
 
+		int getNbSpritesMax();
+
 		void render(Texture* texture, RenderWindow& app, Vector2f& position);
 
 	private:
 		map<T, int> _nbSpritesByState;
 		map<T, int> _vAnimByState;
 		T _currentState;
-
-		int getNbSpritesMax();
 	};
 
 	#include "Animation.inl"
