@@ -75,7 +75,7 @@ namespace Collisions
 		vector<Particle>::iterator itParticles;
 
 		/* Update Physics position */
-		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
+		for(itParticles = _particles.begin(); itParticles != _particles.end(); itParticles++)
 		{			
 			(*itParticles).update(app.GetFrameTime(), _hasGravity);
 		}
@@ -85,7 +85,7 @@ namespace Collisions
 	{
 		vector<Particle>::iterator itParticles;
 
-		for(itParticles = _particles.begin(); itParticles < _particles.end(); itParticles++)
+		for(itParticles = _particles.begin(); itParticles != _particles.end(); itParticles++)
 		{
 			(*itParticles).render(app);
 		}

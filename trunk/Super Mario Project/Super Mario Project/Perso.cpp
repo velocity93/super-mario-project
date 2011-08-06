@@ -20,7 +20,7 @@ namespace Collisions
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
 		_state(STANDING), 
-		_hud(new HUD()), 
+		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
 		_invincibleTime(0), 
@@ -31,9 +31,15 @@ namespace Collisions
 		_throwShellTime(0), 
 		_deathTime(0), 
 		_finishTime(0), 
-		_jumpTime(0)
+		_jumpTime(0),
+		_animation(Animation<State>())
 	{
 		loadPerso(_textureName);
+
+		/* Setting animation Data */
+		_animation.setMapNbSprites(_nbSpritesByState);
+		_animation.setMapVAnim(_vAnimByState);
+		_animation.setCurrentState(_state);
 	}
 
 	HUD* Perso::getHUD()
@@ -128,6 +134,7 @@ namespace Collisions
 
 	void Perso::setState(Perso::State state)
 	{
+		_animation.setCurrentState(state);
 		_state = state;
 	}
 
@@ -228,7 +235,7 @@ namespace Collisions
 
 	void Perso::render(RenderWindow& app)
 	{
-
+		_animation.render(_texture, app, _position);
 	}
 
 	void Perso::lateral_move(RenderWindow& app, InputState* inputState)
@@ -252,7 +259,7 @@ namespace Collisions
 						{
 							if(_environment != AIR && _broughtMonster == nullptr && _state != SKID)
 							{
-								_state = SKID;
+								setState(SKID);
 								// play a sound here !
 							}
 							frictions(time);
@@ -267,11 +274,11 @@ namespace Collisions
 									{
 										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
 										{
-											_state = RUN_1;
+											setState(RUN_1);
 										}
 										else
 										{
-											_state = WALK;
+											setState(WALK);
 										}
 										_hud->setNbMonstersKilled(0);
 									}
@@ -281,7 +288,7 @@ namespace Collisions
 							{
 								if(_environment == GROUND)
 								{
-									_state = WALK_SHELL;
+									setState(WALK_SHELL);
 								}
 							}
 						}
@@ -296,7 +303,7 @@ namespace Collisions
 						{
 							if(_environment != AIR && _broughtMonster == nullptr && _state != SKID)
 							{
-								_state = SKID;
+								setState(SKID);
 								// play a sound here !
 							}
 							frictions(time);
@@ -311,11 +318,11 @@ namespace Collisions
 									{
 										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
 										{
-											_state = RUN_1;
+											setState(RUN_1);
 										}
 										else
 										{
-											_state = WALK;
+											setState(WALK);
 										}
 										_hud->setNbMonstersKilled(0);
 									}
@@ -325,7 +332,7 @@ namespace Collisions
 							{
 								if(_environment == GROUND)
 								{
-									_state = WALK_SHELL;
+									setState(WALK_SHELL);
 								}
 							}
 						}
@@ -351,11 +358,11 @@ namespace Collisions
 							if(_environment == GROUND)
 							{
 								if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
-								_state = LOWERED_JUMP;
+									setState(LOWERED_JUMP);
 							}
 							else
 							{
-								_state = STANDING;
+								setState(STANDING);
 								_hud->setNbMonstersKilled(0);
 							}
 						}
@@ -365,11 +372,11 @@ namespace Collisions
 						if(_environment == AIR)
 						{
 							if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
-							_state = LOWERED_JUMP_SHELL;
+							setState(LOWERED_JUMP_SHELL);
 						}
 						else
 						{
-							_state = STANDING_SHELL;
+							setState(STANDING_SHELL);
 							_hud->setNbMonstersKilled(0);
 						}
 					}
@@ -399,7 +406,7 @@ namespace Collisions
 		else if(_transformation == SMALL_MARIO)
 		{
 			transform(SUPER_MARIO);
-			_state = DEAD;
+			setState(DEAD);
 			_speed.x = 0;
 			_speed.y = EJECTION_SPEED_Y * 5;
 			/*p->tps_mort = TPS_MORT;
@@ -471,13 +478,13 @@ namespace Collisions
 		switch(_insidePipe->getDirection())
 		{
 		case Pipe::TO_TOP:
-			_state = GET_OUT_FROM_PIPE_VERTICAL;
+			setState(GET_OUT_FROM_PIPE_VERTICAL);
 			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
 			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - _hitboxSize.y;
 			break;
 
 		case Pipe::TO_BOTTOM:
-			_state = GET_OUT_FROM_PIPE_VERTICAL;
+			setState(GET_OUT_FROM_PIPE_VERTICAL);
 			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
 			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
@@ -751,5 +758,6 @@ namespace Collisions
 
 	Perso::~Perso()
 	{
+		delete _hud;
 	}
 } // namespace

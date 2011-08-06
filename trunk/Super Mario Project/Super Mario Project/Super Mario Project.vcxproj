@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.hpp" />
     <ClInclude Include="Background.hpp" />
     <ClInclude Include="BlockOccurrence.hpp" />
     <ClInclude Include="Blocks.hpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ResourceManager.inl" />
     <None Include="world1.wld" />

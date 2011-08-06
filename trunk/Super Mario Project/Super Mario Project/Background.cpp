@@ -78,7 +78,7 @@ namespace Rendering
 	{
 		vector<Sprite>::iterator itSprites;
 
-		for(itSprites = _sprites.begin(); itSprites < _sprites.end(); ++itSprites)
+		for(itSprites = _sprites.begin(); itSprites != _sprites.end(); ++itSprites)
 			app.Draw(*itSprites);
 	}
 
