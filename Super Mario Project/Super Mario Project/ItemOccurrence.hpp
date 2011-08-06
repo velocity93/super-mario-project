@@ -11,6 +11,7 @@
 #define HPP_ITEMOCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
@@ -30,8 +31,8 @@ namespace Collisions
 			Vector2f& speed, 
 			State state, 
 			Side side, 
-			const map<ItemOccurrence::State, int>& nbSpritesByState,
-			const map<ItemOccurrence::State, int>& vAnimByState);
+			map<ItemOccurrence::State, int>& nbSpritesByState,
+			map<ItemOccurrence::State, int>& vAnimByState);
 
 		State getState();
 		bool getIsActive();
@@ -44,6 +45,7 @@ namespace Collisions
         virtual ~ItemOccurrence();
 		
     private:
+		Animation<State> _animation;
 		State _state;
 		bool _isActive;
 		int _blockExitTime;

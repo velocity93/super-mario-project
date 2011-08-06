@@ -20,23 +20,39 @@ namespace Collisions
 		Vector2f& speed, 
 		State state,
 		Side side,
-		const map<ProjectileOccurrence::State, int>& nbSpritesByState,
-		const map<ProjectileOccurrence::State, int>& vAnimByState)
-		: EntityMovable(textureName, position, speed, side), _sender(GENTILE)
+		map<ProjectileOccurrence::State, int>& nbSpritesByState,
+		map<ProjectileOccurrence::State, int>& vAnimByState) :
+		EntityMovable(textureName, position, speed, side), 
+			_sender(GENTILE),
+			_state(state)
 	{
 		_projectile = ResourceManager::getProjectile(textureName);
+
+		/* Initialize animation class */
+		_animation.setMapNbSprites(nbSpritesByState);
+		_animation.setMapVAnim(vAnimByState);
+		_animation.setCurrentState(state);
+
+		/* Hitbox */
 		_position = position;
 		_hitboxSize.y = _projectile->getTop();
-		//_hitboxSize.x = _texture->getImage()->GetWidth() / _projectile->getNbSpritesMax() - 2 * _projectile->getBottomLeft();
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _projectile->getBottomLeft();
+	}
 
-		// Initialize animationClass with the two map passing in arguments
-		nbSpritesByState;
-		vAnimByState;
+	ProjectileOccurrence::State ProjectileOccurrence::getState()
+	{
+		return _state;
 	}
 
 	ProjectileOccurrence::Sender ProjectileOccurrence::getSender()
 	{
 		return _sender;
+	}
+
+	void ProjectileOccurrence::setState(State state)
+	{
+		_state = state;
+		_animation.setCurrentState(state);
 	}
 
 	void ProjectileOccurrence::update(RenderWindow& app)
@@ -60,7 +76,7 @@ namespace Collisions
 
 	void ProjectileOccurrence::render(RenderWindow& app)
 	{
-
+		_animation.render(_texture, app, _position);
 	}
 
 	ProjectileOccurrence::~ProjectileOccurrence()

@@ -20,19 +20,23 @@ namespace Collisions
 		Vector2f& speed, 
 		State state, 
 		Side side,
-		const map<ItemOccurrence::State, int>& nbSpritesByState,
-		const map<ItemOccurrence::State, int>& vAnimByState)
-			: EntityMovable(textureName, position, speed, side), _state(state), _isActive(true), _blockExitTime(0)
+		map<ItemOccurrence::State, int>& nbSpritesByState,
+		map<ItemOccurrence::State, int>& vAnimByState) : 
+		EntityMovable(textureName, position, speed, side), 
+			_state(state), 
+			_isActive(true), 
+			_blockExitTime(0)
 	{
 		_item = ResourceManager::getItem(textureName);
 
-		_position = _hitboxPosition = position;
-		//_hitboxSize.x = _texture->getImage()->GetWidth()/ _item->getNbSprites();
-		_hitboxSize.y = _texture->getImage()->GetHeight();
+		/* Initialize animation class */
+		_animation.setMapNbSprites(nbSpritesByState);
+		_animation.setMapVAnim(vAnimByState);
+		_animation.setCurrentState(_state);
 
-		// Initialize animationClass with the two map passing in arguments
-		nbSpritesByState;
-		vAnimByState;
+		_position = _hitboxPosition = position;
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax();
+		_hitboxSize.y = _texture->getImage()->GetHeight();
 	}
 
 	ItemOccurrence::State ItemOccurrence::getState()
@@ -48,6 +52,7 @@ namespace Collisions
 	void ItemOccurrence::setState(State state)
 	{
 		_state = state;
+		_animation.setCurrentState(state);
 	}
 
 	void ItemOccurrence::setIsActive(bool isActive)
@@ -77,8 +82,7 @@ namespace Collisions
 
 	void ItemOccurrence::render(RenderWindow& app)
 	{
-		Sprite sprite = _texture->getSprite();
-		app.Draw(sprite);
+		_animation.render(_texture, app, _position);
 	}
 
 	ItemOccurrence::~ItemOccurrence()
