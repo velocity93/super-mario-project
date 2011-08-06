@@ -19,7 +19,7 @@ namespace Collisions
 		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
-		_state(STANDING), 
+		_state(DEAD), 
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -541,7 +541,17 @@ namespace Collisions
 				}
 
 				{ /* 'nb_sprites_xxx' keyword */
-					
+					found = word.find("nb_sprites_standing=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbWalkingSpritesStream(word.substr(found + 20));
+						nbWalkingSpritesStream >> nbSprites;
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::STANDING, nbSprites));
+						continue;
+					}
+
+
 					found = word.find("nb_sprites_walk=");
 					if(found != string::npos)
 					{
@@ -593,13 +603,13 @@ namespace Collisions
 						continue;
 					}
 
-					found = word.find("nb_sprites_swim=");
+					found = word.find("nb_sprites_fly=");
 					if(found != string::npos)
 					{
 						int nbSprites = 0;
-						istringstream nbSwimmingSpritesStream(word.substr(found + 16));
+						istringstream nbSwimmingSpritesStream(word.substr(found + 15));
 						nbSwimmingSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::SWIMMING, nbSprites));
+						_nbSpritesByState.insert(pair<Perso::State, int>(State::FLY, nbSprites));
 						continue;
 					}
 

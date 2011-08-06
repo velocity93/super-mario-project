@@ -59,9 +59,9 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 	sprite.SetSubRect(
 		IntRect(
 		0, 
-		numState * _nbSpritesByState.size(),
+		numState * spriteSize.y,
 		spriteSize.x,
-		spriteSize.y));
+		(numState + 1) * spriteSize.y));
 
 	sprite.SetPosition(position);
 	
