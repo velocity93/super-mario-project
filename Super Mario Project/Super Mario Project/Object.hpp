@@ -11,6 +11,7 @@
 #define HPP_OBJECT
 
 #include "Drawable.hpp"
+#include "Animation.hpp"
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -20,6 +21,11 @@ namespace Rendering
     class Object : public Drawable
     {
     public:
+		enum State
+		{
+			NORMAL
+		};
+
 		Object(const string& textureName);
 		Object(const string& textureName,Vector2f& position);
 		
@@ -29,6 +35,7 @@ namespace Rendering
         virtual ~Object();
 		
     protected:
+		Animation<State> _animation;
 		void loadCfgObject(const string& textureName);
 		
     };

@@ -64,7 +64,7 @@ namespace Collisions
 	void Blocks::loadBlockConfiguration(const string& textureName)
 	{
 		string fileName = "textures\\blocs\\" + textureName.substr(0, textureName.find_first_of("\\")) + "\\" + textureName.substr(0, textureName.find_first_of("\\")) + ".cfg";
-		ifstream stream(fileName);
+		ifstream stream(fileName.c_str());
 
 		if(stream)
 		{

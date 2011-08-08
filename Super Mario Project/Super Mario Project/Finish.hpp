@@ -11,14 +11,21 @@
 #define HPP_FINISH
 
 #include "Collisionable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
     class Finish : public Collisionable
     {
     public:
-		Finish(const string& textureName) : Collisionable(textureName) { }
-		Finish(const string& textureName,Vector2f& position) : Collisionable(textureName, position) { }
+		enum State
+		{
+			WAITING,
+			FINISH
+		};
+
+		Finish(const string& textureName);
+		Finish(const string& textureName, Vector2f& position);
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
@@ -26,6 +33,9 @@ namespace Collisions
         virtual ~Finish();
 		
     private:
+		Animation<State> _animation;
+
+		void loadFinish(const string& textureName);
     };
 } // namespace
 

@@ -186,9 +186,6 @@ namespace Collisions
 		Pipe* _insidePipe;
 		Checkpoint* _checkpointPassed;
 
-		map<Perso::State, int> _nbSpritesByState;
-		map<Perso::State, int> _vAnimByState;
-
 		/* Move management */
 		void lateral_move(RenderWindow& app, InputState* inputState);
 

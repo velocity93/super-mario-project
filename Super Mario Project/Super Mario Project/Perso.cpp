@@ -19,7 +19,7 @@ namespace Collisions
 		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
-		_state(DEAD), 
+		_state(WALK), 
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -37,8 +37,6 @@ namespace Collisions
 		loadPerso(_textureName);
 
 		/* Setting animation Data */
-		_animation.setMapNbSprites(_nbSpritesByState);
-		_animation.setMapVAnim(_vAnimByState);
 		_animation.setCurrentState(_state);
 	}
 
@@ -215,7 +213,11 @@ namespace Collisions
 
 	void Perso::update(RenderWindow& app)
 	{
+		/* Update physics */
 		updatePerso(app, nullptr);
+
+		/* Update animation */
+		_animation.update(_texture, app);
 	}
 
 	void Perso::updatePerso(RenderWindow& app, InputState* inputState)
@@ -223,7 +225,7 @@ namespace Collisions
 		gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
-		lateral_move(app, inputState);
+		//lateral_move(app, inputState);
 
 		/* Save actual position as previous position */
 		_previousPosition = _position;
@@ -547,7 +549,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbWalkingSpritesStream(word.substr(found + 20));
 						nbWalkingSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::STANDING, nbSprites));
+						_animation.addNbSpritesForGivenState(State::STANDING, nbSprites);
 						continue;
 					}
 
@@ -558,7 +560,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbWalkingSpritesStream(word.substr(found + 16));
 						nbWalkingSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::WALK, nbSprites));
+						_animation.addNbSpritesForGivenState(State::WALK, nbSprites);
 						continue;
 					}
 
@@ -568,8 +570,8 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbRunningSpritesStream(word.substr(found + 15));
 						nbRunningSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_1, nbSprites));
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::RUN_2, nbSprites));
+						_animation.addNbSpritesForGivenState(State::RUN_1, nbSprites);
+						_animation.addNbSpritesForGivenState(State::RUN_2, nbSprites);
 						continue;
 					}
 
@@ -579,7 +581,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSkidSpritesStream(word.substr(found + 16));
 						nbSkidSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::SKID, nbSprites));
+						_animation.addNbSpritesForGivenState(State::SKID, nbSprites);
 						continue;
 					}
 
@@ -589,7 +591,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbJumpSpritesStream(word.substr(found + 16));
 						nbJumpSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP, nbSprites));
+						_animation.addNbSpritesForGivenState(State::JUMP, nbSprites);
 						continue;
 					}
 
@@ -599,7 +601,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbJumpSpritesStream(word.substr(found + 24));
 						nbJumpSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP_FALLING, nbSprites));
+						_animation.addNbSpritesForGivenState(State::JUMP_FALLING, nbSprites);
 						continue;
 					}
 
@@ -609,7 +611,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSwimmingSpritesStream(word.substr(found + 15));
 						nbSwimmingSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::FLY, nbSprites));
+						_animation.addNbSpritesForGivenState(State::FLY, nbSprites);
 						continue;
 					}
 
@@ -619,7 +621,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbFaceSpritesStream(word.substr(found + 16));
 						nbFaceSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::GET_IN_FROM_PIPE_VERTICAL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::GET_IN_FROM_PIPE_VERTICAL, nbSprites);
 						continue;
 					}
 
@@ -629,7 +631,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbBackSpritesStream(word.substr(found + 16));
 						nbBackSpritesStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::BACK, nbSprites));
+						_animation.addNbSpritesForGivenState(State::BACK, nbSprites);
 						continue;
 					}
 
@@ -639,7 +641,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 20));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOOK_TOP, nbSprites));
+						_animation.addNbSpritesForGivenState(State::LOOK_TOP, nbSprites);
 						continue;
 					}
 
@@ -649,7 +651,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 19));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOWERED, nbSprites));
+						_animation.addNbSpritesForGivenState(State::LOWERED, nbSprites);
 						continue;
 					}
 
@@ -659,7 +661,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 24));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::CLIMB_LADDER, nbSprites));
+						_animation.addNbSpritesForGivenState(State::CLIMB_LADDER, nbSprites);
 						continue;
 					}
 
@@ -669,7 +671,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::STANDING_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::STANDING_SHELL, nbSprites);
 						continue;
 					}
 
@@ -679,7 +681,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::WALK_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::WALK_SHELL, nbSprites);
 						continue;
 					}
 
@@ -689,7 +691,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::PUSH_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::PUSH_SHELL, nbSprites);
 						continue;
 					}
 
@@ -699,7 +701,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::JUMP_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::JUMP_SHELL, nbSprites);
 						continue;
 					}
 
@@ -709,7 +711,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 24));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOWERED_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::LOWERED_SHELL, nbSprites);
 						continue;
 					}
 
@@ -719,7 +721,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::LOOK_TOP_SHELL, nbSprites));
+						_animation.addNbSpritesForGivenState(State::LOOK_TOP_SHELL, nbSprites);
 						continue;
 					}
 
@@ -729,7 +731,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 16));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::DEAD, nbSprites));
+						_animation.addNbSpritesForGivenState(State::DEAD, nbSprites);
 						continue;
 					}
 
@@ -739,7 +741,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 18));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::ATTACK, nbSprites));
+						_animation.addNbSpritesForGivenState(State::ATTACK, nbSprites);
 						continue;
 					}
 
@@ -749,13 +751,13 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_nbSpritesByState.insert(pair<Perso::State, int>(State::SPECIAL_ATTACK, nbSprites));
+						_animation.addNbSpritesForGivenState(State::SPECIAL_ATTACK, nbSprites);
 					}
 				}
 			}
 			
 			/* Compute Hitbox Size */
-			//_hitboxSize.x = _texture->getImage()->GetWidth() / nb_sprites_max - 2 * abscisse_bas;
+			_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * abscisse_bas;
 			_hitboxSize.y = ordonnee_haut;
 		}
 		else

@@ -7,6 +7,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Particle.hpp"
+#include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
@@ -18,6 +20,7 @@ namespace Collisions
 	void Particle::update(RenderWindow& app)
 	{
 		update(app.GetFrameTime(), false);
+		_animation.update(_texture, app);
 	}
 
 	void Particle::update(float time, bool hasGravity)
@@ -38,7 +41,46 @@ namespace Collisions
 
 	void Particle::render(RenderWindow& app)
 	{
-		app.Draw(this->getTexture()->getSprite());
+		_animation.render(_texture, app, _position);
+	}
+
+	void Particle::loadParticle(const string& textureName)
+	{
+		string fileName = textureName + ".obj";
+		ifstream stream(fileName.c_str());
+
+		if(stream)
+		{
+			string word;
+
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
+			{
+				int found = word.find("nb_sprites_normal=");
+				if(found != string::npos)
+				{
+					int nb_sprites = 0;
+					istringstream nbSprites(word.substr(found + 18));
+					nbSprites >> nb_sprites;
+					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+					continue;
+				}
+
+				found = word.find("v_anim_normal=");
+				if(found != string::npos)
+				{
+					int v_anim = 0;
+					istringstream vAnim(word.substr(found + 14));
+					vAnim >> v_anim;
+					_animation.addVAnimForGivenState(State::NORMAL, v_anim);
+				}
+			}
+		}
+		else
+		{
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
+		}
 	}
 
 	Particle::~Particle()

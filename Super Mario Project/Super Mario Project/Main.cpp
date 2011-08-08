@@ -53,14 +53,21 @@ int main(int argc, char* argv[])
 						case sf::Key::Escape :
 							App.Close();
 							break;
+						case sf::Key::F1 :
+							const sf::Image img = App.Capture();
+							img.SaveToFile("test.png");
+							break;
 						}
 					}
 					break;
 				}
 			}
 
+			App.Clear();
+
 			// Update World
 			//background.update(App);
+			perso.update(App);
 
 			// Draw World
 			//background.render(App);

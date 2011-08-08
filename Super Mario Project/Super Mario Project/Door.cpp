@@ -7,9 +7,25 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Door.hpp"
+#include <fstream>
+#include <sstream>
 
 namespace Collisions
 {
+	Door::Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") 
+	{ 
+		loadDoor(textureName);
+	}
+
+	Door::Door(const string& textureName, Vector2f position, int indexDestination, const string& levelDestination, State state) 
+			: Collisionable(textureName, position),
+			_indexDestination(indexDestination),
+			_levelDestination(levelDestination),
+			_state(state)
+	{
+		loadDoor(textureName);
+	}
+
 	int Door::getIndexDestination()
 	{
 		return _indexDestination;
@@ -32,25 +48,72 @@ namespace Collisions
 
 	void Door::update(RenderWindow& app)
 	{
-
+		_animation.update(_texture, app);
 	}
 
 	void Door::render(RenderWindow& app)
 	{
-		Sprite sprite = _texture->getSprite();
+		_animation.render(_texture, app, _position);
+	}
 
-		if(_state == CLOSED)
+	void Door::loadDoor(const string& textureName)
+	{
+		string fileName = textureName + ".obj";
+		ifstream stream(fileName.c_str());
+
+		if(stream)
 		{
-			sprite.SetSubRect(IntRect(0, 0, _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight() / 2));
+			string word;
+
+			/* We read file to search the keyword and read his value */
+			while(getline(stream, word))
+			{
+				int found = word.find("nb_sprites_open=");
+				if(found != string::npos)
+				{
+					int nb_sprites = 0;
+					istringstream nbSprites(word.substr(found + 16));
+					nbSprites >> nb_sprites;
+					_animation.addNbSpritesForGivenState(State::OPEN, nb_sprites);
+					continue;
+				}
+
+				found = word.find("v_anim_open=");
+				if(found != string::npos)
+				{
+					int v_anim = 0;
+					istringstream vAnim(word.substr(found + 12));
+					vAnim >> v_anim;
+					_animation.addVAnimForGivenState(State::OPEN, v_anim);
+					continue;
+				}
+
+				found = word.find("nb_sprites_closed=");
+				if(found != string::npos)
+				{
+					int nb_sprites = 0;
+					istringstream nbSprites(word.substr(found + 18));
+					nbSprites >> nb_sprites;
+					_animation.addNbSpritesForGivenState(State::CLOSED, nb_sprites);
+					continue;
+				}
+
+				found = word.find("v_anim_closed=");
+				if(found != string::npos)
+				{
+					int v_anim = 0;
+					istringstream vAnim(word.substr(found + 14));
+					vAnim >> v_anim;
+					_animation.addVAnimForGivenState(State::CLOSED, v_anim);
+				}
+			}
 		}
 		else
 		{
-			sprite.SetSubRect(IntRect(0, _texture->getImage()->GetHeight(), _texture->getImage()->GetWidth(), _texture->getImage()->GetHeight()));
+			string exceptionName = "Exception occured while opening " + fileName;
+			throw exception(exceptionName.c_str());
 		}
-
-		app.Draw(sprite);
 	}
-
 
 	Door::~Door()
 	{
