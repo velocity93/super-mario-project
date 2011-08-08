@@ -7,11 +7,29 @@
 ////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-Animation<T>::Animation(map<T, int>& nbSpritesByState, map<T, int>& vAnimByState) :
-_nbSpritesByState(nbSpritesByState), 
-	_vAnimByState(vAnimByState)
+void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 {
+	pair<map<T,int>::iterator,bool> res;
 
+	res = _nbSpritesByState.insert(pair<T, int>(state, nbSprites));
+	
+	if(res.second == false)
+	{
+		cout << "State : " << state << " already exists." << endl;
+	}
+}
+
+template<typename T>
+void Animation<T>::addVAnimForGivenState(T state, int vAnim)
+{
+	pair<map<T,int>::iterator,bool> res;
+
+	res = _vAnimByState.insert(pair<T, int>(state, vAnim));
+	
+	if(res.second == false)
+	{
+		cout << "State : " << state << " already exists." << endl;
+	}
 }
 
 template<typename T>
@@ -48,6 +66,14 @@ int Animation<T>::getNbSpritesMax()
 }
 
 template<typename T>
+void Animation<T>::update(Texture* texture, RenderWindow& app)
+{
+	int duree = (app.GetFrameTime() * 1000);
+	_column = (duree % 700) / (700 / (_nbSpritesByState[_currentState]));
+	cout << "Duree = " << duree << "; Colonne = " << _column << endl;
+}
+
+template<typename T>
 void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position)
 {
 	int numState = static_cast<int>(_currentState);
@@ -58,13 +84,12 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 	
 	sprite.SetSubRect(
 		IntRect(
-		0, 
+		_column * spriteSize.x,
 		numState * spriteSize.y,
-		spriteSize.x,
+		(_column + 1) * spriteSize.x,
 		(numState + 1) * spriteSize.y));
 
 	sprite.SetPosition(position);
-	
 
 	app.Draw(sprite);
 }

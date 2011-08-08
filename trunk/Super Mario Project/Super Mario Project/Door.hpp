@@ -11,6 +11,7 @@
 #define HPP_DOOR
 
 #include "Collisionable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
@@ -26,10 +27,8 @@ namespace Collisions
 
 
 		/* Constructors */
-		Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") { }
-		Door(const string& textureName,Vector2f position, int indexDestination, const string& levelDestination, State state) 
-			: Collisionable(textureName, position), _indexDestination(indexDestination), _levelDestination(levelDestination), _state(state) { }
-
+		Door(const string& textureName);
+		Door(const string& textureName, Vector2f position, int indexDestination, const string& levelDestination, State state);
 		/* getters and setters */
 		int getIndexDestination();
 		string getLevelDestination();
@@ -45,9 +44,12 @@ namespace Collisions
         virtual ~Door();
 		
     private:
+		Animation<State> _animation;
 		int _indexDestination;
 		string _levelDestination;
 		State _state;
+
+		void loadDoor(const string& textureName);
     };
 } // namespace
 

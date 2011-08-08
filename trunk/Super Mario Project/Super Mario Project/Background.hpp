@@ -19,7 +19,7 @@ namespace Rendering
     public:
 		/* Constructors */
 		Background(const string& textureName, const View& view);
-		Background(const string& textureName, const View& view,Vector2f& position);
+		Background(const string& textureName, const View& view, Vector2f& position);
 		
 		/* getter and setter */
 		bool getVerticalRepetition();
@@ -33,10 +33,8 @@ namespace Rendering
 		
     private:
 		bool _verticalRepetition;
-		vector<Sprite> _sprites;
 
 		void loadCfgBackground(const string& textureName);
-		void configureBackground(const string& textureName, const View& view);
     };
 } // namespace
 

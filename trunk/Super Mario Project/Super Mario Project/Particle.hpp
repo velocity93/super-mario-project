@@ -11,12 +11,18 @@
 #define HPP_PARTICLE
 
 #include "EntityMovable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
     class Particle : public EntityMovable
     {
     public:
+		enum State
+		{
+			NORMAL
+		};
+
 		Particle(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), _life(0) { }
 
 		int getLife();		
@@ -28,7 +34,10 @@ namespace Collisions
         virtual ~Particle();
 		
     private:
+		Animation<State> _animation;
 		int _life;
+
+		void loadParticle(const string& textureName);
     };
 } // namespace
 

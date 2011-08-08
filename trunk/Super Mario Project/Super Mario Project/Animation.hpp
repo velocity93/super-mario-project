@@ -24,8 +24,7 @@ namespace Rendering
     {
 	public:
 		/* Constructor */
-		Animation() { }
-		Animation(map<T, int>& nbSpritesByState, map<T, int>& vAnimByState);
+		Animation() : _nbSpritesByState(map<T, int>()), _vAnimByState(map<T, int>()), _column(0) { }
 
 		void setMapNbSprites(map<T, int>& nbSpritesByState);
 		void setMapVAnim(map<T, int>& vAnimByState);
@@ -33,12 +32,18 @@ namespace Rendering
 
 		int getNbSpritesMax();
 
+		void addNbSpritesForGivenState(T state, int nbSprites);
+		void addVAnimForGivenState(T state, int vAnim);
+
+		/* Drawing */
+		void update(Texture* texture, RenderWindow& app);
 		void render(Texture* texture, RenderWindow& app, Vector2f& position);
 
 	private:
 		map<T, int> _nbSpritesByState;
 		map<T, int> _vAnimByState;
 		T _currentState;
+		int _column;
 	};
 
 	#include "Animation.inl"
