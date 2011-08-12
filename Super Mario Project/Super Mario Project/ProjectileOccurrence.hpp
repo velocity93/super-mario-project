@@ -34,7 +34,7 @@ namespace Collisions
 		/* Constructors */
 		ProjectileOccurrence(const string& textureName, Vector2f& position, Vector2f& speed, State state, Side side,
 			map<ProjectileOccurrence::State, int>& nbSpritesByState,
-			map<ProjectileOccurrence::State, int>& vAnimByState);
+			map<ProjectileOccurrence::State, int>& frameDelayByState);
 
 		/* Getter and setter */
 		Sender getSender();

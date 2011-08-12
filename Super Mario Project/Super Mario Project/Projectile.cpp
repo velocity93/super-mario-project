@@ -36,7 +36,7 @@ namespace Collisions
 
 	void Projectile::addNewProjectileOccurrence(Vector2f& position, Vector2f& speed, ProjectileOccurrence::State state, ProjectileOccurrence::Side side)
     {
-		_projectileOccurences.push_back(new ProjectileOccurrence(name(), position, speed, state, side, _nbSpritesByState, _vAnimByState));
+		_projectileOccurences.push_back(new ProjectileOccurrence(name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
 
     void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)
@@ -123,7 +123,7 @@ namespace Collisions
 					int _vWalkingAnim;
                     istringstream vWalkingAnim(word.substr(found + 14));
 					vWalkingAnim >> _vWalkingAnim;
-					_vAnimByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _vWalkingAnim));
+					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _vWalkingAnim));
                     continue;
                 }
 
@@ -134,7 +134,7 @@ namespace Collisions
 					int _vDeadAnim;
 					istringstream vDeadAnim(word.substr(found + 12));
                     vDeadAnim >> _vDeadAnim;
-					_vAnimByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _vDeadAnim));
+					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _vDeadAnim));
                 }
 
                 /* Add apparition_time and disappearing_time later */

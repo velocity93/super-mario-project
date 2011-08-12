@@ -20,11 +20,11 @@ void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 }
 
 template<typename T>
-void Animation<T>::addVAnimForGivenState(T state, int vAnim)
+void Animation<T>::addFrameDelayForGivenState(T state, int frameDelay)
 {
 	pair<map<T,int>::iterator,bool> res;
 
-	res = _vAnimByState.insert(pair<T, int>(state, vAnim));
+	res = _frameDelayByState.insert(pair<T, int>(state, frameDelay));
 	
 	if(res.second == false)
 	{
@@ -39,9 +39,9 @@ void Animation<T>::setMapNbSprites(map<T, int>& nbSpritesByState)
 }
 
 template<typename T>
-void Animation<T>::setMapVAnim(map<T, int>& vAnimByState)
+void Animation<T>::setMapFrameDelay(map<T, int>& frameDelayByState)
 {
-	_vAnimByState = vAnimByState;
+	_frameDelayByState = frameDelayByState;
 }
 
 template<typename T>
@@ -66,11 +66,22 @@ int Animation<T>::getNbSpritesMax()
 }
 
 template<typename T>
-void Animation<T>::update(Texture* texture, RenderWindow& app)
+void Animation<T>::update(RenderWindow& app)
 {
-	int duree = (app.GetFrameTime() * 1000);
-	_column = (duree % 700) / (700 / (_nbSpritesByState[_currentState]));
-	cout << "Duree = " << duree << "; Colonne = " << _column << endl;
+	if(_frameDelayByState[_currentState])
+	{
+		unsigned int frameCount = (unsigned int)((_clock.GetElapsedTime() * 1000) / _frameDelayByState[_currentState]);
+		if(frameCount > _nbSpritesByState[_currentState])
+		{
+			//_clock.Reset();
+			//_frameNumber = 0;
+			_frameNumber = frameCount % _nbSpritesByState[_currentState];
+		}
+		else
+		{
+			_frameNumber = frameCount % _nbSpritesByState[_currentState];
+		}
+	}
 }
 
 template<typename T>
@@ -84,9 +95,9 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 	
 	sprite.SetSubRect(
 		IntRect(
-		_column * spriteSize.x,
+		_frameNumber * spriteSize.x,
 		numState * spriteSize.y,
-		(_column + 1) * spriteSize.x,
+		(_frameNumber + 1) * spriteSize.x,
 		(numState + 1) * spriteSize.y));
 
 	sprite.SetPosition(position);

@@ -11,11 +11,13 @@
 #define HPP_ANIMATION
 
 #include "Texture.hpp"
+#include "PausableClock.hpp"
 #include <SFML/Graphics.hpp>
 #include <map>
 
 using namespace std;
 using namespace sf;
+using namespace SuperMarioProject;
 
 namespace Rendering
 {
@@ -24,26 +26,32 @@ namespace Rendering
     {
 	public:
 		/* Constructor */
-		Animation() : _nbSpritesByState(map<T, int>()), _vAnimByState(map<T, int>()), _column(0) { }
+		Animation() : _nbSpritesByState(map<T, int>()), _frameDelayByState(map<T, int>()), _frameNumber(0), _clock(PausableClock()) 
+		{
+			_clock.Start();
+		}
 
 		void setMapNbSprites(map<T, int>& nbSpritesByState);
-		void setMapVAnim(map<T, int>& vAnimByState);
+		void setMapFrameDelay(map<T, int>& frameDelayByState);
 		void setCurrentState(T state);
 
 		int getNbSpritesMax();
 
+		/* Setting Maps directly */
 		void addNbSpritesForGivenState(T state, int nbSprites);
-		void addVAnimForGivenState(T state, int vAnim);
+		void addFrameDelayForGivenState(T state, int frameDelay);
 
 		/* Drawing */
-		void update(Texture* texture, RenderWindow& app);
+		void update(RenderWindow& app);
 		void render(Texture* texture, RenderWindow& app, Vector2f& position);
 
 	private:
 		map<T, int> _nbSpritesByState;
-		map<T, int> _vAnimByState;
+		map<T, int> _frameDelayByState;
 		T _currentState;
-		int _column;
+		int _frameNumber;
+		PausableClock _clock;
+
 	};
 
 	#include "Animation.inl"

@@ -21,7 +21,7 @@ namespace Collisions
 		State state, 
 		Side side,
 		map<ItemOccurrence::State, int>& nbSpritesByState,
-		map<ItemOccurrence::State, int>& vAnimByState) : 
+		map<ItemOccurrence::State, int>& frameDelayByState) : 
 		EntityMovable(textureName, position, speed, side), 
 			_state(state), 
 			_isActive(true), 
@@ -31,7 +31,7 @@ namespace Collisions
 
 		/* Initialize animation class */
 		_animation.setMapNbSprites(nbSpritesByState);
-		_animation.setMapVAnim(vAnimByState);
+		_animation.setMapFrameDelay(frameDelayByState);
 		_animation.setCurrentState(_state);
 
 		_position = _hitboxPosition = position;

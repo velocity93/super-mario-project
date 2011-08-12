@@ -217,7 +217,7 @@ namespace Collisions
 		updatePerso(app, nullptr);
 
 		/* Update animation */
-		_animation.update(_texture, app);
+		_animation.update(app);
 	}
 
 	void Perso::updatePerso(RenderWindow& app, InputState* inputState)

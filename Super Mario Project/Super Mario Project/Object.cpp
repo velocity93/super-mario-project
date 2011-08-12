@@ -16,16 +16,18 @@ namespace Rendering
 	Object::Object(const string& textureName) : Drawable(textureName) 
 	{
 		loadCfgObject(textureName);
+		_animation.setCurrentState(State::NORMAL);
 	}
 
 	Object::Object(const string& textureName,Vector2f& position) : Drawable(textureName, position)
 	{ 
 		loadCfgObject(textureName);
+		_animation.setCurrentState(State::NORMAL);
 	}
 
 	void Object::update(RenderWindow& app)
 	{
-
+		_animation.update(app);
 	}
 	
 	void Object::render(RenderWindow& app)
@@ -52,16 +54,20 @@ namespace Rendering
 					istringstream nbSprites(word.substr(found + 11));
 					nbSprites >> nb_sprites;
 					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
-					continue;
+
+					if(nb_sprites == 1)
+						break; /* No animation */
+					else
+						continue;
 				}
 
-				found = word.find("v_anim=");
+				found = word.find("frame_delay=");
 				if(found != string::npos)
 				{
-					int v_anim = 0;
-					istringstream vAnim(word.substr(found + 7));
-					vAnim >> v_anim;
-					_animation.addVAnimForGivenState(State::NORMAL, v_anim);
+					int frame_delay = 0;
+					istringstream frameDelay(word.substr(found + 12));
+					frameDelay >> frame_delay;
+					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
 				}
 			}
 		}

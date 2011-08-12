@@ -46,7 +46,7 @@ namespace Collisions
 		
 	protected :
 		map<MonsterOccurrence::State, int> _nbSpritesByState;
-		map<MonsterOccurrence::State, int> _vAnimByState;
+		map<MonsterOccurrence::State, int> _frameDelayByState;
 
     private:
 		bool _canBeKilledByFire;

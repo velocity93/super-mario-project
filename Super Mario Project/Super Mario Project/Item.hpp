@@ -71,7 +71,7 @@ namespace Collisions
 		Vector2f _initialSpeed;
 		vector<ItemOccurrence*> _itemOccurrences;
 		map<ItemOccurrence::State, int> _nbSpritesByState;
-		map<ItemOccurrence::State, int> _vAnimByState;
+		map<ItemOccurrence::State, int> _frameDelayByState;
 
 		/* Loading Item */
 		void loadItem();
