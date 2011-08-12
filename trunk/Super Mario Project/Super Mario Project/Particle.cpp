@@ -20,7 +20,7 @@ namespace Collisions
 	void Particle::update(RenderWindow& app)
 	{
 		update(app.GetFrameTime(), false);
-		_animation.update(_texture, app);
+		_animation.update(app);
 	}
 
 	void Particle::update(float time, bool hasGravity)
@@ -72,7 +72,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 14));
 					vAnim >> v_anim;
-					_animation.addVAnimForGivenState(State::NORMAL, v_anim);
+					_animation.addFrameDelayForGivenState(State::NORMAL, v_anim);
 				}
 			}
 		}

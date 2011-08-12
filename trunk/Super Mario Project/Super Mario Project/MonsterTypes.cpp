@@ -68,7 +68,7 @@ namespace Collisions
 					int vWalkAnim;
                     istringstream vWalkAnimStream(word.substr(found + 14));
                     vWalkAnimStream >> vWalkAnim;
-					_vAnimByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vWalkAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vWalkAnim));
                     continue;
                 }
 
@@ -78,7 +78,7 @@ namespace Collisions
 					int vDeadAnim;
                     istringstream vDeadAnimStream(word.substr(found + 25));
                     vDeadAnimStream >> vDeadAnim;
-					_vAnimByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, vDeadAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, vDeadAnim));
                     continue;
                 }
 
@@ -88,7 +88,7 @@ namespace Collisions
 					int vDeadAnim;
                     istringstream vDeadAnimStream(word.substr(found + 25));
                     vDeadAnimStream >> vDeadAnim;
-					_vAnimByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, vDeadAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, vDeadAnim));
                 }
 			}
 		}
@@ -144,7 +144,7 @@ namespace Collisions
 					int vShellAnim;
                     istringstream vShellAnimStream(word.substr(found + 16));
                     vShellAnimStream >> vShellAnim;
-					_vAnimByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vShellAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vShellAnim));
                     continue;
                 }
 
@@ -154,7 +154,7 @@ namespace Collisions
 					int vShellAnim;
                     istringstream vShellAnimStream(word.substr(found + 23));
                     vShellAnimStream >> vShellAnim;
-					_vAnimByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vShellAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vShellAnim));
                     continue;
                 }
 			}

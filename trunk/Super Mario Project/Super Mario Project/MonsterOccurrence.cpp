@@ -21,14 +21,14 @@ namespace Collisions
 		MonsterOccurrence::State state,
 		MonsterOccurrence::Side side,
 		const map<MonsterOccurrence::State, int>& nbSpritesByState,
-		const map<MonsterOccurrence::State, int>& vAnimByState)
+		const map<MonsterOccurrence::State, int>& frameDelayByState)
 			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _isActive(true)
 	{
 		_monster = ResourceManager::getMonster(textureName);
 
 		// Use AnimationClass with maps passed in arguments
 		nbSpritesByState;
-		vAnimByState;
+		frameDelayByState;
 
 		// Define hitbox size here
 	}

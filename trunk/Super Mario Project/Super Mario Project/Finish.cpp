@@ -24,7 +24,7 @@ namespace Collisions
 
 	void Finish::update(RenderWindow& app)
     {
-		_animation.update(_texture, app);
+		_animation.update(app);
     }
 
 	void Finish::render(RenderWindow& app)
@@ -60,7 +60,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 15));
 					vAnim >> v_anim;
-					_animation.addVAnimForGivenState(State::WAITING, v_anim);
+					_animation.addFrameDelayForGivenState(State::WAITING, v_anim);
 					continue;
 				}
 
@@ -80,7 +80,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 14));
 					vAnim >> v_anim;
-					_animation.addVAnimForGivenState(State::FINISH, v_anim);
+					_animation.addFrameDelayForGivenState(State::FINISH, v_anim);
 				}
 			}
 		}

@@ -72,7 +72,7 @@ namespace Collisions
 		int _submission;
 		vector<ProjectileOccurrence*> _projectileOccurences;
 		map<ProjectileOccurrence::State, int> _nbSpritesByState;
-		map<ProjectileOccurrence::State, int> _vAnimByState;
+		map<ProjectileOccurrence::State, int> _frameDelayByState;
 
 		/* Loading Projectile */
 		void loadProjectile();

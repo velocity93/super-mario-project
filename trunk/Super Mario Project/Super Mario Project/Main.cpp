@@ -22,14 +22,14 @@ int main(int argc, char* argv[])
 	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 	App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-	//Background background = Background("textures/backgrounds/skyBlueHills", App.GetDefaultView());
+	Background background = Background("textures/backgrounds/castle", App.GetDefaultView());
 
 	// Limit to 60 FPS
 	App.SetFramerateLimit(60);
 
 	// Create world
 	//World w(&App);
-	Perso perso = Perso("small_mario", Vector2f(0, 0));
+	//Perso perso = Perso("small_mario", Vector2f(0, 0));
 
 	try
 	{
@@ -66,12 +66,10 @@ int main(int argc, char* argv[])
 			App.Clear();
 
 			// Update World
-			//background.update(App);
-			perso.update(App);
+			background.update(App);
 
 			// Draw World
-			//background.render(App);
-			perso.render(App);
+			background.render(App);
 
 			// Update the window
 			App.Display();

@@ -32,7 +32,7 @@ namespace Collisions
 			State state, 
 			Side side, 
 			map<ItemOccurrence::State, int>& nbSpritesByState,
-			map<ItemOccurrence::State, int>& vAnimByState);
+			map<ItemOccurrence::State, int>& frameDelayByState);
 
 		State getState();
 		bool getIsActive();
