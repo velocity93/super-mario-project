@@ -6,6 +6,8 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+
+
 template<typename T>
 void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 {
@@ -45,6 +47,27 @@ void Animation<T>::setMapFrameDelay(map<T, int>& frameDelayByState)
 }
 
 template<typename T>
+int Animation<T>::getFrameDelayForCurrentState()
+{
+	map<T, int>::iterator itFrameDelay = _frameDelayByState.find(_currentState);
+	if(itFrameDelay != _frameDelayByState.end())
+		return itFrameDelay->second;
+	else 
+		return 0;
+}
+
+template<typename T>
+int Animation<T>::getNbSpritesForCurrentState()
+{
+	map<T, int>::iterator itNbSprites = _nbSpritesByState.find(_currentState);
+
+	if(itNbSprites != _nbSpritesByState.end())
+		return itNbSprites->second;
+	else 
+		return 0;
+}
+
+template<typename T>
 void Animation<T>::setCurrentState(T state)
 {
 	_currentState = state;
@@ -68,18 +91,20 @@ int Animation<T>::getNbSpritesMax()
 template<typename T>
 void Animation<T>::update(RenderWindow& app)
 {
-	if(_frameDelayByState[_currentState])
+	int frameDelayForCurrentState = getFrameDelayForCurrentState();
+	int nbSpritesForCurrentState = getNbSpritesForCurrentState();
+
+	if(frameDelayForCurrentState)
 	{
-		unsigned int frameCount = (unsigned int)((_clock.GetElapsedTime() * 1000) / _frameDelayByState[_currentState]);
-		if(frameCount > _nbSpritesByState[_currentState])
+		unsigned int frameCount = (unsigned int)((_clock.GetElapsedTime() * 1000) / abs(frameDelayForCurrentState));
+		if(frameCount > nbSpritesForCurrentState && frameDelayForCurrentState < 0)
 		{
-			//_clock.Reset();
-			//_frameNumber = 0;
-			_frameNumber = frameCount % _nbSpritesByState[_currentState];
+			_clock.Reset(true);
+			_frameNumber = 0;
 		}
 		else
 		{
-			_frameNumber = frameCount % _nbSpritesByState[_currentState];
+			_frameNumber = frameCount % nbSpritesForCurrentState;
 		}
 	}
 }
@@ -93,12 +118,15 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 		texture->getImage()->GetHeight() / _nbSpritesByState.size());
 	Sprite sprite = texture->getSprite();
 	
-	sprite.SetSubRect(
-		IntRect(
-		_frameNumber * spriteSize.x,
-		numState * spriteSize.y,
-		(_frameNumber + 1) * spriteSize.x,
-		(numState + 1) * spriteSize.y));
+	if(_nbSpritesByState[_currentState] > 1)
+	{
+		sprite.SetSubRect(
+			IntRect(
+			_frameNumber * spriteSize.x,
+			numState * spriteSize.y,
+			(_frameNumber + 1) * spriteSize.x,
+			(numState + 1) * spriteSize.y));
+	}
 
 	sprite.SetPosition(position);
 

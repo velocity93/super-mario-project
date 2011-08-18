@@ -19,7 +19,7 @@ namespace Collisions
 		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
-		_state(WALK), 
+		_state(RUN_2),
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -752,6 +752,128 @@ namespace Collisions
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
 						_animation.addNbSpritesForGivenState(State::SPECIAL_ATTACK, nbSprites);
+					}
+				}
+
+				{ /* 'frame_delay_xxx' keyword */
+					found = word.find("frame_delay_walk=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 17));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::WALK, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_run1=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 17));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::RUN_1, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_run2=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 17));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::RUN_2, frameDelay);
+						continue;
+					}
+
+
+					found = word.find("frame_delay_skid=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 17));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::SKID, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_jump_falling=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 25));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::JUMP_FALLING, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_look_top=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 20));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::LOOK_TOP, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_climb_ladder=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 25));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::CLIMB_LADDER, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_walk_shell=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 23));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::WALK_SHELL, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_look_top_shell=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 27));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::LOOK_TOP_SHELL, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_dead=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 17));
+						frameDelayStringStream >> frameDelay;
+						_animation.addNbSpritesForGivenState(State::DEAD, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_attack=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 19));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::ATTACK, frameDelay);
+						continue;
+					}
+
+					found = word.find("frame_delay_special_attack=");
+					if(found != string::npos)
+					{
+						int frameDelay = 0;
+						istringstream frameDelayStringStream(word.substr(found + 27));
+						frameDelayStringStream >> frameDelay;
+						_animation.addFrameDelayForGivenState(State::SPECIAL_ATTACK, frameDelay);
 					}
 				}
 			}

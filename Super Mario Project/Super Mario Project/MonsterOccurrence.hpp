@@ -11,6 +11,7 @@
 #define HPP_MONSTEROCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Animation.hpp"
 
 #define MONSTER_EXIT_SPEED			0.05F
 #define M_SPEED_WALK_MIN			0.008F
@@ -33,7 +34,8 @@ namespace Collisions
 			M_DEAD_BY_JUMP_ON,
 			M_RETRACTED_REVERSED,
 			M_RETRACTED_INCLINED, // monster brought
-			M_GET_OUT_FROM_PIPE
+			M_GET_OUT_FROM_PIPE,
+			M_NB_STATES
 		};
 
 		enum Sound
@@ -50,8 +52,8 @@ namespace Collisions
 			Vector2f& speed,
 			MonsterOccurrence::State state,
 			MonsterOccurrence::Side side,
-			const map<MonsterOccurrence::State, int>& nbSpritesByState,
-			const map<MonsterOccurrence::State, int>& frameDelayByState);
+			map<MonsterOccurrence::State, int>& nbSpritesByState,
+			map<MonsterOccurrence::State, int>& frameDelayByState);
 
 		State getState();
 		void setState(State state);
@@ -62,6 +64,7 @@ namespace Collisions
 		virtual ~MonsterOccurrence();
 
 	private:
+		Animation<State> _animation;
 		Monster* _monster;
 		bool _isActive;
 		Vector2f _initialPosition;

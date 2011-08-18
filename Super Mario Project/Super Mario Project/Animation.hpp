@@ -26,7 +26,8 @@ namespace Rendering
     {
 	public:
 		/* Constructor */
-		Animation() : _nbSpritesByState(map<T, int>()), _frameDelayByState(map<T, int>()), _frameNumber(0), _clock(PausableClock()) 
+		Animation() : _nbSpritesByState(map<T, int>()), _frameDelayByState(map<T, int>()), 
+			_frameNumber(0), _clock(PausableClock()) 
 		{
 			_clock.Start();
 		}
@@ -51,6 +52,10 @@ namespace Rendering
 		T _currentState;
 		int _frameNumber;
 		PausableClock _clock;
+
+		/* Get nbSprites for currentState */
+		int getNbSpritesForCurrentState();
+		int getFrameDelayForCurrentState(); 
 
 	};
 

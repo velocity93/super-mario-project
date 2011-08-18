@@ -11,6 +11,7 @@
 #define HPP_BLOCKOCCURRENCE
 
 #include "EntityMovable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
@@ -32,8 +33,8 @@ namespace Collisions
 			Vector2f& speed, 
 			State state, 
 			Side side,
-			Vector2i& _nbSprites,
-			int vAnim,
+			Vector2i& nbSprites,
+			int frameDelay,
 			int physicIndex);
 
 		int getPhysic();
@@ -44,6 +45,7 @@ namespace Collisions
         virtual ~BlockOccurrence();
 		
     private:
+		Animation<State> _animation;
 		int _physicIndex;
 		Vector2i _coordSprite;
 		State _state;

@@ -37,7 +37,7 @@ namespace Collisions
 			WATER
 		};
 
-		enum State
+		typedef enum 
 		{
 			STANDING,
 			WALK,
@@ -73,7 +73,7 @@ namespace Collisions
 			FINISH,
 			SWIMMING,
 			NB_STATE
-		};
+		} State;
 
 		enum Sounds {
 			SND_JUMP,
