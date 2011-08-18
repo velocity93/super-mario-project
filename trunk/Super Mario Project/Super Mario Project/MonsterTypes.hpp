@@ -22,10 +22,12 @@ namespace Collisions
 		WalkingMonster(const string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false, 
+			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
 	private :
+		bool _stayOnPlateForm;
+
 		void loadWalkingMonster();
 	};
 
@@ -36,7 +38,7 @@ namespace Collisions
 		ShellMonster(const string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false, 
+			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
 	private :
@@ -49,8 +51,7 @@ namespace Collisions
 		FlyingMonster(const string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false, 
-			bool stayOnPlateForm = false);
+			bool canBeJumpedOn = false);
 
 	private:
 		void loadFlyingMonster();

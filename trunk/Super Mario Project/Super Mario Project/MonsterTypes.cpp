@@ -15,7 +15,8 @@ using namespace std;
 namespace Collisions
 {
 	WalkingMonster::WalkingMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
-		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn, stayOnPlateForm)
+		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn), 
+		_stayOnPlateForm(stayOnPlateForm)
 	{
 		loadWalkingMonster();
 	}
@@ -32,47 +33,55 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_marche=");
+				int found = word.find("stay_on_plateform=");
+                if(found != string::npos)
+                {
+                    istringstream stayOnPlateform(word.substr(found + 18));
+					stayOnPlateform >> _stayOnPlateForm;
+                    continue;
+                }
+
+				found = word.find("nb_sprites_walk=");
                 if(found != string::npos)
                 {
 					int nbWalkSprites;
-                    istringstream nbWalkSpritesStream(word.substr(found + 18));
+                    istringstream nbWalkSpritesStream(word.substr(found + 16));
                     nbWalkSpritesStream >> nbWalkSprites;
 					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, nbWalkSprites));
                     continue;
                 }
 
-                found = word.find("nb_sprites_mort_par_saut=");
+                found = word.find("nb_sprites_dead_by_jump=");
                 if(found != string::npos)
                 {
 					int nbDeadSprites;
-                    istringstream nbDeadSpritesStream(word.substr(found + 25));
+                    istringstream nbDeadSpritesStream(word.substr(found + 24));
                     nbDeadSpritesStream >> nbDeadSprites;
 					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, nbDeadSprites));
                     continue;
                 }
 
-				found = word.find("nb_sprites_mort_par_proj=");
+				found = word.find("nb_sprites_dead_by_proj=");
                 if(found != string::npos)
                 {
 					int nbDeadSprites;
-                    istringstream nbDeadSpritesStream(word.substr(found + 25));
+                    istringstream nbDeadSpritesStream(word.substr(found + 24));
                     nbDeadSpritesStream >> nbDeadSprites;
 					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, nbDeadSprites));
                     continue;
                 }
 
-				found = word.find("v_anim_marche=");
+				found = word.find("frame_delay_walk=");
                 if(found != string::npos)
                 {
 					int vWalkAnim;
-                    istringstream vWalkAnimStream(word.substr(found + 14));
+                    istringstream vWalkAnimStream(word.substr(found + 17));
                     vWalkAnimStream >> vWalkAnim;
 					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vWalkAnim));
                     continue;
                 }
 
-                found = word.find("v_anim_mort_par_saut=");
+                found = word.find("frame_delay_dead_by_jump=");
                 if(found != string::npos)
                 {
 					int vDeadAnim;
@@ -82,7 +91,7 @@ namespace Collisions
                     continue;
                 }
 
-				found = word.find("v_anim_mort_par_proj=");
+				found = word.find("frame_delay_dead_by_proj=");
                 if(found != string::npos)
                 {
 					int vDeadAnim;
@@ -99,6 +108,7 @@ namespace Collisions
 		}
 	}
 
+	/* SHELL MONSTER */
 
 	ShellMonster::ShellMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
 		: WalkingMonster(textureName, false, canBeKilledByFire, canBeJumpedOn, stayOnPlateForm)
@@ -118,41 +128,41 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_carapace=");
+				int found = word.find("nb_sprites_retracted=");
                 if(found != string::npos)
                 {
 					int nbShellSprites;
-                    istringstream nbShellSpritesStream(word.substr(found + 20));
+                    istringstream nbShellSpritesStream(word.substr(found + 21));
                     nbShellSpritesStream >> nbShellSprites;
 					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, nbShellSprites));
                     continue;
                 }
 
-                found = word.find("nb_sprites_sortie_carapace=");
+                found = word.find("nb_sprites_get_out_from_shell=");
                 if(found != string::npos)
                 {
 					int nbShellSprites;
-                    istringstream nbShellSpritesStream(word.substr(found + 28));
+                    istringstream nbShellSpritesStream(word.substr(found + 30));
                     nbShellSpritesStream >> nbShellSprites;
 					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, nbShellSprites));
                     continue;
                 }
 
-				found = word.find("v_anim_carapace=");
+				found = word.find("frame_delay_retracted=");
                 if(found != string::npos)
                 {
 					int vShellAnim;
-                    istringstream vShellAnimStream(word.substr(found + 16));
+                    istringstream vShellAnimStream(word.substr(found + 22));
                     vShellAnimStream >> vShellAnim;
 					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vShellAnim));
                     continue;
                 }
 
-				found = word.find("v_anim_sortie_carapace=");
+				found = word.find("frame_delay_get_out_from_shell=");
                 if(found != string::npos)
                 {
 					int vShellAnim;
-                    istringstream vShellAnimStream(word.substr(found + 23));
+                    istringstream vShellAnimStream(word.substr(found + 31));
                     vShellAnimStream >> vShellAnim;
 					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vShellAnim));
                     continue;
@@ -166,8 +176,10 @@ namespace Collisions
 		}
 	}
 
-	FlyingMonster::FlyingMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
-		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn, stayOnPlateForm)
+	/* FLYING MONSTER */
+
+	FlyingMonster::FlyingMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn)
+		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn)
 	{
 		loadFlyingMonster();
 	}

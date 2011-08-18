@@ -20,17 +20,20 @@ namespace Collisions
 		Vector2f& speed,
 		MonsterOccurrence::State state,
 		MonsterOccurrence::Side side,
-		const map<MonsterOccurrence::State, int>& nbSpritesByState,
-		const map<MonsterOccurrence::State, int>& frameDelayByState)
+		map<MonsterOccurrence::State, int>& nbSpritesByState,
+		map<MonsterOccurrence::State, int>& frameDelayByState)
 			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _isActive(true)
 	{
 		_monster = ResourceManager::getMonster(textureName);
 
-		// Use AnimationClass with maps passed in arguments
-		nbSpritesByState;
-		frameDelayByState;
+		// Animation
+		_animation.setMapFrameDelay(frameDelayByState);
+		_animation.setMapNbSprites(nbSpritesByState);
+		_animation.setCurrentState(state);
 
-		// Define hitbox size here
+		// Hitbox Definition
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _monster->getBottomLeft();
+		_hitboxSize.y = _texture->getImage()->GetHeight() / State::M_NB_STATES;
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()
@@ -41,6 +44,7 @@ namespace Collisions
 	void MonsterOccurrence::setState(State state)
 	{
 		_state = state;
+		_animation.setCurrentState(state);
 	}
 
 
@@ -48,22 +52,27 @@ namespace Collisions
 	{
 		updateMonsterActivity(app);
 
-		/* If it falls in hole */
-		if(_hitboxPosition.y + _hitboxSize.y < 0)
-			_monster->removeMonsterOccurrence(this);
+		if(_isActive)
+		{
+			/* If it falls in hole */
+			if(_hitboxPosition.y + _hitboxSize.y < 0)
+				_monster->removeMonsterOccurrence(this);
 
-		/* Update physic position */
-		/* Save actual position in previous prosition */
-		_previousPosition = _position;
+			/* Update physic position */
+			/* Save actual position in previous prosition */
+			_previousPosition = _position;
 
-		/* Compute new position */
-		this->setPosition(_position.x + _speed.x * app.GetFrameTime(), 
-			_position.y + _speed.y * app.GetFrameTime());
+			/* Compute new position */
+			this->setPosition(_position.x + _speed.x * app.GetFrameTime(), 
+				_position.y + _speed.y * app.GetFrameTime());
+		}
+
+		_animation.update(app);
 	}
 
 	void MonsterOccurrence::render(RenderWindow& app)
 	{
-
+		_animation.render(_texture, app, _position);
 	}
 
 	void MonsterOccurrence::updateMonsterActivity(RenderWindow& app)
@@ -82,9 +91,8 @@ namespace Collisions
 			|| this->_initialPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
 			{
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
-				_position = _initialPosition;
-				_previousPosition = _initialPosition;
-				_state = M_WALK;
+				_position = _previousPosition = _initialPosition;
+				setState(M_WALK);
 				_speed.x = -M_SPEED_WALK_MIN;
 				_side = LEFT_SIDE;
 			}

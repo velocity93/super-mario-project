@@ -12,15 +12,35 @@
 
 namespace Collisions
 {
-    Monster::Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn, bool stayOnPlateForm) 
+    Monster::Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn) 
         : Resource("textures\\monsters\\" + textureName),
         _canBeKilledByFire(canBeKilledByFire),
         _canBeKilledByJump(canBeKilledByJump),
         _canBeJumpedOn(canBeJumpedOn),
-        _stayOnPlateForm(stayOnPlateForm)
+		_points(0)
     {
         loadMonster();
     }
+
+	int Monster::getBottomLeft()
+	{
+		return _bottomLeft;
+	}
+
+	bool Monster::getCanBeKilledByJump()
+	{
+		return _canBeKilledByJump;
+	}
+
+	bool Monster::getCanBeKilledByFire()
+	{
+		return _canBeKilledByFire;
+	}
+
+	bool Monster::getCanBeJumpedOn()
+	{
+		return _canBeJumpedOn;
+	}
 
 	void Monster::addNewMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
     {
@@ -41,7 +61,6 @@ namespace Collisions
     void Monster::loadMonster()
     {
         string fileName = name() + ".mstr";
-        int abscisse_bas = 0;
         ifstream stream(fileName.c_str());
 
         if(stream)
@@ -55,31 +74,38 @@ namespace Collisions
                 if(found != string::npos)
                 {
                     istringstream abscisseBas(word.substr(found + 13));
-                    abscisseBas >> abscisse_bas;
+                    abscisseBas >> _bottomLeft;
                     continue;
                 }
 
-                found = word.find("canBeJumpedOn=");
+                found = word.find("can_be_jumped_on=");
                 if(found != string::npos)
                 {
-                    istringstream canBeJumpedOn(word.substr(found + 14));
+                    istringstream canBeJumpedOn(word.substr(found + 17));
                     canBeJumpedOn >> _canBeJumpedOn;
                     continue;
                 }
 
-                found = word.find("canBeKilledByJump=");
+                found = word.find("can_be_killed_by_jump=");
                 if(found != string::npos)
                 {
-                    istringstream canBeKilledByJump(word.substr(found + 18));
+                    istringstream canBeKilledByJump(word.substr(found + 21));
                     canBeKilledByJump >> _canBeKilledByJump;
                     continue;
                 }
 
-                found = word.find("canBeKilledByFire=");
+                found = word.find("can_be_killed_by_fire=");
                 if(found != string::npos)
                 {
-                    istringstream canBeKilledByFire(word.substr(found + 18));
+                    istringstream canBeKilledByFire(word.substr(found + 21));
                     canBeKilledByFire >> _canBeKilledByFire;
+                }
+
+				found = word.find("points=");
+                if(found != string::npos)
+                {
+                    istringstream points(word.substr(found + 7));
+                    points >> _points;
                 }
             }
 

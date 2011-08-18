@@ -227,13 +227,5 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="textures\backgrounds\castle.png">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="textures\backgrounds\castle.obj">
-      <Filter>Resource Files</Filter>
-    </Object>
   </ItemGroup>
 </Project>

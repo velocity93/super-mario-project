@@ -19,11 +19,11 @@ namespace Collisions
     {
 		
     public:
-		enum State
+		typedef enum 
 		{
 			OPEN,
 			CLOSED
-		};
+		} State;
 
 
 		/* Constructors */
