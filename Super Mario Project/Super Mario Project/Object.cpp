@@ -32,7 +32,7 @@ namespace Rendering
 	
 	void Object::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, false);
 	}
 
 	void Object::loadCfgObject(const string& textureName)

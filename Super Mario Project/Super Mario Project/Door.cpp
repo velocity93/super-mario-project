@@ -53,7 +53,7 @@ namespace Collisions
 
 	void Door::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, false);
 	}
 
 	void Door::loadDoor(const string& textureName)

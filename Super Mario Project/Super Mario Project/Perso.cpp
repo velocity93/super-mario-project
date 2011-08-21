@@ -19,7 +19,7 @@ namespace Collisions
 		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
-		_state(RUN_2),
+		_state(CLIMB_LADDER),
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -237,7 +237,7 @@ namespace Collisions
 
 	void Perso::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
 	void Perso::lateral_move(RenderWindow& app, InputState* inputState)

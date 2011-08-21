@@ -48,6 +48,7 @@ namespace Collisions
 		Animation<State> _animation;
 		int _physicIndex;
 		Vector2i _coordSprite;
+		Vector2i _size;
 		State _state;
 		Blocks* _actualBlock;
 		Blocks* _alternativeBlock;

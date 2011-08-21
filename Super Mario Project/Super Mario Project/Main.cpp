@@ -29,7 +29,10 @@ int main(int argc, char* argv[])
 
 	// Create world
 	//World w(&App);
-	Perso perso = Perso("small_mario", Vector2f(0, 0));
+	//Perso perso = Perso("small_mario", Vector2f(0, 0));
+	Blocks bloc = Blocks("speciaux\\cassables\\overworld");
+	bloc.addNewBlockOccurrence(0);
+
 
 	try
 	{
@@ -67,11 +70,13 @@ int main(int argc, char* argv[])
 
 			// Update World
 			//background.update(App);
-			perso.update(App);
+			//perso.update(App);
+			bloc.update(App);
 
 			// Draw World
 			//background.render(App);
-			perso.render(App);
+			//perso.render(App);
+			bloc.render(App);
 
 			// Update the window
 			App.Display();

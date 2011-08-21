@@ -227,22 +227,10 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="textures\persos\fire_mario.perso">
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\fire_mario.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.perso">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.perso">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.png">
+    <None Include="textures\blocs\speciaux\cassables\overworld.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

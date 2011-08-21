@@ -72,7 +72,7 @@ namespace Collisions
 
 	void MonsterOccurrence::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
 	void MonsterOccurrence::updateMonsterActivity(RenderWindow& app)

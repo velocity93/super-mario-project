@@ -29,7 +29,7 @@ namespace Collisions
 
 	void Finish::render(RenderWindow& app)
     {
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, false);
     }
 
 	void Finish::loadFinish(const string& textureName)

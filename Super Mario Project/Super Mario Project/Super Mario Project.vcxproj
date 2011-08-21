@@ -152,12 +152,8 @@
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ResourceManager.inl" />
-    <None Include="textures\persos\fire_mario.perso" />
-    <None Include="textures\persos\fire_mario.png" />
-    <None Include="textures\persos\small_mario.perso" />
-    <None Include="textures\persos\small_mario.png" />
-    <None Include="textures\persos\super_mario.perso" />
-    <None Include="textures\persos\super_mario.png" />
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg" />
+    <None Include="textures\blocs\speciaux\cassables\overworld.png" />
     <None Include="world1.wld" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -107,10 +107,14 @@ void Animation<T>::update(RenderWindow& app)
 			_frameNumber = frameCount % nbSpritesForCurrentState;
 		}
 	}
+	else
+	{
+		_frameNumber = 0;
+	}
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position)
+void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY)
 {
 	int numState = static_cast<int>(_currentState);
 	Vector2f spriteSize = Vector2f(
@@ -128,7 +132,8 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 			(numState + 1) * spriteSize.y));
 	}
 
-	sprite.SetPosition(position);
+	sprite.FlipY(flipY);
+	sprite.SetPosition(position);	
 
 	app.Draw(sprite);
 }
