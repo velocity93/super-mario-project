@@ -21,12 +21,15 @@ namespace Collisions
 		int frameDelay,
 		int physicIndex)
 		: EntityMovable(textureName, position, speed, side),
-		_state(UNMOVABLE),
+		_state(state),
 		_physicIndex(physicIndex)
     {
 		/* Compute blocs coords into the texture */
-		_coordSprite.y = physicIndex / nbSprites.x;
-		_coordSprite.x = physicIndex % nbSprites.x;
+		_size.y = (_texture->getImage()->GetHeight() /  nbSprites.y);
+		_size.x = (_texture->getImage()->GetWidth() /  nbSprites.x);
+
+		_coordSprite.y = (physicIndex / nbSprites.x) * _size.y;
+		_coordSprite.x = (physicIndex % nbSprites.x) * _size.x;
 
 		/* Animation */
 		if(frameDelay > 0)
@@ -59,7 +62,14 @@ namespace Collisions
 	{
 		if(_animation.getNbSpritesMax() > 1)
 		{
-			_animation.render(_texture, app, _position);
+			_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+		}
+		else
+		{
+			Sprite sprite = _texture->getSprite();
+			sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
+			sprite.SetPosition(_position);
+			app.Draw(sprite);
 		}
 	}
 

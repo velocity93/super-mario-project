@@ -8,6 +8,7 @@
 
 #include "Blocks.hpp"
 #include <fstream>
+#include <sstream>
 
 using namespace SuperMarioProject;
 
@@ -15,14 +16,15 @@ namespace Collisions
 {
 	Blocks::Blocks(const string& textureName) : Resource("textures\\blocs\\" + textureName),
 		_blockOccurrences(vector<BlockOccurrence*>()),
-		_nbSprites(Vector2i())
+		_nbSprites(Vector2i()),
+		_frameDelay(0)
 	{
 		loadBlockConfiguration(textureName);
     }
 
 	void Blocks::addNewBlockOccurrence(int physicIndex, Vector2f &position, Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
 	{
-		_blockOccurrences.push_back(new BlockOccurrence(name(), position, speed, state, side, _nbSprites, _vAnim, physicIndex));
+		_blockOccurrences.push_back(new BlockOccurrence(name(), position, speed, state, side, _nbSprites, _frameDelay, physicIndex));
 	}
 
 	void Blocks::removeBlockOccurrence(const BlockOccurrence* block)
@@ -63,11 +65,30 @@ namespace Collisions
 
 	void Blocks::loadBlockConfiguration(const string& textureName)
 	{
-		string fileName = "textures\\blocs\\" + textureName.substr(0, textureName.find_first_of("\\")) + "\\" + textureName.substr(0, textureName.find_first_of("\\")) + ".cfg";
+		/* Build cfg file path */
+		string fileName = "textures\\blocs\\";
+		string buffer = textureName;
+		while(buffer.find_first_of("\\") != string::npos)
+		{
+
+			fileName += buffer.substr(0, buffer.find_first_of("\\"));
+			buffer = buffer.substr(buffer.find_first_of("\\") + 1, buffer.length());
+
+			if(buffer.find_first_of("\\") != string::npos)
+				fileName += "\\";
+			else
+				fileName += fileName.substr(fileName.find_last_of("\\"), fileName.length()); 
+		}
+
+		fileName += ".cfg";
+
 		ifstream stream(fileName.c_str());
 
 		if(stream)
 		{
+			/* Frame delay */
+			stream >> _frameDelay;
+
 			/* Number of sprites in width and height */
 			stream >> _nbSprites.y;
 			stream >> _nbSprites.x;

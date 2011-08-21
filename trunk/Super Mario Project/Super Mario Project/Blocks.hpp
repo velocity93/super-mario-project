@@ -41,7 +41,7 @@ namespace Collisions
 		
     private:
 		Vector2i _nbSprites;
-		int _vAnim;
+		int _frameDelay;
 		vector<int> _physics;
 		vector<BlockOccurrence*> _blockOccurrences;
 		
