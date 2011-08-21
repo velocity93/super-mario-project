@@ -230,8 +230,5 @@
     <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\blocs\speciaux\cassables\overworld.png">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

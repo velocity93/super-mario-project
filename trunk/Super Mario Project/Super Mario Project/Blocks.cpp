@@ -86,9 +86,6 @@ namespace Collisions
 
 		if(stream)
 		{
-			/* Frame delay */
-			stream >> _frameDelay;
-
 			/* Number of sprites in width and height */
 			stream >> _nbSprites.y;
 			stream >> _nbSprites.x;
@@ -99,6 +96,9 @@ namespace Collisions
 				stream >> hex >> phys;
 				_physics.push_back(phys);
 			}
+
+			/* Frame delay */
+			stream >> _frameDelay;
 		}
 		else
 		{
