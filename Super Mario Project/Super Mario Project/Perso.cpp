@@ -19,7 +19,7 @@ namespace Collisions
 		_textureName("textures\\persos\\" + textureName),
 		_environment(GROUND), 
 		_transformation(SMALL_MARIO), 
-		_state(CLIMB_LADDER),
+		_state(STANDING),
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -32,7 +32,8 @@ namespace Collisions
 		_deathTime(0), 
 		_finishTime(0), 
 		_jumpTime(0),
-		_animation(Animation<State>())
+		_animation(Animation<State>()),
+		_broughtMonster(nullptr)
 	{
 		loadPerso(_textureName);
 
@@ -213,26 +214,29 @@ namespace Collisions
 
 	void Perso::update(RenderWindow& app)
 	{
-		/* Update physics */
-		updatePerso(app, nullptr);
-
-		/* Update animation */
-		_animation.update(app);
+		/* NOTHING */
 	}
 
-	void Perso::updatePerso(RenderWindow& app, InputState* inputState)
+	void Perso::updatePerso(RenderWindow& app, InputState& inputState)
 	{
 		gravity(_speed, app.GetFrameTime());
 
 		/* Lateral movements management */
-		//lateral_move(app, inputState);
+		lateral_move(app, inputState);
 
 		/* Save actual position as previous position */
 		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(this->getPosition().x + app.GetFrameTime() * getSpeed().x, 
-			this->getPosition().y + app.GetFrameTime() * getSpeed().y);
+		if(_position.y + _hitboxSize.y >= 0) // Bidouillage
+			this->setPosition(_position.x + app.GetFrameTime() * _speed.x, 
+			_position.y + app.GetFrameTime() * _speed.y);
+		else
+			this->setPosition(_position.x + app.GetFrameTime() * _speed.x, 
+							_hitboxSize.y);
+
+		/* Update animation */
+		_animation.update(app);
 	}
 
 	void Perso::render(RenderWindow& app)
@@ -240,7 +244,7 @@ namespace Collisions
 		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
-	void Perso::lateral_move(RenderWindow& app, InputState* inputState)
+	void Perso::lateral_move(RenderWindow& app, InputState& inputState)
 	{
 		int time = app.GetFrameTime();
 
@@ -248,14 +252,14 @@ namespace Collisions
 		{
 			if(_state != FINISH)
 			{
-				if((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED)
-					_side = RIGHT_SIDE;
-				else
+				if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 					_side = LEFT_SIDE;
+				else
+					_side = RIGHT_SIDE;
 
-				if((*inputState)[KEY_FORWARD] == KEY_STATE_PRESSED)
+				if(inputState[KEY_FORWARD] == KEY_STATE_PRESSED)
 				{
-					if((*inputState)[KEY_DOWN] == KEY_STATE_RELEASED)
+					if(inputState[KEY_DOWN] == KEY_STATE_RELEASED)
 					{
 						if(_speed.x < 0)
 						{
@@ -274,7 +278,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
+										if(inputState[KEY_RUN] == KEY_STATE_PRESSED)
 										{
 											setState(RUN_1);
 										}
@@ -297,9 +301,9 @@ namespace Collisions
 						_speed.x = _speed.x + _acceleration.x * time;
 					}
 				}
-				else if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
+				else if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 				{
-					if((*inputState)[KEY_DOWN] == KEY_STATE_RELEASED)
+					if(inputState[KEY_DOWN] == KEY_STATE_RELEASED)
 					{
 						if(_speed.x > 0)
 						{
@@ -318,7 +322,7 @@ namespace Collisions
 								{
 									if(_state != CLIMB_LADDER)
 									{
-										if((*inputState)[KEY_RUN] == KEY_STATE_PRESSED)
+										if(inputState[KEY_RUN] == KEY_STATE_PRESSED)
 										{
 											setState(RUN_1);
 										}
@@ -347,9 +351,9 @@ namespace Collisions
 					{
 						if(_state == CLIMB_LADDER)
 						{
-							if((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED)
+							if(inputState[KEY_DOWN] == KEY_STATE_PRESSED)
 								_speed.y = _speed.y - _acceleration.y * time;
-							else if((*inputState)[KEY_UP] == KEY_STATE_PRESSED)
+							else if(inputState[KEY_UP] == KEY_STATE_PRESSED)
 								_speed.y = _speed.y + _acceleration.y * time;
 							else
 								_speed.y = 0;
@@ -359,7 +363,7 @@ namespace Collisions
 						{
 							if(_environment == GROUND)
 							{
-								if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
+								if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 									setState(LOWERED_JUMP);
 							}
 							else
@@ -373,7 +377,7 @@ namespace Collisions
 					{
 						if(_environment == AIR)
 						{
-							if((*inputState)[KEY_BACKWARD] == KEY_STATE_PRESSED)
+							if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 							setState(LOWERED_JUMP_SHELL);
 						}
 						else
@@ -385,8 +389,8 @@ namespace Collisions
 				}
 			}
 
-			if(((*inputState)[KEY_FORWARD] == KEY_STATE_RELEASED && (*inputState)[KEY_BACKWARD] == KEY_STATE_RELEASED)
-				|| ((*inputState)[KEY_DOWN] == KEY_STATE_PRESSED && _environment == GROUND))
+			if((inputState[KEY_FORWARD] == KEY_STATE_RELEASED && inputState[KEY_BACKWARD] == KEY_STATE_RELEASED)
+				|| (inputState[KEY_DOWN] == KEY_STATE_PRESSED && _environment == GROUND))
 				frictions(time);
 		}
 		else

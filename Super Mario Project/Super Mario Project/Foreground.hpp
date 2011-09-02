@@ -11,7 +11,6 @@
 #define HPP_FOREGROUND
 
 #include "Object.hpp"
-#include "Screen.hpp"
 #include <SFML/Graphics.hpp>
 #include <string>
 

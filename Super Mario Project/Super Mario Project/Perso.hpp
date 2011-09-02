@@ -151,7 +151,7 @@ namespace Collisions
 		void setFinishTime(int finishTime);
 		void setJumpTime(int jumpTime);
 
-		void updatePerso(RenderWindow& app, InputState* inputState);
+		void updatePerso(RenderWindow& app, InputState& inputState);
 
 		/* Methods */
 		void update(RenderWindow& app);
@@ -187,7 +187,7 @@ namespace Collisions
 		Checkpoint* _checkpointPassed;
 
 		/* Move management */
-		void lateral_move(RenderWindow& app, InputState* inputState);
+		void lateral_move(RenderWindow& app, InputState& inputState);
 
 		/* Frictions management */
 		void frictions(float time);

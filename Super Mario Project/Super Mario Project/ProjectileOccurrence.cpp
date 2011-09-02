@@ -76,7 +76,7 @@ namespace Collisions
 
 	void ProjectileOccurrence::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position);
+		_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
 	}
 
 	ProjectileOccurrence::~ProjectileOccurrence()
