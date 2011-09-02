@@ -86,14 +86,20 @@ namespace Collisions
 
 		if(stream)
 		{
+			int phys;
+
 			/* Number of sprites in width and height */
 			stream >> _nbSprites.y;
 			stream >> _nbSprites.x;
 
 			for(int i = 0; i < _nbSprites.x * _nbSprites.y; ++i)
 			{
-				int phys;
-				stream >> hex >> phys;
+				/* If we have only one line, then we have only one block 
+				 * following by his animation, with the same physic obviously 
+				 */
+				if(_nbSprites.y == 1 && i == 0)
+					stream >> hex >> phys;
+
 				_physics.push_back(phys);
 			}
 

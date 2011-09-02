@@ -10,7 +10,6 @@
 #ifndef HPP_WORLD
 #define HPP_WORLD
 
-#include "Screen.hpp"
 #include "Perso.hpp"
 #include "Level.hpp"
 #include "InputState.hpp"
@@ -51,7 +50,7 @@ namespace SuperMarioProject
 		vector<string> _levelNames;
 		vector<Perso*> _persos;
 		Level* _level;
-		InputState* _inputState;
+		InputState _inputState;
 		Vector2i _windowSize;
 		Clock _clock;
 		float _fpsTime;

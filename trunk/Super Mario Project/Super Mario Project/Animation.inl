@@ -116,13 +116,13 @@ void Animation<T>::update(RenderWindow& app)
 template<typename T>
 void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY)
 {
-	int numState = static_cast<int>(_currentState);
+	int numState = (int)_currentState;
 	Vector2f spriteSize = Vector2f(
 		texture->getImage()->GetWidth() / getNbSpritesMax(),
 		texture->getImage()->GetHeight() / _nbSpritesByState.size());
 	Sprite sprite = texture->getSprite();
-	
-	if(_nbSpritesByState[_currentState] > 1)
+
+	if(getNbSpritesForCurrentState() > 0)
 	{
 		sprite.SetSubRect(
 			IntRect(
@@ -133,7 +133,7 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 	}
 
 	sprite.FlipY(flipY);
-	sprite.SetPosition(position);	
+	sprite.SetPosition(position);
 
 	app.Draw(sprite);
 }

@@ -25,7 +25,7 @@ namespace SuperMarioProject
 		_nbFramesCalculated(0),
 		_clock(Clock()),
 		_level(new Level()),
-		_inputState(new InputState(window))
+		_inputState(InputState(window))
 		{
 
 		loadWorld();
@@ -46,9 +46,9 @@ namespace SuperMarioProject
 
 	void World::update(RenderWindow& app)
 	{
-		this->_level->update(app);
+		_level->update(app);
 
-		this->_inputState->update();
+		_inputState.update();
 
 		vector<Perso*>::iterator it;
 		
