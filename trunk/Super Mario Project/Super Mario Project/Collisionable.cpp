@@ -14,4 +14,14 @@ namespace Collisions
 	{
 
 	}
+
+	Vector2f Collisionable::getHitboxPosition()
+	{
+		return _hitboxPosition;
+	}
+
+	Vector2i Collisionable::getHitboxSize()
+	{
+		return _hitboxSize;
+	}
 } // namespace

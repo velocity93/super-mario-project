@@ -114,6 +114,9 @@
     <ClInclude Include="PausableClock.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XMLParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -209,11 +212,11 @@
     <ClCompile Include="MonsterTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="world1.wld">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ResourceManager.inl">
       <Filter>Inline Files</Filter>
@@ -221,13 +224,11 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="textures\backgrounds\blueHills.obj">
+    <None Include="smb.xml">
       <Filter>Resource Files</Filter>
-    </Object>
-    <Object Include="textures\backgrounds\skyBlueHills.obj">
+    </None>
+    <None Include="world1.xml">
       <Filter>Resource Files</Filter>
-    </Object>
+    </None>
   </ItemGroup>
 </Project>

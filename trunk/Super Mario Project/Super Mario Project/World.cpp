@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "World.hpp"
+#include "XMLParser.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -42,6 +43,11 @@ namespace SuperMarioProject
 	float World::getElapsedTime()
 	{
 		return _clock.GetElapsedTime();
+	}
+
+	void World::addLevelName(string levelName)
+	{
+		_levelNames.push_back(levelName);
 	}
 
 	void World::update(RenderWindow& app)
@@ -112,21 +118,7 @@ namespace SuperMarioProject
 
 	void World::loadWorld()
 	{
-		ifstream file("world1.wld");
-
-		if(file)
-		{
-			string line;
-
-			while(getline(file, line))
-			{
-				_levelNames.push_back(line);
-			}
-		}
-		else
-		{
-			throw exception("Unable to open file world1.wld");
-		}
+		XMLParser::loadWorld("world1.xml", this);
 	}
 
     World::~World()
