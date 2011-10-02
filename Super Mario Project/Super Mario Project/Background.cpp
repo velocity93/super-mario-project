@@ -12,14 +12,16 @@
 
 namespace Rendering
 {
-	Background::Background(const string& textureName, const View& view) : Object(textureName), _verticalRepetition(false)
+	Background::Background(const string& textureName) : Object(textureName), _verticalRepetition(false)
 	{
 		/* Loading informations */
 		loadCfgBackground(textureName);
 	}
 
-	Background::Background(const string& textureName, const View& view,Vector2f& position) : Object(textureName, position), _verticalRepetition(false)
+	Background::Background(const string& textureName, Vector2f& position) : Object(textureName, position), _verticalRepetition(false)
 	{
+		_position = position;
+
 		/* Loading informations */
 		loadCfgBackground(textureName);
 	}

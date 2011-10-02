@@ -82,6 +82,32 @@ namespace SuperMarioProject
 		_spawn.y = y;
 	}
 
+	void Level::setSize(int x, int y)
+	{
+		_size.x = x;
+		_size.y = y;
+	}
+
+	void Level::setMusicTitle(string title)
+	{
+		_musicTitle = title;
+	}
+
+	void Level::addCheckpoint(Checkpoint* checkpoint)
+	{
+		_checkpoints.push_back(checkpoint);
+	}
+
+	void Level::addBackground(Background* background)
+	{
+		_backgrounds.push_back(background);
+	}
+
+	void Level::addForeground(Foreground* foreground)
+	{
+		_foregrounds.push_back(foreground);
+	}
+
 	void Level::loadLevel(string fileName)
 	{
 		XMLParser::loadLevel(fileName, this);
