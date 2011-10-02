@@ -83,6 +83,24 @@ namespace SuperMarioProject
 		/* Set Level name */
 		void setName(string name);
 
+		/* Set Level size */
+		void setSize(int x, int y);
+
+		/* Set level music */
+		void setMusicTitle(string title);
+
+		/* Set Nb Checkpoints */
+		void setNbCheckpoints(int nbCheckpoints);
+
+		/* Add Checkpoint */
+		void addCheckpoint(Checkpoint* checkpoint);
+
+		/* Add Background */
+		void addBackground(Background* background);
+
+		/* Add Foreground */
+		void addForeground(Foreground* foreground);
+
 		/* Load Level */
 		void loadLevel(string fileName);
 
