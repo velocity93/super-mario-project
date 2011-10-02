@@ -112,6 +112,7 @@
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="World.hpp" />
+    <ClInclude Include="XMLParser.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
@@ -145,20 +146,16 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
     <None Include="ResourceManager.inl" />
-    <None Include="world1.wld" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="textures\backgrounds\blueHills.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Object>
-    <Object Include="textures\backgrounds\skyBlueHills.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Object>
+    <None Include="smb.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="world1.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

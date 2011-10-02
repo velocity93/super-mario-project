@@ -49,7 +49,7 @@ namespace Collisions
 	private:
 		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level);
 		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level);
-		static void detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info);
+		static bool detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info);
 	};
 } // namespace
 

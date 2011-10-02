@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Level.hpp"
+#include "XMLParser.hpp"
 
 namespace SuperMarioProject
 {
@@ -68,6 +69,22 @@ namespace SuperMarioProject
 	vector<Finish*> Level::getFinishes()
 	{
 		return _finishes;
+	}
+
+	void Level::setName(string name)
+	{
+		_name = name;
+	}
+
+	void Level::setSpawn(int x, int y)
+	{
+		_spawn.x = x;
+		_spawn.y = y;
+	}
+
+	void Level::loadLevel(string fileName)
+	{
+		XMLParser::loadLevel(fileName, this);
 	}
 
 	void Level::update(RenderWindow& app)

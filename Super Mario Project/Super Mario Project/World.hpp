@@ -38,6 +38,8 @@ namespace SuperMarioProject
 		Level* getLevel();
 
 		/* Methods */
+		void addLevelName(string levelName);
+
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
