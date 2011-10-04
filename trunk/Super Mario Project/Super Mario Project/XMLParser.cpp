@@ -43,12 +43,56 @@ namespace SuperMarioProject
 
 	void background_tag(Level * level, const char **attrs)
 	{
-		level->addBackground(new Background(attrs[1], Vector2f(0, 0)));
+		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		level->addBackground(new Background(attrs[1], position));
 	}
 
 	void foreground_tag(Level * level, const char **attrs)
 	{
 		level->addForeground(new Foreground(attrs[1]));
+	}
+
+	void object_tag(Level * level, const char **attrs)
+	{
+		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		level->addObject(new Object(attrs[1], position));
+	}
+
+	void finish_tag(Level * level, const char **attrs)
+	{
+		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		level->addFinish(new Finish(attrs[1], position));
+	}
+
+	void projectile_tag(Level * level, const char **attrs)
+	{
+		level->addProjectile(new Projectile(attrs[1]));
+	}
+
+	void item_tag(Level * level, const char **attrs)
+	{
+		level->addItem(new Item(attrs[1], (Item::Type)atoi(attrs[3])));
+	}
+
+	void occ_item_tag(Level * level, const char **attrs)
+	{
+		static int i = 0;
+		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
+		level->getItems()[i]->addNewItemOccurrence(position);
+		i++;
+	}
+
+	void monster_tag(Level * level, const char **attrs)
+	{
+		level->addMonster(new Monster(attrs[1]));
+	}
+
+	void occ_monster_tag(Level * level, const char **attrs)
+	{
+		static int i = 0;
+		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
+		level->getMonsters()[i]->addNewMonsterOccurrence(position);
+		i++;
 	}
 
 	void error(void * ctx, const char * msg, ...)
@@ -64,14 +108,14 @@ namespace SuperMarioProject
 			BAD_CAST"checkpoint", 
 			BAD_CAST"background",
 			BAD_CAST"foreground",
-			/*BAD_CAST"object",
+			BAD_CAST"object",
 			BAD_CAST"finish",
 			BAD_CAST"projectile",
 			BAD_CAST"item",
-			BAD_CAST"occ_item",			
+			BAD_CAST"occ_item",
 			BAD_CAST"monster", 
-			BAD_CAST"occ",			
-			BAD_CAST"pipe",
+			BAD_CAST"occ_monster",			
+			/*BAD_CAST"pipe",
 			BAD_CAST"blocs", 
 			BAD_CAST"textures", 
 			BAD_CAST"bloc", 
@@ -85,14 +129,14 @@ namespace SuperMarioProject
 			checkpoint_tag,
 			background_tag,
 			foreground_tag,
-			/*balise_object,			
-			balise_finish,			
-			balise_projectile,			
-			balise_item,
-			balise_occ_item,
-			balise_monster,
-			balise_occ,
-			balise_pipe,
+			object_tag,
+			finish_tag,			
+			projectile_tag,
+			item_tag,
+			occ_item_tag,
+			monster_tag,
+			occ_monster_tag,
+			/*pipe_tag,
 			balise_blocs,
 			balise_textures,
 			balise_bloc,
