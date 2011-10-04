@@ -25,23 +25,23 @@
 	</items>
 	<monsters>
 		<monster name="goomba">
-			<occ pos="5456:64"/>
-			<occ pos="5408:64"/>
-			<occ pos="4014:64"/>
-			<occ pos="3966:64"/>
-			<occ pos="3888:64"/>
-			<occ pos="3840:64"/>
-			<occ pos="2960:64"/>
-			<occ pos="2912:64"/>
-			<occ pos="2348:320"/>
-			<occ pos="2304:320"/>
-			<occ pos="1520:64"/>
-			<occ pos="1472:64"/>
-			<occ pos="1088:64"/>
-			<occ pos="448:64"/>
+			<occ_monster pos="5456:64"/>
+      <occ_monster pos="5408:64"/>
+      <occ_monster pos="4014:64"/>
+      <occ_monster pos="3966:64"/>
+      <occ_monster pos="3888:64"/>
+      <occ_monster pos="3840:64"/>
+      <occ_monster pos="2960:64"/>
+      <occ_monster pos="2912:64"/>
+      <occ_monster pos="2348:320"/>
+      <occ_monster pos="2304:320"/>
+      <occ_monster pos="1520:64"/>
+      <occ_monster pos="1472:64"/>
+      <occ_monster pos="1088:64"/>
+      <occ_monster pos="448:64"/>
 		</monster>
 		<monster name="koopa">
-			<occ pos="3500:64"/>
+      <occ_monster pos="3500:64"/>
 		</monster>
 	</monsters>
 	<pipes>

@@ -108,6 +108,36 @@ namespace SuperMarioProject
 		_foregrounds.push_back(foreground);
 	}
 
+	void Level::addObject(Object* object)
+	{
+		_objects.push_back(object);
+	}
+
+	void Level::addFinish(Finish* finish)
+	{
+		_finishes.push_back(finish);
+	}
+
+	void Level::addProjectile(Projectile* projectile)
+	{
+		_projectiles.push_back(projectile);
+	}
+
+	void Level::addItem(Item* item)
+	{
+		_items.push_back(item);
+	}
+
+	void Level::addMonster(Monster* monster)
+	{
+		_monsters.push_back(monster);
+	}
+
+	void Level::addPipe(Pipe* pipe)
+	{
+		_pipes.push_back(pipe);
+	}
+
 	void Level::loadLevel(string fileName)
 	{
 		XMLParser::loadLevel(fileName, this);

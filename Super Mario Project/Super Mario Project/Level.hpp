@@ -101,6 +101,24 @@ namespace SuperMarioProject
 		/* Add Foreground */
 		void addForeground(Foreground* foreground);
 
+		/* Add Object */
+		void addObject(Object* object);
+
+		/* Add Finish */
+		void addFinish(Finish* finish);
+
+		/* Add Projectile */
+		void addProjectile(Projectile* projectile);
+
+		/* Add Item */
+		void addItem(Item* item);
+
+		/* Add Monster */
+		void addMonster(Monster* monster);
+
+		/* Add Pipe */
+		void addPipe(Pipe* pipe);
+
 		/* Load Level */
 		void loadLevel(string fileName);
 
