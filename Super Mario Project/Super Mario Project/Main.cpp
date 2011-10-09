@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 	Perso perso = Perso("small_mario", Vector2f(0, 0));
 	InputState input = InputState(&App);
 
-	//Blocks bloc = Blocks("speciaux\\incassables\\liquids\\poison");
+	//Block bloc = Block("speciaux\\incassables\\liquids\\poison");
 	//bloc.addNewBlockOccurrence(0);
 
 	try

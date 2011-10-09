@@ -7,7 +7,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "BlockOccurrence.hpp"
-#include "Blocks.hpp"
+#include "Block.hpp"
+#include "Tileset.hpp"
 
 namespace Collisions
 {
@@ -17,38 +18,34 @@ namespace Collisions
 		Vector2f& speed,
 		State state, 
 		Side side,
-		Vector2i& nbSprites,
-		int frameDelay,
-		int physicIndex)
+		int physicIndex,
+		Block* actual,
+		Block* alternative)
 		: EntityMovable(textureName, position, speed, side),
-		_state(state),
-		_physicIndex(physicIndex)
+		_state(state)
     {
+		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
+
 		/* Compute blocs coords into the texture */
-		_size.y = (_texture->getImage()->GetHeight() /  nbSprites.y);
-		_size.x = (_texture->getImage()->GetWidth() /  nbSprites.x);
+		_size.y = (_texture->getImage()->GetHeight() / nbSprites.y);
+		_size.x = (_texture->getImage()->GetWidth() / nbSprites.x);
 
 		_coordSprite.y = (physicIndex / nbSprites.x) * _size.y;
 		_coordSprite.x = (physicIndex % nbSprites.x) * _size.x;
 
+		/* initialize pointer to models */
+		_actualBlock = actual;
+		_alternativeBlock = alternative;
+
 		/* Animation */
-		if(frameDelay > 0)
+		if(_actualBlock->getTileset()->getFrameDelay() > 0)
 		{
 			/* So, we have a special block */
 			_animation.addNbSpritesForGivenState(state, nbSprites.x);
-			_animation.addFrameDelayForGivenState(state, frameDelay);
+			_animation.addFrameDelayForGivenState(state, _actualBlock->getTileset()->getFrameDelay());
 			_animation.setCurrentState(state);
 		}
-		/*else
-		{*/
-			/* Otherwise, we have a tileset */
-		//}
     }
-
-	int BlockOccurrence::getPhysic()
-	{
-		return _actualBlock->getPhysic(_physicIndex);
-	}
 
 	void BlockOccurrence::update(RenderWindow& app)
 	{

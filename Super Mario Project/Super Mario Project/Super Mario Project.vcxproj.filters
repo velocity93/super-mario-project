@@ -24,9 +24,6 @@
     <ClInclude Include="BlockOccurrence.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Blocks.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Collisionable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -117,15 +114,18 @@
     <ClInclude Include="XMLParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tileset.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlockOccurrence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Blocks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Collisionable.cpp">
@@ -215,9 +215,14 @@
     <ClCompile Include="XMLParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tileset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="ResourceManager.inl">
       <Filter>Inline Files</Filter>
     </None>
@@ -230,5 +235,6 @@
     <None Include="world1.xml">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
