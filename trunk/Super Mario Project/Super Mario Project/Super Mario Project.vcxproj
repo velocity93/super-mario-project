@@ -83,7 +83,7 @@
     <ClInclude Include="Animation.hpp" />
     <ClInclude Include="Background.hpp" />
     <ClInclude Include="BlockOccurrence.hpp" />
-    <ClInclude Include="Blocks.hpp" />
+    <ClInclude Include="Block.hpp" />
     <ClInclude Include="Checkpoint.hpp" />
     <ClInclude Include="Collisionable.hpp" />
     <ClInclude Include="CollisionManager.hpp" />
@@ -111,13 +111,14 @@
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLParser.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BlockOccurrence.cpp" />
-    <ClCompile Include="Blocks.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Checkpoint.cpp" />
     <ClCompile Include="Collisionable.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -145,12 +146,13 @@
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="XMLParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Animation.inl" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="ResourceManager.inl" />
     <None Include="smb.xml">
       <SubType>Designer</SubType>

@@ -51,7 +51,7 @@ namespace SuperMarioProject
 		return _items;
 	}
 
-	vector<Blocks*> Level::getBlocks()
+	vector<Block*> Level::getBlock()
 	{
 		return _blocks;
 	}
@@ -86,6 +86,12 @@ namespace SuperMarioProject
 	{
 		_size.x = x;
 		_size.y = y;
+	}
+
+	void Level::setBlockSize(int x, int y)
+	{
+		_blockSize.x = x;
+		_blockSize.y = y;
 	}
 
 	void Level::setMusicTitle(string title)
@@ -136,6 +142,16 @@ namespace SuperMarioProject
 	void Level::addPipe(Pipe* pipe)
 	{
 		_pipes.push_back(pipe);
+	}
+
+	void Level::addTileset(Tileset* tileset)
+	{
+		_tilesets.push_back(tileset);
+	}
+
+	void Level::addBlock(Block* blocks)
+	{
+		_blocks.push_back(blocks);
 	}
 
 	void Level::loadLevel(string fileName)

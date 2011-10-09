@@ -14,13 +14,14 @@
 #include "Background.hpp"
 #include "Foreground.hpp"
 #include "ParticleGenerator.hpp"
-#include "Blocks.hpp"
+#include "Block.hpp"
 #include "BlockOccurrence.hpp"
 #include "Monster.hpp"
 #include "Item.hpp"
 #include "Projectile.hpp"
 #include "Finish.hpp"
 #include "Pipe.hpp"
+#include "Tileset.hpp"
 
 #include <string>
 
@@ -66,7 +67,7 @@ namespace SuperMarioProject
 		vector<Item*> getItems();
 
 		/* All blocks */
-		vector<Blocks*> getBlocks();
+		vector<Block*> getBlock();
 
 		/* All backgrounds */
 		vector<Background*> getBackgrounds();
@@ -79,6 +80,9 @@ namespace SuperMarioProject
 
 		/* Set spawn coord */
 		void setSpawn(int x, int y);
+
+		/* Set block size */
+		void setBlockSize(int x, int y);
 
 		/* Set Level name */
 		void setName(string name);
@@ -119,6 +123,12 @@ namespace SuperMarioProject
 		/* Add Pipe */
 		void addPipe(Pipe* pipe);
 
+		/* Add Tileset */
+		void addTileset(Tileset* tileset);
+
+		/* Add Block */
+		void addBlock(Block* blocks);
+
 		/* Load Level */
 		void loadLevel(string fileName);
 
@@ -145,8 +155,11 @@ namespace SuperMarioProject
 		vector<Pipe*> _pipes;
 		vector<Item*> _items;
 		vector<Object*> _objects;
-		vector<Blocks*> _blocks;
-		vector<vector<BlockOccurrence*>> _blocksOccurrences;
+		vector<Block*> _blocks;
+		vector<Tileset*> _tilesets;
+
+		//Utile étant donné qu'on a une position dans la classe Block ?
+		//vector<vector<BlockOccurrence*>> _blocksOccurrences; 
     };
 } // namespace
 

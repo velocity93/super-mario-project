@@ -15,7 +15,7 @@
 
 namespace Collisions
 {
-	class Blocks;
+	class Block;
 	class Perso;
 	class Item;
 	class BlockOccurrence : public EntityMovable
@@ -33,11 +33,9 @@ namespace Collisions
 			Vector2f& speed, 
 			State state, 
 			Side side,
-			Vector2i& nbSprites,
-			int frameDelay,
-			int physicIndex);
-
-		int getPhysic();
+			int physicIndex,
+			Block* actual,
+			Block* alternative);
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
@@ -50,8 +48,8 @@ namespace Collisions
 		Vector2i _coordSprite;
 		Vector2i _size;
 		State _state;
-		Blocks* _actualBlock;
-		Blocks* _alternativeBlock;
+		Block* _actualBlock;
+		Block* _alternativeBlock;
 		Perso* _perso;
 		Item* _itemContained;
     };

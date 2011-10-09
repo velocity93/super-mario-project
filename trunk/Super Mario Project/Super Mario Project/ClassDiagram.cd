@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rendering::Animation&lt;T&gt;" Collapsed="true">
+    <Position X="28.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABSgAIgAAAAAAAIAAAQAACIAAAAAC0ABA=</HashCode>
+      <FileName>Animation.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::Background" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAgAAAAAAAAACEAAggAAUAAA=</HashCode>
+      <FileName>Background.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::Drawable" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQAAAgAAAAAABAACAAAAAAAAgAAAgAAUQAA=</HashCode>
+      <FileName>Drawable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::Foreground" Collapsed="true">
+    <Position X="3.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUQAA=</HashCode>
+      <FileName>Foreground.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::HUD" Collapsed="true">
+    <Position X="33.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAQAACIAAgAgIAwAAAAAAAACEAAQAAAAACAAEUAAQ=</HashCode>
+      <FileName>HUD.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::Object" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAgAAAAAAAAgAAAAAAgAAAAAAAUAAA=</HashCode>
+      <FileName>Object.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rendering::Texture" Collapsed="true">
+    <Position X="9.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAgAABAAAAACAAAAQAAAAAMAAAAAAAA=</HashCode>
+      <FileName>Texture.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Block" Collapsed="true">
+    <Position X="30.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAACAAAAAASAAAAAAAAAIAAAAAAAAAIWoAE=</HashCode>
+      <FileName>Block.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Perso" Collapsed="true">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>5ISIACASAIcEQAYJQAAQbAEC8wCkIJADEABGBaAUOAw=</HashCode>
+      <FileName>Perso.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Item" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACABAAQAIAAAAEREAQAABCAAAAAEAACUAAA=</HashCode>
+      <FileName>Item.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::BlockOccurrence" Collapsed="true">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAEACAAAAAAQACAAAgABAAAAAAAgAAAocAAA=</HashCode>
+      <FileName>BlockOccurrence.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Tileset" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAABAAAAAAAAAAAAAAAAAAAAgBAAABACAAAAAAAE=</HashCode>
+      <FileName>Tileset.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Checkpoint" Collapsed="true">
+    <Position X="26" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAgAAAAAACAAAAAAAAEAAAAAAAAAcAAQ=</HashCode>
+      <FileName>Checkpoint.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Collisionable" Collapsed="true">
+    <Position X="15.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAIAAAAAgAAAAAgAAAKAAAAAAAA=</HashCode>
+      <FileName>Collisionable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::CollisionManager" Collapsed="true">
+    <Position X="32" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAIAAAAAAAAAACAAIA=</HashCode>
+      <FileName>CollisionManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Door" Collapsed="true">
+    <Position X="5.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAQCAEAAgAIAAEAEAACAAAgAAAAAAAAAAEAAAUEAQ=</HashCode>
+      <FileName>Door.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::EntityMovable" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAACAgAAAAABAQAAAAQAAABDBAAAAAAAAA=</HashCode>
+      <FileName>EntityMovable.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Finish" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEACAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAUAAg=</HashCode>
+      <FileName>Finish.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::ItemOccurrence" Collapsed="true">
+    <Position X="17" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQAAAABAAAAAAAAAIAACAAAkBAAAAAAAAQAAAEUAAQ=</HashCode>
+      <FileName>ItemOccurrence.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Monster" Collapsed="true">
+    <Position X="6" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAABAAAAmAACAgQAAAAIAAkQAgAAEICUAAg=</HashCode>
+      <FileName>Monster.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::MonsterOccurrence" Collapsed="true">
+    <Position X="19.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAACQAAACAAAAAAAAIAACAAAgAAAAAAAAABAAAAUAAQ=</HashCode>
+      <FileName>MonsterOccurrence.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::WalkingMonster" Collapsed="true">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAkAAA=</HashCode>
+      <FileName>MonsterTypes.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::ShellMonster" Collapsed="true">
+    <Position X="5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>MonsterTypes.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::FlyingMonster" Collapsed="true">
+    <Position X="7.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MonsterTypes.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Particle" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgABAAAAAAACAAAAAEAAAAAgAAAAAAAAAAAAAAVAAA=</HashCode>
+      <FileName>Particle.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::ParticleGenerator" Collapsed="true">
+    <Position X="23.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABCMAAEABAQKBABSIgAEAEBAABAFQAAAQAAUAAA=</HashCode>
+      <FileName>ParticleGenerator.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Pipe" Collapsed="true">
+    <Position X="5.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAYAgEAAAACAAAABAAAABAAABAAICAAAAIAAAUAAg=</HashCode>
+      <FileName>Pipe.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::Projectile" Collapsed="true">
+    <Position X="11.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAADAAQAMgAAAAQAAIAAJgQAIAAAAACUIAg=</HashCode>
+      <FileName>Projectile.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Collisions::ProjectileOccurrence" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAABAAEAAAAAAAAAAAAAiAAAgAAAACAAAQAAAAAUAAQ=</HashCode>
+      <FileName>ProjectileOccurrence.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::InputState" Collapsed="true">
+    <Position X="28.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAgAAAAAAAAAAAAAAAEEAAAAAAgAAAAAEAAA=</HashCode>
+      <FileName>InputState.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::Level" Collapsed="true">
+    <Position X="30.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQSAYAGAIcAIBIgDgEWEAAAFIBwAJABBEUYEBQIUQAA=</HashCode>
+      <FileName>Level.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::PausableClock" Collapsed="true">
+    <Position X="32" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACCAhAAAEAAAAAAAAAAAAABAAAAAAAAAAAE=</HashCode>
+      <FileName>PausableClock.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::ResourceManager" Collapsed="true">
+    <Position X="33.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQoAACgAEAAAAUAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>ResourceManager.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::Resource" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAgIAAEIAAAAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Resource.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::World" Collapsed="true">
+    <Position X="28.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAABAAABAAAAAAIBEQARCAAAKKQQBAEAEgAAAUAAA=</HashCode>
+      <FileName>World.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMarioProject::XMLParser" Collapsed="true">
+    <Position X="30.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XMLParser.hpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="SuperMarioProject::balise_func" Collapsed="true">
+    <Position X="28.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>XMLParser.hpp</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="SuperMarioProject::KeyState" Collapsed="true">
+    <Position X="30.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputState.hpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SuperMarioProject::Key" Collapsed="true">
+    <Position X="28.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAEAAAAgACAAAAAJAAABAQAAAAAABAAA=</HashCode>
+      <FileName>InputState.hpp</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

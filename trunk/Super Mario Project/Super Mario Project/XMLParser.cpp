@@ -69,19 +69,20 @@ namespace SuperMarioProject
 		level->addProjectile(new Projectile(attrs[1]));
 	}
 
+	int id_item = 0;
 	void item_tag(Level * level, const char **attrs)
 	{
+		id_item = 0;
 		level->addItem(new Item(attrs[1], (Item::Type)atoi(attrs[3])));
 	}
 
 	void occ_item_tag(Level * level, const char **attrs)
 	{
-		static int i = 0;
 		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
-		level->getItems()[i]->addNewItemOccurrence(position);
-		i++;
+		level->getItems()[id_item]->addNewItemOccurrence(position);
 	}
 
+	int id_monster = 0;
 	void monster_tag(Level * level, const char **attrs)
 	{
 		level->addMonster(new Monster(attrs[1]));
@@ -89,10 +90,40 @@ namespace SuperMarioProject
 
 	void occ_monster_tag(Level * level, const char **attrs)
 	{
-		static int i = 0;
 		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
-		level->getMonsters()[i]->addNewMonsterOccurrence(position);
-		i++;
+		level->getMonsters()[id_monster]->addNewMonsterOccurrence(position);
+	}
+
+	void pipe_tag(Level * level, const char **attrs)
+	{
+		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		level->addPipe(new Pipe(
+			attrs[1],
+			position,
+			atoi(attrs[5]),
+			attrs[7],
+			(Door::State)atoi(attrs[9]),
+			atoi(attrs[11]),
+			(Pipe::Direction)atoi(attrs[13]),
+			level->getMonsters()[atoi(attrs[15])]));
+	}
+
+	// <tileset img="nomTexture.png" size="x:y">
+	void tileset_tag(Level * level, const char **attrs)
+	{
+		Tileset* tileset = new Tileset(attrs[1]);
+		level->addTileset(tileset);
+		level->setBlockSize(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+	}
+
+	void blocks_tag(Level * level, const char **attrs)
+	{
+		// TO DO
+	}
+
+	void occ_blocks_tag(Level* level, const char** attrs)
+	{
+		// TO DO
 	}
 
 	void error(void * ctx, const char * msg, ...)
@@ -115,9 +146,11 @@ namespace SuperMarioProject
 			BAD_CAST"occ_item",
 			BAD_CAST"monster", 
 			BAD_CAST"occ_monster",			
-			/*BAD_CAST"pipe",
-			BAD_CAST"blocs", 
-			BAD_CAST"textures", 
+			BAD_CAST"pipe",
+			BAD_CAST"tileset",
+			BAD_CAST"blocks", 
+			BAD_CAST"occ_blocks", 
+			/*BAD_CAST"textures", 
 			BAD_CAST"bloc", 
 			BAD_CAST"layers", 
 			BAD_CAST"layer",
@@ -136,9 +169,11 @@ namespace SuperMarioProject
 			occ_item_tag,
 			monster_tag,
 			occ_monster_tag,
-			/*pipe_tag,
-			balise_blocs,
-			balise_textures,
+			pipe_tag,
+			tileset_tag,
+			blocks_tag,
+			occ_blocks_tag
+			/*balise_textures,
 			balise_bloc,
 			balise_layers,
 			balise_layer,
@@ -146,7 +181,7 @@ namespace SuperMarioProject
 		};
 		int i;
 
-		for(i = 0; i < 5; i++)
+		for(i = 0; i < 13; i++)
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{

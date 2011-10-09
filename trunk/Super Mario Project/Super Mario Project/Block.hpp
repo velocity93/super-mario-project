@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// Blocks.hpp
+// Block.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -16,36 +16,35 @@
 #define CLIMBING						0x1000000 /* Beans, ... */
 #define DEAD_BLOCK						0x2000000 /* Lava, acid, poison, ....*/
 
-#include "Resource.hpp"
 #include "BlockOccurrence.hpp"
 
 namespace Collisions
 {
-	class Blocks : public SuperMarioProject::Resource
+	class Tileset;
+	class Block
     {
     public:
-        Blocks(const string& textureName);
+        Block(const string& textureName);
 
-		void addNewBlockOccurrence(int physicIndex, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
+		Tileset* getTileset();
+
+		void addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
 			BlockOccurrence::Side side = BlockOccurrence::Side::RIGHT_SIDE);
 
 		void removeBlockOccurrence(const BlockOccurrence* block);
 
-		int getPhysic(int index);
-
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
-        virtual ~Blocks();
+        virtual ~Block();
 		
     private:
-		Vector2i _nbSprites;
-		int _frameDelay;
-		vector<int> _physics;
 		vector<BlockOccurrence*> _blockOccurrences;
-		
-		void loadBlockConfiguration(const string& textureName);
+		Tileset* _tileset;
+		Vector2i _size;
+		Vector2i _coordSprite;
+		int _physicIndex;
 		
     };
 } // namespace
