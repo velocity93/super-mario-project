@@ -24,7 +24,7 @@ namespace Collisions
 	class Block
     {
     public:
-        Block(const string& textureName);
+		Block(Tileset* tileset, int physicIndex) : _tileset(tileset), _physicIndex(physicIndex) { }
 
 		Tileset* getTileset();
 

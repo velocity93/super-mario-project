@@ -71,6 +71,11 @@ namespace SuperMarioProject
 		return _finishes;
 	}
 
+	vector<Tileset*> Level::getTilesets()
+	{
+		return _tilesets;
+	}
+
 	void Level::setName(string name)
 	{
 		_name = name;

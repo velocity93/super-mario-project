@@ -78,6 +78,9 @@ namespace SuperMarioProject
 		/* All finishes */
 		vector<Finish*> getFinishes();
 
+		/* All Tilesets */
+		vector<Tileset*> getTilesets();
+
 		/* Set spawn coord */
 		void setSpawn(int x, int y);
 
