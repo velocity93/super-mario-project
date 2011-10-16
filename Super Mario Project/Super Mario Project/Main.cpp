@@ -28,7 +28,8 @@ int main(int argc, char* argv[])
 
 	// Create world
 	World w(&App);
-	w.loadWorld();
+	Level lvl;
+	lvl.loadLevel("smb.xml");
 	Perso perso = Perso("small_mario", Vector2f(0, 0));
 	InputState input = InputState(&App);
 

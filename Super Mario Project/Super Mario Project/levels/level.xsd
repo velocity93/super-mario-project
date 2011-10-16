@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="level">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="spawn">
+          <xs:complexType>
+            <xs:attribute name="position" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="checkpoints">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="checkpoint" minOccurs="0">
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="backgrounds">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="background" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="foregrounds">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="foreground" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="objects">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="object" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="finishes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="finish" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="projectiles">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectile" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="items">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="item" minOccurs="0" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="monsters">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="walking_monster" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="occ_monster" maxOccurs="unbounded" >
+                      <xs:complexType>
+                        <xs:attribute name="position" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="flying_monster" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="occ_monster" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="position" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="shell_monster" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="occ_monster" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="position" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="pipes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pipe" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="destination_pipe" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="level_destination" type="xs:string" use="required" />
+                  <xs:attribute name="state" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="length" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="direction" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="monster" type="xs:byte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="blocks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tileset">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="block" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="type_bloc" type="xs:unsignedInt" use="required" />
+                        <xs:attribute name="physicIndex" type="xs:unsignedInt" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="img" type="xs:string" use="required" />
+                  <xs:attribute name="bloc_size" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="layers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layer" minOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="occ_block" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:attribute name="pos" type="xs:string" use="required" />
+                              <xs:attribute name="actual" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="alt" type="xs:byte" use="required" />
+                              <xs:attribute name="item" type="xs:byte" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="index" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="nb" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="name" type="xs:string" use="required" />
+      <xs:attribute name="width" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="height" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="music" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -10,17 +10,23 @@
 #ifndef HPP_PIPE
 #define HPP_PIPE
 
-#include "Door.hpp"
+#include "Collisionable.hpp"
 #include "Monster.hpp"
 
 #define MONSTER_EXIT_TIME 4000
 
 namespace Collisions
 {
-	class Pipe : public Door
+	class Pipe : public Collisionable
     {
 
 	public:
+		typedef enum 
+		{
+			OPEN,
+			CLOSED
+		} State;
+
 		enum Direction
 		{
 			TO_TOP,
@@ -30,9 +36,26 @@ namespace Collisions
 		};
     
 		/* Constructors */
-		Pipe(const string& textureName) : Door(textureName), _direction(TO_LEFT), _monster(nullptr), _monsterExitDuration(Clock()), _lenght(5) { }
-		Pipe(const string& textureName,Vector2f position, int indexDoorDestination, const string& levelDestination, State state, int lenght, Direction direction, Monster* monster) 
-			: Door(textureName, position, indexDoorDestination, levelDestination, state), _lenght(lenght), _direction(direction), _monster(monster) { }
+		Pipe(const string& textureName) : Collisionable("textures/pipes/" + textureName),
+			_direction(TO_TOP), 
+			_monster(nullptr), 
+			_monsterExitDuration(Clock()), 
+			_lenght(1) { }
+		Pipe(const string& textureName,Vector2f position,
+			int indexPipeDestination, 
+			const string& levelDestination, 
+			State state, 
+			int lenght, 
+			Direction direction, 
+			Monster* monster)
+			: Collisionable("textures/pipes/" + textureName, position), 
+			_indexDestination(indexPipeDestination), 
+			_levelDestination(levelDestination), 
+			_state(state), 
+			_lenght(lenght), 
+			_direction(direction), 
+			_monster(monster),
+			_monsterExitDuration(Clock()) { }
 
 		/* getters and setters */
 		Direction getDirection();
@@ -50,6 +73,9 @@ namespace Collisions
         virtual ~Pipe();
 		
     private:
+		int _indexDestination;
+		string _levelDestination;
+		State _state;
 		Direction _direction;
 		Monster* _monster;
 		int _lenght;

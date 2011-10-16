@@ -34,7 +34,7 @@ namespace Collisions
 
 	void Finish::loadFinish(const string& textureName)
 	{
-		string fileName = textureName + ".obj";
+		string fileName = "textures/objects/" + textureName + ".obj";
 		ifstream stream(fileName.c_str());
 
 		if(stream)

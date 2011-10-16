@@ -96,6 +96,9 @@
     <ClInclude Include="InputState.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
+    <ClInclude Include="level.h">
+      <DependentUpon>level.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Monster.hpp" />
     <ClInclude Include="MonsterOccurrence.hpp" />
@@ -112,6 +115,9 @@
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
+    <ClInclude Include="world.h">
+      <DependentUpon>world.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLParser.hpp" />
   </ItemGroup>
@@ -153,11 +159,13 @@
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram.cd" />
+    <None Include="levels\smb.xml" />
     <None Include="ResourceManager.inl" />
-    <None Include="smb.xml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="world1.xml" />
+    <None Include="worlds\world1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="levels\level.xsd" />
+    <Xsd Include="worlds\world.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

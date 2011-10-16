@@ -120,6 +120,12 @@
     <ClInclude Include="Block.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="world.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -229,12 +235,20 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="smb.xml">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="world1.xml">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="levels\smb.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="worlds\world1.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="worlds\world.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+    <Xsd Include="levels\level.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
   </ItemGroup>
 </Project>

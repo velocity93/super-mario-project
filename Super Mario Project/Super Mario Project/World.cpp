@@ -47,7 +47,7 @@ namespace SuperMarioProject
 
 	void World::addLevelName(string levelName)
 	{
-		_levelNames.push_back(levelName);
+		_levelNames.push_back("levels/" + levelName);
 	}
 
 	void World::update(RenderWindow& app)
@@ -118,7 +118,7 @@ namespace SuperMarioProject
 
 	void World::loadWorld()
 	{
-		XMLParser::loadWorld("world1.xml", this);
+		XMLParser::loadWorld("worlds/world1.xml", this);
 	}
 
     World::~World()

@@ -12,15 +12,17 @@
 
 namespace Rendering
 {
-	Background::Background(const string& textureName) : Object(textureName), _verticalRepetition(false)
+	Background::Background(const string& textureName) : Object("backgrounds/" + textureName), _verticalRepetition(false), _position(Vector2f(0,0))
 	{
 		/* Loading informations */
 		loadCfgBackground(textureName);
 	}
 
-	Background::Background(const string& textureName, Vector2f& position) : Object(textureName, position), _verticalRepetition(false)
+	Background::Background(const string& textureName, Vector2f& position) : 
+		Object(textureName, position),
+			_verticalRepetition(false),
+			_position(position)
 	{
-		_position = position;
 
 		/* Loading informations */
 		loadCfgBackground(textureName);
@@ -43,7 +45,7 @@ namespace Rendering
 
 	void Background::loadCfgBackground(const string& textureName)
 	{
-		string fileName = textureName + ".obj";
+		string fileName = _texture->name() + ".obj";
 		ifstream stream(fileName.c_str());
 		
 		if(stream)
