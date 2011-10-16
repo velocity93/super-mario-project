@@ -16,7 +16,7 @@
 #include "ParticleGenerator.hpp"
 #include "Block.hpp"
 #include "BlockOccurrence.hpp"
-#include "Monster.hpp"
+#include "MonsterTypes.hpp"
 #include "Item.hpp"
 #include "Projectile.hpp"
 #include "Finish.hpp"

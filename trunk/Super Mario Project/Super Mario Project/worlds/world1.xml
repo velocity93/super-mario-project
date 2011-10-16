@@ -1,0 +1,7 @@
+<world xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:noNamespaceSchemaLocation="world.xsd">
+  <level name="smb.xml"/>
+  <level name="smb2.xml"/>
+  <level name="smb3.xml"/>
+</world>
+

@@ -24,7 +24,7 @@ namespace Collisions
 	class Block
     {
     public:
-		Block(Tileset* tileset, int physicIndex) : _tileset(tileset), _physicIndex(physicIndex) { }
+		Block(Tileset* tileset, int physicIndex, int type) : _tileset(tileset), _physicIndex(physicIndex), _type(type) { }
 
 		Tileset* getTileset();
 
@@ -45,6 +45,7 @@ namespace Collisions
 		Vector2i _size;
 		Vector2i _coordSprite;
 		int _physicIndex;
+		int _type;
 		
     };
 } // namespace

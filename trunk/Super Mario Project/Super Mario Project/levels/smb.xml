@@ -1,18 +1,15 @@
 <?xml version="1.0" ?>
-<level name="World 1-1" width="200" height="20" music="world1-1.mp3">
-	<spawn pos="64:64"/>
-	<checkpoints />
+<level name="World 1-1" width="200" height="20" music="world1-1.mp3"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="level.xsd">
+	<spawn position="64:64"/>
+  <checkpoints />
 	<backgrounds>
-		<background img="skybluehills"/>
-		<background img="bluehills"/>
+		<background img="skyBlueHills" position="0:0"/>
+		<background img="blueHills" position="0:0"/>
 	</backgrounds>
-	<background_generators />
-	<foregrounds />
-	<foreground_generators />
-	<objects />
-	<finishes>
-		<finish img="castle" position="6144:64"/>
-	</finishes>
+  <foregrounds />
+  <objects />
+  <finishes />
 	<projectiles>
 		<projectile img="debris"/>
 		<projectile img="fireball"/>
@@ -24,53 +21,37 @@
 		<item img="etoile" type="6"/>
 	</items>
 	<monsters>
-		<monster name="goomba">
-			<occ_monster pos="5456:64"/>
-      <occ_monster pos="5408:64"/>
-      <occ_monster pos="4014:64"/>
-      <occ_monster pos="3966:64"/>
-      <occ_monster pos="3888:64"/>
-      <occ_monster pos="3840:64"/>
-      <occ_monster pos="2960:64"/>
-      <occ_monster pos="2912:64"/>
-      <occ_monster pos="2348:320"/>
-      <occ_monster pos="2304:320"/>
-      <occ_monster pos="1520:64"/>
-      <occ_monster pos="1472:64"/>
-      <occ_monster pos="1088:64"/>
-      <occ_monster pos="448:64"/>
-		</monster>
-		<monster name="koopa">
-      <occ_monster pos="3500:64"/>
-		</monster>
+		<walking_monster name="goomba">
+			<occ_monster position="5456:64"/>
+      <occ_monster position="5408:64"/>
+      <occ_monster position="4014:64"/>
+      <occ_monster position="3966:64"/>
+      <occ_monster position="3888:64"/>
+      <occ_monster position="3840:64"/>
+      <occ_monster position="2960:64"/>
+      <occ_monster position="2912:64"/>
+      <occ_monster position="2348:320"/>
+      <occ_monster position="2304:320"/>
+      <occ_monster position="1520:64"/>
+      <occ_monster position="1472:64"/>
+      <occ_monster position="1088:64"/>
+      <occ_monster position="448:64"/>
+		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" pos="20:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
-		<pipe img="green_pipe" pos="30:2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="-1"/>
-		<pipe img="green_pipe" pos="38:2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
-		<pipe img="green_pipe" pos="50:2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
-		<pipe img="green_pipe" pos="159:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
-		<pipe img="green_pipe" pos="175:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="20:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="30:2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="38:2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="50:2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="159:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
+		<pipe img="green_pipe" position="175:2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
 	</pipes>
-	<blocs bloc_size="32:32">
-		<textures img="classiques/grass.png"/>
-		<textures img="speciaux/cassables/overworld.png"/>
-		<textures img="speciaux/incassables/[Q]/overworld.png"/>
-		<textures img="speciaux/incassables/[Q]/overworld2.png"/>
-		<bloc texture="0" coord_sprite="0:0" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="0:1" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="0:2" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="1:0" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="1:1" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="1:2" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="2:0" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="2:1" type_bloc="8388608"/>
-		<bloc texture="0" coord_sprite="2:2" type_bloc="8388608"/>
-		<bloc texture="1" coord_sprite="0:0" type_bloc="10485760"/>
-		<bloc texture="1" coord_sprite="0:0" type_bloc="4194304"/>
-		<bloc texture="1" coord_sprite="0:0" type_bloc="0"/>
-		<bloc texture="2" coord_sprite="0:0" type_bloc="0"/>
-		<bloc texture="3" coord_sprite="0:0" type_bloc="8388608"/>
+	<blocks>
+    <tileset img="classiques/grass.png" bloc_size="32:32">
+      <block physicIndex="0" type_bloc="8388608"/>
+      <block physicIndex="1" type_bloc="8388608"/>
+      <block physicIndex="2" type_bloc="8388608"/>
+    </tileset>
 		<layers nb="1">
 			<layer index="0">
 				<occ_block pos="0:0" actual="4" alt="-1" item="-1"/>
@@ -566,5 +547,5 @@
 				<occ_block pos="6368:32" actual="5" alt="-1" item="-1"/>
 			</layer>
 		</layers>
-	</blocs>
+	</blocks>
 </level>

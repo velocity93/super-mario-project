@@ -13,13 +13,13 @@
 
 namespace Rendering
 {
-	Object::Object(const string& textureName) : Drawable(textureName) 
+	Object::Object(const string& textureName) : Drawable("textures/objects/" + textureName)
 	{
 		loadCfgObject(textureName);
 		_animation.setCurrentState(State::NORMAL);
 	}
 
-	Object::Object(const string& textureName,Vector2f& position) : Drawable(textureName, position)
+	Object::Object(const string& textureName,Vector2f& position) : Drawable("textures/objects/" + textureName, position)
 	{ 
 		loadCfgObject(textureName);
 		_animation.setCurrentState(State::NORMAL);
@@ -37,7 +37,7 @@ namespace Rendering
 
 	void Object::loadCfgObject(const string& textureName)
 	{
-		string fileName = textureName + ".obj";
+		string fileName = _texture->name() + ".obj";
 		ifstream stream(fileName.c_str());
 		
 		if(stream)
