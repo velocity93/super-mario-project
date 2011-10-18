@@ -237,8 +237,9 @@ namespace SuperMarioProject
 		sh.startElement = start_level_element;
 		sh.error = error;
 
-		if(xmlSAXUserParseFile(&sh, level, fileName.c_str()))
-			puts("Error in reading XML level file");
+		/* Begin parsing */
+		if(!validateSchema("levels/level.xsd", fileName.c_str()))
+		xmlSAXUserParseFile(&sh, level, fileName.c_str());
 	}
 
 	void start_world_element(void *user_data, const xmlChar *name, const xmlChar **attrs) 
@@ -253,21 +254,20 @@ namespace SuperMarioProject
 		sh.startElement = start_world_element;
 		sh.error = error;
 
-		if(xmlSAXUserParseFile(&sh, world, fileName.c_str()))
-			puts("Error in reading XML level file");
+		if(!validateSchema("worlds/world.xsd", fileName.c_str()))
+			xmlSAXUserParseFile(&sh, world, fileName.c_str());
 	}
 
 	/**
 	* Valider un fichier XML à partir d'un fichier XML Schema
 	**/
-	int XMLParser::validateSchema(char * XMLSchemaFile_pathname, char * XMLfile_pathname)
+	int XMLParser::validateSchema(const char * XMLSchemaFile_pathname, const char * XMLfile_pathname)
 	{
 		xmlSchemaPtr ptr_schema = NULL;
 		xmlSchemaParserCtxtPtr ptr_ctxt;
 		xmlSchemaValidCtxtPtr ptr_validctxt;
 		int vl_return;
-		xmlDocPtr vl_doc;
-		HINSTANCE vl_hModule;
+		xmlDocPtr vl_doc;		
 
 
 		/* Open Xml Schema File */
@@ -287,7 +287,6 @@ namespace SuperMarioProject
 			xmlSchemaCleanupTypes();
 			xmlCleanupParser();
 			xmlMemoryDump();
-			FreeLibrary(vl_hModule);
 			return -1;
 		}
 
@@ -313,7 +312,7 @@ namespace SuperMarioProject
 			if (vl_return == 0)
 			{ 
 				// If the XML file is valid
-				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_pathname << "is OK." << endl;
+				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_pathname << " is OK." << endl;
 			} 
 			else if (vl_return > 0)
 			{ 
@@ -330,8 +329,7 @@ namespace SuperMarioProject
 			xmlFreeDoc(vl_doc);
 		}
 
-		FreeLibrary(vl_hModule);	
-		return(0);
+		return 0;
 	}
 
 }
