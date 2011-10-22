@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="level">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="spawn">
           <xs:complexType>
-            <xs:attribute name="position" type="xs:string" use="required" />
+            <xs:attribute name="positionX" type="xs:float" use="required" />
+            <xs:attribute name="positionY" type="xs:float" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="checkpoints">
@@ -14,7 +16,8 @@
               <xs:element name="checkpoint" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -26,7 +29,8 @@
               <xs:element name="background" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -38,7 +42,8 @@
               <xs:element name="foreground" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -50,7 +55,8 @@
               <xs:element name="object" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -62,7 +68,8 @@
               <xs:element name="finish" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -99,7 +106,8 @@
                   <xs:sequence>
                     <xs:element name="occ_monster" maxOccurs="unbounded" >
                       <xs:complexType>
-                        <xs:attribute name="position" type="xs:string" use="required" />
+                        <xs:attribute name="positionX" type="xs:float" use="required" />
+                        <xs:attribute name="positionY" type="xs:float" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -111,7 +119,8 @@
                   <xs:sequence>
                     <xs:element name="occ_monster" maxOccurs="unbounded">
                       <xs:complexType>
-                        <xs:attribute name="position" type="xs:string" use="required" />
+                        <xs:attribute name="positionX" type="xs:float" use="required" />
+                        <xs:attribute name="positionY" type="xs:float" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -123,7 +132,8 @@
                   <xs:sequence>
                     <xs:element name="occ_monster" maxOccurs="unbounded">
                       <xs:complexType>
-                        <xs:attribute name="position" type="xs:string" use="required" />
+                        <xs:attribute name="positionX" type="xs:float" use="required" />
+                        <xs:attribute name="positionY" type="xs:float" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -139,7 +149,8 @@
               <xs:element name="pipe" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="position" type="xs:string" use="required" />
+                  <xs:attribute name="positionX" type="xs:float" use="required" />
+                  <xs:attribute name="positionY" type="xs:float" use="required" />
                   <xs:attribute name="destination_pipe" type="xs:unsignedByte" use="required" />
                   <xs:attribute name="level_destination" type="xs:string" use="required" />
                   <xs:attribute name="state" type="xs:unsignedByte" use="required" />
@@ -165,7 +176,8 @@
                     </xs:element>
                   </xs:sequence>
                   <xs:attribute name="img" type="xs:string" use="required" />
-                  <xs:attribute name="bloc_size" type="xs:string" use="required" />
+                  <xs:attribute name="blocSizeX" type="xs:float" use="required" />
+                  <xs:attribute name="blocSizeY" type="xs:float" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="layers">
@@ -176,7 +188,8 @@
                         <xs:sequence>
                           <xs:element name="occ_block" maxOccurs="unbounded">
                             <xs:complexType>
-                              <xs:attribute name="pos" type="xs:string" use="required" />
+                              <xs:attribute name="positionX" type="xs:float" use="required" />
+                              <xs:attribute name="positionY" type="xs:float" use="required" />
                               <xs:attribute name="actual" type="xs:unsignedByte" use="required" />
                               <xs:attribute name="alt" type="xs:byte" use="required" />
                               <xs:attribute name="item" type="xs:byte" use="required" />

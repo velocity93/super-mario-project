@@ -42,6 +42,11 @@ namespace Collisions
 		return _canBeJumpedOn;
 	}
 
+	vector<MonsterOccurrence*>& Monster::getMonsterOccurrences()
+	{
+		return _monsterOccurrences;
+	}
+
 	void Monster::addNewMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
     {
 		_monsterOccurrences.push_back(new MonsterOccurrence(name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));

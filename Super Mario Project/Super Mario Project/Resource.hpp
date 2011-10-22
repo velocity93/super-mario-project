@@ -22,6 +22,7 @@ namespace SuperMarioProject
         Resource(std::string name);
         virtual ~Resource() = 0;
         const std::string &name() const;
+		const std::string &mainName() const;
 		void addRef();
         void release();
 

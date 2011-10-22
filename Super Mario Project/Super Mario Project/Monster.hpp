@@ -36,6 +36,7 @@ namespace Collisions
 		bool getCanBeKilledByJump();
 		bool getCanBeKilledByFire();
 		bool getCanBeJumpedOn();
+		vector<MonsterOccurrence*>& getMonsterOccurrences();
 
 		/* Remove occurrence */
 		void removeMonsterOccurrence(const MonsterOccurrence* monster);

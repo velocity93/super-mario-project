@@ -27,6 +27,11 @@ namespace SuperMarioProject
         return _name;
     }
 
+	const std::string &Resource::mainName() const
+	{
+		return name().substr(name().find_last_of("/"), name().size());
+	}
+
      void Resource::addRef()
      {
          _refCount++;

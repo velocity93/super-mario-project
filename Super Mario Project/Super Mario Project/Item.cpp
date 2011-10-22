@@ -31,10 +31,15 @@ namespace Collisions
         return _submission;
     }
 
-    Vector2f Item::getInitialSpeed()
+    Vector2f& Item::getInitialSpeed()
     {
         return _initialSpeed;
     }
+
+	vector<ItemOccurrence*>& Item::getItemOccurrences()
+	{
+		return _itemOccurrences;
+	}
 
 	void Item::addNewItemOccurrence(Vector2f& position, Vector2f& speed, ItemOccurrence::State state, ItemOccurrence::Side side)
     {

@@ -16,7 +16,6 @@
 #include "HUD.hpp"
 #include "EntityMovable.hpp"
 #include "MonsterOccurrence.hpp"
-#include "Pipe.hpp"
 #include "Checkpoint.hpp"
 #include "InputState.hpp"
 #include "Animation.hpp"
@@ -26,6 +25,7 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
+	class Pipe;
 	class Perso : public EntityMovable
     {
 
