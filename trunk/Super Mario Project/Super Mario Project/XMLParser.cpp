@@ -15,41 +15,54 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
 
-namespace SuperMarioProject
+namespace XMLParsing
 {
-	int id_item;
-	int id_monster;
-	int id_tileset;
-
+	/* PARSING WORLD XML */
 	void level_tag(World* world, const char ** attrs)
 	{
 		world->addLevelName(attrs[1]);
 	}
 
+	/* PARSING LEVEL XML */
+	int id_item;
+	int id_monster;
+	int id_tileset;
+
 	void level_tag(Level * level, const char **attrs)
 	{
 		/* Name and size */
-		level->setName(attrs[1]);
-		level->setSize(atoi(attrs[3]), atoi(attrs[5]));
+		for(int i = 0; i < 8; i = i+2)
+		{
+			if(!strcmp(attrs[i], "name"))
+			{
+				level->setName(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "music"))
+			{
+				level->setMusicTitle(attrs[i + 1]);
+			}
+		}
+		//level->setName(attrs[1]);
+		//level->setSize(atoi(attrs[3]), atoi(attrs[5]));
 
-		/* Music */
-		level->setMusicTitle(attrs[7]);
+		///* Music */
+		//level->setMusicTitle(attrs[7]);
 	}
 
 	void spawn_tag(Level * level, const char **attrs)
 	{
-		level->setSpawn(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
+		level->setSpawn(atoi(attrs[1]), atoi(attrs[3]));
 	}
 
 	void checkpoint_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		level->addCheckpoint(new Checkpoint(attrs[1], position, Checkpoint::State::NOT_PASSED));
 	}
 
 	void background_tag(Level * level, const char **attrs)
 	{
-		//Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		//Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		//level->addBackground(new Background(attrs[1], position));
 		level->addBackground(new Background(attrs[1]));
 	}
@@ -61,13 +74,13 @@ namespace SuperMarioProject
 
 	void object_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		level->addObject(new Object(attrs[1], position));
 	}
 
 	void finish_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		level->addFinish(new Finish(attrs[1], position));
 	}
 
@@ -84,7 +97,7 @@ namespace SuperMarioProject
 
 	void occ_item_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
+		Vector2f position(atoi(attrs[1]), atoi(attrs[3]));
 		level->getItems()[id_item - 1]->addNewItemOccurrence(position);
 	}
 
@@ -108,13 +121,13 @@ namespace SuperMarioProject
 
 	void occ_monster_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[1]), atoi(strchr(attrs[1], ':') + 1));
+		Vector2f position(atoi(attrs[1]), atoi(attrs[3]));
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);
 	}
 
 	void pipe_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		int index_monster = atoi(attrs[15]);
 
 		if(index_monster >= 0)
@@ -148,7 +161,7 @@ namespace SuperMarioProject
 	{
 		Tileset* tileset = new Tileset(attrs[1]);
 		level->addTileset(tileset);
-		level->setBlockSize(atoi(attrs[3]), atoi(strchr(attrs[3], ':') + 1));
+		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		id_tileset++;
 	}
 
@@ -162,7 +175,7 @@ namespace SuperMarioProject
 	//<occ_block actualModel="" alternativeModel="" pos="x:y"/>
 	void occ_blocks_tag(Level* level, const char** attrs)
 	{
-		Vector2f position(atoi(attrs[5]), atoi(strchr(attrs[5], ':') + 1));
+		Vector2f position(atoi(attrs[5]), atoi(attrs[7]));
 		Block* model = level->getBlock()[atoi(attrs[1])];
 		model->addNewBlockOccurrence(level->getBlock()[atoi(attrs[3])], position);
 	}
@@ -226,7 +239,7 @@ namespace SuperMarioProject
 		}	
 	}
 
-	void XMLParser::loadLevel(string fileName, Level* level)
+	void parseLevel(string fileName, Level* level)
 	{
 		/* Initialization of ids */
 		id_monster = 0;
@@ -237,8 +250,6 @@ namespace SuperMarioProject
 		sh.startElement = start_level_element;
 		sh.error = error;
 
-		/* Begin parsing */
-		if(!validateSchema("levels/level.xsd", fileName.c_str()))
 		xmlSAXUserParseFile(&sh, level, fileName.c_str());
 	}
 
@@ -248,26 +259,38 @@ namespace SuperMarioProject
 			level_tag((World*)user_data, (const char**)attrs);
 	}
 
-	void XMLParser::loadWorld(string fileName, World* world)
+	void parseWorld(string fileName, World* world)
 	{
 		xmlSAXHandler sh = {NULL};
 		sh.startElement = start_world_element;
-		sh.error = error;
+		sh.error = XMLParsing::error;
 
-		if(!validateSchema("worlds/world.xsd", fileName.c_str()))
-			xmlSAXUserParseFile(&sh, world, fileName.c_str());
+		xmlSAXUserParseFile(&sh, world, fileName.c_str());
+	}
+}
+
+
+namespace SuperMarioProject
+{
+	void XMLParser::loadLevel(string fileName, Level* level)
+	{
+		if(!validateSchema("levels/level.xsd", fileName.c_str()))
+			XMLParsing::parseLevel(fileName, level);
 	}
 
-	/**
-	* Valider un fichier XML à partir d'un fichier XML Schema
-	**/
+	void XMLParser::loadWorld(string fileName, World* world)
+	{
+		if(!validateSchema("worlds/world.xsd", fileName.c_str()))
+			XMLParsing::parseWorld(fileName, world);
+	}
+
 	int XMLParser::validateSchema(const char * XMLSchemaFile_pathname, const char * XMLfile_pathname)
 	{
 		xmlSchemaPtr ptr_schema = NULL;
 		xmlSchemaParserCtxtPtr ptr_ctxt;
 		xmlSchemaValidCtxtPtr ptr_validctxt;
 		int vl_return;
-		xmlDocPtr vl_doc;		
+		xmlDocPtr vl_doc;
 
 
 		/* Open Xml Schema File */
@@ -316,7 +339,7 @@ namespace SuperMarioProject
 			} 
 			else if (vl_return > 0)
 			{ 
-				// If XML File doesn't correpsond to Schema
+				// If XML File doesn't correspond to Schema
 				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_pathname <<  " fails to validate." << endl;
 			} 
 			else 
@@ -331,5 +354,4 @@ namespace SuperMarioProject
 
 		return 0;
 	}
-
 }

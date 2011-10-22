@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Pipe.hpp"
+#include "Monster.hpp"
 
 namespace Collisions
 {
@@ -18,6 +19,16 @@ namespace Collisions
 	int Pipe::getLenght()
 	{
 		return _lenght;
+	}
+
+	int Pipe::getState()
+	{
+		return _state;
+	}
+
+	string& Pipe::getLevelDestination()
+	{
+		return _levelDestination;
 	}
 
 	Monster* Pipe::getMonster()

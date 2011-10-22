@@ -28,6 +28,7 @@ namespace SuperMarioProject
 
 	private :
 		static int validateSchema(const char * XMLSchemaFile_pathname, const char * XMLfile_pathname);
+
 	};
 }
 #endif

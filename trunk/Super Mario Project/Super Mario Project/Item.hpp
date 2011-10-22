@@ -47,7 +47,10 @@ namespace Collisions
 		int getSubmission();
 
 		/* Initial Speed of Item */
-		Vector2f getInitialSpeed();
+		Vector2f& getInitialSpeed();
+
+		/* Access to all of his occurences */
+		vector<ItemOccurrence*>& getItemOccurrences();
 
 		/* Add New Item Occurrence */
 		void Item::addNewItemOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 

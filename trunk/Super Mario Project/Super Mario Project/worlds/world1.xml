@@ -1,5 +1,5 @@
-<world xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xsi:noNamespaceSchemaLocation="world.xsd">
+<?xml version="1.0" ?>
+<world>
   <level name="smb.xml"/>
   <level name="smb2.xml"/>
   <level name="smb3.xml"/>

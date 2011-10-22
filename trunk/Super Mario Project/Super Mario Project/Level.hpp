@@ -33,7 +33,7 @@ namespace SuperMarioProject
     class Level
     {
     public:
-        Level() : _name(""), _musicTitle(""), _size(Vector2f()), _spawn(Vector2f()),
+        Level() : _name(""), _musicTitle(""), _size(Vector2i()), _spawn(Vector2i()),
 			_checkpoints(vector<Checkpoint*>()), _projectiles(vector<Projectile*>()),
 			_monsters(vector<Monster*>()), _pipes(vector<Pipe*>()), _foregrounds(vector<Foreground*>()),
 			_finishes(vector<Finish*>()), _backgrounds(vector<Background*>())
@@ -42,11 +42,17 @@ namespace SuperMarioProject
 		/* Level Name */
 		string getName();
 
+		/* Level Music title */
+		string getMusicTitle();
+
+		/* Level Spawn */
+		Vector2i getSpawn();
+
 		/* Size of level */
-		Vector2f getSize();
+		Vector2i getSize();
 
 		/* Size of each block */
-		Vector2f getBlockSize();
+		Vector2i getBlockSize();
 
 		/* All objects */
 		vector<Object*> getObjects();
@@ -146,9 +152,9 @@ namespace SuperMarioProject
     private:
 		string _name;
 		string _musicTitle;
-		Vector2f _size;
-		Vector2f _spawn;
-		Vector2f _blockSize;
+		Vector2i _size;
+		Vector2i _spawn;
+		Vector2i _blockSize;
 		vector<Checkpoint*> _checkpoints;
 		vector<Background*> _backgrounds;
 		vector<Foreground*> _foregrounds;

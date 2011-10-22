@@ -11,12 +11,12 @@
 #define HPP_PIPE
 
 #include "Collisionable.hpp"
-#include "Monster.hpp"
 
 #define MONSTER_EXIT_TIME 4000
 
 namespace Collisions
 {
+	class Monster;
 	class Pipe : public Collisionable
     {
 
@@ -61,6 +61,8 @@ namespace Collisions
 		Direction getDirection();
 		Monster* getMonster();
 		int getLenght();
+		int getState();
+		string& getLevelDestination();
 		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);

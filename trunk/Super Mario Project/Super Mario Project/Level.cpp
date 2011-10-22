@@ -11,12 +11,27 @@
 
 namespace SuperMarioProject
 {
-	Vector2f Level::getSize()
+	string Level::getName()
+	{
+		return _name;
+	}
+
+	string Level::getMusicTitle()
+	{
+		return "";
+	}
+
+	Vector2i Level::getSpawn()
+	{
+		return _spawn;
+	}
+
+	Vector2i Level::getSize()
 	{
 		return _size;
 	}
 
-	Vector2f Level::getBlockSize()
+	Vector2i Level::getBlockSize()
 	{
 		return _blockSize;
 	}

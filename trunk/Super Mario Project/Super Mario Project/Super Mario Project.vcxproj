@@ -120,6 +120,7 @@
     </ClInclude>
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLParser.hpp" />
+    <ClInclude Include="XMLWriter.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
@@ -155,11 +156,14 @@
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="XMLParser.cpp" />
+    <ClCompile Include="XMLWriter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram.cd" />
-    <None Include="levels\smb.xml" />
+    <None Include="levels\smb.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ResourceManager.inl" />
     <None Include="worlds\world1.xml" />
   </ItemGroup>

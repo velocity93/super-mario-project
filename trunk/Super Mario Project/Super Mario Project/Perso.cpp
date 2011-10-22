@@ -8,6 +8,7 @@
 
 #include "Perso.hpp"
 #include "InputState.hpp"
+#include "Pipe.hpp"
 #include <fstream>
 #include <sstream>
 
