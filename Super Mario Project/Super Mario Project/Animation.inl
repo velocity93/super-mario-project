@@ -120,7 +120,7 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 	Vector2f spriteSize = Vector2f(
 		texture->getImage()->GetWidth() / getNbSpritesMax(),
 		texture->getImage()->GetHeight() / _nbSpritesByState.size());
-	Sprite sprite = texture->getSprite();
+    ReversedSprite sprite = texture->getSprite();
 
 	if(getNbSpritesForCurrentState() > 0)
 	{

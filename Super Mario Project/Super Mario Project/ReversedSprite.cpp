@@ -10,6 +10,8 @@
 
 namespace Rendering 
 {
+    int ReversedSprite::_winHeight = 0;
+
     ReversedSprite::ReversedSprite()
         : Sprite(),
         _flippedX(false),
@@ -67,10 +69,10 @@ namespace Rendering
 
             // Draw the sprite's triangles
             glBegin(GL_QUADS);
-            glTexCoord2f(Rect.Left,  Rect.Top);    glVertex2f(0,     0);
-            glTexCoord2f(Rect.Left,  Rect.Bottom); glVertex2f(0,     Height);
-            glTexCoord2f(Rect.Right, Rect.Bottom); glVertex2f(Width, Height);
-            glTexCoord2f(Rect.Right, Rect.Top);    glVertex2f(Width, 0) ;
+            glTexCoord2f(Rect.Left,  Rect.Top);    glVertex2f(0,     _winHeight);
+            glTexCoord2f(Rect.Left,  Rect.Bottom); glVertex2f(0,     _winHeight  + Height);
+            glTexCoord2f(Rect.Right, Rect.Bottom); glVertex2f(Width, _winHeight  + Height);
+            glTexCoord2f(Rect.Right, Rect.Top);    glVertex2f(Width, _winHeight);
             glEnd();
         }
         else
@@ -86,5 +88,10 @@ namespace Rendering
             glVertex2f(Width, 0);
             glEnd();
         }
+    }
+
+    void ReversedSprite::setWindowsHeight(int winHeight)
+    {
+        _winHeight = winHeight;
     }
 }

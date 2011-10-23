@@ -9,80 +9,87 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "World.hpp"
+#include "ReversedSprite.hpp"
 
 
 using namespace SuperMarioProject;
+using namespace Rendering;
 using namespace sf;
 
 int main(int, char**)
 {
-	// Create the main window
-	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
-	App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+    // Create the main window
+    sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
+    App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
 
-	// Limit to 60 FPS
-	App.SetFramerateLimit(60);
+    // Limit to 60 FPS
+    App.SetFramerateLimit(60);
 
-	// Create world
-	World w(&App);
-	Level lvl;
-	lvl.loadLevel("levels/smb.xml");
-	Perso perso = Perso("small_mario", Vector2f(0, 0));
-	InputState input = InputState(&App);
+    // Create world
+    World w(&App);
+    Level lvl;
+    lvl.loadLevel("levels/smb.xml");
+    Perso perso = Perso("small_mario", Vector2f(0, 0));
+    InputState input = InputState(&App);
+    ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
 
-	//Block bloc = Block("speciaux\\incassables\\liquids\\poison");
-	//bloc.addNewBlockOccurrence(0);
+    //Block bloc = Block("speciaux\\incassables\\liquids\\poison");
+    //bloc.addNewBlockOccurrence(0);
 
-	try
-	{
-		// Start the game loop
-		while (App.IsOpened())
-		{
-			sf::Event Event;
-			// Static Events
-			while(App.GetEvent(Event)) 
-			{
-				switch(Event.Type)
-				{
-				case Event::Closed : 
-					App.Close();
-					break;
+    try
+    {
+        // Start the game loop
+        while (App.IsOpened())
+        {
+            sf::Event Event;
+            // Static Events
+            while(App.GetEvent(Event)) 
+            {
+                switch(Event.Type)
+                {
+                case Event::Closed : 
+                    App.Close();
+                    break;
 
-				case Event::KeyPressed : 
-					{
-						switch(Event.Key.Code)
-						{
-						case sf::Key::Escape :
-							App.Close();
-							break;
-						case sf::Key::F1 :
-							const sf::Image img = App.Capture();
-							img.SaveToFile("test.png");
-							break;
-						}
-					}
-					break;
-				}
-			}
+                case(Event::Resized):
+                    ReversedSprite::setWindowsHeight(Event.Size.Height);
+                    break;
 
-			App.Clear();
+                case Event::KeyPressed : 
+                    {
+                        switch(Event.Key.Code)
+                        {
+                        case sf::Key::Escape :
+                            App.Close();
+                            break;
+                        case sf::Key::F1 :
+                            const sf::Image img = App.Capture();
+                            img.SaveToFile("test.png");
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
 
-			// Update World
-			//background.update(App);
-			perso.updatePerso(App, input);
+            App.Clear();
 
-			// Draw World
-			//background.render(App);
-			perso.render(App);
+            // Update World
+            //background.update(App);
+            perso.updatePerso(App, input);
 
-			// Update the window
-			App.Display();
-		}
-	}
-	catch(exception e)
-	{
-		cout << e.what() << endl;
-	}
+            // Draw World
+            //background.render(App);
+            perso.render(App);
 
-	return EXIT_SUCCESS;
+            // Update the window
+            App.Display();
+        }
+    }
+    catch(exception e)
+    {
+        cout << e.what() << endl;
+    }
+
+    return EXIT_SUCCESS;
 }

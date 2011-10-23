@@ -28,9 +28,13 @@ namespace Rendering {
         void FlipX(bool Flipped);
         void FlipY(bool Flipped);
 
+        static void setWindowsHeight(int winHeight);
+
     private:
         bool _flippedX;
         bool _flippedY;
+
+        static int _winHeight;
     };
 }
 
