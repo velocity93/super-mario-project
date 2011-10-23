@@ -14,11 +14,8 @@
 using namespace SuperMarioProject;
 using namespace sf;
 
-int main(int argc, char* argv[])
+int main(int, char**)
 {
-	argc;
-	argv;
-
 	// Create the main window
 	sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 	App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));

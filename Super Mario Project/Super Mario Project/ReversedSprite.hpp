@@ -14,11 +14,24 @@
 
 namespace Rendering {
 
-	class ReversedSprite : public sf::Sprite
-	{
-	public:
-		void Render(sf::RenderTarget& Target) const;
-	};
+    class ReversedSprite : public sf::Sprite
+    {
+    public:
+        ReversedSprite();
+        explicit ReversedSprite(const sf::Image& Img, 
+            const sf::Vector2f& Position = sf::Vector2f(0, 0), 
+            const sf::Vector2f& Scale = sf::Vector2f(1, 1), 
+            float Rotation = 0.f, 
+            const sf::Color& Col = sf::Color(255, 255, 255, 255));
+
+        void Render(sf::RenderTarget& Target) const;
+        void FlipX(bool Flipped);
+        void FlipY(bool Flipped);
+
+    private:
+        bool _flippedX;
+        bool _flippedY;
+    };
 }
 
 #endif

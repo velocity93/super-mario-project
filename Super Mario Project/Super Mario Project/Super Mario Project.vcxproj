@@ -96,9 +96,6 @@
     <ClInclude Include="InputState.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
-    <ClInclude Include="level.h">
-      <DependentUpon>level.xsd</DependentUpon>
-    </ClInclude>
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Monster.hpp" />
     <ClInclude Include="MonsterOccurrence.hpp" />
@@ -113,11 +110,9 @@
     <ClInclude Include="ProjectileOccurrence.hpp" />
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
+    <ClInclude Include="ReversedSprite.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
-    <ClInclude Include="world.h">
-      <DependentUpon>world.xsd</DependentUpon>
-    </ClInclude>
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLParser.hpp" />
     <ClInclude Include="XMLWriter.hpp" />
@@ -152,6 +147,7 @@
     <ClCompile Include="ProjectileOccurrence.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ReversedSprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
