@@ -120,13 +120,10 @@
     <ClInclude Include="Block.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="world.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="XMLWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReversedSprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -231,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XMLWriter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReversedSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

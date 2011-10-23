@@ -13,9 +13,6 @@ namespace Rendering
     Texture::Texture(const string& name)
         : Resource(name)
     {
-        _image = sf::Image();
-        _sprite = sf::Sprite();
-
         /* Load texture */
 		
         if(!_image.LoadFromFile(name + ".png"))
