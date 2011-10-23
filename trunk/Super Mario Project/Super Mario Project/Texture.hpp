@@ -14,6 +14,7 @@
 #include <string>
 #include <iostream>
 #include "Resource.hpp"
+#include "ReversedSprite.hpp"
 
 using namespace std;
 using namespace sf;
@@ -28,7 +29,7 @@ namespace Rendering
 
 		/* getters and setters */
 		Image* getImage();
-		Sprite getSprite();
+        ReversedSprite getSprite();
 		void setSubRect(int left, int top, int right, int bottom);
 		void setPosition(float x, float y);
 
@@ -37,7 +38,7 @@ namespace Rendering
 		
     private:
 		Image _image;
-		Sprite _sprite;
+        ReversedSprite _sprite;
     };
 } // namespace
 

@@ -63,7 +63,7 @@ namespace Collisions
 		}
 		else
 		{
-			Sprite sprite = _texture->getSprite();
+            ReversedSprite sprite = _texture->getSprite();
 			sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
 			sprite.SetPosition(_position);
 			app.Draw(sprite);

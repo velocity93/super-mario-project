@@ -39,7 +39,7 @@ namespace Collisions
 
 	void Checkpoint::render(RenderWindow& app)
     {
-		Sprite sprite = _texture->getSprite();
+        ReversedSprite sprite = _texture->getSprite();
 		/*int right = _texture->getImage()->GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
 
 		if(_state == NOT_PASSED)

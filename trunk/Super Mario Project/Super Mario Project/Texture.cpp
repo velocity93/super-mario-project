@@ -33,7 +33,7 @@ namespace Rendering
         return &_image;
     }
 
-    Sprite Texture::getSprite()
+    ReversedSprite Texture::getSprite()
     {
         return _sprite;
     }
