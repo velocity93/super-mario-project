@@ -114,7 +114,7 @@ void Animation<T>::update(RenderWindow& app)
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY)
+void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX)
 {
 	int numState = (int)_currentState;
 	Vector2f spriteSize = Vector2f(
@@ -132,7 +132,8 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 			(numState + 1) * spriteSize.y));
 	}
 
-	sprite.FlipY(flipY);
+	sprite.FlipY(true);
+	sprite.FlipX(isFlipX);
 	sprite.SetPosition(position);
 
 	app.Draw(sprite);

@@ -16,13 +16,14 @@ using namespace std;
 
 namespace SuperMarioProject
 {
-	int tabs;
+	int XMLWriter::_tabs = 0;
+	
 	void XMLWriter::openElement(ofstream& file, const string& name)
 	{
-		for(int i = 0; i < tabs; i++)
+		for(int i = 0; i < _tabs; i++)
 			file << '\t';
 
-		tabs++;
+		_tabs++;
 		file << "<" << name;
 	}
 
@@ -34,9 +35,9 @@ namespace SuperMarioProject
 
 	void XMLWriter::closeElement(ofstream& file, const string& name)
 	{
-		tabs--;
+		_tabs--;
 
-		for(int i = 0; i < tabs; i++)
+		for(int i = 0; i < _tabs; i++)
 			file << '\t';
 
 		file << "</" << name << ">" << endl;
@@ -45,7 +46,7 @@ namespace SuperMarioProject
 
 	void XMLWriter::closeShortElement(ofstream& file)
 	{
-		tabs--;
+		_tabs--;
 
 		file << "/>" << endl;
 	}
@@ -67,7 +68,6 @@ namespace SuperMarioProject
 	void XMLWriter::saveLevel(const string& fileName, Level* level)
 	{
 		ofstream file(fileName.c_str());
-		tabs = 0;
 		
 		if(file)
 		{
@@ -288,6 +288,44 @@ namespace SuperMarioProject
 			{
 				closeShortElement(file);
 			}
+
+			/* Pipes */
+			openElement(file, "pipes");
+			if(level->getPipes().size() > 0)
+			{
+				endElement(file);
+				
+				for(vector<Pipe*>::iterator itPipe = level->getPipes().begin();
+					itPipe < level->getPipes().end(); ++itPipe)
+				{
+					
+					openElement(file, "pipe");
+					addAttribute(file, "img", "%s", (*itPipe)->getTexture()->mainName());
+					addAttribute(file, "sens", "%d", (*itPipe)->getDirection());
+					addAttribute(file, "length", "%d", (*itPipe)->getLenght());
+					addAttribute(file, "positionX", "%d", (*itPipe)->getPosition().x);
+					addAttribute(file, "positionY", "%d", (*itPipe)->getPosition().y);
+					addAttribute(file, "state", "%d", (*itPipe)->getState());
+					addAttribute(file, "destination_pipe", "%d",  (*itPipe)->getPipeDestination());
+					addAttribute(file, "level_destination", "%s", (*itPipe)->getLevelDestination());
+
+					//addAttribute(file, "monster", "%d", get);
+
+					closeShortElement(file);
+				}
+				closeElement(file, "pipes");
+			}
+			else
+			{
+				closeShortElement(file);
+			}
+
+
+
+
+
+
+
 		}
 		else
 		{

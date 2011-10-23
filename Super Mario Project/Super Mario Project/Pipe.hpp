@@ -63,6 +63,7 @@ namespace Collisions
 		int getLenght();
 		int getState();
 		string& getLevelDestination();
+		int getPipeDestination();
 		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);

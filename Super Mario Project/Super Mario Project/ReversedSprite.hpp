@@ -24,7 +24,8 @@ namespace Rendering {
             float Rotation = 0.f, 
             const sf::Color& Col = sf::Color(255, 255, 255, 255));
 
-        void Render(sf::RenderTarget& Target) const;
+        void Render(sf::RenderTarget&) const;
+		void Render(sf::RenderTarget& target, sf::View& view);
         void FlipX(bool Flipped);
         void FlipY(bool Flipped);
 

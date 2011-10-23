@@ -31,6 +31,11 @@ namespace Collisions
 		return _levelDestination;
 	}
 
+	int Pipe::getPipeDestination()
+	{
+		return _indexDestination;
+	}
+
 	Monster* Pipe::getMonster()
 	{
 		return _monster;
