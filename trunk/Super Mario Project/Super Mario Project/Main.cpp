@@ -29,12 +29,13 @@ int main(int, char**)
     World w(&App);
     Level lvl;
     lvl.loadLevel("levels/smb.xml");
-    Perso perso = Perso("small_mario", Vector2f(0, 0));
+    Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);
     ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
 
-    //Block bloc = Block("speciaux\\incassables\\liquids\\poison");
-    //bloc.addNewBlockOccurrence(0);
+	/*Block bloc = Block("speciaux\\incassables\\liquids\\poison");
+	bloc.addNewBlockOccurrence(0);*/
+
 
     try
     {

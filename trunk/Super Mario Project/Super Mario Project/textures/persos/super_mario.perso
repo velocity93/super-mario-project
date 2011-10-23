@@ -15,6 +15,7 @@ nb_sprites_climb_ladder=2
 nb_sprites_standing_shell=1
 nb_sprites_walk_shell=3
 nb_sprites_push_shell=1
+nb_sprites_jump_shell=1
 nb_sprites_lowered_shell=1
 nb_sprites_look_top_shell=1
 nb_sprites_win=1
