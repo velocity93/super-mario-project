@@ -12,7 +12,7 @@
 
 namespace Collisions
 {
-	Tileset::Tileset(const string& textureName, Vector2i blocSize) : Resource("textures\\blocs\\" + textureName)
+	Tileset::Tileset(const string& textureName, Vector2i blocSize) : Resource("textures/blocs/" + textureName)
 	{
 		loadConfiguration(textureName);
 	}
@@ -30,18 +30,18 @@ namespace Collisions
 	void Tileset::loadConfiguration(const string& textureName)
 	{
 		/* Build cfg file path */
-		string fileName = "textures\\blocs\\";
+		string fileName = "textures/blocs/";
 		string buffer = textureName;
-		while(buffer.find_first_of("\\") != string::npos)
+		while(buffer.find_first_of("/") != string::npos)
 		{
 
-			fileName += buffer.substr(0, buffer.find_first_of("\\"));
-			buffer = buffer.substr(buffer.find_first_of("\\") + 1, buffer.length());
+			fileName += buffer.substr(0, buffer.find_first_of("/"));
+			buffer = buffer.substr(buffer.find_first_of("/") + 1, buffer.length());
 
-			if(buffer.find_first_of("\\") != string::npos)
-				fileName += "\\";
+			if(buffer.find_first_of("/") != string::npos)
+				fileName += "/";
 			else
-				fileName += fileName.substr(fileName.find_last_of("\\"), fileName.length()); 
+				fileName += fileName.substr(fileName.find_last_of("/"), fileName.length()); 
 		}
 
 		fileName += ".cfg";
@@ -56,6 +56,9 @@ namespace Collisions
 			stream >> _nbSprites.y;
 			stream >> _nbSprites.x;
 
+			/* Frame delay */
+			stream >> _frameDelay;
+
 			for(int i = 0; i < _nbSprites.x * _nbSprites.y; ++i)
 			{
 				/* If we have only one line, then we have only one block 
@@ -66,9 +69,6 @@ namespace Collisions
 
 				_physics.push_back(phys);
 			}
-
-			/* Frame delay */
-			stream >> _frameDelay;
 		}
 		else
 		{

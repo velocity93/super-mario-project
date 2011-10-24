@@ -161,6 +161,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ResourceManager.inl" />
+    <None Include="textures\blocs\classiques\classiques.cfg" />
+    <None Include="textures\blocs\classiques\grass.png" />
+    <None Include="textures\blocs\classiques\snow.png" />
+    <None Include="textures\blocs\classiques\underground.png" />
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg" />
+    <None Include="textures\blocs\speciaux\cassables\overworld.png" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg" />
     <None Include="worlds\world1.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

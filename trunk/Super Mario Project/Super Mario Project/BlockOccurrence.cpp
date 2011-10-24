@@ -24,6 +24,10 @@ namespace Collisions
 		: EntityMovable(textureName, position, speed, side),
 		_state(state)
     {
+		/* initialize pointer to models */
+		_actualBlock = actual;
+		_alternativeBlock = alternative;
+
 		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
 
 		/* Compute blocs coords into the texture */
@@ -32,10 +36,6 @@ namespace Collisions
 
 		_coordSprite.y = (physicIndex / nbSprites.x) * _size.y;
 		_coordSprite.x = (physicIndex % nbSprites.x) * _size.x;
-
-		/* initialize pointer to models */
-		_actualBlock = actual;
-		_alternativeBlock = alternative;
 
 		/* Animation */
 		if(_actualBlock->getTileset()->getFrameDelay() > 0)
