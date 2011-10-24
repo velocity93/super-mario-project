@@ -33,71 +33,70 @@ namespace SuperMarioProject
     class Level
     {
     public:
-        Level() : _name(""), _musicTitle(""), _size(Vector2i()), _spawn(Vector2i()),
-			_checkpoints(vector<Checkpoint*>()), _projectiles(vector<Projectile*>()),
-			_monsters(vector<Monster*>()), _pipes(vector<Pipe*>()), _foregrounds(vector<Foreground*>()),
-			_finishes(vector<Finish*>()), _backgrounds(vector<Background*>())
-		{ }
+		Level() { }
 
 		/* Level Name */
-		string getName();
+		string& getName();
 
 		/* Level Music title */
-		string getMusicTitle();
+		string& getMusicTitle();
 
 		/* Level Spawn */
-		Vector2i getSpawn();
+		Vector2i& getSpawn();
 
 		/* Size of level */
-		Vector2i getSize();
+		Vector2i& getSize();
 
 		/* Size of each block */
-		Vector2i getBlockSize();
+		Vector2i& getBlockSize();
 
 		/* All objects */
-		vector<Object*> getObjects();
+		vector<Object*>& getObjects();
 
 		/* All Checkpoints */
-		vector<Checkpoint*> getCheckpoints();
+		vector<Checkpoint*>& getCheckpoints();
 
 		/* All Projectiles */
-		vector<Projectile*> getProjectiles();
+		vector<Projectile*>& getProjectiles();
 
 		/* All monsters */
-		vector<Monster*> getMonsters();
+		vector<Monster*>& getMonsters();
 
 		/* All pipes */
-		vector<Pipe*> getPipes();
+		vector<Pipe*>& getPipes();
 
 		/* All items */
-		vector<Item*> getItems();
+		vector<Item*>& getItems();
 
 		/* All blocks */
-		vector<Block*> getBlock();
+		vector<Block*>& getBlock();
 
 		/* All backgrounds */
-		vector<Background*> getBackgrounds();
+		vector<Background*>& getBackgrounds();
 
 		/* All foregrounds */
-		vector<Foreground*> getForegrounds();
+		vector<Foreground*>& getForegrounds();
 
 		/* All finishes */
-		vector<Finish*> getFinishes();
+		vector<Finish*>& getFinishes();
 
 		/* All Tilesets */
-		vector<Tileset*> getTilesets();
+		vector<Tileset*>& getTilesets();
 
 		/* Set spawn coord */
-		void setSpawn(int x, int y);
+		void setSpawnX(int x);
 
-		/* Set block size */
-		void setBlockSize(int x, int y);
+		/* Set spawn coord */
+		void setSpawnY(int y);
 
 		/* Set Level name */
 		void setName(string name);
 
-		/* Set Level size */
-		void setSize(int x, int y);
+		/* Set Level width */
+		void setWidth(int width);
+
+		/* Set Level height */
+		void setHeight(int height);
 
 		/* Set level music */
 		void setMusicTitle(string title);

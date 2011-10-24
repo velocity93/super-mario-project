@@ -29,7 +29,7 @@ namespace Rendering
 
 		/* getters and setters */
 		Image* getImage();
-        ReversedSprite getSprite();
+        ReversedSprite& getSprite();
 		void setSubRect(int left, int top, int right, int bottom);
 		void setPosition(float x, float y);
 

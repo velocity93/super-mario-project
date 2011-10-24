@@ -12,9 +12,7 @@
 
 namespace Collisions
 {
-	Tileset::Tileset(const string& textureName) : Resource("textures\\blocs\\" + textureName),
-		_nbSprites(Vector2i()),
-		_frameDelay(0)
+	Tileset::Tileset(const string& textureName, Vector2i blocSize) : Resource("textures\\blocs\\" + textureName)
 	{
 		loadConfiguration(textureName);
 	}
@@ -24,7 +22,7 @@ namespace Collisions
 		return _frameDelay;
 	}
 
-	Vector2i Tileset::getNbSprites()
+	Vector2i& Tileset::getNbSprites()
 	{
 		return _nbSprites;
 	}

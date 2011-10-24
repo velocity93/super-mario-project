@@ -120,7 +120,7 @@ namespace Collisions
 		Environment getEnvironment();
 		Transformations getTransformation();
 		bool getCanClimb();
-		Vector2f getAcceleration();
+		Vector2f& getAcceleration();
 		MonsterOccurrence* getBroughtMonster();
 		Pipe* getInsidePipe();
 		Checkpoint* getCheckPointPassed();

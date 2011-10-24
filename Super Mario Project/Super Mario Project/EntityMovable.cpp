@@ -10,12 +10,12 @@
 
 namespace Collisions
 {
-	Vector2f EntityMovable::getPreviousPosition()
+	Vector2f& EntityMovable::getPreviousPosition()
 	{
 		return _previousPosition;
 	}
 
-	Vector2f EntityMovable::getSpeed()
+	Vector2f& EntityMovable::getSpeed()
 	{
 		return _speed;
 	}

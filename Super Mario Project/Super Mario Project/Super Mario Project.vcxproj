@@ -161,17 +161,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ResourceManager.inl" />
-    <None Include="textures\persos\fire_mario.perso" />
-    <None Include="textures\persos\fire_mario.png" />
-    <None Include="textures\persos\small_mario.perso" />
-    <None Include="textures\persos\small_mario.png" />
-    <None Include="textures\persos\super_mario.perso" />
-    <None Include="textures\persos\super_mario.png" />
     <None Include="worlds\world1.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Xsd Include="levels\level.xsd" />
-    <Xsd Include="worlds\world.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

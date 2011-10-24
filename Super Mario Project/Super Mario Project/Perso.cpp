@@ -67,7 +67,7 @@ namespace Collisions
 		return _canClimb;
 	}
 
-	Vector2f Perso::getAcceleration()
+	Vector2f& Perso::getAcceleration()
 	{
 		return _acceleration;
 	}
@@ -229,12 +229,16 @@ namespace Collisions
 		_previousPosition = _position;
 
 		/* Compute new position */
-		if(_position.y + _hitboxSize.y >= 0) // Bidouillage
-			this->setPosition(_position.x + app.GetFrameTime() * _speed.x, 
-			_position.y + app.GetFrameTime() * _speed.y);
+		if(_position.y + _hitboxSize.y >= 0)
+		{// Bidouillage
+			_position.x = _position.x + app.GetFrameTime() * _speed.x;
+			_position.y = _position.y + app.GetFrameTime() * _speed.y;
+		}
 		else
-			this->setPosition(_position.x + app.GetFrameTime() * _speed.x, 
-							_hitboxSize.y);
+		{
+			_position.x = _position.x + app.GetFrameTime() * _speed.x;
+			_position.y = _hitboxSize.y;
+		}
 
 		/* Update animation */
 		_animation.update(app);

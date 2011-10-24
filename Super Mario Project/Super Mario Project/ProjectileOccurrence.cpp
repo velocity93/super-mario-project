@@ -70,8 +70,8 @@ namespace Collisions
 		_previousPosition = _position;
 
 		/* Compute new position */
-		this->setPosition(_position.x + _speed.x * app.GetFrameTime(), 
-			_position.y + _speed.x * app.GetFrameTime());
+		this->setPositionX(_position.x + _speed.x * app.GetFrameTime());
+		this->setPositionY(_position.y + _speed.x * app.GetFrameTime());
 	}
 
 	void ProjectileOccurrence::render(RenderWindow& app)

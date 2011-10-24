@@ -31,7 +31,7 @@ namespace Collisions
 		Door(const string& textureName, Vector2f position, int indexDestination, const string& levelDestination, State state);
 		/* getters and setters */
 		int getIndexDestination();
-		string getLevelDestination();
+		string& getLevelDestination();
 		State getState();
 		void setIndexDestination(int indexDestination);
 		void setLevelDestination(const string& levelDestination);

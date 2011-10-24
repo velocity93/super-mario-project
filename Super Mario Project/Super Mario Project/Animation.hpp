@@ -26,8 +26,7 @@ namespace Rendering
     {
 	public:
 		/* Constructor */
-		Animation() : _nbSpritesByState(map<T, int>()), _frameDelayByState(map<T, int>()), 
-			_frameNumber(0), _clock(PausableClock()) 
+		Animation()
 		{
 			_clock.Start();
 		}
@@ -51,7 +50,7 @@ namespace Rendering
 		map<T, int> _frameDelayByState;
 		T _currentState;
 		int _frameNumber;
-		PausableClock _clock;
+		SuperMarioProject::PausableClock _clock;
 
 		/* Get nbSprites for currentState */
 		int getNbSpritesForCurrentState();

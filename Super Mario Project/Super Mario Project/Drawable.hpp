@@ -50,9 +50,10 @@ namespace Rendering
 		Drawable(const string& textureName,Vector2f& position);
 
 		/* getters and setters */
-		Vector2f getPosition();
+		Vector2f& getPosition();
 		Texture* getTexture();
-		void setPosition(float x, float y);
+		void setPositionX(float x);
+		void setPositionY(float y);
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */

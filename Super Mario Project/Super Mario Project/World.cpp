@@ -13,26 +13,12 @@
 
 namespace SuperMarioProject
 {
-	World::World(const Window* window) :
-		_levelNames(vector<string>()),
-		_persos(vector<Perso*>()),
-		_windowSize(Vector2i()),
-		_fpsTime(0),
-		_actualTime(0),
-		_previousTime(0),
-		_elapsedTime(0),
-		_previousElapsedTime(0),
-		_fps(0),
-		_nbFramesCalculated(0),
-		_clock(Clock()),
-		_level(new Level()),
-		_inputState(InputState(window))
+	World::World(const Window* window) : _inputState(InputState(window))
 		{
+			loadWorld();
 
-		loadWorld();
-		
-		/* Add default perso */
-		_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
+			/* Add default perso */
+			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()
