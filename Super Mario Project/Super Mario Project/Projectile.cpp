@@ -13,7 +13,7 @@
 namespace Collisions
 {
     Projectile::Projectile(const string& textureName, Type type)
-        : Resource("textures\\projectiles\\" + textureName),
+        : Resource("textures/projectiles/" + textureName),
         _type(type), _initialSpeed(Vector2f())
     {
         loadProjectile();

@@ -13,7 +13,7 @@
 namespace Collisions
 {
     Monster::Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn) 
-        : Resource("textures\\monsters\\" + textureName),
+        : Resource("textures/monsters/" + textureName),
         _canBeKilledByFire(canBeKilledByFire),
         _canBeKilledByJump(canBeKilledByJump),
         _canBeJumpedOn(canBeJumpedOn),

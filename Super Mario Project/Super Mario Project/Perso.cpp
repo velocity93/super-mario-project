@@ -16,8 +16,8 @@ using namespace SuperMarioProject;
 
 namespace Collisions
 {
-	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable("textures\\persos\\" + textureName, position),
-		_textureName("textures\\persos\\" + textureName),
+	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable("textures/persos/" + textureName, position),
+		_textureName("textures/persos/" + textureName),
 		_environment(GROUND), 
 		_transformation(FIRE_MARIO), 
 		_state(SPECIAL_ATTACK),

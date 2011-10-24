@@ -10,6 +10,7 @@
 #include <SFML/Window.hpp>
 #include "World.hpp"
 #include "ReversedSprite.hpp"
+#include "Tileset.hpp"
 
 
 using namespace SuperMarioProject;
@@ -26,15 +27,16 @@ int main(int, char**)
     App.SetFramerateLimit(60);
 
     // Create world
-    World w(&App);
-    Level lvl;
-    lvl.loadLevel("levels/smb.xml");
+    /*Level lvl;
+    lvl.loadLevel("levels/smb.xml");*/
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);
     ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
 
-	/*Block bloc = Block("speciaux\\incassables\\liquids\\poison");
-	bloc.addNewBlockOccurrence(0);*/
+	Tileset tileset = Tileset("classiques/grass", Vector2i(32, 32));
+	Block block = Block(&tileset, 0, 0);
+	Block block2 = Block(&tileset, 1, 0);
+	block.addNewBlockOccurrence(&block2);
 
 
     try
@@ -77,11 +79,13 @@ int main(int, char**)
 
             // Update World
             //background.update(App);
-            perso.updatePerso(App, input);
+            //perso.updatePerso(App, input);
+			block.update(App);
 
             // Draw World
             //background.render(App);
-            perso.render(App);
+            //perso.render(App);
+			block.render(App);
 
             // Update the window
             App.Display();

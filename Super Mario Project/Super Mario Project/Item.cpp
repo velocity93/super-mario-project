@@ -13,7 +13,7 @@
 namespace Collisions
 {
     Item::Item(const string& textureName, Type type, int submission)
-        : Resource("textures\\items\\" + textureName),
+        : Resource("textures/items/" + textureName),
         _type(type),
         _submission(submission),
 		_nbSpritesByState(map<ItemOccurrence::State, int>())
