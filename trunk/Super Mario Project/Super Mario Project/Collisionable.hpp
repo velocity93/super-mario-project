@@ -24,8 +24,8 @@ namespace Collisions
 		Collisionable(const string& textureName,Vector2f& position) : Drawable(textureName, position), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
 
 		/* */
-		Vector2f getHitboxPosition();
-		Vector2i getHitboxSize();
+		Vector2f& getHitboxPosition();
+		Vector2i& getHitboxSize();
 
 		/* Destructors */
         virtual ~Collisionable();

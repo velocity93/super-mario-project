@@ -248,31 +248,5 @@
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\fire_mario.perso">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\fire_mario.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.perso">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.perso">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.png">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xsd Include="worlds\world.xsd">
-      <Filter>Resource Files</Filter>
-    </Xsd>
-    <Xsd Include="levels\level.xsd">
-      <Filter>Resource Files</Filter>
-    </Xsd>
   </ItemGroup>
 </Project>

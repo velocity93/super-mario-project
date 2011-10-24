@@ -63,8 +63,8 @@ namespace Collisions
 			_previousPosition = _position;
 
 			/* Compute new position */
-			this->setPosition(_position.x + _speed.x * app.GetFrameTime(), 
-				_position.y + _speed.y * app.GetFrameTime());
+			_position.x = _position.x + _speed.x * app.GetFrameTime(); 
+			_position.y = _position.y + _speed.y * app.GetFrameTime();
 		}
 
 		_animation.update(app);

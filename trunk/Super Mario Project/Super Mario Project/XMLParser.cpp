@@ -30,128 +30,331 @@ namespace XMLParsing
 
 	void level_tag(Level * level, const char **attrs)
 	{
-		/* Name and size */
-		for(int i = 0; i < 8; i = i+2)
+		for(int i = 0; i < 8; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "name"))
 			{
 				level->setName(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "width"))
+			{
+				level->setWidth(atoi(attrs[i + 1]));
+			}
+			else if(!strcmp(attrs[i], "height"))
+			{
+				level->setHeight(atoi(attrs[i + 1]));
 			}
 			else if(!strcmp(attrs[i], "music"))
 			{
 				level->setMusicTitle(attrs[i + 1]);
 			}
 		}
-		//level->setName(attrs[1]);
-		//level->setSize(atoi(attrs[3]), atoi(attrs[5]));
-
-		///* Music */
-		//level->setMusicTitle(attrs[7]);
 	}
 
 	void spawn_tag(Level * level, const char **attrs)
 	{
-		level->setSpawn(atoi(attrs[1]), atoi(attrs[3]));
+		for(int i = 0; i < 4; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				level->setSpawnX(atoi(attrs[i + 1]));
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				level->setSpawnY(atoi(attrs[i + 1]));
+			}
+		}
 	}
 
 	void checkpoint_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
-		level->addCheckpoint(new Checkpoint(attrs[1], position, Checkpoint::State::NOT_PASSED));
+		Vector2f position;
+		string img = "";
+
+		for(int i = 0; i < 6; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+		level->addCheckpoint(new Checkpoint(img, position, Checkpoint::State::NOT_PASSED));
 	}
 
 	void background_tag(Level * level, const char **attrs)
 	{
 		//Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		//level->addBackground(new Background(attrs[1], position));
-		level->addBackground(new Background(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+		level->addBackground(new Background(img));
 	}
 
 	void foreground_tag(Level * level, const char **attrs)
 	{
-		level->addForeground(new Foreground(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addForeground(new Foreground(img));
 	}
 
 	void object_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
-		level->addObject(new Object(attrs[1], position));
+		Vector2f position;
+		string img = "";
+
+		for(int i = 0; i < 6; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addObject(new Object(img, position));
 	}
 
 	void finish_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
-		level->addFinish(new Finish(attrs[1], position));
+		Vector2f position;
+		string img = "";
+
+		for(int i = 0; i < 6; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addFinish(new Finish(img, position));
 	}
 
 	void projectile_tag(Level * level, const char **attrs)
 	{
-		level->addProjectile(new Projectile(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+		level->addProjectile(new Projectile(img));
 	}
 
 	void item_tag(Level * level, const char **attrs)
 	{
-		level->addItem(new Item(attrs[1], (Item::Type)atoi(attrs[3])));
+		string img = "";
+		Item::Type type = Item::Type::COIN;
+
+		for(int i = 0; i < 4; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+			else if(!strcmp(attrs[i], "type"))
+			{
+				type = (Item::Type)atoi(attrs[i + 1]);
+			}
+		}
+		level->addItem(new Item(img, type));
 		id_item++;
 	}
 
 	void occ_item_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[1]), atoi(attrs[3]));
+		Vector2f position;
+
+		for(int i = 0; i < 4; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+		}
+
 		level->getItems()[id_item - 1]->addNewItemOccurrence(position);
 	}
 
 	void walking_monster_tag(Level * level, const char **attrs)
 	{
-		level->addMonster(new WalkingMonster(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "name"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addMonster(new WalkingMonster(img));
 		id_monster++;
 	}
 
 	void shell_monster_tag(Level * level, const char **attrs)
 	{
-		level->addMonster(new ShellMonster(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "name"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addMonster(new ShellMonster(img));
 		id_monster++;
 	}
 
 	void flying_monster_tag(Level * level, const char **attrs)
 	{
-		level->addMonster(new FlyingMonster(attrs[1]));
+		string img = "";
+
+		for(int i = 0; i < 2; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+
+		level->addMonster(new FlyingMonster(img));
 		id_monster++;
 	}
 
 	void occ_monster_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[1]), atoi(attrs[3]));
+		Vector2f position;
+
+		for(int i = 0; i < 4; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+		}
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);
 	}
 
 	void pipe_tag(Level * level, const char **attrs)
 	{
-		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
-		int index_monster = atoi(attrs[15]);
+		Vector2f position;
+		string img = "", level_destination = "";
+		int index_monster = -1;
+		int id_PipeDestination = -1;
+		int length = 1;
+		Pipe::State state = Pipe::State::CLOSED;
+		Pipe::Direction direction = Pipe::Direction::TO_TOP;
+
+		for(int i = 0; i < 16; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+			else if(!strcmp(attrs[i], "destination_pipe"))
+			{
+				id_PipeDestination = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "level_destination"))
+			{
+				level_destination = attrs[i + 1];
+			}
+			else if(!strcmp(attrs[i], "length"))
+			{
+				length = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "direction"))
+			{
+				direction = (Pipe::Direction)atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "monster"))
+			{
+				index_monster = atoi(attrs[i + 1]);
+			}
+		}
 
 		if(index_monster >= 0)
 		{
 			level->addPipe(new Pipe(
-				attrs[1],
+				img,
 				position,
-				atoi(attrs[5]),
-				attrs[7],
-				(Pipe::State)atoi(attrs[9]),
-				atoi(attrs[11]),
-				(Pipe::Direction)atoi(attrs[13]),
+				id_PipeDestination,
+				level_destination,
+				state,
+				length,
+				direction,
 				level->getMonsters()[index_monster]));
 		}
 		else
 		{
 			level->addPipe(new Pipe(
-				attrs[1],
+				img,
 				position,
-				atoi(attrs[5]),
-				attrs[7],
-				(Pipe::State)atoi(attrs[9]),
-				atoi(attrs[11]),
-				(Pipe::Direction)atoi(attrs[13]),
+				id_PipeDestination,
+				level_destination,
+				state,
+				length,
+				direction,
 				nullptr));
 		}
 	}
@@ -159,25 +362,83 @@ namespace XMLParsing
 	// <tileset img="nomTexture.png" size="x:y">
 	void tileset_tag(Level * level, const char **attrs)
 	{
-		Tileset* tileset = new Tileset(attrs[1]);
+		string img = "";
+		Vector2i size;
+
+		for(int i = 0; i < 6; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "blocSizeX"))
+			{
+				size.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "blocSizeY"))
+			{
+				size.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "img"))
+			{
+				img = attrs[i + 1];
+			}
+		}
+		Tileset* tileset = new Tileset(img, size);
 		level->addTileset(tileset);
-		Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		id_tileset++;
 	}
 
 	// <block physIndex="" />
 	void block_tag(Level * level, const char **attrs)
 	{
-		Block* block = new Block(level->getTilesets()[id_tileset - 1], atoi(attrs[1]), atoi(attrs[3]));
+		int physicIndex = 0;
+		int type = 0;
+
+		for(int i = 0; i < 4; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "physicIndex"))
+			{
+				physicIndex = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "type"))
+			{
+				type = atoi(attrs[i + 1]);
+			}
+		}
+
+		Block* block = new Block(level->getTilesets()[id_tileset - 1], physicIndex, type);
 		level->addBlock(block);
 	}
 
 	//<occ_block actualModel="" alternativeModel="" pos="x:y"/>
 	void occ_blocks_tag(Level* level, const char** attrs)
 	{
-		Vector2f position(atoi(attrs[5]), atoi(attrs[7]));
-		Block* model = level->getBlock()[atoi(attrs[1])];
-		model->addNewBlockOccurrence(level->getBlock()[atoi(attrs[3])], position);
+		Vector2f position;
+		int id_model, id_alternative, id_item;
+
+		for(int i = 0; i < 10; i = i + 2)
+		{
+			if(!strcmp(attrs[i], "positionX"))
+			{
+				position.x = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "positionY"))
+			{
+				position.y = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "actual"))
+			{
+				id_model = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "alt"))
+			{
+				id_alternative = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "item"))
+			{
+				id_item = atoi(attrs[i + 1]);
+			}
+		}
+		Block* model = level->getBlock()[id_model];
+		if(model != nullptr)
+			model->addNewBlockOccurrence(level->getBlock()[id_alternative], position);
 	}
 
 	void error(void * ctx, const char * msg, ...)

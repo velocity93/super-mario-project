@@ -33,14 +33,19 @@ namespace Rendering
 		return _texture;
 	}
 
-	Vector2f Drawable::getPosition()
+	Vector2f& Drawable::getPosition()
 	{
 		return _position;
 	}
 
-	void Drawable::setPosition(float x, float y)
+	void Drawable::setPositionX(float x)
 	{
-		_position = Vector2f(x, y);
+		_position.x = x;
+	}
+
+	void Drawable::setPositionY(float y)
+	{
+		_position.y = y;
 	}
 
 	Drawable::~Drawable()

@@ -11,82 +11,82 @@
 
 namespace SuperMarioProject
 {
-	string Level::getName()
+	string& Level::getName()
 	{
 		return _name;
 	}
 
-	string Level::getMusicTitle()
+	string& Level::getMusicTitle()
 	{
-		return "";
+		return _musicTitle;
 	}
 
-	Vector2i Level::getSpawn()
+	Vector2i& Level::getSpawn()
 	{
 		return _spawn;
 	}
 
-	Vector2i Level::getSize()
+	Vector2i& Level::getSize()
 	{
 		return _size;
 	}
 
-	Vector2i Level::getBlockSize()
+	Vector2i& Level::getBlockSize()
 	{
 		return _blockSize;
 	}
 
-	vector<Object*> Level::getObjects()
+	vector<Object*>& Level::getObjects()
 	{
 		return _objects;
 	}
 
-	vector<Checkpoint*> Level::getCheckpoints()
+	vector<Checkpoint*>& Level::getCheckpoints()
 	{
 		return _checkpoints;
 	}
 
-	vector<Projectile*> Level::getProjectiles()
+	vector<Projectile*>& Level::getProjectiles()
 	{
 		return _projectiles;
 	}
 
-	vector<Monster*> Level::getMonsters()
+	vector<Monster*>& Level::getMonsters()
 	{
 		return _monsters;
 	}
 
-	vector<Pipe*> Level::getPipes()
+	vector<Pipe*>& Level::getPipes()
 	{
 		return _pipes;
 	}
 
-	vector<Item*> Level::getItems()
+	vector<Item*>& Level::getItems()
 	{
 		return _items;
 	}
 
-	vector<Block*> Level::getBlock()
+	vector<Block*>& Level::getBlock()
 	{
 		return _blocks;
 	}
 
-	vector<Background*> Level::getBackgrounds()
+	vector<Background*>& Level::getBackgrounds()
 	{
 		return _backgrounds;
 	}
 
-	vector<Foreground*> Level::getForegrounds()
+	vector<Foreground*>& Level::getForegrounds()
 	{
 		return _foregrounds;
 	}
 
-	vector<Finish*> Level::getFinishes()
+	vector<Finish*>& Level::getFinishes()
 	{
 		return _finishes;
 	}
 
-	vector<Tileset*> Level::getTilesets()
+	vector<Tileset*>& Level::getTilesets()
 	{
 		return _tilesets;
 	}
@@ -96,22 +96,24 @@ namespace SuperMarioProject
 		_name = name;
 	}
 
-	void Level::setSpawn(int x, int y)
+	void Level::setSpawnX(int x)
 	{
 		_spawn.x = x;
+	}
+
+	void Level::setSpawnY(int y)
+	{
 		_spawn.y = y;
 	}
 
-	void Level::setSize(int x, int y)
+	void Level::setWidth(int width)
 	{
-		_size.x = x;
-		_size.y = y;
+		_size.x = width;
 	}
 
-	void Level::setBlockSize(int x, int y)
+	void Level::setHeight(int height)
 	{
-		_blockSize.x = x;
-		_blockSize.y = y;
+		_size.y = height;
 	}
 
 	void Level::setMusicTitle(string title)

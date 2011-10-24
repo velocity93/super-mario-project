@@ -23,9 +23,9 @@ namespace Collisions
 	class Tileset : public SuperMarioProject::Resource
 	{
 	public :
-		Tileset(const string& textureName);
+		Tileset(const string& textureName, Vector2i blocSize);
 
-		Vector2i getNbSprites();
+		Vector2i& getNbSprites();
 		int getFrameDelay();
 
 		virtual ~Tileset();

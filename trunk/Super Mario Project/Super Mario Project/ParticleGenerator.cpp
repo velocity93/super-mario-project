@@ -10,7 +10,7 @@
 
 namespace Collisions
 {
-	Vector2i ParticleGenerator::getParticleSize()
+	Vector2i& ParticleGenerator::getParticleSize()
 	{
 		return _particleSize;
 	}
@@ -30,12 +30,12 @@ namespace Collisions
 		return _hasGravity;
 	}
 
-	Color ParticleGenerator::getStartColor()
+	Color& ParticleGenerator::getStartColor()
 	{
 		return _startColor;
 	}
 
-	Color ParticleGenerator::getEndColor()
+	Color& ParticleGenerator::getEndColor()
 	{
 		return _endColor;
 	}

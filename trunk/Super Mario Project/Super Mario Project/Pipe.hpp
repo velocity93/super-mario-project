@@ -21,19 +21,19 @@ namespace Collisions
     {
 
 	public:
-		typedef enum 
+		typedef enum State
 		{
 			OPEN,
 			CLOSED
 		} State;
 
-		enum Direction
+		typedef enum Direction
 		{
 			TO_TOP,
 			TO_LEFT,
 			TO_RIGHT,
 			TO_BOTTOM
-		};
+		}Direction;
     
 		/* Constructors */
 		Pipe(const string& textureName) : Collisionable("textures/pipes/" + textureName),

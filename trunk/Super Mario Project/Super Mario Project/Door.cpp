@@ -31,7 +31,7 @@ namespace Collisions
 		return _indexDestination;
 	}
 
-	string Door::getLevelDestination()
+	string& Door::getLevelDestination()
 	{
 		return _levelDestination;
 	}

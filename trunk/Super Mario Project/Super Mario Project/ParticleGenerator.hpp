@@ -28,12 +28,12 @@ namespace Collisions
 			_eTBeforeCreatingParticles(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1) { }
 
 		/* getters and setters */
-		Vector2i getParticleSize();
+		Vector2i& getParticleSize();
 		int getNbMaxParticles();
 		int getFlow();
 		bool getHasGravity();
-		Color getStartColor();
-		Color getEndColor();
+		Color& getStartColor();
+		Color& getEndColor();
 		void setParticleSize(Vector2i& particleSize);
 		void setNbMaxParticles(int nbMaxParticles);
 		void setFlow(int flow);

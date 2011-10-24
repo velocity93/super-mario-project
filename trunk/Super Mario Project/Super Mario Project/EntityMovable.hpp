@@ -49,8 +49,8 @@ namespace Collisions
 			_side(side) { }
 
 		/* getters and setters */
-		Vector2f getPreviousPosition();
-		Vector2f getSpeed();
+		Vector2f& getPreviousPosition();
+		Vector2f& getSpeed();
 		Side getSide();
 		void setSpeed(const Vector2f& speed);
 		void setSide(const Side &side);
