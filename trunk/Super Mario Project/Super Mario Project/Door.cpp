@@ -46,9 +46,9 @@ namespace Collisions
 		_state = state;
 	}
 
-	void Door::update(RenderWindow& app)
+	void Door::update(RenderWindow&)
 	{
-		_animation.update(app);
+		_animation.update();
 	}
 
 	void Door::render(RenderWindow& app)

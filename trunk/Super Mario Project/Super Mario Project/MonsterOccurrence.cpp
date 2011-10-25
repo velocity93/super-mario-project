@@ -67,7 +67,7 @@ namespace Collisions
 			_position.y = _position.y + _speed.y * app.GetFrameTime();
 		}
 
-		_animation.update(app);
+		_animation.update();
 	}
 
 	void MonsterOccurrence::render(RenderWindow& app)

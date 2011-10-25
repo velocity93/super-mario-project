@@ -20,7 +20,7 @@ namespace Collisions
 	void Particle::update(RenderWindow& app)
 	{
 		update(app.GetFrameTime(), false);
-		_animation.update(app);
+		_animation.update();
 	}
 
 	void Particle::update(float time, bool hasGravity)

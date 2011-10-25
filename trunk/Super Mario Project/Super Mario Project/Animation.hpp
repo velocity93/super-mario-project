@@ -42,7 +42,7 @@ namespace Rendering
 		void addFrameDelayForGivenState(T state, int frameDelay);
 
 		/* Drawing */
-		void update(RenderWindow& app);
+		void update();
 		void render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY);
 
 	private:

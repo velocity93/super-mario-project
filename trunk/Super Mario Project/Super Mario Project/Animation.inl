@@ -89,7 +89,7 @@ int Animation<T>::getNbSpritesMax()
 }
 
 template<typename T>
-void Animation<T>::update(RenderWindow& app)
+void Animation<T>::update()
 {
 	int frameDelayForCurrentState = getFrameDelayForCurrentState();
 	int nbSpritesForCurrentState = getNbSpritesForCurrentState();

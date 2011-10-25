@@ -20,7 +20,7 @@ namespace Collisions
 		_textureName("textures/persos/" + textureName),
 		_environment(GROUND), 
 		_transformation(FIRE_MARIO), 
-		_state(SPECIAL_ATTACK),
+		_state(STANDING),
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
@@ -218,12 +218,68 @@ namespace Collisions
 		/* NOTHING */
 	}
 
-	void Perso::updatePerso(RenderWindow& app, InputState& inputState)
+	void Perso::updatePerso(float time, InputState& inputState)
 	{
-		gravity(_speed, app.GetFrameTime());
+		gravity(_speed, time);
 
 		/* Lateral movements management */
-		lateral_move(app, inputState);
+		lateral_move(time, inputState);
+
+		/* compute acceleration */
+		solve_acc(inputState);
+
+		/* Test for jump state */
+		if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
+			&& inputState[KEY_JUMP] != KEY_STATE_PRESSED && inputState[KEY_UP] != KEY_STATE_PRESSED
+		&& (_environment == GROUND || _state == CLIMB_LADDER))
+			jump();
+
+		/* Test for states : LOOK_TOP_* */
+		if(_broughtMonster == nullptr)
+		{
+			if(inputState[KEY_UP] == KEY_STATE_PRESSED
+			&& _environment == GROUND
+				&& _state == STANDING)
+				setState(LOOK_TOP);
+			else if(inputState[KEY_UP] == KEY_STATE_PRESSED
+				&& inputState[KEY_DOWN] == KEY_STATE_PRESSED)
+				setState(STANDING);
+		}
+		else
+		{
+			if(inputState[KEY_UP] == KEY_STATE_PRESSED
+				&& _environment == GROUND
+				&& _state == STANDING_SHELL)
+				setState(LOOK_TOP_SHELL);
+			else if(inputState[KEY_UP] == KEY_STATE_PRESSED
+				&& inputState[KEY_DOWN] == KEY_STATE_PRESSED)
+				setState(STANDING_SHELL);
+		}
+
+		/* Test for states : LOWERED_* */
+		if(_broughtMonster == nullptr)
+		{
+			if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
+				&& inputState[KEY_DOWN] == KEY_STATE_JUST_PRESSED
+				&& _environment == GROUND)
+				setState(LOWERED_JUMP);
+			else if(inputState[KEY_DOWN]
+			&& _environment == GROUND &&
+				(_state == STANDING || _state == WALK
+				|| _state == RUN_1 || _state == RUN_2
+				|| _state == SKID))
+				setState(LOWERED);
+		}
+		else
+		{
+			if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
+				&& inputState[KEY_DOWN] == KEY_STATE_PRESSED
+				&& _environment == GROUND)
+				setState(LOWERED_JUMP_SHELL);
+			else if(inputState[KEY_DOWN] == KEY_STATE_PRESSED
+				&& _environment == GROUND)
+				setState(LOWERED_SHELL);
+		}
 
 		/* Save actual position as previous position */
 		_previousPosition = _position;
@@ -231,17 +287,71 @@ namespace Collisions
 		/* Compute new position */
 		if(_position.y + _hitboxSize.y >= 0)
 		{// Bidouillage
-			_position.x = _position.x + app.GetFrameTime() * _speed.x;
-			_position.y = _position.y + app.GetFrameTime() * _speed.y;
+			_position.x = _position.x + time * _speed.x;
+			_position.y = _position.y + time * _speed.y;
 		}
 		else
 		{
-			_position.x = _position.x + app.GetFrameTime() * _speed.x;
+			_position.x = _position.x + time * _speed.x;
 			_position.y = _hitboxSize.y;
 		}
 
 		/* Update animation */
-		_animation.update(app);
+		_animation.update();
+	}
+
+	void Perso::solve_acc(InputState& inputState)
+	{
+		float coeff;
+
+		/* Frottements sont différents selon l'environnement 
+		dans le lequel se trouve le personnage */
+		if(_environment == GROUND)
+			coeff = CLASSIC_COEFF_FRICTION;
+		else
+			coeff = AIR_COEFF_FRICTION;
+
+		/* Modification de l'accélèration en fonction de l'appui
+		ou non sur la touche d'accélèration */
+		if(_state != FINISH || _state != CLIMB_LADDER)
+		{
+			if(inputState[KEY_RUN])
+				_acceleration.x = RUN_ACCEL * coeff;
+			else
+				_acceleration.x = WALK_ACCEL * coeff;
+		}
+		else
+		{
+			_acceleration.x = 10 * RUN_ACCEL * coeff;
+		}
+	}
+
+	void Perso::jump()
+	{
+		/* key just pressed, clock begins */
+		//p->tps_saut = 0;
+
+		_speed.y = JUMP_SPEED;
+
+		// Play jump sound here !
+
+		if(_environment == GROUND)
+			_environment = AIR;
+
+		if(_broughtMonster == nullptr)
+		{
+			if(_state == LOWERED)
+				setState(LOWERED_JUMP);
+			else
+				setState(JUMP);
+		}
+		else
+		{
+			if(_state == LOWERED_SHELL)
+				setState(LOWERED_JUMP_SHELL);
+			else
+				setState(JUMP_SHELL);
+		}
 	}
 
 	void Perso::render(RenderWindow& app)
@@ -249,9 +359,8 @@ namespace Collisions
 		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
-	void Perso::lateral_move(RenderWindow& app, InputState& inputState)
-	{
-		int time = app.GetFrameTime();
+	void Perso::lateral_move(float time, InputState& inputState)
+	{		
 
 		if(_state != FINISH_CASTLE)
 		{
@@ -370,6 +479,8 @@ namespace Collisions
 							{
 								if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 									setState(LOWERED_JUMP);
+								else
+									setState(STANDING);
 							}
 							else
 							{
