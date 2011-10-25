@@ -13,9 +13,16 @@
 
 namespace SuperMarioProject
 {
-	World::World(const Window* window) : _inputState(InputState(window))
+	World::World(const Window* window) : _inputState(InputState(window)),
+		_level(nullptr),
+		_actualTime(0),
+		_previousTime(0),
+		_elapsedTime(0)
 		{
 			loadWorld();
+
+			/*if(_levelNames.size() > 0)
+				_level->loadLevel(_levelNames[0]);*/
 
 			/* Add default perso */
 			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
@@ -36,16 +43,16 @@ namespace SuperMarioProject
 		_levelNames.push_back("levels/" + levelName);
 	}
 
-	void World::update(RenderWindow& app)
+	void World::update()
 	{
-		_level->update(app);
+		//_level->update(app);
 
 		_inputState.update();
 
 		vector<Perso*>::iterator it;
 		
 		for (it= this->_persos.begin(); it < this->_persos.end(); ++it)
-			(*it)->updatePerso(app, _inputState);
+			(*it)->updatePerso(_elapsedTime, _inputState);
 
 		updateTime();
 	}
@@ -94,7 +101,7 @@ namespace SuperMarioProject
 	{
 		vector<Perso*>::iterator it;
 
-		this->_level->render(app);
+		//this->_level->render(app);
 
 		for (it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
@@ -109,7 +116,9 @@ namespace SuperMarioProject
 
     World::~World()
     {
-		delete _level;
+		if(_level != nullptr)
+			delete _level;
+
 		vector<Perso*>::iterator itPersos;
 
 		/* Persos */

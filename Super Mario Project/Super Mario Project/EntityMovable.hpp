@@ -12,14 +12,19 @@
 
 /* Physics constants */
 #define SPEED_Y_MAX						0.008F
+#define JUMP_SPEED			    		0.525F
 #define EJECTION_SPEED_Y				0.2F
 #define GRAVITY							0.002F
 
-/* Frictions constants */
-#define SLIDE_COEFF_FRICTION			0.3F
-#define CLASSIC_COEFF_FRICTION			0.005F
-#define ICE_COEFF_FRICTION				0.004F
-#define AIR_COEFF_FRICTION				0.0005F
+/* Accelerations constants (* 200) */
+#define RUN_ACCEL						30
+#define WALK_ACCEL						20
+
+/* Frictions constants (* 1000) */
+#define SLIDE_COEFF_FRICTION			3
+#define CLASSIC_COEFF_FRICTION			5
+#define ICE_COEFF_FRICTION				4
+#define AIR_COEFF_FRICTION				0.5F
 
 /* Submissions */
 #define GROUND_SUBMISSION			    0x0000001

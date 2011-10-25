@@ -25,9 +25,9 @@ namespace Rendering
 		_animation.setCurrentState(State::NORMAL);
 	}
 
-	void Object::update(RenderWindow& app)
+	void Object::update(RenderWindow&)
 	{
-		_animation.update(app);
+		_animation.update();
 	}
 	
 	void Object::render(RenderWindow& app)

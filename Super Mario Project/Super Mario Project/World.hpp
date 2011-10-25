@@ -40,7 +40,7 @@ namespace SuperMarioProject
 		/* Methods */
 		void addLevelName(string levelName);
 
-		void update(RenderWindow& app);
+		void update();
 		void render(RenderWindow& app);
 
 		float getElapsedTime();

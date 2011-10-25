@@ -10,7 +10,6 @@
 #include <SFML/Window.hpp>
 #include "World.hpp"
 #include "ReversedSprite.hpp"
-#include "Tileset.hpp"
 
 
 using namespace SuperMarioProject;
@@ -22,21 +21,17 @@ int main(int, char**)
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
     App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+	ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
 
     // Limit to 60 FPS
     App.SetFramerateLimit(60);
 
     // Create world
-    /*Level lvl;
-    lvl.loadLevel("levels/smb.xml");*/
+    World w(&App);
+	/*Level lvl;
+    lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
-    InputState input = InputState(&App);
-    ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
-
-	Tileset tileset = Tileset("classiques/grass", Vector2i(32, 32));
-	Block block = Block(&tileset, 0, 0);
-	Block block2 = Block(&tileset, 1, 0);
-	block.addNewBlockOccurrence(&block2);
+    InputState input = InputState(&App);*/
 
 
     try
@@ -80,12 +75,12 @@ int main(int, char**)
             // Update World
             //background.update(App);
             //perso.updatePerso(App, input);
-			block.update(App);
+			w.update();
 
             // Draw World
             //background.render(App);
             //perso.render(App);
-			block.render(App);
+			w.render(App);
 
             // Update the window
             App.Display();

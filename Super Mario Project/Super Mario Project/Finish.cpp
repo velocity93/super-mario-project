@@ -22,9 +22,9 @@ namespace Collisions
 		loadFinish(textureName);
 	}
 
-	void Finish::update(RenderWindow& app)
+	void Finish::update(RenderWindow&)
     {
-		_animation.update(app);
+		_animation.update();
     }
 
 	void Finish::render(RenderWindow& app)
