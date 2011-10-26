@@ -13,11 +13,12 @@
 /* Physics constants */
 #define SPEED_Y_MAX						0.008F
 #define JUMP_SPEED			    		0.525F
+#define RUN_SPEED						0.6F
 #define EJECTION_SPEED_Y				0.2F
 #define GRAVITY							0.002F
 
 /* Accelerations constants (* 200) */
-#define RUN_ACCEL						30
+#define RUN_ACCEL						50
 #define WALK_ACCEL						20
 
 /* Frictions constants (* 1000) */

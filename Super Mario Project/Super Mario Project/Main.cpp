@@ -8,13 +8,36 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <sstream>
 #include "World.hpp"
 #include "ReversedSprite.hpp"
-
 
 using namespace SuperMarioProject;
 using namespace Rendering;
 using namespace sf;
+
+void writeCapture(const sf::Image& img)
+{
+	string prefix = "capture";
+	int id = 0;
+	std::ostringstream out;
+	out << id;
+	string fileName = prefix + out.str();
+	string imgFileName = fileName + ".png";
+	fstream file;
+	file.open(imgFileName.c_str());
+	while(!file.is_open())
+	{
+		std::ostringstream out2;
+		out2 << ++id;
+		fileName = prefix + out2.str();
+		imgFileName = fileName + ".png";
+		file.open(imgFileName.c_str());
+	}
+	file.close();
+	img.SaveToFile(imgFileName);
+}
+
 
 int main(int, char**)
 {
@@ -62,7 +85,7 @@ int main(int, char**)
                             break;
                         case sf::Key::F1 :
                             const sf::Image img = App.Capture();
-                            img.SaveToFile("test.png");
+                            writeCapture(img);
                             break;
                         }
                     }

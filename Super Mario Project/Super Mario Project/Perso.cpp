@@ -24,15 +24,6 @@ namespace Collisions
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
-		_invincibleTime(0), 
-		_invincibleStarTime(0), 
-		_transformationTime(0), 
-		_attackTime(0), 
-		_specialAttackTime(0), 
-		_throwShellTime(0), 
-		_deathTime(0), 
-		_finishTime(0), 
-		_jumpTime(0),
 		_animation(Animation<State>()),
 		_broughtMonster(nullptr)
 	{
@@ -87,51 +78,6 @@ namespace Collisions
 		return _checkpointPassed;
 	}
 
-	int Perso::getInvincibleTime()
-	{
-		return _invincibleTime;
-	}
-
-	int Perso::getInvincibleStarTime()
-	{
-		return _invincibleStarTime;
-	}
-
-	int Perso::getTransformationTime()
-	{
-		return _transformationTime;
-	}
-
-	int Perso::getAttackTime()
-	{
-		return _attackTime;
-	}
-
-	int Perso::getSpecialAttackTime()
-	{
-		return _specialAttackTime;
-	}
-
-	int Perso::getThrowShellTime()
-	{
-		return _throwShellTime;
-	}
-
-	int Perso::getDeathTime()
-	{
-		return _deathTime;
-	}
-
-	int Perso::getFinishTime()
-	{
-		return _finishTime;
-	}
-
-	int Perso::getJumpTime()
-	{
-		return _jumpTime;
-	}
-
 	void Perso::setState(Perso::State state)
 	{
 		_animation.setCurrentState(state);
@@ -163,76 +109,48 @@ namespace Collisions
 		_insidePipe = pipe;
 	}
 
-	void Perso::setCheckPointPassed(Checkpoint* checkpoint)
-	{
-		_checkpointPassed = checkpoint;
-	}
-
-	void Perso::setInvincibleTime(int invincibleTime)
-	{
-		_invincibleTime = invincibleTime;
-	}
-
-	void Perso::setInvincibleStarTime(int invincibleStarTime)
-	{
-		_invincibleStarTime = invincibleStarTime;
-	}
-
-	void Perso::setTransformationTime(int transformationTime)
-	{
-		_transformationTime = transformationTime;
-	}
-
-	void Perso::setAttackTime(int attackTime)
-	{
-		_attackTime = attackTime;
-	}
-
-	void Perso::setSpecialAttackTime(int specialAttackTime)
-	{
-		_specialAttackTime = specialAttackTime;
-	}
-
-	void Perso::setThrowShellTime(int throwShellTime)
-	{
-		_throwShellTime = throwShellTime;
-	}
-
-	void Perso::setDeathTime(int deathTime)
-	{
-		_deathTime = deathTime;
-	}
-
-	void Perso::setFinishTime(int finishTime)
-	{
-		_finishTime = finishTime;
-	}
-
-	void Perso::setJumpTime(int jumpTime)
-	{
-		_jumpTime = jumpTime;
-	}
-
-	void Perso::update(RenderWindow& app)
+	void Perso::update(RenderWindow&)
 	{
 		/* NOTHING */
 	}
 
 	void Perso::updatePerso(float time, InputState& inputState)
 	{
-		gravity(_speed, time);
+		/* Applying gravity */
+		/*if(_state != GET_IN_FROM_PIPE_HORIZONTAL && _state != GET_OUT_FROM_PIPE_HORIZONTAL
+			&& _state != GET_IN_FROM_PIPE_VERTICAL && _state != GET_OUT_FROM_PIPE_VERTICAL
+			&& _state != CLIMB_LADDER)*/
+			gravity(_speed, time);
 
 		/* Lateral movements management */
-		lateral_move(time, inputState);
+		/*if(_state != PUSH_SHELL)*/
+			lateral_move(time, inputState);
 
 		/* compute acceleration */
 		solve_acc(inputState);
 
 		/* Test for jump state */
-		if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
+	/*	if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
 			&& inputState[KEY_JUMP] != KEY_STATE_PRESSED && inputState[KEY_UP] != KEY_STATE_PRESSED
 		&& (_environment == GROUND || _state == CLIMB_LADDER))
-			jump();
+			jump();*/
+
+		/* jump continue if key is always pressed */
+		/*if(_state == JUMP || _state == JUMP_SHELL)
+        {			
+			if(inputState[KEY_JUMP] == KEY_STATE_PRESSED)
+			{
+				if((_jumpTime.GetElapsedTime() < 300 && (_speed.x >= RUN_SPEED || _speed.x <= -RUN_SPEED)) ||
+					(_jumpTime.GetElapsedTime() < 175))
+					_speed.y = JUMP_SPEED;
+			}
+        }*/
+
+		/*if(_speed.y != 0)
+			_environment = AIR;
+
+		if(_speed.y < 0 && (_state == JUMP || _state == ATTACK))
+			setState(JUMP_FALLING);*/
 
 		/* Test for states : LOOK_TOP_* */
 		if(_broughtMonster == nullptr)
@@ -285,16 +203,13 @@ namespace Collisions
 		_previousPosition = _position;
 
 		/* Compute new position */
-		if(_position.y + _hitboxSize.y >= 0)
-		{// Bidouillage
-			_position.x = _position.x + time * _speed.x;
-			_position.y = _position.y + time * _speed.y;
-		}
-		else
+		if(_position.y < 0)
 		{
-			_position.x = _position.x + time * _speed.x;
-			_position.y = _hitboxSize.y;
+			_position.y = 0;
 		}
+
+		_position.x = _position.x + time * _speed.x;
+		_position.y = _position.y + time * _speed.y;
 
 		/* Update animation */
 		_animation.update();
@@ -315,7 +230,7 @@ namespace Collisions
 		ou non sur la touche d'accélèration */
 		if(_state != FINISH || _state != CLIMB_LADDER)
 		{
-			if(inputState[KEY_RUN])
+			if(inputState[KEY_RUN] == KEY_STATE_PRESSED)
 				_acceleration.x = RUN_ACCEL * coeff;
 			else
 				_acceleration.x = WALK_ACCEL * coeff;
@@ -329,7 +244,7 @@ namespace Collisions
 	void Perso::jump()
 	{
 		/* key just pressed, clock begins */
-		//p->tps_saut = 0;
+		_jumpTime.Reset(true);
 
 		_speed.y = JUMP_SPEED;
 
@@ -459,7 +374,8 @@ namespace Collisions
 						_speed.x = _speed.x - _acceleration.x * time;
 					}
 				}
-				else if(!_specialAttackTime && !_attackTime){
+				else// if(_specialAttackTime. && !_attackTime)
+				{
 
 					if(_broughtMonster == nullptr) 
 					{
@@ -852,6 +768,16 @@ namespace Collisions
 						istringstream nbSpriteStream(word.substr(found + 16));
 						nbSpriteStream >> nbSprites;
 						_animation.addNbSpritesForGivenState(State::DEAD, nbSprites);
+						continue;
+					}
+
+					found = word.find("nb_sprites_finish_castle=");
+					if(found != string::npos)
+					{
+						int nbSprites = 0;
+						istringstream nbSpriteStream(word.substr(found + 25));
+						nbSpriteStream >> nbSprites;
+						_animation.addNbSpritesForGivenState(State::FINISH_CASTLE, nbSprites);
 						continue;
 					}
 

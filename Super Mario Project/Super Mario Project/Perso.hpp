@@ -65,14 +65,14 @@ namespace Collisions
 			LOWERED_JUMP_SHELL,
 			LOWERED_JUMP,
 			SIT_DOWN,
-			RUN_1,
 			SLIDE,
 			GET_OUT_FROM_PIPE_HORIZONTAL,
 			GET_IN_FROM_PIPE_HORIZONTAL,
 			GET_IN_FROM_PIPE_VERTICAL,
 			FINISH,
 			SWIMMING,
-			NB_STATE
+			NB_STATE,
+			RUN_1 = 1
 		} State;
 
 		enum Sounds {
@@ -165,16 +165,16 @@ namespace Collisions
 		
     private:
 		bool _canClimb;
-		int _invincibleTime;
-		int _invincibleStarTime;
-		int _transformationTime;
-		int _attackTime;
-		int _specialAttackTime;
-		int _throwShellTime;
-		int _deathTime;
-		int _finishTime;
-		int _jumpTime;
+		PausableClock _invincibleTime;
+		PausableClock _invincibleStarTime;
+		PausableClock _transformationTime;
+		PausableClock _attackTime;
+		PausableClock _specialAttackTime;
+		PausableClock _throwShellTime;
+		PausableClock _deathTime;
+		PausableClock _finishTime;
 		string _textureName;
+		PausableClock _jumpTime;
 
 		Animation<State> _animation;
 		HUD* _hud;
