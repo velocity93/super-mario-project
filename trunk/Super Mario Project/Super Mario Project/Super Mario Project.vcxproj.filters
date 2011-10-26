@@ -248,43 +248,7 @@
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\blocs\classiques\classiques.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\grass.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\snow.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\underground.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\cassables\overworld.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png">
+    <None Include="textures\persos\small_mario.perso">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
