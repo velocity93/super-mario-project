@@ -123,15 +123,14 @@ namespace Collisions
 			gravity(_speed, time);
 
 		/* Lateral movements management */
-		/*if(_state != PUSH_SHELL)*/
+		if(_state != PUSH_SHELL)
 			lateral_move(time, inputState);
 
 		/* compute acceleration */
 		solve_acc(inputState);
 
 		/* Test for jump state */
-	/*	if(inputState[KEY_JUMP] == KEY_STATE_PRESSED
-			&& inputState[KEY_JUMP] != KEY_STATE_PRESSED && inputState[KEY_UP] != KEY_STATE_PRESSED
+		/*if(inputState[KEY_JUMP] == KEY_STATE_JUST_PRESSED && inputState[KEY_UP] == KEY_STATE_RELEASED
 		&& (_environment == GROUND || _state == CLIMB_LADDER))
 			jump();*/
 
@@ -202,14 +201,15 @@ namespace Collisions
 		/* Save actual position as previous position */
 		_previousPosition = _position;
 
+		_position.x = _position.x + time * _speed.x;
+		_position.y = _position.y + time * _speed.y;
+		
 		/* Compute new position */
 		if(_position.y < 0)
 		{
 			_position.y = 0;
+			_environment = GROUND;
 		}
-
-		_position.x = _position.x + time * _speed.x;
-		_position.y = _position.y + time * _speed.y;
 
 		/* Update animation */
 		_animation.update();

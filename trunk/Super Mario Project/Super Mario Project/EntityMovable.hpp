@@ -11,11 +11,11 @@
 #define HPP_ENTITYMOVABLE
 
 /* Physics constants */
-#define SPEED_Y_MAX						0.008F
-#define JUMP_SPEED			    		0.525F
+#define SPEED_Y_MAX						8
+#define JUMP_SPEED			    		52.5F
 #define RUN_SPEED						0.6F
 #define EJECTION_SPEED_Y				0.2F
-#define GRAVITY							0.002F
+#define GRAVITY							2
 
 /* Accelerations constants (* 200) */
 #define RUN_ACCEL						50

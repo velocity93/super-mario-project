@@ -24,17 +24,21 @@ void writeCapture(const sf::Image& img)
 	out << id;
 	string fileName = prefix + out.str();
 	string imgFileName = fileName + ".png";
-	fstream file;
-	file.open(imgFileName.c_str());
-	while(!file.is_open())
+	while(true)
 	{
-		std::ostringstream out2;
-		out2 << ++id;
-		fileName = prefix + out2.str();
-		imgFileName = fileName + ".png";
-		file.open(imgFileName.c_str());
+		ifstream file(imgFileName.c_str());
+		if(!file)
+		{
+			break;
+		}
+		else
+		{
+			std::ostringstream out2;
+			out2 << ++id;
+			fileName = prefix + out2.str();
+			imgFileName = fileName + ".png";
+		}
 	}
-	file.close();
 	img.SaveToFile(imgFileName);
 }
 
