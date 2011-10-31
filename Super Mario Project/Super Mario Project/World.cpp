@@ -25,7 +25,7 @@ namespace SuperMarioProject
 				_level->loadLevel(_levelNames[0]);*/
 
 			/* Add default perso */
-			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
+			_persos.push_back(new Perso("fire_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()

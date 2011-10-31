@@ -248,7 +248,13 @@
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\small_mario.perso">
+    <None Include="textures\persos\fire_mario.perso">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\persos\fire_mario.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\persos\super_mario.perso">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
