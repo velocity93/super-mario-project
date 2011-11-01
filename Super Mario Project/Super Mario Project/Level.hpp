@@ -135,6 +135,9 @@ namespace SuperMarioProject
 		/* Load Level */
 		void loadLevel(string fileName);
 
+		/* Save Level */
+		void saveLevel(string fileName);
+
 		/* Update data */
 		void update(RenderWindow& app);
 		

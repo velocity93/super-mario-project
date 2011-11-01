@@ -32,7 +32,7 @@ namespace SuperMarioProject
 		static void endElement(ofstream& file);
 		static void closeElement(ofstream& file, const string& name);
 		static void closeShortElement(ofstream& file);
-		static void addAttribute(ofstream& file, const string& name, const string& format, ...);
+		static void addAttribute(ofstream& file, const string& name, const char* format, ...);
 	};
 }
 

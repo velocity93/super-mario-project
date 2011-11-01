@@ -8,6 +8,7 @@
 
 #include "Level.hpp"
 #include "XMLParser.hpp"
+#include "XMLWriter.hpp"
 
 namespace SuperMarioProject
 {
@@ -182,6 +183,11 @@ namespace SuperMarioProject
 	void Level::loadLevel(string fileName)
 	{
 		XMLParser::loadLevel(fileName, this);
+	}
+
+	void Level::saveLevel(string fileName)
+	{
+		XMLWriter::saveLevel(fileName, this);
 	}
 
 	void Level::update(RenderWindow& app)
