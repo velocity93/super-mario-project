@@ -14,10 +14,8 @@
 #include "Background.hpp"
 #include "Foreground.hpp"
 #include "ParticleGenerator.hpp"
-#include "Block.hpp"
-#include "BlockOccurrence.hpp"
-#include "MonsterTypes.hpp"
 #include "Item.hpp"
+#include "Monster.hpp"
 #include "Projectile.hpp"
 #include "Finish.hpp"
 #include "Pipe.hpp"
@@ -33,7 +31,7 @@ namespace SuperMarioProject
     class Level
     {
     public:
-		Level() { }
+		Level() : _name("") { }
 
 		/* Level Name */
 		string& getName();
@@ -68,9 +66,6 @@ namespace SuperMarioProject
 		/* All items */
 		vector<Item*>& getItems();
 
-		/* All blocks */
-		vector<Block*>& getBlock();
-
 		/* All backgrounds */
 		vector<Background*>& getBackgrounds();
 
@@ -82,6 +77,9 @@ namespace SuperMarioProject
 
 		/* All Tilesets */
 		vector<Tileset*>& getTilesets();
+
+		/* Get index of specific monster */
+		int getMonsterIndex(Monster* monster);
 
 		/* Set spawn coord */
 		void setSpawnX(int x);
@@ -134,9 +132,6 @@ namespace SuperMarioProject
 		/* Add Tileset */
 		void addTileset(Tileset* tileset);
 
-		/* Add Block */
-		void addBlock(Block* blocks);
-
 		/* Load Level */
 		void loadLevel(string fileName);
 
@@ -163,7 +158,6 @@ namespace SuperMarioProject
 		vector<Pipe*> _pipes;
 		vector<Item*> _items;
 		vector<Object*> _objects;
-		vector<Block*> _blocks;
 		vector<Tileset*> _tilesets;
 
 		//Utile étant donné qu'on a une position dans la classe Block ?

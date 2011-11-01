@@ -17,7 +17,6 @@ namespace SuperMarioProject
     {
     }
 
-
     Resource::~Resource()
     {
     }
@@ -27,16 +26,15 @@ namespace SuperMarioProject
         return _name;
     }
 
-	const std::string &Resource::mainName() const
+	const std::string &Resource::shorterName() const
 	{
-		return name().substr(name().find_last_of("/"), name().size());
+		return _name.substr(_name.find_last_of("/"), _name.size());
 	}
 
      void Resource::addRef()
      {
          _refCount++;
      }
-       
      
      void Resource::release()
      {

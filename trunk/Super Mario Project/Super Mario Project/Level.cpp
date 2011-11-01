@@ -66,11 +66,6 @@ namespace SuperMarioProject
 		return _items;
 	}
 
-	vector<Block*>& Level::getBlock()
-	{
-		return _blocks;
-	}
-
 	vector<Background*>& Level::getBackgrounds()
 	{
 		return _backgrounds;
@@ -89,6 +84,19 @@ namespace SuperMarioProject
 	vector<Tileset*>& Level::getTilesets()
 	{
 		return _tilesets;
+	}
+
+	int Level::getMonsterIndex(Monster* monster)
+	{
+		int index = 0;
+		for(vector<Monster*>::iterator itMonsters = _monsters.begin();
+			itMonsters != _monsters.end(); ++itMonsters)
+		{
+			if((*itMonsters) == monster)
+				return index;
+
+			++index;
+		}
 	}
 
 	void Level::setName(string name)
@@ -171,11 +179,6 @@ namespace SuperMarioProject
 		_tilesets.push_back(tileset);
 	}
 
-	void Level::addBlock(Block* blocks)
-	{
-		_blocks.push_back(blocks);
-	}
-
 	void Level::loadLevel(string fileName)
 	{
 		XMLParser::loadLevel(fileName, this);
@@ -194,8 +197,6 @@ namespace SuperMarioProject
 		{
 			(*itItems)->update(app);
 		}
-
-		// BLOCKS ??
 
 		/* Monsters */
 		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)

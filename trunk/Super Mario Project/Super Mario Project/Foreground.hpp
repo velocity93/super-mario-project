@@ -16,9 +16,14 @@
 
 namespace Rendering
 {
-	class Foreground : public Object
+	class Foreground : public Drawable
     {
     public:
+		enum State
+		{
+			NORMAL
+		};
+
         /* Constructors */
 		Foreground(const string& textureName);
 
@@ -30,6 +35,10 @@ namespace Rendering
         virtual ~Foreground();
 		
     private:
+		Animation<State> _animation;
+		
+		
+		void loadCfgForeground(const string& textureName);
     };
 } // namespace
 

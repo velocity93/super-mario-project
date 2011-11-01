@@ -20,16 +20,21 @@ using namespace sf;
 
 namespace Collisions
 {
+	class Block;
 	class Tileset : public SuperMarioProject::Resource
 	{
 	public :
-		Tileset(const string& textureName, Vector2i blocSize);
+		Tileset(const string& textureName);
 
 		Vector2i& getNbSprites();
 		int getFrameDelay();
+		vector<Block*>& getBlocks();
+		void addBlock(int physicIndex, int type);
+		const std::string& shorterName() const;
 
 		virtual ~Tileset();
 	private:
+		vector<Block*> _blocks;
 		vector<int> _physics;
 		Vector2i _nbSprites;
 		int _frameDelay;
