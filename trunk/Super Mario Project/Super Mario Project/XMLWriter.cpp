@@ -9,6 +9,7 @@
 #include "XMLWriter.hpp"
 #include "World.hpp"
 #include "Level.hpp"
+#include "Block.hpp"
 #include <iostream>
 #include <cstdarg>
 
@@ -52,17 +53,30 @@ namespace SuperMarioProject
 	}
 
 
-	void XMLWriter::addAttribute(ofstream& file, const string& name, const string& format, ...)
+	void XMLWriter::addAttribute(ofstream& file, const string& name, const char* format, ...)
 	{
-		va_list va;
-		char value[256];
+		int n;
+		float f;
+		string s;
+		va_list pa;
 
-		va_start(va, format);
-		vsnprintf(value, 256, format.c_str(), va);
-		//value = va_arg(va, string);
-		va_end(va);
-
-		file << " " << name << "=\"" << value << "\"";
+		 va_start(pa, format);
+		 switch (*++format) 
+		 {
+		 case 'd' :
+			 n = va_arg(pa, int);
+			 file << " " << name << "=\"" << n << "\"";
+			 break;
+		 case 'f' :
+			 f = va_arg(pa, float);   
+			 file << " " << name << "=\"" << f << "\"";
+			 break;
+		 case 's' :
+			 s = va_arg(pa, string);
+			 file << " " << name << "=\"" << s << "\"";
+			 break;
+		 }
+		
 	}
 
 	void XMLWriter::saveLevel(const string& fileName, Level* level)
@@ -77,11 +91,9 @@ namespace SuperMarioProject
 			/* Level */
 			openElement(file, "level");
 			addAttribute(file, "name", "%s", level->getName());
-			addAttribute(file, "size", "%d:%d", level->getSize().x, level->getSize().y);
+			addAttribute(file, "width", "%d", level->getSize().x);
+			addAttribute(file, "heigth", "%d", level->getSize().y);
 			addAttribute(file, "music", "%s", level->getMusicTitle());
-			
-			// For schema valdiation
-			file << "xmlns_xsi=\"http_//www.w3.org/2001/XMLSchema-instance\" xsi_noNamespaceSchemaLocation=\"level.xsd\"";
 			endElement(file);
 
 			/* Spawn */
@@ -99,7 +111,7 @@ namespace SuperMarioProject
 					itCheckpoint < level->getCheckpoints().end(); itCheckpoint++)
 				{
 					openElement(file, "checkpoint");
-					addAttribute(file, "img", "%s", (*itCheckpoint)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itCheckpoint)->getTexture()->shorterName());
 					addAttribute(file, "positionX", "%d", (*itCheckpoint)->getPosition().x);
 					addAttribute(file, "positionY", "%d", (*itCheckpoint)->getPosition().y);
 					closeShortElement(file);
@@ -120,7 +132,7 @@ namespace SuperMarioProject
 					itBackground < level->getBackgrounds().end(); itBackground++)
 				{
 					openElement(file, "background");
-					addAttribute(file, "img", "%s", (*itBackground)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itBackground)->getTexture()->shorterName());
 					addAttribute(file, "positionX", "%d", (*itBackground)->getPosition().x);
 					addAttribute(file, "positionY", "%d", (*itBackground)->getPosition().y);
 					closeShortElement(file);
@@ -141,7 +153,7 @@ namespace SuperMarioProject
 					itForeground < level->getForegrounds().end(); itForeground++)
 				{
 					openElement(file, "foreground");
-					addAttribute(file, "img", "%s", (*itForeground)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itForeground)->getTexture()->shorterName());
 					addAttribute(file, "positionX", "%d", (*itForeground)->getPosition().x);
 					addAttribute(file, "positionY", "%d", (*itForeground)->getPosition().y);
 					closeShortElement(file);
@@ -162,7 +174,7 @@ namespace SuperMarioProject
 					itObject < level->getObjects().end(); itObject++)
 				{
 					openElement(file, "object");
-					addAttribute(file, "img", "%s", (*itObject)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itObject)->getTexture()->shorterName());
 					addAttribute(file, "positionX", "%d", (*itObject)->getPosition().x);
 					addAttribute(file, "positionY", "%d", (*itObject)->getPosition().y);
 					closeShortElement(file);
@@ -183,7 +195,7 @@ namespace SuperMarioProject
 					itFinish < level->getFinishes().end(); itFinish++)
 				{
 					openElement(file, "object");
-					addAttribute(file, "img", "%s", (*itFinish)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itFinish)->getTexture()->shorterName());
 					addAttribute(file, "positionX", "%d", (*itFinish)->getPosition().x);
 					addAttribute(file, "positionY", "%d", (*itFinish)->getPosition().y);
 					closeShortElement(file);
@@ -204,7 +216,7 @@ namespace SuperMarioProject
 					itProjectile < level->getProjectiles().end(); itProjectile++)
 				{
 					openElement(file, "projectile");
-					addAttribute(file, "img", "%s", (*itProjectile)->mainName());
+					addAttribute(file, "img", "%s", (*itProjectile)->shorterName());
 					closeShortElement(file);
 				}
 				closeElement(file, "projectiles");
@@ -224,7 +236,7 @@ namespace SuperMarioProject
 					Item* item = level->getItems().at(index);
 
 					openElement(file, "item");
-					addAttribute(file, "img", "%s", item->mainName());
+					addAttribute(file, "img", "%s", item->shorterName());
 					addAttribute(file, "type", "%d", item->getType());
 
 					if(item->getItemOccurrences().size() > 0)
@@ -262,7 +274,7 @@ namespace SuperMarioProject
 					Monster* monster = level->getMonsters().at(index);
 
 					openElement(file, "monster");
-					addAttribute(file, "img", "%s", monster->mainName());
+					addAttribute(file, "img", "%s", monster->shorterName());
 					endElement(file);
 
 					if(monster->getMonsterOccurrences().size() > 0)
@@ -298,9 +310,8 @@ namespace SuperMarioProject
 				for(vector<Pipe*>::iterator itPipe = level->getPipes().begin();
 					itPipe < level->getPipes().end(); ++itPipe)
 				{
-					
 					openElement(file, "pipe");
-					addAttribute(file, "img", "%s", (*itPipe)->getTexture()->mainName());
+					addAttribute(file, "img", "%s", (*itPipe)->getTexture()->shorterName());
 					addAttribute(file, "sens", "%d", (*itPipe)->getDirection());
 					addAttribute(file, "length", "%d", (*itPipe)->getLenght());
 					addAttribute(file, "positionX", "%d", (*itPipe)->getPosition().x);
@@ -308,8 +319,7 @@ namespace SuperMarioProject
 					addAttribute(file, "state", "%d", (*itPipe)->getState());
 					addAttribute(file, "destination_pipe", "%d",  (*itPipe)->getPipeDestination());
 					addAttribute(file, "level_destination", "%s", (*itPipe)->getLevelDestination());
-
-					//addAttribute(file, "monster", "%d", get);
+					addAttribute(file, "monster", "%d", level->getMonsterIndex((*itPipe)->getMonster()));
 
 					closeShortElement(file);
 				}
@@ -320,12 +330,52 @@ namespace SuperMarioProject
 				closeShortElement(file);
 			}
 
+			/* Tilesets and blocks */
+			openElement(file, "blocks");
+			endElement(file);
 
+			openElement(file, "tilesets");
+			if(level->getTilesets().size() > 0)
+			{
+				endElement(file);
+				for(vector<Tileset*>::iterator itTileset = level->getTilesets().begin();
+					itTileset != level->getTilesets().end(); ++itTileset)
+				{
+					Tileset* tileset = (*itTileset);
+					openElement(file, "tileset");
+					addAttribute(file, "img", "%s", tileset->shorterName());
+					
+					if(tileset->getBlocks().size() > 0)
+					{
+						endElement(file);
 
+						for(vector<Block*>::iterator itBlock = tileset->getBlocks().begin();
+							itBlock != tileset->getBlocks().end(); ++itBlock)
+						{
+								Block* block = (*itBlock);
+								openElement(file, "block");
+								addAttribute(file, "physicIndex", "%d", block->getPhysicIndex());
+								addAttribute(file, "type", "%d", block->getType());
+								closeShortElement(file);
+						}
+						closeElement(file, "tileset");
+					}
+					else
+					{
+						closeShortElement(file);
+					}
+				}
+				closeElement(file, "tilesets");
+			}
+			else
+			{
+				closeShortElement(file);
+			}
+			closeElement(file, "blocks");
 
-
-
-
+			/* OCC_BLOCKS */
+			
+			closeElement(file, "level");
 		}
 		else
 		{

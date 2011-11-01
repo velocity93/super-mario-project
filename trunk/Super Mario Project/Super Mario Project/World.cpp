@@ -22,7 +22,10 @@ namespace SuperMarioProject
 			loadWorld();
 
 			if(_levelNames.size() > 0)
+			{
 				_level->loadLevel(_levelNames[0]);
+				_level->saveLevel("test.xml");
+			}
 
 			/* Add default perso */
 			_persos.push_back(new Perso("fire_mario", Vector2f(0,0)));

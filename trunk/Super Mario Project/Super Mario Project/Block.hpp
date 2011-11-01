@@ -27,6 +27,8 @@ namespace Collisions
 		Block(Tileset* tileset, int physicIndex, int type) : _tileset(tileset), _physicIndex(physicIndex), _type(type) { }
 
 		Tileset* getTileset();
+		const int getPhysicIndex();
+		const int getType();
 
 		void addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
