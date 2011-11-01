@@ -14,15 +14,15 @@
 namespace SuperMarioProject
 {
 	World::World(const Window* window) : _inputState(InputState(window)),
-		_level(nullptr),
+		_level(new Level()),
 		_actualTime(0),
 		_previousTime(0),
 		_elapsedTime(0)
 		{
 			loadWorld();
 
-			/*if(_levelNames.size() > 0)
-				_level->loadLevel(_levelNames[0]);*/
+			if(_levelNames.size() > 0)
+				_level->loadLevel(_levelNames[0]);
 
 			/* Add default perso */
 			_persos.push_back(new Perso("fire_mario", Vector2f(0,0)));

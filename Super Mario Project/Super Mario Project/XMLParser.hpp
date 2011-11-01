@@ -27,7 +27,7 @@ namespace SuperMarioProject
 		static void loadWorld(string fileName, World* world);
 
 	private :
-		static int validateSchema(const char * XMLSchemaFile_pathname, const char * XMLfile_pathname);
+		static int validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename);
 
 	};
 }

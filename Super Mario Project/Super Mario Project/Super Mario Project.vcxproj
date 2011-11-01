@@ -96,6 +96,9 @@
     <ClInclude Include="InputState.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
+    <ClInclude Include="level.h">
+      <DependentUpon>level.xsd</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="Monster.hpp" />
     <ClInclude Include="MonsterOccurrence.hpp" />
@@ -161,10 +164,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ResourceManager.inl" />
-    <None Include="textures\persos\fire_mario.perso" />
-    <None Include="textures\persos\fire_mario.png" />
-    <None Include="textures\persos\super_mario.perso" />
     <None Include="worlds\world1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="levels\level.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

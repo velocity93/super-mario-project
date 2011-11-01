@@ -12,14 +12,14 @@
 
 namespace Rendering
 {
-	Background::Background(const string& textureName) : Object("backgrounds/" + textureName), _verticalRepetition(false), _position(Vector2f(0,0))
+	Background::Background(const string& textureName) : Drawable("textures/backgrounds/" + textureName), _verticalRepetition(false), _position(Vector2f(0,0))
 	{
 		/* Loading informations */
 		loadCfgBackground(textureName);
 	}
 
 	Background::Background(const string& textureName, Vector2f& position) : 
-		Object(textureName, position),
+		Drawable(textureName, position),
 			_verticalRepetition(false),
 			_position(position)
 	{
@@ -33,14 +33,14 @@ namespace Rendering
 		return _verticalRepetition;
 	}
 
-	void Background::update(RenderWindow& app)
+	void Background::update(RenderWindow&)
 	{
-		Object::update(app);
+		_animation.update();
 	}
 
 	void Background::render(RenderWindow& app)
 	{
-		Object::render(app);
+		_animation.render(_texture, app, _position, false);
 	}
 
 	void Background::loadCfgBackground(const string& textureName)
@@ -55,7 +55,30 @@ namespace Rendering
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("vertical_repetition=");
+				int found = word.find("nb_sprites=");
+				if(found != string::npos)
+				{
+					int nb_sprites = 0;
+					istringstream nbSprites(word.substr(found + 11));
+					nbSprites >> nb_sprites;
+					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+
+					if(nb_sprites == 1)
+						break; /* No animation */
+					else
+						continue;
+				}
+
+				found = word.find("frame_delay=");
+				if(found != string::npos)
+				{
+					int frame_delay = 0;
+					istringstream frameDelay(word.substr(found + 12));
+					frameDelay >> frame_delay;
+					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
+				}
+
+				found = word.find("vertical_repetition=");
 				if(found != string::npos)
 				{
 					istringstream verticalRepetition(word.substr(found + 20));

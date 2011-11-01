@@ -7,12 +7,13 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Tileset.hpp"
+#include "Block.hpp"
 #include <fstream>
 #include <sstream>
 
 namespace Collisions
 {
-	Tileset::Tileset(const string& textureName, Vector2i blocSize) : Resource("textures/blocs/" + textureName)
+	Tileset::Tileset(const string& textureName) : Resource("textures/blocs/" + textureName)
 	{
 		loadConfiguration(textureName);
 	}
@@ -27,9 +28,24 @@ namespace Collisions
 		return _nbSprites;
 	}
 
+	vector<Block*>& Tileset::getBlocks()
+	{
+		return _blocks;
+	}
+
+	const string& Tileset::shorterName() const
+	{
+		return name().substr(name().find_first_of("textures/blocs/"), name().size());
+	}
+
+	void Tileset::addBlock(int physicIndex, int type)
+	{
+		_blocks.push_back(new Block(this, physicIndex, type));
+	}
+
 	void Tileset::loadConfiguration(const string& textureName)
 	{
-		/* Build cfg file path */
+		/* Build cfg file shorterName */
 		string fileName = "textures/blocs/";
 		string buffer = textureName;
 		while(buffer.find_first_of("/") != string::npos)

@@ -14,9 +14,14 @@
 
 namespace Rendering
 {
-    class Background : public Object
+    class Background : public Drawable
     {
     public:
+		enum State
+		{
+			NORMAL
+		};
+
 		/* Constructors */
 		Background(const string& textureName);
 		Background(const string& textureName, Vector2f& position);
@@ -32,6 +37,7 @@ namespace Rendering
         virtual ~Background();
 		
     private:
+		Animation<State> _animation;
 		bool _verticalRepetition;
 		Vector2f _position;
 

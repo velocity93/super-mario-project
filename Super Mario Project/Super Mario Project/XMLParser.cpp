@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////
 // XMLParser.cpp
 // Super Mario Project
-// Copyright (C) 2011  
+// Copyright (C) 2011
 // Lionel Joseph lionel.r.joseph@gmail.com
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
@@ -9,6 +9,8 @@
 #include "XMLParser.hpp"
 #include "World.hpp"
 #include "Level.hpp"
+#include "Block.hpp"
+#include "MonsterTypes.hpp"
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
@@ -359,33 +361,24 @@ namespace XMLParsing
 		}
 	}
 
-	// <tileset img="nomTexture.png" size="x:y">
+	// <tileset img="nomTexture.png">
 	void tileset_tag(Level * level, const char **attrs)
 	{
 		string img = "";
-		Vector2i size;
 
-		for(int i = 0; i < 6; i = i + 2)
+		for(int i = 0; i < 2; i = i + 2)
 		{
-			if(!strcmp(attrs[i], "blocSizeX"))
-			{
-				size.x = atoi(attrs[i + 1]);
-			}
-			else if(!strcmp(attrs[i], "blocSizeY"))
-			{
-				size.y = atoi(attrs[i + 1]);
-			}
-			else if(!strcmp(attrs[i], "img"))
+			if(!strcmp(attrs[i], "img"))
 			{
 				img = attrs[i + 1];
 			}
 		}
-		Tileset* tileset = new Tileset(img, size);
+		Tileset* tileset = new Tileset(img);
 		level->addTileset(tileset);
 		id_tileset++;
 	}
 
-	// <block physIndex="" />
+	// <block physIndex="" type="" />
 	void block_tag(Level * level, const char **attrs)
 	{
 		int physicIndex = 0;
@@ -403,17 +396,17 @@ namespace XMLParsing
 			}
 		}
 
-		Block* block = new Block(level->getTilesets()[id_tileset - 1], physicIndex, type);
-		level->addBlock(block);
+		Tileset* tileset = level->getTilesets()[id_tileset - 1];
+		tileset->addBlock(physicIndex, type);
 	}
 
 	//<occ_block actualModel="" alternativeModel="" pos="x:y"/>
 	void occ_blocks_tag(Level* level, const char** attrs)
 	{
 		Vector2f position;
-		int id_model, id_alternative, id_item;
+		int id_model, id_alternative, id_item, id_tileset_actual, id_tileset_alt;
 
-		for(int i = 0; i < 10; i = i + 2)
+		for(int i = 0; i < 14; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
@@ -435,10 +428,23 @@ namespace XMLParsing
 			{
 				id_item = atoi(attrs[i + 1]);
 			}
+			else if(!strcmp(attrs[i], "tileset_actual"))
+			{
+				id_tileset_actual = atoi(attrs[i + 1]);
+			}
+			else if(!strcmp(attrs[i], "tileset_alt"))
+			{
+				id_tileset_alt = atoi(attrs[i + 1]);
+			}
 		}
-		Block* model = level->getBlock()[id_model];
-		if(model != nullptr)
-			model->addNewBlockOccurrence(level->getBlock()[id_alternative], position);
+		Tileset* tileset = level->getTilesets()[id_tileset_actual];
+		if(tileset != nullptr)
+		{
+			Tileset* tileset_alt = level->getTilesets()[id_tileset_alt];
+
+			if(tileset_alt != nullptr)
+				tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+		}
 	}
 
 	void error(void * ctx, const char * msg, ...)
@@ -535,17 +541,17 @@ namespace SuperMarioProject
 {
 	void XMLParser::loadLevel(string fileName, Level* level)
 	{
-		if(!validateSchema("levels/level.xsd", fileName.c_str()))
+		if(validateSchema("levels/level.xsd", fileName.c_str()) == 0)
 			XMLParsing::parseLevel(fileName, level);
 	}
 
 	void XMLParser::loadWorld(string fileName, World* world)
 	{
-		if(!validateSchema("worlds/world.xsd", fileName.c_str()))
+		if(validateSchema("worlds/world.xsd", fileName.c_str()) == 0)
 			XMLParsing::parseWorld(fileName, world);
 	}
 
-	int XMLParser::validateSchema(const char * XMLSchemaFile_pathname, const char * XMLfile_pathname)
+	int XMLParser::validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename)
 	{
 		xmlSchemaPtr ptr_schema = NULL;
 		xmlSchemaParserCtxtPtr ptr_ctxt;
@@ -555,7 +561,7 @@ namespace SuperMarioProject
 
 
 		/* Open Xml Schema File */
-		ptr_ctxt = xmlSchemaNewParserCtxt(XMLSchemaFile_pathname);
+		ptr_ctxt = xmlSchemaNewParserCtxt(XMLSchemaFile_shorterNamename);
 		xmlSchemaSetParserErrors(ptr_ctxt,
 			(xmlSchemaValidityErrorFunc) fprintf,
 			(xmlSchemaValidityWarningFunc) fprintf,
@@ -567,19 +573,19 @@ namespace SuperMarioProject
 		/* If xml schema file wasn't loaded correctly */
 		if (ptr_schema == NULL)
 		{
-			cout << "XMLSCHEMA: Could not open XML Schema " << XMLSchemaFile_pathname << endl;
+			cout << "XMLSCHEMA: Could not open XML Schema " << XMLSchemaFile_shorterNamename << endl;
 			xmlSchemaCleanupTypes();
 			xmlCleanupParser();
 			xmlMemoryDump();
 			return -1;
 		}
 
-		vl_doc = xmlReadFile(XMLfile_pathname,NULL,0);
+		vl_doc = xmlReadFile(XMLfile_shorterNamename,NULL,0);
 
 		/* If xml file wasn't loaded correctly */
 		if (vl_doc == NULL) 
 		{
-			cout << "XML: Could not parse " << XMLfile_pathname << endl;
+			cout << "XML: Could not parse " << XMLfile_shorterNamename << endl;
 		} 
 		else 
 		{
@@ -596,23 +602,23 @@ namespace SuperMarioProject
 			if (vl_return == 0)
 			{ 
 				// If the XML file is valid
-				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_pathname << " is OK." << endl;
+				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_shorterNamename << " is OK." << endl;
 			} 
 			else if (vl_return > 0)
 			{ 
 				// If XML File doesn't correspond to Schema
-				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_pathname <<  " fails to validate." << endl;
+				cout << "XMLSCHEMA VERDICT : Xml file " << XMLfile_shorterNamename <<  " fails to validate." << endl;
 			} 
 			else 
 			{ 
 				// Other error
-				cout << "XMLSCHEMA VERDICT : " << XMLfile_pathname << " validation generated an internal error." << endl;
+				cout << "XMLSCHEMA VERDICT : " << XMLfile_shorterNamename << " validation generated an internal error." << endl;
 			}
 
 			xmlSchemaFreeValidCtxt(ptr_validctxt);
 			xmlFreeDoc(vl_doc);
 		}
 
-		return 0;
+		return vl_return;
 	}
 }
