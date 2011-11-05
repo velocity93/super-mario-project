@@ -47,7 +47,7 @@ int main(int, char**)
 {
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
-    App.SetView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+    App.SetView(View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, 0)));
 	ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
 
     // Limit to 60 FPS
