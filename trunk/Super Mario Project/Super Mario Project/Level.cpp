@@ -8,7 +8,6 @@
 
 #include "Level.hpp"
 #include "XMLParser.hpp"
-#include "XMLWriter.hpp"
 #include "MonsterTypes.hpp"
 
 namespace SuperMarioProject

@@ -24,11 +24,10 @@ namespace SuperMarioProject
 			if(_levelNames.size() > 0)
 			{
 				_level->loadLevel(_levelNames[0]);
-				_level->saveLevel("test2.xml");
 			}
 
 			/* Add default perso */
-			_persos.push_back(new Perso("fire_mario", Vector2f(0,0)));
+			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()

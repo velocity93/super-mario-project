@@ -130,9 +130,9 @@ namespace Collisions
 		solve_acc(inputState);
 
 		/* Test for jump state */
-		/*if(inputState[KEY_JUMP] == KEY_STATE_JUST_PRESSED && inputState[KEY_UP] == KEY_STATE_RELEASED
+		if(inputState[KEY_JUMP] == KEY_STATE_JUST_PRESSED && inputState[KEY_UP] == KEY_STATE_RELEASED
 		&& (_environment == GROUND || _state == CLIMB_LADDER))
-			jump();*/
+			jump();
 
 		/* jump continue if key is always pressed */
 		/*if(_state == JUMP || _state == JUMP_SHELL)
@@ -145,11 +145,11 @@ namespace Collisions
 			}
         }*/
 
-		/*if(_speed.y != 0)
+		if(_speed.y != 0)
 			_environment = AIR;
 
 		if(_speed.y < 0 && (_state == JUMP || _state == ATTACK))
-			setState(JUMP_FALLING);*/
+			setState(JUMP_FALLING);
 
 		/* Test for states : LOOK_TOP_* */
 		if(_broughtMonster == nullptr)

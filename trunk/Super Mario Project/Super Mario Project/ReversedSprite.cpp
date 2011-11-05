@@ -63,16 +63,16 @@ namespace Rendering
             // Calculate the texture coordinates
             sf::FloatRect TexCoords = GetImage()->GetTexCoords(GetSubRect());
             sf::FloatRect Rect(_flippedX ? TexCoords.Right  : TexCoords.Left,
-                _flippedY ? TexCoords.Bottom : TexCoords.Top,
+                _flippedY ? TexCoords.Top : TexCoords.Bottom,
                 _flippedX ? TexCoords.Left   : TexCoords.Right,
-                _flippedY ? TexCoords.Top    : TexCoords.Bottom);
+                _flippedY ? TexCoords.Bottom    : TexCoords.Top);
 
             // Draw the sprite's triangles
             glBegin(GL_QUADS);
-            glTexCoord2f(Rect.Left,  Rect.Top);    glVertex2f(0,     _winHeight);
-            glTexCoord2f(Rect.Left,  Rect.Bottom); glVertex2f(0,     _winHeight  - Height);
-            glTexCoord2f(Rect.Right, Rect.Bottom); glVertex2f(Width, _winHeight  - Height);
-            glTexCoord2f(Rect.Right, Rect.Top);    glVertex2f(Width, _winHeight);
+            glTexCoord2f(Rect.Left,  Rect.Top);    glVertex2f(0,     0);
+            glTexCoord2f(Rect.Left,  Rect.Bottom); glVertex2f(0,     Height);
+            glTexCoord2f(Rect.Right, Rect.Bottom); glVertex2f(Width, Height);
+            glTexCoord2f(Rect.Right, Rect.Top);    glVertex2f(Width, 0);
             glEnd();
         }
         else

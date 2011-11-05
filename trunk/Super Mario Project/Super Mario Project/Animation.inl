@@ -132,7 +132,6 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 			(numState + 1) * spriteSize.y));
 	}
 
-	sprite.FlipY(true);
 	sprite.FlipX(isFlipX);
 	sprite.SetPosition(position);
 
