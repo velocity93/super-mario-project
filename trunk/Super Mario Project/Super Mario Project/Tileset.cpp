@@ -33,11 +33,6 @@ namespace Collisions
 		return _blocks;
 	}
 
-	const string& Tileset::shorterName() const
-	{
-		return name().substr(name().find_first_of("textures/blocs/"), name().size());
-	}
-
 	void Tileset::addBlock(int physicIndex, int type)
 	{
 		_blocks.push_back(new Block(this, physicIndex, type));
@@ -89,6 +84,32 @@ namespace Collisions
 		else
 		{
 			// Exception
+		}
+	}
+
+	void Tileset::serialize(ofstream& file, string& tabs)
+	{
+		string blocs = name().substr(name().find_first_of("/") + 1, name().size());
+		string typeBlocs = blocs.substr(blocs.find_first_of("/") + 1, blocs.size());
+
+		file << tabs << "<tileset ";
+		file << "img=\"" << typeBlocs << "\"";
+
+		if(_blocks.size() > 0)
+		{
+			file << ">" << endl;
+			tabs += '\t';
+			for(vector<Block*>::iterator itBlock = _blocks.begin();
+				itBlock < _blocks.end(); itBlock++)
+			{
+				(*itBlock)->serialize(file, tabs);
+			}
+			tabs.pop_back();
+			file << tabs << "</tileset>" << endl;
+		}
+		else
+		{
+			file << "/>" << endl;
 		}
 	}
 

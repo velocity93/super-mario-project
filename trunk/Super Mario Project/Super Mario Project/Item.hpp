@@ -14,6 +14,7 @@
 #include "Resource.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <fstream>
 
 
 using namespace std;
@@ -64,6 +65,9 @@ namespace Collisions
 
 		/* Render all occurrences */
 		void render(RenderWindow& app);
+
+		/* Serialize Data */
+		void serialize(ofstream& file, const string& tabs);
 
 		/* Destructor */
 		virtual ~Item();

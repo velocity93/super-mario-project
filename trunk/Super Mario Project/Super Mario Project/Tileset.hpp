@@ -30,7 +30,9 @@ namespace Collisions
 		int getFrameDelay();
 		vector<Block*>& getBlocks();
 		void addBlock(int physicIndex, int type);
-		const std::string& shorterName() const;
+
+		/* Serialize Data */
+		void serialize(ofstream& file, string& tabs);
 
 		virtual ~Tileset();
 	private:

@@ -39,6 +39,8 @@ namespace Collisions
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
+		void serialize(ofstream& file, string& tabs);
+
         virtual ~Block();
 		
     private:

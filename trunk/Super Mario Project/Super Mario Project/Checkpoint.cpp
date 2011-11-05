@@ -12,14 +12,14 @@
 
 namespace Collisions
 {
-	Checkpoint::Checkpoint(const string& textureName) : Collisionable(textureName), _state(NOT_PASSED)
+	Checkpoint::Checkpoint(const string& textureName) : Collisionable("textures/objects/" + textureName), _state(NOT_PASSED)
 	{
-		loadCfgCheckpoint(textureName);
+		loadCfgCheckpoint();
 	}
 
-	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable(textureName, position), _state(state)
+	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
 	{
-		loadCfgCheckpoint(textureName);
+		loadCfgCheckpoint();
 	}
 
 	Checkpoint::State Checkpoint::getState()
@@ -36,6 +36,15 @@ namespace Collisions
     {
 
     }
+
+	void Checkpoint::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<checkpoint ";
+		file << "img=\"" << _texture->shorterName() << "\" ";
+		file << "positionX=\"" << _position.x << "\" ";
+		file << "positionY=\"" << _position.y << "\" ";
+		file << "/>" << endl;
+	}
 
 	void Checkpoint::render(RenderWindow& app)
     {
@@ -54,9 +63,9 @@ namespace Collisions
 		app.Draw(sprite);
     }
 
-	void Checkpoint::loadCfgCheckpoint(const string& textureName)
+	void Checkpoint::loadCfgCheckpoint()
 	{
-		string fileName = textureName + ".obj";		
+		string fileName = _texture->name() + ".obj";		
 		ifstream stream(fileName.c_str());
 		
 		/* test if the stream is open*/

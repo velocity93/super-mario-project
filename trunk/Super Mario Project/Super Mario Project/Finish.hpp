@@ -29,6 +29,7 @@ namespace Collisions
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
+		void serialize(ofstream& file, const string& tabs);
 
         virtual ~Finish();
 		

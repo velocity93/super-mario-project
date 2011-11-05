@@ -43,6 +43,14 @@ namespace Rendering
 		_animation.render(_texture, app, _position, false);
 	}
 
+	void Background::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<background ";
+		file << "img=\"" << _texture->shorterName() << "\" ";
+		file << "positionX=\"" << _position.x << "\" ";
+		file << "positionY=\"" << _position.y << "\"/>" << endl;
+	}
+
 	void Background::loadCfgBackground(const string& textureName)
 	{
 		string fileName = _texture->name() + ".obj";

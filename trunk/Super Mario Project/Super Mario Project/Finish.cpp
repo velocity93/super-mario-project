@@ -32,6 +32,14 @@ namespace Collisions
 		_animation.render(_texture, app, _position, false);
     }
 
+	void Finish::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<finish ";
+		file << "img=\"" << _texture->shorterName() << "\" ";
+		file << "positionX=\"" << _position.x << "\" ";
+		file << "positionY=\"" << _position.y << "\"/>" << endl;
+	}
+
 	void Finish::loadFinish(const string& textureName)
 	{
 		string fileName = "textures/objects/" + textureName + ".obj";

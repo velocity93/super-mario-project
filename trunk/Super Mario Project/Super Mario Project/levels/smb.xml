@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <level name="World 1-1" width="200" height="20" music="world1-1.mp3">
 	<spawn positionX="64" positionY="64"/>
-  <checkpoints />
+  <checkpoints>
+    <checkpoint img="checkpoint" positionX="500" positionY="0" />
+  </checkpoints>
 	<backgrounds>
 		<background img="skyBlueHills" positionX="0" positionY="0"/>
 		<background img="blueHills" positionX="0" positionY="0"/>
@@ -38,23 +40,21 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="20" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
-		<pipe img="green_pipe" positionX="30" positionY="2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="-1"/>
-		<pipe img="green_pipe" positionX="38" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
-		<pipe img="green_pipe" positionX="50" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="-1"/>
-		<pipe img="green_pipe" positionX="159" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
-		<pipe img="green_pipe" positionX="175" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="-1"/>
+		<pipe img="green_pipe" positionX="20" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="30" positionY="2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="38" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="50" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="159" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="175" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
-	<blocks>
-    <tilesets>
-      <tileset img="classiques/grass.png">
-        <block physicIndex="0" type_bloc="8388608"/>
-        <block physicIndex="1" type_bloc="8388608"/>
-        <block physicIndex="2" type_bloc="8388608"/>
-      </tileset>
-    </tilesets>
-    <layers>
-      <layer />
-    </layers>
-	</blocks>
+  <tilesets>
+    <tileset img="classiques/grass.png">
+      <block physicIndex="0" type_bloc="8388608"/>
+      <block physicIndex="1" type_bloc="8388608"/>
+      <block physicIndex="2" type_bloc="8388608"/>
+    </tileset>
+  </tilesets>
+  <layers>
+    <layer />
+  </layers>
 </level>

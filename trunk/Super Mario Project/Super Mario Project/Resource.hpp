@@ -28,6 +28,7 @@ namespace SuperMarioProject
 
     private:
         std::string _name;
+		std::string _shorterName;
         int _refCount;
     };
 } // namespace

@@ -188,6 +188,20 @@ namespace Collisions
 		}
     }
 
+	void Pipe::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<pipe ";
+		file << "img=\"" << _texture->shorterName() << "\" ";
+		file << "positionX=\"" << _position.x << "\" ";
+		file << "positionY=\"" << _position.y << "\" ";
+		file << "destination_pipe=\"" << _indexDestination << "\" ";
+		file << "level_destination=\"" << _levelDestination << "\" ";
+		file << "state=\"" << _state << "\" ";
+		file << "length=\"" << _lenght << "\" ";
+		file << "direction=\"" << _direction << "\" ";
+		file << "monster=\"" << _monster->shorterName() << "\" />" << endl;
+	}
+
     Pipe::~Pipe()
     {
     }

@@ -11,6 +11,7 @@
 #define HPP_MONSTER
 
 #include <vector>
+#include <fstream>
 #include "MonsterOccurrence.hpp"
 #include "Resource.hpp"
 
@@ -47,21 +48,23 @@ namespace Collisions
 		/* render all occurrence */
 		void render(RenderWindow& app);
 
+		/* Serialize data */
+		void serialize(ofstream& file, const string& tabs);
+
 		/* Destructor */
 		virtual ~Monster();
 		
 	protected :
-		map<MonsterOccurrence::State, int> _nbSpritesByState;
-		map<MonsterOccurrence::State, int> _frameDelayByState;
-
-    private:
 		int _bottomLeft;
 		int _points;
 		bool _canBeKilledByFire;
 		bool _canBeKilledByJump;
-		bool _canBeJumpedOn;		
+		bool _canBeJumpedOn;
 		vector<MonsterOccurrence*> _monsterOccurrences;
+		map<MonsterOccurrence::State, int> _nbSpritesByState;
+		map<MonsterOccurrence::State, int> _frameDelayByState;
 
+    private:
 		/* Load monster configuration */
 		void loadMonster();
 

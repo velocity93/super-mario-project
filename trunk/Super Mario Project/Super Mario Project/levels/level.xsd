@@ -156,52 +156,46 @@
                   <xs:attribute name="state" type="xs:unsignedByte" use="required" />
                   <xs:attribute name="length" type="xs:unsignedByte" use="required" />
                   <xs:attribute name="direction" type="xs:unsignedByte" use="required" />
-                  <xs:attribute name="monster" type="xs:byte" use="required" />
+                  <xs:attribute name="monster" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="blocks">
+        <xs:element name="tilesets">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="tilesets">
+              <xs:element name="tileset" minOccurs="1" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="tileset" minOccurs="1" maxOccurs="unbounded">
+                    <xs:element name="block" maxOccurs="unbounded" minOccurs="1">
                       <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="block" maxOccurs="unbounded" minOccurs="1">
-                            <xs:complexType>
-                              <xs:attribute name="type_bloc" type="xs:unsignedInt" use="required" />
-                              <xs:attribute name="physicIndex" type="xs:unsignedInt" use="required" />
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
-                        <xs:attribute name="img" type="xs:string" use="required" />
+                        <xs:attribute name="type_bloc" type="xs:unsignedInt" use="required" />
+                        <xs:attribute name="physicIndex" type="xs:unsignedInt" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
+                  <xs:attribute name="img" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="layers">
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="layers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="layer" minOccurs="1">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="layer" minOccurs="1">
+                    <xs:element name="occ_block" maxOccurs="unbounded" minOccurs="0">
                       <xs:complexType>
-                        <xs:sequence>
-                          <xs:element name="occ_block" maxOccurs="unbounded" minOccurs="0">
-                            <xs:complexType>
-                              <xs:attribute name="positionX" type="xs:float" use="required" />
-                              <xs:attribute name="positionY" type="xs:float" use="required" />
-                              <xs:attribute name="tileset_actual" type="xs:unsignedByte" use="required" />
-                              <xs:attribute name="actual" type="xs:unsignedByte" use="required" />
-                              <xs:attribute name="tileset_alt" type="xs:unsignedByte" use="required" />
-                              <xs:attribute name="alt" type="xs:byte" use="required" />
-                              <xs:attribute name="item" type="xs:byte" use="required" />
-                            </xs:complexType>
-                          </xs:element>
-                        </xs:sequence>
+                        <xs:attribute name="positionX" type="xs:float" use="required" />
+                        <xs:attribute name="positionY" type="xs:float" use="required" />
+                        <xs:attribute name="tileset_actual" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="actual" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="tileset_alt" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="alt" type="xs:byte" use="required" />
+                        <xs:attribute name="item" type="xs:byte" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>

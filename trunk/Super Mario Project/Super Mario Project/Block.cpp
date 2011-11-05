@@ -66,6 +66,32 @@ namespace Collisions
         }
 	}
 
+	void Block::serialize(ofstream& file, string& tabs)
+	{
+		file << tabs << "<block ";
+		file << "physicIndex=\"" << _physicIndex << "\" ";
+		file << "type=\"" << _type << "\" ";
+		
+		if(_blockOccurrences.size() > 0)
+		{
+			file << ">" << endl;
+			tabs += '\t';
+			for(vector<BlockOccurrence*>::iterator itBlock = _blockOccurrences.begin();
+				itBlock < _blockOccurrences.end(); itBlock++)
+			{
+				file << tabs << "<occ_block ";
+				file << "positionX=\"" << (*itBlock)->getPosition().x << "\" ";
+				file << "positionY=\"" << (*itBlock)->getPosition().y << "\"/>" << endl;
+			}
+			tabs.pop_back();
+			file << tabs << "</block>" << endl;
+		}
+		else
+		{
+			file << "/>" << endl;
+		}
+	}
+
     Block::~Block()
     {
 

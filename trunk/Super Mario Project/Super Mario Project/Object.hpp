@@ -10,9 +10,10 @@
 #ifndef HPP_OBJECT
 #define HPP_OBJECT
 
+#include <SFML/Graphics.hpp>
 #include "Drawable.hpp"
 #include "Animation.hpp"
-#include <SFML/Graphics.hpp>
+#include <fstream>
 
 using namespace sf;
 
@@ -31,6 +32,7 @@ namespace Rendering
 		
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
+		void serialize(ofstream& file, const string& tabs);
 
         virtual ~Object();
 		

@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Monster.hpp"
-#include <fstream>
 #include <sstream>
 
 namespace Collisions
@@ -63,7 +62,29 @@ namespace Collisions
         }
     }
 
-    void Monster::loadMonster()
+    void Monster::update(RenderWindow& app)
+    {
+        vector<MonsterOccurrence*>::iterator itMonsters;
+
+        /* MonsterOccurrences */
+        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
+        {
+            (*itMonsters)->update(app);
+        }
+    }
+
+    void Monster::render(RenderWindow& app)
+    {
+        vector<MonsterOccurrence*>::iterator itMonsters;
+
+        /* MonsterOccurrences */
+        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
+        {
+            (*itMonsters)->render(app);
+        }
+    }
+
+	void Monster::loadMonster()
     {
         string fileName = name() + ".mstr";
         ifstream stream(fileName.c_str());
@@ -119,28 +140,6 @@ namespace Collisions
         {
             string exceptionName = "Exception occured while opening " + fileName;
             throw exception(exceptionName.c_str());
-        }
-    }
-
-    void Monster::update(RenderWindow& app)
-    {
-        vector<MonsterOccurrence*>::iterator itMonsters;
-
-        /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
-        {
-            (*itMonsters)->update(app);
-        }
-    }
-
-    void Monster::render(RenderWindow& app)
-    {
-        vector<MonsterOccurrence*>::iterator itMonsters;
-
-        /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
-        {
-            (*itMonsters)->render(app);
         }
     }
 

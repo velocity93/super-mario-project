@@ -33,12 +33,14 @@ namespace Collisions
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
+		void serialize(ofstream& file, const string& tabs);
+
         virtual ~Checkpoint();
 		
     private:
 		State _state;
 
-		void loadCfgCheckpoint(const string& textureName);
+		void loadCfgCheckpoint();
     };
 } // namespace
 
