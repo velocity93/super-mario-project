@@ -143,10 +143,10 @@ namespace Collisions
 					(_jumpTime.GetElapsedTime() < 175))
 					_speed.y = JUMP_SPEED;
 			}
-        }*/
+        }
 
 		if(_speed.y != 0)
-			_environment = AIR;
+			_environment = AIR;*/
 
 		if(_speed.y < 0 && (_state == JUMP || _state == ATTACK))
 			setState(JUMP_FALLING);
@@ -205,9 +205,10 @@ namespace Collisions
 		_position.y = _position.y + time * _speed.y;
 		
 		/* Compute new position */
-		if(_position.y < 0)
+		if(_position.y <= 0)
 		{
 			_position.y = 0;
+			_speed.y = 0;
 			_environment = GROUND;
 		}
 
@@ -391,12 +392,12 @@ namespace Collisions
 						}
 						else
 						{
-							if(_environment == GROUND)
+							if(_environment == AIR)
 							{
 								if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 									setState(LOWERED_JUMP);
-								else
-									setState(STANDING);
+								//else
+								//	setState(STANDING);
 							}
 							else
 							{
