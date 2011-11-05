@@ -25,6 +25,8 @@ namespace Collisions
 			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
+		void serialize(ofstream& file, string& tabs);
+
 	private :
 		bool _stayOnPlateForm;
 
@@ -41,6 +43,8 @@ namespace Collisions
 			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
+		void serialize(ofstream& file, string& tabs);
+
 	private :
 		void loadShellMonster();
 	};
@@ -52,6 +56,8 @@ namespace Collisions
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false);
+
+		void serialize(ofstream& file, string& tabs);
 
 	private:
 		void loadFlyingMonster();

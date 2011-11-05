@@ -24,7 +24,7 @@ namespace SuperMarioProject
 			if(_levelNames.size() > 0)
 			{
 				_level->loadLevel(_levelNames[0]);
-				_level->saveLevel("test.xml");
+				_level->saveLevel("test2.xml");
 			}
 
 			/* Add default perso */

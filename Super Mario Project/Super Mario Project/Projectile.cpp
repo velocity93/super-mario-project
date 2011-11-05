@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Projectile.hpp"
-#include <fstream>
 #include <sstream>
 
 namespace Collisions
@@ -50,7 +49,35 @@ namespace Collisions
         }
     }
 
-    void Projectile::loadProjectile()
+    void Projectile::update(RenderWindow& app)
+    {
+        vector<ProjectileOccurrence*>::iterator itProjectiles;
+
+        /* ProjectilesOccurrences */
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
+        {
+            (*itProjectiles)->update(app);
+        }
+    }
+
+    void Projectile::render(RenderWindow& app)
+    {
+        vector<ProjectileOccurrence*>::iterator itProjectiles;
+
+        /* ProjectilesOccurrences */
+        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
+        {
+            (*itProjectiles)->render(app);
+        }
+    }
+
+	void Projectile::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<projectile ";
+		file << "img=\"" << shorterName() << "\" />" << endl;
+	}
+
+	void Projectile::loadProjectile()
     {
         string fileName = name() + ".proj";
         ifstream stream(fileName.c_str());
@@ -146,29 +173,6 @@ namespace Collisions
             throw exception(exceptionName.c_str());
         }
     }
-
-    void Projectile::update(RenderWindow& app)
-    {
-        vector<ProjectileOccurrence*>::iterator itProjectiles;
-
-        /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
-        {
-            (*itProjectiles)->update(app);
-        }
-    }
-
-    void Projectile::render(RenderWindow& app)
-    {
-        vector<ProjectileOccurrence*>::iterator itProjectiles;
-
-        /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
-        {
-            (*itProjectiles)->render(app);
-        }
-    }
-
 
     Projectile::~Projectile()
     {

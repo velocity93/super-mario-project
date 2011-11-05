@@ -71,6 +71,7 @@ namespace Collisions
 		/* Methods */
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
+		void serialize(ofstream& file, const string& tabs);
 
 		/* Destructor */
         virtual ~Pipe();

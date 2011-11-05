@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Object.hpp"
-#include <fstream>
 #include <sstream>
 #include <exception>
 
@@ -35,17 +34,25 @@ namespace Rendering
 		_animation.render(_texture, app, _position, false);
 	}
 
+	void Object::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<object ";
+		file << "img=\"" << _texture->shorterName() << "\" ";
+		file << "positionX=\"" << _position.x << "\" ";
+		file << "positionY=\"" << _position.y << "\"/>" << endl;
+	}
+
 	void Object::loadCfgObject(const string& textureName)
 	{
 		string fileName = _texture->name() + ".obj";
-		ifstream stream(fileName.c_str());
+		ifstream file(fileName.c_str());
 		
-		if(stream)
+		if(file)
 		{
 			string word;
 
 			/* We read file to search the keyword and read his value */
-			while(getline(stream, word))
+			while(getline(file, word))
 			{
 				int found = word.find("nb_sprites=");
 				if(found != string::npos)

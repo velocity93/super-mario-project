@@ -7,7 +7,6 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Item.hpp"
-#include <fstream>
 #include <sstream>
 
 namespace Collisions
@@ -57,7 +56,36 @@ namespace Collisions
         }
     }
 
-    void Item::loadItem()
+    void Item::update(RenderWindow& app)
+    {
+        vector<ItemOccurrence*>::iterator itItems;
+
+        /* ItemsOccurrences */
+        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
+        {
+            (*itItems)->update(app);
+        }
+    }
+
+    void Item::render(RenderWindow& app)
+    {
+        vector<ItemOccurrence*>::iterator itItems;
+
+        /* ItemsOccurrences */
+        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
+        {
+            (*itItems)->render(app);
+        }
+    }
+
+	void Item::serialize(ofstream& file, const string& tabs)
+	{
+		file << tabs << "<item ";
+		file << "img=\"" << shorterName() << "\" ";
+		file << "type=\"" << _type << "\"/>" << endl;
+	}
+
+	void Item::loadItem()
     {
         string fileName = name() + ".item";
         ifstream stream(fileName.c_str());
@@ -109,28 +137,6 @@ namespace Collisions
         {
             string exceptionName = "Exception occured while opening " + fileName;
             throw exception(exceptionName.c_str());
-        }
-    }
-
-    void Item::update(RenderWindow& app)
-    {
-        vector<ItemOccurrence*>::iterator itItems;
-
-        /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
-        {
-            (*itItems)->update(app);
-        }
-    }
-
-    void Item::render(RenderWindow& app)
-    {
-        vector<ItemOccurrence*>::iterator itItems;
-
-        /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
-        {
-            (*itItems)->render(app);
         }
     }
 

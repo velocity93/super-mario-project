@@ -9,6 +9,7 @@
 #include "Level.hpp"
 #include "XMLParser.hpp"
 #include "XMLWriter.hpp"
+#include "MonsterTypes.hpp"
 
 namespace SuperMarioProject
 {
@@ -187,7 +188,245 @@ namespace SuperMarioProject
 
 	void Level::saveLevel(string fileName)
 	{
-		XMLWriter::saveLevel(fileName, this);
+		ofstream file(fileName.c_str());
+		
+		if(file)
+		{
+			string tabs = "";
+
+			/* Header */
+			file << "<?xml version=\"1.0\" ?>" << endl;
+
+			/* Level */
+			file << "<level ";
+			file << "name=\"" << _name << "\" ";
+			file << "width=\"" << _size.x << "\" ";
+			file << "heigth=\"" << _size.y << "\" ";
+			file << "music=\"" << _musicTitle << "\">" << endl;
+
+			tabs += '\t';
+
+			/* Spawn */
+			file << tabs << "<spawn ";
+			file << "positionX=\"" << _spawn.x << "\" ";
+			file << "positionY=\"" << _spawn.y << "\"/>" << endl;
+
+			/* Checkpoints */
+			file << tabs << "<checkpoints";
+
+			if(_checkpoints.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Checkpoint*>::iterator itCheckpoint = _checkpoints.begin();
+					itCheckpoint < _checkpoints.end(); itCheckpoint++)
+				{
+					(*itCheckpoint)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</checkpoints>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Backgrounds */
+			file << tabs << "<backgrounds";
+
+			if(_backgrounds.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Background*>::iterator itBackgrounds = _backgrounds.begin();
+					itBackgrounds < _backgrounds.end(); itBackgrounds++)
+				{
+					(*itBackgrounds)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</backgrounds>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Foregrounds */
+			file << tabs << "<foregrounds";
+
+			if(_foregrounds.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Foreground*>::iterator itForeground = _foregrounds.begin();
+					itForeground < _foregrounds.end(); itForeground++)
+				{
+					(*itForeground)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</foregrounds>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Objects */
+			file << tabs << "<objects";
+
+			if(_foregrounds.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Object*>::iterator itObject = _objects.begin();
+					itObject < _objects.end(); itObject++)
+				{
+					(*itObject)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</objects>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Finishes */
+			file << tabs << "<finishes";
+
+			if(_finishes.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Finish*>::iterator itFinish = _finishes.begin();
+					itFinish < _finishes.end(); itFinish++)
+				{
+					(*itFinish)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</finishes>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Projectiles */
+			file << tabs << "<projectiles";
+
+			if(_projectiles.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Projectile*>::iterator itProjectile = _projectiles.begin();
+					itProjectile < _projectiles.end(); itProjectile++)
+				{
+					(*itProjectile)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</projectiles>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Items */
+			file << tabs << "<items";
+
+			if(_items.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Item*>::iterator itItem = _items.begin();
+					itItem < _items.end(); itItem++)
+				{
+					(*itItem)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</items>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Monsters */
+			file << tabs << "<monsters";
+
+			if(_monsters.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Monster*>::iterator itMonster = _monsters.begin();
+					itMonster < _monsters.end(); itMonster++)
+				{
+					Monster* monster = (*itMonster);
+					WalkingMonster* walkingMonster = dynamic_cast<WalkingMonster*>(monster);
+					FlyingMonster* flyingMonster = dynamic_cast<FlyingMonster*>(monster);
+					ShellMonster* shellMonster = dynamic_cast<ShellMonster*>(monster);
+					
+					if(walkingMonster != nullptr)
+						walkingMonster->serialize(file, tabs);
+					else if(flyingMonster != nullptr)
+						flyingMonster->serialize(file, tabs);
+					else if(shellMonster != nullptr)
+						shellMonster->serialize(file, tabs);
+				}
+
+				tabs.pop_back();
+				file << tabs << "</monsters>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Pipes */
+			file << tabs << "<pipes";
+
+			if(_pipes.size() > 0)
+			{
+				file << ">" << endl;
+				tabs += '\t';
+				for(vector<Pipe*>::iterator itPipe = _pipes.begin();
+					itPipe < _pipes.end(); itPipe++)
+				{
+					(*itPipe)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+				file << tabs << "</pipes>" << endl;
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+
+			/* Blocks */
+			file << tabs << "<tilesets>" << endl;
+			if(_tilesets.size() > 0)
+			{
+				tabs += '\t';
+				for(vector<Tileset*>::iterator itTileset = _tilesets.begin();
+					itTileset < _tilesets.end(); itTileset++)
+				{
+					(*itTileset)->serialize(file, tabs);
+				}
+				tabs.pop_back();
+			}
+			else
+			{
+				file << "/>" << endl;
+			}
+			file << tabs << "</tilesets>" << endl;
+
+
+
+			file << "</level>" << endl;
+			
+
+
+		}
 	}
 
 	void Level::update(RenderWindow& app)

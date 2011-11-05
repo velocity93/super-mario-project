@@ -293,13 +293,13 @@ namespace XMLParsing
 	{
 		Vector2f position;
 		string img = "", level_destination = "";
-		int index_monster = -1;
+		string monster_name = "";
 		int id_PipeDestination = -1;
 		int length = 1;
 		Pipe::State state = Pipe::State::CLOSED;
 		Pipe::Direction direction = Pipe::Direction::TO_TOP;
 
-		for(int i = 0; i < 16; i = i + 2)
+		for(int i = 0; i < 18; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
@@ -312,6 +312,10 @@ namespace XMLParsing
 			else if(!strcmp(attrs[i], "img"))
 			{
 				img = attrs[i + 1];
+			}
+			else if(!strcmp(attrs[i], "state"))
+			{
+				state = (Pipe::State)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "destination_pipe"))
 			{
@@ -331,11 +335,11 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "monster"))
 			{
-				index_monster = atoi(attrs[i + 1]);
+				monster_name = attrs[i + 1];
 			}
 		}
 
-		if(index_monster >= 0)
+		if(monster_name != "")
 		{
 			level->addPipe(new Pipe(
 				img,
@@ -345,7 +349,7 @@ namespace XMLParsing
 				state,
 				length,
 				direction,
-				level->getMonsters()[index_monster]));
+				new Monster(monster_name)));
 		}
 		else
 		{

@@ -13,6 +13,7 @@ namespace SuperMarioProject
 {
     Resource::Resource(std::string name)
         : _name(name),
+		_shorterName(name.substr(name.find_last_of("/") + 1, name.size())),
         _refCount(0)
     {
     }
@@ -25,11 +26,11 @@ namespace SuperMarioProject
     {
         return _name;
     }
-
+	
 	const std::string &Resource::shorterName() const
-	{
-		return _name.substr(_name.find_last_of("/"), _name.size());
-	}
+    {
+        return _shorterName;
+    }
 
      void Resource::addRef()
      {

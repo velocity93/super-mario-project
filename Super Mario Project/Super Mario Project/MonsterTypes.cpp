@@ -21,6 +21,31 @@ namespace Collisions
 		loadWalkingMonster();
 	}
 
+	void WalkingMonster::serialize(ofstream& file, string& tabs)
+	{
+		file << tabs << "<walking_monster ";
+		file << "name=\"" << shorterName() << "\"";
+
+		if(_monsterOccurrences.size() > 0)
+		{
+			file << ">" << endl;
+			tabs += '\t';
+			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
+				itMonster < _monsterOccurrences.end(); itMonster++)
+			{
+				file << tabs << "<occ_monster ";
+				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
+				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
+			}
+			tabs.pop_back();
+			file << tabs << "</walking_monster>" << endl;
+		}
+		else
+		{
+			file << "/>" << endl;
+		}
+	}
+
 	void WalkingMonster::loadWalkingMonster()
 	{
 		string fileName = name() + ".mstr";
@@ -116,6 +141,31 @@ namespace Collisions
 		loadShellMonster();
 	}
 
+	void ShellMonster::serialize(ofstream& file, string& tabs)
+	{
+		file << tabs << "<shell_monster ";
+		file << "name=\"" << shorterName() << "\"";
+
+		if(_monsterOccurrences.size() > 0)
+		{
+			file << ">" << endl;
+			tabs += '\t';
+			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
+				itMonster < _monsterOccurrences.end(); itMonster++)
+			{
+				file << tabs << "<occ_monster ";
+				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
+				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
+			}
+			tabs.pop_back();
+			file << tabs << "</shell_monster>" << endl;
+		}
+		else
+		{
+			file << "/>" << endl;
+		}
+	}
+
 	void ShellMonster::loadShellMonster()
 	{
 		string fileName = name() + ".mstr";
@@ -182,6 +232,31 @@ namespace Collisions
 		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn)
 	{
 		loadFlyingMonster();
+	}
+
+	void FlyingMonster::serialize(ofstream& file, string& tabs)
+	{
+		file << tabs << "<flyng_monster ";
+		file << "name=\"" << shorterName() << "\"";
+
+		if(_monsterOccurrences.size() > 0)
+		{
+			file << ">" << endl;
+			tabs += '\t';
+			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
+				itMonster < _monsterOccurrences.end(); itMonster++)
+			{
+				file << tabs << "<occ_monster ";
+				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
+				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
+			}
+			tabs.pop_back();
+			file << tabs << "</flyng_monster>" << endl;
+		}
+		else
+		{
+			file << "/>" << endl;
+		}
 	}
 
 	void FlyingMonster::loadFlyingMonster()
