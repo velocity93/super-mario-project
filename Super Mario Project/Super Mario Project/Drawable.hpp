@@ -55,6 +55,8 @@ namespace Rendering
 		void setPositionX(float x);
 		void setPositionY(float y);
 
+		virtual void setActivity(RenderWindow& app) = 0;
+
 		/* It will be defined in subclasses */
 		/* update drawable object context */
 		virtual void update(RenderWindow& app) = 0;
@@ -67,6 +69,7 @@ namespace Rendering
 	protected:
 		Texture* _texture;
 		Vector2f _position;
+		bool _isActive;
 
 		void InitializeDrawable(const string& textureName);
 	};

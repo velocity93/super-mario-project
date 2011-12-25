@@ -15,7 +15,7 @@
 #define JUMP_SPEED			    		600
 #define RUN_SPEED						0.6F
 #define EJECTION_SPEED_Y				0.2F
-#define GRAVITY							1200
+#define GRAVITY							1400
 
 /* Accelerations constants (* 200) */
 #define RUN_ACCEL						50

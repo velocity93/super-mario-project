@@ -109,6 +109,11 @@ namespace Collisions
 		_insidePipe = pipe;
 	}
 
+	void Perso::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Perso::update(RenderWindow&)
 	{
 		/* NOTHING */
@@ -117,9 +122,9 @@ namespace Collisions
 	void Perso::updatePerso(float time, InputState& inputState)
 	{
 		/* Applying gravity */
-		/*if(_state != GET_IN_FROM_PIPE_HORIZONTAL && _state != GET_OUT_FROM_PIPE_HORIZONTAL
+		if(_state != GET_IN_FROM_PIPE_HORIZONTAL && _state != GET_OUT_FROM_PIPE_HORIZONTAL
 			&& _state != GET_IN_FROM_PIPE_VERTICAL && _state != GET_OUT_FROM_PIPE_VERTICAL
-			&& _state != CLIMB_LADDER)*/
+			&& _state != CLIMB_LADDER)
 			gravity(_speed, time);
 
 		/* Lateral movements management */

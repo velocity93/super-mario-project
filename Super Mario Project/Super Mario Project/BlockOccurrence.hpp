@@ -39,6 +39,7 @@ namespace Collisions
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
+		void setActivity(RenderWindow& app);
 
         virtual ~BlockOccurrence();
 		

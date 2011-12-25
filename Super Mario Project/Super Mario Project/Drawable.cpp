@@ -11,12 +11,12 @@
 
 namespace Rendering
 {
-	Drawable::Drawable(const string& textureName)
+	Drawable::Drawable(const string& textureName) : _isActive(true)
 	{
 		InitializeDrawable(textureName);
 	}
 
-	Drawable::Drawable(const string& textureName, Vector2f& position)
+	Drawable::Drawable(const string& textureName, Vector2f& position) : _isActive(true)
 	{
 		InitializeDrawable(textureName);
 		_position = position;

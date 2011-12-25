@@ -40,6 +40,7 @@ namespace Collisions
 		Sender getSender();
 		State getState();
 		void setState(State state);
+		void setActivity(RenderWindow& app);
 
 		/* Methods */
 		void update(RenderWindow& app);

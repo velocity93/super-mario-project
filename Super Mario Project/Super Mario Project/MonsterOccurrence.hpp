@@ -66,11 +66,10 @@ namespace Collisions
 	private:
 		Animation<State> _animation;
 		Monster* _monster;
-		bool _isActive;
 		Vector2f _initialPosition;
 		State _state;
 
-		void updateMonsterActivity(RenderWindow& app);
+		void setActivity(RenderWindow& app);
 	};
 } // namespace
 

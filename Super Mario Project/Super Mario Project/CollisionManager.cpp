@@ -11,38 +11,6 @@
 
 namespace Collisions
 {
-	void CollisionManager::solveCollisions(Collisionable* c1, Collisionable* c2, Level* level)
-	{
-		EntityMovable* et1, *et2;
-		et1 = dynamic_cast<EntityMovable*>(c1);
-		et2 = dynamic_cast<EntityMovable*>(c2);
-
-		if(et1 != 0)
-		{
-			// et1 successfully casted in EntityMovable
-			if(et2 != 0)
-			{
-				solveCollisions(et1, et2, level);
-			}
-			else
-			{
-				solveCollisions(et1, c2, level);
-			}
-		}
-		else
-		{
-			// et1 not successfully casted in EntityMovable
-			if(et2 != 0)
-			{
-				solveCollisions(et2, c1, level);
-			}
-			else
-			{
-				throw exception("Error in collisions");
-			}
-		}
-	}
-
 	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level* level)
 	{
 		Collisions_info infos;
@@ -74,14 +42,14 @@ namespace Collisions
        {
  
         if (zone.Left < r1.Left + r1.GetWidth() / 2) 
-			collisions_info->type = FROM_LEFT;
+			collisions_info->type[FROM_LEFT] = true;
         if (zone.Right > r1.Left + r1.GetWidth() / 2)
-			collisions_info->type = FROM_RIGHT;
+			collisions_info->type[FROM_RIGHT] = true;
  
         if (zone.Top > r1.Top + r1.GetHeight() / 2)
-			collisions_info->type = FROM_BOTTOM;
+			collisions_info->type[FROM_BOTTOM] = true;
         if (zone.Bottom < r1.Top + r1.GetHeight() / 2)
-            collisions_info->type = FROM_TOP;
+            collisions_info->type[FROM_TOP] = true;
 
 		return true;
 	   }

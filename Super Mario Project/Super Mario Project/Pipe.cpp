@@ -56,6 +56,11 @@ namespace Collisions
 		_monster = monster;
 	}
 
+	void Pipe::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Pipe::update(RenderWindow& app)
     {
 		if(_monster != nullptr)

@@ -40,6 +40,11 @@ namespace Collisions
 		file << "positionY=\"" << _position.y << "\"/>" << endl;
 	}
 
+	void Finish::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Finish::loadFinish(const string& textureName)
 	{
 		string fileName = "textures/objects/" + textureName + ".obj";

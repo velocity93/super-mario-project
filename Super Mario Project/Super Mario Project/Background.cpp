@@ -51,6 +51,11 @@ namespace Rendering
 		file << "positionY=\"" << _position.y << "\"/>" << endl;
 	}
 
+	void Background::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Background::loadCfgBackground(const string& textureName)
 	{
 		string fileName = _texture->name() + ".obj";
