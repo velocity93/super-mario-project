@@ -24,7 +24,6 @@ namespace Collisions
 		map<ItemOccurrence::State, int>& frameDelayByState) : 
 		EntityMovable(textureName, position, speed, side), 
 			_state(state), 
-			_isActive(true), 
 			_blockExitTime(0)
 	{
 		_item = ResourceManager::getItem(textureName);
@@ -44,39 +43,80 @@ namespace Collisions
 		return _state;
 	}
 
-	bool ItemOccurrence::getIsActive()
-	{
-		return _isActive;
-	}
-
 	void ItemOccurrence::setState(State state)
 	{
 		_state = state;
 		_animation.setCurrentState(state);
 	}
 
-	void ItemOccurrence::setIsActive(bool isActive)
+	void ItemOccurrence::setActivity(RenderWindow& app)
 	{
-		_isActive = isActive;
+
 	}
 
 	void ItemOccurrence::update(RenderWindow& app)
 	{
-		/* If it falls in hole */
-		if(_hitboxPosition.y + _hitboxSize.y < 0)
-			_item->removeItemOccurrence(this);
+	//	pause_item(n, item, e);
 
-		/* Submissions */
-		if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
-			gravity(_speed, app.GetFrameTime());
+	//if(item->actif)
+	//{
+	//	/* Test si l'item est sorti du bloc */
+	//	if(item->etat == NORMAL)
+	//	{
+	//		/* Gravité */
+	//		if(n->items[item->type_item]->soumission & SOUMIS_GRAVITE)
+	//			gravity(&item->vitesse, duree);
+	//	}
+	//	else
+	//	{
+	//		if(item->tps_sortie_bloc <= 0)
+	//		{
+	//			if(n->items[item->type_item]->nom == PIECE)
+	//			{
+	//				supprime_item(n->items[item->type_item]->occ_items, item);
+	//				return 1;
+	//			}
+	//			else
+	//			{
+	//				item->etat = NORMAL;
+	//				item->vitesse.x = n->items[item->type_item]->vitesse.x;
+	//				item->vitesse.y = n->items[item->type_item]->vitesse.y;
+	//			}
+	//		}
+	//		else
+	//		{
+	//			item->tps_sortie_bloc -= duree;
+	//		}
+	//	}
 
-		/* Update physic position */
-		/* Save actual position in previous position */
-		_previousPosition = _position;
+	//	/* Sauvegarde de la position precedente */
+	//	item->position_prec.x = item->position.x;
+	//	item->position_prec.y = item->position.y;
 
-		/* Compute new position */
-		_position.x = _position.x + _speed.x * app.GetFrameTime(); 
-		_position.y = _position.y + _speed.y * app.GetFrameTime();
+	//	/* Mise à jour des positions à partir de la vitesse */
+	//	item->position.x += item->vitesse.x * duree;
+	//	item->position.y += item->vitesse.y * duree;
+	//}
+	//return 0;
+
+		if(_isActive)
+		{
+			/* If it falls in hole */
+			if(_hitboxPosition.y + _hitboxSize.y < 0)
+				_item->removeItemOccurrence(this);
+
+			/* Submissions */
+			if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
+				gravity(_speed, app.GetFrameTime());
+
+			/* Update physic position */
+			/* Save actual position in previous position */
+			_previousPosition = _position;
+
+			/* Compute new position */
+			_position.x = _position.x + _speed.x * app.GetFrameTime(); 
+			_position.y = _position.y + _speed.y * app.GetFrameTime();
+		}
 
 	}
 

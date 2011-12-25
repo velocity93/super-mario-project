@@ -31,6 +31,7 @@ namespace Rendering
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
+		void setActivity(RenderWindow& app);
 		
 		/* Destructor */
         virtual ~Foreground();

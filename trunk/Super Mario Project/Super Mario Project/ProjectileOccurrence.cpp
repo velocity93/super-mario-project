@@ -55,6 +55,11 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
+	void ProjectileOccurrence::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void ProjectileOccurrence::update(RenderWindow& app)
 	{
 		/* If it falls in hole */

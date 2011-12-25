@@ -30,6 +30,7 @@ namespace Collisions
 		void update(RenderWindow& app);
 		void update(float time, bool hasGravity);
 		void render(RenderWindow& app);
+		void setActivity(RenderWindow& app);
 
         virtual ~Particle();
 		

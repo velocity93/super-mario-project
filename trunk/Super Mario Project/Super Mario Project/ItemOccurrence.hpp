@@ -37,7 +37,7 @@ namespace Collisions
 		State getState();
 		bool getIsActive();
 		void setState(State state);
-		void setIsActive(bool isActive);
+		void setActivity(RenderWindow& app);
 
 		void update(RenderWindow& app);
 		void render(RenderWindow& app);
@@ -46,8 +46,7 @@ namespace Collisions
 		
     private:
 		Animation<State> _animation;
-		State _state;
-		bool _isActive;
+		State _state;		
 		int _blockExitTime;
 		Item* _item;
     };

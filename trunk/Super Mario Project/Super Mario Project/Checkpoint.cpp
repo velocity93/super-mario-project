@@ -46,6 +46,11 @@ namespace Collisions
 		file << "/>" << endl;
 	}
 
+	void Checkpoint::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Checkpoint::render(RenderWindow& app)
     {
         ReversedSprite sprite = _texture->getSprite();

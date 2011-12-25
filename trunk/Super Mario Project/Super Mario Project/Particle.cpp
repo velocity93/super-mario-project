@@ -17,6 +17,11 @@ namespace Collisions
 		return _life;
 	}
 
+	void Particle::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void Particle::update(RenderWindow& app)
 	{
 		update(app.GetFrameTime(), false);

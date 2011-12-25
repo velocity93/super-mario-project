@@ -140,16 +140,8 @@ namespace Collisions
 		void setCanClimb(bool canClimb);
 		void setBroughtMonster(MonsterOccurrence* monster);
 		void setInsidePipe(Pipe* pipe);
-		void setCheckPointPassed(Checkpoint* checkpoint);
-		void setInvincibleTime(int invincibleTime);
-		void setInvincibleStarTime(int invincibleStarTime);
-		void setTransformationTime(int transformationTime);
-		void setAttackTime(int attackTime);
-		void setSpecialAttackTime(int specialAttackTime);
-		void setThrowShellTime(int throwShellTime);
-		void setDeathTime(int deathTime);
-		void setFinishTime(int finishTime);
-		void setJumpTime(int jumpTime);
+
+		void setActivity(RenderWindow& app);
 
 		void updatePerso(float time, InputState& inputState);
 

@@ -47,6 +47,11 @@ namespace Collisions
 		}
     }
 
+	void BlockOccurrence::setActivity(RenderWindow& app)
+	{
+
+	}
+
 	void BlockOccurrence::update(RenderWindow&)
 	{
 		if(_animation.getNbSpritesMax() > 1)

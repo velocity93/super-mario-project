@@ -22,7 +22,7 @@ namespace Collisions
 		MonsterOccurrence::Side side,
 		map<MonsterOccurrence::State, int>& nbSpritesByState,
 		map<MonsterOccurrence::State, int>& frameDelayByState)
-			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _isActive(true)
+			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state)
 	{
 		_monster = ResourceManager::getMonster(textureName);
 
@@ -50,7 +50,7 @@ namespace Collisions
 
 	void MonsterOccurrence::update(RenderWindow& app)
 	{
-		updateMonsterActivity(app);
+		setActivity(app);
 
 		if(_isActive)
 		{
@@ -75,7 +75,7 @@ namespace Collisions
 		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
-	void MonsterOccurrence::updateMonsterActivity(RenderWindow& app)
+	void MonsterOccurrence::setActivity(RenderWindow& app)
 	{
 		const View& view = app.GetDefaultView();
 
