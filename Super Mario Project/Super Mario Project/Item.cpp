@@ -42,7 +42,7 @@ namespace Collisions
 
 	void Item::addNewItemOccurrence(Vector2f& position, Vector2f& speed, ItemOccurrence::State state, ItemOccurrence::Side side)
     {
-        _itemOccurrences.push_back(new ItemOccurrence(name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
+        _itemOccurrences.push_back(new ItemOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
 
     void Item::removeItemOccurrence(const ItemOccurrence* item)

@@ -49,7 +49,15 @@ namespace Collisions
 
 	void BlockOccurrence::setActivity(RenderWindow& app)
 	{
+		View view = app.GetView();
 
+		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
+			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x
+			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
+			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y)
+			_isActive = false;
+		else
+			_isActive = true;
 	}
 
 	void BlockOccurrence::update(RenderWindow&)
