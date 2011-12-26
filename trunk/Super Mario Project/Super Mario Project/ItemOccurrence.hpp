@@ -13,6 +13,8 @@
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
 
+#define ITEM_EXIT_BLOCK_TIME			650
+
 namespace Collisions
 {
 	class Item;
@@ -26,7 +28,8 @@ namespace Collisions
 			GET_OUT_FROM_BLOC
 		};
 
-		ItemOccurrence(const string& textureName, 
+		ItemOccurrence(Item* item,
+			const string& textureName, 
 			Vector2f& position, 
 			Vector2f& speed, 
 			State state, 
@@ -47,7 +50,7 @@ namespace Collisions
     private:
 		Animation<State> _animation;
 		State _state;		
-		int _blockExitTime;
+		PausableClock _blockExitTime;
 		Item* _item;
     };
 } // namespace

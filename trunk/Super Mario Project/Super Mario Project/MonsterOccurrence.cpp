@@ -15,6 +15,7 @@ using namespace SuperMarioProject;
 namespace Collisions
 {
 	MonsterOccurrence::MonsterOccurrence(
+		Monster* monster,
 		const string& textureName, 
 		Vector2f& position,
 		Vector2f& speed,
@@ -24,7 +25,7 @@ namespace Collisions
 		map<MonsterOccurrence::State, int>& frameDelayByState)
 			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state)
 	{
-		_monster = ResourceManager::getMonster(textureName);
+		_monster = monster;
 
 		// Animation
 		_animation.setMapFrameDelay(frameDelayByState);
@@ -72,7 +73,8 @@ namespace Collisions
 
 	void MonsterOccurrence::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+		if(_isActive)
+			_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
 	void MonsterOccurrence::setActivity(RenderWindow& app)

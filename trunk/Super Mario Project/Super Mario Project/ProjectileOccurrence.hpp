@@ -32,7 +32,13 @@ namespace Collisions
 		};
     
 		/* Constructors */
-		ProjectileOccurrence(const string& textureName, Vector2f& position, Vector2f& speed, State state, Side side,
+		ProjectileOccurrence(
+			Projectile* projectile,
+			const string& textureName,
+			Vector2f& position, 
+			Vector2f& speed, 
+			State state, 
+			Side side,
 			map<ProjectileOccurrence::State, int>& nbSpritesByState,
 			map<ProjectileOccurrence::State, int>& frameDelayByState);
 
@@ -53,6 +59,8 @@ namespace Collisions
 		Sender _sender;
 		State _state;
 		Projectile* _projectile;
+		PausableClock _lifeTime;
+		PausableClock _appearanceTime;
     };
 } // namespace
 

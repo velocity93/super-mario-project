@@ -35,7 +35,7 @@ namespace Collisions
 
 	void Projectile::addNewProjectileOccurrence(Vector2f& position, Vector2f& speed, ProjectileOccurrence::State state, ProjectileOccurrence::Side side)
     {
-		_projectileOccurences.push_back(new ProjectileOccurrence(name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
+		_projectileOccurences.push_back(new ProjectileOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
 
     void Projectile::removeProjectileOccurrence(const ProjectileOccurrence* projectile)

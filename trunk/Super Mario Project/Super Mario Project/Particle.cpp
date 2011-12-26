@@ -19,7 +19,7 @@ namespace Collisions
 
 	void Particle::setActivity(RenderWindow& app)
 	{
-
+		// TO DO
 	}
 
 	void Particle::update(RenderWindow& app)

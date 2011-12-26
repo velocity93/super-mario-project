@@ -47,6 +47,7 @@ namespace Collisions
 		};
 
 		MonsterOccurrence(
+			Monster* monster,
 			const string& textureName, 
 			Vector2f& position,
 			Vector2f& speed,

@@ -28,7 +28,8 @@ namespace Collisions
 			PUSHED_TO_TOP,
 		};
 
-		BlockOccurrence(const string& textureName, 
+		BlockOccurrence(
+			const string& textureName, 
 			Vector2f& position, 
 			Vector2f& speed, 
 			State state, 

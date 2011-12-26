@@ -15,6 +15,7 @@ using namespace SuperMarioProject;
 namespace Collisions
 {
 	ItemOccurrence::ItemOccurrence(
+		Item* item,
 		const string& textureName, 
 		Vector2f& position, 
 		Vector2f& speed, 
@@ -24,9 +25,9 @@ namespace Collisions
 		map<ItemOccurrence::State, int>& frameDelayByState) : 
 		EntityMovable(textureName, position, speed, side), 
 			_state(state), 
-			_blockExitTime(0)
+			_blockExitTime(PausableClock(true))
 	{
-		_item = ResourceManager::getItem(textureName);
+		_item = item;
 
 		/* Initialize animation class */
 		_animation.setMapNbSprites(nbSpritesByState);
@@ -34,6 +35,7 @@ namespace Collisions
 		_animation.setCurrentState(_state);
 
 		_position = _hitboxPosition = position;
+		_speed = _item->getInitialSpeed();
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax();
 		_hitboxSize.y = _texture->getImage()->GetHeight();
 	}
@@ -51,78 +53,70 @@ namespace Collisions
 
 	void ItemOccurrence::setActivity(RenderWindow& app)
 	{
+		View view = app.GetView();
+
+		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
+			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x - view.GetHalfSize().x
+			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
+			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y + view.GetHalfSize().y)
+			_isActive = false;
+		else
+			_isActive = true;
 
 	}
 
 	void ItemOccurrence::update(RenderWindow& app)
 	{
-	//	pause_item(n, item, e);
-
-	//if(item->actif)
-	//{
-	//	/* Test si l'item est sorti du bloc */
-	//	if(item->etat == NORMAL)
-	//	{
-	//		/* Gravité */
-	//		if(n->items[item->type_item]->soumission & SOUMIS_GRAVITE)
-	//			gravity(&item->vitesse, duree);
-	//	}
-	//	else
-	//	{
-	//		if(item->tps_sortie_bloc <= 0)
-	//		{
-	//			if(n->items[item->type_item]->nom == PIECE)
-	//			{
-	//				supprime_item(n->items[item->type_item]->occ_items, item);
-	//				return 1;
-	//			}
-	//			else
-	//			{
-	//				item->etat = NORMAL;
-	//				item->vitesse.x = n->items[item->type_item]->vitesse.x;
-	//				item->vitesse.y = n->items[item->type_item]->vitesse.y;
-	//			}
-	//		}
-	//		else
-	//		{
-	//			item->tps_sortie_bloc -= duree;
-	//		}
-	//	}
-
-	//	/* Sauvegarde de la position precedente */
-	//	item->position_prec.x = item->position.x;
-	//	item->position_prec.y = item->position.y;
-
-	//	/* Mise à jour des positions à partir de la vitesse */
-	//	item->position.x += item->vitesse.x * duree;
-	//	item->position.y += item->vitesse.y * duree;
-	//}
-	//return 0;
+		setActivity(app);
 
 		if(_isActive)
 		{
-			/* If it falls in hole */
-			if(_hitboxPosition.y + _hitboxSize.y < 0)
-				_item->removeItemOccurrence(this);
+			if(_state == NORMAL)
+			{
+				/* If it falls in hole */
+				if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_item->removeItemOccurrence(this);
 
-			/* Submissions */
-			if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
-				gravity(_speed, app.GetFrameTime());
+				/* Submissions */
+				if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
+					gravity(_speed, app.GetFrameTime());
 
-			/* Update physic position */
-			/* Save actual position in previous position */
-			_previousPosition = _position;
+				/* Update physic position */
+				/* Save actual position in previous position */
+				_previousPosition = _position;
 
-			/* Compute new position */
-			_position.x = _position.x + _speed.x * app.GetFrameTime(); 
-			_position.y = _position.y + _speed.y * app.GetFrameTime();
+				/* Compute new position */
+				_position.x = _position.x + _speed.x * app.GetFrameTime(); 
+				_position.y = _position.y + _speed.y * app.GetFrameTime();
+			}
+			else
+			{
+				if(_blockExitTime.GetElapsedTime() > ITEM_EXIT_BLOCK_TIME)
+				{
+					if(_item->getType() == Item::Type::COIN)
+					{
+						_item->removeItemOccurrence(this);
+					}
+					else
+					{
+						_state = NORMAL;
+						_speed.x = _item->getInitialSpeed().x;
+						_speed.y = _item->getInitialSpeed().y;
+					}
+					_blockExitTime.Reset(true);
+				}
+			}
 		}
+
+		/* Update animation */
+		_animation.update();
 
 	}
 
 	void ItemOccurrence::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+		if(_isActive)
+			_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
 	}
 
 	ItemOccurrence::~ItemOccurrence()

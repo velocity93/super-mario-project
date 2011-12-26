@@ -54,13 +54,13 @@ int main(int, char**)
     App.SetFramerateLimit(60);
 
     // Create world
-    World w(&App);
-	/*Level lvl;
+    /*World w(&App);
+	Level lvl;
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-
-
+	Item item("champignon", Item::Type::MUSHROOM);
+	item.addNewItemOccurrence();
     try
     {
         // Start the game loop
@@ -100,14 +100,10 @@ int main(int, char**)
             App.Clear();
 
             // Update World
-            //background.update(App);
-            //perso.updatePerso(App, input);
-			w.update();
+			item.update(App);
 
             // Draw World
-            //background.render(App);
-            //perso.render(App);
-			w.render(App);
+			item.render(App);
 
             // Update the window
             App.Display();

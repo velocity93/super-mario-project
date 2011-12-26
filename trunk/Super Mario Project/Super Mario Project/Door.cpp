@@ -46,14 +46,21 @@ namespace Collisions
 		_state = state;
 	}
 
+	void Door::setActivity(RenderWindow& app)
+	{
+		// TO DO
+	}
+
 	void Door::update(RenderWindow&)
 	{
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 	}
 
 	void Door::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, false);
+		if(_isActive)
+			_animation.render(_texture, app, _position, false);
 	}
 
 	void Door::loadDoor(const string& textureName)
