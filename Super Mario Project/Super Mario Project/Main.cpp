@@ -10,6 +10,7 @@
 #include <SFML/Window.hpp>
 #include <sstream>
 #include "World.hpp"
+#include "Block.hpp"
 #include "ReversedSprite.hpp"
 
 using namespace SuperMarioProject;
@@ -59,8 +60,9 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Projectile projectile("fireball", Projectile::FIREBALL);
-	projectile.addNewProjectileOccurrence();
+	Tileset tiles("speciaux/cassables/overworld");
+	tiles.addBlock(0, 0x200000);
+	tiles.getBlocks()[0]->addNewBlockOccurrence(tiles.getBlocks()[0]);
     try
     {
         // Start the game loop
@@ -100,10 +102,10 @@ int main(int, char**)
             App.Clear();
 
             // Update World
-			projectile.update(App);
+			tiles.update(App);
 
             // Draw World
-			projectile.render(App);
+			tiles.render(App);
 
             // Update the window
             App.Display();

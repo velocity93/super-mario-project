@@ -242,13 +242,7 @@
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\projectiles\fireball.proj">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\champignon.item">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\champignon.png">
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
