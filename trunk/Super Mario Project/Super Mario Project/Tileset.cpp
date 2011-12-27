@@ -38,6 +38,26 @@ namespace Collisions
 		_blocks.push_back(new Block(this, physicIndex, type));
 	}
 
+	void Tileset::update(RenderWindow& app)
+	{
+		vector<Block*>::iterator itBlock;
+
+        for(itBlock = _blocks.begin(); itBlock != _blocks.end(); ++itBlock)
+        {
+			(*itBlock)->update(app);
+        }
+	}
+
+	void Tileset::render(RenderWindow& app)
+	{
+		vector<Block*>::iterator itBlock;
+
+        for(itBlock = _blocks.begin(); itBlock != _blocks.end(); ++itBlock)
+        {
+			(*itBlock)->render(app);
+        }
+	}
+
 	void Tileset::loadConfiguration(const string& textureName)
 	{
 		/* Build cfg file shorterName */

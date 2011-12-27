@@ -12,7 +12,7 @@
 #define HPP_TILESET
 
 #include "Resource.hpp"
-#include <SFML\System.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 using namespace std;
@@ -30,6 +30,9 @@ namespace Collisions
 		int getFrameDelay();
 		vector<Block*>& getBlocks();
 		void addBlock(int physicIndex, int type);
+		
+		void update(RenderWindow& app);
+		void render(RenderWindow& app);
 
 		/* Serialize Data */
 		void serialize(ofstream& file, string& tabs);
