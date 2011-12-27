@@ -53,6 +53,9 @@ namespace Collisions
         {
             if((*itItemOccurrence) == item)
                 _itemOccurrences.erase(itItemOccurrence);
+
+			if(_itemOccurrences.size() == 0)
+				break;
         }
     }
 
@@ -64,6 +67,9 @@ namespace Collisions
         for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
             (*itItems)->update(app);
+
+			if(_itemOccurrences.size() == 0)
+				break;
         }
     }
 

@@ -59,6 +59,9 @@ namespace Collisions
         {
             if((*itMonsterOccurrence) == monster)
                 _monsterOccurrences.erase(itMonsterOccurrence);
+
+			if(_monsterOccurrences.size() == 0)
+				break;
         }
     }
 
@@ -70,6 +73,9 @@ namespace Collisions
         for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
             (*itMonsters)->update(app);
+
+			if(_monsterOccurrences.size() == 0)
+				break;
         }
     }
 

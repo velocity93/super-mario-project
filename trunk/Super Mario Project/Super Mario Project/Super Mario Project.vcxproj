@@ -159,6 +159,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ResourceManager.inl" />
+    <None Include="textures\items\champignon.item" />
+    <None Include="textures\items\champignon.png" />
+    <None Include="textures\projectiles\fireball.proj" />
     <None Include="worlds\world1.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

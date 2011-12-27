@@ -26,7 +26,7 @@ namespace Collisions
 		};
 
 		enum State {
-			CHARGING,
+			CHARGING = -1,
 			LAUNCHED,
 			DEAD
 		};

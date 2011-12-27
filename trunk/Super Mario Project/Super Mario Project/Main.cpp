@@ -59,8 +59,8 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Item item("champignon", Item::Type::MUSHROOM);
-	item.addNewItemOccurrence();
+	Projectile projectile("fireball", Projectile::FIREBALL);
+	projectile.addNewProjectileOccurrence();
     try
     {
         // Start the game loop
@@ -100,10 +100,10 @@ int main(int, char**)
             App.Clear();
 
             // Update World
-			item.update(App);
+			projectile.update(App);
 
             // Draw World
-			item.render(App);
+			projectile.render(App);
 
             // Update the window
             App.Display();

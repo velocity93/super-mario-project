@@ -73,7 +73,7 @@ namespace Collisions
 	{
 		setActivity(app);
 
-		if(_lifeTime.GetElapsedTime() > 0)
+		if(_lifeTime.GetElapsedTime() >= 0)
 		{
 			/* If it falls in hole */
 			if(_hitboxPosition.y + _hitboxSize.y < 0)

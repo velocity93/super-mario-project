@@ -42,10 +42,13 @@ namespace Collisions
     {
         vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
 
-        for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); ++itProjectileOccurrence)
+		for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); itProjectileOccurrence++)
         {
             if((*itProjectileOccurrence) == projectile)
                 _projectileOccurences.erase(itProjectileOccurrence);
+
+			if(_projectileOccurences.size() == 0)
+				break;
         }
     }
 
@@ -54,9 +57,12 @@ namespace Collisions
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
-        for(itProjectiles = this->_projectileOccurences.begin(); itProjectiles != this->_projectileOccurences.end(); ++itProjectiles)
+        for(itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
         {
             (*itProjectiles)->update(app);
+
+			if(_projectileOccurences.size() == 0)
+				break;
         }
     }
 
@@ -107,7 +113,7 @@ namespace Collisions
                 found = word.find("ordonnee_haut=");
                 if(found != string::npos)
                 {
-                    istringstream ordonneeHaut(word.substr(found + 13));
+                    istringstream ordonneeHaut(word.substr(found + 14));
 					ordonneeHaut >> _top;
                     continue;
                 }
@@ -122,18 +128,18 @@ namespace Collisions
                 }
 
                 /* Manage sprites numbers here */
-                found = word.find("nb_sprites_marche=");
+                found = word.find("nb_sprites_run=");
                 if(found != string::npos)
                 {
 					int _nbWalkingSprites;
-                    istringstream nbWalkingSprites(word.substr(found + 18));
+                    istringstream nbWalkingSprites(word.substr(found + 15));
 					nbWalkingSprites >> _nbWalkingSprites;
 					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _nbWalkingSprites));
                     continue;
                 }
 
                 /* Manage sprites numbers here */
-                found = word.find("nb_sprites_mort=");
+                found = word.find("nb_sprites_dead=");
                 if(found != string::npos)
                 {
 					int _nbDeadSprites;
@@ -144,18 +150,18 @@ namespace Collisions
                 }
 
                 /* Manage speed of animation numbers here */
-                found = word.find("v_anim_marche=");
+                found = word.find("v_anim_run=");
                 if(found != string::npos)
                 {
 					int _vWalkingAnim;
-                    istringstream vWalkingAnim(word.substr(found + 14));
+                    istringstream vWalkingAnim(word.substr(found + 11));
 					vWalkingAnim >> _vWalkingAnim;
 					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _vWalkingAnim));
                     continue;
                 }
 
                 /* Manage speed of animation numbers here */
-                found = word.find("v_anim_mort=");
+                found = word.find("v_anim_dead=");
                 if(found != string::npos)
                 {
 					int _vDeadAnim;
