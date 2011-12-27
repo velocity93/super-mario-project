@@ -43,6 +43,9 @@ namespace Collisions
         {
             if((*itBlockOccurrence) == block)
                 _blockOccurrences.erase(itBlockOccurrence);
+
+			if(_blockOccurrences.size() == 0)
+				break;
         }
     }
 
@@ -53,6 +56,9 @@ namespace Collisions
         for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
         {
 			(*itBlockOccurrence)->update(app);
+
+			if(_blockOccurrences.size() == 0)
+				break;
         }
 	}
 
