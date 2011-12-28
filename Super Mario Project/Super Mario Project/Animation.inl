@@ -71,6 +71,8 @@ template<typename T>
 void Animation<T>::setCurrentState(T state)
 {
 	_currentState = state;
+	_frameDelayForCurrentState = getFrameDelayForCurrentState();
+	_nbSpritesForCurrentState = getNbSpritesForCurrentState();
 }
 
 template<typename T>
@@ -91,20 +93,17 @@ int Animation<T>::getNbSpritesMax()
 template<typename T>
 void Animation<T>::update()
 {
-	int frameDelayForCurrentState = getFrameDelayForCurrentState();
-	int nbSpritesForCurrentState = getNbSpritesForCurrentState();
-
-	if(frameDelayForCurrentState)
+	if(_frameDelayForCurrentState)
 	{
-		unsigned int frameCount = (unsigned int)((_clock.GetElapsedTime() * 1000) / abs(frameDelayForCurrentState));
-		if(frameCount > nbSpritesForCurrentState && frameDelayForCurrentState < 0)
+		unsigned int frameCount = (unsigned int)((_clock.GetElapsedTime() * 1000) / abs(_frameDelayForCurrentState));
+		if(frameCount > _nbSpritesForCurrentState && _frameDelayForCurrentState < 0)
 		{
 			_clock.Reset(true);
 			_frameNumber = 0;
 		}
 		else
 		{
-			_frameNumber = frameCount % nbSpritesForCurrentState;
+			_frameNumber = frameCount % _nbSpritesForCurrentState;
 		}
 	}
 	else
@@ -114,15 +113,15 @@ void Animation<T>::update()
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX)
+void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX, int delta)
 {
-	int numState = (int)_currentState;
+	int numState = (int)_currentState - delta;
 	Vector2f spriteSize = Vector2f(
 		texture->getImage()->GetWidth() / getNbSpritesMax(),
 		texture->getImage()->GetHeight() / _nbSpritesByState.size());
     ReversedSprite sprite = texture->getSprite();
 
-	if(getNbSpritesForCurrentState() > 0)
+	if(_nbSpritesForCurrentState > 0)
 	{
 		sprite.SetSubRect(
 			IntRect(

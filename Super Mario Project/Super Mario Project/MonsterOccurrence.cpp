@@ -74,15 +74,23 @@ namespace Collisions
 	void MonsterOccurrence::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+		{
+			/* Update animation data */
+			int delta = 0;
+			if(_state != M_WALK)
+			{
+				delta = !_monster->getCanBeKilledByJump() + !_monster->getCanBeKilledByFire();
+			}
+			_animation.render(_texture, app, _position, _side == LEFT_SIDE, delta);
+		}
 	}
 
 	void MonsterOccurrence::setActivity(RenderWindow& app)
 	{
 		const View& view = app.GetDefaultView();
 
-		if(_hitboxPosition.x < view.GetCenter().x - view.GetHalfSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x + view.GetHalfSize().x
+		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
+			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x - view.GetHalfSize().x
 			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
 			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
 		{

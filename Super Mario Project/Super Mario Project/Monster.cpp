@@ -58,10 +58,11 @@ namespace Collisions
         for(itMonsterOccurrence = _monsterOccurrences.begin(); itMonsterOccurrence != _monsterOccurrences.end(); ++itMonsterOccurrence)
         {
             if((*itMonsterOccurrence) == monster)
+			{
                 _monsterOccurrences.erase(itMonsterOccurrence);
-
-			if(_monsterOccurrences.size() == 0)
+				if(_monsterOccurrences.size() == 0)
 				break;
+			}
         }
     }
 
@@ -121,16 +122,118 @@ namespace Collisions
                 found = word.find("can_be_killed_by_jump=");
                 if(found != string::npos)
                 {
-                    istringstream canBeKilledByJump(word.substr(found + 21));
+                    istringstream canBeKilledByJump(word.substr(found + 22));
                     canBeKilledByJump >> _canBeKilledByJump;
                     continue;
                 }
 
-                found = word.find("can_be_killed_by_fire=");
+				found = word.find("can_be_killed_by_fire=");
                 if(found != string::npos)
                 {
-                    istringstream canBeKilledByFire(word.substr(found + 21));
+                    istringstream canBeKilledByFire(word.substr(found + 22));
                     canBeKilledByFire >> _canBeKilledByFire;
+					continue;
+                }
+
+				found = word.find("nb_sprites_walk=");
+                if(found != string::npos)
+                {
+					int nbSpritesWalk;
+                    istringstream nbSpritesWalkStream(word.substr(found + 16));
+                    nbSpritesWalkStream >> nbSpritesWalk;
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, nbSpritesWalk));
+					continue;
+                }
+
+				found = word.find("nb_sprites_dead_by_jump=");
+                if(found != string::npos)
+                {
+					int nbSpritesDeadByJump;
+                    istringstream nbSpritesWalkStream(word.substr(found + 24));
+                    nbSpritesWalkStream >> nbSpritesDeadByJump;
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, nbSpritesDeadByJump));
+					continue;
+                }
+
+				found = word.find("nb_sprites_dead_by_proj=");
+                if(found != string::npos)
+                {
+					int nbSpritesDeadByProj;
+                    istringstream nbSpritesWalkStream(word.substr(found + 24));
+                    nbSpritesWalkStream >> nbSpritesDeadByProj;
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, nbSpritesDeadByProj));
+					continue;
+                }
+				
+				found = word.find("nb_sprites_retracted=");
+                if(found != string::npos)
+                {
+					int nbSpritesRetracted;
+                    istringstream nbSpritesRetractedStream(word.substr(found + 21));
+                    nbSpritesRetractedStream >> nbSpritesRetracted;
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, nbSpritesRetracted));
+					continue;
+                }
+
+				
+				found = word.find("nb_sprites_get_out_from_shell=");
+                if(found != string::npos)
+                {
+					int nbSpritesGetOutFromShell;
+                    istringstream nbSpritesGetOutFromShellStream(word.substr(found + 30));
+                    nbSpritesGetOutFromShellStream >> nbSpritesGetOutFromShell;
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, nbSpritesGetOutFromShell));
+					continue;
+                }
+
+				found = word.find("v_anim_walk=");
+                if(found != string::npos)
+                {
+					int vAnimWalk;
+                    istringstream vAnimWalkStream(word.substr(found + 12));
+                    vAnimWalkStream >> vAnimWalk;
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vAnimWalk));
+					continue;
+                }
+
+				found = word.find("v_anim_retracted=");
+                if(found != string::npos)
+                {
+					int vAnimRetracted;
+                    istringstream vAnimRetractedStream(word.substr(found + 17));
+                    vAnimRetractedStream >> vAnimRetracted;
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vAnimRetracted));
+					continue;
+                }
+
+				found = word.find("v_anim_dead_by_jump=");
+                if(found != string::npos)
+                {
+					int vAnimDeadByJump;
+                    istringstream vAnimDeadByJumpStream(word.substr(found + 20));
+                    vAnimDeadByJumpStream >> vAnimDeadByJump;
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, vAnimDeadByJump));
+					continue;
+                }
+
+				found = word.find("v_anim_dead_by_proj=");
+                if(found != string::npos)
+                {
+					int vAnimDeadByProj;
+                    istringstream vAnimDeadByProjStream(word.substr(found + 20));
+                    vAnimDeadByProjStream >> vAnimDeadByProj;
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, vAnimDeadByProj));
+					continue;
+                }
+
+				found = word.find("v_anim_get_out_from_shell=");
+                if(found != string::npos)
+                {
+					int vAnimGetOutFromShell;
+                    istringstream vAnimGetOutFromShellStream(word.substr(found + 26));
+                    vAnimGetOutFromShellStream >> vAnimGetOutFromShell;
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vAnimGetOutFromShell));
+					continue;
                 }
 
 				found = word.find("points=");
@@ -140,7 +243,6 @@ namespace Collisions
                     points >> _points;
                 }
             }
-
         }
         else
         {

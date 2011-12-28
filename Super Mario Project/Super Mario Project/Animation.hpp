@@ -43,13 +43,15 @@ namespace Rendering
 
 		/* Drawing */
 		void update();
-		void render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY);
+		void render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY, int delta = 0);
 
 	private:
 		map<T, int> _nbSpritesByState;
 		map<T, int> _frameDelayByState;
 		T _currentState;
 		int _frameNumber;
+		int _frameDelayForCurrentState;
+		int _nbSpritesForCurrentState;
 		SuperMarioProject::PausableClock _clock;
 
 		/* Get nbSprites for currentState */

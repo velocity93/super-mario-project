@@ -60,9 +60,8 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Tileset tiles("speciaux/cassables/overworld");
-	tiles.addBlock(0, 0x200000);
-	tiles.getBlocks()[0]->addNewBlockOccurrence(tiles.getBlocks()[0]);
+	Projectile proj("special_fireball");
+	proj.addNewProjectileOccurrence();
     try
     {
         // Start the game loop
@@ -102,10 +101,12 @@ int main(int, char**)
             App.Clear();
 
             // Update World
-			tiles.update(App);
+			//w.update();
+			proj.update(App);
 
             // Draw World
-			tiles.render(App);
+			//w.update();
+			proj.render(App);
 
             // Update the window
             App.Display();
