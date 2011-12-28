@@ -242,7 +242,22 @@
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
+    <None Include="textures\monsters\goomba.mstr">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\monsters\goomba.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\monsters\koopa.mstr">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\monsters\koopa.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\projectiles\special_fireball.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\projectiles\special_fireball.proj">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -1,0 +1,11 @@
+abscisse_bas=3
+can_be_jumped_on=1
+can_be_killed_by_jump=1
+can_be_killed_by_fire=1
+nb_sprites_walk=7
+nb_sprites_dead_by_jump=1
+nb_sprites_dead_by_proj=1
+v_anim_walk=100
+v_anim_dead_by_jump=100
+v_anim_dead_by_proj=100
+points=100

@@ -26,12 +26,12 @@ namespace Collisions
 		enum State 
 		{
 			M_WALK,
+			M_DEAD_BY_JUMP_ON,
+			M_DEAD_BY_PROJ,
 			M_RETRACTED,
 			M_GET_OUT_FROM_SHELL,
 			M_NB_TEXTURE_STATES,
-			M_DEAD_BY_PROJ,
 			M_DEAD,
-			M_DEAD_BY_JUMP_ON,
 			M_RETRACTED_REVERSED,
 			M_RETRACTED_INCLINED, // monster brought
 			M_GET_OUT_FROM_PIPE,

@@ -1,0 +1,12 @@
+abscisse_bas=6
+can_be_jumped_on=1
+can_be_killed_by_jump=0
+can_be_killed_by_fire=1
+nb_sprites_walk=8
+nb_sprites_retracted=6
+nb_sprites_dead_by_proj=1
+nb_sprites_get_out_from_shell=9
+v_anim_walk=100
+v_anim_retracted=200
+v_anim_get_out_from_shell=150
+points=200
