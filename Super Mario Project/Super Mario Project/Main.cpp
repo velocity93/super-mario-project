@@ -60,7 +60,7 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Background back("castle");	
+	Checkpoint back("checkpoint");	
     try
     {
         // Start the game loop

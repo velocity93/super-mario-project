@@ -15,6 +15,7 @@ namespace Collisions
 	Checkpoint::Checkpoint(const string& textureName) : Collisionable("textures/objects/" + textureName), _state(NOT_PASSED)
 	{
 		loadCfgCheckpoint();
+		_animation.setCurrentState(NOT_PASSED);
 	}
 
 	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
@@ -34,7 +35,7 @@ namespace Collisions
 
     void Checkpoint::update(RenderWindow& app)
     {
-
+		_animation.update();
     }
 
 	void Checkpoint::serialize(ofstream& file, const string& tabs)
@@ -53,19 +54,7 @@ namespace Collisions
 
 	void Checkpoint::render(RenderWindow& app)
     {
-        ReversedSprite sprite = _texture->getSprite();
-		/*int right = _texture->getImage()->GetWidth() / max(_spriteNumbersByState[NOT_PASSED], _spriteNumbersByState[PASSED]);
-
-		if(_state == NOT_PASSED)
-		{
-			sprite.SetSubRect(IntRect(0, 0, right, _texture->getImage()->GetHeight() / 2));
-		}
-		else
-		{
-			sprite.SetSubRect(IntRect(0, _texture->getImage()->GetHeight() / 2, right, _texture->getImage()->GetHeight()));
-		}*/
-
-		app.Draw(sprite);
+		_animation.render(_texture, app, _position, false);
     }
 
 	void Checkpoint::loadCfgCheckpoint()
@@ -84,8 +73,10 @@ namespace Collisions
 				int found = word.find("nb_sprites_active=");
 				if(found != string::npos)
                 {
+					int nbSpritesActive;
 					istringstream nbActiveSprites(word.substr(found + 18));
-					//nbActiveSprites >> ??;
+					nbActiveSprites >> nbSpritesActive;
+					_animation.addNbSpritesForGivenState(State::PASSED, nbSpritesActive);
 					continue;
 				}
 
@@ -93,8 +84,10 @@ namespace Collisions
 				found = word.find("nb_sprites_inactive=");
 				if(found != string::npos)
                 {
+					int nbSpritesInactive;
 					istringstream nbInactiveSprites(word.substr(found + 20));
-					//nbInactiveSprites >> ??;
+					nbInactiveSprites >> nbSpritesInactive;
+					_animation.addNbSpritesForGivenState(State::NOT_PASSED, nbSpritesInactive);
 					continue;
 				}
 
@@ -102,8 +95,11 @@ namespace Collisions
 				found = word.find("v_anim=");
                 if(found != string::npos)
                 {
-                    istringstream vAnim(word.substr(found + 7));
-                    // vAnim >> ??;
+					int vAnim;
+                    istringstream vAnimStream(word.substr(found + 7));
+					vAnimStream >> vAnim;
+					_animation.addFrameDelayForGivenState(State::NOT_PASSED, vAnim);
+					_animation.addFrameDelayForGivenState(State::PASSED, vAnim);
                 }
 			}
 		}

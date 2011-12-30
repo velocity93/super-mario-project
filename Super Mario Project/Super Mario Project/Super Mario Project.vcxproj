@@ -161,11 +161,6 @@
     <None Include="ResourceManager.inl" />
     <None Include="worlds\world1.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Object Include="textures\backgrounds\castle.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Object>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
