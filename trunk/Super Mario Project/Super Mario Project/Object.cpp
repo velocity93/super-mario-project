@@ -73,11 +73,11 @@ namespace Rendering
 						continue;
 				}
 
-				found = word.find("frame_delay=");
+				found = word.find("v_anim=");
 				if(found != string::npos)
 				{
 					int frame_delay = 0;
-					istringstream frameDelay(word.substr(found + 12));
+					istringstream frameDelay(word.substr(found + 7));
 					frameDelay >> frame_delay;
 					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
 				}

@@ -11,6 +11,7 @@
 #define HPP_CHECKPOINT
 
 #include "Collisionable.hpp"
+#include "Animation.hpp"
 
 namespace Collisions
 {
@@ -20,8 +21,8 @@ namespace Collisions
 	public:
 		enum State
 		{
-			PASSED,
-			NOT_PASSED
+			NOT_PASSED,
+			PASSED
 		};
 
 		Checkpoint(const string& textureName);
@@ -39,6 +40,7 @@ namespace Collisions
 		
     private:
 		State _state;
+		Animation<State> _animation;
 
 		void loadCfgCheckpoint();
     };
