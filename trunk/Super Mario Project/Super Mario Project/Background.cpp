@@ -16,6 +16,8 @@ namespace Rendering
 	{
 		/* Loading informations */
 		loadCfgBackground(textureName);
+
+		_animation.setCurrentState(State::NORMAL);
 	}
 
 	Background::Background(const string& textureName, Vector2f& position) : 

@@ -60,8 +60,7 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Projectile proj("special_fireball");
-	proj.addNewProjectileOccurrence();
+	Background back("castle");	
     try
     {
         // Start the game loop
@@ -102,11 +101,11 @@ int main(int, char**)
 
             // Update World
 			//w.update();
-			proj.update(App);
+			back.update(App);
 
             // Draw World
 			//w.update();
-			proj.render(App);
+			back.render(App);
 
             // Update the window
             App.Display();
