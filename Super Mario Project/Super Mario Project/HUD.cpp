@@ -60,7 +60,7 @@ namespace Rendering
 		_nbMonstersKilledByShell = nbMonstersKilledByShell;
 	}
 
-	void HUD::update(RenderWindow& app)
+	void HUD::updateGraphicData(RenderWindow& app)
 	{
 		_time -= app.GetFrameTime();
 	}

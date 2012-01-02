@@ -66,10 +66,12 @@ namespace Collisions
         /* ItemsOccurrences */
         for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
-            (*itItems)->update(app);
+			(*itItems)->updatePhysicData(app);
 
 			if(_itemOccurrences.size() == 0)
 				break;
+
+			(*itItems)->updateGraphicData(app);
         }
     }
 

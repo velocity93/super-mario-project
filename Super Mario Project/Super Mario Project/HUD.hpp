@@ -33,7 +33,7 @@ namespace Rendering
 		void setNbMonstersKilled(int NbMonstersKilled);
 		void setNbMonstersKilledByShell(int NbMonstersKilledByShell);
 
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
         virtual ~HUD();

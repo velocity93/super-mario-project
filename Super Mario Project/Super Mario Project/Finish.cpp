@@ -22,14 +22,16 @@ namespace Collisions
 		loadFinish(textureName);
 	}
 
-	void Finish::update(RenderWindow&)
+	void Finish::updateGraphicData(RenderWindow& app)
     {
-		_animation.update();
+		if(_isActive)
+			_animation.update();
     }
 
 	void Finish::render(RenderWindow& app)
     {
-		_animation.render(_texture, app, _position, false);
+		if(_isActive)
+			_animation.render(_texture, app, _position, false);
     }
 
 	void Finish::serialize(ofstream& file, const string& tabs)

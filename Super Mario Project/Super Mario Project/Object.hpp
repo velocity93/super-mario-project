@@ -30,7 +30,7 @@ namespace Rendering
 		Object(const string& textureName);
 		Object(const string& textureName,Vector2f& position);
 		
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
 		void setActivity(RenderWindow& app);

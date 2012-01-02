@@ -146,7 +146,8 @@ namespace Collisions
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
+		void updatePhysicData(RenderWindow&);
 		void render(RenderWindow& app);
 
 		/* Loading character configuration */

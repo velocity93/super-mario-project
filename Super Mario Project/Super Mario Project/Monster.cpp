@@ -73,10 +73,12 @@ namespace Collisions
         /* MonsterOccurrences */
         for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
-            (*itMonsters)->update(app);
+            (*itMonsters)->updatePhysicData(app);
 
 			if(_monsterOccurrences.size() == 0)
 				break;
+
+			(*itMonsters)->updateGraphicData(app);
         }
     }
 

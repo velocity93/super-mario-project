@@ -61,7 +61,12 @@ namespace Collisions
 
 	}
 
-	void Pipe::update(RenderWindow& app)
+	void Pipe::updateGraphicData(RenderWindow&)
+	{
+		// NOTHING
+	}
+
+	void Pipe::updatePhysicData(RenderWindow& app)
     {
 		if(_monster != nullptr)
 		{

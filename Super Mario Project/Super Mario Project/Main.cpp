@@ -55,12 +55,14 @@ int main(int, char**)
     App.SetFramerateLimit(60);
 
     // Create world
-    /*World w(&App);
-	Level lvl;
+    World w(&App);
+	/*Level lvl;
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	Checkpoint back("checkpoint");	
+	//Tileset tiles("speciaux/incassables/[Q]/overworld4");
+	//tiles.addBlock(0, EMPTY);
+	//tiles.getBlocks()[0]->addNewBlockOccurrence(tiles.getBlocks()[0]);
     try
     {
         // Start the game loop
@@ -100,12 +102,12 @@ int main(int, char**)
             App.Clear();
 
             // Update World
-			//w.update();
-			back.update(App);
+			w.update();
+			//tiles.update(App);
 
             // Draw World
-			//w.update();
-			back.render(App);
+			w.render(App);
+			//tiles.render(App);
 
             // Update the window
             App.Display();

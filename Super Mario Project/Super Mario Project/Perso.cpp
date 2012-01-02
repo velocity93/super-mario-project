@@ -114,9 +114,15 @@ namespace Collisions
 
 	}
 
-	void Perso::update(RenderWindow&)
+	void Perso::updateGraphicData(RenderWindow&)
 	{
-		/* NOTHING */
+		/* Update animation */
+		_animation.update();
+	}
+
+	void Perso::updatePhysicData(RenderWindow&)
+	{
+		// NOTHING
 	}
 
 	void Perso::updatePerso(float time, InputState& inputState)
@@ -216,9 +222,6 @@ namespace Collisions
 			_speed.y = 0;
 			_environment = GROUND;
 		}
-
-		/* Update animation */
-		_animation.update();
 	}
 
 	void Perso::solve_acc(InputState& inputState)

@@ -48,8 +48,7 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-
-	void MonsterOccurrence::update(RenderWindow& app)
+	void MonsterOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		setActivity(app);
 
@@ -67,8 +66,12 @@ namespace Collisions
 			_position.x = _position.x + _speed.x * app.GetFrameTime(); 
 			_position.y = _position.y + _speed.y * app.GetFrameTime();
 		}
+	}
 
-		_animation.update();
+	void MonsterOccurrence::updateGraphicData(RenderWindow&)
+	{
+		if(_isActive)
+			_animation.update();
 	}
 
 	void MonsterOccurrence::render(RenderWindow& app)

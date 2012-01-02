@@ -55,10 +55,12 @@ namespace Collisions
 
         for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
         {
-			(*itBlockOccurrence)->update(app);
+			(*itBlockOccurrence)->updatePhysicData(app);
 
 			if(_blockOccurrences.size() == 0)
 				break;
+
+			(*itBlockOccurrence)->updateGraphicData(app);
         }
 	}
 

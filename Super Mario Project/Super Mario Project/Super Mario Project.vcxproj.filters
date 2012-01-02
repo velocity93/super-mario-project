@@ -235,12 +235,12 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
     <None Include="levels\smb.xml">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

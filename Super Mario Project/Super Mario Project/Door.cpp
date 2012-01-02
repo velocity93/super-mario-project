@@ -24,6 +24,7 @@ namespace Collisions
 			_state(state)
 	{
 		loadDoor(textureName);
+		_animation.setCurrentState(state);
 	}
 
 	int Door::getIndexDestination()
@@ -51,7 +52,7 @@ namespace Collisions
 		// TO DO
 	}
 
-	void Door::update(RenderWindow&)
+	void Door::updateGraphicData(RenderWindow& app)
 	{
 		if(_isActive)
 			_animation.update();

@@ -42,7 +42,8 @@ namespace Collisions
 		void setState(State state);
 		void setActivity(RenderWindow& app);
 
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
+		void updatePhysicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
         virtual ~ItemOccurrence();
