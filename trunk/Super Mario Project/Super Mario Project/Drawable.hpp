@@ -59,7 +59,7 @@ namespace Rendering
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */
-		virtual void update(RenderWindow& app) = 0;
+		virtual void updateGraphicData(RenderWindow& app) = 0;
 
 		/* Draw actual object state */
 		virtual void render(RenderWindow& app) = 0;

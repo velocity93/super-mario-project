@@ -28,7 +28,7 @@ namespace Rendering
 		Foreground(const string& textureName);
 
 		/* Methods */
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
 		void setActivity(RenderWindow& app);

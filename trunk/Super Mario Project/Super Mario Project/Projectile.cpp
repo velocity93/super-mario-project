@@ -59,10 +59,12 @@ namespace Collisions
         /* ProjectilesOccurrences */
         for(itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
         {
-            (*itProjectiles)->update(app);
+			(*itProjectiles)->updatePhysicData(app);
 
 			if(_projectileOccurences.size() == 0)
 				break;
+
+			(*itProjectiles)->updateGraphicData(app);
         }
     }
 

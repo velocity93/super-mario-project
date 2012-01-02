@@ -42,7 +42,7 @@ namespace Collisions
 		void setEndColor(Color& endColor);
 
 		/* Methods */
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
 		/* Destructor */

@@ -96,7 +96,9 @@ namespace Collisions
 				 * following by his animation, with the same physic obviously 
 				 */
 				if(_nbSprites.y == 1 && i == 0)
+				{
 					stream >> hex >> phys;
+				}
 
 				_physics.push_back(phys);
 			}

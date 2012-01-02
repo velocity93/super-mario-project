@@ -24,14 +24,16 @@ namespace Rendering
 		_animation.setCurrentState(State::NORMAL);
 	}
 
-	void Object::update(RenderWindow&)
+	void Object::updateGraphicData(RenderWindow&)
 	{
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 	}
 	
 	void Object::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, false);
+		if(_isActive)
+			_animation.render(_texture, app, _position, false);
 	}
 
 	void Object::serialize(ofstream& file, const string& tabs)

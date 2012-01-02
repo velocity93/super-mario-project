@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Animation.inl" />
-    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="levels\smb.xml">
       <SubType>Designer</SubType>
     </None>

@@ -69,36 +69,42 @@ namespace Collisions
 			_lifeTime.Reset(true);
 	}
 
-	void ProjectileOccurrence::update(RenderWindow& app)
+	void ProjectileOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		setActivity(app);
 
-		if(_lifeTime.GetElapsedTime() >= 0)
+		if(_isActive)
 		{
-			/* If it falls in hole */
-			if(_hitboxPosition.y + _hitboxSize.y < 0)
+			if(_lifeTime.GetElapsedTime() >= 0)
+			{
+				/* If it falls in hole */
+				if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_projectile->removeProjectileOccurrence(this);
+
+				/* Submissions */
+				if(_projectile->getSubmission() & GRAVITY_SUBMISSION)
+					gravity(_speed, app.GetFrameTime());
+
+				/* Update physic position */
+				/* Save actual position in previous position */
+				_previousPosition = _position;
+
+				/* Compute new position */
+				this->setPositionX(_position.x + _speed.x * app.GetFrameTime());
+				this->setPositionY(_position.y + _speed.x * app.GetFrameTime());
+			}
+			else
+			{
 				_projectile->removeProjectileOccurrence(this);
-
-			/* Submissions */
-			if(_projectile->getSubmission() & GRAVITY_SUBMISSION)
-				gravity(_speed, app.GetFrameTime());
-
-			/* Update physic position */
-			/* Save actual position in previous position */
-			_previousPosition = _position;
-
-			/* Compute new position */
-			this->setPositionX(_position.x + _speed.x * app.GetFrameTime());
-			this->setPositionY(_position.y + _speed.x * app.GetFrameTime());
+			}
 		}
-		else
-		{
-			_projectile->removeProjectileOccurrence(this);
-		}
+	}
 
-
+	void ProjectileOccurrence::updateGraphicData(RenderWindow&)
+	{
 		/* Update animation */
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 	}
 
 	void ProjectileOccurrence::render(RenderWindow& app)

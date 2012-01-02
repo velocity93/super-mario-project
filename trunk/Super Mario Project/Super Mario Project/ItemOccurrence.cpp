@@ -65,7 +65,7 @@ namespace Collisions
 
 	}
 
-	void ItemOccurrence::update(RenderWindow& app)
+	void ItemOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		setActivity(app);
 
@@ -108,8 +108,13 @@ namespace Collisions
 			}
 		}
 
+	}
+
+	void ItemOccurrence::updateGraphicData(RenderWindow&)
+	{
 		/* Update animation */
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 
 	}
 

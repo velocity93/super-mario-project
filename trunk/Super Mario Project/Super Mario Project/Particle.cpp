@@ -22,10 +22,16 @@ namespace Collisions
 		// TO DO
 	}
 
-	void Particle::update(RenderWindow& app)
+	void Particle::updatePhysicData(RenderWindow& app)
 	{
-		update(app.GetFrameTime(), false);
-		_animation.update();
+		if(_isActive)
+			update(app.GetFrameTime(), false);
+	}
+
+	void Particle::updateGraphicData(RenderWindow&)
+	{
+		if(_isActive)
+			_animation.update();
 	}
 
 	void Particle::update(float time, bool hasGravity)

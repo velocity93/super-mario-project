@@ -17,14 +17,16 @@ namespace Rendering
 		loadCfgForeground(textureName);
 	}
 
-	void Foreground::update(RenderWindow& app)
+	void Foreground::updateGraphicData(RenderWindow& app)
 	{
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 	}
 
 	void Foreground::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, false);
+		if(_isActive)
+			_animation.render(_texture, app, _position, false);
 	}
 
 	void Foreground::serialize(ofstream& file, const string& tabs)

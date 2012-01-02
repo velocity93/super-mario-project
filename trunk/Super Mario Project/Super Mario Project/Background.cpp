@@ -35,9 +35,10 @@ namespace Rendering
 		return _verticalRepetition;
 	}
 
-	void Background::update(RenderWindow&)
+	void Background::updateGraphicData(RenderWindow&)
 	{
-		_animation.update();
+		if(_isActive)
+			_animation.update();
 	}
 
 	void Background::render(RenderWindow& app)

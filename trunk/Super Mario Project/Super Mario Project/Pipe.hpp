@@ -70,7 +70,8 @@ namespace Collisions
 		void setActivity(RenderWindow& app);
 
 		/* Methods */
-		void update(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
+		void updatePhysicData(RenderWindow& app);
 		void render(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
 

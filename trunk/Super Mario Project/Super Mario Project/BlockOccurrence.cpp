@@ -60,12 +60,17 @@ namespace Collisions
 			_isActive = true;
 	}
 
-	void BlockOccurrence::update(RenderWindow&)
+	void BlockOccurrence::updateGraphicData(RenderWindow& app)
 	{
-		if(_animation.getNbSpritesMax() > 1)
+		if(_animation.getNbSpritesMax() > 1 && _isActive)
 		{
 			_animation.update();
 		}
+	}
+
+	void BlockOccurrence::updatePhysicData(RenderWindow&)
+	{
+		// NOTHING NOW
 	}
 	
 	void BlockOccurrence::render(RenderWindow& app)

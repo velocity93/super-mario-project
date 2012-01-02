@@ -15,7 +15,7 @@ namespace Collisions
 	Checkpoint::Checkpoint(const string& textureName) : Collisionable("textures/objects/" + textureName), _state(NOT_PASSED)
 	{
 		loadCfgCheckpoint();
-		_animation.setCurrentState(NOT_PASSED);
+		_animation.setCurrentState(PASSED);
 	}
 
 	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
@@ -33,9 +33,10 @@ namespace Collisions
 		_state = state;
 	}
 
-    void Checkpoint::update(RenderWindow& app)
+    void Checkpoint::updateGraphicData(RenderWindow& app)
     {
-		_animation.update();
+		if(_isActive)
+			_animation.update();
     }
 
 	void Checkpoint::serialize(ofstream& file, const string& tabs)
@@ -54,7 +55,8 @@ namespace Collisions
 
 	void Checkpoint::render(RenderWindow& app)
     {
-		_animation.render(_texture, app, _position, false);
+		if(_isActive)
+			_animation.render(_texture, app, _position, false);
     }
 
 	void Checkpoint::loadCfgCheckpoint()

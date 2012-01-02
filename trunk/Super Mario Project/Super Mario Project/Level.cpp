@@ -422,8 +422,6 @@ namespace SuperMarioProject
 
 
 			file << "</level>" << endl;
-			
-
 
 		}
 	}
@@ -453,13 +451,11 @@ namespace SuperMarioProject
 		{
 			(*itProjectiles)->update(app);
 		}
-
-		// Persos ??
 		
 		/* Pipes */
 		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
 		{
-			(*itPipes)->update(app);
+			(*itPipes)->updatePhysicData(app);
 		}
 	}
 
@@ -521,8 +517,6 @@ namespace SuperMarioProject
 		{
 			(*itProjectiles)->render(app);
 		}
-
-		// Persos ??
 		
 		/* Pipes */
 		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)

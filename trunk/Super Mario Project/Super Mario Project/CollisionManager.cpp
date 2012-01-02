@@ -17,7 +17,16 @@ namespace Collisions
 		
 		if(detectCollisions(et1, c2, &infos))
 		{
+			/* Appel de la méthode de MAJ de collisions
 
+			Méthode abstraite OnCollision(Collisionable* c, vector<bool>& infos) = 0 définie dans EntityMoveable
+
+			et1->OnCollision(c2, infos->type_collision)
+
+			Tester à l'aide de dynamic_cast contre quoi et1 s'est cogné.
+			Faire le necessaire ensuite selon le type.
+
+			*/
 		}
 	}
 
@@ -27,6 +36,13 @@ namespace Collisions
 		
 		if(detectCollisions(et1, et2, &infos))
 		{
+			/* Appel de la méthode de MAJ de collisions
+			et2->OnCollision(et1, infos->type_collision)
+			*/
+
+			/* Appel de la méthode de MAJ de collisions
+			et1->OnCollision(et2, infos->type_collision)
+			*/
 
 		}
 	}

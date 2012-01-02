@@ -70,7 +70,7 @@ namespace Collisions
 		_endColor = endColor;
 	}
 
-	void ParticleGenerator::update(RenderWindow& app)
+	void ParticleGenerator::updateGraphicData(RenderWindow& app)
 	{
 		vector<Particle>::iterator itParticles;
 

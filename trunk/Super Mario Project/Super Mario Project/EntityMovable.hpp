@@ -63,6 +63,8 @@ namespace Collisions
 
 		void gravity(Vector2f &speed, float time);
 
+		virtual void updatePhysicData(RenderWindow& app) = 0;
+
 		/* Destructors */
         virtual ~EntityMovable();
 		
