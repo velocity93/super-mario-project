@@ -108,6 +108,7 @@
     <ClInclude Include="Pipe.hpp" />
     <ClInclude Include="Projectile.hpp" />
     <ClInclude Include="ProjectileOccurrence.hpp" />
+    <ClInclude Include="QuadTree.hpp" />
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
     <ClInclude Include="ReversedSprite.hpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileOccurrence.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="ReversedSprite.cpp" />

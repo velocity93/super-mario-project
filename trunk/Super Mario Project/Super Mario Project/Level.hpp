@@ -45,9 +45,6 @@ namespace SuperMarioProject
 		/* Size of level */
 		Vector2i& getSize();
 
-		/* Size of each block */
-		Vector2i& getBlockSize();
-
 		/* All objects */
 		vector<Object*>& getObjects();
 
@@ -99,9 +96,6 @@ namespace SuperMarioProject
 		/* Set level music */
 		void setMusicTitle(string title);
 
-		/* Set Nb Checkpoints */
-		void setNbCheckpoints(int nbCheckpoints);
-
 		/* Add Checkpoint */
 		void addCheckpoint(Checkpoint* checkpoint);
 
@@ -151,7 +145,6 @@ namespace SuperMarioProject
 		string _musicTitle;
 		Vector2i _size;
 		Vector2i _spawn;
-		Vector2i _blockSize;
 		vector<Checkpoint*> _checkpoints;
 		vector<Background*> _backgrounds;
 		vector<Foreground*> _foregrounds;
@@ -164,7 +157,7 @@ namespace SuperMarioProject
 		vector<Tileset*> _tilesets;
 
 		//Utile étant donné qu'on a une position dans la classe Block ?
-		//vector<vector<BlockOccurrence*>> _blocksOccurrences; 
+		//vector<BlockOccurrence*> _blocksOccurrences; 
     };
 } // namespace
 
