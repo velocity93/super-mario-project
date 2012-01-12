@@ -32,11 +32,6 @@ namespace SuperMarioProject
 		return _size;
 	}
 
-	Vector2i& Level::getBlockSize()
-	{
-		return _blockSize;
-	}
-
 	vector<Object*>& Level::getObjects()
 	{
 		return _objects;

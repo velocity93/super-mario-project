@@ -8,6 +8,7 @@
 
 #include "World.hpp"
 #include "XMLParser.hpp"
+#include "QuadTree.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -24,6 +25,10 @@ namespace SuperMarioProject
 			if(_levelNames.size() > 0)
 			{
 				_level->loadLevel(_levelNames[0]);
+				QuadTree* tree = 
+					new QuadTree(Vector2f(_level->getSize().x / 2,
+					_level->getSize().y / 2), _level->getSize(),
+					0);
 			}
 
 			/* Add default perso */
