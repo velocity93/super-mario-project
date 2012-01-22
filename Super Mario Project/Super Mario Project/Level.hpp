@@ -20,6 +20,7 @@
 #include "Finish.hpp"
 #include "Pipe.hpp"
 #include "Tileset.hpp"
+#include "BlockOccurrence.hpp"
 
 #include <string>
 
@@ -75,6 +76,9 @@ namespace SuperMarioProject
 		/* All Tilesets */
 		vector<Tileset*>& getTilesets();
 
+		/* All Blocks occurrences */
+		vector<BlockOccurrence*>& getBlocksOccurrences();
+
 		/* Get index of specific monster */
 		int getMonsterIndex(Monster* monster);
 
@@ -126,6 +130,9 @@ namespace SuperMarioProject
 		/* Add Tileset */
 		void addTileset(Tileset* tileset);
 
+		/* Add Block Occurence */
+		void addBlockOccurrence(BlockOccurrence* block);
+
 		/* Load Level */
 		void loadLevel(string fileName);
 
@@ -133,7 +140,8 @@ namespace SuperMarioProject
 		void saveLevel(string fileName);
 
 		/* Update data */
-		void update(RenderWindow& app);
+		void updatePhysicData(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 		
 		/* Render all objects */
 		void render(RenderWindow& app);
@@ -157,7 +165,7 @@ namespace SuperMarioProject
 		vector<Tileset*> _tilesets;
 
 		//Utile étant donné qu'on a une position dans la classe Block ?
-		//vector<BlockOccurrence*> _blocksOccurrences; 
+		vector<BlockOccurrence*> _blocksOccurrences; 
     };
 } // namespace
 

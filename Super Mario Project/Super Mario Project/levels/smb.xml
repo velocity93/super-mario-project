@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<level name="World 1-1" width="200" height="20" music="world1-1.mp3">
+<level name="World 1-1" width="200" height="200" music="world1-1.mp3">
 	<spawn positionX="64" positionY="64"/>
   <checkpoints>
     <checkpoint img="checkpoint" positionX="500" positionY="0" />
@@ -48,13 +48,17 @@
 		<pipe img="green_pipe" positionX="175" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
   <tilesets>
-    <tileset img="classiques/grass.png">
+    <tileset img="classiques/grass">
       <block physicIndex="0" type_bloc="8388608"/>
       <block physicIndex="1" type_bloc="8388608"/>
       <block physicIndex="2" type_bloc="8388608"/>
     </tileset>
   </tilesets>
   <layers>
-    <layer />
+    <layer>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="0" positionY="0" actual="0" alt="0" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="32" positionY="0" actual="1" alt="0" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="64" positionY="0" actual="2" alt="0" item="-1"/>
+    </layer>
   </layers>
 </level>

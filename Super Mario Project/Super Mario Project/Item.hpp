@@ -61,7 +61,8 @@ namespace Collisions
 		void removeItemOccurrence(const ItemOccurrence* item);
 
 		/* Update data */
-		void update(RenderWindow& app);
+		void updatePhysicData(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 
 		/* Render all occurrences */
 		void render(RenderWindow& app);

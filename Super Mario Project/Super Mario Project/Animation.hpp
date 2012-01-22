@@ -28,6 +28,7 @@ namespace Rendering
 		/* Constructor */
 		Animation()
 		{
+			_frameNumber = 0;
 			_clock.Start();
 		}
 

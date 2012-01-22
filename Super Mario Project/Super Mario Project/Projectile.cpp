@@ -52,18 +52,21 @@ namespace Collisions
         }
     }
 
-    void Projectile::update(RenderWindow& app)
+    void Projectile::updatePhysicData(RenderWindow& app)
     {
-        vector<ProjectileOccurrence*>::iterator itProjectiles;
-
-        /* ProjectilesOccurrences */
-        for(itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
+        for(vector<ProjectileOccurrence*>::iterator itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
         {
 			(*itProjectiles)->updatePhysicData(app);
 
 			if(_projectileOccurences.size() == 0)
 				break;
+        }
+    }
 
+	void Projectile::updateGraphicData(RenderWindow& app)
+    {
+        for(vector<ProjectileOccurrence*>::iterator itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
+        {
 			(*itProjectiles)->updateGraphicData(app);
         }
     }

@@ -60,7 +60,7 @@ int main(int, char**)
     lvl.loadLevel("levels/smb.xml");
     Perso perso = Perso("fire_mario", Vector2f(0, 0));
     InputState input = InputState(&App);*/
-	//Tileset tiles("speciaux/incassables/[Q]/overworld4");
+	//Tileset tiles("speciaux/incassables/[Q]/overworld");
 	//tiles.addBlock(0, EMPTY);
 	//tiles.getBlocks()[0]->addNewBlockOccurrence(tiles.getBlocks()[0]);
     try
@@ -101,8 +101,11 @@ int main(int, char**)
 
             App.Clear();
 
+			// Clear color and depth buffer
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
             // Update World
-			w.update();
+			w.update(App);
 			//tiles.update(App);
 
             // Draw World

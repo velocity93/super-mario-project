@@ -30,9 +30,11 @@ namespace Collisions
 		return _type;
 	}
 
-	void Block::addNewBlockOccurrence(Block* alternativeBlock, Vector2f &position, Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
+	BlockOccurrence* Block::addNewBlockOccurrence(Block* alternativeBlock, Vector2f &position, Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
 	{
-		_blockOccurrences.push_back(new BlockOccurrence( _tileset->name(), position, speed, state, side, _physicIndex, this, alternativeBlock));
+		BlockOccurrence* block = new BlockOccurrence( _tileset->name(), position, speed, state, side, _physicIndex, this, alternativeBlock);
+		_blockOccurrences.push_back(block);
+		return block;
 	}
 
 	void Block::removeBlockOccurrence(const BlockOccurrence* block)

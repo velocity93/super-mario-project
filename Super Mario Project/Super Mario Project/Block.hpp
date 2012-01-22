@@ -30,7 +30,7 @@ namespace Collisions
 		const int getPhysicIndex();
 		const int getType();
 
-		void addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
+		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
 			BlockOccurrence::Side side = BlockOccurrence::Side::RIGHT_SIDE);
 
