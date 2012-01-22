@@ -8,7 +8,6 @@
 
 #include "World.hpp"
 #include "XMLParser.hpp"
-#include "QuadTree.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -25,14 +24,13 @@ namespace SuperMarioProject
 			if(_levelNames.size() > 0)
 			{
 				_level->loadLevel(_levelNames[0]);
-				QuadTree* tree = 
-					new QuadTree(Vector2f(_level->getSize().x / 2,
-					_level->getSize().y / 2), _level->getSize(),
-					0);
+				_levelTree = new QuadTree(Vector2f(_level->getSize().x / 2,
+					_level->getSize().y / 2), _level->getSize(), 0);
+				_levelTree->buildTree(_level->getBlocksOccurrences());
 			}
 
 			/* Add default perso */
-			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
+			//_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()
@@ -50,9 +48,10 @@ namespace SuperMarioProject
 		_levelNames.push_back("levels/" + levelName);
 	}
 
-	void World::update()
+	void World::update(RenderWindow& app)
 	{
-		//_level->update(app);
+		//_level->updatePhysicData(app);
+		_level->updateGraphicData(app);
 
 		_inputState.update();
 
@@ -106,11 +105,10 @@ namespace SuperMarioProject
 
 	void World::render(RenderWindow& app)
 	{
-		vector<Perso*>::iterator it;
+		this->_level->render(app);
+		//_levelTree->render();
 
-		//this->_level->render(app);
-
-		for (it = this->_persos.begin(); it < this->_persos.end(); ++it)
+		for (vector<Perso*>::iterator it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
 			(*it)->render(app);
 		}

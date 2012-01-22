@@ -405,7 +405,7 @@ namespace XMLParsing
 	}
 
 	//<occ_block actualModel="" alternativeModel="" pos="x:y"/>
-	void occ_blocks_tag(Level* level, const char** attrs)
+	void occ_block_tag(Level* level, const char** attrs)
 	{
 		Vector2f position;
 		int id_model, id_alternative, id_item, id_tileset_actual, id_tileset_alt;
@@ -447,7 +447,10 @@ namespace XMLParsing
 			Tileset* tileset_alt = level->getTilesets()[id_tileset_alt];
 
 			if(tileset_alt != nullptr)
-				tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+			{
+				BlockOccurrence* block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+				level->addBlockOccurrence(block);
+			}
 		}
 	}
 
@@ -476,7 +479,7 @@ namespace XMLParsing
 			BAD_CAST"pipe",
 			BAD_CAST"tileset",
 			BAD_CAST"block", 
-			BAD_CAST"occ_blocks"
+			BAD_CAST"occ_block"
 		};
 		static const balise_func functions[] = {
 			level_tag,
@@ -496,7 +499,7 @@ namespace XMLParsing
 			pipe_tag,
 			tileset_tag,
 			block_tag,
-			occ_blocks_tag
+			occ_block_tag
 		};
 		int i;
 

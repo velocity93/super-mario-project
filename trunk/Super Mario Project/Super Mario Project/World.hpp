@@ -13,6 +13,7 @@
 #include "Perso.hpp"
 #include "Level.hpp"
 #include "InputState.hpp"
+#include "QuadTree.hpp"
 #include <SFML/Config.hpp>
 #include <string>
 #include <fstream>
@@ -40,7 +41,7 @@ namespace SuperMarioProject
 		/* Methods */
 		void addLevelName(string levelName);
 
-		void update();
+		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
 		float getElapsedTime();
@@ -62,6 +63,8 @@ namespace SuperMarioProject
 		float _previousElapsedTime;
 		float _fps;
 		float _nbFramesCalculated;
+
+		QuadTree* _levelTree;
 
 		/* Update data time in world */
 		void updateTime();

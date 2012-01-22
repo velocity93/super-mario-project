@@ -59,18 +59,21 @@ namespace Collisions
         }
     }
 
-    void Item::update(RenderWindow& app)
+    void Item::updatePhysicData(RenderWindow& app)
     {
-        vector<ItemOccurrence*>::iterator itItems;
-
-        /* ItemsOccurrences */
-        for(itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
+        for(vector<ItemOccurrence*>::iterator itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
         {
 			(*itItems)->updatePhysicData(app);
 
 			if(_itemOccurrences.size() == 0)
 				break;
+        }
+    }
 
+	void Item::updateGraphicData(RenderWindow& app)
+    {
+        for(vector<ItemOccurrence*>::iterator itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
+        {
 			(*itItems)->updateGraphicData(app);
         }
     }

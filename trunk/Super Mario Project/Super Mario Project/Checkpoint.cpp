@@ -15,12 +15,13 @@ namespace Collisions
 	Checkpoint::Checkpoint(const string& textureName) : Collisionable("textures/objects/" + textureName), _state(NOT_PASSED)
 	{
 		loadCfgCheckpoint();
-		_animation.setCurrentState(PASSED);
+		_animation.setCurrentState(NOT_PASSED);
 	}
 
 	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
 	{
 		loadCfgCheckpoint();
+		_animation.setCurrentState(NOT_PASSED);
 	}
 
 	Checkpoint::State Checkpoint::getState()
@@ -50,7 +51,7 @@ namespace Collisions
 
 	void Checkpoint::setActivity(RenderWindow& app)
 	{
-
+		// TO DO
 	}
 
 	void Checkpoint::render(RenderWindow& app)

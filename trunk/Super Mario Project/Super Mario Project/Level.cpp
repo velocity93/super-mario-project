@@ -82,6 +82,11 @@ namespace SuperMarioProject
 		return _tilesets;
 	}
 
+	vector<BlockOccurrence*>& Level::getBlocksOccurrences()
+	{
+		return _blocksOccurrences;
+	}
+
 	int Level::getMonsterIndex(Monster* monster)
 	{
 		int index = 0;
@@ -173,6 +178,11 @@ namespace SuperMarioProject
 	void Level::addTileset(Tileset* tileset)
 	{
 		_tilesets.push_back(tileset);
+	}
+
+	void Level::addBlockOccurrence(BlockOccurrence* block)
+	{
+		_blocksOccurrences.push_back(block);
 	}
 
 	void Level::loadLevel(string fileName)
@@ -421,7 +431,7 @@ namespace SuperMarioProject
 		}
 	}
 
-	void Level::update(RenderWindow& app)
+	void Level::updatePhysicData(RenderWindow& app)
 	{
 		/* Iterators Declarations */
 		vector<Pipe*>::iterator itPipes;
@@ -432,25 +442,58 @@ namespace SuperMarioProject
 		/* Items */
 		for(itItems = this->_items.begin(); itItems != this->_items.end(); itItems++)
 		{
-			(*itItems)->update(app);
+			(*itItems)->updatePhysicData(app);
 		}
 
 		/* Monsters */
 		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)
 		{
-			(*itMonsters)->update(app);
+			(*itMonsters)->updatePhysicData(app);
 		}
 
 		/* Projectiles */
 		for(itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); itProjectiles++)
 		{
-			(*itProjectiles)->update(app);
+			(*itProjectiles)->updatePhysicData(app);
 		}
 		
 		/* Pipes */
 		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
 		{
 			(*itPipes)->updatePhysicData(app);
+		}
+	}
+
+	void Level::updateGraphicData(RenderWindow& app)
+	{
+		/* Items */
+		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); itItems++)
+		{
+			(*itItems)->updateGraphicData(app);
+		}
+
+		/* Monsters */
+		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); itMonsters++)
+		{
+			(*itMonsters)->updateGraphicData(app);
+		}
+
+		/* Projectiles */
+		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); itProjectiles++)
+		{
+			(*itProjectiles)->updateGraphicData(app);
+		}
+		
+		/* Pipes */
+		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); itPipes++)
+		{
+			(*itPipes)->updateGraphicData(app);
+		}
+
+		/* Checkpoint */
+		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints++)
+		{
+			(*itCheckpoints)->updateGraphicData(app);
 		}
 	}
 

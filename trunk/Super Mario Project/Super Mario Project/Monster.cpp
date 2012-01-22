@@ -66,19 +66,23 @@ namespace Collisions
         }
     }
 
-    void Monster::update(RenderWindow& app)
+    void Monster::updatePhysicData(RenderWindow& app)
     {
-        vector<MonsterOccurrence*>::iterator itMonsters;
-
-        /* MonsterOccurrences */
-        for(itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
+        for(vector<MonsterOccurrence*>::iterator itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
         {
             (*itMonsters)->updatePhysicData(app);
 
 			if(_monsterOccurrences.size() == 0)
 				break;
+        }
+    }
 
-			(*itMonsters)->updateGraphicData(app);
+	void Monster::updateGraphicData(RenderWindow& app)
+    {
+        /* MonsterOccurrences */
+        for(vector<MonsterOccurrence*>::iterator itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
+        {
+            (*itMonsters)->updateGraphicData(app);
         }
     }
 

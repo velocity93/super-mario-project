@@ -79,7 +79,7 @@ template<typename T>
 int Animation<T>::getNbSpritesMax()
 {
 	map<T, int>::iterator itNbSprites;
-	int nbSpritesMax = 0;
+	int nbSpritesMax = INT_MIN;
 
 	for(itNbSprites = _nbSpritesByState.begin(); itNbSprites !=  _nbSpritesByState.end(); ++itNbSprites)
 	{

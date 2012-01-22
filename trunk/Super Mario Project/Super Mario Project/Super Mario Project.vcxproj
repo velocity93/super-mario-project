@@ -161,6 +161,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ResourceManager.inl" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg" />
     <None Include="worlds\world1.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

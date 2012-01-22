@@ -11,7 +11,7 @@
 #define HPP_QUADTREE
 
 #include <SFML\Graphics.hpp>
-#include "Collisionable.hpp"
+#include "BlockOccurrence.hpp"
 
 namespace SuperMarioProject
 {
@@ -20,14 +20,16 @@ namespace SuperMarioProject
 	public :
 		static const int MAX_TREE = 100;
 		static const int MAX_DEPTH = 10;
+		static const int MIN_SIZE = 2;
 		QuadTree(sf::Vector2f& center, sf::Vector2i& size, int depth) :
 				_size(size), _center(center), _nbElementsInside(0), _depth(depth),
 				_subTree1(nullptr), _subTree2(nullptr), _subTree3(nullptr), _subTree4(nullptr)
 				{ }
 
-		void buildTree(vector<Collisions::Collisionable*>& obj);
+		void buildTree(vector<Collisions::BlockOccurrence*>& obj);
 
 		bool isLeaf();
+		void render();
 		virtual ~QuadTree();
 
 	private :
@@ -39,7 +41,7 @@ namespace SuperMarioProject
 		QuadTree* _subTree2;
 		QuadTree* _subTree3;
 		QuadTree* _subTree4;
-		vector<Collisions::Collisionable*> _elements;
+		vector<Collisions::BlockOccurrence*> _elements;
 
 	};
 }

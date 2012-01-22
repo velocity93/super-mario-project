@@ -43,7 +43,8 @@ namespace Collisions
 		void removeMonsterOccurrence(const MonsterOccurrence* monster);
 
 		/* Update data */
-		void update(RenderWindow& app);
+		void updatePhysicData(RenderWindow& app);
+		void updateGraphicData(RenderWindow& app);
 
 		/* render all occurrence */
 		void render(RenderWindow& app);
