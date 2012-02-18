@@ -49,7 +49,7 @@ namespace Collisions
     {
         vector<ItemOccurrence*>::iterator itItemOccurrence;
 
-        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence != _itemOccurrences.end(); itItemOccurrence++)
+        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence != _itemOccurrences.end(); ++itItemOccurrence)
         {
             if((*itItemOccurrence) == item)
                 _itemOccurrences.erase(itItemOccurrence);

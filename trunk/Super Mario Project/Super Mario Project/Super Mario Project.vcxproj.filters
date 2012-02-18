@@ -248,8 +248,5 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>

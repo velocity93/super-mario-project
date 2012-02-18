@@ -87,7 +87,7 @@ namespace Collisions
 			file << ">" << endl;
 			tabs += '\t';
 			for(vector<BlockOccurrence*>::iterator itBlock = _blockOccurrences.begin();
-				itBlock < _blockOccurrences.end(); itBlock++)
+				itBlock < _blockOccurrences.end(); ++itBlock)
 			{
 				file << tabs << "<occ_block ";
 				file << "positionX=\"" << (*itBlock)->getPosition().x << "\" ";

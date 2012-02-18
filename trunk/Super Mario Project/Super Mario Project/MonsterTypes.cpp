@@ -31,7 +31,7 @@ namespace Collisions
 			file << ">" << endl;
 			tabs += '\t';
 			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
-				itMonster < _monsterOccurrences.end(); itMonster++)
+				itMonster < _monsterOccurrences.end(); ++itMonster)
 			{
 				file << tabs << "<occ_monster ";
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
@@ -151,7 +151,7 @@ namespace Collisions
 			file << ">" << endl;
 			tabs += '\t';
 			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
-				itMonster < _monsterOccurrences.end(); itMonster++)
+				itMonster < _monsterOccurrences.end(); ++itMonster)
 			{
 				file << tabs << "<occ_monster ";
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
@@ -244,7 +244,7 @@ namespace Collisions
 			file << ">" << endl;
 			tabs += '\t';
 			for(vector<MonsterOccurrence*>::iterator itMonster = _monsterOccurrences.begin();
-				itMonster < _monsterOccurrences.end(); itMonster++)
+				itMonster < _monsterOccurrences.end(); ++itMonster)
 			{
 				file << tabs << "<occ_monster ";
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";

@@ -119,13 +119,11 @@ namespace Collisions
 
 	void Pipe::render(RenderWindow& app)
     {
-		Sprite sprite = _texture->getSprite();
+		ReversedSprite sprite = _texture->getSprite();
 
 		switch(_direction)
 		{
 		case TO_BOTTOM:
-			sprite.FlipX(true);
-
 			/* Body */
 			for(int step = 0; step < _lenght; step++)
 			{
@@ -181,6 +179,7 @@ namespace Collisions
 			break;
 
 		default:
+			sprite.FlipY(true);
 			/* Top of pipe */
 			sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
 			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));

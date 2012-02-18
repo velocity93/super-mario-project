@@ -52,7 +52,7 @@ namespace SuperMarioProject
 				std::vector<Collisions::BlockOccurrence*> subTab1, subTab2, subTab3, subTab4;
 				center = _center;
 
-				for(vector<Collisions::BlockOccurrence*>::iterator itObj = obj.begin(); itObj != obj.end(); itObj++)
+				for(vector<Collisions::BlockOccurrence*>::iterator itObj = obj.begin(); itObj != obj.end(); ++itObj)
 				{
 					Vector2f point_BL = (*itObj)->getHitboxPosition();
 					Vector2f point_HR = Vector2f((*itObj)->getHitboxPosition().x + (*itObj)->getHitboxSize().x,
