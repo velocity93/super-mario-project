@@ -448,7 +448,16 @@ namespace XMLParsing
 
 			if(tileset_alt != nullptr)
 			{
-				BlockOccurrence* block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+				BlockOccurrence* block;
+				if(id_alternative > -1)
+				{
+					block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+				}
+				else
+				{
+					block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(nullptr, position);
+				}
+
 				level->addBlockOccurrence(block);
 			}
 		}

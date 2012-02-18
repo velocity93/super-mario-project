@@ -89,7 +89,7 @@ namespace SuperMarioProject
 
 		vector<Perso*>::iterator it;
 		
-		for (it = this->_persos.begin(); it < this->_persos.end(); it++)
+		for (it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
 			if((*it)->getState() != Perso::FINISH && (*it)->getState() != Perso::FINISH_CASTLE && (*it)->getState() != Perso::DEAD
 				&& (*it)->getHUD()->getTime() > 0)

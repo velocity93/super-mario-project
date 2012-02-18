@@ -42,7 +42,7 @@ namespace Collisions
     {
         vector<ProjectileOccurrence*>::iterator itProjectileOccurrence;
 
-		for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); itProjectileOccurrence++)
+		for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); ++itProjectileOccurrence)
         {
             if((*itProjectileOccurrence) == projectile)
                 _projectileOccurences.erase(itProjectileOccurrence);
@@ -73,6 +73,7 @@ namespace Collisions
 
     void Projectile::render(RenderWindow& app)
     {
+		
         vector<ProjectileOccurrence*>::iterator itProjectiles;
 
         /* ProjectilesOccurrences */
