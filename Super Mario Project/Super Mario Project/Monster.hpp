@@ -34,9 +34,9 @@ namespace Collisions
 
 		/* Getters/Setters */
 		int getBottomLeft();
-		bool getCanBeKilledByJump();
-		bool getCanBeKilledByFire();
-		bool getCanBeJumpedOn();
+		bool canBeKilledByJump();
+		bool canBeKilledByFire();
+		bool canBeJumpedOn();
 		vector<MonsterOccurrence*>& getMonsterOccurrences();
 
 		/* Remove occurrence */

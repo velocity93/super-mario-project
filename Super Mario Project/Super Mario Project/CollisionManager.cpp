@@ -11,12 +11,14 @@
 
 namespace Collisions
 {
-	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level* level)
+	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level* level, RenderWindow& app)
 	{
 		Collisions_info infos;
 		
 		if(detectCollisions(et1, c2, &infos))
 		{
+			et1->updatePhysicData(app);
+
 			/* Appel de la méthode de MAJ de collisions
 
 			Méthode abstraite OnCollision(Collisionable* c, vector<bool>& infos) = 0 définie dans EntityMoveable
@@ -30,12 +32,13 @@ namespace Collisions
 		}
 	}
 
-	void CollisionManager::solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level)
+	void CollisionManager::solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app)
 	{
 		Collisions_info infos;
 		
 		if(detectCollisions(et1, et2, &infos))
 		{
+			et2->updatePhysicData(app);
 			/* Appel de la méthode de MAJ de collisions
 			et2->OnCollision(et1, infos->type_collision)
 			*/

@@ -40,6 +40,16 @@ namespace Collisions
 		_hitboxSize.y = _texture->getImage()->GetHeight();
 	}
 
+	void ItemOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
+	{
+		// NOTHING TO DO NOW !
+	}
+
+	Item* ItemOccurrence::getModel()
+	{
+		return _item;
+	}
+
 	ItemOccurrence::State ItemOccurrence::getState()
 	{
 		return _state;

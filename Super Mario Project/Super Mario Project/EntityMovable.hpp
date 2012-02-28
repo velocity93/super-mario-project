@@ -63,6 +63,7 @@ namespace Collisions
 
 		void gravity(Vector2f &speed, float time);
 
+		virtual void OnCollision(Collisionable* c, vector<bool>& infos) = 0;
 		virtual void updatePhysicData(RenderWindow& app) = 0;
 
 		/* Destructors */

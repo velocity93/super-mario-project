@@ -25,7 +25,9 @@ namespace Collisions
 
 		Particle(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), _life(0) { }
 
-		int getLife();		
+		int getLife();
+
+		void OnCollision(Collisionable* c, vector<bool>& infos);
 
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow&);

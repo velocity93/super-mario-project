@@ -39,8 +39,11 @@ namespace Collisions
 
 		State getState();
 		bool getIsActive();
+		Item* getModel();
 		void setState(State state);
 		void setActivity(RenderWindow& app);
+
+		void OnCollision(Collisionable* c, vector<bool>& infos);
 
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow& app);
