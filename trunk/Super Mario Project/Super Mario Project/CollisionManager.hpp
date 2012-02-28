@@ -42,8 +42,8 @@ namespace Collisions
 	
 		CollisionManager();
 
-		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level);
-		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level);
+		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
+		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
 
 		virtual ~CollisionManager();
 

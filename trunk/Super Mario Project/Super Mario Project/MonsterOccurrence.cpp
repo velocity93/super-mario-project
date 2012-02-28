@@ -48,6 +48,16 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
+	Monster* MonsterOccurrence::getModel()
+	{
+		return _monster;
+	}
+
+	void MonsterOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
+	{
+		// TO DO
+	}
+
 	void MonsterOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		setActivity(app);
@@ -82,7 +92,7 @@ namespace Collisions
 			int delta = 0;
 			if(_state != M_WALK)
 			{
-				delta = !_monster->getCanBeKilledByJump() + !_monster->getCanBeKilledByFire();
+				delta = !_monster->canBeKilledByJump() + !_monster->canBeKilledByFire();
 			}
 			_animation.render(_texture, app, _position, _side == LEFT_SIDE, delta);
 		}

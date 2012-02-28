@@ -23,7 +23,7 @@ namespace Collisions
 		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
 		Collisionable(const string& textureName,Vector2f& position) : Drawable(textureName, position), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
 
-		/* */
+		/* Getters */
 		Vector2f& getHitboxPosition();
 		Vector2i& getHitboxSize();
 

@@ -14,6 +14,7 @@ namespace Rendering
 	{
 		_idPerso = -1;
 		_nbLives = 0;
+		_nbCoins = 0;
 		_score = 0;
 		_time = 0;
 		_levelName = "";
@@ -45,11 +46,6 @@ namespace Rendering
 		_time = time;
 	}
 
-	void HUD::setNbLives(int nbLives)
-	{
-		_nbLives = nbLives;
-	}
-
 	void HUD::setNbMonstersKilled(int nbMonstersKilled)
 	{
 		_nbMonstersKilled = nbMonstersKilled;
@@ -58,6 +54,31 @@ namespace Rendering
 	void HUD::setNbMonstersKilledByShell(int nbMonstersKilledByShell)
 	{
 		_nbMonstersKilledByShell = nbMonstersKilledByShell;
+	}
+
+	void HUD::addPoints(int nbPoints)
+	{
+		_score += nbPoints;
+	}
+
+	void HUD::addCoin()
+	{
+		_nbCoins++;
+		if(_nbCoins == 100)
+		{
+			_nbCoins = 0;
+			addLife();
+		}
+	}
+
+	void HUD::addLife()
+	{
+		_nbLives++;
+	}
+
+	void HUD::removeLife()
+	{
+		_nbLives--;
 	}
 
 	void HUD::updateGraphicData(RenderWindow& app)

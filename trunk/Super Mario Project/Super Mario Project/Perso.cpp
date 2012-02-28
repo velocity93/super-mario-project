@@ -8,7 +8,9 @@
 
 #include "Perso.hpp"
 #include "InputState.hpp"
+#include "ProjectileOccurrence.hpp"
 #include "Pipe.hpp"
+#include "Item.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -48,7 +50,7 @@ namespace Collisions
 		return _environment;
 	}
 
-	Perso::Transformations Perso::getTransformation()
+	Perso::Transformation Perso::getTransformation()
 	{
 		return _transformation;
 	}
@@ -89,7 +91,7 @@ namespace Collisions
 		_environment = environment;
 	}
 
-	void Perso::setTransformation(const Transformations &transformation)
+	void Perso::setTransformation(const Transformation &transformation)
 	{
 		_transformation = transformation;
 	}
@@ -469,35 +471,39 @@ namespace Collisions
 		}
 	}
 
-	void Perso::transform(Transformations nextTransformation)
+	void Perso::transform(Transformation nextTransformation)
 	{
-		/* Selon le futur état du personnage,
-		on charge la texture appropriée */
-		switch(nextTransformation) {
-		case SMALL_MARIO :
-			loadPerso("small_mario");
-			_transformation = SMALL_MARIO;
+		if(_transformation >= nextTransformation)
+		{
+			/* Selon le futur état du personnage,
+			on charge la texture appropriée */
+			switch(nextTransformation) {
+			case SMALL_MARIO :
+				loadPerso("small_mario");
+				_transformation = SMALL_MARIO;
 
-			/* Faire correspondre les deux coins bas_gauche de la hitbox */
-			//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
-			break;
-		case SUPER_MARIO :
-			loadPerso("super_mario");
-			_transformation = SUPER_MARIO;
+				/* Faire correspondre les deux coins bas_gauche de la hitbox */
+				//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
+				break;
+			case SUPER_MARIO :
+				loadPerso("super_mario");
+				_transformation = SUPER_MARIO;
 
-			/* Faire correspondre les deux coins bas_gauche de la hitbox */
-			//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
-			break;
-		case FIRE_MARIO :
-			loadPerso("fire_mario");
-			_transformation = FIRE_MARIO;
-			break;
-		case ICE_MARIO :
-			loadPerso("ice_mario");
-			_transformation = ICE_MARIO;
-			break;
-		default : break;
+				/* Faire correspondre les deux coins bas_gauche de la hitbox */
+				//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
+				break;
+			case FIRE_MARIO :
+				loadPerso("fire_mario");
+				_transformation = FIRE_MARIO;
+				break;
+			case ICE_MARIO :
+				loadPerso("ice_mario");
+				_transformation = ICE_MARIO;
+				break;
+			default : break;
+			}
 		}
+		_hud->addPoints(1000);
 	}
 
 	void Perso::frictions(float time)
@@ -554,6 +560,82 @@ namespace Collisions
 			break;
 		}
 		// Play sound pipe here !
+	}
+
+	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
+	{
+		// Determine which entity is c
+		ItemOccurrence* item = dynamic_cast<ItemOccurrence*>(c);
+		if(item != NULL)
+		{
+			onCollisionItem(item);
+			return;
+		}
+
+		MonsterOccurrence* monster = dynamic_cast<MonsterOccurrence*>(c);
+		if(monster != NULL)
+		{
+			onCollisionMonster(monster, infos);
+			return;
+		}
+
+		ProjectileOccurrence* projectile = dynamic_cast<ProjectileOccurrence*>(c);
+		if(projectile != NULL)
+		{
+			if(projectile->getSender() == ProjectileOccurrence::Sender::VILAIN)
+			{
+				transform(Perso::Transformation::SMALL_MARIO);
+			}
+		}
+	}
+
+	void Perso::onCollisionMonster(MonsterOccurrence* monster, vector<bool>& infos)
+	{
+		// TO DO
+	}
+
+	void Perso::onCollisionItem(ItemOccurrence* item)
+	{
+		Item* itemModel = item->getModel();
+		switch(itemModel->getType())
+		{
+
+		case Item::COIN:
+			_hud->addCoin();
+			break;
+
+		case Item::MUSHROOM:
+			transform(Perso::Transformation::SUPER_MARIO);
+			break;
+
+		case Item::FLOWER:
+			transform(Perso::Transformation::FIRE_MARIO);
+			break;
+
+		case Item::ICE_FLOWER:
+			transform(Perso::Transformation::ICE_MARIO);
+			break;
+
+		case Item::MINI_MUSHROOM:
+			transform(Perso::Transformation::MINI_MARIO);
+			break;
+
+		case Item::POISON_MUSHROOM:
+			transform(Perso::Transformation::SMALL_MARIO);
+			break;
+
+		case Item::STAR:
+			this->_invincibleStarTime.Start();
+			break;
+
+		case Item::LIFE_MUSHROOM:
+			_hud->addLife();
+			break;
+
+		default:
+			break;
+
+		}
 	}
 
 	void Perso::loadPerso(const string& textureName)
@@ -943,7 +1025,6 @@ namespace Collisions
 			throw exception(exceptionName.c_str());
 		}
 	}
-
 
 	Perso::~Perso()
 	{

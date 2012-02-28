@@ -26,17 +26,17 @@ namespace Collisions
 		return _bottomLeft;
 	}
 
-	bool Monster::getCanBeKilledByJump()
+	bool Monster::canBeKilledByJump()
 	{
 		return _canBeKilledByJump;
 	}
 
-	bool Monster::getCanBeKilledByFire()
+	bool Monster::canBeKilledByFire()
 	{
 		return _canBeKilledByFire;
 	}
 
-	bool Monster::getCanBeJumpedOn()
+	bool Monster::canBeJumpedOn()
 	{
 		return _canBeJumpedOn;
 	}

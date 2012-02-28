@@ -42,6 +42,11 @@ namespace Collisions
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _projectile->getBottomLeft();
 	}
 
+	void ProjectileOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
+	{
+		// NOTHING TO DO NOW !
+	}
+
 	ProjectileOccurrence::State ProjectileOccurrence::getState()
 	{
 		return _state;

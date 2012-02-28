@@ -15,7 +15,9 @@
 
 #include "HUD.hpp"
 #include "EntityMovable.hpp"
-#include "MonsterOccurrence.hpp"
+#include "Monster.hpp"
+#include "ProjectileOccurrence.hpp"
+#include "ItemOccurrence.hpp"
 #include "Checkpoint.hpp"
 #include "InputState.hpp"
 #include "Animation.hpp"
@@ -30,12 +32,12 @@ namespace Collisions
     {
 
 	public:
-		enum Environment
+		typedef enum Environment
 		{
 			GROUND,
 			AIR,
 			WATER
-		};
+		} Environment;
 
 		typedef enum 
 		{
@@ -75,7 +77,7 @@ namespace Collisions
 			RUN_1 = 1
 		} State;
 
-		enum Sounds {
+		typedef enum Sound {
 			SND_JUMP,
 			SND_HURT,
 			SND_FIRE_TRANSFORMATION,
@@ -94,9 +96,9 @@ namespace Collisions
 			SND_CHECKPOINT,
 			SND_FINAL_POINTS,
 			NB_SONS
-		};
+		} Sound;
 
-		enum Transformations
+		typedef enum Transformation
 		{
 			MINI_MARIO,
 			SMALL_MARIO,
@@ -109,7 +111,7 @@ namespace Collisions
 			SUPER_FIRE_MARIO,
 			NINJA_MARIO,
 			NB_TRANSFORMATIONS
-		};
+		} Transformation;
 
 		/* Constructors */
 		Perso(const string& textureName, Vector2f& position);
@@ -118,7 +120,7 @@ namespace Collisions
 		HUD* getHUD();
 		State getState();
 		Environment getEnvironment();
-		Transformations getTransformation();
+		Transformation getTransformation();
 		bool getCanClimb();
 		Vector2f& getAcceleration();
 		MonsterOccurrence* getBroughtMonster();
@@ -136,7 +138,7 @@ namespace Collisions
 
 		void setState(State state);
 		void setEnvironment(const Environment &environment);
-		void setTransformation(const Transformations &transformation);
+		void setTransformation(const Transformation &transformation);
 		void setCanClimb(bool canClimb);
 		void setBroughtMonster(MonsterOccurrence* monster);
 		void setInsidePipe(Pipe* pipe);
@@ -146,6 +148,7 @@ namespace Collisions
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */
+		void onCollision(Collisionable* c, vector<bool>& infos);
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow&);
 		void render(RenderWindow& app);
@@ -173,7 +176,7 @@ namespace Collisions
 		HUD* _hud;
 		State _state;
 		Environment _environment;
-		Transformations _transformation;
+		Transformation _transformation;
 		Vector2f _acceleration;
 		MonsterOccurrence* _broughtMonster;
 		Pipe* _insidePipe;
@@ -195,10 +198,16 @@ namespace Collisions
 		void hurted();
 
 		/* Transform */
-		void transform(Transformations nextTransformation);
+		void transform(Transformation nextTransformation);
 
 		/* Update character state when he is inside a pipe */
 		void updateInPipe();
+
+		/* Resolve Collisions with an item */
+		void onCollisionItem(ItemOccurrence* item);
+
+		/* Resolve Collisions with a monster */
+		void onCollisionMonster(MonsterOccurrence* monster, vector<bool>& infos);
 
     };
 } // namespace

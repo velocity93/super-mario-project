@@ -29,10 +29,13 @@ namespace Rendering
 		int getTime();
 		int getNbLives();
 		void setTime(float time);
-		void setNbLives(int nbLives);
 		void setNbMonstersKilled(int NbMonstersKilled);
 		void setNbMonstersKilledByShell(int NbMonstersKilledByShell);
 
+		void addLife();
+		void removeLife();
+		void addCoin();
+		void addPoints(int nbPoints);
 		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
@@ -41,6 +44,7 @@ namespace Rendering
     private:
 		int _idPerso;
 		int _nbLives;
+		int _nbCoins;
 		int _score;
 		float _time;
 		string _levelName;

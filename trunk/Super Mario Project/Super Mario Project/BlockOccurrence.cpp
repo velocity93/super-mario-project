@@ -47,6 +47,11 @@ namespace Collisions
 		}
     }
 
+	void BlockOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
+	{
+		// NOTHING TO DO NOW !
+	}
+
 	void BlockOccurrence::setActivity(RenderWindow& app)
 	{
 		View view = app.GetView();
