@@ -9,6 +9,8 @@
 #include "ResourceManager.hpp"
 #include "ItemOccurrence.hpp"
 #include "Item.hpp"
+#include "Perso.hpp"
+#include <typeinfo.h>
 
 using namespace SuperMarioProject;
 
@@ -34,15 +36,11 @@ namespace Collisions
 		_animation.setMapFrameDelay(frameDelayByState);
 		_animation.setCurrentState(_state);
 
+		typeid(&_position).name();
 		_position = _hitboxPosition = position;
 		_speed = _item->getInitialSpeed();
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax();
 		_hitboxSize.y = _texture->getImage()->GetHeight();
-	}
-
-	void ItemOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
-	{
-		// NOTHING TO DO NOW !
 	}
 
 	Item* ItemOccurrence::getModel()
@@ -73,6 +71,15 @@ namespace Collisions
 		else
 			_isActive = true;
 
+	}
+
+	void ItemOccurrence::onCollision(Collisionable* c)
+	{
+		Perso* perso = dynamic_cast<Perso*>(c);
+		if(perso != NULL)
+		{
+			_item->removeItemOccurrence(this);
+		}
 	}
 
 	void ItemOccurrence::updatePhysicData(RenderWindow& app)

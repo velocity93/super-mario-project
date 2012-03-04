@@ -23,8 +23,8 @@ namespace SuperMarioProject
     class ResourceManager
     {
     public:
-        ResourceManager();
-        ~ResourceManager();
+        static ResourceManager* getResourceManager();
+		static void killManager();
 
         static void remove(Resource *res);
         static Rendering::Texture *getTexture(const std::string &name);
@@ -33,10 +33,14 @@ namespace SuperMarioProject
         static Collisions::Projectile *getProjectile(const std::string &name);
 
     private:
+		ResourceManager();
+        ~ResourceManager();
+
         template <typename T>
         static T *get(const std::string &name);
 
         static std::map<std::string, Resource*> _resources;
+		static ResourceManager* _manager;
     };
 
 #include "ResourceManager.inl"

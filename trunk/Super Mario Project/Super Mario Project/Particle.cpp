@@ -22,9 +22,9 @@ namespace Collisions
 		// TO DO
 	}
 
-	void Particle::OnCollision(Collisionable* c, vector<bool>& infos)
+	void Particle::onCollision(Collisionable* c)
 	{
-		// NOTHING TO DO NOW !
+		// NOTHING TO DO !
 	}
 
 	void Particle::updatePhysicData(RenderWindow& app)

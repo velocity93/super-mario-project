@@ -6,8 +6,10 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "CollisionManager.hpp"
 #include "Perso.hpp"
 #include "InputState.hpp"
+#include "ItemOccurrence.hpp"
 #include "ProjectileOccurrence.hpp"
 #include "Pipe.hpp"
 #include "Item.hpp"
@@ -506,6 +508,75 @@ namespace Collisions
 		_hud->addPoints(1000);
 	}
 
+	void Perso::onCollision(Collisionable* c)
+	{
+		int test = CollisionManager::Type::FROM_BOTTOM;
+
+		/* Collision with an Item */
+		ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
+		if(itemOccurrence != NULL)
+		{
+			Item* item = itemOccurrence->getModel();
+			switch(item->getType())
+			{
+			case Item::Type::COIN:
+				_hud->addCoin();
+				break;
+
+			case Item::Type::MUSHROOM:
+				transform(SUPER_MARIO);
+				break;
+
+			case Item::Type::FLOWER:
+				transform(FIRE_MARIO);
+				break;
+
+			case Item::Type::ICE_FLOWER:
+				transform(ICE_MARIO);
+				break;
+
+			case Item::Type::MINI_MUSHROOM:
+				transform(MINI_MARIO);
+				break;
+
+			case Item::Type::POISON_MUSHROOM:
+				hurted();
+				break;
+
+			case Item::Type::STAR:
+				_invincibleStarTime.Reset();
+				break;
+
+			case Item::Type::LIFE_MUSHROOM:
+				_hud->addLife();
+				break;
+
+			default:
+				break;
+			}
+
+			return;
+		}
+
+		/* Collision with a ProjectileOccurrence */
+		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
+		if(projectileOccurrence != NULL)
+		{
+			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::VILAIN)
+			{
+				hurted();
+			}
+			return;
+		}
+
+		/* Collision with a MonsterOccurrence */
+		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
+		if(monsterOccurrence != NULL)
+		{
+			return;
+		}
+	}
+
 	void Perso::frictions(float time)
 	{
 		float coeff;
@@ -560,82 +631,6 @@ namespace Collisions
 			break;
 		}
 		// Play sound pipe here !
-	}
-
-	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
-	{
-		// Determine which entity is c
-		ItemOccurrence* item = dynamic_cast<ItemOccurrence*>(c);
-		if(item != NULL)
-		{
-			onCollisionItem(item);
-			return;
-		}
-
-		MonsterOccurrence* monster = dynamic_cast<MonsterOccurrence*>(c);
-		if(monster != NULL)
-		{
-			onCollisionMonster(monster, infos);
-			return;
-		}
-
-		ProjectileOccurrence* projectile = dynamic_cast<ProjectileOccurrence*>(c);
-		if(projectile != NULL)
-		{
-			if(projectile->getSender() == ProjectileOccurrence::Sender::VILAIN)
-			{
-				transform(Perso::Transformation::SMALL_MARIO);
-			}
-		}
-	}
-
-	void Perso::onCollisionMonster(MonsterOccurrence* monster, vector<bool>& infos)
-	{
-		// TO DO
-	}
-
-	void Perso::onCollisionItem(ItemOccurrence* item)
-	{
-		Item* itemModel = item->getModel();
-		switch(itemModel->getType())
-		{
-
-		case Item::COIN:
-			_hud->addCoin();
-			break;
-
-		case Item::MUSHROOM:
-			transform(Perso::Transformation::SUPER_MARIO);
-			break;
-
-		case Item::FLOWER:
-			transform(Perso::Transformation::FIRE_MARIO);
-			break;
-
-		case Item::ICE_FLOWER:
-			transform(Perso::Transformation::ICE_MARIO);
-			break;
-
-		case Item::MINI_MUSHROOM:
-			transform(Perso::Transformation::MINI_MARIO);
-			break;
-
-		case Item::POISON_MUSHROOM:
-			transform(Perso::Transformation::SMALL_MARIO);
-			break;
-
-		case Item::STAR:
-			this->_invincibleStarTime.Start();
-			break;
-
-		case Item::LIFE_MUSHROOM:
-			_hud->addLife();
-			break;
-
-		default:
-			break;
-
-		}
 	}
 
 	void Perso::loadPerso(const string& textureName)

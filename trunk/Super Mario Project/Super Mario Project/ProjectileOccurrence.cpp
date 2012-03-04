@@ -42,11 +42,6 @@ namespace Collisions
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _projectile->getBottomLeft();
 	}
 
-	void ProjectileOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
-	{
-		// NOTHING TO DO NOW !
-	}
-
 	ProjectileOccurrence::State ProjectileOccurrence::getState()
 	{
 		return _state;
@@ -72,6 +67,12 @@ namespace Collisions
 			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
 			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y)
 			_lifeTime.Reset(true);
+	}
+
+	void ProjectileOccurrence::onCollision(Collisionable* c)
+	{
+		/* Animation of death before removing */
+		_projectile->removeProjectileOccurrence(this);
 	}
 
 	void ProjectileOccurrence::updatePhysicData(RenderWindow& app)

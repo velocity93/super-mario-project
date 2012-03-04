@@ -11,6 +11,23 @@
 namespace SuperMarioProject
 {
     std::map<std::string, Resource*> ResourceManager::_resources = std::map<std::string, Resource*>();
+	ResourceManager* ResourceManager::_manager = NULL;
+
+	ResourceManager* ResourceManager::getResourceManager()
+	{
+		if(_manager == NULL)
+		{
+			_manager = new ResourceManager();
+		}
+
+		return _manager;
+	}
+
+	void ResourceManager::killManager()
+	{
+		if(_manager != NULL)
+			delete _manager;
+	}
 
     ResourceManager::ResourceManager()
     {

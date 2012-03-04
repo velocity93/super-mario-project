@@ -11,6 +11,10 @@
 #define HPP_COLLISIONMANAGER
 
 #include "EntityMovable.hpp"
+#include "Block.hpp"
+#include "Item.hpp"
+#include "Monster.hpp"
+#include "Projectile.hpp"
 #include "Level.hpp"
 
 using namespace SuperMarioProject;
@@ -40,15 +44,26 @@ namespace Collisions
 		};
 
 	
-		CollisionManager();
+		static CollisionManager* getManager();
+		static void killManager();
 
 		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
 		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
 
+		
+	private:
+		static CollisionManager* _manager;
+
+		/* Constructor */
+		CollisionManager() { }
+
 		virtual ~CollisionManager();
 
-	private:
 		static bool detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info);
+
+		/* SPECIFIC COLLISIONS */
+		static void solveCollisions(EntityMovable* et1, BlockOccurrence* block, Collisions_info& collisions_info, Level* level, RenderWindow& app);
+		static void solveCollisions(EntityMovable* et1, Pipe* pipe, Collisions_info& collisions_info, Level* level, RenderWindow& app);
 	};
 } // namespace
 

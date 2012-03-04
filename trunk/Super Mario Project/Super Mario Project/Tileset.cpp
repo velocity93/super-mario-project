@@ -126,7 +126,7 @@ namespace Collisions
 			{
 				(*itBlock)->serialize(file, tabs);
 			}
-			tabs.pop_back();
+			//tabs.pop_back();
 			file << tabs << "</tileset>" << endl;
 		}
 		else

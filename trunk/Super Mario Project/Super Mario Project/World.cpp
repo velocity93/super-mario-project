@@ -124,10 +124,8 @@ namespace SuperMarioProject
 		if(_level != nullptr)
 			delete _level;
 
-		vector<Perso*>::iterator itPersos;
-
 		/* Persos */
-		for(itPersos = this->_persos.begin(); itPersos < this->_persos.end(); ++itPersos)
+		for(vector<Perso*>::iterator itPersos = this->_persos.begin(); itPersos < this->_persos.end(); ++itPersos)
 		{
 			delete (*itPersos);
 		}
