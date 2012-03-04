@@ -61,7 +61,7 @@ namespace Collisions
 		void setSpeed(const Vector2f& speed);
 		void setSide(const Side &side);
 
-		virtual void onCollision(Collisionable* c) = 0;
+		virtual void onCollision(Collisionable* c, vector<bool>& infos) = 0;
 		virtual void updatePhysicData(RenderWindow& app) = 0;
 
 		/* Destructors */

@@ -151,7 +151,7 @@ namespace Collisions
 		void updatePhysicData(RenderWindow&);
 		void render(RenderWindow& app);
 
-		void onCollision(Collisionable* c);
+		void onCollision(Collisionable* c, vector<bool>& infos);
 
 		/* Loading character configuration */
 		void loadPerso(const string& textureName);

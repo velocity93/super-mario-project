@@ -22,7 +22,7 @@ namespace Collisions
 		// TO DO
 	}
 
-	void Particle::onCollision(Collisionable* c)
+	void Particle::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		// NOTHING TO DO !
 	}

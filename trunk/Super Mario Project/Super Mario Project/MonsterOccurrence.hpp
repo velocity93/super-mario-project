@@ -59,7 +59,7 @@ namespace Collisions
 		State getState();
 		void setState(State state);
 		Monster* getModel();
-		void onCollision(Collisionable* c);
+		void onCollision(Collisionable* c, vector<bool>& infos);
 
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow& app);

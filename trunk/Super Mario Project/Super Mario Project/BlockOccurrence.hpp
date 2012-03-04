@@ -44,7 +44,7 @@ namespace Collisions
 		void updatePhysicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
-		void onCollision(Collisionable* c);
+		void onCollision(Collisionable* c, vector<bool>& infos);
 		void setActivity(RenderWindow& app);
 
         virtual ~BlockOccurrence();
