@@ -53,14 +53,14 @@ namespace Collisions
 		return _monster;
 	}
 
-	void MonsterOccurrence::onCollision(Collisionable* c)
+	void MonsterOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
 			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::GENTILE)
 			{
-				/* Launch Dead animation, but at the moment */
+				/* Launch Dead animation, but at this moment.... */
 				_monster->removeMonsterOccurrence(this);
 			}
 			return;

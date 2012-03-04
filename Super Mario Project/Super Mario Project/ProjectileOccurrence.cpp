@@ -69,7 +69,7 @@ namespace Collisions
 			_lifeTime.Reset(true);
 	}
 
-	void ProjectileOccurrence::onCollision(Collisionable* c)
+	void ProjectileOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		/* Animation of death before removing */
 		_projectile->removeProjectileOccurrence(this);
@@ -81,7 +81,7 @@ namespace Collisions
 
 		if(_isActive)
 		{
-			if(_lifeTime.GetElapsedTime() >= 0)
+			if(_lifeTime.GetElapsedTime() > 0)
 			{
 				/* If it falls in hole */
 				if(_hitboxPosition.y + _hitboxSize.y < 0)
@@ -96,8 +96,8 @@ namespace Collisions
 				_previousPosition = _position;
 
 				/* Compute new position */
-				this->setPositionX(_position.x + _speed.x * app.GetFrameTime());
-				this->setPositionY(_position.y + _speed.x * app.GetFrameTime());
+				_position.x = _position.x + _speed.x * app.GetFrameTime());
+				_position.y = _position.y + _speed.x * app.GetFrameTime());
 			}
 			else
 			{

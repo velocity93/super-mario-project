@@ -400,7 +400,6 @@ namespace Collisions
 								_speed.y = _speed.y + _acceleration.y * time;
 							else
 								_speed.y = 0;
-
 						}
 						else
 						{
@@ -508,7 +507,7 @@ namespace Collisions
 		_hud->addPoints(1000);
 	}
 
-	void Perso::onCollision(Collisionable* c)
+	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		int test = CollisionManager::Type::FROM_BOTTOM;
 
@@ -565,6 +564,32 @@ namespace Collisions
 			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::VILAIN)
 			{
 				hurted();
+			}
+			return;
+		}
+
+		/* Collision with a Pipe */
+		Pipe* pipe = dynamic_cast<Pipe*>(c);
+		if(pipe != NULL)
+		{
+			if(infos[CollisionManager::Type::FROM_BOTTOM])
+			{
+				_position.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_TOP])
+			{
+				_position.y = pipe->getHitboxPosition().y - _hitboxSize.y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_LEFT])
+			{
+				_position.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
+			}
+
+			if(infos[CollisionManager::Type::FROM_RIGHT])
+			{
+				_position.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
 			}
 			return;
 		}

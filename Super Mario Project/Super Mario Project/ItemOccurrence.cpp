@@ -73,7 +73,7 @@ namespace Collisions
 
 	}
 
-	void ItemOccurrence::onCollision(Collisionable* c)
+	void ItemOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)

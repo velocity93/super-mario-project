@@ -35,14 +35,6 @@ namespace Collisions
 			INCLINE_FROM_RIGHT,
 			NONE_COLLISION
 		};
-
-		struct Collisions_info
-		{
-			vector<bool> type;
-			bool isFirstEntityTouched;
-			bool isSecondEntityTouched;
-		};
-
 	
 		static CollisionManager* getManager();
 		static void killManager();
@@ -50,7 +42,6 @@ namespace Collisions
 		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
 		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
 
-		
 	private:
 		static CollisionManager* _manager;
 
@@ -59,11 +50,10 @@ namespace Collisions
 
 		virtual ~CollisionManager();
 
-		static bool detectCollisions(Collisionable* c1, Collisionable* c2, Collisions_info* collisions_info);
+		static bool detectCollisions(Collisionable* c1, Collisionable* c2, vector<bool>& collisions_info);
 
 		/* SPECIFIC COLLISIONS */
-		static void solveCollisions(EntityMovable* et1, BlockOccurrence* block, Collisions_info& collisions_info, Level* level, RenderWindow& app);
-		static void solveCollisions(EntityMovable* et1, Pipe* pipe, Collisions_info& collisions_info, Level* level, RenderWindow& app);
+		static void solveCollisions(EntityMovable* et1, BlockOccurrence* block, vector<bool>& collisions_info, Level* level, RenderWindow& app);
 	};
 } // namespace
 

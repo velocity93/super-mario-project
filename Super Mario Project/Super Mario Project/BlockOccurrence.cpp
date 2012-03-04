@@ -53,7 +53,7 @@ namespace Collisions
 		return _actualBlock;
 	}
 
-	void BlockOccurrence::onCollision(Collisionable* c)
+	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)

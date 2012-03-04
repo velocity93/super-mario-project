@@ -49,7 +49,7 @@ namespace Collisions
 		void setActivity(RenderWindow& app);
 
 		/* Methods */
-		void onCollision(Collisionable* c);
+		void onCollision(Collisionable* c, vector<bool>& infos);
 		void updatePhysicData(RenderWindow& app);
 		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
