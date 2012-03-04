@@ -12,9 +12,9 @@
 
 #include "ProjectileOccurrence.hpp"
 #include "Resource.hpp"
-#include <vector>
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 using namespace sf;

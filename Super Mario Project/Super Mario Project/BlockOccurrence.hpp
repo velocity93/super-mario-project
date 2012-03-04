@@ -38,12 +38,13 @@ namespace Collisions
 			Block* actual,
 			Block* alternative);
 
-		void OnCollision(Collisionable* c, vector<bool>& infos);
+		Block* getActualModel();
 		
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
+		void onCollision(Collisionable* c);
 		void setActivity(RenderWindow& app);
 
         virtual ~BlockOccurrence();

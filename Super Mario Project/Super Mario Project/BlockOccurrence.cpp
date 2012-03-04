@@ -9,6 +9,7 @@
 #include "BlockOccurrence.hpp"
 #include "Block.hpp"
 #include "Tileset.hpp"
+#include "Perso.hpp"
 
 namespace Collisions
 {
@@ -47,9 +48,18 @@ namespace Collisions
 		}
     }
 
-	void BlockOccurrence::OnCollision(Collisionable* c, vector<bool>& infos)
+	Block* BlockOccurrence::getActualModel()
 	{
-		// NOTHING TO DO NOW !
+		return _actualBlock;
+	}
+
+	void BlockOccurrence::onCollision(Collisionable* c)
+	{
+		Perso* perso = dynamic_cast<Perso*>(c);
+		if(perso != NULL)
+		{
+			return;
+		}
 	}
 
 	void BlockOccurrence::setActivity(RenderWindow& app)
@@ -75,7 +85,7 @@ namespace Collisions
 
 	void BlockOccurrence::updatePhysicData(RenderWindow&)
 	{
-		// NOTHING NOW
+		// NOTHING TO DO NOW
 	}
 	
 	void BlockOccurrence::render(RenderWindow& app)

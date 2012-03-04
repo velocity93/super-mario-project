@@ -27,13 +27,12 @@ namespace Collisions
 
 		int getLife();
 
-		void OnCollision(Collisionable* c, vector<bool>& infos);
-
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow&);
 		void update(float time, bool hasGravity);
 		void render(RenderWindow& app);
 		void setActivity(RenderWindow& app);
+		void onCollision(Collisionable *c);
 
         virtual ~Particle();
 		

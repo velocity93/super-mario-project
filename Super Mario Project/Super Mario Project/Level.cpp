@@ -227,7 +227,7 @@ namespace SuperMarioProject
 				{
 					(*itCheckpoint)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</checkpoints>" << endl;
 			}
 			else
@@ -247,7 +247,7 @@ namespace SuperMarioProject
 				{
 					(*itBackgrounds)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</backgrounds>" << endl;
 			}
 			else
@@ -267,7 +267,7 @@ namespace SuperMarioProject
 				{
 					(*itForeground)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</foregrounds>" << endl;
 			}
 			else
@@ -287,7 +287,7 @@ namespace SuperMarioProject
 				{
 					(*itObject)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</objects>" << endl;
 			}
 			else
@@ -307,7 +307,7 @@ namespace SuperMarioProject
 				{
 					(*itFinish)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</finishes>" << endl;
 			}
 			else
@@ -327,7 +327,7 @@ namespace SuperMarioProject
 				{
 					(*itProjectile)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</projectiles>" << endl;
 			}
 			else
@@ -347,7 +347,7 @@ namespace SuperMarioProject
 				{
 					(*itItem)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</items>" << endl;
 			}
 			else
@@ -378,7 +378,7 @@ namespace SuperMarioProject
 						shellMonster->serialize(file, tabs);
 				}
 
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</monsters>" << endl;
 			}
 			else
@@ -398,7 +398,7 @@ namespace SuperMarioProject
 				{
 					(*itPipe)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 				file << tabs << "</pipes>" << endl;
 			}
 			else
@@ -416,7 +416,7 @@ namespace SuperMarioProject
 				{
 					(*itTileset)->serialize(file, tabs);
 				}
-				tabs.pop_back();
+				//tabs.pop_back();
 			}
 			else
 			{

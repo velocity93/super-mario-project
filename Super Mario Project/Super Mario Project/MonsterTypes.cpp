@@ -37,7 +37,7 @@ namespace Collisions
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
 				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
 			}
-			tabs.pop_back();
+			//tabs.pop_back();
 			file << tabs << "</walking_monster>" << endl;
 		}
 		else
@@ -157,7 +157,7 @@ namespace Collisions
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
 				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
 			}
-			tabs.pop_back();
+			//tabs.pop_back();
 			file << tabs << "</shell_monster>" << endl;
 		}
 		else
@@ -250,7 +250,7 @@ namespace Collisions
 				file << "positionX=\"" << (*itMonster)->getPosition().x << "\" ";
 				file << "positionY=\"" << (*itMonster)->getPosition().y << "\"/>" << endl;
 			}
-			tabs.pop_back();
+			//tabs.pop_back();
 			file << tabs << "</flyng_monster>" << endl;
 		}
 		else

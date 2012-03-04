@@ -93,7 +93,7 @@ namespace Collisions
 				file << "positionX=\"" << (*itBlock)->getPosition().x << "\" ";
 				file << "positionY=\"" << (*itBlock)->getPosition().y << "\"/>" << endl;
 			}
-			tabs.pop_back();
+			//tabs.pop_back();
 			file << tabs << "</block>" << endl;
 		}
 		else

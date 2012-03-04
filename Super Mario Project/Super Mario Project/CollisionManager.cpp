@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////
 // CollisionManager.cpp
 // Super Mario Project
-// Copyright (C) 2011  
+// Copyright (C) 2011
 // Lionel Joseph lionel.r.joseph@gmail.com
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
@@ -11,24 +11,26 @@
 
 namespace Collisions
 {
+	CollisionManager* CollisionManager::_manager = NULL;
+
+	CollisionManager* CollisionManager::getManager()
+	{
+		if(_manager == nullptr)
+		{
+			_manager = new CollisionManager();
+		}
+
+		return _manager;
+	}
+
 	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level* level, RenderWindow& app)
 	{
 		Collisions_info infos;
+		infos.type = vector<bool>(false);
 		
 		if(detectCollisions(et1, c2, &infos))
 		{
-			et1->updatePhysicData(app);
-
-			/* Appel de la méthode de MAJ de collisions
-
-			Méthode abstraite OnCollision(Collisionable* c, vector<bool>& infos) = 0 définie dans EntityMoveable
-
-			et1->OnCollision(c2, infos->type_collision)
-
-			Tester à l'aide de dynamic_cast contre quoi et1 s'est cogné.
-			Faire le necessaire ensuite selon le type.
-
-			*/
+			et1->onCollision(c2);
 		}
 	}
 
@@ -38,15 +40,55 @@ namespace Collisions
 		
 		if(detectCollisions(et1, et2, &infos))
 		{
-			et2->updatePhysicData(app);
-			/* Appel de la méthode de MAJ de collisions
-			et2->OnCollision(et1, infos->type_collision)
-			*/
+			et1->onCollision(et2);
+			et2->onCollision(et1);
+		}
+	}
 
-			/* Appel de la méthode de MAJ de collisions
-			et1->OnCollision(et2, infos->type_collision)
-			*/
+	/* SPECIFIC COLLISIONS */
+	void CollisionManager::solveCollisions(EntityMovable* et1, BlockOccurrence* block, Collisions_info& infos, Level* level, RenderWindow& app)
+	{
+		if(infos.type[FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+		{
+			et1->setPositionY(block->getHitboxPosition().y + block->getHitboxSize().y);
+		}
 
+		if(infos.type[FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+		{
+			et1->setPositionY(block->getHitboxPosition().y - et1->getHitboxSize().y);
+		}
+
+		if(infos.type[FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+		{
+			et1->setPositionX(block->getHitboxPosition().x + block->getHitboxSize().x);
+		}
+
+		if(infos.type[FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+		{
+			et1->setPositionX(block->getHitboxPosition().x - et1->getHitboxSize().x);
+		}
+	}
+
+	void CollisionManager::solveCollisions(EntityMovable* et1, Pipe* pipe, Collisions_info& infos, Level* level, RenderWindow& app)
+	{
+		if(infos.type[FROM_BOTTOM])
+		{
+			et1->setPositionY(pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+		}
+
+		if(infos.type[FROM_TOP])
+		{
+			et1->setPositionY(pipe->getHitboxPosition().y - et1->getHitboxSize().y);
+		}
+
+		if(infos.type[FROM_LEFT])
+		{
+			et1->setPositionX(pipe->getHitboxPosition().x + pipe->getHitboxSize().x);
+		}
+
+		if(infos.type[FROM_RIGHT])
+		{
+			et1->setPositionX(pipe->getHitboxPosition().x - pipe->getHitboxSize().x);
 		}
 	}
 
@@ -59,7 +101,6 @@ namespace Collisions
  
        if (r1.Intersects(r2, &zone))
        {
- 
         if (zone.Left < r1.Left + r1.GetWidth() / 2) 
 			collisions_info->type[FROM_LEFT] = true;
         if (zone.Right > r1.Left + r1.GetWidth() / 2)
@@ -74,6 +115,16 @@ namespace Collisions
 	   }
 
 	   return false;
+	}
+
+	void CollisionManager::killManager()
+	{
+		delete _manager;
+	}
+
+	CollisionManager::~CollisionManager()
+	{
+
 	}
 
 } // namespace

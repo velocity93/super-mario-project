@@ -16,7 +16,6 @@
 #include "HUD.hpp"
 #include "EntityMovable.hpp"
 #include "Monster.hpp"
-#include "ProjectileOccurrence.hpp"
 #include "ItemOccurrence.hpp"
 #include "Checkpoint.hpp"
 #include "InputState.hpp"
@@ -148,10 +147,11 @@ namespace Collisions
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */
-		void onCollision(Collisionable* c, vector<bool>& infos);
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(RenderWindow&);
 		void render(RenderWindow& app);
+
+		void onCollision(Collisionable* c);
 
 		/* Loading character configuration */
 		void loadPerso(const string& textureName);
@@ -202,12 +202,6 @@ namespace Collisions
 
 		/* Update character state when he is inside a pipe */
 		void updateInPipe();
-
-		/* Resolve Collisions with an item */
-		void onCollisionItem(ItemOccurrence* item);
-
-		/* Resolve Collisions with a monster */
-		void onCollisionMonster(MonsterOccurrence* monster, vector<bool>& infos);
 
     };
 } // namespace

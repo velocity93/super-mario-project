@@ -61,9 +61,7 @@ namespace Collisions
 		void setSpeed(const Vector2f& speed);
 		void setSide(const Side &side);
 
-		void gravity(Vector2f &speed, float time);
-
-		virtual void OnCollision(Collisionable* c, vector<bool>& infos) = 0;
+		virtual void onCollision(Collisionable* c) = 0;
 		virtual void updatePhysicData(RenderWindow& app) = 0;
 
 		/* Destructors */
@@ -73,6 +71,8 @@ namespace Collisions
 		Vector2f _previousPosition;
 		Vector2f _speed;
 		Side _side;
+
+		void gravity(Vector2f &speed, float time);
     };
 } // namespace
 
