@@ -7,8 +7,11 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "ResourceManager.hpp"
+#include "CollisionManager.hpp"
 #include "MonsterOccurrence.hpp"
 #include "Monster.hpp"
+#include "Pipe.hpp"
+#include "Perso.hpp"
 
 using namespace SuperMarioProject;
 
@@ -55,13 +58,56 @@ namespace Collisions
 
 	void MonsterOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
+		/* Collision vs Perso */
+		Perso* perso = dynamic_cast<Perso*>(c);
+		if(perso != NULL)
+		{
+			if(infos[CollisionManager::Type::FROM_TOP] && _monster->canBeJumpedOn())
+			{
+				if(_monster->canBeKilledByJump())
+					setState(State::M_DEAD);
+				else
+					setState(State::M_RETRACTED);
+			}
+
+			return;
+		}
+
+		/* Collision vs ProjectileOccurrence */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
 			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::GENTILE)
 			{
-				/* Launch Dead animation, but at this moment.... */
+				/* Launch Dead animation, but for the moment.... */
+				setState(State::M_DEAD);
 				_monster->removeMonsterOccurrence(this);
+			}
+			return;
+		}
+
+		/* Collision vs Pipe */
+		Pipe* pipe = dynamic_cast<Pipe*>(c);
+		if(pipe != NULL)
+		{
+			if(infos[CollisionManager::Type::FROM_BOTTOM])
+			{
+				_position.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_TOP])
+			{
+				_position.y = pipe->getHitboxPosition().y - _hitboxSize.y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_LEFT])
+			{
+				_position.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
+			}
+
+			if(infos[CollisionManager::Type::FROM_RIGHT])
+			{
+				_position.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
 			}
 			return;
 		}
