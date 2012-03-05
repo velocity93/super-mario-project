@@ -7,7 +7,9 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "ResourceManager.hpp"
+#include "CollisionManager.hpp"
 #include "ItemOccurrence.hpp"
+#include "BlockOccurrence.hpp"
 #include "Item.hpp"
 #include "Perso.hpp"
 #include <typeinfo.h>
@@ -75,10 +77,39 @@ namespace Collisions
 
 	void ItemOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
+		/* Collision vs BlockOccurrence */
+		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
+		if(block != NULL)
+		{
+			if(infos[CollisionManager::Type::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+			{
+				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+			{
+				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+			{
+				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
+			}
+
+			if(infos[CollisionManager::Type::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+			{
+				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
+			}
+
+			return;
+		}
+
+		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
 			_item->removeItemOccurrence(this);
+			return;
 		}
 	}
 

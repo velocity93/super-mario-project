@@ -509,9 +509,34 @@ namespace Collisions
 
 	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
 	{
-		int test = CollisionManager::Type::FROM_BOTTOM;
+		/* Collision vs BlockOccurrence */
+		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
+		if(block != NULL)
+		{
+			if(infos[CollisionManager::Type::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+			{
+				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
+			}
 
-		/* Collision with an Item */
+			if(infos[CollisionManager::Type::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+			{
+				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
+			}
+
+			if(infos[CollisionManager::Type::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+			{
+				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
+			}
+
+			if(infos[CollisionManager::Type::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+			{
+				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
+			}
+
+			return;
+		}
+
+		/* Collision vs Item */
 		ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
 		if(itemOccurrence != NULL)
 		{
@@ -557,7 +582,7 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision with a ProjectileOccurrence */
+		/* Collision vs ProjectileOccurrence */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
@@ -568,36 +593,47 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision with a Pipe */
+		/* Collision vs Pipe */
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
 			if(infos[CollisionManager::Type::FROM_BOTTOM])
 			{
-				_position.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
+				_hitboxPosition.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
 			}
 
 			if(infos[CollisionManager::Type::FROM_TOP])
 			{
-				_position.y = pipe->getHitboxPosition().y - _hitboxSize.y;
+				_hitboxPosition.y = pipe->getHitboxPosition().y - _hitboxSize.y;
 			}
 
 			if(infos[CollisionManager::Type::FROM_LEFT])
 			{
-				_position.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
+				_hitboxPosition.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
 			}
 
 			if(infos[CollisionManager::Type::FROM_RIGHT])
 			{
-				_position.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
+				_hitboxPosition.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
 			}
 			return;
 		}
 
-		/* Collision with a MonsterOccurrence */
+		/* Collision vs MonsterOccurrence */
 		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
 		if(monsterOccurrence != NULL)
 		{
+			Monster* monster = monsterOccurrence->getModel();
+			if(infos[CollisionManager::Type::FROM_BOTTOM] && !monster->canBeJumpedOn())
+				hurted();
+			return;
+		}
+
+		/* Collision vs Checkpoint */
+		Checkpoint* checkpoint = dynamic_cast<Checkpoint*>(c);
+		if(checkpoint != NULL)
+		{
+			checkpoint->setState(Checkpoint::State::PASSED);
 			return;
 		}
 	}
