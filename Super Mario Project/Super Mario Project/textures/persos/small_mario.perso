@@ -23,4 +23,4 @@ nb_sprites_finish_castle=1
 frame_delay_walk=200
 frame_delay_run1=100
 frame_delay_run2=50
-frame_delay_climb_ladder=200
+frame_delay_climb_ladder=400

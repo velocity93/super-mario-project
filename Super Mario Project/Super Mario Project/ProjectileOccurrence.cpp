@@ -88,7 +88,7 @@ namespace Collisions
 					_projectile->removeProjectileOccurrence(this);
 
 				/* Submissions */
-				if(_projectile->getSubmission() & GRAVITY_SUBMISSION)
+				if(_projectile->getSubmission() & PhysicConstants::GRAVITY_SUBMISSION)
 					gravity(_speed, app.GetFrameTime());
 
 				/* Update physic position */

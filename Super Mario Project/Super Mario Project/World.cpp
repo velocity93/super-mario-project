@@ -8,6 +8,7 @@
 
 #include "World.hpp"
 #include "XMLParser.hpp"
+#include "CollisionManager.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -30,7 +31,7 @@ namespace SuperMarioProject
 			}
 
 			/* Add default perso */
-			//_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
+			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
 		}
 
 	Level* World::getLevel()
@@ -51,14 +52,23 @@ namespace SuperMarioProject
 	void World::update(RenderWindow& app)
 	{
 		//_level->updatePhysicData(app);
-		_level->updateGraphicData(app);
 
 		_inputState.update();
-
-		vector<Perso*>::iterator it;
 		
-		for (it= this->_persos.begin(); it < this->_persos.end(); ++it)
+		for (vector<Perso*>::iterator it = this->_persos.begin(); it != this->_persos.end(); ++it)
+		{
 			(*it)->updatePerso(_elapsedTime, _inputState);
+
+			vector<BlockOccurrence*> blocks = _levelTree->getBlocks((*it)->getHitboxPosition(), (*it)->getHitboxSize());
+			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
+			{
+				Collisions::CollisionManager::solveCollisions((*it), (*itBlocks), _level, app);
+			}
+
+			(*it)->updateGraphicData(app);
+		}
+
+		_level->updateGraphicData(app);
 
 		updateTime();
 	}

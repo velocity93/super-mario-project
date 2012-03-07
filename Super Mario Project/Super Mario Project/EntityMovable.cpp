@@ -37,13 +37,18 @@ namespace Collisions
 
 	void EntityMovable::gravity(Vector2f &speed, float time)
 	{
-		speed.y -= GRAVITY * time;
+		speed.y -= PhysicConstants::GRAVITY * time;
 
-		if(speed.y < -SPEED_Y_MAX)
-			speed.y = -SPEED_Y_MAX;
+		if(speed.y < -PhysicConstants::SPEED_Y_MAX)
+			speed.y = -PhysicConstants::SPEED_Y_MAX;
 	}
 
 	EntityMovable::~EntityMovable()
 	{
 	}
+
+	/* Initialize float physic constants */
+	const float PhysicConstants::EJECTION_SPEED_Y = 0.2F;
+	const float PhysicConstants::RUN_SPEED = 0.6F;
+	const float PhysicConstants::AIR_COEFF_FRICTION = 0.5F;
 } // namespace
