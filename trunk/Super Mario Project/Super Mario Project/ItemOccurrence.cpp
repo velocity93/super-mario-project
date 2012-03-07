@@ -126,7 +126,7 @@ namespace Collisions
 					_item->removeItemOccurrence(this);
 
 				/* Submissions */
-				if(this->_item->getSubmission() & GRAVITY_SUBMISSION)
+				if(this->_item->getSubmission() & PhysicConstants::GRAVITY_SUBMISSION)
 					gravity(_speed, app.GetFrameTime());
 
 				/* Update physic position */

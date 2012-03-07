@@ -51,9 +51,6 @@ namespace Collisions
 		virtual ~CollisionManager();
 
 		static bool detectCollisions(Collisionable* c1, Collisionable* c2, vector<bool>& collisions_info);
-
-		/* SPECIFIC COLLISIONS */
-		static void solveCollisions(EntityMovable* et1, BlockOccurrence* block, vector<bool>& collisions_info, Level* level, RenderWindow& app);
 	};
 } // namespace
 

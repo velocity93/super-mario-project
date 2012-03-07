@@ -99,6 +99,46 @@ namespace SuperMarioProject
 		}
 	}
 
+	vector<Collisions::BlockOccurrence*>& QuadTree::getBlocks(sf::Vector2f& position, sf::Vector2i& size)
+	{
+		vector<Collisions::BlockOccurrence*> blocks;
+
+		if(position.x >= this->_center.x - _size.x / 2 && position.x + size.x <= this->_center.x + _size.x / 2
+			&& position.y >= this->_center.y - _size.y / 2 && position.y + size.y <= this->_center.y + _size.y / 2)
+		{
+			blocks = _elements;
+			vector<Collisions::BlockOccurrence*> blocksSubTree1;
+			vector<Collisions::BlockOccurrence*> blocksSubTree2;
+			vector<Collisions::BlockOccurrence*> blocksSubTree3;
+			vector<Collisions::BlockOccurrence*> blocksSubTree4;
+
+			if(_subTree1 != NULL)
+			{
+				blocksSubTree1 = _subTree1->getBlocks(position, size);
+				blocks.insert(blocks.end(), blocksSubTree1.begin(), blocksSubTree1.end());
+			}
+
+			if(_subTree2 != NULL)
+			{
+				blocksSubTree2 = _subTree2->getBlocks(position, size);
+				blocks.insert(blocks.end(), blocksSubTree2.begin(), blocksSubTree2.end());
+			}
+
+			if(_subTree3 != NULL)
+			{
+				blocksSubTree3 = _subTree3->getBlocks(position, size);
+				blocks.insert(blocks.end(), blocksSubTree3.begin(), blocksSubTree3.end());
+			}
+
+			if(_subTree4 != NULL)
+			{
+				blocksSubTree4 = _subTree4->getBlocks(position, size);
+				blocks.insert(blocks.end(), blocksSubTree4.begin(), blocksSubTree4.end());
+			}
+		}
+		return blocks;
+	}
+
 	void QuadTree::render()
 	{
 		Vector2f pointBL, pointHL, pointHR, pointBR;

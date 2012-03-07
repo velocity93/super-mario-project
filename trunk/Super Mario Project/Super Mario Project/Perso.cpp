@@ -115,7 +115,7 @@ namespace Collisions
 
 	void Perso::setActivity(RenderWindow& app)
 	{
-
+		// NOTHING TO DO NOW !
 	}
 
 	void Perso::updateGraphicData(RenderWindow&)
@@ -235,22 +235,22 @@ namespace Collisions
 		/* Frottements sont différents selon l'environnement 
 		dans le lequel se trouve le personnage */
 		if(_environment == GROUND)
-			coeff = CLASSIC_COEFF_FRICTION;
+			coeff = PhysicConstants::CLASSIC_COEFF_FRICTION;
 		else
-			coeff = AIR_COEFF_FRICTION;
+			coeff = PhysicConstants::AIR_COEFF_FRICTION;
 
 		/* Modification de l'accélèration en fonction de l'appui
 		ou non sur la touche d'accélèration */
 		if(_state != FINISH || _state != CLIMB_LADDER)
 		{
 			if(inputState[KEY_RUN] == KEY_STATE_PRESSED)
-				_acceleration.x = RUN_ACCEL * coeff;
+				_acceleration.x = PhysicConstants::RUN_ACCEL * coeff;
 			else
-				_acceleration.x = WALK_ACCEL * coeff;
+				_acceleration.x = PhysicConstants::WALK_ACCEL * coeff;
 		}
 		else
 		{
-			_acceleration.x = 10 * RUN_ACCEL * coeff;
+			_acceleration.x = 10 * PhysicConstants::RUN_ACCEL * coeff;
 		}
 	}
 
@@ -259,7 +259,7 @@ namespace Collisions
 		/* key just pressed, clock begins */
 		_jumpTime.Reset(true);
 
-		_speed.y = JUMP_SPEED;
+		_speed.y = PhysicConstants::JUMP_SPEED;
 
 		// Play jump sound here !
 
@@ -458,7 +458,7 @@ namespace Collisions
 			transform(SUPER_MARIO);
 			setState(DEAD);
 			_speed.x = 0;
-			_speed.y = EJECTION_SPEED_Y * 5;
+			_speed.y = PhysicConstants::EJECTION_SPEED_Y * 5;
 			/*p->tps_mort = TPS_MORT;
 			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_DIE]);
 			FSOUND_Stream_Stop(n->musique);*/
@@ -509,7 +509,7 @@ namespace Collisions
 
 	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
 	{
-		/* Collision vs BlockOccurrence */
+		/* Collision with a BlockOccurrence */
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
@@ -536,7 +536,7 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision vs Item */
+		/* Collision with an Item */
 		ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
 		if(itemOccurrence != NULL)
 		{
@@ -582,7 +582,7 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision vs ProjectileOccurrence */
+		/* Collision with a ProjectileOccurrence */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
@@ -593,7 +593,7 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision vs Pipe */
+		/* Collision with a Pipe */
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
@@ -619,7 +619,7 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision vs MonsterOccurrence */
+		/* Collision with a MonsterOccurrence */
 		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
 		if(monsterOccurrence != NULL)
 		{
@@ -629,12 +629,11 @@ namespace Collisions
 			return;
 		}
 
-		/* Collision vs Checkpoint */
+		/* Collision with Checkpoint */
 		Checkpoint* checkpoint = dynamic_cast<Checkpoint*>(c);
 		if(checkpoint != NULL)
 		{
 			checkpoint->setState(Checkpoint::State::PASSED);
-			return;
 		}
 	}
 
@@ -644,13 +643,13 @@ namespace Collisions
 
 		/* Frictions are different according to environment*/
 		if(_environment == GROUND)
-			coeff = CLASSIC_COEFF_FRICTION;
+			coeff = PhysicConstants::CLASSIC_COEFF_FRICTION;
 		else
-			coeff = AIR_COEFF_FRICTION;
+			coeff = PhysicConstants::AIR_COEFF_FRICTION;
 
 		if(time != 0)
 		{
-			_speed.x /= 1 + 5 * coeff * time * SLIDE_COEFF_FRICTION;
+			_speed.x /= 1 + 5 * coeff * time * PhysicConstants::SLIDE_COEFF_FRICTION;
 		}
 
 		/* To avoid character moving suddenly of one pixel after a moment of immobility */

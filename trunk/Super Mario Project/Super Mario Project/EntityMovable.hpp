@@ -10,29 +10,6 @@
 #ifndef HPP_ENTITYMOVABLE
 #define HPP_ENTITYMOVABLE
 
-/* Physics constants */
-#define SPEED_Y_MAX						400
-#define JUMP_SPEED			    		600
-#define RUN_SPEED						0.6F
-#define EJECTION_SPEED_Y				0.2F
-#define GRAVITY							1400
-
-/* Accelerations constants (* 200) */
-#define RUN_ACCEL						50
-#define WALK_ACCEL						20
-
-/* Frictions constants (* 1000) */
-#define SLIDE_COEFF_FRICTION			3
-#define CLASSIC_COEFF_FRICTION			5
-#define ICE_COEFF_FRICTION				4
-#define AIR_COEFF_FRICTION				0.5F
-
-/* Submissions */
-#define GROUND_SUBMISSION			    0x0000001
-#define GRAVITY_SUBMISSION              0x0000002
-#define RETURN_SENDER_SUBMISSION        0x0000004
-
-
 #include "Collisionable.hpp"
 
 namespace Collisions
@@ -74,6 +51,32 @@ namespace Collisions
 
 		void gravity(Vector2f &speed, float time);
     };
+
+	class PhysicConstants
+	{
+	public :
+		/* Physics constants */
+		static const int SPEED_Y_MAX				= 400;
+		static const int JUMP_SPEED					= 600;
+		static const float RUN_SPEED;
+		static const float EJECTION_SPEED_Y;
+		static const int GRAVITY					= 1400;
+
+		/* Accelerations constants (* 200) */
+		static const int RUN_ACCEL					= 50;
+		static const int WALK_ACCEL					= 20;
+
+		/* Frictions constants (* 1000) */
+		static const int SLIDE_COEFF_FRICTION		= 3;
+		static const int CLASSIC_COEFF_FRICTION		= 5;
+		static const int ICE_COEFF_FRICTION			= 4;
+		static const float AIR_COEFF_FRICTION;
+
+		/* Submissions */
+		static const int GROUND_SUBMISSION			= 0x0000001;
+		static const int GRAVITY_SUBMISSION			= 0x0000002;
+		static const int RETURN_SENDER_SUBMISSION	= 0x0000004;
+	};
 } // namespace
 
 #endif // HPP_ENTITYMOVABLE

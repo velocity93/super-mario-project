@@ -45,30 +45,6 @@ namespace Collisions
 		}
 	}
 
-	/* SPECIFIC COLLISIONS */
-	void CollisionManager::solveCollisions(EntityMovable* et1, BlockOccurrence* block, vector<bool>& infos, Level* level, RenderWindow& app)
-	{
-		if(infos[FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
-		{
-			et1->setPositionY(block->getHitboxPosition().y + block->getHitboxSize().y);
-		}
-
-		if(infos[FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
-		{
-			et1->setPositionY(block->getHitboxPosition().y - et1->getHitboxSize().y);
-		}
-
-		if(infos[FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
-		{
-			et1->setPositionX(block->getHitboxPosition().x + block->getHitboxSize().x);
-		}
-
-		if(infos[FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
-		{
-			et1->setPositionX(block->getHitboxPosition().x - et1->getHitboxSize().x);
-		}
-	}
-
 	bool CollisionManager::detectCollisions(Collisionable* c1, Collisionable* c2, vector<bool>& collisions_info)
 	{
 		sf::FloatRect r1(c1->getHitboxPosition().x, c1->getHitboxPosition().y + c1->getHitboxSize().y,
