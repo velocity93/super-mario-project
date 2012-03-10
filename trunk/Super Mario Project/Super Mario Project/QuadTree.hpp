@@ -30,7 +30,7 @@ namespace SuperMarioProject
 		vector<Collisions::BlockOccurrence*>& getBlocks(sf::Vector2f& position, sf::Vector2i& size);
 
 		bool isLeaf();
-		void render();
+		void render(RenderWindow& app);
 		virtual ~QuadTree();
 
 	private :

@@ -138,43 +138,29 @@ namespace SuperMarioProject
 		}
 	}
 
-	void QuadTree::render()
+	void QuadTree::render(RenderWindow& app)
 	{
 		Vector2f pointBL, pointHL, pointHR, pointBR;
 
 		pointBL.x = _center.x - _size.x / 2;
 		pointBL.y = _center.y - _size.y / 2;
 
-		pointHL.x = _center.x - _size.x / 2;
-		pointHL.y = _center.y + _size.y / 2;
-		
-		pointBR.x = _center.x + _size.x / 2;
-		pointBR.y = _center.y - _size.y / 2;
-
 		pointHR.x = _center.x + _size.x / 2;
 		pointHR.y = _center.y + _size.y / 2;
 
-		glLineWidth(1.0f);
-		glBegin(GL_LINE_LOOP);
+		app.Draw(sf::Shape::Rectangle(pointBL.x, pointBL.y, pointHR.x, pointHR.y, sf::Color(0, 0, 0, 0), 0.5F, sf::Color::Red));
 
-		glVertex2f(pointBL.x, pointBL.y);
-		glVertex2f(pointHL.x, pointHL.y);
-		glVertex2f(pointBR.x, pointBR.y);
-		glVertex2f(pointHR.x, pointHR.y);
-
-		glEnd();
-
-		/*if(_subTree1 != nullptr)
-			_subTree1->render();
+		if(_subTree1 != nullptr)
+			_subTree1->render(app);
 
 		if(_subTree2 != nullptr)
-			_subTree2->render();
+			_subTree2->render(app);
 
 		if(_subTree3 != nullptr)
-			_subTree3->render();
+			_subTree3->render(app);
 
 		if(_subTree4 != nullptr)
-			_subTree4->render();*/
+			_subTree4->render(app);
 	}
 
 	QuadTree::~QuadTree()

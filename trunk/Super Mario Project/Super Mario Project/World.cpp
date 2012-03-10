@@ -116,7 +116,8 @@ namespace SuperMarioProject
 	void World::render(RenderWindow& app)
 	{
 		this->_level->render(app);
-		//_levelTree->render();
+
+		_levelTree->render(app);
 
 		for (vector<Perso*>::iterator it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
