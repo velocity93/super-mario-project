@@ -252,4 +252,9 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="levels\level.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+  </ItemGroup>
 </Project>

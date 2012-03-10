@@ -206,8 +206,8 @@
         </xs:element>
       </xs:sequence>
       <xs:attribute name="name" type="xs:string" use="required" />
-      <xs:attribute name="width" type="xs:unsignedByte" use="required" />
-      <xs:attribute name="height" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="width" type="xs:unsignedInt" use="required" />
+      <xs:attribute name="height" type="xs:unsignedInt" use="required" />
       <xs:attribute name="music" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>

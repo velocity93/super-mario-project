@@ -134,10 +134,10 @@ namespace SuperMarioProject
 		void addBlockOccurrence(BlockOccurrence* block);
 
 		/* Load Level */
-		void loadLevel(string fileName);
+		void loadLevel(string& fileName);
 
 		/* Save Level */
-		void saveLevel(string fileName);
+		void saveLevel(string& fileName);
 
 		/* Update data */
 		void updatePhysicData(RenderWindow& app);

@@ -42,7 +42,6 @@ namespace Collisions
     private:
 		vector<BlockOccurrence*> _blockOccurrences;
 		Tileset* _tileset;
-		Vector2i _size;
 		Vector2i _coordSprite;
 		int _physicIndex;
 		int _type;

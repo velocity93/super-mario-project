@@ -185,12 +185,12 @@ namespace SuperMarioProject
 		_blocksOccurrences.push_back(block);
 	}
 
-	void Level::loadLevel(string fileName)
+	void Level::loadLevel(string& fileName)
 	{
 		XMLParser::loadLevel(fileName, this);
 	}
 
-	void Level::saveLevel(string fileName)
+	void Level::saveLevel(string& fileName)
 	{
 		ofstream file(fileName.c_str());
 		
@@ -456,6 +456,12 @@ namespace SuperMarioProject
 		{
 			(*itPipes)->updatePhysicData(app);
 		}
+
+		/* BlockOccurence */
+		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != this->_blocksOccurrences.end(); ++itBlockOccurrence)
+		{
+			(*itBlockOccurrence)->updatePhysicData(app);
+		}
 	}
 
 	void Level::updateGraphicData(RenderWindow& app)
@@ -538,10 +544,10 @@ namespace SuperMarioProject
 		}
 
 		/* Blocks */
-		for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
+		/*for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
 		{
-			//(*itBlocksOccurrences)->render(app);
-		}
+			(*itBlocksOccurrences)->render(app);
+		}*/
 
 		/* CheckPoints */
 		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
