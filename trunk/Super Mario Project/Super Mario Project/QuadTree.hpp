@@ -22,7 +22,7 @@ namespace SuperMarioProject
 		static const int MAX_DEPTH = 10;
 		static const int MIN_SIZE = 2;
 		QuadTree(sf::Vector2f& center, sf::Vector2i& size, int depth) :
-				_size(size), _center(center), _nbElementsInside(0), _depth(depth),
+				_size(size), _center(center), _depth(depth),
 				_subTree1(nullptr), _subTree2(nullptr), _subTree3(nullptr), _subTree4(nullptr)
 				{ }
 
@@ -37,12 +37,24 @@ namespace SuperMarioProject
 		int _depth;
 		Vector2f _center;
 		Vector2i _size;
-		int _nbElementsInside;
+		vector<Collisions::BlockOccurrence*> _elements;
+
+		/* Sub Tree Disposition (C=Center)
+		 * 			 ----- -----
+		 * 			|     |     |
+		 * 			| ST1 | ST2 |
+		 * 			|     |     |
+		 * 			 -----C-----
+		 * 			|     |     |
+		 * 			| ST3 | ST4 |
+		 * 			|     |     |
+		 * 			 ----- -----
+		 */
+
 		QuadTree* _subTree1;
 		QuadTree* _subTree2;
 		QuadTree* _subTree3;
 		QuadTree* _subTree4;
-		vector<Collisions::BlockOccurrence*> _elements;
 
 	};
 }

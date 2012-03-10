@@ -29,6 +29,10 @@ namespace Collisions
 		_actualBlock = actual;
 		_alternativeBlock = alternative;
 
+		_hitboxPosition = position;
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _actualBlock->getTileset()->getNbSprites().x;
+		_hitboxSize.y = _texture->getImage()->GetHeight() / _actualBlock->getTileset()->getNbSprites().y;
+
 		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
 
 		/* Compute blocs coords into the texture */
@@ -83,23 +87,27 @@ namespace Collisions
 		}
 	}
 
-	void BlockOccurrence::updatePhysicData(RenderWindow&)
+	void BlockOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		// NOTHING TO DO NOW
+		setActivity(app);
 	}
 	
 	void BlockOccurrence::render(RenderWindow& app)
 	{
-		if(_animation.getNbSpritesMax() > 1)
+		if(_isActive)
 		{
-			_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
-		}
-		else
-		{
-            ReversedSprite sprite = _texture->getSprite();
-			sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
-			sprite.SetPosition(_position);
-			app.Draw(sprite);
+			if(_animation.getNbSpritesMax() > 1)
+			{
+				_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+			}
+			else
+			{
+				ReversedSprite sprite = _texture->getSprite();
+				sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
+				sprite.SetPosition(_position);
+				app.Draw(sprite);
+			}
 		}
 	}
 

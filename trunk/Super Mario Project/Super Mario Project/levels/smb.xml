@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<level name="World 1-1" width="200" height="200" music="world1-1.mp3">
+<level name="World 1-1" width="128" height="128" music="world1-1.mp3">
 	<spawn positionX="64" positionY="64"/>
   <checkpoints />
 	<backgrounds>
@@ -63,7 +63,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="64" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="96" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="96" positionY="32" actual="1" alt="-1" item="-1"/>
-      <occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="0" actual="0" alt="-1" item="-1"/>
+      <!--<occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="160" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="160" positionY="32" actual="1" alt="-1" item="-1"/>
@@ -436,7 +436,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="6336" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="6336" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="6368" positionY="0" actual="0" alt="-1" item="-1"/>
-      <occ_block tileset_actual="0" tileset_alt="0" positionX="6368" positionY="32" actual="1" alt="-1" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="6368" positionY="32" actual="1" alt="-1" item="-1"/>-->
     </layer>
   </layers>
 </level>
