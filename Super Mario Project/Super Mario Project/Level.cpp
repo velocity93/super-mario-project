@@ -522,7 +522,7 @@ namespace SuperMarioProject
 		/* Backgrounds */
 		for(vector<Background*>::iterator itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); ++itBackgrounds)
 		{
-			//(*itBackgrounds)->render(app);
+			(*itBackgrounds)->render(app);
 		}
 
 		/* Objects */
@@ -544,10 +544,10 @@ namespace SuperMarioProject
 		}
 
 		/* Blocks */
-		/*for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
+		for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
 		{
 			(*itBlocksOccurrences)->render(app);
-		}*/
+		}
 
 		/* CheckPoints */
 		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)

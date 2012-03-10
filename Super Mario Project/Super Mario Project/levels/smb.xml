@@ -1,10 +1,9 @@
 <?xml version="1.0" ?>
-<level name="World 1-1" width="128" height="128" music="world1-1.mp3">
+<level name="World 1-1" width="1024" height="1024" music="world1-1.mp3">
 	<spawn positionX="64" positionY="64"/>
   <checkpoints />
 	<backgrounds>
-    <!--<background img="Waterfall" positionX="0" positionY="0"/>-->
-		<background img="night_sky" positionX="0" positionY="0"/>
+    <background img="Waterfall" positionX="0" positionY="0"/>
 	</backgrounds>
   <foregrounds />
   <objects />
@@ -38,7 +37,7 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="20" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="10" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="3" monster="goomba"/>
 		<pipe img="green_pipe" positionX="30" positionY="2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="goomba"/>
 		<pipe img="green_pipe" positionX="38" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
 		<pipe img="green_pipe" positionX="50" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
@@ -63,7 +62,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="64" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="96" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="96" positionY="32" actual="1" alt="-1" item="-1"/>
-      <!--<occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="0" actual="0" alt="-1" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="128" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="160" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="160" positionY="32" actual="1" alt="-1" item="-1"/>
@@ -119,7 +118,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="960" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="992" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="992" positionY="32" actual="1" alt="-1" item="-1"/>
-      <occ_block tileset_actual="0" tileset_alt="0" positionX="1024" positionY="0" actual="0" alt="-1" item="-1"/>
+      <!--<occ_block tileset_actual="0" tileset_alt="0" positionX="1024" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="1024" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="1056" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="1056" positionY="32" actual="1" alt="-1" item="-1"/>
