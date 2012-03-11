@@ -10,8 +10,6 @@
 #ifndef HPP_BLOCKS
 #define HPP_BLOCKS
 
-
-
 #include "BlockOccurrence.hpp"
 
 namespace Collisions
@@ -20,11 +18,12 @@ namespace Collisions
 	class Block
     {
     public:
-		Block(Tileset* tileset, int physicIndex, int type) : _tileset(tileset), _physicIndex(physicIndex), _type(type) { }
+		Block(Tileset* tileset, int physicIndex, int type) : _tileset(tileset),
+			_type(type), _physicIndex(physicIndex) { }
 
 		Tileset* getTileset();
-		const int getPhysicIndex();
-		const int getType();
+		int getPhysic();
+		int getType();
 
 		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
 			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
@@ -42,7 +41,6 @@ namespace Collisions
     private:
 		vector<BlockOccurrence*> _blockOccurrences;
 		Tileset* _tileset;
-		Vector2i _coordSprite;
 		int _physicIndex;
 		int _type;
 		

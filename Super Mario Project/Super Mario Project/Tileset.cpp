@@ -18,6 +18,11 @@ namespace Collisions
 		loadConfiguration(textureName);
 	}
 
+	int Tileset::getBlockPhysic(int index)
+	{
+		return _physics[index];
+	}
+
 	int Tileset::getFrameDelay()
 	{
 		return _frameDelay;
@@ -35,7 +40,8 @@ namespace Collisions
 
 	void Tileset::addBlock(int physicIndex, int type)
 	{
-		_blocks.push_back(new Block(this, physicIndex, type));
+		Block* block = new Block(this, physicIndex, type);
+		_blocks.push_back(block);
 	}
 
 	void Tileset::update(RenderWindow& app)
@@ -95,12 +101,11 @@ namespace Collisions
 				/* If we have only one line, then we have only one block 
 				 * following by his animation, with the same physic obviously 
 				 */
-				if(_nbSprites.y == 1 && i == 0)
-				{
-					stream >> hex >> phys;
-				}
-
+				stream >> hex >> phys;
 				_physics.push_back(phys);
+				
+				if(_nbSprites.y == 1 && i == 0)
+					break;
 			}
 		}
 		else

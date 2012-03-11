@@ -29,6 +29,7 @@ namespace Collisions
 		Vector2i& getNbSprites();
 		int getFrameDelay();
 		vector<Block*>& getBlocks();
+		int getBlockPhysic(int index);
 		void addBlock(int physicIndex, int type);
 		
 		void update(RenderWindow& app);

@@ -25,10 +25,10 @@ namespace Collisions
 	{
 		public:
 		enum Type {
-			FROM_BOTTOM,
 			FROM_LEFT,
-			FROM_RIGHT,
 			FROM_TOP,
+			FROM_RIGHT,
+			FROM_BOTTOM,
 			SUPERPOSITION,
 			INCLINE_FROM_BOTTOM,
 			INCLINE_FROM_LEFT,
@@ -37,7 +37,6 @@ namespace Collisions
 		};
 	
 		static CollisionManager* getManager();
-		static void killManager();
 
 		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
 		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
@@ -50,7 +49,8 @@ namespace Collisions
 
 		virtual ~CollisionManager();
 
-		static bool detectCollisions(Collisionable* c1, Collisionable* c2, vector<bool>& collisions_info);
+		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, vector<bool>& collisions_info);
+		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, vector<bool>& collisions_info);
 	};
 } // namespace
 

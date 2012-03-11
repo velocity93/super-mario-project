@@ -131,11 +131,12 @@ namespace Collisions
 
 				/* Update physic position */
 				/* Save actual position in previous position */
+				_previousHitboxPosition = _hitboxPosition;
 				_previousPosition = _position;
 
 				/* Compute new position */
-				_position.x = _position.x + _speed.x * app.GetFrameTime(); 
-				_position.y = _position.y + _speed.y * app.GetFrameTime();
+				_hitboxPosition.x = _hitboxPosition.x + _speed.x * app.GetFrameTime(); 
+				_hitboxPosition.y = _hitboxPosition.y + _speed.y * app.GetFrameTime();
 			}
 			else
 			{
@@ -169,7 +170,7 @@ namespace Collisions
 	void ItemOccurrence::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+			_animation.render(_texture, app, _hitboxPosition, _side == Side::LEFT_SIDE);
 	}
 
 	ItemOccurrence::~ItemOccurrence()

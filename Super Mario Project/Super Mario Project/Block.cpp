@@ -20,12 +20,12 @@ namespace Collisions
 		return _tileset;
 	}
 
-	const int Block::getPhysicIndex()
+	int Block::getPhysic()
 	{
-		return _physicIndex;
+		return _tileset->getBlockPhysic(_physicIndex);
 	}
 	
-	const int Block::getType()
+	int Block::getType()
 	{
 		return _type;
 	}

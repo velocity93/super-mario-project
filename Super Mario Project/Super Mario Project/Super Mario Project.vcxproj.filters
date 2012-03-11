@@ -248,7 +248,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\persos\small_mario.perso">
+    <None Include="textures\blocs\classiques\classiques.cfg">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

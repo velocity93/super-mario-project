@@ -47,9 +47,9 @@
   <tilesets>
     <tileset img="classiques/grass">
       <!--  -->
-      <block physicIndex="13" type_bloc="8388608"/>
-      <block physicIndex="1" type_bloc="8388608"/>
-      <block physicIndex="2" type_bloc="8388608"/>
+      <block physicIndex="13" type_bloc="2097152"/>
+      <block physicIndex="1" type_bloc="2097152"/>
+      <block physicIndex="2" type_bloc="2097152"/>
     </tileset>
   </tilesets>
   <layers>

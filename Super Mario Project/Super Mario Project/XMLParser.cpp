@@ -394,7 +394,7 @@ namespace XMLParsing
 			{
 				physicIndex = atoi(attrs[i + 1]);
 			}
-			else if(!strcmp(attrs[i], "type"))
+			else if(!strcmp(attrs[i], "type_bloc"))
 			{
 				type = atoi(attrs[i + 1]);
 			}
