@@ -28,11 +28,13 @@ namespace Collisions
 		EntityMovable(const string& textureName, Vector2f& position, Vector2f& speed = Vector2f(0,0), Side side = RIGHT_SIDE) :
 			Collisionable(textureName, position), 
 			_previousPosition(position),
+			_previousHitboxPosition(position),
 			_speed(speed), 
 			_side(side) { }
 
 		/* getters and setters */
 		Vector2f& getPreviousPosition();
+		Vector2f& getPreviousHitboxPosition();
 		Vector2f& getSpeed();
 		Side getSide();
 		void setSpeed(const Vector2f& speed);
@@ -46,6 +48,7 @@ namespace Collisions
 		
     protected:
 		Vector2f _previousPosition;
+		Vector2f _previousHitboxPosition;
 		Vector2f _speed;
 		Side _side;
 

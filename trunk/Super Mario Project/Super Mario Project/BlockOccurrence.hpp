@@ -51,7 +51,6 @@ namespace Collisions
 		
     private:
 		Animation<State> _animation;
-		int _physicIndex;
 		Vector2i _coordSprite;
 		Vector2i _size;
 		State _state;

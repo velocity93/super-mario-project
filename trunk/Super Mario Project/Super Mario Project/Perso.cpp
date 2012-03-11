@@ -214,15 +214,15 @@ namespace Collisions
 		}
 
 		/* Save actual position as previous position */
-		_previousPosition = _position;
+		_previousHitboxPosition = _hitboxPosition;
 
-		_position.x = _position.x + time * _speed.x;
-		_position.y = _position.y + time * _speed.y;
+		_hitboxPosition.x = _hitboxPosition.x + time * _speed.x;
+		_hitboxPosition.y = _hitboxPosition.y + time * _speed.y;
 		
 		/* Compute new position */
-		if(_position.y <= 0)
+		if(_hitboxPosition.y <= 0)
 		{
-			_position.y = 0;
+			_hitboxPosition.y = 0;
 			_speed.y = 0;
 			_environment = GROUND;
 		}
@@ -284,7 +284,7 @@ namespace Collisions
 
 	void Perso::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+		_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
 	}
 
 	void Perso::lateral_move(float time, InputState& inputState)
@@ -513,22 +513,23 @@ namespace Collisions
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			if(infos[CollisionManager::Type::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+			if(infos[CollisionManager::Type::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 			{
 				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
+				_environment = GROUND;
 			}
 
-			if(infos[CollisionManager::Type::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+			if(infos[CollisionManager::Type::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 			{
 				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+			if(infos[CollisionManager::Type::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 			{
 				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
 			}
 
-			if(infos[CollisionManager::Type::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+			if(infos[CollisionManager::Type::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 			{
 				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
 			}
@@ -663,28 +664,28 @@ namespace Collisions
 		{
 		case Pipe::TO_TOP:
 			setState(GET_OUT_FROM_PIPE_VERTICAL);
-			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
-			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - _hitboxSize.y;
+			_hitboxPosition.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
+			_hitboxPosition.y = _insidePipe->getPosition().y * BLOCK_WIDTH + (_insidePipe->getLenght() + 1) * BLOCK_WIDTH - _hitboxSize.y;
 			break;
 
 		case Pipe::TO_BOTTOM:
 			setState(GET_OUT_FROM_PIPE_VERTICAL);
-			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
-			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
+			_hitboxPosition.x = _insidePipe->getPosition().x * BLOCK_WIDTH + BLOCK_WIDTH - _hitboxSize.x / 2;
+			_hitboxPosition.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		case Pipe::TO_LEFT:
 			_side = RIGHT_SIDE;
 			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
-			_position.x = (_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
-				_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
+			_hitboxPosition.x = (_insidePipe->getPosition().x + _insidePipe->getLenght()) * BLOCK_WIDTH, 
+				_hitboxPosition.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		case Pipe::TO_RIGHT:
 			_side = LEFT_SIDE;
 			_state = GET_OUT_FROM_PIPE_HORIZONTAL;
-			_position.x = _insidePipe->getPosition().x * BLOCK_WIDTH;
-			_position.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
+			_hitboxPosition.x = _insidePipe->getPosition().x * BLOCK_WIDTH;
+			_hitboxPosition.y = _insidePipe->getPosition().y * BLOCK_WIDTH;
 			break;
 
 		default :

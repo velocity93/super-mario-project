@@ -89,7 +89,7 @@ namespace Collisions
 
 	void BlockOccurrence::updatePhysicData(RenderWindow& app)
 	{
-		// NOTHING TO DO NOW
+		_previousHitboxPosition = _hitboxPosition;
 		setActivity(app);
 	}
 	

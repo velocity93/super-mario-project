@@ -15,6 +15,11 @@ namespace Collisions
 		return _previousPosition;
 	}
 
+	Vector2f& EntityMovable::getPreviousHitboxPosition()
+	{
+		return _previousHitboxPosition;
+	}
+
 	Vector2f& EntityMovable::getSpeed()
 	{
 		return _speed;
