@@ -53,25 +53,43 @@ namespace Collisions
 			r1Prec(et1->getPreviousHitboxPosition().x, et1->getPreviousHitboxPosition().y + et1->getHitboxSize().y,
 			et1->getPreviousHitboxPosition().x + et1->getHitboxSize().x, et1->getPreviousHitboxPosition().y),
 
-			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y + c2->getHitboxSize().y, c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y),
-			zone;
+			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y + c2->getHitboxSize().y, 
+			c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y);
+		int collisionDetected = false;
 
-		if (!r1Prec.Intersects(r2, &zone) && r1.Intersects(r2, &zone))
+		if(r1Prec.Left <= r2.Right && r1.Left >= r2.Right)
 		{
-			if (zone.Left < r1.Left + r1.GetWidth() / 2) 
-				collisions_info[FROM_LEFT] = true;
-			if (zone.Right > r1.Left + r1.GetWidth() / 2)
-				collisions_info[FROM_RIGHT] = true;
-
-			if (zone.Top > r1.Top + r1.GetHeight() / 2)
-				collisions_info[FROM_BOTTOM] = true;
-			if (zone.Bottom < r1.Top + r1.GetHeight() / 2)
-				collisions_info[FROM_TOP] = true;
-
-			return true;
+			collisionDetected = true;
+			collisions_info.push_back(true);
 		}
+		else
+			collisions_info.push_back(false);
+		
+		if(r1Prec.Top <= r2.Bottom && r1.Top >= r2.Bottom)
+		{
+			collisionDetected = true;
+			collisions_info.push_back(true);
+		}
+		else
+			collisions_info.push_back(false);
 
-		return false;
+		if(r1Prec.Right <= r2.Left && r1.Right >= r2.Left)
+		{
+			collisionDetected = true;
+			collisions_info.push_back(true);
+		}
+		else
+			collisions_info.push_back(false);
+
+		if(r1Prec.Bottom >= r2.Top && r1.Bottom <= r2.Top)
+		{
+			collisionDetected = true;
+			collisions_info.push_back(true);
+		}
+		else
+			collisions_info.push_back(false);
+
+		return collisionDetected;
 	}
 
 	bool CollisionManager::detectCollisions(EntityMovable* et1, EntityMovable* et2, vector<bool>& collisions_info)

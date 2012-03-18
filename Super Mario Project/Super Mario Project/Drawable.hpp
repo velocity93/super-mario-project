@@ -55,8 +55,6 @@ namespace Rendering
 		void setPositionX(float x);
 		void setPositionY(float y);
 
-		virtual void setActivity(RenderWindow& app) = 0;
-
 		/* It will be defined in subclasses */
 		/* update drawable object context */
 		virtual void updateGraphicData(RenderWindow& app) = 0;

@@ -19,6 +19,11 @@ void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 	{
 		cout << "State : " << state << " already exists." << endl;
 	}
+	else
+	{
+		if(_nbSpritesMax < nbSprites)
+			_nbSpritesMax = nbSprites;
+	}
 }
 
 template<typename T>
@@ -35,9 +40,16 @@ void Animation<T>::addFrameDelayForGivenState(T state, int frameDelay)
 }
 
 template<typename T>
+int Animation<T>::getNbSpritesMax()
+{
+	return _nbSpritesMax;
+}
+
+template<typename T>
 void Animation<T>::setMapNbSprites(map<T, int>& nbSpritesByState)
 {
 	_nbSpritesByState = nbSpritesByState;
+	_nbSpritesMax = computeNbSpritesMax();
 }
 
 template<typename T>
@@ -76,7 +88,7 @@ void Animation<T>::setCurrentState(T state)
 }
 
 template<typename T>
-int Animation<T>::getNbSpritesMax()
+int Animation<T>::computeNbSpritesMax()
 {
 	map<T, int>::iterator itNbSprites;
 	int nbSpritesMax = INT_MIN;
@@ -117,9 +129,9 @@ void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& positio
 {
 	int numState = (int)_currentState - delta;
 	Vector2f spriteSize = Vector2f(
-		texture->getImage()->GetWidth() / getNbSpritesMax(),
+		texture->getImage()->GetWidth() / _nbSpritesMax,
 		texture->getImage()->GetHeight() / _nbSpritesByState.size());
-    ReversedSprite sprite = texture->getSprite();
+    ReversedSprite& sprite = texture->getSprite();
 
 	if(_nbSpritesForCurrentState > 0)
 	{

@@ -36,6 +36,8 @@ namespace Collisions
 
     void Checkpoint::updateGraphicData(RenderWindow& app)
     {
+		setActivity(app);
+
 		if(_isActive)
 			_animation.update();
     }
@@ -47,11 +49,6 @@ namespace Collisions
 		file << "positionX=\"" << _position.x << "\" ";
 		file << "positionY=\"" << _position.y << "\" ";
 		file << "/>" << endl;
-	}
-
-	void Checkpoint::setActivity(RenderWindow& app)
-	{
-		// TO DO
 	}
 
 	void Checkpoint::render(RenderWindow& app)

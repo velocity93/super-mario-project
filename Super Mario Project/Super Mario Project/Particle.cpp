@@ -17,11 +17,6 @@ namespace Collisions
 		return _life;
 	}
 
-	void Particle::setActivity(RenderWindow& app)
-	{
-		// TO DO
-	}
-
 	void Particle::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		// NOTHING TO DO !

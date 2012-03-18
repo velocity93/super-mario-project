@@ -142,8 +142,6 @@ namespace Collisions
 		void setBroughtMonster(MonsterOccurrence* monster);
 		void setInsidePipe(Pipe* pipe);
 
-		void setActivity(RenderWindow& app);
-
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */

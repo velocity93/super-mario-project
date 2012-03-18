@@ -45,8 +45,7 @@ namespace Collisions
 		/* Getter and setter */
 		Sender getSender();
 		State getState();
-		void setState(State state);
-		void setActivity(RenderWindow& app);
+		void setState(State state);		
 
 		/* Methods */
 		void onCollision(Collisionable* c, vector<bool>& infos);

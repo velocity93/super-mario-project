@@ -33,7 +33,6 @@ namespace Collisions
 
 		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
-		void setActivity(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
 
         virtual ~Checkpoint();

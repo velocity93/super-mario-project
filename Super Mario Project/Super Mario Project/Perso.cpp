@@ -113,11 +113,6 @@ namespace Collisions
 		_insidePipe = pipe;
 	}
 
-	void Perso::setActivity(RenderWindow& app)
-	{
-		// NOTHING TO DO NOW !
-	}
-
 	void Perso::updateGraphicData(RenderWindow&)
 	{
 		/* Update animation */

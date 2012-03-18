@@ -58,17 +58,6 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-	void ProjectileOccurrence::setActivity(RenderWindow& app)
-	{
-		View view = app.GetView();
-
-		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x
-			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y)
-			_lifeTime.Reset(true);
-	}
-
 	void ProjectileOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		/* Animation of death before removing */

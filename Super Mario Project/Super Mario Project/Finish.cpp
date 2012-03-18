@@ -24,6 +24,8 @@ namespace Collisions
 
 	void Finish::updateGraphicData(RenderWindow& app)
     {
+		setActivity(app);
+
 		if(_isActive)
 			_animation.update();
     }
@@ -40,11 +42,6 @@ namespace Collisions
 		file << "img=\"" << _texture->shorterName() << "\" ";
 		file << "positionX=\"" << _position.x << "\" ";
 		file << "positionY=\"" << _position.y << "\"/>" << endl;
-	}
-
-	void Finish::setActivity(RenderWindow& app)
-	{
-
 	}
 
 	void Finish::loadFinish(const string& textureName)

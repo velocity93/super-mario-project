@@ -56,11 +56,6 @@ namespace Collisions
 		_monster = monster;
 	}
 
-	void Pipe::setActivity(RenderWindow& app)
-	{
-
-	}
-
 	void Pipe::updateGraphicData(RenderWindow&)
 	{
 		// NOTHING
@@ -68,7 +63,9 @@ namespace Collisions
 
 	void Pipe::updatePhysicData(RenderWindow& app)
     {
-		if(_monster != nullptr)
+		setActivity(app);
+
+		if(_isActive && _monster != nullptr)
 		{
 			if(_monsterExitDuration.GetElapsedTime() >= MONSTER_EXIT_TIME)
 			{
@@ -118,82 +115,84 @@ namespace Collisions
     }
 
 	void Pipe::render(RenderWindow& app)
-    {
-		ReversedSprite sprite = _texture->getSprite();
-
-		switch(_direction)
+	{
+		if(_isActive)
 		{
-		case TO_BOTTOM:
-			/* Body */
-			for(int step = 0; step < _lenght; step++)
+			ReversedSprite& sprite = _texture->getSprite();
+
+			switch(_direction)
 			{
-				sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+			case TO_BOTTOM:
+				/* Body */
+				for(int step = 0; step < _lenght; step++)
+				{
+					sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
+					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+					app.Draw(sprite);
+				}
+
+				/* Top of pipe */
+				sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + _lenght) * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+
 				app.Draw(sprite);
-			}
+				break;
 
-			/* Top of pipe */
-			sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + _lenght) * BLOCK_WIDTH);
-			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+			case TO_RIGHT:
+				sprite.FlipX(true);
+				sprite.SetCenter(0, sprite.GetImage()->GetHeight() / 2);
+				sprite.Rotate(270);
 
-			app.Draw(sprite);
-			break;
+				/* Body */
+				for(int step = 0; step < _lenght; step++)
+				{
+					sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+					app.Draw(sprite);
+				}
 
-		case TO_RIGHT:
-			sprite.FlipX(true);
-			sprite.SetCenter(0, sprite.GetImage()->GetHeight() / 2);
-			sprite.Rotate(270);
+				/* Top of pipe */
+				sprite.SetPosition((_position.x + _lenght) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
 
-			/* Body */
-			for(int step = 0; step < _lenght; step++)
-			{
-				sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
 				app.Draw(sprite);
-			}
+				break;
 
-			/* Top of pipe */
-			sprite.SetPosition((_position.x + _lenght) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+			case TO_LEFT:
+				sprite.SetCenter(sprite.GetImage()->GetWidth(), 0);
+				sprite.Rotate(90);
 
-			app.Draw(sprite);
-			break;
+				/* Top of pipe */
+				sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
 
-		case TO_LEFT:
-			sprite.SetCenter(sprite.GetImage()->GetWidth(), 0);
-			sprite.Rotate(90);
-
-			/* Top of pipe */
-			sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
-
-			app.Draw(sprite);
-
-			/* Body */
-			for(int step = 1; step <= _lenght; step++)
-			{
-				sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
 				app.Draw(sprite);
-			}
-			break;
 
-		default:
-			sprite.FlipY(true);
-			/* Top of pipe */
-			sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-			sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+				/* Body */
+				for(int step = 1; step <= _lenght; step++)
+				{
+					sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+					app.Draw(sprite);
+				}
+				break;
 
-			app.Draw(sprite);
+			default:
+				/* Top of pipe */
+				sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
 
-			/* Body */
-			for(int step = 1; step <= _lenght; step++)
-			{
-				sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
 				app.Draw(sprite);
+
+				/* Body */
+				for(int step = 1; step <= _lenght; step++)
+				{
+					sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
+					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
+					app.Draw(sprite);
+				}
+				break;
 			}
-			break;
 		}
     }
 

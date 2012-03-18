@@ -65,6 +65,8 @@ namespace Collisions
 		void updatePhysicData(RenderWindow& app);
 		void render(RenderWindow& app);
 
+		void setActivity(RenderWindow& app);
+
 		virtual ~MonsterOccurrence();
 
 	private:
@@ -72,8 +74,6 @@ namespace Collisions
 		Monster* _monster;
 		Vector2f _initialPosition;
 		State _state;
-
-		void setActivity(RenderWindow& app);
 	};
 } // namespace
 
