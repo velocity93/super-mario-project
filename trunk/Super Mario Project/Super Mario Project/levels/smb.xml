@@ -4,6 +4,7 @@
   <checkpoints />
 	<backgrounds>
     <background img="Waterfall" positionX="0" positionY="0"/>
+    <background img="night_sky" positionX="0" positionY="0"/>
 	</backgrounds>
   <foregrounds />
   <objects />

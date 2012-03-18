@@ -41,7 +41,6 @@ namespace Collisions
 		bool getIsActive();
 		Item* getModel();
 		void setState(State state);
-		void setActivity(RenderWindow& app);
 
 		void onCollision(Collisionable* c, vector<bool>& infos);
 

@@ -45,7 +45,6 @@ namespace Collisions
 		void render(RenderWindow& app);
 
 		void onCollision(Collisionable* c, vector<bool>& infos);
-		void setActivity(RenderWindow& app);
 
         virtual ~BlockOccurrence();
 		

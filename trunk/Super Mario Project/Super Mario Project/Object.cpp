@@ -24,8 +24,10 @@ namespace Rendering
 		_animation.setCurrentState(State::NORMAL);
 	}
 
-	void Object::updateGraphicData(RenderWindow&)
+	void Object::updateGraphicData(RenderWindow& app)
 	{
+		setActivity(app);
+
 		if(_isActive)
 			_animation.update();
 	}
@@ -46,6 +48,16 @@ namespace Rendering
 
 	void Object::setActivity(RenderWindow& app)
 	{
+		const sf::View& view = app.GetView();
+		const sf::Vector2f& center = view.GetCenter();
+		const sf::Vector2f& halfSize = view.GetHalfSize();
+		int width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
+		int height = _texture->getSprite().GetSize().y;
+
+		_isActive = _position.x >= (center.x - halfSize.x);
+		_isActive &= (_position.x + width) <= (center.x + halfSize.x);
+		_isActive &= _position.y >= (center.y + halfSize.y);
+		_isActive &= (_position.y + height) <= (center.y - halfSize.y);
 
 	}
 

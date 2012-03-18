@@ -29,6 +29,7 @@ namespace Rendering
 		Animation()
 		{
 			_frameNumber = 0;
+			_nbSpritesMax = 1;
 			_clock.Start();
 		}
 
@@ -51,6 +52,7 @@ namespace Rendering
 		map<T, int> _frameDelayByState;
 		T _currentState;
 		int _frameNumber;
+		int _nbSpritesMax;
 		int _frameDelayForCurrentState;
 		int _nbSpritesForCurrentState;
 		SuperMarioProject::PausableClock _clock;
@@ -58,6 +60,8 @@ namespace Rendering
 		/* Get nbSprites for currentState */
 		int getNbSpritesForCurrentState();
 		int getFrameDelayForCurrentState(); 
+
+		int computeNbSpritesMax();
 
 	};
 

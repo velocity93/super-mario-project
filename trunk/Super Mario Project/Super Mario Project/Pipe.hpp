@@ -67,7 +67,6 @@ namespace Collisions
 		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);
-		void setActivity(RenderWindow& app);
 
 		/* Methods */
 		void updateGraphicData(RenderWindow& app);

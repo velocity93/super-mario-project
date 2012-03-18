@@ -58,7 +58,7 @@ namespace Collisions
 
 	void MonsterOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
-		/* Collision vs ProjectileOccurrence */
+		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{

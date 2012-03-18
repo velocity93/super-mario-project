@@ -33,6 +33,8 @@ namespace Collisions
     protected:
 		Vector2f _hitboxPosition;
 		Vector2i _hitboxSize;
+
+		void setActivity(RenderWindow& app);
     };
 } // namespace
 

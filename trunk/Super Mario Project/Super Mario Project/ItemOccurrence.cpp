@@ -61,20 +61,6 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-	void ItemOccurrence::setActivity(RenderWindow& app)
-	{
-		View view = app.GetView();
-
-		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x - view.GetHalfSize().x
-			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y + view.GetHalfSize().y)
-			_isActive = false;
-		else
-			_isActive = true;
-
-	}
-
 	void ItemOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
 		/* Collision vs BlockOccurrence */

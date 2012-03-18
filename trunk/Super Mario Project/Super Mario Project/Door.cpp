@@ -47,13 +47,10 @@ namespace Collisions
 		_state = state;
 	}
 
-	void Door::setActivity(RenderWindow& app)
-	{
-		// TO DO
-	}
-
 	void Door::updateGraphicData(RenderWindow& app)
 	{
+		setActivity(app);
+
 		if(_isActive)
 			_animation.update();
 	}

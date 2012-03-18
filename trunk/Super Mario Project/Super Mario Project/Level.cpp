@@ -458,7 +458,8 @@ namespace SuperMarioProject
 		}
 
 		/* BlockOccurence */
-		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != this->_blocksOccurrences.end(); ++itBlockOccurrence)
+		vector<BlockOccurrence*>::iterator blockSize = _blocksOccurrences.end();
+		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != blockSize; ++itBlockOccurrence)
 		{
 			(*itBlockOccurrence)->updatePhysicData(app);
 		}

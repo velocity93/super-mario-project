@@ -35,7 +35,7 @@ namespace Rendering
 		return _verticalRepetition;
 	}
 
-	void Background::updateGraphicData(RenderWindow&)
+	void Background::updateGraphicData(RenderWindow& app)
 	{
 		if(_isActive)
 			_animation.update();
@@ -52,11 +52,6 @@ namespace Rendering
 		file << "img=\"" << _texture->shorterName() << "\" ";
 		file << "positionX=\"" << _position.x << "\" ";
 		file << "positionY=\"" << _position.y << "\"/>" << endl;
-	}
-
-	void Background::setActivity(RenderWindow& app)
-	{
-
 	}
 
 	void Background::loadCfgBackground(const string& textureName)

@@ -27,7 +27,7 @@ namespace SuperMarioProject
 				_level->loadLevel(_levelNames[0]);
 				_levelTree = new QuadTree(Vector2f(_level->getSize().x / 2,
 					_level->getSize().y / 2), _level->getSize(), 0);
-				_levelTree->buildTree(_level->getBlocksOccurrences());
+				/*_levelTree->buildTree(_level->getBlocksOccurrences());*/
 			}
 
 			/* Add default perso */
@@ -68,6 +68,8 @@ namespace SuperMarioProject
 			(*it)->updateGraphicData(app);
 		}
 
+		 _level->updatePhysicData(app); 
+		
 		_level->updateGraphicData(app);
 
 		updateTime();
@@ -117,7 +119,7 @@ namespace SuperMarioProject
 	{
 		this->_level->render(app);
 
-		_levelTree->render(app);
+		//_levelTree->render(app);
 
 		for (vector<Perso*>::iterator it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{

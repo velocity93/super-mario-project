@@ -36,7 +36,6 @@ namespace Collisions
 		void setIndexDestination(int indexDestination);
 		void setLevelDestination(const string& levelDestination);
 		void setState(State state);
-		void setActivity(RenderWindow& app);
 
 		/* Methods */
 		void updateGraphicData(RenderWindow& app);

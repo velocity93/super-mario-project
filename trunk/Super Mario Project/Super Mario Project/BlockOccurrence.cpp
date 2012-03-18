@@ -50,6 +50,10 @@ namespace Collisions
 			_animation.addFrameDelayForGivenState(state, _actualBlock->getTileset()->getFrameDelay());
 			_animation.setCurrentState(state);
 		}
+		else
+		{
+			_animation.addNbSpritesForGivenState(state, 1);
+		}
     }
 
 	Block* BlockOccurrence::getActualModel()
@@ -66,22 +70,9 @@ namespace Collisions
 		}
 	}
 
-	void BlockOccurrence::setActivity(RenderWindow& app)
-	{
-		View view = app.GetView();
-
-		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x
-			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y)
-			_isActive = false;
-		else
-			_isActive = true;
-	}
-
 	void BlockOccurrence::updateGraphicData(RenderWindow& app)
 	{
-		if(_animation.getNbSpritesMax() > 1 && _isActive)
+		if(_isActive && _animation.getNbSpritesMax() > 1)
 		{
 			_animation.update();
 		}
@@ -89,8 +80,12 @@ namespace Collisions
 
 	void BlockOccurrence::updatePhysicData(RenderWindow& app)
 	{
-		_previousHitboxPosition = _hitboxPosition;
 		setActivity(app);
+
+		if(_isActive)
+		{
+			_previousHitboxPosition = _hitboxPosition;
+		}
 	}
 	
 	void BlockOccurrence::render(RenderWindow& app)
@@ -103,7 +98,7 @@ namespace Collisions
 			}
 			else
 			{
-				ReversedSprite sprite = _texture->getSprite();
+				ReversedSprite& sprite = _texture->getSprite();
 				sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
 				sprite.SetPosition(_position);
 				app.Draw(sprite);
