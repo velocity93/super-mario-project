@@ -10,7 +10,6 @@
 #ifndef HPP_ANIMATION
 #define HPP_ANIMATION
 
-#include "Texture.hpp"
 #include "PausableClock.hpp"
 #include <SFML/Graphics.hpp>
 #include <map>

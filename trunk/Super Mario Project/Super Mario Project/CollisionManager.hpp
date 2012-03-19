@@ -11,10 +11,6 @@
 #define HPP_COLLISIONMANAGER
 
 #include "EntityMovable.hpp"
-#include "Block.hpp"
-#include "Item.hpp"
-#include "Monster.hpp"
-#include "Projectile.hpp"
 #include "Level.hpp"
 
 using namespace SuperMarioProject;

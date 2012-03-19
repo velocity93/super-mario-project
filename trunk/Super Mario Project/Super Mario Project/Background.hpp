@@ -10,7 +10,8 @@
 #ifndef HPP_BACKGROUND
 #define HPP_BACKGROUND
 
-#include "Object.hpp"
+#include "Drawable.hpp"
+#include "Animation.hpp"
 
 namespace Rendering
 {

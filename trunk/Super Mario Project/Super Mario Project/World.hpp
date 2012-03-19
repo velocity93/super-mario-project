@@ -65,7 +65,6 @@ namespace SuperMarioProject
 		float _nbFramesCalculated;
 
 		QuadTree* _levelTree;
-		vector<HUD*> _huds; /* Link to persos */
 
 		/* Update data time in world */
 		void updateTime();

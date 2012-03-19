@@ -9,6 +9,7 @@
 #include "World.hpp"
 #include "XMLParser.hpp"
 #include "CollisionManager.hpp"
+#include "HUD.hpp"
 #include <fstream>
 #include <iostream>
 

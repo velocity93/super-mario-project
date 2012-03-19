@@ -18,6 +18,7 @@
 namespace Collisions
 {
 	class Item;
+	class BlockOccurrence;
 	class ItemOccurrence : public EntityMovable
     {
 	

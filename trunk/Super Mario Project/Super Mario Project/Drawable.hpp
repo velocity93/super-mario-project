@@ -21,6 +21,7 @@ using namespace sf;
 
 namespace Rendering
 {
+	class Texture;
 	class Drawable
 	{
 	
