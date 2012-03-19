@@ -8,13 +8,11 @@
 
 #include "ResourceManager.hpp"
 #include "CollisionManager.hpp"
-#include "ItemOccurrence.hpp"
-#include "BlockOccurrence.hpp"
-#include "Item.hpp"
 #include "Perso.hpp"
+#include "Block.hpp"
+#include "Item.hpp"
+#include "ItemOccurrence.hpp"
 #include <typeinfo.h>
-
-using namespace SuperMarioProject;
 
 namespace Collisions
 {

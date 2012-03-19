@@ -13,20 +13,16 @@
 /* Physic constant */
 #define SPEED_X_MIN						0.008F
 
-#include "HUD.hpp"
 #include "EntityMovable.hpp"
-#include "Monster.hpp"
-#include "ItemOccurrence.hpp"
-#include "Checkpoint.hpp"
 #include "InputState.hpp"
+#include "HUD.hpp"
 #include "Animation.hpp"
-
-using namespace Rendering;
-using namespace SuperMarioProject;
 
 namespace Collisions
 {
 	class Pipe;
+	class Checkpoint;
+	class MonsterOccurrence;
 	class Perso : public EntityMovable
     {
 

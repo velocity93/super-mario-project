@@ -13,6 +13,7 @@
 #include "Checkpoint.hpp"
 #include "Background.hpp"
 #include "Foreground.hpp"
+#include "Object.hpp"
 #include "ParticleGenerator.hpp"
 #include "Item.hpp"
 #include "Monster.hpp"

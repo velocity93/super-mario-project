@@ -8,15 +8,16 @@
 
 #include "CollisionManager.hpp"
 #include "Perso.hpp"
-#include "InputState.hpp"
-#include "ItemOccurrence.hpp"
+#include "Monster.hpp"
+#include "Block.hpp"
+#include "Checkpoint.hpp"
 #include "ProjectileOccurrence.hpp"
 #include "Pipe.hpp"
 #include "Item.hpp"
 #include <fstream>
 #include <sstream>
 
-using namespace SuperMarioProject;
+using namespace Rendering;
 
 namespace Collisions
 {

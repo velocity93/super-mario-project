@@ -10,9 +10,8 @@
 #ifndef HPP_FOREGROUND
 #define HPP_FOREGROUND
 
-#include "Object.hpp"
-#include <SFML/Graphics.hpp>
-#include <string>
+#include "Drawable.hpp"
+#include "Animation.hpp"
 
 namespace Rendering
 {
