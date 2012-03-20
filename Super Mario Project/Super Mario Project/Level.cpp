@@ -98,6 +98,7 @@ namespace SuperMarioProject
 
 			++index;
 		}
+		return -1;
 	}
 
 	void Level::setName(string name)

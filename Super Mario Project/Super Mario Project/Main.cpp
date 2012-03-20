@@ -19,18 +19,22 @@ using namespace sf;
 
 void writeCapture(const sf::Image& img)
 {
+	/* Building fileName */
 	string prefix = "capture";
 	int id = 0;
 	std::ostringstream out;
 	out << id;
 	string fileName = prefix + out.str();
 	string imgFileName = fileName + ".png";
-	while(true)
+
+	bool loopingAgain = true;
+
+	while(loopingAgain)
 	{
 		ifstream file(imgFileName.c_str());
 		if(!file)
 		{
-			break;
+			loopingAgain = false;
 		}
 		else
 		{
@@ -40,6 +44,8 @@ void writeCapture(const sf::Image& img)
 			imgFileName = fileName + ".png";
 		}
 	}
+
+
 	img.SaveToFile(imgFileName);
 }
 

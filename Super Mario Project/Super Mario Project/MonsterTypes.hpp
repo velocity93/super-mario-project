@@ -38,7 +38,6 @@ namespace Collisions
 
 	public :
 		ShellMonster(const string& textureName, 
-			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);

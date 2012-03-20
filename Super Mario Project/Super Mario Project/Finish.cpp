@@ -56,13 +56,13 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_waiting=");
+				unsigned int found = word.find("nb_sprites_waiting=");
 				if(found != string::npos)
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 19));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::WAITING, nb_sprites);
+					_animation.addNbSpritesForGivenState(WAITING, nb_sprites);
 					continue;
 				}
 
@@ -72,7 +72,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 15));
 					vAnim >> v_anim;
-					_animation.addFrameDelayForGivenState(State::WAITING, v_anim);
+					_animation.addFrameDelayForGivenState(WAITING, v_anim);
 					continue;
 				}
 
@@ -82,7 +82,7 @@ namespace Collisions
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 18));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::FINISH, nb_sprites);
+					_animation.addNbSpritesForGivenState(FINISH, nb_sprites);
 					continue;
 				}
 
@@ -92,7 +92,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 14));
 					vAnim >> v_anim;
-					_animation.addFrameDelayForGivenState(State::FINISH, v_anim);
+					_animation.addFrameDelayForGivenState(FINISH, v_anim);
 				}
 			}
 		}

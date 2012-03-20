@@ -70,13 +70,13 @@ namespace Collisions
 			/* We read file to search keywords and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_active=");
+				unsigned int found = word.find("nb_sprites_active=");
 				if(found != string::npos)
                 {
 					int nbSpritesActive;
 					istringstream nbActiveSprites(word.substr(found + 18));
 					nbActiveSprites >> nbSpritesActive;
-					_animation.addNbSpritesForGivenState(State::PASSED, nbSpritesActive);
+					_animation.addNbSpritesForGivenState(PASSED, nbSpritesActive);
 					continue;
 				}
 
@@ -87,7 +87,7 @@ namespace Collisions
 					int nbSpritesInactive;
 					istringstream nbInactiveSprites(word.substr(found + 20));
 					nbInactiveSprites >> nbSpritesInactive;
-					_animation.addNbSpritesForGivenState(State::NOT_PASSED, nbSpritesInactive);
+					_animation.addNbSpritesForGivenState(NOT_PASSED, nbSpritesInactive);
 					continue;
 				}
 
@@ -98,8 +98,8 @@ namespace Collisions
 					int vAnim;
                     istringstream vAnimStream(word.substr(found + 7));
 					vAnimStream >> vAnim;
-					_animation.addFrameDelayForGivenState(State::NOT_PASSED, vAnim);
-					_animation.addFrameDelayForGivenState(State::PASSED, vAnim);
+					_animation.addFrameDelayForGivenState(NOT_PASSED, vAnim);
+					_animation.addFrameDelayForGivenState(PASSED, vAnim);
                 }
 			}
 		}

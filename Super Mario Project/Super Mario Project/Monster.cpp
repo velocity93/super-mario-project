@@ -46,7 +46,7 @@ namespace Collisions
 		return _monsterOccurrences;
 	}
 
-	void Monster::addNewMonsterOccurrence(Vector2f& position, Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
+	void Monster::addNewMonsterOccurrence(const Vector2f& position, const Vector2f& speed, MonsterOccurrence::State state, MonsterOccurrence::Side side)
     {
 		_monsterOccurrences.push_back(new MonsterOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
@@ -109,7 +109,7 @@ namespace Collisions
             /* We read file to search the keyword and read his value */
             while(getline(stream, word))
             {
-                int found = word.find("abscisse_bas=");
+                unsigned int found = word.find("abscisse_bas=");
                 if(found != string::npos)
                 {
                     istringstream abscisseBas(word.substr(found + 13));
@@ -147,7 +147,7 @@ namespace Collisions
 					int nbSpritesWalk;
                     istringstream nbSpritesWalkStream(word.substr(found + 16));
                     nbSpritesWalkStream >> nbSpritesWalk;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, nbSpritesWalk));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_WALK, nbSpritesWalk));
 					continue;
                 }
 
@@ -157,7 +157,7 @@ namespace Collisions
 					int nbSpritesDeadByJump;
                     istringstream nbSpritesWalkStream(word.substr(found + 24));
                     nbSpritesWalkStream >> nbSpritesDeadByJump;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, nbSpritesDeadByJump));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_JUMP_ON, nbSpritesDeadByJump));
 					continue;
                 }
 
@@ -167,7 +167,7 @@ namespace Collisions
 					int nbSpritesDeadByProj;
                     istringstream nbSpritesWalkStream(word.substr(found + 24));
                     nbSpritesWalkStream >> nbSpritesDeadByProj;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, nbSpritesDeadByProj));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_PROJ, nbSpritesDeadByProj));
 					continue;
                 }
 				
@@ -177,7 +177,7 @@ namespace Collisions
 					int nbSpritesRetracted;
                     istringstream nbSpritesRetractedStream(word.substr(found + 21));
                     nbSpritesRetractedStream >> nbSpritesRetracted;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, nbSpritesRetracted));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_RETRACTED, nbSpritesRetracted));
 					continue;
                 }
 
@@ -188,7 +188,7 @@ namespace Collisions
 					int nbSpritesGetOutFromShell;
                     istringstream nbSpritesGetOutFromShellStream(word.substr(found + 30));
                     nbSpritesGetOutFromShellStream >> nbSpritesGetOutFromShell;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, nbSpritesGetOutFromShell));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_GET_OUT_FROM_SHELL, nbSpritesGetOutFromShell));
 					continue;
                 }
 
@@ -198,7 +198,7 @@ namespace Collisions
 					int vAnimWalk;
                     istringstream vAnimWalkStream(word.substr(found + 12));
                     vAnimWalkStream >> vAnimWalk;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vAnimWalk));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_WALK, vAnimWalk));
 					continue;
                 }
 
@@ -208,7 +208,7 @@ namespace Collisions
 					int vAnimRetracted;
                     istringstream vAnimRetractedStream(word.substr(found + 17));
                     vAnimRetractedStream >> vAnimRetracted;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vAnimRetracted));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_RETRACTED, vAnimRetracted));
 					continue;
                 }
 
@@ -218,7 +218,7 @@ namespace Collisions
 					int vAnimDeadByJump;
                     istringstream vAnimDeadByJumpStream(word.substr(found + 20));
                     vAnimDeadByJumpStream >> vAnimDeadByJump;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, vAnimDeadByJump));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_JUMP_ON, vAnimDeadByJump));
 					continue;
                 }
 
@@ -228,7 +228,7 @@ namespace Collisions
 					int vAnimDeadByProj;
                     istringstream vAnimDeadByProjStream(word.substr(found + 20));
                     vAnimDeadByProjStream >> vAnimDeadByProj;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, vAnimDeadByProj));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_PROJ, vAnimDeadByProj));
 					continue;
                 }
 
@@ -238,7 +238,7 @@ namespace Collisions
 					int vAnimGetOutFromShell;
                     istringstream vAnimGetOutFromShellStream(word.substr(found + 26));
                     vAnimGetOutFromShellStream >> vAnimGetOutFromShell;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vAnimGetOutFromShell));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_GET_OUT_FROM_SHELL, vAnimGetOutFromShell));
 					continue;
                 }
 

@@ -17,7 +17,7 @@ namespace Collisions
 		return _life;
 	}
 
-	void Particle::onCollision(Collisionable* c, vector<bool>& infos)
+	void Particle::onCollision(Collisionable*, vector<bool>&)
 	{
 		// NOTHING TO DO !
 	}
@@ -36,7 +36,7 @@ namespace Collisions
 
 	void Particle::update(float time, bool hasGravity)
 	{
-		_life -= time;
+		_life -= int(time);
 
 		if(hasGravity)
 		{
@@ -67,13 +67,13 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_normal=");
+				unsigned int found = word.find("nb_sprites_normal=");
 				if(found != string::npos)
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 18));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+					_animation.addNbSpritesForGivenState(NORMAL, nb_sprites);
 					continue;
 				}
 
@@ -83,7 +83,7 @@ namespace Collisions
 					int v_anim = 0;
 					istringstream vAnim(word.substr(found + 14));
 					vAnim >> v_anim;
-					_animation.addFrameDelayForGivenState(State::NORMAL, v_anim);
+					_animation.addFrameDelayForGivenState(NORMAL, v_anim);
 				}
 			}
 		}

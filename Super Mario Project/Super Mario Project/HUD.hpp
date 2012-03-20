@@ -26,7 +26,7 @@ namespace Rendering
     public:
 		HUD();
 
-		int getTime();
+		float getTime();
 		int getNbLives();
 		void setTime(float time);
 		void setNbMonstersKilled(int NbMonstersKilled);

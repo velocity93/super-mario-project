@@ -16,7 +16,7 @@ namespace Rendering
 		InitializeDrawable(textureName);
 	}
 
-	Drawable::Drawable(const string& textureName, Vector2f& position) : _isActive(true)
+	Drawable::Drawable(const string& textureName, const Vector2f& position) : _isActive(true)
 	{
 		InitializeDrawable(textureName);
 		_position = position;

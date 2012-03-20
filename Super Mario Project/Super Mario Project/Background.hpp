@@ -43,7 +43,7 @@ namespace Rendering
 		bool _verticalRepetition;
 		Vector2f _position;
 
-		void loadCfgBackground(const string& textureName);
+		void loadCfgBackground();
     };
 } // namespace
 

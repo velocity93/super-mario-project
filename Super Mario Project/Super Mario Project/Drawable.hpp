@@ -26,7 +26,7 @@ namespace Rendering
 	{
 	
 	public:
-		enum Layer
+		typedef enum Layer
 		{
 			BACKGROUND_LAYER,
 			BACKGROUND_PARTICLES_LAYER,
@@ -36,19 +36,19 @@ namespace Rendering
 			BLOC_LAYER_2,
 			FOREGROUND_LAYER,
 			FOREGROUND_PARTICLES_LAYER
-		};
+		} Layer;
 
-		enum Angle
+		typedef enum Angle
 		{
 			ANGLE_0,
 			ANGLE_90,
 			ANGLE_180,
 			ANGLE_270
-		};
+		} Angle;
 	
 		/* Constructors */
 		Drawable(const string& textureName);
-		Drawable(const string& textureName,Vector2f& position);
+		Drawable(const string& textureName, const Vector2f& position);
 
 		/* getters and setters */
 		Vector2f& getPosition();

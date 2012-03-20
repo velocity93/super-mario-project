@@ -20,7 +20,7 @@ namespace Collisions
 	class CollisionManager
 	{
 		public:
-		enum Type {
+		typedef enum Type {
 			FROM_LEFT,
 			FROM_TOP,
 			FROM_RIGHT,
@@ -30,7 +30,7 @@ namespace Collisions
 			INCLINE_FROM_LEFT,
 			INCLINE_FROM_RIGHT,
 			NONE_COLLISION
-		};
+		}Type;
 	
 		static CollisionManager* getManager();
 

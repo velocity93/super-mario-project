@@ -24,7 +24,7 @@ namespace Collisions
 		return _manager;
 	}
 
-	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level* level, RenderWindow& app)
+	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level*, RenderWindow&)
 	{
 		vector<bool> infos;
 		
@@ -34,7 +34,7 @@ namespace Collisions
 		}
 	}
 
-	void CollisionManager::solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app)
+	void CollisionManager::solveCollisions(EntityMovable* et1, EntityMovable* et2, Level*, RenderWindow&)
 	{
 		vector<bool> infos;
 		
@@ -55,7 +55,7 @@ namespace Collisions
 
 			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y + c2->getHitboxSize().y, 
 			c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y);
-		int collisionDetected = false;
+		bool collisionDetected = false;
 
 		if(r1Prec.Left <= r2.Right && r1.Left >= r2.Right)
 		{
@@ -105,7 +105,7 @@ namespace Collisions
 
 			r2Prec(et2->getPreviousHitboxPosition().x, et2->getPreviousHitboxPosition().y + et2->getHitboxSize().y,
 			et2->getPreviousHitboxPosition().x + et2->getHitboxSize().x, et2->getPreviousHitboxPosition().y);
-		int collisionDetected = false;
+		bool collisionDetected = false;
 
 		if(r1Prec.Left <= r2Prec.Right && r1.Left >= r2.Right)
 		{

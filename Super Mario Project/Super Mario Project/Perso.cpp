@@ -21,7 +21,7 @@ using namespace Rendering;
 
 namespace Collisions
 {
-	Perso::Perso(const string& textureName, Vector2f& position) : EntityMovable("textures/persos/" + textureName, position),
+	Perso::Perso(const string& textureName, const Vector2f& position) : EntityMovable("textures/persos/" + textureName, position),
 		_textureName("textures/persos/" + textureName),
 		_environment(GROUND), 
 		_transformation(FIRE_MARIO), 
@@ -509,23 +509,23 @@ namespace Collisions
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			if(infos[CollisionManager::Type::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+			if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 			{
 				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
 				_environment = GROUND;
 			}
 
-			if(infos[CollisionManager::Type::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+			if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 			{
 				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+			if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 			{
 				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
 			}
 
-			if(infos[CollisionManager::Type::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+			if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 			{
 				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
 			}
@@ -540,35 +540,35 @@ namespace Collisions
 			Item* item = itemOccurrence->getModel();
 			switch(item->getType())
 			{
-			case Item::Type::COIN:
+			case Item::COIN:
 				_hud->addCoin();
 				break;
 
-			case Item::Type::MUSHROOM:
+			case Item::MUSHROOM:
 				transform(SUPER_MARIO);
 				break;
 
-			case Item::Type::FLOWER:
+			case Item::FLOWER:
 				transform(FIRE_MARIO);
 				break;
 
-			case Item::Type::ICE_FLOWER:
+			case Item::ICE_FLOWER:
 				transform(ICE_MARIO);
 				break;
 
-			case Item::Type::MINI_MUSHROOM:
+			case Item::MINI_MUSHROOM:
 				transform(MINI_MARIO);
 				break;
 
-			case Item::Type::POISON_MUSHROOM:
+			case Item::POISON_MUSHROOM:
 				hurted();
 				break;
 
-			case Item::Type::STAR:
+			case Item::STAR:
 				_invincibleStarTime.Reset();
 				break;
 
-			case Item::Type::LIFE_MUSHROOM:
+			case Item::LIFE_MUSHROOM:
 				_hud->addLife();
 				break;
 
@@ -583,7 +583,7 @@ namespace Collisions
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
-			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::VILAIN)
+			if(projectileOccurrence->getSender() == ProjectileOccurrence::VILAIN)
 			{
 				hurted();
 			}
@@ -594,22 +594,22 @@ namespace Collisions
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			if(infos[CollisionManager::Type::FROM_BOTTOM])
+			if(infos[CollisionManager::FROM_BOTTOM])
 			{
 				_hitboxPosition.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_TOP])
+			if(infos[CollisionManager::FROM_TOP])
 			{
 				_hitboxPosition.y = pipe->getHitboxPosition().y - _hitboxSize.y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_LEFT])
+			if(infos[CollisionManager::FROM_LEFT])
 			{
 				_hitboxPosition.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
 			}
 
-			if(infos[CollisionManager::Type::FROM_RIGHT])
+			if(infos[CollisionManager::FROM_RIGHT])
 			{
 				_hitboxPosition.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
 			}
@@ -621,7 +621,7 @@ namespace Collisions
 		if(monsterOccurrence != NULL)
 		{
 			Monster* monster = monsterOccurrence->getModel();
-			if(infos[CollisionManager::Type::FROM_BOTTOM] && !monster->canBeJumpedOn())
+			if(infos[CollisionManager::FROM_BOTTOM] && !monster->canBeJumpedOn())
 				hurted();
 			return;
 		}
@@ -630,7 +630,7 @@ namespace Collisions
 		Checkpoint* checkpoint = dynamic_cast<Checkpoint*>(c);
 		if(checkpoint != NULL)
 		{
-			checkpoint->setState(Checkpoint::State::PASSED);
+			checkpoint->setState(Checkpoint::PASSED);
 		}
 	}
 
@@ -705,7 +705,7 @@ namespace Collisions
 			while(getline(stream, word))
 			{
 				/* Main keywords */
-				int found = word.find("abscisse_bas=");
+				unsigned int found = word.find("abscisse_bas=");
 				if(found != string::npos)
 				{
 					istringstream abscisseBas(word.substr(found + 13));
@@ -728,7 +728,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbWalkingSpritesStream(word.substr(found + 20));
 						nbWalkingSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::STANDING, nbSprites);
+						_animation.addNbSpritesForGivenState(STANDING, nbSprites);
 						continue;
 					}
 
@@ -739,7 +739,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbWalkingSpritesStream(word.substr(found + 16));
 						nbWalkingSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::WALK, nbSprites);
+						_animation.addNbSpritesForGivenState(WALK, nbSprites);
 						continue;
 					}
 
@@ -749,8 +749,8 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbRunningSpritesStream(word.substr(found + 15));
 						nbRunningSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::RUN_1, nbSprites);
-						_animation.addNbSpritesForGivenState(State::RUN_2, nbSprites);
+						_animation.addNbSpritesForGivenState(RUN_1, nbSprites);
+						_animation.addNbSpritesForGivenState(RUN_2, nbSprites);
 						continue;
 					}
 
@@ -760,7 +760,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSkidSpritesStream(word.substr(found + 16));
 						nbSkidSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::SKID, nbSprites);
+						_animation.addNbSpritesForGivenState(SKID, nbSprites);
 						continue;
 					}
 
@@ -770,7 +770,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbJumpSpritesStream(word.substr(found + 16));
 						nbJumpSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::JUMP, nbSprites);
+						_animation.addNbSpritesForGivenState(JUMP, nbSprites);
 						continue;
 					}
 
@@ -780,7 +780,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbJumpSpritesStream(word.substr(found + 24));
 						nbJumpSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::JUMP_FALLING, nbSprites);
+						_animation.addNbSpritesForGivenState(JUMP_FALLING, nbSprites);
 						continue;
 					}
 
@@ -790,7 +790,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSwimmingSpritesStream(word.substr(found + 15));
 						nbSwimmingSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::FLY, nbSprites);
+						_animation.addNbSpritesForGivenState(FLY, nbSprites);
 						continue;
 					}
 
@@ -800,7 +800,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbFaceSpritesStream(word.substr(found + 16));
 						nbFaceSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::GET_IN_FROM_PIPE_VERTICAL, nbSprites);
+						_animation.addNbSpritesForGivenState(GET_IN_FROM_PIPE_VERTICAL, nbSprites);
 						continue;
 					}
 
@@ -810,7 +810,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbBackSpritesStream(word.substr(found + 16));
 						nbBackSpritesStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::BACK, nbSprites);
+						_animation.addNbSpritesForGivenState(BACK, nbSprites);
 						continue;
 					}
 
@@ -820,7 +820,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 20));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::LOOK_TOP, nbSprites);
+						_animation.addNbSpritesForGivenState(LOOK_TOP, nbSprites);
 						continue;
 					}
 
@@ -830,7 +830,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 19));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::LOWERED, nbSprites);
+						_animation.addNbSpritesForGivenState(LOWERED, nbSprites);
 						continue;
 					}
 
@@ -840,7 +840,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 24));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::CLIMB_LADDER, nbSprites);
+						_animation.addNbSpritesForGivenState(CLIMB_LADDER, nbSprites);
 						continue;
 					}
 
@@ -850,7 +850,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::STANDING_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(STANDING_SHELL, nbSprites);
 						continue;
 					}
 
@@ -860,7 +860,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::WALK_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(WALK_SHELL, nbSprites);
 						continue;
 					}
 
@@ -870,7 +870,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::PUSH_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(PUSH_SHELL, nbSprites);
 						continue;
 					}
 
@@ -880,7 +880,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 22));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::JUMP_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(JUMP_SHELL, nbSprites);
 						continue;
 					}
 
@@ -890,7 +890,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 24));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::LOWERED_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(LOWERED_SHELL, nbSprites);
 						continue;
 					}
 
@@ -900,7 +900,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::LOOK_TOP_SHELL, nbSprites);
+						_animation.addNbSpritesForGivenState(LOOK_TOP_SHELL, nbSprites);
 						continue;
 					}
 
@@ -910,7 +910,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 16));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::DEAD, nbSprites);
+						_animation.addNbSpritesForGivenState(DEAD, nbSprites);
 						continue;
 					}
 
@@ -920,7 +920,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 25));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::FINISH_CASTLE, nbSprites);
+						_animation.addNbSpritesForGivenState(FINISH_CASTLE, nbSprites);
 						continue;
 					}
 
@@ -930,7 +930,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 18));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::ATTACK, nbSprites);
+						_animation.addNbSpritesForGivenState(ATTACK, nbSprites);
 						continue;
 					}
 
@@ -940,7 +940,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 26));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(State::SPECIAL_ATTACK, nbSprites);
+						_animation.addNbSpritesForGivenState(SPECIAL_ATTACK, nbSprites);
 					}
 				}
 
@@ -951,7 +951,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 17));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::WALK, frameDelay);
+						_animation.addFrameDelayForGivenState(WALK, frameDelay);
 						continue;
 					}
 
@@ -961,7 +961,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 17));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::RUN_1, frameDelay);
+						_animation.addFrameDelayForGivenState(RUN_1, frameDelay);
 						continue;
 					}
 
@@ -971,7 +971,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 17));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::RUN_2, frameDelay);
+						_animation.addFrameDelayForGivenState(RUN_2, frameDelay);
 						continue;
 					}
 
@@ -982,7 +982,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 17));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::SKID, frameDelay);
+						_animation.addFrameDelayForGivenState(SKID, frameDelay);
 						continue;
 					}
 
@@ -992,7 +992,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 25));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::JUMP_FALLING, frameDelay);
+						_animation.addFrameDelayForGivenState(JUMP_FALLING, frameDelay);
 						continue;
 					}
 
@@ -1002,7 +1002,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 20));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::LOOK_TOP, frameDelay);
+						_animation.addFrameDelayForGivenState(LOOK_TOP, frameDelay);
 						continue;
 					}
 
@@ -1012,7 +1012,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 25));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::CLIMB_LADDER, frameDelay);
+						_animation.addFrameDelayForGivenState(CLIMB_LADDER, frameDelay);
 						continue;
 					}
 
@@ -1022,7 +1022,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 23));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::WALK_SHELL, frameDelay);
+						_animation.addFrameDelayForGivenState(WALK_SHELL, frameDelay);
 						continue;
 					}
 
@@ -1032,7 +1032,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 27));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::LOOK_TOP_SHELL, frameDelay);
+						_animation.addFrameDelayForGivenState(LOOK_TOP_SHELL, frameDelay);
 						continue;
 					}
 
@@ -1042,7 +1042,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 17));
 						frameDelayStringStream >> frameDelay;
-						_animation.addNbSpritesForGivenState(State::DEAD, frameDelay);
+						_animation.addNbSpritesForGivenState(DEAD, frameDelay);
 						continue;
 					}
 
@@ -1052,7 +1052,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 19));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::ATTACK, frameDelay);
+						_animation.addFrameDelayForGivenState(ATTACK, frameDelay);
 						continue;
 					}
 
@@ -1062,7 +1062,7 @@ namespace Collisions
 						int frameDelay = 0;
 						istringstream frameDelayStringStream(word.substr(found + 27));
 						frameDelayStringStream >> frameDelay;
-						_animation.addFrameDelayForGivenState(State::SPECIAL_ATTACK, frameDelay);
+						_animation.addFrameDelayForGivenState(SPECIAL_ATTACK, frameDelay);
 					}
 				}
 			}

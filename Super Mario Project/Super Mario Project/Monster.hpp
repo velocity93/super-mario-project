@@ -28,9 +28,9 @@ namespace Collisions
 			bool canBeJumpedOn = false);
 
 		/* Add Occurrence */
-		void addNewMonsterOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
-			MonsterOccurrence::State state = MonsterOccurrence::State::M_WALK,
-			MonsterOccurrence::Side side = MonsterOccurrence::Side::LEFT_SIDE);
+		void addNewMonsterOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
+			MonsterOccurrence::State state = MonsterOccurrence::M_WALK,
+			MonsterOccurrence::Side side = MonsterOccurrence::LEFT_SIDE);
 
 		/* Getters/Setters */
 		int getBottomLeft();

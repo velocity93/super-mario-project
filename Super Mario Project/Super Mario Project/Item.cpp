@@ -40,7 +40,7 @@ namespace Collisions
 		return _itemOccurrences;
 	}
 
-	void Item::addNewItemOccurrence(Vector2f& position, Vector2f& speed, ItemOccurrence::State state, ItemOccurrence::Side side)
+	void Item::addNewItemOccurrence(const Vector2f& position, const Vector2f& speed, ItemOccurrence::State state, ItemOccurrence::Side side)
     {
         _itemOccurrences.push_back(new ItemOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
@@ -108,7 +108,7 @@ namespace Collisions
             /* We read file to search the keyword and read his value */
             while(getline(stream, word))
             {
-                int found = word.find("speed_x=");
+                unsigned int found = word.find("speed_x=");
                 if(found != string::npos)
                 {
                     istringstream initialSpeedX(word.substr(found + 8));
@@ -140,7 +140,7 @@ namespace Collisions
 					int _nbSprites;
                     istringstream nbSprites(word.substr(found + 11));
                     nbSprites >> _nbSprites;
-					_nbSpritesByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::State::NORMAL, _nbSprites));
+					_nbSpritesByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::NORMAL, _nbSprites));
                 }
             }
         }

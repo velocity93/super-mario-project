@@ -39,7 +39,7 @@ namespace Rendering
 		
     protected:
 		Animation<State> _animation;
-		void loadCfgObject(const string& textureName);
+		void loadCfgObject();
 		
     };
 } // namespace

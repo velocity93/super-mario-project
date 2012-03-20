@@ -17,8 +17,8 @@ namespace Collisions
 	ProjectileOccurrence::ProjectileOccurrence(
 		Projectile* projectile,
 		const string& textureName, 
-		Vector2f& position, 
-		Vector2f& speed, 
+		const Vector2f& position, 
+		const Vector2f& speed, 
 		State state,
 		Side side,
 		map<ProjectileOccurrence::State, int>& nbSpritesByState,
@@ -58,7 +58,7 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-	void ProjectileOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
+	void ProjectileOccurrence::onCollision(Collisionable*, vector<bool>&)
 	{
 		/* Animation of death before removing */
 		_projectile->removeProjectileOccurrence(this);
@@ -105,7 +105,7 @@ namespace Collisions
 	void ProjectileOccurrence::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+			_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 	}
 
 	ProjectileOccurrence::~ProjectileOccurrence()

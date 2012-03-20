@@ -58,7 +58,7 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("stay_on_plateform=");
+				unsigned int found = word.find("stay_on_plateform=");
                 if(found != string::npos)
                 {
                     istringstream stayOnPlateform(word.substr(found + 18));
@@ -72,7 +72,7 @@ namespace Collisions
 					int nbWalkSprites;
                     istringstream nbWalkSpritesStream(word.substr(found + 16));
                     nbWalkSpritesStream >> nbWalkSprites;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, nbWalkSprites));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_WALK, nbWalkSprites));
                     continue;
                 }
 
@@ -82,7 +82,7 @@ namespace Collisions
 					int nbDeadSprites;
                     istringstream nbDeadSpritesStream(word.substr(found + 24));
                     nbDeadSpritesStream >> nbDeadSprites;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, nbDeadSprites));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_JUMP_ON, nbDeadSprites));
                     continue;
                 }
 
@@ -92,7 +92,7 @@ namespace Collisions
 					int nbDeadSprites;
                     istringstream nbDeadSpritesStream(word.substr(found + 24));
                     nbDeadSpritesStream >> nbDeadSprites;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, nbDeadSprites));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_PROJ, nbDeadSprites));
                     continue;
                 }
 
@@ -102,7 +102,7 @@ namespace Collisions
 					int vWalkAnim;
                     istringstream vWalkAnimStream(word.substr(found + 17));
                     vWalkAnimStream >> vWalkAnim;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_WALK, vWalkAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_WALK, vWalkAnim));
                     continue;
                 }
 
@@ -112,7 +112,7 @@ namespace Collisions
 					int vDeadAnim;
                     istringstream vDeadAnimStream(word.substr(found + 25));
                     vDeadAnimStream >> vDeadAnim;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_JUMP_ON, vDeadAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_JUMP_ON, vDeadAnim));
                     continue;
                 }
 
@@ -122,7 +122,7 @@ namespace Collisions
 					int vDeadAnim;
                     istringstream vDeadAnimStream(word.substr(found + 25));
                     vDeadAnimStream >> vDeadAnim;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_DEAD_BY_PROJ, vDeadAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_DEAD_BY_PROJ, vDeadAnim));
                 }
 			}
 		}
@@ -135,7 +135,7 @@ namespace Collisions
 
 	/* SHELL MONSTER */
 
-	ShellMonster::ShellMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
+	ShellMonster::ShellMonster(const string& textureName, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
 		: WalkingMonster(textureName, false, canBeKilledByFire, canBeJumpedOn, stayOnPlateForm)
 	{
 		loadShellMonster();
@@ -178,13 +178,13 @@ namespace Collisions
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites_retracted=");
+				unsigned int found = word.find("nb_sprites_retracted=");
                 if(found != string::npos)
                 {
 					int nbShellSprites;
                     istringstream nbShellSpritesStream(word.substr(found + 21));
                     nbShellSpritesStream >> nbShellSprites;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, nbShellSprites));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_RETRACTED, nbShellSprites));
                     continue;
                 }
 
@@ -194,7 +194,7 @@ namespace Collisions
 					int nbShellSprites;
                     istringstream nbShellSpritesStream(word.substr(found + 30));
                     nbShellSpritesStream >> nbShellSprites;
-					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, nbShellSprites));
+					_nbSpritesByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_GET_OUT_FROM_SHELL, nbShellSprites));
                     continue;
                 }
 
@@ -204,7 +204,7 @@ namespace Collisions
 					int vShellAnim;
                     istringstream vShellAnimStream(word.substr(found + 22));
                     vShellAnimStream >> vShellAnim;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_RETRACTED, vShellAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_RETRACTED, vShellAnim));
                     continue;
                 }
 
@@ -214,7 +214,7 @@ namespace Collisions
 					int vShellAnim;
                     istringstream vShellAnimStream(word.substr(found + 31));
                     vShellAnimStream >> vShellAnim;
-					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::State::M_GET_OUT_FROM_SHELL, vShellAnim));
+					_frameDelayByState.insert(pair<MonsterOccurrence::State, int>(MonsterOccurrence::M_GET_OUT_FROM_SHELL, vShellAnim));
                     continue;
                 }
 			}
@@ -262,7 +262,7 @@ namespace Collisions
 	void FlyingMonster::loadFlyingMonster()
 	{
 		string fileName = name() + ".mstr";
-        int abscisse_bas = 0;
+        //int abscisse_bas = 0;
         ifstream stream(fileName.c_str());
 
         if(stream)

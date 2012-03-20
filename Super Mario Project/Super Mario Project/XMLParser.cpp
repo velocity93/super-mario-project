@@ -77,18 +77,18 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
 				img = attrs[i + 1];
 			}
 		}
-		level->addCheckpoint(new Checkpoint(img, position, Checkpoint::State::NOT_PASSED));
+		level->addCheckpoint(new Checkpoint(img, position, Checkpoint::NOT_PASSED));
 	}
 
 	void background_tag(Level * level, const char **attrs)
@@ -131,11 +131,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -155,11 +155,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -187,7 +187,7 @@ namespace XMLParsing
 	void item_tag(Level * level, const char **attrs)
 	{
 		string img = "";
-		Item::Type type = Item::Type::COIN;
+		Item::Type type = Item::COIN;
 
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -212,11 +212,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 		}
 
@@ -279,11 +279,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 		}
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);
@@ -296,18 +296,18 @@ namespace XMLParsing
 		string monster_name = "";
 		int id_PipeDestination = -1;
 		int length = 1;
-		Pipe::State state = Pipe::State::CLOSED;
-		Pipe::Direction direction = Pipe::Direction::TO_TOP;
+		Pipe::State state = Pipe::CLOSED;
+		Pipe::Direction direction = Pipe::TO_TOP;
 
 		for(int i = 0; i < 18; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -408,17 +408,21 @@ namespace XMLParsing
 	void occ_block_tag(Level* level, const char** attrs)
 	{
 		Vector2f position;
-		int id_model, id_alternative, id_item, id_tileset_actual, id_tileset_alt;
+		int id_model = -1, 
+			id_alternative = -1, 
+			id_item = -1,
+			id_tileset_actual = -1, 
+			id_tileset_alt = -1;
 
 		for(int i = 0; i < 14; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "actual"))
 			{
@@ -441,29 +445,33 @@ namespace XMLParsing
 				id_tileset_alt = atoi(attrs[i + 1]);
 			}
 		}
-		Tileset* tileset = level->getTilesets()[id_tileset_actual];
-		if(tileset != nullptr)
+
+		if(id_tileset_actual > -1)
 		{
-			Tileset* tileset_alt = level->getTilesets()[id_tileset_alt];
-
-			if(tileset_alt != nullptr)
+			Tileset* tileset = level->getTilesets()[id_tileset_actual];
+			if(tileset != nullptr)
 			{
-				BlockOccurrence* block;
-				if(id_alternative > -1)
-				{
-					block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
-				}
-				else
-				{
-					block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(nullptr, position);
-				}
+				Tileset* tileset_alt = level->getTilesets()[id_tileset_alt];
 
-				level->addBlockOccurrence(block);
+				if(tileset_alt != nullptr && id_model > -1)
+				{
+					BlockOccurrence* block;
+					if(id_alternative > -1)
+					{
+						block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(tileset_alt->getBlocks()[id_alternative], position);
+					}
+					else
+					{
+						block = tileset->getBlocks()[id_model]->addNewBlockOccurrence(nullptr, position);
+					}
+
+					level->addBlockOccurrence(block);
+				}
 			}
 		}
 	}
 
-	void error(void * ctx, const char * msg, ...)
+	void error(void * /*ctx*/, const char * msg, ...)
 	{
 		cout << "error parsing XML :" << msg << endl;
 	}
@@ -572,7 +580,7 @@ namespace SuperMarioProject
 		xmlSchemaPtr ptr_schema = NULL;
 		xmlSchemaParserCtxtPtr ptr_ctxt;
 		xmlSchemaValidCtxtPtr ptr_validctxt;
-		int vl_return;
+		int vl_return = 0;
 		xmlDocPtr vl_doc;
 
 
