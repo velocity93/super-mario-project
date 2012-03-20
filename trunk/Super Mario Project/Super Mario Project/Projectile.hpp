@@ -49,9 +49,9 @@ namespace Collisions
 		int getTop();
 
 		/* Add occurrence to list */
-		void addNewProjectileOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0),
-			ProjectileOccurrence::State state = ProjectileOccurrence::State::LAUNCHED,
-			ProjectileOccurrence::Side side = ProjectileOccurrence::Side::RIGHT_SIDE);
+		void addNewProjectileOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0),
+			ProjectileOccurrence::State state = ProjectileOccurrence::LAUNCHED,
+			ProjectileOccurrence::Side side = ProjectileOccurrence::RIGHT_SIDE);
 
 		/* Remove occurrence to list */
 		void removeProjectileOccurrence(const ProjectileOccurrence* projectile);

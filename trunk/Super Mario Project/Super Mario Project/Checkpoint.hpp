@@ -19,11 +19,11 @@ namespace Collisions
 	{
 	
 	public:
-		enum State
+		typedef enum
 		{
 			NOT_PASSED,
 			PASSED
-		};
+		} State;
 
 		Checkpoint(const string& textureName);
 		Checkpoint(const string& textureName, Vector2f& position, State state);

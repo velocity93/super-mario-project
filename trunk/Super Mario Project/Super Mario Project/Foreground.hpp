@@ -39,7 +39,7 @@ namespace Rendering
 		Animation<State> _animation;
 		
 		
-		void loadCfgForeground(const string& textureName);
+		void loadCfgForeground();
     };
 } // namespace
 

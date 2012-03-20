@@ -35,8 +35,8 @@ namespace Collisions
 		ProjectileOccurrence(
 			Projectile* projectile,
 			const string& textureName,
-			Vector2f& position, 
-			Vector2f& speed, 
+			const Vector2f& position, 
+			const Vector2f& speed, 
 			State state, 
 			Side side,
 			map<ProjectileOccurrence::State, int>& nbSpritesByState,

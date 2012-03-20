@@ -15,8 +15,8 @@ namespace Collisions
 {
 	BlockOccurrence::BlockOccurrence(
 		const string& textureName, 
-		Vector2f& position, 
-		Vector2f& speed,
+		const Vector2f& position, 
+		const Vector2f& speed,
 		State state, 
 		Side side,
 		int physicIndex,
@@ -61,7 +61,7 @@ namespace Collisions
 		return _actualBlock;
 	}
 
-	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
+	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>&/*infos*/)
 	{
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
@@ -70,7 +70,7 @@ namespace Collisions
 		}
 	}
 
-	void BlockOccurrence::updateGraphicData(RenderWindow& app)
+	void BlockOccurrence::updateGraphicData(RenderWindow&/*app*/)
 	{
 		if(_isActive && _animation.getNbSpritesMax() > 1)
 		{
@@ -94,7 +94,7 @@ namespace Collisions
 		{
 			if(_animation.getNbSpritesMax() > 1)
 			{
-				_animation.render(_texture, app, _position, _side == Side::LEFT_SIDE);
+				_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 			}
 			else
 			{

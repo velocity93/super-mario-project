@@ -18,14 +18,14 @@ namespace Collisions
     {
 	
 	public:
-		enum Side {
+		typedef enum Side {
 			LEFT_SIDE,
 			RIGHT_SIDE
-		};
+		} Side;
 
     
 		/* Constructors */
-		EntityMovable(const string& textureName, Vector2f& position, Vector2f& speed = Vector2f(0,0), Side side = RIGHT_SIDE) :
+		EntityMovable(const string& textureName, const Vector2f& position, const Vector2f& speed = Vector2f(0,0), Side side = RIGHT_SIDE) :
 			Collisionable(textureName, position), 
 			_previousPosition(position),
 			_previousHitboxPosition(position),

@@ -21,17 +21,17 @@ namespace Collisions
 	class BlockOccurrence : public EntityMovable
     {
     public:
-		enum State {
+		typedef enum State {
 			UNMOVABLE,
 			PUSHED_TO_LEFT,
 			PUSHED_TO_RIGHT,
 			PUSHED_TO_TOP,
-		};
+		} State;
 
 		BlockOccurrence(
 			const string& textureName, 
-			Vector2f& position, 
-			Vector2f& speed, 
+			const Vector2f& position, 
+			const Vector2f& speed, 
 			State state, 
 			Side side,
 			int physicIndex,

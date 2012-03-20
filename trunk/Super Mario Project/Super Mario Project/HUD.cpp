@@ -31,7 +31,7 @@ namespace Rendering
 		_points.push_back(8000);
 	}
 
-	int HUD::getTime()
+	float HUD::getTime()
 	{
 		return _time;
 	}
@@ -86,7 +86,7 @@ namespace Rendering
 		_time -= app.GetFrameTime();
 	}
 
-	void HUD::render(RenderWindow& app)
+	void HUD::render(RenderWindow&/*app*/)
 	{
 		/*sf::String Text;
 		sf::Unicode::Text txt;

@@ -26,7 +26,7 @@ namespace Collisions
 	{
 	
 	public:
-		enum Type
+		typedef enum Type
 		{
 			COIN,
 			MUSHROOM,
@@ -36,7 +36,7 @@ namespace Collisions
 			POISON_MUSHROOM,
 			STAR,
 			LIFE_MUSHROOM
-		};
+		} Type;
 	
 		/* Constructors */
         Item(const string& textureName, Type type = COIN, int submission = 0);
@@ -54,8 +54,8 @@ namespace Collisions
 		vector<ItemOccurrence*>& getItemOccurrences();
 
 		/* Add New Item Occurrence */
-		void Item::addNewItemOccurrence(Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
-			ItemOccurrence::State state = ItemOccurrence::State::NORMAL, ItemOccurrence::Side side = ItemOccurrence::Side::RIGHT_SIDE);
+		void Item::addNewItemOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
+			ItemOccurrence::State state = ItemOccurrence::NORMAL, ItemOccurrence::Side side = ItemOccurrence::RIGHT_SIDE);
 		
 		/* Remove Item Occurrence */
 		void removeItemOccurrence(const ItemOccurrence* item);

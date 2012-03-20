@@ -33,7 +33,7 @@ namespace Collisions
 		return _top;
 	}
 
-	void Projectile::addNewProjectileOccurrence(Vector2f& position, Vector2f& speed, ProjectileOccurrence::State state, ProjectileOccurrence::Side side)
+	void Projectile::addNewProjectileOccurrence(const Vector2f& position, const Vector2f& speed, ProjectileOccurrence::State state, ProjectileOccurrence::Side side)
     {
 		_projectileOccurences.push_back(new ProjectileOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
@@ -101,7 +101,7 @@ namespace Collisions
             /* We read file to search keywords and read his value */
             while(getline(stream, word))
             {
-                int found = word.find("speed_x=");
+                unsigned int found = word.find("speed_x=");
                 if(found != string::npos)
                 {
                     istringstream InitialSpeedX(word.substr(found + 8));
@@ -140,7 +140,7 @@ namespace Collisions
 					int _nbWalkingSprites;
                     istringstream nbWalkingSprites(word.substr(found + 15));
 					nbWalkingSprites >> _nbWalkingSprites;
-					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _nbWalkingSprites));
+					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _nbWalkingSprites));
                     continue;
                 }
 
@@ -151,7 +151,7 @@ namespace Collisions
 					int _nbDeadSprites;
                     istringstream nbDeadSprites(word.substr(found + 16));
 					nbDeadSprites >> _nbDeadSprites;
-					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _nbDeadSprites));
+					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _nbDeadSprites));
                     continue;
                 }
 
@@ -162,7 +162,7 @@ namespace Collisions
 					int _vWalkingAnim;
                     istringstream vWalkingAnim(word.substr(found + 11));
 					vWalkingAnim >> _vWalkingAnim;
-					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::LAUNCHED, _vWalkingAnim));
+					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _vWalkingAnim));
                     continue;
                 }
 
@@ -173,7 +173,7 @@ namespace Collisions
 					int _vDeadAnim;
 					istringstream vDeadAnim(word.substr(found + 12));
                     vDeadAnim >> _vDeadAnim;
-					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::State::DEAD, _vDeadAnim));
+					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _vDeadAnim));
                 }
 
                 /* Add apparition_time and disappearing_time later */

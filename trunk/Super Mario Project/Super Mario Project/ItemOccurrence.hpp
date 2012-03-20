@@ -23,16 +23,16 @@ namespace Collisions
     {
 	
 	public:
-		enum State
+		typedef enum State
 		{
 			NORMAL,
 			GET_OUT_FROM_BLOC
-		};
+		} State;
 
 		ItemOccurrence(Item* item,
 			const string& textureName, 
-			Vector2f& position, 
-			Vector2f& speed, 
+			const Vector2f& position, 
+			const Vector2f& speed, 
 			State state, 
 			Side side, 
 			map<ItemOccurrence::State, int>& nbSpritesByState,

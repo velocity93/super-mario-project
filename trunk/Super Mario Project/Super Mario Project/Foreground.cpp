@@ -14,7 +14,7 @@ namespace Rendering
 {
 	Foreground::Foreground(const string& textureName) : Drawable("textures/backgrounds/" + textureName)
 	{ 
-		loadCfgForeground(textureName);
+		loadCfgForeground();
 	}
 
 	void Foreground::updateGraphicData(RenderWindow& app)
@@ -44,8 +44,8 @@ namespace Rendering
 		const sf::View& view = app.GetView();
 		const sf::Vector2f& center = view.GetCenter();
 		const sf::Vector2f& halfSize = view.GetHalfSize();
-		int width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
-		int height = _texture->getSprite().GetSize().y;
+		float width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
+		float height = _texture->getSprite().GetSize().y;
 
 		_isActive = _position.x >= (center.x - halfSize.x);
 		_isActive &= (_position.x + width) <= (center.x + halfSize.x);
@@ -53,7 +53,7 @@ namespace Rendering
 		_isActive &= (_position.y + height) <= (center.y - halfSize.y);
 	}
 
-	void Foreground::loadCfgForeground(const string& textureName)
+	void Foreground::loadCfgForeground()
 	{
 		string fileName = _texture->name() + ".obj";
 		ifstream stream(fileName.c_str());
@@ -65,13 +65,13 @@ namespace Rendering
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites=");
+				unsigned int found = word.find("nb_sprites=");
 				if(found != string::npos)
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 11));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+					_animation.addNbSpritesForGivenState(NORMAL, nb_sprites);
 
 					if(nb_sprites == 1)
 						break; /* No animation */
@@ -85,7 +85,7 @@ namespace Rendering
 					int frame_delay = 0;
 					istringstream frameDelay(word.substr(found + 12));
 					frameDelay >> frame_delay;
-					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
+					_animation.addFrameDelayForGivenState(NORMAL, frame_delay);
 				}
 			}
 		}

@@ -25,9 +25,9 @@ namespace Collisions
 		int getPhysic();
 		int getType();
 
-		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, Vector2f& position = Vector2f(0,0), Vector2f& speed = Vector2f(0,0), 
-			BlockOccurrence::State state = BlockOccurrence::State::UNMOVABLE,
-			BlockOccurrence::Side side = BlockOccurrence::Side::RIGHT_SIDE);
+		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
+			Collisions::BlockOccurrence::State state = Collisions::BlockOccurrence::UNMOVABLE,
+			Collisions::BlockOccurrence::Side side = Collisions::BlockOccurrence::RIGHT_SIDE);
 
 		void removeBlockOccurrence(const BlockOccurrence* block);
 

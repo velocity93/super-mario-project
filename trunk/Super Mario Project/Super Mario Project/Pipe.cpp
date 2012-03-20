@@ -69,7 +69,6 @@ namespace Collisions
 		{
 			if(_monsterExitDuration.GetElapsedTime() >= MONSTER_EXIT_TIME)
 			{
-				MonsterOccurrence* monsterOccurrence = nullptr;
 				switch(_direction)
 				{
 				case TO_TOP:
@@ -77,7 +76,7 @@ namespace Collisions
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						Vector2f(0, MONSTER_EXIT_SPEED), 
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
-						Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+						Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_BOTTOM:
@@ -85,7 +84,7 @@ namespace Collisions
 						 Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						 Vector2f(0, -MONSTER_EXIT_SPEED), 
 						 MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
-						 Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+						 Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_LEFT:
@@ -93,7 +92,7 @@ namespace Collisions
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
 						Vector2f(-MONSTER_EXIT_SPEED, 0),
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE,
-						Collisions::MonsterOccurrence::Side::LEFT_SIDE);
+						Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_RIGHT:
@@ -140,7 +139,7 @@ namespace Collisions
 
 			case TO_RIGHT:
 				sprite.FlipX(true);
-				sprite.SetCenter(0, sprite.GetImage()->GetHeight() / 2);
+				sprite.SetCenter(0.0f, sprite.GetImage()->GetHeight() / 2.0f);
 				sprite.Rotate(270);
 
 				/* Body */
@@ -159,7 +158,7 @@ namespace Collisions
 				break;
 
 			case TO_LEFT:
-				sprite.SetCenter(sprite.GetImage()->GetWidth(), 0);
+				sprite.SetCenter((float)sprite.GetImage()->GetWidth(), 0.0f);
 				sprite.Rotate(90);
 
 				/* Top of pipe */

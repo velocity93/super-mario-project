@@ -15,9 +15,9 @@ namespace Rendering
 	Background::Background(const string& textureName) : Drawable("textures/backgrounds/" + textureName), _verticalRepetition(false), _position(Vector2f(0,0))
 	{
 		/* Loading informations */
-		loadCfgBackground(textureName);
+		loadCfgBackground();
 
-		_animation.setCurrentState(State::NORMAL);
+		_animation.setCurrentState(NORMAL);
 	}
 
 	Background::Background(const string& textureName, Vector2f& position) : 
@@ -27,7 +27,7 @@ namespace Rendering
 	{
 
 		/* Loading informations */
-		loadCfgBackground(textureName);
+		loadCfgBackground();
 	}
 
 	bool Background::getVerticalRepetition()
@@ -35,7 +35,7 @@ namespace Rendering
 		return _verticalRepetition;
 	}
 
-	void Background::updateGraphicData(RenderWindow& app)
+	void Background::updateGraphicData(RenderWindow&/*app*/)
 	{
 		if(_isActive)
 			_animation.update();
@@ -54,7 +54,7 @@ namespace Rendering
 		file << "positionY=\"" << _position.y << "\"/>" << endl;
 	}
 
-	void Background::loadCfgBackground(const string& textureName)
+	void Background::loadCfgBackground()
 	{
 		string fileName = _texture->name() + ".obj";
 		ifstream stream(fileName.c_str());
@@ -66,13 +66,13 @@ namespace Rendering
 			/* We read file to search the keyword and read his value */
 			while(getline(stream, word))
 			{
-				int found = word.find("nb_sprites=");
+				unsigned int found = word.find("nb_sprites=");
 				if(found != string::npos)
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 11));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+					_animation.addNbSpritesForGivenState(NORMAL, nb_sprites);
 
 					if(nb_sprites == 1)
 						break; /* No animation */
@@ -86,7 +86,7 @@ namespace Rendering
 					int frame_delay = 0;
 					istringstream frameDelay(word.substr(found + 12));
 					frameDelay >> frame_delay;
-					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
+					_animation.addFrameDelayForGivenState(NORMAL, frame_delay);
 				}
 
 				found = word.find("vertical_repetition=");

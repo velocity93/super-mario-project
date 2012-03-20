@@ -26,8 +26,8 @@ namespace SuperMarioProject
 			if(_levelNames.size() > 0)
 			{
 				_level->loadLevel(_levelNames[0]);
-				_levelTree = new QuadTree(Vector2f(_level->getSize().x / 2,
-					_level->getSize().y / 2), _level->getSize(), 0);
+				_levelTree = new QuadTree(Vector2f(_level->getSize().x / 2.0f,
+					_level->getSize().y / 2.0f), _level->getSize(), 0);
 				/*_levelTree->buildTree(_level->getBlocksOccurrences());*/
 			}
 

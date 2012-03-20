@@ -21,7 +21,7 @@ namespace SuperMarioProject
 		static const int MAX_TREE = 100;
 		static const int MAX_DEPTH = 10;
 		static const int MIN_SIZE = 2;
-		QuadTree(sf::Vector2f& center, sf::Vector2i& size, int depth) :
+		QuadTree(const sf::Vector2f& center, const sf::Vector2i& size, int depth) :
 				_size(size), _center(center), _depth(depth),
 				_subTree1(nullptr), _subTree2(nullptr), _subTree3(nullptr), _subTree4(nullptr)
 				{ }

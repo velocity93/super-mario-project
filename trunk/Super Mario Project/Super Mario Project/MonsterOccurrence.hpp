@@ -49,8 +49,8 @@ namespace Collisions
 		MonsterOccurrence(
 			Monster* monster,
 			const string& textureName, 
-			Vector2f& position,
-			Vector2f& speed,
+			const Vector2f& position,
+			const Vector2f& speed,
 			MonsterOccurrence::State state,
 			MonsterOccurrence::Side side,
 			map<MonsterOccurrence::State, int>& nbSpritesByState,

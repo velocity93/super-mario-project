@@ -14,14 +14,14 @@ namespace Rendering
 {
 	Object::Object(const string& textureName) : Drawable("textures/objects/" + textureName)
 	{
-		loadCfgObject(textureName);
-		_animation.setCurrentState(State::NORMAL);
+		loadCfgObject();
+		_animation.setCurrentState(NORMAL);
 	}
 
 	Object::Object(const string& textureName,Vector2f& position) : Drawable("textures/objects/" + textureName, position)
 	{ 
-		loadCfgObject(textureName);
-		_animation.setCurrentState(State::NORMAL);
+		loadCfgObject();
+		_animation.setCurrentState(NORMAL);
 	}
 
 	void Object::updateGraphicData(RenderWindow& app)
@@ -51,8 +51,8 @@ namespace Rendering
 		const sf::View& view = app.GetView();
 		const sf::Vector2f& center = view.GetCenter();
 		const sf::Vector2f& halfSize = view.GetHalfSize();
-		int width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
-		int height = _texture->getSprite().GetSize().y;
+		float width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
+		float height = _texture->getSprite().GetSize().y;
 
 		_isActive = _position.x >= (center.x - halfSize.x);
 		_isActive &= (_position.x + width) <= (center.x + halfSize.x);
@@ -61,7 +61,7 @@ namespace Rendering
 
 	}
 
-	void Object::loadCfgObject(const string& textureName)
+	void Object::loadCfgObject()
 	{
 		string fileName = _texture->name() + ".obj";
 		ifstream file(fileName.c_str());
@@ -73,13 +73,13 @@ namespace Rendering
 			/* We read file to search the keyword and read his value */
 			while(getline(file, word))
 			{
-				int found = word.find("nb_sprites=");
+				unsigned int found = word.find("nb_sprites=");
 				if(found != string::npos)
 				{
 					int nb_sprites = 0;
 					istringstream nbSprites(word.substr(found + 11));
 					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(State::NORMAL, nb_sprites);
+					_animation.addNbSpritesForGivenState(NORMAL, nb_sprites);
 
 					if(nb_sprites == 1)
 						break; /* No animation */
@@ -93,7 +93,7 @@ namespace Rendering
 					int frame_delay = 0;
 					istringstream frameDelay(word.substr(found + 7));
 					frameDelay >> frame_delay;
-					_animation.addFrameDelayForGivenState(State::NORMAL, frame_delay);
+					_animation.addFrameDelayForGivenState(NORMAL, frame_delay);
 				}
 			}
 		}

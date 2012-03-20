@@ -92,7 +92,7 @@ namespace Rendering
 
 	void ReversedSprite::Render(sf::RenderTarget& target, sf::View& view)
 	{
-		setWindowsHeight(view.GetRect().GetHeight());
+		setWindowsHeight((int)view.GetRect().GetHeight());
 		Render(target);
 	}
 

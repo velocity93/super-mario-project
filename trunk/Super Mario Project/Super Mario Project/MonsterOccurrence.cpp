@@ -20,8 +20,8 @@ namespace Collisions
 	MonsterOccurrence::MonsterOccurrence(
 		Monster* monster,
 		const string& textureName, 
-		Vector2f& position,
-		Vector2f& speed,
+		const Vector2f& position,
+		const Vector2f& speed,
 		MonsterOccurrence::State state,
 		MonsterOccurrence::Side side,
 		map<MonsterOccurrence::State, int>& nbSpritesByState,
@@ -37,7 +37,7 @@ namespace Collisions
 
 		// Hitbox Definition
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _monster->getBottomLeft();
-		_hitboxSize.y = _texture->getImage()->GetHeight() / State::M_NB_STATES;
+		_hitboxSize.y = _texture->getImage()->GetHeight() / M_NB_STATES;
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()
@@ -62,12 +62,12 @@ namespace Collisions
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			if(infos[CollisionManager::Type::FROM_TOP] && _monster->canBeJumpedOn())
+			if(infos[CollisionManager::FROM_TOP] && _monster->canBeJumpedOn())
 			{
 				if(_monster->canBeKilledByJump())
-					setState(State::M_DEAD);
+					setState(M_DEAD);
 				else
-					setState(State::M_RETRACTED);
+					setState(M_RETRACTED);
 			}
 
 			return;
@@ -76,10 +76,10 @@ namespace Collisions
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
-			if(projectileOccurrence->getSender() == ProjectileOccurrence::Sender::GENTILE)
+			if(projectileOccurrence->getSender() == ProjectileOccurrence::GENTILE)
 			{
 				/* Launch Dead animation, but for the moment.... */
-				setState(State::M_DEAD);
+				setState(M_DEAD);
 				_monster->removeMonsterOccurrence(this);
 			}
 			return;
@@ -88,22 +88,22 @@ namespace Collisions
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			if(infos[CollisionManager::Type::FROM_BOTTOM])
+			if(infos[CollisionManager::FROM_BOTTOM])
 			{
 				_position.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_TOP])
+			if(infos[CollisionManager::FROM_TOP])
 			{
 				_position.y = pipe->getHitboxPosition().y - _hitboxSize.y;
 			}
 
-			if(infos[CollisionManager::Type::FROM_LEFT])
+			if(infos[CollisionManager::FROM_LEFT])
 			{
 				_position.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
 			}
 
-			if(infos[CollisionManager::Type::FROM_RIGHT])
+			if(infos[CollisionManager::FROM_RIGHT])
 			{
 				_position.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
 			}
