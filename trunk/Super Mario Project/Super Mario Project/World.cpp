@@ -28,7 +28,7 @@ namespace SuperMarioProject
 				_level->loadLevel(_levelNames[0]);
 				_levelTree = new QuadTree(Vector2f(_level->getSize().x / 2.0f,
 					_level->getSize().y / 2.0f), _level->getSize(), 0);
-				/*_levelTree->buildTree(_level->getBlocksOccurrences());*/
+				_levelTree->buildTree(_level->getBlocksOccurrences());
 			}
 
 			/* Add default perso */
@@ -56,17 +56,19 @@ namespace SuperMarioProject
 
 		_inputState.update();
 		
-		for (vector<Perso*>::iterator it = this->_persos.begin(); it != this->_persos.end(); ++it)
+		for (vector<Perso*>::iterator itPerso = this->_persos.begin(); itPerso != this->_persos.end(); ++itPerso)
 		{
-			(*it)->updatePerso(_elapsedTime, _inputState);
-
-			vector<BlockOccurrence*> blocks = _levelTree->getBlocks((*it)->getHitboxPosition(), (*it)->getHitboxSize());
+			(*itPerso)->updatePerso(_elapsedTime, _inputState);
+			
+			Vector2f position = Vector2f((*itPerso)->getHitboxPosition().x, (*itPerso)->getHitboxPosition().y);
+			
+			vector<BlockOccurrence*> blocks = _levelTree->getBlocks(position, (*itPerso)->getHitboxSize());
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
-				Collisions::CollisionManager::solveCollisions((*it), (*itBlocks), _level, app);
+				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks), _level, app);
 			}
 
-			(*it)->updateGraphicData(app);
+			(*itPerso)->updateGraphicData(app);
 		}
 
 		 _level->updatePhysicData(app); 
@@ -118,9 +120,9 @@ namespace SuperMarioProject
 
 	void World::render(RenderWindow& app)
 	{
-		this->_level->render(app);
+		_level->render(app);
 
-		//_levelTree->render(app);
+		_levelTree->render(app);
 
 		for (vector<Perso*>::iterator it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{

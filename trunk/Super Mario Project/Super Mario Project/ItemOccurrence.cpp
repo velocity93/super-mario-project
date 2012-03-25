@@ -36,7 +36,6 @@ namespace Collisions
 		_animation.setMapFrameDelay(frameDelayByState);
 		_animation.setCurrentState(_state);
 
-		typeid(&_position).name();
 		_position = _hitboxPosition = position;
 		_speed = _item->getInitialSpeed();
 		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax();
@@ -65,38 +64,75 @@ namespace Collisions
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
-			{
-				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
-			}
+			return onCollision(block, infos);
+		}
 
-			if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
-			{
-				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
-			}
-
-			if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
-			{
-				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
-			}
-
-			if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
-			{
-				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
-			}
-
-			return;
+		/* Collision vs BlockOccurrence */
+		Pipe* pipe = dynamic_cast<Pipe*>(c);
+		if(pipe != NULL)
+		{
+			return onCollision(pipe, infos);
 		}
 
 		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			_item->removeItemOccurrence(this);
-			return;
+			return onCollision(perso);
 		}
 	}
 
+	void ItemOccurrence::onCollision(Perso*)
+	{
+		_item->removeItemOccurrence(this);
+	}
+
+	void ItemOccurrence::onCollision(BlockOccurrence* block, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+		{
+			updatePositions(_position.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+		}
+
+		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+		{
+			updatePositions(_position.x, block->getHitboxPosition().y - _hitboxSize.y);
+		}
+
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _position.y);
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _position.y);
+		}
+	}
+	
+	void ItemOccurrence::onCollision(Pipe* pipe, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_BOTTOM])
+		{
+			updatePositions(_position.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+		}
+
+		if(infos[CollisionManager::FROM_TOP])
+		{
+			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+		}
+
+		if(infos[CollisionManager::FROM_LEFT])
+		{
+			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT])
+		{
+			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
+		}
+	}
+	
 	void ItemOccurrence::updatePhysicData(RenderWindow& app)
 	{
 		setActivity(app);

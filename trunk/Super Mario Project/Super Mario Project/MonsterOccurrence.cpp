@@ -36,7 +36,9 @@ namespace Collisions
 		_animation.setCurrentState(state);
 
 		// Hitbox Definition
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _monster->getBottomLeft();
+		_deltaX = _monster->getBottomLeft();
+		updatePositions(position.x, position.y);
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
 		_hitboxSize.y = _texture->getImage()->GetHeight() / M_NB_STATES;
 	}
 
@@ -62,52 +64,65 @@ namespace Collisions
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			if(infos[CollisionManager::FROM_TOP] && _monster->canBeJumpedOn())
-			{
-				if(_monster->canBeKilledByJump())
-					setState(M_DEAD);
-				else
-					setState(M_RETRACTED);
-			}
-
-			return;
+			return onCollision(perso, infos);
 		}
 
+		/* Collision vs Projectile */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
-			if(projectileOccurrence->getSender() == ProjectileOccurrence::GENTILE)
-			{
-				/* Launch Dead animation, but for the moment.... */
-				setState(M_DEAD);
-				_monster->removeMonsterOccurrence(this);
-			}
-			return;
+			return onCollision(projectileOccurrence);
 		}
 
+		/* Collision vs Pipe */
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			if(infos[CollisionManager::FROM_BOTTOM])
-			{
-				_position.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
-			}
+			return onCollision(pipe, infos);
+		}
+	}
 
-			if(infos[CollisionManager::FROM_TOP])
-			{
-				_position.y = pipe->getHitboxPosition().y - _hitboxSize.y;
-			}
+	void MonsterOccurrence::onCollision(Pipe* pipe, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_BOTTOM])
+		{
+			updatePositions(_position.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+		}
 
-			if(infos[CollisionManager::FROM_LEFT])
-			{
-				_position.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
-			}
+		if(infos[CollisionManager::FROM_TOP])
+		{
+			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+		}
 
-			if(infos[CollisionManager::FROM_RIGHT])
-			{
-				_position.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
-			}
-			return;
+		if(infos[CollisionManager::FROM_LEFT])
+		{
+			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT])
+		{
+			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
+		}
+	}
+	
+	void MonsterOccurrence::onCollision(ProjectileOccurrence* projectileOccurrence)
+	{
+		if(projectileOccurrence->getSender() == ProjectileOccurrence::GENTILE)
+		{
+			/* Launch Dead animation, but for the moment.... */
+			setState(M_DEAD);
+			_monster->removeMonsterOccurrence(this);
+		}
+	}
+	
+	void MonsterOccurrence::onCollision(Perso* , vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_TOP] && _monster->canBeJumpedOn())
+		{
+			if(_monster->canBeKilledByJump())
+				setState(M_DEAD);
+			else
+				setState(M_RETRACTED);
 		}
 	}
 

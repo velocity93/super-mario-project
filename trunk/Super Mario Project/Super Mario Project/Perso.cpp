@@ -211,15 +211,14 @@ namespace Collisions
 
 		/* Save actual position as previous position */
 		_previousHitboxPosition = _hitboxPosition;
+		_previousPosition = _position;
 
-		_hitboxPosition.x = _hitboxPosition.x + time * _speed.x;
-		_hitboxPosition.y = _hitboxPosition.y + time * _speed.y;
+		updatePositions(_position.x + time * _speed.x, _position.y + time * _speed.y);
 		
 		/* Compute new position */
 		if(_hitboxPosition.y <= 0)
 		{
-			_hitboxPosition.y = 0;
-			_speed.y = 0;
+			updatePositions(_position.x, 0);
 			_environment = GROUND;
 		}
 	}
@@ -280,7 +279,14 @@ namespace Collisions
 
 	void Perso::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
+		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+
+		app.Draw(sf::Shape::Rectangle(
+			_hitboxPosition.x, 
+			_hitboxPosition.y, 
+			_hitboxPosition.x + _hitboxSize.x, 
+			_hitboxPosition.y + _hitboxSize.y,
+			sf::Color(0, 255, 0, 128)));
 	}
 
 	void Perso::lateral_move(float time, InputState& inputState)
@@ -386,7 +392,7 @@ namespace Collisions
 				else// if(_specialAttackTime. && !_attackTime)
 				{
 
-					if(_broughtMonster == nullptr) 
+					if(_broughtMonster == nullptr)
 					{
 						if(_state == CLIMB_LADDER)
 						{
@@ -509,121 +515,35 @@ namespace Collisions
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
-			{
-				_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
-				_environment = GROUND;
-			}
-
-			if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
-			{
-				_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
-			}
-
-			if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
-			{
-				_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
-			}
-
-			if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
-			{
-				_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
-			}
-
-			return;
+			return onCollision(block, infos);
 		}
 
 		/* Collision with an Item */
 		ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
 		if(itemOccurrence != NULL)
 		{
-			Item* item = itemOccurrence->getModel();
-			switch(item->getType())
-			{
-			case Item::COIN:
-				_hud->addCoin();
-				break;
-
-			case Item::MUSHROOM:
-				transform(SUPER_MARIO);
-				break;
-
-			case Item::FLOWER:
-				transform(FIRE_MARIO);
-				break;
-
-			case Item::ICE_FLOWER:
-				transform(ICE_MARIO);
-				break;
-
-			case Item::MINI_MUSHROOM:
-				transform(MINI_MARIO);
-				break;
-
-			case Item::POISON_MUSHROOM:
-				hurted();
-				break;
-
-			case Item::STAR:
-				_invincibleStarTime.Reset();
-				break;
-
-			case Item::LIFE_MUSHROOM:
-				_hud->addLife();
-				break;
-
-			default:
-				break;
-			}
-
-			return;
+			return onCollision(itemOccurrence);
 		}
 
 		/* Collision with a ProjectileOccurrence */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
-			if(projectileOccurrence->getSender() == ProjectileOccurrence::VILAIN)
-			{
-				hurted();
-			}
-			return;
+			return onCollision(projectileOccurrence);
 		}
 
 		/* Collision with a Pipe */
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			if(infos[CollisionManager::FROM_BOTTOM])
-			{
-				_hitboxPosition.y = pipe->getHitboxPosition().y + pipe->getHitboxSize().y;
-			}
-
-			if(infos[CollisionManager::FROM_TOP])
-			{
-				_hitboxPosition.y = pipe->getHitboxPosition().y - _hitboxSize.y;
-			}
-
-			if(infos[CollisionManager::FROM_LEFT])
-			{
-				_hitboxPosition.x = pipe->getHitboxPosition().x + pipe->getHitboxSize().x;
-			}
-
-			if(infos[CollisionManager::FROM_RIGHT])
-			{
-				_hitboxPosition.x = pipe->getHitboxPosition().x - pipe->getHitboxSize().x;
-			}
-			return;
+			return onCollision(pipe, infos);
 		}
 
 		/* Collision with a MonsterOccurrence */
 		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
 		if(monsterOccurrence != NULL)
 		{
-			Monster* monster = monsterOccurrence->getModel();
-			if(infos[CollisionManager::FROM_BOTTOM] && !monster->canBeJumpedOn())
-				hurted();
-			return;
+			return onCollision(monsterOccurrence, infos);
 		}
 
 		/* Collision with Checkpoint */
@@ -632,6 +552,112 @@ namespace Collisions
 		{
 			checkpoint->setState(Checkpoint::PASSED);
 		}
+	}
+
+	void Perso::onCollision(Pipe* pipe, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_BOTTOM])
+		{
+			updatePositions(_position.x ,pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+		}
+
+		if(infos[CollisionManager::FROM_TOP])
+		{
+			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+		}
+
+		if(infos[CollisionManager::FROM_LEFT])
+		{
+			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT])
+		{
+			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
+		}
+	}
+
+	void Perso::onCollision(ProjectileOccurrence* projectileOccurrence)
+	{
+		if(projectileOccurrence->getSender() == ProjectileOccurrence::VILAIN)
+		{
+			hurted();
+		}
+	}
+
+	void Perso::onCollision(MonsterOccurrence* monsterOccurrence, vector<bool>& infos)
+	{
+		Monster* monster = monsterOccurrence->getModel();
+		if(infos[CollisionManager::FROM_BOTTOM] && !monster->canBeJumpedOn())
+			hurted();
+	}
+
+	void Perso::onCollision(ItemOccurrence* itemOccurrence)
+	{
+		Item* item = itemOccurrence->getModel();
+		switch(item->getType())
+		{
+		case Item::COIN:
+			_hud->addCoin();
+			break;
+
+		case Item::MUSHROOM:
+			transform(SUPER_MARIO);
+			break;
+
+		case Item::FLOWER:
+			transform(FIRE_MARIO);
+			break;
+
+		case Item::ICE_FLOWER:
+			transform(ICE_MARIO);
+			break;
+
+		case Item::MINI_MUSHROOM:
+			transform(MINI_MARIO);
+			break;
+
+		case Item::POISON_MUSHROOM:
+			hurted();
+			break;
+
+		case Item::STAR:
+			_invincibleStarTime.Reset();
+			break;
+
+		case Item::LIFE_MUSHROOM:
+			_hud->addLife();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	void Perso::onCollision(BlockOccurrence* block, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		{
+			updatePositions(_position.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			_environment = GROUND;
+		}
+
+		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		{
+			updatePositions(_position.x, block->getHitboxPosition().y - _hitboxSize.y);
+		}
+
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _position.y);
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _position.y);
+		}
+
+		return;
 	}
 
 	void Perso::frictions(float time)
@@ -692,7 +718,7 @@ namespace Collisions
 
 	void Perso::loadPerso(const string& textureName)
 	{
-		int abscisse_bas = 0, ordonnee_haut = 0;
+		int ordonnee_haut = 0;
 
 		string fileName = textureName + ".perso";
 		ifstream stream(fileName.c_str());
@@ -709,7 +735,7 @@ namespace Collisions
 				if(found != string::npos)
 				{
 					istringstream abscisseBas(word.substr(found + 13));
-					abscisseBas >> abscisse_bas;
+					abscisseBas >> _deltaX;
 					continue;
 				}
 				
@@ -1068,7 +1094,7 @@ namespace Collisions
 			}
 			
 			/* Compute Hitbox Size */
-			_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * abscisse_bas;
+			_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
 			_hitboxSize.y = ordonnee_haut;
 		}
 		else

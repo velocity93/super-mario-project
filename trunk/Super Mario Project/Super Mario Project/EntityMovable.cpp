@@ -20,24 +20,14 @@ namespace Collisions
 		return _previousHitboxPosition;
 	}
 
-	Vector2f& EntityMovable::getSpeed()
+	void EntityMovable::updatePositions(float positionX, float positionY)
 	{
-		return _speed;
-	}
+		setPositionX(positionX);
+		setPositionY(positionY);
 
-	EntityMovable::Side EntityMovable::getSide()
-	{
-		return _side;
-	}
-
-	void EntityMovable::setSpeed(const Vector2f& speed)
-	{
-		_speed = speed;
-	}
-
-	void EntityMovable::setSide(const Side &side)
-	{
-		_side = side;
+		/* Update hitbox position */
+		_hitboxPosition.x = _position.x + _deltaX;
+		_hitboxPosition.y = _position.y;
 	}
 
 	void EntityMovable::gravity(Vector2f &speed, float time)

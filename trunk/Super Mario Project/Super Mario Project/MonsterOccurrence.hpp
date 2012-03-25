@@ -19,6 +19,10 @@
 namespace Collisions
 {
 	class Monster;
+	class Perso;
+	class Pipe;
+	class BlockOccurrence;
+	class ProjectileOccurrence;
 	class MonsterOccurrence : public EntityMovable
 	{
 
@@ -74,6 +78,13 @@ namespace Collisions
 		Monster* _monster;
 		Vector2f _initialPosition;
 		State _state;
+
+		/* Collisions resolutions */
+		void onCollision(Perso* perso, vector<bool>& infos);
+		void onCollision(Pipe* pipe, vector<bool>& infos);
+		void onCollision(ProjectileOccurrence* projectileOccurrence);
+		void onCollision(BlockOccurrence* block, vector<bool>& infos);
+		void onCollision(MonsterOccurrence* monsterOccurrence, vector<bool>& infos);
 	};
 } // namespace
 

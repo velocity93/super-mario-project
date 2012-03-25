@@ -37,9 +37,10 @@ namespace Collisions
 		_animation.setCurrentState(state);
 
 		/* Hitbox */
-		_position = position;
+		_deltaX = _projectile->getBottomLeft();
+		updatePositions(position.x, position.y);
 		_hitboxSize.y = _projectile->getTop();
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _projectile->getBottomLeft();
+		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
 	}
 
 	ProjectileOccurrence::State ProjectileOccurrence::getState()

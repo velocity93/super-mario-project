@@ -23,6 +23,9 @@ namespace Collisions
 	class Pipe;
 	class Checkpoint;
 	class MonsterOccurrence;
+	class ProjectileOccurrence;
+	class BlockOccurrence;
+	class ItemOccurrence;
 	class Perso : public EntityMovable
     {
 
@@ -196,6 +199,13 @@ namespace Collisions
 
 		/* Update character state when he is inside a pipe */
 		void updateInPipe();
+
+		/* Resolve Collisions */
+		void onCollision(BlockOccurrence* blockOccurrence, vector<bool>& infos);
+		void onCollision(MonsterOccurrence* monsteroccurrence, vector<bool>& infos);
+		void onCollision(ItemOccurrence* itemOccurrence);
+		void onCollision(ProjectileOccurrence* projectile);
+		void onCollision(Pipe* pipe, vector<bool>& infos);
 
     };
 } // namespace
