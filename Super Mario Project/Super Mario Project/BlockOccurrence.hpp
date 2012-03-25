@@ -57,6 +57,9 @@ namespace Collisions
 		Block* _alternativeBlock;
 		Perso* _perso;
 		Item* _itemContained;
+
+		/* Collisions resolutions */
+		void onCollision(Perso* perso, vector<bool>& infos);
     };
 } // namespace
 

@@ -18,6 +18,8 @@
 namespace Collisions
 {
 	class Item;
+	class Pipe;
+	class Perso;
 	class BlockOccurrence;
 	class ItemOccurrence : public EntityMovable
     {
@@ -56,6 +58,11 @@ namespace Collisions
 		State _state;		
 		PausableClock _blockExitTime;
 		Item* _item;
+
+		/* Collisions resolutions */
+		void onCollision(Perso*);
+		void onCollision(Pipe* p, vector<bool>& infos);
+		void onCollision(BlockOccurrence* block, vector<bool>& infos);
     };
 } // namespace
 

@@ -30,15 +30,13 @@ namespace Collisions
 			_previousPosition(position),
 			_previousHitboxPosition(position),
 			_speed(speed), 
-			_side(side) { }
+			_side(side),
+			_deltaX(0) { }
 
 		/* getters and setters */
 		Vector2f& getPreviousPosition();
 		Vector2f& getPreviousHitboxPosition();
-		Vector2f& getSpeed();
-		Side getSide();
-		void setSpeed(const Vector2f& speed);
-		void setSide(const Side &side);
+		void updatePositions(float positionX, float positionY);
 
 		virtual void onCollision(Collisionable* c, vector<bool>& infos) = 0;
 		virtual void updatePhysicData(RenderWindow& app) = 0;
@@ -51,6 +49,7 @@ namespace Collisions
 		Vector2f _previousHitboxPosition;
 		Vector2f _speed;
 		Side _side;
+		int _deltaX;
 
 		void gravity(Vector2f &speed, float time);
     };

@@ -6,6 +6,7 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "CollisionManager.hpp"
 #include "BlockOccurrence.hpp"
 #include "Block.hpp"
 #include "Tileset.hpp"
@@ -61,16 +62,26 @@ namespace Collisions
 		return _actualBlock;
 	}
 
-	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>&/*infos*/)
+	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
+		/* Collisions vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			return;
+			return onCollision(perso, infos);
 		}
 	}
 
-	void BlockOccurrence::updateGraphicData(RenderWindow&/*app*/)
+	void BlockOccurrence::onCollision(Perso* , vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_TOP] && !(_actualBlock->getType() & BlocksConstants::BLOCK_TYPE_EMPTY))
+		{
+			/* Normally, according to block type,  we do a specific action but now, we have only BLOCK_TYPE_EMPTY types */
+			_actualBlock->removeBlockOccurrence(this);
+		}
+	}
+
+	void BlockOccurrence::updateGraphicData(RenderWindow& )
 	{
 		if(_isActive && _animation.getNbSpritesMax() > 1)
 		{
