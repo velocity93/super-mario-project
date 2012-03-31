@@ -27,7 +27,7 @@ namespace SuperMarioProject
 				{ }
 
 		void buildTree(vector<Collisions::BlockOccurrence*>& obj);
-		vector<Collisions::BlockOccurrence*>& getBlocks(sf::Vector2f& position, sf::Vector2i& size);
+		void getBlocks(sf::Vector2f& position, sf::Vector2i& size, vector<Collisions::BlockOccurrence*>* blocks);
 
 		bool isLeaf();
 		void render(RenderWindow& app);

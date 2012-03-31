@@ -213,12 +213,12 @@ namespace Collisions
 		_previousHitboxPosition = _hitboxPosition;
 		_previousPosition = _position;
 
-		updatePositions(_position.x + time * _speed.x, _position.y + time * _speed.y);
+		updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 		
 		/* Compute new position */
 		if(_hitboxPosition.y <= 0)
 		{
-			updatePositions(_position.x, 0);
+			updatePositions(_hitboxPosition.x, 0);
 			_environment = GROUND;
 		}
 	}
@@ -636,25 +636,26 @@ namespace Collisions
 
 	void Perso::onCollision(BlockOccurrence* block, vector<bool>& infos)
 	{
-		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
-			updatePositions(_position.x, block->getHitboxPosition().y + block->getHitboxSize().y);
-			_environment = GROUND;
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
 		}
 
 		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
-			updatePositions(_position.x, block->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
-			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _position.y);
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _position.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			_environment = GROUND;
 		}
 
 		return;

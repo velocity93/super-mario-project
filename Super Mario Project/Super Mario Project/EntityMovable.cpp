@@ -22,12 +22,12 @@ namespace Collisions
 
 	void EntityMovable::updatePositions(float positionX, float positionY)
 	{
-		setPositionX(positionX);
-		setPositionY(positionY);
-
 		/* Update hitbox position */
-		_hitboxPosition.x = _position.x + _deltaX;
-		_hitboxPosition.y = _position.y;
+		_hitboxPosition.x = positionX;
+		_hitboxPosition.y = positionY;
+
+		setPositionX(_hitboxPosition.x - _deltaX);
+		setPositionY(_hitboxPosition.y);
 	}
 
 	void EntityMovable::gravity(Vector2f &speed, float time)
