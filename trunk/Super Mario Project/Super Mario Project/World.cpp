@@ -52,8 +52,6 @@ namespace SuperMarioProject
 
 	void World::update(RenderWindow& app)
 	{
-		//_level->updatePhysicData(app);
-
 		_inputState.update();
 		
 		for (vector<Perso*>::iterator itPerso = this->_persos.begin(); itPerso != this->_persos.end(); ++itPerso)
@@ -62,7 +60,8 @@ namespace SuperMarioProject
 			
 			Vector2f position = Vector2f((*itPerso)->getHitboxPosition().x, (*itPerso)->getHitboxPosition().y);
 			
-			vector<BlockOccurrence*> blocks = _levelTree->getBlocks(position, (*itPerso)->getHitboxSize());
+			vector<BlockOccurrence*> blocks;
+			_levelTree->getBlocks(position, (*itPerso)->getHitboxSize(), &blocks);
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
 				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks), _level, app);

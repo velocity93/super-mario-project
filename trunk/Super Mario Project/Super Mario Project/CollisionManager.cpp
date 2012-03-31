@@ -27,6 +27,10 @@ namespace Collisions
 	void CollisionManager::solveCollisions(EntityMovable* et1, Collisionable* c2, Level*, RenderWindow&)
 	{
 		vector<bool> infos;
+
+		/* Initialize collisions infos */
+		for(int i = 0; i < COLLISION_CASES; ++i)
+			infos.push_back(false);
 		
 		if(detectCollisions(et1, c2, infos))
 		{
@@ -37,6 +41,10 @@ namespace Collisions
 	void CollisionManager::solveCollisions(EntityMovable* et1, EntityMovable* et2, Level*, RenderWindow&)
 	{
 		vector<bool> infos;
+
+		/* Initialize collisions infos */
+		for(int i = 0; i < COLLISION_CASES; ++i)
+			infos.push_back(false);
 		
 		if(detectCollisions(et1, et2, infos))
 		{
@@ -56,38 +64,38 @@ namespace Collisions
 			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y + c2->getHitboxSize().y, 
 			c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y);
 		bool collisionDetected = false;
-
-		if(r1Prec.Left <= r2.Right && r1.Left >= r2.Right)
-		{
-			collisionDetected = true;
-			collisions_info.push_back(true);
-		}
-		else
-			collisions_info.push_back(false);
 		
-		if(r1Prec.Top <= r2.Bottom && r1.Top >= r2.Bottom)
+		/* Collision from left */
+		if(r1Prec.Left >= r2.Right && r1.Left <= r2.Right)
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_LEFT] = true;
 		}
-		else
-			collisions_info.push_back(false);
+		
+		/* Collision from Top */
+		if(r1Prec.Top <= r2.Bottom && r1.Top >= r2.Bottom
+			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
+			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
+		{
+			collisionDetected = true;
+			collisions_info[FROM_TOP] = true;
+		}
 
+		/* Collision from right */
 		if(r1Prec.Right <= r2.Left && r1.Right >= r2.Left)
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_RIGHT] = true;
 		}
-		else
-			collisions_info.push_back(false);
 
-		if(r1Prec.Bottom >= r2.Top && r1.Bottom <= r2.Top)
+		/* Collision from bottom */
+		if(r1Prec.Bottom >= r2.Top && r1.Bottom <= r2.Top
+			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
+			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_BOTTOM] = true;
 		}
-		else
-			collisions_info.push_back(false);
 
 		return collisionDetected;
 	}
@@ -107,40 +115,39 @@ namespace Collisions
 			et2->getPreviousHitboxPosition().x + et2->getHitboxSize().x, et2->getPreviousHitboxPosition().y);
 		bool collisionDetected = false;
 
-		if(r1Prec.Left <= r2Prec.Right && r1.Left >= r2.Right)
+		/* Collision from left */
+		if(r1Prec.Left >= r2Prec.Right && r1.Left <= r2.Right)
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_LEFT] = true;
 		}
-		else
-			collisions_info.push_back(false);
 		
-		if(r1Prec.Top <= r2Prec.Bottom && r1.Top >= r2.Bottom)
+		/* Collision from Top */
+		if(r1Prec.Top <= r2Prec.Bottom && r1.Top >= r2.Bottom
+			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
+			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_TOP] = true;
 		}
-		else
-			collisions_info.push_back(false);
 
+		/* Collision from right */
 		if(r1Prec.Right <= r2Prec.Left && r1.Right >= r2.Left)
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_RIGHT] = true;
 		}
-		else
-			collisions_info.push_back(false);
 
-		if(r1Prec.Bottom >= r2Prec.Top && r1.Bottom <= r2.Top)
+		/* Collision from bottom */
+		if(r1Prec.Bottom >= r2Prec.Top && r1.Bottom <= r2.Top
+			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
+			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
 		{
 			collisionDetected = true;
-			collisions_info.push_back(true);
+			collisions_info[FROM_BOTTOM] = true;
 		}
-		else
-			collisions_info.push_back(false);
 
 		return collisionDetected;
-
 	}
 
 	CollisionManager::~CollisionManager()

@@ -105,43 +105,60 @@ namespace SuperMarioProject
 		}
 	}
 
-	vector<Collisions::BlockOccurrence*>& QuadTree::getBlocks(sf::Vector2f& position, sf::Vector2i& size)
+	void QuadTree::getBlocks(sf::Vector2f& position, sf::Vector2i& size, vector<Collisions::BlockOccurrence*>* blocks)
 	{
-
-		if(position.x >= _center.x - _size.x / 2 && position.x <= _center.x)
+		if(!isLeaf())
 		{
 			/* Left side */
-			if(position.y >= _center.y - _size.x / 2 && position.y <= _center.y)
+			if((position.x >= _center.x - _size.x / 2 && position.x <= _center.x)
+				|| (position.x + size.x >= _center.x - _size.x / 2 && position.x + size.x <= _center.x))
 			{
-				/* subTree 3 */
-				if(_subTree3 != NULL)
-					return _subTree3->getBlocks(position, size);
+				if(position.y >= _center.y - _size.y / 2 && position.y <= _center.y)
+				{
+					/* subTree 3 */
+					if(_subTree3 != NULL)
+					{
+						_subTree3->getBlocks(position, size, blocks);
+					}
+				}
+
+				if(position.y + size.y >= _center.y  && position.y + size.y <= _center.y + size.y / 2)
+				{
+					/* subTree 1 */
+					if(_subTree1 != NULL)
+					{
+						_subTree1->getBlocks(position, size, blocks);
+					}
+				}
 			}
-			else
+
+			/* Right side */
+			if((position.x + size.x >= _center.x && position.x + size.x <= _center.x + _size.x / 2)
+				|| (position.x >= _center.x && position.x <= _center.x + _size.x / 2))
 			{
-				/* subTree 1 */
-				if(_subTree1 != NULL)
-					return _subTree1->getBlocks(position, size);
+				if(position.y >= _center.y - _size.y / 2 && position.y <= _center.y)
+				{
+					/* subTree 4 */
+					if(_subTree4 != NULL)
+					{
+						_subTree4->getBlocks(position, size, blocks);
+					}
+				}
+
+				if(position.y + size.y >= _center.y && position.y + size.y <= _center.y + _size.y / 2)
+				{
+					/* subTree 2 */
+					if(_subTree2 != NULL)
+					{
+						_subTree2->getBlocks(position, size, blocks);
+					}
+				}
 			}
 		}
 		else
 		{
-			/* Right side */
-			if(position.y >= _center.y - _size.x / 2 && position.y <= _center.y)
-			{
-				/* subTree 4 */
-				if(_subTree4 != NULL)
-					return _subTree4->getBlocks(position, size);
-			}
-			else
-			{
-				/* subTree 2 */
-				if(_subTree2 != NULL)
-					return _subTree2->getBlocks(position, size);
-			}
+			blocks->insert(blocks->end(), _elements.begin(), _elements.end());
 		}
-
-		return _elements;
 	}
 
 	void QuadTree::render(RenderWindow& app)

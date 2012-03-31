@@ -26,11 +26,12 @@ namespace Collisions
 			FROM_RIGHT,
 			FROM_BOTTOM,
 			SUPERPOSITION,
+			COLLISION_CASES,
 			INCLINE_FROM_BOTTOM,
 			INCLINE_FROM_LEFT,
 			INCLINE_FROM_RIGHT,
 			NONE_COLLISION
-		}Type;
+		} Type;
 	
 		static CollisionManager* getManager();
 
