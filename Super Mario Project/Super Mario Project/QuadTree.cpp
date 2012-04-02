@@ -122,7 +122,7 @@ namespace SuperMarioProject
 					}
 				}
 
-				if(position.y + size.y >= _center.y  && position.y + size.y <= _center.y + size.y / 2)
+				if(position.y + size.y >= _center.y  && position.y + size.y <= _center.y + _size.y / 2)
 				{
 					/* subTree 1 */
 					if(_subTree1 != NULL)
