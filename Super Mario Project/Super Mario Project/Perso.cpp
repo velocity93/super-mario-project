@@ -120,7 +120,7 @@ namespace Collisions
 		_animation.update();
 	}
 
-	void Perso::updatePhysicData(RenderWindow&)
+	void Perso::updatePhysicData(float, RenderWindow&)
 	{
 		// NOTHING
 	}
@@ -525,7 +525,7 @@ namespace Collisions
 			return onCollision(itemOccurrence);
 		}
 
-		/* Collision with a ProjectileOccurrence */
+		/* Collision with a Projectile */
 		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
 		if(projectileOccurrence != NULL)
 		{
@@ -636,9 +636,9 @@ namespace Collisions
 
 	void Perso::onCollision(BlockOccurrence* block, vector<bool>& infos)
 	{
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
-			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 		}
 
 		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
@@ -647,9 +647,9 @@ namespace Collisions
 			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
-			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
 		}
 
 		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
@@ -657,8 +657,6 @@ namespace Collisions
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 			_environment = GROUND;
 		}
-
-		return;
 	}
 
 	void Perso::frictions(float time)

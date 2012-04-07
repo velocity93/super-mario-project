@@ -65,7 +65,7 @@ namespace Collisions
 		_projectile->removeProjectileOccurrence(this);
 	}
 
-	void ProjectileOccurrence::updatePhysicData(RenderWindow& app)
+	void ProjectileOccurrence::updatePhysicData(float time, RenderWindow& app)
 	{
 		setActivity(app);
 
@@ -73,21 +73,20 @@ namespace Collisions
 		{
 			if(_lifeTime.GetElapsedTime() > 0)
 			{
-				/* If it falls in hole */
-				if(_hitboxPosition.y + _hitboxSize.y < 0)
-					_projectile->removeProjectileOccurrence(this);
-
 				/* Submissions */
 				if(_projectile->getSubmission() & PhysicConstants::GRAVITY_SUBMISSION)
-					gravity(_speed, app.GetFrameTime());
+					gravity(_speed, time);
 
 				/* Update physic position */
 				/* Save actual position in previous position */
 				_previousPosition = _position;
 
 				/* Compute new position */
-				_position.x = _position.x + _speed.x * app.GetFrameTime();
-				_position.y = _position.y + _speed.y * app.GetFrameTime();
+				updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
+
+				/* If it falls in hole */
+				if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_projectile->removeProjectileOccurrence(this);
 			}
 			else
 			{

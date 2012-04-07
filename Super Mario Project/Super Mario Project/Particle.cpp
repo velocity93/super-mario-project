@@ -22,10 +22,10 @@ namespace Collisions
 		// NOTHING TO DO !
 	}
 
-	void Particle::updatePhysicData(RenderWindow& app)
+	void Particle::updatePhysicData(float time, RenderWindow&)
 	{
 		if(_isActive)
-			update(app.GetFrameTime(), false);
+			update(time, false);
 	}
 
 	void Particle::updateGraphicData(RenderWindow&)

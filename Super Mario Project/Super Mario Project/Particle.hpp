@@ -28,7 +28,7 @@ namespace Collisions
 		int getLife();
 
 		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(RenderWindow&);
+		void updatePhysicData(float time, RenderWindow&);
 		void update(float time, bool hasGravity);
 		void render(RenderWindow& app);
 		void onCollision(Collisionable *c, vector<bool>& infos);

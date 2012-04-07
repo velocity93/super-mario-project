@@ -9,6 +9,8 @@
 #include "Level.hpp"
 #include "XMLParser.hpp"
 #include "MonsterTypes.hpp"
+#include "CollisionManager.hpp"
+#include "QuadTree.hpp"
 
 namespace SuperMarioProject
 {
@@ -22,7 +24,7 @@ namespace SuperMarioProject
 		return _musicTitle;
 	}
 
-	Vector2i& Level::getSpawn()
+	Vector2f& Level::getSpawn()
 	{
 		return _spawn;
 	}
@@ -106,12 +108,12 @@ namespace SuperMarioProject
 		_name = name;
 	}
 
-	void Level::setSpawnX(int x)
+	void Level::setSpawnX(float x)
 	{
 		_spawn.x = x;
 	}
 
-	void Level::setSpawnY(int y)
+	void Level::setSpawnY(float y)
 	{
 		_spawn.y = y;
 	}
@@ -432,41 +434,7 @@ namespace SuperMarioProject
 		}
 	}
 
-	void Level::updatePhysicData(RenderWindow& app)
-	{
-		/* Items */
-		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
-		{
-			(*itItems)->updatePhysicData(app);
-		}
-
-		/* Monsters */
-		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
-		{
-			(*itMonsters)->updatePhysicData(app);
-		}
-
-		/* Projectiles */
-		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
-		{
-			(*itProjectiles)->updatePhysicData(app);
-		}
-		
-		/* Pipes */
-		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
-		{
-			(*itPipes)->updatePhysicData(app);
-		}
-
-		/* BlockOccurence */
-		vector<BlockOccurrence*>::iterator blockSize = _blocksOccurrences.end();
-		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != blockSize; ++itBlockOccurrence)
-		{
-			(*itBlockOccurrence)->updatePhysicData(app);
-		}
-	}
-
-	void Level::updateGraphicData(RenderWindow& app)
+	void Level::update(float time, QuadTree* tree, RenderWindow& app)
 	{
 		/* Backgrounds */
 		for(vector<Background*>::iterator itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); ++itBackgrounds)
@@ -474,34 +442,118 @@ namespace SuperMarioProject
 			(*itBackgrounds)->updateGraphicData(app);
 		}
 
-		/* Foregrounds */
-		for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
-		{
-			(*itForegrounds)->updateGraphicData(app);
-		}
-
 		/* Items */
 		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
-		{
-			(*itItems)->updateGraphicData(app);
+		{			
+			vector<ItemOccurrence*>& itemOccurrences = (*itItems)->getItemOccurrences();
+			for(vector<ItemOccurrence*>::iterator itItemOccurrences = itemOccurrences.begin();
+				itItemOccurrences != itemOccurrences.end(); ++itItemOccurrences)
+			{
+				ItemOccurrence* itemOccurrence = (*itItemOccurrences);
+
+				/* Update Physic */
+				itemOccurrence->updatePhysicData(time, app);
+
+				/* If item is in the view */
+				if(itemOccurrence->isActive())
+				{
+					/* Search in level QuadTree, all blocks will be able to have a collision with him */
+					Vector2f position = Vector2f(itemOccurrence->getHitboxPosition().x, itemOccurrence->getHitboxPosition().y);
+
+					vector<BlockOccurrence*> blocks;
+					tree->getBlocks(position, itemOccurrence->getHitboxSize(), &blocks);
+
+					/* Resolve these collisions if able */
+					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
+					{
+						Collisions::CollisionManager::solveCollisions(itemOccurrence, (*itBlocks), this, app);
+					}
+
+					/* Update Graphic */
+					itemOccurrence->updateGraphicData(app);
+				}
+			}
 		}
 
-		/* Monsters */
+		/* Monster */
 		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
 		{
-			(*itMonsters)->updateGraphicData(app);
+			vector<MonsterOccurrence*>& monsterOccurrences = (*itMonsters)->getMonsterOccurrences();
+			for(vector<MonsterOccurrence*>::iterator itMonsterOccurrence = monsterOccurrences.begin();
+				itMonsterOccurrence != monsterOccurrences.end(); ++itMonsterOccurrence)
+			{
+				MonsterOccurrence* monsterOccurrence = (*itMonsterOccurrence);
+
+				/* Update Physic */
+				monsterOccurrence->updatePhysicData(time, app);
+
+				/* If monster is in the view */
+				if(monsterOccurrence->isActive())
+				{
+					/* Search in level QuadTree, all blocks will be able to have a collision with him */
+					Vector2f position = Vector2f(monsterOccurrence->getHitboxPosition().x, monsterOccurrence->getHitboxPosition().y);
+
+					vector<BlockOccurrence*> blocks;
+					tree->getBlocks(position, monsterOccurrence->getHitboxSize(), &blocks);
+					
+					/* Resolve these collisions if able */
+					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
+					{
+						Collisions::CollisionManager::solveCollisions(monsterOccurrence, (*itBlocks), this, app);
+					}
+
+					/* Update Graphic */
+					monsterOccurrence->updateGraphicData(app);
+				}
+			}
 		}
 
 		/* Projectiles */
 		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
-		{
-			(*itProjectiles)->updateGraphicData(app);
+		{			
+			vector<ProjectileOccurrence*>& projectileOccurrences = (*itProjectiles)->getProjectileOccurrences();
+			for(vector<ProjectileOccurrence*>::iterator itProjectileOccurrences = projectileOccurrences.begin();
+				itProjectileOccurrences != projectileOccurrences.end(); ++itProjectileOccurrences)
+			{
+				ProjectileOccurrence* projectileOccurrence = (*itProjectileOccurrences);
+
+				/* Update Physic */
+				projectileOccurrence->updatePhysicData(time, app);
+
+				/* If projectile is in the view */
+				if(projectileOccurrence->isActive())
+				{
+					/* Search in level QuadTree, all blocks will be able to have a collision with him */
+					Vector2f position = Vector2f(projectileOccurrence->getHitboxPosition().x, projectileOccurrence->getHitboxPosition().y);
+
+					vector<BlockOccurrence*> blocks;
+					tree->getBlocks(position, projectileOccurrence->getHitboxSize(), &blocks);
+					
+					/* Resolve these collisions if able*/
+					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
+					{
+						Collisions::CollisionManager::solveCollisions(projectileOccurrence, (*itBlocks), this, app);
+					}
+
+					/* Update Graphic */
+					projectileOccurrence->updateGraphicData(app);
+				}
+			}
 		}
-		
+
 		/* Pipes */
 		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
 		{
+			(*itPipes)->updatePhysicData(time, app);
 			(*itPipes)->updateGraphicData(app);
+		}
+
+		/* BlockOccurence */
+		vector<BlockOccurrence*>::iterator blockSize = _blocksOccurrences.end();
+		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != blockSize; ++itBlockOccurrence)
+		{
+			(*itBlockOccurrence)->updatePhysicData(time, app);
+			(*itBlockOccurrence)->updateGraphicData(app);
 		}
 
 		/* Checkpoint */
@@ -510,10 +562,10 @@ namespace SuperMarioProject
 			(*itCheckpoints)->updateGraphicData(app);
 		}
 
-		/* BlockOccurence */
-		for(vector<BlockOccurrence*>::iterator itBlockOccurrence = this->_blocksOccurrences.begin(); itBlockOccurrence != this->_blocksOccurrences.end(); ++itBlockOccurrence)
+		/* Foregrounds */
+		for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
 		{
-			(*itBlockOccurrence)->updateGraphicData(app);
+			(*itForegrounds)->updateGraphicData(app);
 		}
 	}
 
@@ -528,22 +580,22 @@ namespace SuperMarioProject
 		}
 
 		/* Objects */
-		for(vector<Object*>::iterator itObjects = this->_objects.begin(); itObjects != this->_objects.end(); ++itObjects)
+		/*for(vector<Object*>::iterator itObjects = this->_objects.begin(); itObjects != this->_objects.end(); ++itObjects)
 		{
 			(*itObjects)->render(app);
-		}
+		}*/
 		
 		/* Finish */
-		for(vector<Finish*>::iterator itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
+		/*for(vector<Finish*>::iterator itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
 		{
 			(*itFinish)->render(app);
-		}
+		}*/
 
 		/* Items */
-		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
+		/*for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
 		{
 			(*itItems)->render(app);
-		}
+		}*/
 
 		/* Blocks */
 		for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
@@ -552,22 +604,22 @@ namespace SuperMarioProject
 		}
 
 		/* CheckPoints */
-		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
+		/*for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
 		{
 			(*itCheckpoints)->render(app);
-		}
+		}*/
 
 		/* Monsters */
 		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
 		{
-			//(*itMonsters)->render(app);
+			(*itMonsters)->render(app);
 		}
 
 		/* Projectiles */
-		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
+		/*for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
 		{
 			(*itProjectiles)->render(app);
-		}
+		}*/
 		
 		/* Pipes */
 		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
@@ -578,47 +630,36 @@ namespace SuperMarioProject
 		// foreground_generators ?
 
 		/* Foregrounds */
-		for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
+		/*for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
 		{
 			(*itForegrounds)->render(app);
-		}
+		}*/
 	}
 
     Level::~Level()
     {
-		/* Iterators Declarations */
-		vector<Background*>::iterator itBackgrounds;
-		vector<Object*>::iterator itObjects;
-		vector<Finish*>::iterator itFinish;
-		vector<Item*>::iterator itItems;
-		vector<Checkpoint*>::iterator itCheckpoints;
-		vector<Monster*>::iterator itMonsters;
-		vector<Projectile*>::iterator itProjectiles;
-		vector<Pipe*>::iterator itPipes;
-		vector<Foreground*>::iterator itForegrounds;
-
 		// background_generators ?
 
 		/* Backgrounds */
-		for(itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); ++itBackgrounds)
+		for(vector<Background*>::iterator itBackgrounds = this->_backgrounds.begin(); itBackgrounds != this->_backgrounds.end(); ++itBackgrounds)
 		{
 			delete (*itBackgrounds);
 		}
 
 		/* Objects */
-		for(itObjects = this->_objects.begin(); itObjects != this->_objects.end(); ++itObjects)
+		for(vector<Object*>::iterator itObjects = this->_objects.begin(); itObjects != this->_objects.end(); ++itObjects)
 		{
 			delete (*itObjects);
 		}
 		
 		/* Finish */
-		for(itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
+		for(vector<Finish*>::iterator itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
 		{
 			delete (*itFinish);
 		}
 
 		/* Items */
-		for(itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
+		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
 		{
 			delete (*itItems);
 		}
@@ -626,33 +667,31 @@ namespace SuperMarioProject
 		// BLOCKS 
 
 		/* CheckPoints */
-		for(itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints)
+		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints)
 		{
 			delete (*itCheckpoints);
 		}
 
 		/* Monsters */
-		for(itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
+		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
 		{
 			delete (*itMonsters);
 		}
 
 		/* Projectiles */
-		for(itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
+		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
 		{
 			delete (*itProjectiles);
 		}
-
-		// Persos ??
 		
 		/* Pipes */
-		for(itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
+		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
 		{
 			delete (*itPipes);
 		}
 
 		/* Foregrounds */
-		for(itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
+		for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
 		{
 			delete (*itForegrounds);
 		}

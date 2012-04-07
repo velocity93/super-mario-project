@@ -51,21 +51,6 @@ namespace Collisions
         }
     }
 
-	void Block::update(RenderWindow& app)
-	{
-		vector<BlockOccurrence*>::iterator itBlockOccurrence;
-
-        for(itBlockOccurrence = _blockOccurrences.begin(); itBlockOccurrence != _blockOccurrences.end(); ++itBlockOccurrence)
-        {
-			(*itBlockOccurrence)->updatePhysicData(app);
-
-			if(_blockOccurrences.size() == 0)
-				break;
-
-			(*itBlockOccurrence)->updateGraphicData(app);
-        }
-	}
-
 	void Block::render(RenderWindow& app)
 	{
 		vector<BlockOccurrence*>::iterator itBlockOccurrence;

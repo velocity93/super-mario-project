@@ -19,6 +19,13 @@ using namespace std;
 
 namespace Collisions
 {
+	class MonsterConstants
+	{
+	public:
+		static const float MONSTER_SPEED_X;
+		static const float MONSTER_EXIT_PIPE_SPEED_Y;
+	};
+
     class Monster : public SuperMarioProject::Resource
     {
     public:
@@ -28,7 +35,7 @@ namespace Collisions
 			bool canBeJumpedOn = false);
 
 		/* Add Occurrence */
-		void addNewMonsterOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
+		void addNewMonsterOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(MonsterConstants::MONSTER_SPEED_X,0), 
 			MonsterOccurrence::State state = MonsterOccurrence::M_WALK,
 			MonsterOccurrence::Side side = MonsterOccurrence::LEFT_SIDE);
 
@@ -43,7 +50,7 @@ namespace Collisions
 		void removeMonsterOccurrence(const MonsterOccurrence* monster);
 
 		/* Update data */
-		void updatePhysicData(RenderWindow& app);
+		void updatePhysicData(float time, RenderWindow& app);
 		void updateGraphicData(RenderWindow& app);
 
 		/* render all occurrence */

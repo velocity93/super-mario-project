@@ -33,6 +33,11 @@ namespace Collisions
 		return _top;
 	}
 
+	vector<ProjectileOccurrence*>& Projectile::getProjectileOccurrences()
+	{
+		return _projectileOccurences;
+	}
+
 	void Projectile::addNewProjectileOccurrence(const Vector2f& position, const Vector2f& speed, ProjectileOccurrence::State state, ProjectileOccurrence::Side side)
     {
 		_projectileOccurences.push_back(new ProjectileOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
@@ -45,21 +50,20 @@ namespace Collisions
 		for(itProjectileOccurrence = _projectileOccurences.begin(); itProjectileOccurrence != _projectileOccurences.end(); ++itProjectileOccurrence)
         {
             if((*itProjectileOccurrence) == projectile)
+			{
                 _projectileOccurences.erase(itProjectileOccurrence);
-
-			if(_projectileOccurences.size() == 0)
 				break;
+			}
         }
     }
 
-    void Projectile::updatePhysicData(RenderWindow& app)
+    void Projectile::updatePhysicData(float time, RenderWindow& app)
     {
-        for(vector<ProjectileOccurrence*>::iterator itProjectiles = _projectileOccurences.begin(); itProjectiles != _projectileOccurences.end(); ++itProjectiles)
-        {
-			(*itProjectiles)->updatePhysicData(app);
+        unsigned int initSize = _projectileOccurences.size();
 
-			if(_projectileOccurences.size() == 0)
-				break;
+		for(unsigned int i = 0; i < initSize; ++i)
+        {
+            _projectileOccurences[i]->updatePhysicData(time, app);
         }
     }
 

@@ -59,11 +59,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				level->setSpawnX(atoi(attrs[i + 1]));
+				level->setSpawnX((float)atoi(attrs[i + 1]));
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				level->setSpawnY(atoi(attrs[i + 1]));
+				level->setSpawnY((float)atoi(attrs[i + 1]));
 			}
 		}
 	}

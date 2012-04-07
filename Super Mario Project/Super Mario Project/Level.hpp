@@ -30,6 +30,7 @@ using namespace Rendering;
 
 namespace SuperMarioProject
 {
+	class QuadTree;
     class Level
     {
     public:
@@ -42,7 +43,7 @@ namespace SuperMarioProject
 		string& getMusicTitle();
 
 		/* Level Spawn */
-		Vector2i& getSpawn();
+		Vector2f& getSpawn();
 
 		/* Size of level */
 		Vector2i& getSize();
@@ -84,10 +85,10 @@ namespace SuperMarioProject
 		int getMonsterIndex(Monster* monster);
 
 		/* Set spawn coord */
-		void setSpawnX(int x);
+		void setSpawnX(float x);
 
 		/* Set spawn coord */
-		void setSpawnY(int y);
+		void setSpawnY(float y);
 
 		/* Set Level name */
 		void setName(string name);
@@ -140,9 +141,8 @@ namespace SuperMarioProject
 		/* Save Level */
 		void saveLevel(string& fileName);
 
-		/* Update data */
-		void updatePhysicData(RenderWindow& app);
-		void updateGraphicData(RenderWindow& app);
+		/* Update Graphic and physic data */
+		void update(float time, QuadTree* tree, RenderWindow& app);
 		
 		/* Render all objects */
 		void render(RenderWindow& app);
@@ -153,7 +153,7 @@ namespace SuperMarioProject
 		string _name;
 		string _musicTitle;
 		Vector2i _size;
-		Vector2i _spawn;
+		Vector2f _spawn;
 		vector<Checkpoint*> _checkpoints;
 		vector<Background*> _backgrounds;
 		vector<Foreground*> _foregrounds;

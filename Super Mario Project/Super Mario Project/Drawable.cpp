@@ -38,6 +38,11 @@ namespace Rendering
 		return _position;
 	}
 
+	bool Drawable::isActive()
+	{
+		return _isActive;
+	}
+
 	void Drawable::setPositionX(float x)
 	{
 		_position.x = x;

@@ -13,9 +13,6 @@
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
 
-#define MONSTER_EXIT_SPEED			0.05F
-#define M_SPEED_WALK_MIN			0.008F
-
 namespace Collisions
 {
 	class Monster;
@@ -66,7 +63,7 @@ namespace Collisions
 		void onCollision(Collisionable* c, vector<bool>& infos);
 
 		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(RenderWindow& app);
+		void updatePhysicData(float time, RenderWindow& app);
 		void render(RenderWindow& app);
 
 		void setActivity(RenderWindow& app);

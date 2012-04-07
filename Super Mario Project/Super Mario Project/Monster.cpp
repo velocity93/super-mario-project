@@ -60,20 +60,18 @@ namespace Collisions
             if((*itMonsterOccurrence) == monster)
 			{
                 _monsterOccurrences.erase(itMonsterOccurrence);
-				if(_monsterOccurrences.size() == 0)
 				break;
 			}
         }
     }
 
-    void Monster::updatePhysicData(RenderWindow& app)
+    void Monster::updatePhysicData(float time, RenderWindow& app)
     {
-        for(vector<MonsterOccurrence*>::iterator itMonsters = this->_monsterOccurrences.begin(); itMonsters != this->_monsterOccurrences.end(); ++itMonsters)
-        {
-            (*itMonsters)->updatePhysicData(app);
+		unsigned int initSize = _monsterOccurrences.size();
 
-			if(_monsterOccurrences.size() == 0)
-				break;
+		for(unsigned int i = 0; i < initSize; ++i)
+        {
+            _monsterOccurrences[i]->updatePhysicData(time, app);
         }
     }
 
@@ -269,4 +267,9 @@ namespace Collisions
 
 		release();
     }
+
+
+	/* Initialize Monster Constants */
+	const float MonsterConstants::MONSTER_SPEED_X = -30.0F;
+	const float MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y = 5.0F;
 } // namespace

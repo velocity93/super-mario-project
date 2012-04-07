@@ -41,7 +41,7 @@ namespace Collisions
 		Block* getActualModel();
 		
 		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(RenderWindow& app);
+		void updatePhysicData(float time, RenderWindow& app);
 		void render(RenderWindow& app);
 
 		void onCollision(Collisionable* c, vector<bool>& infos);

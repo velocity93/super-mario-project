@@ -31,7 +31,6 @@ namespace Collisions
 
 		void removeBlockOccurrence(const BlockOccurrence* block);
 
-		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
 		void serialize(ofstream& file, string& tabs);
@@ -54,8 +53,10 @@ namespace Collisions
 		static const int  FILLED						= 0x000001;
 		static const int  GROUND						= 0x000002;
 		static const int  ROOF							= 0x000004;
-		static const int  LEFT_WALL						= 0x000008; // Wall is on the sprite left, so collision with a LEFT_WALL happens when perso comes from RIGHT !
-		static const int  RIGHT_WALL					= 0x000010;
+		
+		// Wall is on the sprite right, so collision with a RIGHT_WALL happens when perso comes from LEFT !
+		static const int  RIGHT_WALL					= 0x000008;
+		static const int  LEFT_WALL						= 0x000010;
 
 		static const int  LEFT_EDGE						= GROUND;
 		static const int  RIGHT_EDGE					= GROUND;

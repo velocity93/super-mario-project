@@ -62,39 +62,31 @@ namespace Collisions
 			et1->getPreviousHitboxPosition().x + et1->getHitboxSize().x, et1->getPreviousHitboxPosition().y),
 
 			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y + c2->getHitboxSize().y, 
-			c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y);
+			c2->getHitboxPosition().x + c2->getHitboxSize().x, c2->getHitboxPosition().y),
+			zone;
 		bool collisionDetected = false;
 		
-		/* Collision from left */
-		if(r1Prec.Left >= r2.Right && r1.Left <= r2.Right)
+		bool intersects = Intersects(r1, r2, &zone), intersectsPrec = Intersects(r1Prec, r2);
+
+		if(intersects && !intersectsPrec)
 		{
 			collisionDetected = true;
-			collisions_info[FROM_LEFT] = true;
-		}
+
+			float width = r1.GetWidth();
+			float height = (-1) * r1.GetHeight(); // Due to inversion of Top and Bottom 
+
+			if(zone.Right <= r1.Left + width / 2)
+				collisions_info[FROM_LEFT] = true;
+
+			if(zone.Left >= r1.Right - width / 2)
+				collisions_info[FROM_RIGHT] = true;
+
+			if(zone.Top <= r1.Bottom + height / 2)
+				collisions_info[FROM_BOTTOM] = true;
+
+			if(zone.Bottom >= r1.Top - height / 2)
+				collisions_info[FROM_TOP] = true;
 		
-		/* Collision from Top */
-		if(r1Prec.Top <= r2.Bottom && r1.Top >= r2.Bottom
-			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
-			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
-		{
-			collisionDetected = true;
-			collisions_info[FROM_TOP] = true;
-		}
-
-		/* Collision from right */
-		if(r1Prec.Right <= r2.Left && r1.Right >= r2.Left)
-		{
-			collisionDetected = true;
-			collisions_info[FROM_RIGHT] = true;
-		}
-
-		/* Collision from bottom */
-		if(r1Prec.Bottom >= r2.Top && r1.Bottom <= r2.Top
-			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
-			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
-		{
-			collisionDetected = true;
-			collisions_info[FROM_BOTTOM] = true;
 		}
 
 		return collisionDetected;
@@ -112,47 +104,63 @@ namespace Collisions
 			et2->getHitboxPosition().x + et2->getHitboxSize().x, et2->getHitboxPosition().y),
 
 			r2Prec(et2->getPreviousHitboxPosition().x, et2->getPreviousHitboxPosition().y + et2->getHitboxSize().y,
-			et2->getPreviousHitboxPosition().x + et2->getHitboxSize().x, et2->getPreviousHitboxPosition().y);
+			et2->getPreviousHitboxPosition().x + et2->getHitboxSize().x, et2->getPreviousHitboxPosition().y),
+			zone;
 		bool collisionDetected = false;
 
-		/* Collision from left */
-		if(r1Prec.Left >= r2Prec.Right && r1.Left <= r2.Right)
+		bool intersects = Intersects(r1, r2, &zone), intersectsPrec = Intersects(r1Prec, r2Prec);
+
+		if(intersects && !intersectsPrec)
 		{
 			collisionDetected = true;
-			collisions_info[FROM_LEFT] = true;
-		}
+
+			float width = r1.GetWidth();
+			float height = (-1) * r1.GetHeight(); // Due to inversion of Top and Bottom 
+
+			if(zone.Right <= r1.Left + width)
+				collisions_info[FROM_LEFT] = true;
+
+			if(zone.Left >= r1.Right - width)
+				collisions_info[FROM_RIGHT] = true;
+
+			if(zone.Top <= r1.Bottom + height)
+				collisions_info[FROM_BOTTOM] = true;
+
+			if(zone.Bottom >= r1.Top - height)
+				collisions_info[FROM_TOP] = true;
 		
-		/* Collision from Top */
-		if(r1Prec.Top <= r2Prec.Bottom && r1.Top >= r2.Bottom
-			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
-			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
-		{
-			collisionDetected = true;
-			collisions_info[FROM_TOP] = true;
-		}
-
-		/* Collision from right */
-		if(r1Prec.Right <= r2Prec.Left && r1.Right >= r2.Left)
-		{
-			collisionDetected = true;
-			collisions_info[FROM_RIGHT] = true;
-		}
-
-		/* Collision from bottom */
-		if(r1Prec.Bottom >= r2Prec.Top && r1.Bottom <= r2.Top
-			&& ((r2.Left <= r1.Left && r1.Left <= r2.Right)
-			|| (r2.Left <= r1.Right && r1.Right <= r2.Right)))
-		{
-			collisionDetected = true;
-			collisions_info[FROM_BOTTOM] = true;
 		}
 
 		return collisionDetected;
 	}
 
-	CollisionManager::~CollisionManager()
+	void CollisionManager::killManager()
 	{
-		delete _manager;
+		if(_manager != NULL)
+			delete _manager;
+	}
+
+	bool CollisionManager::Intersects(const FloatRect& r1, const FloatRect& r2, FloatRect* OverlappingRect)
+	{
+		// Compute overlapping rect
+		FloatRect Overlapping(std::max(r1.Left,   r2.Left),
+			std::min(r1.Top,    r2.Top),
+			std::min(r1.Right,  r2.Right),
+			std::max(r1.Bottom, r2.Bottom));
+
+		// If overlapping rect is valid, then there is intersection
+		if ((Overlapping.Left < Overlapping.Right) && (Overlapping.Bottom < Overlapping.Top))
+		{
+			if (OverlappingRect)
+				*OverlappingRect = Overlapping;
+			return true;
+		}
+		else
+		{
+			if (OverlappingRect)
+				*OverlappingRect = FloatRect(0, 0, 0, 0);
+			return false;
+		}
 	}
 
 } // namespace

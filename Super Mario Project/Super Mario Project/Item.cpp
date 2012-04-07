@@ -52,21 +52,20 @@ namespace Collisions
         for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence != _itemOccurrences.end(); ++itItemOccurrence)
         {
             if((*itItemOccurrence) == item)
+			{
                 _itemOccurrences.erase(itItemOccurrence);
-
-			if(_itemOccurrences.size() == 0)
 				break;
+			}
         }
     }
 
-    void Item::updatePhysicData(RenderWindow& app)
+    void Item::updatePhysicData(float time, RenderWindow& app)
     {
-        for(vector<ItemOccurrence*>::iterator itItems = this->_itemOccurrences.begin(); itItems != this->_itemOccurrences.end(); ++itItems)
-        {
-			(*itItems)->updatePhysicData(app);
+        unsigned int initSize = _itemOccurrences.size();
 
-			if(_itemOccurrences.size() == 0)
-				break;
+		for(unsigned int i = 0; i < initSize; ++i)
+        {
+            _itemOccurrences[i]->updatePhysicData(time, app);
         }
     }
 
