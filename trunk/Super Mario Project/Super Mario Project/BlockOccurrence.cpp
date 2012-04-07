@@ -89,7 +89,7 @@ namespace Collisions
 		}
 	}
 
-	void BlockOccurrence::updatePhysicData(RenderWindow& app)
+	void BlockOccurrence::updatePhysicData(float, RenderWindow& app)
 	{
 		setActivity(app);
 

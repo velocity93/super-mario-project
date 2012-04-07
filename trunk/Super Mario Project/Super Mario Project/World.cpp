@@ -32,7 +32,7 @@ namespace SuperMarioProject
 			}
 
 			/* Add default perso */
-			_persos.push_back(new Perso("small_mario", Vector2f(0,0)));
+			_persos.push_back(new Perso("small_mario", _level->getSpawn()));
 		}
 
 	Level* World::getLevel()
@@ -56,23 +56,25 @@ namespace SuperMarioProject
 		
 		for (vector<Perso*>::iterator itPerso = this->_persos.begin(); itPerso != this->_persos.end(); ++itPerso)
 		{
+			/* Update Physic */
 			(*itPerso)->updatePerso(_elapsedTime, _inputState);
 			
+			/* Search in level QuadTree, all blocks will be able to have a collision with him */
 			Vector2f position = Vector2f((*itPerso)->getHitboxPosition().x, (*itPerso)->getHitboxPosition().y);
-			
 			vector<BlockOccurrence*> blocks;
 			_levelTree->getBlocks(position, (*itPerso)->getHitboxSize(), &blocks);
+
+			/* Resolve these collisions if able*/
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
 				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks), _level, app);
 			}
 
+			/* Update Graphic */
 			(*itPerso)->updateGraphicData(app);
 		}
 
-		 _level->updatePhysicData(app); 
-		
-		_level->updateGraphicData(app);
+		_level->update(_elapsedTime, _levelTree, app); 
 
 		updateTime();
 	}

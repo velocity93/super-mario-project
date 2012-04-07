@@ -38,16 +38,19 @@ namespace Collisions
 		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
 		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
 
+		static void killManager();
+
 	private:
 		static CollisionManager* _manager;
 
 		/* Constructor */
 		CollisionManager() { }
 
-		virtual ~CollisionManager();
+		virtual ~CollisionManager() { }
 
 		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, vector<bool>& collisions_info);
 		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, vector<bool>& collisions_info);
+		static bool Intersects(const FloatRect& r1, const FloatRect& r2, FloatRect* overlapZone = NULL);
 	};
 } // namespace
 

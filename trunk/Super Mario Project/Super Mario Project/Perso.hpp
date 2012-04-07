@@ -145,7 +145,7 @@ namespace Collisions
 
 		/* Methods */
 		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(RenderWindow&);
+		void updatePhysicData(float time, RenderWindow&);
 		void render(RenderWindow& app);
 
 		void onCollision(Collisionable* c, vector<bool>& infos);

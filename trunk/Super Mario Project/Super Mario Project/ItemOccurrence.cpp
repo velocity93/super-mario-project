@@ -89,24 +89,27 @@ namespace Collisions
 
 	void ItemOccurrence::onCollision(BlockOccurrence* block, vector<bool>& infos)
 	{
-		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getType() & BlocksConstants::GROUND))
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
-			updatePositions(_position.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
+			_speed.x *= -1;
 		}
 
-		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getType() & BlocksConstants::ROOF))
+		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
-			updatePositions(_position.x, block->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getType() & BlocksConstants::RIGHT_WALL))
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
-			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _position.y);
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
+			_speed.x *= -1;
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getType() & BlocksConstants::LEFT_WALL))
+		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _position.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 		}
 	}
 	
@@ -133,7 +136,7 @@ namespace Collisions
 		}
 	}
 	
-	void ItemOccurrence::updatePhysicData(RenderWindow& app)
+	void ItemOccurrence::updatePhysicData(float time, RenderWindow& app)
 	{
 		setActivity(app);
 
@@ -141,13 +144,9 @@ namespace Collisions
 		{
 			if(_state == NORMAL)
 			{
-				/* If it falls in hole */
-				if(_hitboxPosition.y + _hitboxSize.y < 0)
-					_item->removeItemOccurrence(this);
-
 				/* Submissions */
 				if(this->_item->getSubmission() & PhysicConstants::GRAVITY_SUBMISSION)
-					gravity(_speed, app.GetFrameTime());
+					gravity(_speed, time);
 
 				/* Update physic position */
 				/* Save actual position in previous position */
@@ -155,8 +154,11 @@ namespace Collisions
 				_previousPosition = _position;
 
 				/* Compute new position */
-				_hitboxPosition.x = _hitboxPosition.x + _speed.x * app.GetFrameTime(); 
-				_hitboxPosition.y = _hitboxPosition.y + _speed.y * app.GetFrameTime();
+				updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
+
+				/* If it falls in hole */
+				if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_item->removeItemOccurrence(this);
 			}
 			else
 			{

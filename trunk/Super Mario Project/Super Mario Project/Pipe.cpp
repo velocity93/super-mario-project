@@ -61,7 +61,7 @@ namespace Collisions
 		// NOTHING
 	}
 
-	void Pipe::updatePhysicData(RenderWindow& app)
+	void Pipe::updatePhysicData(float, RenderWindow& app)
     {
 		setActivity(app);
 
@@ -74,7 +74,7 @@ namespace Collisions
 				case TO_TOP:
                     _monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
-						Vector2f(0, MONSTER_EXIT_SPEED), 
+						Vector2f(0, MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y), 
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
 						Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
@@ -82,7 +82,7 @@ namespace Collisions
 				case TO_BOTTOM:
 					 _monster->addNewMonsterOccurrence(
 						 Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
-						 Vector2f(0, -MONSTER_EXIT_SPEED), 
+						 Vector2f(0, -MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y), 
 						 MonsterOccurrence::M_GET_OUT_FROM_PIPE, 
 						 Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
@@ -90,7 +90,7 @@ namespace Collisions
 				case TO_LEFT:
 					_monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
-						Vector2f(-MONSTER_EXIT_SPEED, 0),
+						Vector2f(-MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y, 0),
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE,
 						Collisions::MonsterOccurrence::LEFT_SIDE);
 					break;
@@ -98,7 +98,7 @@ namespace Collisions
 				case TO_RIGHT:
 					_monster->addNewMonsterOccurrence(
 						Vector2f(_position.x * BLOCK_WIDTH + BLOCK_WIDTH / 2, _position.y * BLOCK_WIDTH),
-						Vector2f(MONSTER_EXIT_SPEED, 0),
+						Vector2f(MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y, 0),
 						MonsterOccurrence::M_GET_OUT_FROM_PIPE,
 						Collisions::MonsterOccurrence::RIGHT_SIDE);
 					break;

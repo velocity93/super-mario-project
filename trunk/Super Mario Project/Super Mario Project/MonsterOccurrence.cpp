@@ -8,6 +8,7 @@
 
 #include "ResourceManager.hpp"
 #include "CollisionManager.hpp"
+#include "Block.hpp"
 #include "MonsterOccurrence.hpp"
 #include "Monster.hpp"
 #include "Pipe.hpp"
@@ -60,6 +61,13 @@ namespace Collisions
 
 	void MonsterOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
 	{
+		/* Collision vs Block */
+		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
+		if(block != NULL)
+		{
+			return onCollision(block, infos);
+		}
+
 		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
@@ -79,6 +87,34 @@ namespace Collisions
 		if(pipe != NULL)
 		{
 			return onCollision(pipe, infos);
+		}
+	}
+
+	void MonsterOccurrence::onCollision(BlockOccurrence* block, vector<bool>& infos)
+	{
+		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
+			_speed.x *= -1;
+			_side = RIGHT_SIDE;
+		}
+
+		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		{
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			_speed.y = 0;
+		}
+
+		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		{
+			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
+			_speed.x *= -1;
+			_side = LEFT_SIDE;
+		}
+
+		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		{
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 		}
 	}
 
@@ -126,23 +162,28 @@ namespace Collisions
 		}
 	}
 
-	void MonsterOccurrence::updatePhysicData(RenderWindow& app)
+	void MonsterOccurrence::updatePhysicData(float time, RenderWindow& app)
 	{
 		setActivity(app);
 
 		if(_isActive)
 		{
-			/* If it falls in hole */
-			if(_hitboxPosition.y + _hitboxSize.y < 0)
-				_monster->removeMonsterOccurrence(this);
+			gravity(_speed, time);
 
 			/* Update physic position */
 			/* Save actual position in previous prosition */
+			_previousHitboxPosition = _hitboxPosition;
 			_previousPosition = _position;
 
 			/* Compute new position */
-			_position.x = _position.x + _speed.x * app.GetFrameTime(); 
-			_position.y = _position.y + _speed.y * app.GetFrameTime();
+			updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
+
+			/* If it falls in hole */
+			if(_hitboxPosition.y < 0)
+				updatePositions(_hitboxPosition.x, 0);
+
+			if(_hitboxPosition.y + _hitboxSize.y < 0)
+				_monster->removeMonsterOccurrence(this);
 		}
 	}
 
@@ -184,7 +225,7 @@ namespace Collisions
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
 				_position = _previousPosition = _initialPosition;
 				setState(M_WALK);
-				_speed.x = -M_SPEED_WALK_MIN;
+				_speed.x = -MonsterConstants::MONSTER_SPEED_X;
 				_side = LEFT_SIDE;
 			}
 

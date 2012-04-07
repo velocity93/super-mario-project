@@ -44,16 +44,6 @@ namespace Collisions
 		_blocks.push_back(block);
 	}
 
-	void Tileset::update(RenderWindow& app)
-	{
-		vector<Block*>::iterator itBlock;
-
-        for(itBlock = _blocks.begin(); itBlock != _blocks.end(); ++itBlock)
-        {
-			(*itBlock)->update(app);
-        }
-	}
-
 	void Tileset::render(RenderWindow& app)
 	{
 		vector<Block*>::iterator itBlock;

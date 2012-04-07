@@ -34,12 +34,13 @@ namespace Collisions
 			_deltaX(0) { }
 
 		/* getters and setters */
+		Vector2f& getSpeed();
 		Vector2f& getPreviousPosition();
 		Vector2f& getPreviousHitboxPosition();
 		void updatePositions(float positionX, float positionY);
 
 		virtual void onCollision(Collisionable* c, vector<bool>& infos) = 0;
-		virtual void updatePhysicData(RenderWindow& app) = 0;
+		virtual void updatePhysicData(float time, RenderWindow& app) = 0;
 
 		/* Destructors */
         virtual ~EntityMovable();

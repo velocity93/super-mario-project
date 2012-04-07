@@ -32,7 +32,6 @@ namespace Collisions
 		int getBlockPhysic(int index);
 		void addBlock(int physicIndex, int type);
 		
-		void update(RenderWindow& app);
 		void render(RenderWindow& app);
 
 		/* Serialize Data */

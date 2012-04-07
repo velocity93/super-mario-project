@@ -53,6 +53,7 @@ namespace Rendering
 		/* getters and setters */
 		Vector2f& getPosition();
 		Texture* getTexture();
+		bool isActive();
 		void setPositionX(float x);
 		void setPositionY(float y);
 

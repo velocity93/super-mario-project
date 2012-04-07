@@ -48,6 +48,9 @@ namespace Collisions
 		/* Top of hitbox size */
 		int getTop();
 
+		/* get all occurrences */
+		vector<ProjectileOccurrence*>& getProjectileOccurrences();
+
 		/* Add occurrence to list */
 		void addNewProjectileOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0),
 			ProjectileOccurrence::State state = ProjectileOccurrence::LAUNCHED,
@@ -57,7 +60,7 @@ namespace Collisions
 		void removeProjectileOccurrence(const ProjectileOccurrence* projectile);
 
 		/* Update data */
-		void updatePhysicData(RenderWindow& app);
+		void updatePhysicData(float time, RenderWindow& app);
 		void updateGraphicData(RenderWindow& app);
 
 		/* Render all occurrences */
