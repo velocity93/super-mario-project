@@ -44,7 +44,7 @@ namespace Rendering
 
 		/* Drawing */
 		void update();
-		void render(Texture* texture, RenderWindow& app, Vector2f& position, bool flipY, int delta = 0);
+		void render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, bool flipX, int delta = 0);
 
 	private:
 		map<T, int> _nbSpritesByState;

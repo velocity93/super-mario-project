@@ -31,14 +31,14 @@ namespace Collisions
 		_alternativeBlock = alternative;
 
 		_hitboxPosition = position;
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _actualBlock->getTileset()->getNbSprites().x;
-		_hitboxSize.y = _texture->getImage()->GetHeight() / _actualBlock->getTileset()->getNbSprites().y;
+		_hitboxSize.x = _texture->getSize().x / _actualBlock->getTileset()->getNbSprites().x;
+		_hitboxSize.y = _texture->getSize().y / _actualBlock->getTileset()->getNbSprites().y;
 
 		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
 
 		/* Compute blocs coords into the texture */
-		_size.y = (_texture->getImage()->GetHeight() / nbSprites.y);
-		_size.x = (_texture->getImage()->GetWidth() / nbSprites.x);
+		_size.y = (_texture->getSize().y / nbSprites.y);
+		_size.x = (_texture->getSize().x / nbSprites.x);
 
 		_coordSprite.y = (physicIndex / nbSprites.x) * _size.y;
 		_coordSprite.x = (physicIndex % nbSprites.x) * _size.x;
@@ -110,9 +110,9 @@ namespace Collisions
 			else
 			{
 				ReversedSprite& sprite = _texture->getSprite();
-				sprite.SetSubRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
-				sprite.SetPosition(_position);
-				app.Draw(sprite);
+				sprite.setTextureRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
+				sprite.setPosition(_position);
+				app.draw(sprite);
 			}
 		}
 	}

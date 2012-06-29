@@ -21,23 +21,22 @@ using namespace sf;
 
 namespace Rendering
 {
-    class Texture : public SuperMarioProject::Resource
+	class Texture : public SuperMarioProject::Resource, public sf::Texture
     {
     public:
 		/* Constructor */
 		Texture(const string& name);
 
 		/* getters and setters */
-		Image* getImage();
         ReversedSprite& getSprite();
 		void setSubRect(int left, int top, int right, int bottom);
 		void setPosition(float x, float y);
+		void setSpriteOrigin(float x, float y);
 
 		/* Destructor */
 		virtual ~Texture();
 		
     private:
-		Image _image;
         ReversedSprite _sprite;
     };
 } // namespace

@@ -42,7 +42,7 @@ namespace SuperMarioProject
 
 	float World::getElapsedTime()
 	{
-		return _clock.GetElapsedTime();
+		return _clock.getElapsedTime().asMilliseconds();
 	}
 
 	void World::addLevelName(string levelName)
@@ -82,7 +82,7 @@ namespace SuperMarioProject
 	void World::updateTime()
 	{
 		_previousTime = _actualTime;
-		_actualTime = _clock.GetElapsedTime();
+		_actualTime = _clock.getElapsedTime().asSeconds();
 		_previousElapsedTime = _elapsedTime;
 		_elapsedTime = (_actualTime - _previousTime);
 
@@ -98,7 +98,7 @@ namespace SuperMarioProject
 			then we assign previousTime to actual time*/
         if(_elapsedTime > 500)
         {
-			_previousTime = _clock.GetElapsedTime();
+			_previousTime = _clock.getElapsedTime().asMilliseconds();
             _actualTime = _previousTime;
            _elapsedTime = 0;
         }
@@ -123,7 +123,7 @@ namespace SuperMarioProject
 	{
 		_level->render(app);
 
-		_levelTree->render(app);
+		//_levelTree->render(app);
 
 		for (vector<Perso*>::iterator it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{

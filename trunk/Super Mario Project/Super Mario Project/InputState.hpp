@@ -46,7 +46,7 @@ namespace SuperMarioProject
     private:
         const sf::Window *_window;
         std::vector<KeyState> _states;
-        std::vector<sf::Key::Code> _sfmlKeys;
+		std::vector<sf::Keyboard::Key> _sfmlKeys;
     };
 } // namespace
 

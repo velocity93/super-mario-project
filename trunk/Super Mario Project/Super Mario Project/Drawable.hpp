@@ -52,7 +52,7 @@ namespace Rendering
 
 		/* getters and setters */
 		Vector2f& getPosition();
-		Texture* getTexture();
+		Rendering::Texture* getTexture();
 		bool isActive();
 		void setPositionX(float x);
 		void setPositionY(float y);
@@ -67,7 +67,7 @@ namespace Rendering
 		virtual ~Drawable();
 
 	protected:
-		Texture* _texture;
+		Rendering::Texture* _texture;
 		Vector2f _position;
 		bool _isActive;
 

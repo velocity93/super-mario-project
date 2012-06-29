@@ -48,11 +48,11 @@ namespace Rendering
 
 	void Object::setActivity(RenderWindow& app)
 	{
-		const sf::View& view = app.GetView();
-		const sf::Vector2f& center = view.GetCenter();
-		const sf::Vector2f& halfSize = view.GetHalfSize();
-		float width = _texture->getSprite().GetSize().x / _animation.getNbSpritesMax();
-		float height = _texture->getSprite().GetSize().y;
+		const sf::View& view = app.getDefaultView();
+		const sf::Vector2f& center = view.getCenter();
+		const sf::Vector2f& halfSize = view.getSize();
+		float width = _texture->getSprite().getTextureRect().width / _animation.getNbSpritesMax();
+		float height = _texture->getSprite().getTextureRect().height;
 
 		_isActive = _position.x >= (center.x - halfSize.x);
 		_isActive &= (_position.x + width) <= (center.x + halfSize.x);

@@ -15,23 +15,21 @@ namespace SuperMarioProject
         _states(KEY_NB_KEYS, KEY_STATE_RELEASED),
         _sfmlKeys()
     {
-		_sfmlKeys.push_back(sf::Key::Left);		// KEY_BACKWARD
-		_sfmlKeys.push_back(sf::Key::Right);	// KEY_FORWARD
-		_sfmlKeys.push_back(sf::Key::Up);		// KEY_UP
-		_sfmlKeys.push_back(sf::Key::Down);		// KEY_DOWN
-		_sfmlKeys.push_back(sf::Key::Space);	// KEY_JUMP
-		_sfmlKeys.push_back(sf::Key::B);		// KEY_RUN
-		_sfmlKeys.push_back(sf::Key::Escape);	// KEY_ESCAPE
+		_sfmlKeys.push_back(sf::Keyboard::Left);	// KEY_BACKWARD
+		_sfmlKeys.push_back(sf::Keyboard::Right);	// KEY_FORWARD
+		_sfmlKeys.push_back(sf::Keyboard::Up);		// KEY_UP
+		_sfmlKeys.push_back(sf::Keyboard::Down);	// KEY_DOWN
+		_sfmlKeys.push_back(sf::Keyboard::Space);	// KEY_JUMP
+		_sfmlKeys.push_back(sf::Keyboard::B);		// KEY_RUN
+		_sfmlKeys.push_back(sf::Keyboard::Escape);	// KEY_ESCAPE
     }
 
 
     void InputState::update()
     {
-        const sf::Input &input = _window->GetInput();
-
         for(size_t i = 0; i < _sfmlKeys.size(); i++)
         {
-            if(input.IsKeyDown(_sfmlKeys[i]))
+            if(sf::Keyboard::isKeyPressed(_sfmlKeys[i]))
             {
                 if(_states[i] == KEY_STATE_RELEASED)
                     _states[i] = KEY_STATE_JUST_PRESSED;

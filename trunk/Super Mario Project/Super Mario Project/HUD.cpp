@@ -83,7 +83,7 @@ namespace Rendering
 
 	void HUD::updateGraphicData(RenderWindow& app)
 	{
-		_time -= app.GetFrameTime();
+		//_time -= app.GetFrameTime();
 	}
 
 	void HUD::render(RenderWindow&/*app*/)

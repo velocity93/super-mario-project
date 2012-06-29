@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/OpenGL.hpp>
 #include <sstream>
 #include "World.hpp"
 #include "Block.hpp"
@@ -46,7 +47,7 @@ void writeCapture(const sf::Image& img)
 	}
 
 
-	img.SaveToFile(imgFileName);
+	img.saveToFile(imgFileName);
 }
 
 
@@ -54,11 +55,11 @@ int main(int, char**)
 {
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
-    App.SetView(View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, 0)));
-	ReversedSprite::setWindowsHeight((int) App.GetView().GetRect().GetHeight());
-
+    App.setView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
+	ReversedSprite::setWindowsHeight((int) App.getView().getSize().y);
+	
     // Limit to 60 FPS
-    App.SetFramerateLimit(60);
+    App.setFramerateLimit(60);
 
     // Create world
     World w(&App);
@@ -72,31 +73,31 @@ int main(int, char**)
     try
     {
         // Start the game loop
-        while (App.IsOpened())
+		while (App.isOpen())
         {
             sf::Event Event;
             // Static Events
-            while(App.GetEvent(Event)) 
+            while(App.pollEvent(Event)) 
             {
-                switch(Event.Type)
+				switch(Event.type)
                 {
                 case Event::Closed : 
-                    App.Close();
+                    App.close();
                     break;
 
                 case(Event::Resized):
-                    ReversedSprite::setWindowsHeight(Event.Size.Height);
+                    ReversedSprite::setWindowsHeight(Event.size.height);
                     break;
 
                 case Event::KeyPressed : 
                     {
-                        switch(Event.Key.Code)
+                        switch(Event.key.code)
                         {
-                        case sf::Key::Escape :
-                            App.Close();
+                        case sf::Keyboard::Escape :
+                            App.close();
                             break;
-                        case sf::Key::F1 :
-                            const sf::Image img = App.Capture();
+                        case sf::Keyboard::F1 :
+                            const sf::Image img = App.capture();
                             writeCapture(img);
                             break;
                         }
@@ -105,10 +106,17 @@ int main(int, char**)
                 }
             }
 
-            App.Clear();
+            App.clear();
 
 			// Clear color and depth buffer
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+			glMatrixMode(GL_PROJECTION);
+			glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+			glLoadIdentity();
+			gluOrtho2D(0.0f, (float)WINDOW_WIDTH, 0.0f, (float)WINDOW_HEIGHT); // set origin to bottom left corner
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
 
             // Update World
 			w.update(App);
@@ -119,7 +127,7 @@ int main(int, char**)
 			//tiles.render(App);
 
             // Update the window
-            App.Display();
+            App.display();
         }
     }
     catch(exception e)

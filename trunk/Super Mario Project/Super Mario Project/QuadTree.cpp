@@ -171,7 +171,11 @@ namespace SuperMarioProject
 		pointHR.x = _center.x + _size.x / 2;
 		pointHR.y = _center.y + _size.y / 2;
 
-		app.Draw(sf::Shape::Rectangle(pointBL.x, pointBL.y, pointHR.x, pointHR.y, sf::Color(0, 0, 0, 0), 0.5F, sf::Color::Red));
+		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(pointHR.x - pointBL.x, pointHR.y - pointBL.y));
+		rect.setOutlineColor(sf::Color::Red);
+		rect.setPosition(pointBL);
+
+		app.draw(rect);
 
 		if(_subTree1 != nullptr)
 			_subTree1->render(app);

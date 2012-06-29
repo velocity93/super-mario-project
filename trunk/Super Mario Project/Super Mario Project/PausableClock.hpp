@@ -82,7 +82,7 @@ class PausableClock
 			if (!am_i_paused)
 			{
 				am_i_paused = true;
-				my_time += my_clock.GetElapsedTime();
+				my_time += my_clock.getElapsedTime().asSeconds();
 			}
 		}
 
@@ -94,7 +94,7 @@ class PausableClock
 			// If not yet started...
 			if (am_i_paused)
 			{
-				my_clock.Reset();
+				my_clock.restart();
 				am_i_paused = false;
 			}
 		}
@@ -106,7 +106,7 @@ class PausableClock
 		{
 			// If not paused...
 			if (!am_i_paused)
-				return my_time + my_clock.GetElapsedTime();
+				return my_time + my_clock.getElapsedTime().asSeconds();
 			else
 				return my_time;
 		}
@@ -119,7 +119,7 @@ class PausableClock
 		{
 			am_i_paused = paused;
 			my_time = 0.f;
-			my_clock.Reset();
+			my_clock.restart();
 		}
 	
 	private :

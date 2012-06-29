@@ -43,7 +43,7 @@ namespace Collisions
 
 	float Pipe::getMonsterExitDuration()
 	{
-		return _monsterExitDuration.GetElapsedTime();
+		return _monsterExitDuration.getElapsedTime().asMilliseconds();
 	}
 
 	void Pipe::setDirection(Pipe::Direction direction)
@@ -67,7 +67,7 @@ namespace Collisions
 
 		if(_isActive && _monster != nullptr)
 		{
-			if(_monsterExitDuration.GetElapsedTime() >= MONSTER_EXIT_TIME)
+			if(_monsterExitDuration.getElapsedTime().asMilliseconds() >= MONSTER_EXIT_TIME)
 			{
 				switch(_direction)
 				{
@@ -108,7 +108,7 @@ namespace Collisions
 				}
 				
 				//occ_m->tps_sortie_tuyau = occ_m->type_monstre->tps_sortie_tuyau;
-				_monsterExitDuration.Reset();
+				_monsterExitDuration.restart();
 			}
 		}
     }
@@ -125,70 +125,70 @@ namespace Collisions
 				/* Body */
 				for(int step = 0; step < _lenght; step++)
 				{
-					sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
-					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
-					app.Draw(sprite);
+					sprite.setPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					app.draw(sprite);
 				}
 
 				/* Top of pipe */
-				sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + _lenght) * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+				sprite.setPosition(_position.x * BLOCK_WIDTH, (_position.y + _lenght) * BLOCK_WIDTH);
+				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 
-				app.Draw(sprite);
+				app.draw(sprite);
 				break;
 
 			case TO_RIGHT:
 				sprite.FlipX(true);
-				sprite.SetCenter(0.0f, sprite.GetImage()->GetHeight() / 2.0f);
-				sprite.Rotate(270);
+				sprite.setOrigin(0.0f, sprite.getTexture()->getSize().y / 2.0f);
+				sprite.rotate(270);
 
 				/* Body */
 				for(int step = 0; step < _lenght; step++)
 				{
-					sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
-					app.Draw(sprite);
+					sprite.setPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					app.draw(sprite);
 				}
 
 				/* Top of pipe */
-				sprite.SetPosition((_position.x + _lenght) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+				sprite.setPosition((_position.x + _lenght) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 
-				app.Draw(sprite);
+				app.draw(sprite);
 				break;
 
 			case TO_LEFT:
-				sprite.SetCenter((float)sprite.GetImage()->GetWidth(), 0.0f);
-				sprite.Rotate(90);
+				sprite.setOrigin((float)sprite.getTexture()->getSize().x, 0.0f);
+				sprite.rotate(90);
 
 				/* Top of pipe */
-				sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+				sprite.setPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 
-				app.Draw(sprite);
+				app.draw(sprite);
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
-					sprite.SetPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
-					app.Draw(sprite);
+					sprite.setPosition((_position.x + step) * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().y, sprite.getTexture()->getSize().y));
+					app.draw(sprite);
 				}
 				break;
 
 			default:
 				/* Top of pipe */
-				sprite.SetPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
-				sprite.SetSubRect(sf::IntRect(0, 0, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight() / 2));
+				sprite.setPosition(_position.x * BLOCK_WIDTH, _position.y * BLOCK_WIDTH);
+				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 
-				app.Draw(sprite);
+				app.draw(sprite);
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
-					sprite.SetPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
-					sprite.SetSubRect(sf::IntRect(0, sprite.GetImage()->GetHeight() / 2, sprite.GetImage()->GetWidth(), sprite.GetImage()->GetHeight()));
-					app.Draw(sprite);
+					sprite.setPosition(_position.x * BLOCK_WIDTH, (_position.y + step) * BLOCK_WIDTH);
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					app.draw(sprite);
 				}
 				break;
 			}

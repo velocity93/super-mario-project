@@ -28,7 +28,7 @@ namespace Rendering
 		_position = Vector2f();
 	}
 
-	Texture* Drawable::getTexture()
+	Rendering::Texture* Drawable::getTexture()
 	{
 		return _texture;
 	}

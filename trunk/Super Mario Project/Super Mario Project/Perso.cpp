@@ -36,6 +36,8 @@ namespace Collisions
 
 		/* Setting animation Data */
 		_animation.setCurrentState(_state);
+
+		_texture->setSpriteOrigin(_hitboxPosition.x, _hitboxPosition.y);
 	}
 
 	HUD* Perso::getHUD()
@@ -133,12 +135,12 @@ namespace Collisions
 			&& _state != CLIMB_LADDER)
 			gravity(_speed, time);
 
+		/* compute acceleration */
+		solve_acc(inputState);
+
 		/* Lateral movements management */
 		if(_state != PUSH_SHELL)
 			lateral_move(time, inputState);
-
-		/* compute acceleration */
-		solve_acc(inputState);
 
 		/* Test for jump state */
 		if(inputState[KEY_JUMP] == KEY_STATE_JUST_PRESSED && inputState[KEY_UP] == KEY_STATE_RELEASED
@@ -281,12 +283,14 @@ namespace Collisions
 	{
 		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
 
-		app.Draw(sf::Shape::Rectangle(
-			_hitboxPosition.x, 
-			_hitboxPosition.y, 
-			_hitboxPosition.x + _hitboxSize.x, 
-			_hitboxPosition.y + _hitboxSize.y,
-			sf::Color(0, 255, 0, 128)));
+#ifdef _DEBUG
+		/* Drawing HitBox */
+		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
+		rect.setPosition(_hitboxPosition);
+		rect.setFillColor(sf::Color(0, 255, 0, 122));
+
+		app.draw(rect);
+#endif
 	}
 
 	void Perso::lateral_move(float time, InputState& inputState)
@@ -1093,7 +1097,7 @@ namespace Collisions
 			}
 			
 			/* Compute Hitbox Size */
-			_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
+			_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
 			_hitboxSize.y = ordonnee_haut;
 		}
 		else
