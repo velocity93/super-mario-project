@@ -38,8 +38,8 @@ namespace Collisions
 
 		_position = _hitboxPosition = position;
 		_speed = _item->getInitialSpeed();
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax();
-		_hitboxSize.y = _texture->getImage()->GetHeight();
+		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax();
+		_hitboxSize.y = _texture->getSize().y;
 	}
 
 	Item* ItemOccurrence::getModel()

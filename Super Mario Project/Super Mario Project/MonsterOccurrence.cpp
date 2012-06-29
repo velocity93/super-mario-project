@@ -39,8 +39,8 @@ namespace Collisions
 		// Hitbox Definition
 		_deltaX = _monster->getBottomLeft();
 		updatePositions(position.x, position.y);
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
-		_hitboxSize.y = _texture->getImage()->GetHeight() / M_NB_STATES;
+		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
+		_hitboxSize.y = _texture->getSize().y / M_NB_STATES;
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()
@@ -209,18 +209,18 @@ namespace Collisions
 
 	void MonsterOccurrence::setActivity(RenderWindow& app)
 	{
-		const View& view = app.GetDefaultView();
+		const View& view = app.getDefaultView();
 
-		if(_hitboxPosition.x > view.GetCenter().x + view.GetHalfSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.GetCenter().x - view.GetHalfSize().x
-			|| _hitboxPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| _hitboxPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
+		if(_hitboxPosition.x > view.getCenter().x + view.getSize().x
+			|| _hitboxPosition.x + _hitboxSize.x < view.getCenter().x - view.getSize().x
+			|| _hitboxPosition.y > view.getCenter().y + view.getSize().y
+			|| _hitboxPosition.y + _hitboxSize.y < view.getCenter().y - view.getSize().y)
 		{
 			
-			if(this->_initialPosition.x < view.GetCenter().x - view.GetHalfSize().x
-			|| this->_initialPosition.x + _hitboxSize.x < view.GetCenter().x + view.GetHalfSize().x
-			|| this->_initialPosition.y > view.GetCenter().y + view.GetHalfSize().y
-			|| this->_initialPosition.y + _hitboxSize.y < view.GetCenter().y - view.GetHalfSize().y)
+			if(this->_initialPosition.x < view.getSize().x - view.getSize().x
+			|| this->_initialPosition.x + _hitboxSize.x < view.getSize().x + view.getSize().x
+			|| this->_initialPosition.y > view.getSize().y + view.getSize().y
+			|| this->_initialPosition.y + _hitboxSize.y < view.getSize().y - view.getSize().y)
 			{
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
 				_position = _previousPosition = _initialPosition;

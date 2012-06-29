@@ -125,26 +125,33 @@ void Animation<T>::update()
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX, int delta)
+void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX, int delta)
 {
 	int numState = (int)_currentState - delta;
 	Vector2i spriteSize = Vector2i(
-		texture->getImage()->GetWidth() / _nbSpritesMax,
-		texture->getImage()->GetHeight() / _nbSpritesByState.size());
+		texture->getSize().x / _nbSpritesMax,
+		texture->getSize().y / _nbSpritesByState.size());
     ReversedSprite& sprite = texture->getSprite();
 
 	if(_nbSpritesForCurrentState > 0)
 	{
-		sprite.SetSubRect(
+		int left = _frameNumber * spriteSize.x;
+		int top = numState * spriteSize.y;
+
+		sprite.setTextureRect(
 			IntRect(
-			_frameNumber * spriteSize.x,
-			numState * spriteSize.y,
-			(_frameNumber + 1) * spriteSize.x,
-			(numState + 1) * spriteSize.y));
+			left,
+			top,
+			spriteSize.x,
+			spriteSize.y));
 	}
 
 	sprite.FlipX(isFlipX);
-	sprite.SetPosition(position);
 
-	app.Draw(sprite);
+	if(isFlipX)
+		sprite.setPosition(position.x + spriteSize.x, position.y + spriteSize.y);
+	else
+		sprite.setPosition(position.x, position.y + spriteSize.y);
+
+	app.draw(sprite);
 }

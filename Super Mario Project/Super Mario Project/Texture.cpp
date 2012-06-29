@@ -11,26 +11,20 @@
 namespace Rendering
 {
     Texture::Texture(const string& name)
-        : Resource(name)
+		: Resource(name), sf::Texture()
     {
         /* Load texture */
 		
-        if(!_image.LoadFromFile(name + ".png"))
+        if(!loadFromFile(name + ".png"))
         {
             cout << "Error in loading texture " << name << endl;
         }
-        _image.SetSmooth(false);
+        setSmooth(false);
 
-        _sprite.SetImage(_image);
-
-        _image.Bind();
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    }
-
-    Image* Texture::getImage()
-    {
-        return &_image;
+		_sprite.setTexture(*this);
+        //_image.Bind();
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     }
 
     ReversedSprite& Texture::getSprite()
@@ -40,12 +34,17 @@ namespace Rendering
 
     void Texture::setSubRect(int left, int top, int right, int bottom)
     {
-        _sprite.SetSubRect(IntRect(left, top, right, bottom));
+        _sprite.setTextureRect(IntRect(left, top, right, bottom));
     }
 
     void Texture::setPosition(float x, float y)
     {
-        _sprite.SetPosition(x, y);
+        _sprite.setPosition(x, y);
+    }
+
+	void Texture::setSpriteOrigin(float x, float y)
+    {
+        _sprite.setOrigin(x, y);
     }
 
     Texture::~Texture()

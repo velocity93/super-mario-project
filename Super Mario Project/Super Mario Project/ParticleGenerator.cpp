@@ -70,15 +70,15 @@ namespace Collisions
 		_endColor = endColor;
 	}
 
-	void ParticleGenerator::updateGraphicData(RenderWindow& app)
+	void ParticleGenerator::updateGraphicData(RenderWindow& )
 	{
 		vector<Particle>::iterator itParticles;
 
 		/* Update Physics position */
-		for(itParticles = _particles.begin(); itParticles != _particles.end(); ++itParticles)
+		/*for(itParticles = _particles.begin(); itParticles != _particles.end(); ++itParticles)
 		{			
 			(*itParticles).update(app.GetFrameTime(), _hasGravity);
-		}
+		}*/
 	}
 
 	void ParticleGenerator::render(RenderWindow& app)

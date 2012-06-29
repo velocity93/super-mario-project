@@ -27,9 +27,9 @@ namespace Collisions
 
 	void Collisionable::setActivity(RenderWindow& app)
 	{
-		const sf::View& view = app.GetView();
-		const sf::Vector2f& center = view.GetCenter();
-		const sf::Vector2f& halfSize = view.GetHalfSize();
+		const sf::View& view = app.getView();
+		const sf::Vector2f& center = view.getCenter();
+		const sf::Vector2f& halfSize = view.getSize();
 
 		_isActive = _hitboxPosition.x >= (center.x - halfSize.x);
 		_isActive &= (_hitboxPosition.x + _hitboxSize.x) <= (center.x + halfSize.x);

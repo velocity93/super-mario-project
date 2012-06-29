@@ -40,7 +40,7 @@ namespace Collisions
 		_deltaX = _projectile->getBottomLeft();
 		updatePositions(position.x, position.y);
 		_hitboxSize.y = _projectile->getTop();
-		_hitboxSize.x = _texture->getImage()->GetWidth() / _animation.getNbSpritesMax() - 2 * _deltaX;
+		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
 	}
 
 	ProjectileOccurrence::State ProjectileOccurrence::getState()

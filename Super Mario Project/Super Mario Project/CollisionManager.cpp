@@ -72,19 +72,19 @@ namespace Collisions
 		{
 			collisionDetected = true;
 
-			float width = r1.GetWidth();
-			float height = (-1) * r1.GetHeight(); // Due to inversion of Top and Bottom 
+			float width = r1.width;
+			float height = (-1) * r1.height; // Due to inversion of Top and Bottom 
 
-			if(zone.Right <= r1.Left + width / 2)
+			if((zone.left + zone.width) <= r1.left + width / 2)
 				collisions_info[FROM_LEFT] = true;
 
-			if(zone.Left >= r1.Right - width / 2)
+			if(zone.left >= (r1.left + r1.width) - width / 2)
 				collisions_info[FROM_RIGHT] = true;
 
-			if(zone.Top <= r1.Bottom + height / 2)
+			if(zone.top <= (r1.top - r1.height) + height / 2)
 				collisions_info[FROM_BOTTOM] = true;
 
-			if(zone.Bottom >= r1.Top - height / 2)
+			if((zone.top - zone.height) >= r1.top - height / 2)
 				collisions_info[FROM_TOP] = true;
 		
 		}
@@ -114,19 +114,19 @@ namespace Collisions
 		{
 			collisionDetected = true;
 
-			float width = r1.GetWidth();
-			float height = (-1) * r1.GetHeight(); // Due to inversion of Top and Bottom 
+			float width = r1.width;
+			float height = (-1) * r1.height; // Due to inversion of Top and Bottom 
 
-			if(zone.Right <= r1.Left + width)
+			if((zone.left + zone.width) <= r1.left + width)
 				collisions_info[FROM_LEFT] = true;
 
-			if(zone.Left >= r1.Right - width)
+			if(zone.left >= (r1.left + r1.width) - width)
 				collisions_info[FROM_RIGHT] = true;
 
-			if(zone.Top <= r1.Bottom + height)
+			if(zone.top <= (r1.top - r1.height) + height)
 				collisions_info[FROM_BOTTOM] = true;
 
-			if(zone.Bottom >= r1.Top - height)
+			if((zone.top - zone.height) >= r1.top - height)
 				collisions_info[FROM_TOP] = true;
 		
 		}
@@ -143,13 +143,14 @@ namespace Collisions
 	bool CollisionManager::Intersects(const FloatRect& r1, const FloatRect& r2, FloatRect* OverlappingRect)
 	{
 		// Compute overlapping rect
-		FloatRect Overlapping(std::max(r1.Left,   r2.Left),
-			std::min(r1.Top,    r2.Top),
-			std::min(r1.Right,  r2.Right),
-			std::max(r1.Bottom, r2.Bottom));
+		FloatRect Overlapping(std::max(r1.left,   r2.left),
+			std::min(r1.top,    r2.top),
+			std::min(r1.left + r1.width,  r2.left + r2.width),
+			std::max(r1.top - r1.height, r2.top - r2.height));
 
 		// If overlapping rect is valid, then there is intersection
-		if ((Overlapping.Left < Overlapping.Right) && (Overlapping.Bottom < Overlapping.Top))
+		if ((Overlapping.left < (Overlapping.left + Overlapping.width)) 
+			&& ((Overlapping.top - Overlapping.height) < Overlapping.top))
 		{
 			if (OverlappingRect)
 				*OverlappingRect = Overlapping;

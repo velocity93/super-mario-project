@@ -18,6 +18,7 @@ namespace Rendering
 		loadCfgBackground();
 
 		_animation.setCurrentState(NORMAL);
+		_texture->setRepeated(true);
 	}
 
 	Background::Background(const string& textureName, Vector2f& position) : 
@@ -28,6 +29,9 @@ namespace Rendering
 
 		/* Loading informations */
 		loadCfgBackground();
+
+		_animation.setCurrentState(NORMAL);
+		_texture->setRepeated(true);
 	}
 
 	bool Background::getVerticalRepetition()
