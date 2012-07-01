@@ -10,12 +10,8 @@
 
 namespace Rendering 
 {
-    int ReversedSprite::_winHeight = 0;
-
     ReversedSprite::ReversedSprite()
-        : Sprite(),
-        _flippedX(false),
-        _flippedY(false)
+        : Sprite()
     {
     }
 
@@ -43,21 +39,5 @@ namespace Rendering
 		{
 			setScale(1, -1);
 		}
-    }
-
-
-    void ReversedSprite::Render(sf::RenderTarget&) const
-    {
-       
-    }
-
-	void ReversedSprite::Render(sf::RenderTarget& target, sf::View& view)
-	{
-		setWindowsHeight((int)view.getSize().y);
-	}
-
-    void ReversedSprite::setWindowsHeight(int winHeight)
-    {
-        _winHeight = winHeight;
     }
 }

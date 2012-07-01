@@ -56,7 +56,6 @@ int main(int, char**)
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
     App.setView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
-	ReversedSprite::setWindowsHeight((int) App.getView().getSize().y);
 	
     // Limit to 60 FPS
     App.setFramerateLimit(60);
@@ -83,10 +82,6 @@ int main(int, char**)
                 {
                 case Event::Closed : 
                     App.close();
-                    break;
-
-                case(Event::Resized):
-                    ReversedSprite::setWindowsHeight(Event.size.height);
                     break;
 
                 case Event::KeyPressed : 
