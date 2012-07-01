@@ -47,7 +47,19 @@ namespace Rendering
 
 	void Background::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, false);
+		float x = _position.x, widthX = x + _texture->getSize().x;
+		float viewXWidth = app.getView().getCenter().x + app.getView().getSize().x / 2;
+
+		/* We draw texture as many times, as needed to fill view */
+		while(x < viewXWidth || widthX < viewXWidth)
+		{
+			Vector2f newPosition = Vector2f(x, _position.y);
+
+			_animation.render(_texture, app, newPosition, false);
+
+			x += _texture->getSize().x;
+			widthX = x + _texture->getSize().x;
+		}
 	}
 
 	void Background::serialize(ofstream& file, const string& tabs)

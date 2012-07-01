@@ -55,6 +55,8 @@ namespace Collisions
 		{
 			_animation.addNbSpritesForGivenState(state, 1);
 		}
+
+		_texture->setSpriteOrigin(_hitboxPosition.x, _hitboxPosition.y);
     }
 
 	Block* BlockOccurrence::getActualModel()
