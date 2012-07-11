@@ -55,8 +55,6 @@ namespace Collisions
 		{
 			_animation.addNbSpritesForGivenState(state, 1);
 		}
-
-		_texture->setSpriteOrigin(_hitboxPosition.x, _hitboxPosition.y);
     }
 
 	Block* BlockOccurrence::getActualModel()
@@ -111,10 +109,7 @@ namespace Collisions
 			}
 			else
 			{
-				ReversedSprite& sprite = _texture->getSprite();
-				sprite.setTextureRect(IntRect(_coordSprite.x, _coordSprite.y, _coordSprite.x + _size.x, _coordSprite.y + _size.y));
-				sprite.setPosition(_position);
-				app.draw(sprite);
+				_animation.render(_texture, app, _position, _coordSprite, _size);
 			}
 		}
 	}

@@ -155,3 +155,16 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 
 	app.draw(sprite);
 }
+
+/* Special method for blocks with no animation */
+template<typename T>
+void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, Vector2i& coords, Vector2i& size)
+{
+	ReversedSprite& sprite = texture->getSprite();
+	sprite.setTextureRect(IntRect(coords.x, coords.y, size.x, size.y));
+	sprite.FlipX(false);
+
+	/* We must correspond graphic to physic */
+	sprite.setPosition(position.x, position.y + size.y);
+	app.draw(sprite);
+}
