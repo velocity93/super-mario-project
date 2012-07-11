@@ -19,12 +19,9 @@ namespace Rendering
         {
             cout << "Error in loading texture " << name << endl;
         }
-        setSmooth(false);
 
+        setSmooth(false);
 		_sprite.setTexture(*this);
-        //_image.Bind();
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     }
 
     ReversedSprite& Texture::getSprite()
