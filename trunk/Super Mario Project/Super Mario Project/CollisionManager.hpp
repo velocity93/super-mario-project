@@ -12,6 +12,7 @@
 
 #include "EntityMovable.hpp"
 #include "Level.hpp"
+#include "InverseRect.hpp"
 
 using namespace SuperMarioProject;
 
@@ -35,8 +36,8 @@ namespace Collisions
 	
 		static CollisionManager* getManager();
 
-		static void solveCollisions(EntityMovable* et1, EntityMovable* et2, Level* level, RenderWindow& app);
-		static void solveCollisions(EntityMovable* et1, Collisionable* et2, Level* level, RenderWindow& app);
+		static void solveCollisions(EntityMovable* et1, EntityMovable* et2);
+		static void solveCollisions(EntityMovable* et1, Collisionable* c2);
 
 		static void killManager();
 
@@ -48,9 +49,10 @@ namespace Collisions
 
 		virtual ~CollisionManager() { }
 
-		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, vector<bool>& collisions_info);
-		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, vector<bool>& collisions_info);
-		static bool Intersects(const FloatRect& r1, const FloatRect& r2, FloatRect* overlapZone = NULL);
+		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, Type& collisions_info);
+		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, Type& collisions_info);
+		static void interprateCollisions(const InverseFloatRect& r1, const InverseFloatRect& r1Prec,
+										const InverseFloatRect& r2, const InverseFloatRect& r2Prec,Type& collisions_info);
 	};
 } // namespace
 

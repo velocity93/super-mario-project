@@ -29,7 +29,7 @@ namespace Collisions
 			Collisionable(textureName, position), 
 			_previousPosition(position),
 			_previousHitboxPosition(position),
-			_speed(speed), 
+			_speed(speed),
 			_side(side),
 			_deltaX(0) { }
 
@@ -39,7 +39,7 @@ namespace Collisions
 		Vector2f& getPreviousHitboxPosition();
 		void updatePositions(float positionX, float positionY);
 
-		virtual void onCollision(Collisionable* c, vector<bool>& infos) = 0;
+		virtual void onCollision(Collisionable* c, int collision_type) = 0;
 		virtual void updatePhysicData(float time, RenderWindow& app) = 0;
 
 		/* Destructors */

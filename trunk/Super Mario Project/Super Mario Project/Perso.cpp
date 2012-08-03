@@ -33,6 +33,8 @@ namespace Collisions
 		_broughtMonster(nullptr)
 	{
 		loadPerso(_textureName);
+		_invincibleStarTime.Reset(true);
+		_invincibleTime.Reset(true);
 
 		/* Setting animation Data */
 		_animation.setCurrentState(_state);
@@ -124,7 +126,7 @@ namespace Collisions
 
 	void Perso::updatePhysicData(float, RenderWindow&)
 	{
-		// NOTHING
+		// Nothing because we need InputState
 	}
 
 	void Perso::updatePerso(float time, InputState& inputState)
@@ -461,7 +463,6 @@ namespace Collisions
 		}
 		else if(_transformation == SMALL_MARIO)
 		{
-			transform(SUPER_MARIO);
 			setState(DEAD);
 			_speed.x = 0;
 			_speed.y = PhysicConstants::EJECTION_SPEED_Y * 5;
@@ -482,22 +483,16 @@ namespace Collisions
 	{
 		if(_transformation >= nextTransformation)
 		{
-			/* Selon le futur état du personnage,
-			on charge la texture appropriée */
+			/* According to actual transformation,
+			we load the desired texture */
 			switch(nextTransformation) {
 			case SMALL_MARIO :
 				loadPerso("small_mario");
 				_transformation = SMALL_MARIO;
-
-				/* Faire correspondre les deux coins bas_gauche de la hitbox */
-				//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
 				break;
 			case SUPER_MARIO :
 				loadPerso("super_mario");
 				_transformation = SUPER_MARIO;
-
-				/* Faire correspondre les deux coins bas_gauche de la hitbox */
-				//p->position.x = p->position.x + (copy.abscisse_bas - p->texture_act->abscisse_bas);
 				break;
 			case FIRE_MARIO :
 				loadPerso("fire_mario");
@@ -513,13 +508,13 @@ namespace Collisions
 		_hud->addPoints(1000);
 	}
 
-	void Perso::onCollision(Collisionable* c, vector<bool>& infos)
+	void Perso::onCollision(Collisionable* c, int collision_type)
 	{
 		/* Collision with a BlockOccurrence */
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			return onCollision(block, infos);
+			return onCollision(block, collision_type);
 		}
 
 		/* Collision with an Item */
@@ -540,14 +535,14 @@ namespace Collisions
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			return onCollision(pipe, infos);
+			return onCollision(pipe, collision_type);
 		}
 
 		/* Collision with a MonsterOccurrence */
 		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
 		if(monsterOccurrence != NULL)
 		{
-			return onCollision(monsterOccurrence, infos);
+			return onCollision(monsterOccurrence, collision_type);
 		}
 
 		/* Collision with Checkpoint */
@@ -555,29 +550,38 @@ namespace Collisions
 		if(checkpoint != NULL)
 		{
 			checkpoint->setState(Checkpoint::PASSED);
+			return;
+		}
+
+		/* Collision with Finish */
+		Finish* finish = dynamic_cast<Finish*>(c);
+		if(finish != NULL)
+		{
+			finish->setState(Finish::FINISH);
+			setState(FINISH_CASTLE);
 		}
 	}
 
-	void Perso::onCollision(Pipe* pipe, vector<bool>& infos)
+	void Perso::onCollision(Pipe* pipe, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_BOTTOM])
-		{
-			updatePositions(_position.x ,pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
-		}
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
 
-		if(infos[CollisionManager::FROM_TOP])
+		if(type == CollisionManager::FROM_LEFT)
 		{
-			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _hitboxPosition.y);
 		}
-
-		if(infos[CollisionManager::FROM_LEFT])
+		else if(type == CollisionManager::FROM_RIGHT)
 		{
-			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
+			updatePositions(pipe->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 		}
-
-		if(infos[CollisionManager::FROM_RIGHT])
+		else if(type == CollisionManager::FROM_BOTTOM)
 		{
-			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+			setEnvironment(GROUND);
+		}
+		else if(type == CollisionManager::FROM_TOP)
+		{
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
 		}
 	}
 
@@ -589,10 +593,19 @@ namespace Collisions
 		}
 	}
 
-	void Perso::onCollision(MonsterOccurrence* monsterOccurrence, vector<bool>& infos)
+	void Perso::onCollision(MonsterOccurrence* monsterOccurrence, int collision_type)
 	{
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
 		Monster* monster = monsterOccurrence->getModel();
-		if(infos[CollisionManager::FROM_BOTTOM] && !monster->canBeJumpedOn())
+		if((type == CollisionManager::FROM_LEFT || type == CollisionManager::FROM_RIGHT)
+			&& _invincibleStarTime.GetElapsedTime() == 0 && _invincibleTime.GetElapsedTime() == 0)
+			hurted();
+
+		if(type == CollisionManager::FROM_BOTTOM && monster->canBeKilledByJump())
+			_speed.y = PhysicConstants::EJECTION_SPEED_Y;
+
+		if(type == CollisionManager::FROM_BOTTOM && !monster->canBeJumpedOn())
 			hurted();
 	}
 
@@ -638,25 +651,27 @@ namespace Collisions
 		}
 	}
 
-	void Perso::onCollision(BlockOccurrence* block, vector<bool>& infos)
+	void Perso::onCollision(BlockOccurrence* block, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_RIGHT && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 		}
 
-		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
 			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		if(type == CollisionManager::FROM_LEFT && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
 		}
 
-		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 			_environment = GROUND;

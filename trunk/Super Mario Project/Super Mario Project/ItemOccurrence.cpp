@@ -58,79 +58,78 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-	void ItemOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
+	void ItemOccurrence::onCollision(Collisionable* c, int collision_type)
 	{
 		/* Collision vs BlockOccurrence */
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			return onCollision(block, infos);
+			return onCollision(block, collision_type);
 		}
 
-		/* Collision vs BlockOccurrence */
+		/* Collision vs Pipe */
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			return onCollision(pipe, infos);
+			return onCollision(pipe, collision_type);
 		}
 
 		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			return onCollision(perso);
+			setState(TAKEN);
 		}
 	}
 
-	void ItemOccurrence::onCollision(Perso*)
+	void ItemOccurrence::onCollision(BlockOccurrence* block, int collision_type)
 	{
-		_item->removeItemOccurrence(this);
-	}
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
 
-	void ItemOccurrence::onCollision(BlockOccurrence* block, vector<bool>& infos)
-	{
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		if(type == CollisionManager::FROM_LEFT && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
 			_speed.x *= -1;
 		}
 
-		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
 			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		if(type == CollisionManager::FROM_RIGHT && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 			_speed.x *= -1;
 		}
 
-		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 		}
 	}
 	
-	void ItemOccurrence::onCollision(Pipe* pipe, vector<bool>& infos)
+	void ItemOccurrence::onCollision(Pipe* pipe, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_BOTTOM])
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_BOTTOM)
 		{
 			updatePositions(_position.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
 		}
 
-		if(infos[CollisionManager::FROM_TOP])
+		if(type == CollisionManager::FROM_TOP)
 		{
 			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
 		}
 
-		if(infos[CollisionManager::FROM_LEFT])
+		if(type == CollisionManager::FROM_LEFT)
 		{
 			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT])
+		if(type == CollisionManager::FROM_RIGHT)
 		{
 			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
 		}
@@ -157,8 +156,10 @@ namespace Collisions
 				updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 
 				/* If it falls in hole */
-				if(_hitboxPosition.y + _hitboxSize.y < 0)
-					_item->removeItemOccurrence(this);
+				/*if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_item->removeItemOccurrence(this);*/
+				if(_hitboxPosition.y < 0)
+					_hitboxPosition.y = 0;
 			}
 			else
 			{
@@ -166,7 +167,7 @@ namespace Collisions
 				{
 					if(_item->getType() == Item::COIN)
 					{
-						_item->removeItemOccurrence(this);
+						setState(TAKEN);
 					}
 					else
 					{
@@ -197,5 +198,6 @@ namespace Collisions
 
 	ItemOccurrence::~ItemOccurrence()
 	{
+		//_texture->release();
 	}
 } // namespace

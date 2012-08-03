@@ -64,10 +64,109 @@ namespace SuperMarioProject
 			vector<BlockOccurrence*> blocks;
 			_levelTree->getBlocks(position, (*itPerso)->getHitboxSize(), &blocks);
 
-			/* Resolve these collisions if able*/
+			/* Resolve collisions with Blocks if able*/
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
-				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks), _level, app);
+				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks));
+			}
+
+			/* Resolve collisions with Items if able */
+			vector<Item*>& items = _level->getItems();
+			for (vector<Item*>::iterator itItems = items.begin(); itItems != items.end(); ++itItems)
+			{
+				vector<ItemOccurrence*>& itemsOccurrences = (*itItems)->getItemOccurrences();
+				for (vector<ItemOccurrence*>::iterator itItemOcc = itemsOccurrences.begin(); itItemOcc != itemsOccurrences.end(); ++itItemOcc)
+				{
+					if((*itItemOcc)->isActive())
+					{
+						Collisions::CollisionManager::solveCollisions((*itPerso), (*itItemOcc));
+						if((*itItemOcc)->getState() == ItemOccurrence::TAKEN)
+						{
+							itItemOcc = (*itItems)->getItemOccurrences().erase(itItemOcc);
+
+							/* If there is anyone item, we exit the loop */
+							if(itemsOccurrences.empty())
+								break;
+						}
+					}
+				}
+			}
+
+			/* Resolve collisions with Monsters if able */
+			vector<Monster*>& monsters = _level->getMonsters();
+			for (vector<Monster*>::iterator itMonsters = monsters.begin(); itMonsters != monsters.end(); ++itMonsters)
+			{
+				vector<MonsterOccurrence*>& monstersOccurrences = (*itMonsters)->getMonsterOccurrences();
+				for (vector<MonsterOccurrence*>::iterator itMonsterOcc = monstersOccurrences.begin(); itMonsterOcc != monstersOccurrences.end(); ++itMonsterOcc)
+				{
+					if((*itMonsterOcc)->isActive() 
+						&& (*itMonsterOcc)->getState() != MonsterOccurrence::DEAD
+						&& (*itMonsterOcc)->getState() != MonsterOccurrence::DEAD_BY_JUMP_ON
+						&& (*itMonsterOcc)->getState() != MonsterOccurrence::DEAD_BY_PROJ)
+					{
+						Collisions::CollisionManager::solveCollisions((*itPerso), (*itMonsterOcc));
+						if((*itMonsterOcc)->getState() == MonsterOccurrence::DEAD)
+						{
+							//itMonsterOcc = (*itMonsters)->getMonsterOccurrences().erase(itMonsterOcc);
+
+							/* If there is anyone item, we exit the loop */
+							if(monstersOccurrences.empty())
+								break;
+						}
+					}
+				}
+			}
+
+			/* Resolve collisions with Monsters if able */
+			vector<Projectile*>& projectiles = _level->getProjectiles();
+			for (vector<Projectile*>::iterator itProjectile = projectiles.begin(); itProjectile != projectiles.end(); ++itProjectile)
+			{
+				vector<ProjectileOccurrence*>& projectileOccurrences = (*itProjectile)->getProjectileOccurrences();
+				for (vector<ProjectileOccurrence*>::iterator itPojectileOcc = projectileOccurrences.begin(); itPojectileOcc != projectileOccurrences.end(); ++itPojectileOcc)
+				{
+					if((*itPojectileOcc)->isActive())
+					{
+						Collisions::CollisionManager::solveCollisions((*itPerso), (*itPojectileOcc));
+						if((*itPojectileOcc)->getState() == ProjectileOccurrence::DEAD)
+						{
+							itPojectileOcc = (*itProjectile)->getProjectileOccurrences().erase(itPojectileOcc);
+
+							/* If there is anyone item, we exit the loop */
+							if(projectileOccurrences.empty())
+								break;
+						}
+					}
+				}
+			}
+
+			/* Resolve collisions with Pipes if able */
+			vector<Pipe*>& pipes = _level->getPipes();
+			for (vector<Pipe*>::iterator itPipes = pipes.begin(); itPipes != pipes.end(); ++itPipes)
+			{
+				if((*itPipes)->isActive())
+				{
+					Collisions::CollisionManager::solveCollisions((*itPerso), (*itPipes));
+				}
+			}
+
+			/* Resolve collisions with Finishes if able */
+			vector<Finish*>& finishes = _level->getFinishes();
+			for (vector<Finish*>::iterator itFinish = finishes.begin(); itFinish != finishes.end(); ++itFinish)
+			{
+				if((*itFinish)->isActive())
+				{
+					Collisions::CollisionManager::solveCollisions((*itPerso), (*itFinish));
+				}
+			}
+
+			/* Resolve collisions with Checkpoints if able */
+			vector<Checkpoint*>& checkpoints = _level->getCheckpoints();
+			for (vector<Checkpoint*>::iterator itCheckpoint = checkpoints.begin(); itCheckpoint != checkpoints.end(); ++itCheckpoint)
+			{
+				if((*itCheckpoint)->isActive())
+				{
+					Collisions::CollisionManager::solveCollisions((*itPerso), (*itCheckpoint));
+				}
 			}
 
 			/* Update Graphic */
@@ -142,7 +241,7 @@ namespace SuperMarioProject
 			delete _level;
 
 		/* Persos */
-		for(vector<Perso*>::iterator itPersos = this->_persos.begin(); itPersos < this->_persos.end(); ++itPersos)
+		for(vector<Perso*>::iterator itPersos = _persos.begin(); itPersos < _persos.end(); ++itPersos)
 		{
 			delete (*itPersos);
 		}

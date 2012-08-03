@@ -62,19 +62,21 @@ namespace Collisions
 		return _actualBlock;
 	}
 
-	void BlockOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
+	void BlockOccurrence::onCollision(Collisionable* c, int collision_type)
 	{
 		/* Collisions vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			return onCollision(perso, infos);
+			return onCollision(perso, collision_type);
 		}
 	}
 
-	void BlockOccurrence::onCollision(Perso* , vector<bool>& infos)
+	void BlockOccurrence::onCollision(Perso* , int collision_type)
 	{
-		if(infos[CollisionManager::FROM_TOP] && !(_actualBlock->getType() & BlocksConstants::BLOCK_TYPE_EMPTY))
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_TOP && !(_actualBlock->getType() & BlocksConstants::BLOCK_TYPE_EMPTY))
 		{
 			/* Normally, according to block type,  we do a specific action but now, we have only BLOCK_TYPE_EMPTY types */
 			_actualBlock->removeBlockOccurrence(this);

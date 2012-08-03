@@ -24,12 +24,12 @@ namespace Collisions
 			FINISH
 		};
 
-		Finish(const string& textureName);
 		Finish(const string& textureName, Vector2f& position);
 
 		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);
 		void serialize(ofstream& file, const string& tabs);
+		void setState(const State& state);
 
         virtual ~Finish();
 		

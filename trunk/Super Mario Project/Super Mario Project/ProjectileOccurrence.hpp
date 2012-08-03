@@ -12,6 +12,7 @@
 
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
+#include "Block.hpp"
 
 namespace Collisions
 {
@@ -48,7 +49,8 @@ namespace Collisions
 		void setState(State state);		
 
 		/* Methods */
-		void onCollision(Collisionable* c, vector<bool>& infos);
+		void onCollision(Collisionable* c, int collision_type);
+		void onCollision(BlockOccurrence* block, int collision_type);
 		void updatePhysicData(float time, RenderWindow& app);
 		void updateGraphicData(RenderWindow& app);
 		void render(RenderWindow& app);

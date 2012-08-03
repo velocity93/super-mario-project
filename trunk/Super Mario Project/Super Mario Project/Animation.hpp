@@ -60,7 +60,6 @@ namespace Rendering
 		/* Get nbSprites for currentState */
 		int getNbSpritesForCurrentState();
 		int getFrameDelayForCurrentState(); 
-
 		int computeNbSpritesMax();
 
 	};

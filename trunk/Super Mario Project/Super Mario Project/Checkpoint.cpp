@@ -16,12 +16,23 @@ namespace Collisions
 	{
 		loadCfgCheckpoint();
 		_animation.setCurrentState(NOT_PASSED);
+
+		/* Hitbox */
+		_hitboxPosition.x = 0;
+		_hitboxPosition.y = 0;
+		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax();
+		_hitboxSize.y = _texture->getSize().y / NB_STATES;
 	}
 
 	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
 	{
 		loadCfgCheckpoint();
 		_animation.setCurrentState(NOT_PASSED);
+
+		/* Hitbox */
+		_hitboxPosition = position;
+		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax();
+		_hitboxSize.y = _texture->getSize().y / NB_STATES;
 	}
 
 	Checkpoint::State Checkpoint::getState()
@@ -32,6 +43,7 @@ namespace Collisions
 	void Checkpoint::setState(const State &state)
 	{
 		_state = state;
+		_animation.setCurrentState(state);
 	}
 
     void Checkpoint::updateGraphicData(RenderWindow& app)
@@ -91,15 +103,24 @@ namespace Collisions
 					continue;
 				}
 
-				/* 'v_anim' keyword */
-				found = word.find("v_anim=");
+				/* 'v_anim_active' keyword */
+				found = word.find("v_anim_active=");
                 if(found != string::npos)
                 {
 					int vAnim;
-                    istringstream vAnimStream(word.substr(found + 7));
+                    istringstream vAnimStream(word.substr(found + 14));
+					vAnimStream >> vAnim;
+					_animation.addFrameDelayForGivenState(PASSED, vAnim);
+                }
+
+				/* 'v_anim_inactive' keyword */
+				found = word.find("v_anim_inactive=");
+                if(found != string::npos)
+                {
+					int vAnim;
+                    istringstream vAnimStream(word.substr(found + 16));
 					vAnimStream >> vAnim;
 					_animation.addFrameDelayForGivenState(NOT_PASSED, vAnim);
-					_animation.addFrameDelayForGivenState(PASSED, vAnim);
                 }
 			}
 		}

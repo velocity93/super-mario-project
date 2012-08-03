@@ -52,7 +52,7 @@ namespace Collisions
 		vector<ProjectileOccurrence*>& getProjectileOccurrences();
 
 		/* Add occurrence to list */
-		void addNewProjectileOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0),
+		void addNewProjectileOccurrence(const Vector2f& position = Vector2f(0,0),
 			ProjectileOccurrence::State state = ProjectileOccurrence::LAUNCHED,
 			ProjectileOccurrence::Side side = ProjectileOccurrence::RIGHT_SIDE);
 

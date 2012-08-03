@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "ResourceManager.hpp"
+#include "CollisionManager.hpp"
 #include "ProjectileOccurrence.hpp"
 #include "Projectile.hpp"
 
@@ -38,9 +39,10 @@ namespace Collisions
 
 		/* Hitbox */
 		_deltaX = _projectile->getBottomLeft();
-		updatePositions(position.x, position.y);
+		
 		_hitboxSize.y = _projectile->getTop();
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
+		updatePositions(position.x,  position.y + _texture->getSize().y / nbSpritesByState.size() - _hitboxSize.y);
 	}
 
 	ProjectileOccurrence::State ProjectileOccurrence::getState()
@@ -59,10 +61,46 @@ namespace Collisions
 		_animation.setCurrentState(state);
 	}
 
-	void ProjectileOccurrence::onCollision(Collisionable*, vector<bool>&)
+	void ProjectileOccurrence::onCollision(Collisionable* c, int collision_type)
 	{
-		/* Animation of death before removing */
+		/* Collision vs BlockOccurrence */
+		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
+		if(block != NULL)
+		{
+			return onCollision(block, collision_type);
+		}
+
+		/* Otherwise */
 		_projectile->removeProjectileOccurrence(this);
+	}
+
+	void ProjectileOccurrence::onCollision(BlockOccurrence* block, int collision_type)
+	{
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_LEFT && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		{
+			_hitboxPosition.x = block->getHitboxPosition().x + block->getHitboxSize().x;
+			_speed.x *= -1;
+		}
+
+		if(type == CollisionManager::FROM_RIGHT && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		{
+			_hitboxPosition.x = block->getHitboxPosition().x - _hitboxSize.x;
+			_speed.x *= -1;
+		}
+
+		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		{
+			_hitboxPosition.y = block->getHitboxPosition().y + block->getHitboxSize().y;
+			_speed.y *= -1;
+		}
+
+		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		{
+			_hitboxPosition.y = block->getHitboxPosition().y - _hitboxSize.y;
+			_speed.y *= -1;
+		}
 	}
 
 	void ProjectileOccurrence::updatePhysicData(float time, RenderWindow& app)
@@ -85,12 +123,14 @@ namespace Collisions
 				updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 
 				/* If it falls in hole */
-				if(_hitboxPosition.y + _hitboxSize.y < 0)
-					_projectile->removeProjectileOccurrence(this);
+				/*if(_hitboxPosition.y + _hitboxSize.y < 0)
+					_projectile->removeProjectileOccurrence(this);*/
+				if(_hitboxPosition.y < 0)
+					_hitboxPosition.y = 0;
 			}
 			else
 			{
-				_projectile->removeProjectileOccurrence(this);
+				//_projectile->removeProjectileOccurrence(this);
 			}
 		}
 	}

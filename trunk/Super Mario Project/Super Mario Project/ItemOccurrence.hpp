@@ -28,7 +28,8 @@ namespace Collisions
 		typedef enum State
 		{
 			NORMAL,
-			GET_OUT_FROM_BLOC
+			GET_OUT_FROM_BLOC,
+			TAKEN
 		} State;
 
 		ItemOccurrence(Item* item,
@@ -45,7 +46,7 @@ namespace Collisions
 		Item* getModel();
 		void setState(State state);
 
-		void onCollision(Collisionable* c, vector<bool>& infos);
+		void onCollision(Collisionable* c, int collision_type);
 
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(float time, RenderWindow& app);
@@ -61,8 +62,8 @@ namespace Collisions
 
 		/* Collisions resolutions */
 		void onCollision(Perso*);
-		void onCollision(Pipe* p, vector<bool>& infos);
-		void onCollision(BlockOccurrence* block, vector<bool>& infos);
+		void onCollision(Pipe* p, int collision_type);
+		void onCollision(BlockOccurrence* block, int collision_type);
     };
 } // namespace
 

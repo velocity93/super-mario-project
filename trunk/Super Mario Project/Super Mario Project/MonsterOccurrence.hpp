@@ -26,17 +26,17 @@ namespace Collisions
 	public:
 		enum State 
 		{
-			M_WALK,
-			M_DEAD_BY_JUMP_ON,
-			M_DEAD_BY_PROJ,
-			M_RETRACTED,
-			M_GET_OUT_FROM_SHELL,
-			M_NB_TEXTURE_STATES,
-			M_DEAD,
-			M_RETRACTED_REVERSED,
-			M_RETRACTED_INCLINED, // monster brought
-			M_GET_OUT_FROM_PIPE,
-			M_NB_STATES
+			WALK,
+			DEAD_BY_JUMP_ON,
+			DEAD_BY_PROJ,
+			RETRACTED,
+			GET_OUT_FROM_SHELL,
+			NB_TEXTURE_STATES,
+			DEAD,
+			RETRACTED_REVERSED,
+			RETRACTED_INCLINED, // monster brought
+			GET_OUT_FROM_PIPE,
+			NB_STATES
 		};
 
 		enum Sound
@@ -60,7 +60,7 @@ namespace Collisions
 		State getState();
 		void setState(State state);
 		Monster* getModel();
-		void onCollision(Collisionable* c, vector<bool>& infos);
+		void onCollision(Collisionable* c, int collision_type);
 
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(float time, RenderWindow& app);
@@ -77,11 +77,11 @@ namespace Collisions
 		State _state;
 
 		/* Collisions resolutions */
-		void onCollision(Perso* perso, vector<bool>& infos);
-		void onCollision(Pipe* pipe, vector<bool>& infos);
+		void onCollision(Perso* perso, int collision_type);
+		void onCollision(Pipe* pipe, int collision_type);
 		void onCollision(ProjectileOccurrence* projectileOccurrence);
-		void onCollision(BlockOccurrence* block, vector<bool>& infos);
-		void onCollision(MonsterOccurrence* monsterOccurrence, vector<bool>& infos);
+		void onCollision(BlockOccurrence* block, int collision_type);
+		void onCollision(MonsterOccurrence* monsterOccurrence, int collision_type);
 	};
 } // namespace
 

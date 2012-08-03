@@ -81,9 +81,6 @@ namespace SuperMarioProject
 		/* All Blocks occurrences */
 		vector<BlockOccurrence*>& getBlocksOccurrences();
 
-		/* Get index of specific monster */
-		int getMonsterIndex(Monster* monster);
-
 		/* Set spawn coord */
 		void setSpawnX(float x);
 

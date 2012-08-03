@@ -126,6 +126,9 @@
     <ClInclude Include="QuadTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="InverseRect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -249,6 +252,12 @@
     </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="textures\blocs\classiques\classiques.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="InverseRect.inl">
+      <Filter>Inline Files</Filter>
+    </None>
+    <None Include="textures\objects\checkpoint.obj">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
