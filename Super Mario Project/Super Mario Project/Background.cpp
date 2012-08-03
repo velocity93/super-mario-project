@@ -47,7 +47,7 @@ namespace Rendering
 
 	void Background::render(RenderWindow& app)
 	{
-		float x = _position.x, widthX = x + _texture->getSize().x;
+		float x = _position.x, widthX = x + _texture->getSize().x / _animation.getNbSpritesMax();
 		float viewXWidth = app.getView().getCenter().x + app.getView().getSize().x / 2;
 
 		/* We draw texture as many times, as needed to fill view */
@@ -57,8 +57,8 @@ namespace Rendering
 
 			_animation.render(_texture, app, newPosition, false);
 
-			x += _texture->getSize().x;
-			widthX = x + _texture->getSize().x;
+			x += _texture->getSize().x / _animation.getNbSpritesMax();
+			widthX = x + _texture->getSize().x / _animation.getNbSpritesMax();
 		}
 	}
 

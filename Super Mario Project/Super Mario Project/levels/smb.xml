@@ -1,20 +1,27 @@
 <?xml version="1.0" ?>
 <level name="World 1-1" width="1024" height="1024" music="world1-1.mp3">
 	<spawn positionX="64" positionY="1024"/>
-  <checkpoints />
+  <checkpoints>
+    <checkpoint img="checkpoint" positionX="100" positionY="64"/>
+  </checkpoints>
 	<backgrounds>
-    <background img="night_sky" positionX="0" positionY="0"/>
-    <background img="MarioHills" positionX="0" positionY="0"/>
+    <background img="skyBlueHills" positionX="0" positionY="0"/>
+    <background img="BlueHills" positionX="0" positionY="0"/>
 	</backgrounds>
   <foregrounds />
   <objects />
-  <finishes />
+  <finishes>
+    <finish img="castle" positionX="350" positionY="64"/>
+  </finishes>
 	<projectiles>
 		<projectile img="debris"/>
 		<projectile img="fireball"/>
 	</projectiles>
 	<items>
-		<item img="piece" type="0"/>
+    <item img="piece" type="0">
+      <occ_item positionX="200" positionY="100"/>
+      <occ_item positionX="300" positionY="100"/>
+    </item>
 		<item img="champignon" type="1"/>
 		<item img="fleur" type="2"/>
 		<item img="etoile" type="6"/>
@@ -38,12 +45,7 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="10" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="3" monster="goomba"/>
-		<pipe img="green_pipe" positionX="30" positionY="2" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster="goomba"/>
-		<pipe img="green_pipe" positionX="38" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
-		<pipe img="green_pipe" positionX="50" positionY="2" destination_pipe="0" level_destination="" state="1" length="3" direction="0" monster="goomba"/>
-		<pipe img="green_pipe" positionX="159" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
-		<pipe img="green_pipe" positionX="175" positionY="2" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="0" positionY="64" destination_pipe="0" level_destination="" state="1" length="1" direction="3" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">
@@ -97,7 +99,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="576" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="576" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="608" positionY="0" actual="0" alt="-1" item="-1"/>
-      <!--<occ_block tileset_actual="0" tileset_alt="0" positionX="608" positionY="32" actual="1" alt="-1" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="608" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="640" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="640" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="672" positionY="0" actual="0" alt="-1" item="-1"/>
@@ -110,7 +112,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="768" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="800" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="800" positionY="32" actual="1" alt="-1" item="-1"/>
-      <occ_block tileset_actual="0" tileset_alt="0" positionX="832" positionY="0" actual="0" alt="-1" item="-1"/>
+      <!--<occ_block tileset_actual="0" tileset_alt="0" positionX="832" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="832" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="864" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="864" positionY="32" actual="1" alt="-1" item="-1"/>

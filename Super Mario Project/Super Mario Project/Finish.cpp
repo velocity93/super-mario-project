@@ -12,14 +12,21 @@
 
 namespace Collisions
 {
-	Finish::Finish(const string& textureName) : Collisionable(textureName) 
+	Finish::Finish(const string& textureName, Vector2f& position) : Collisionable("textures/objects/" + textureName, position) 
 	{
 		loadFinish(textureName);
+		_animation.setCurrentState(WAITING);
+
+		/* Hitbox */
+		_position = position;
+		_hitboxPosition = position;
+		_hitboxSize.x = _texture->getSize().x;
+		_hitboxSize.y = _texture->getSize().y;
 	}
-	
-	Finish::Finish(const string& textureName,Vector2f& position) : Collisionable(textureName, position) 
+
+	void Finish::setState(const State& state)
 	{
-		loadFinish(textureName);
+		_animation.setCurrentState(state);
 	}
 
 	void Finish::updateGraphicData(RenderWindow& app)
@@ -33,7 +40,7 @@ namespace Collisions
 	void Finish::render(RenderWindow& app)
     {
 		if(_isActive)
-			_animation.render(_texture, app, _position, false);
+			_animation.render(_texture, app, _hitboxPosition, false);
     }
 
 	void Finish::serialize(ofstream& file, const string& tabs)
@@ -105,5 +112,6 @@ namespace Collisions
 
     Finish::~Finish()
     {
+		//_texture->release();
     }
 } // namespace

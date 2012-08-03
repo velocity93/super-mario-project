@@ -148,7 +148,7 @@ namespace Collisions
 		void updatePhysicData(float time, RenderWindow&);
 		void render(RenderWindow& app);
 
-		void onCollision(Collisionable* c, vector<bool>& infos);
+		void onCollision(Collisionable* c, int collision_type);
 
 		/* Loading character configuration */
 		void loadPerso(const string& textureName);
@@ -201,11 +201,11 @@ namespace Collisions
 		void updateInPipe();
 
 		/* Resolve Collisions */
-		void onCollision(BlockOccurrence* blockOccurrence, vector<bool>& infos);
-		void onCollision(MonsterOccurrence* monsteroccurrence, vector<bool>& infos);
+		void onCollision(BlockOccurrence* blockOccurrence, int collision_type);
+		void onCollision(MonsterOccurrence* monsteroccurrence, int collision_type);
 		void onCollision(ItemOccurrence* itemOccurrence);
 		void onCollision(ProjectileOccurrence* projectile);
-		void onCollision(Pipe* pipe, vector<bool>& infos);
+		void onCollision(Pipe* pipe, int collision_type);
 
     };
 } // namespace

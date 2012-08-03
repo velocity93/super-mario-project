@@ -36,7 +36,7 @@ namespace Collisions
 
 		/* Add Occurrence */
 		void addNewMonsterOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(MonsterConstants::MONSTER_SPEED_X,0), 
-			MonsterOccurrence::State state = MonsterOccurrence::M_WALK,
+			MonsterOccurrence::State state = MonsterOccurrence::WALK,
 			MonsterOccurrence::Side side = MonsterOccurrence::LEFT_SIDE);
 
 		/* Getters/Setters */
@@ -45,13 +45,6 @@ namespace Collisions
 		bool canBeKilledByFire();
 		bool canBeJumpedOn();
 		vector<MonsterOccurrence*>& getMonsterOccurrences();
-
-		/* Remove occurrence */
-		void removeMonsterOccurrence(const MonsterOccurrence* monster);
-
-		/* Update data */
-		void updatePhysicData(float time, RenderWindow& app);
-		void updateGraphicData(RenderWindow& app);
 
 		/* render all occurrence */
 		void render(RenderWindow& app);

@@ -31,7 +31,7 @@ namespace Collisions
 		void updatePhysicData(float time, RenderWindow&);
 		void update(float time, bool hasGravity);
 		void render(RenderWindow& app);
-		void onCollision(Collisionable *c, vector<bool>& infos);
+		void onCollision(Collisionable *c, int collision_type);
 
         virtual ~Particle();
 		

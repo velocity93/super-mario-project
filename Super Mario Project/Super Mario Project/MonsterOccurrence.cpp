@@ -40,7 +40,7 @@ namespace Collisions
 		_deltaX = _monster->getBottomLeft();
 		updatePositions(position.x, position.y);
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
-		_hitboxSize.y = _texture->getSize().y / M_NB_STATES;
+		_hitboxSize.y = _texture->getSize().y / NB_STATES;
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()
@@ -59,20 +59,20 @@ namespace Collisions
 		return _monster;
 	}
 
-	void MonsterOccurrence::onCollision(Collisionable* c, vector<bool>& infos)
+	void MonsterOccurrence::onCollision(Collisionable* c, int collision_type)
 	{
 		/* Collision vs Block */
 		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
 		if(block != NULL)
 		{
-			return onCollision(block, infos);
+			return onCollision(block, collision_type);
 		}
 
 		/* Collision vs Perso */
 		Perso* perso = dynamic_cast<Perso*>(c);
 		if(perso != NULL)
 		{
-			return onCollision(perso, infos);
+			return onCollision(perso, collision_type);
 		}
 
 		/* Collision vs Projectile */
@@ -86,56 +86,60 @@ namespace Collisions
 		Pipe* pipe = dynamic_cast<Pipe*>(c);
 		if(pipe != NULL)
 		{
-			return onCollision(pipe, infos);
+			return onCollision(pipe, collision_type);
 		}
 	}
 
-	void MonsterOccurrence::onCollision(BlockOccurrence* block, vector<bool>& infos)
+	void MonsterOccurrence::onCollision(BlockOccurrence* block, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_LEFT] && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_LEFT && (block->getActualModel()->getPhysic() & BlocksConstants::RIGHT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x + block->getHitboxSize().x, _hitboxPosition.y);
 			_speed.x *= -1;
 			_side = RIGHT_SIDE;
 		}
 
-		if(infos[CollisionManager::FROM_TOP] && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
+		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
 			_speed.y = 0;
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT] && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
+		if(type == CollisionManager::FROM_RIGHT && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
 			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
 			_speed.x *= -1;
 			_side = LEFT_SIDE;
 		}
 
-		if(infos[CollisionManager::FROM_BOTTOM] && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
+		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
 			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 		}
 	}
 
-	void MonsterOccurrence::onCollision(Pipe* pipe, vector<bool>& infos)
+	void MonsterOccurrence::onCollision(Pipe* pipe, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_BOTTOM])
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_BOTTOM)
 		{
 			updatePositions(_position.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
 		}
 
-		if(infos[CollisionManager::FROM_TOP])
+		if(type == CollisionManager::FROM_TOP)
 		{
 			updatePositions(_position.x, pipe->getHitboxPosition().y - _hitboxSize.y);
 		}
 
-		if(infos[CollisionManager::FROM_LEFT])
+		if(type == CollisionManager::FROM_LEFT)
 		{
 			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
 		}
 
-		if(infos[CollisionManager::FROM_RIGHT])
+		if(type == CollisionManager::FROM_RIGHT)
 		{
 			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
 		}
@@ -146,19 +150,21 @@ namespace Collisions
 		if(projectileOccurrence->getSender() == ProjectileOccurrence::GENTILE)
 		{
 			/* Launch Dead animation, but for the moment.... */
-			setState(M_DEAD);
-			_monster->removeMonsterOccurrence(this);
+			setState(DEAD);
 		}
 	}
 	
-	void MonsterOccurrence::onCollision(Perso* , vector<bool>& infos)
+	void MonsterOccurrence::onCollision(Perso*, int collision_type)
 	{
-		if(infos[CollisionManager::FROM_TOP] && _monster->canBeJumpedOn())
+		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
+
+		if(type == CollisionManager::FROM_BOTTOM && _monster->canBeJumpedOn())
 		{
 			if(_monster->canBeKilledByJump())
-				setState(M_DEAD);
+				setState(DEAD_BY_JUMP_ON);
 			else
-				setState(M_RETRACTED);
+				setState(RETRACTED);
+			_speed.x = 0;
 		}
 	}
 
@@ -179,11 +185,10 @@ namespace Collisions
 			updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 
 			/* If it falls in hole */
+			/*if(_hitboxPosition.y + _hitboxSize.y < 0)
+				setState(DEAD);*/
 			if(_hitboxPosition.y < 0)
-				updatePositions(_hitboxPosition.x, 0);
-
-			if(_hitboxPosition.y + _hitboxSize.y < 0)
-				_monster->removeMonsterOccurrence(this);
+				_hitboxPosition.y = 0;
 		}
 	}
 
@@ -199,7 +204,7 @@ namespace Collisions
 		{
 			/* Update animation data */
 			int delta = 0;
-			if(_state != M_WALK)
+			if(_state != WALK)
 			{
 				delta = !_monster->canBeKilledByJump() + !_monster->canBeKilledByFire();
 			}
@@ -211,20 +216,20 @@ namespace Collisions
 	{
 		const View& view = app.getDefaultView();
 
-		if(_hitboxPosition.x > view.getCenter().x + view.getSize().x
-			|| _hitboxPosition.x + _hitboxSize.x < view.getCenter().x - view.getSize().x
-			|| _hitboxPosition.y > view.getCenter().y + view.getSize().y
-			|| _hitboxPosition.y + _hitboxSize.y < view.getCenter().y - view.getSize().y)
+		if(_hitboxPosition.x > view.getCenter().x + view.getSize().x / 2
+			|| _hitboxPosition.x + _hitboxSize.x < view.getCenter().x - view.getSize().x / 2
+			|| _hitboxPosition.y > view.getCenter().y + view.getSize().y / 2
+			|| _hitboxPosition.y + _hitboxSize.y < view.getCenter().y - view.getSize().y / 2)
 		{
 			
-			if(this->_initialPosition.x < view.getSize().x - view.getSize().x
-			|| this->_initialPosition.x + _hitboxSize.x < view.getSize().x + view.getSize().x
-			|| this->_initialPosition.y > view.getSize().y + view.getSize().y
-			|| this->_initialPosition.y + _hitboxSize.y < view.getSize().y - view.getSize().y)
+			if(this->_initialPosition.x < view.getSize().x - view.getSize().x / 2
+			|| this->_initialPosition.x + _hitboxSize.x < view.getSize().x + view.getSize().x / 2
+			|| this->_initialPosition.y > view.getSize().y + view.getSize().y / 2
+			|| this->_initialPosition.y + _hitboxSize.y < view.getSize().y - view.getSize().y / 2)
 			{
 				/* If view pass monster's initial position, we put monster as the beginning of the level */
 				_position = _previousPosition = _initialPosition;
-				setState(M_WALK);
+				setState(WALK);
 				_speed.x = -MonsterConstants::MONSTER_SPEED_X;
 				_side = LEFT_SIDE;
 			}

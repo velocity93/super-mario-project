@@ -44,7 +44,7 @@ namespace Collisions
 		void updatePhysicData(float time, RenderWindow& app);
 		void render(RenderWindow& app);
 
-		void onCollision(Collisionable* c, vector<bool>& infos);
+		void onCollision(Collisionable* c, int collision_type);
 
         virtual ~BlockOccurrence();
 		
@@ -59,7 +59,7 @@ namespace Collisions
 		Item* _itemContained;
 
 		/* Collisions resolutions */
-		void onCollision(Perso* perso, vector<bool>& infos);
+		void onCollision(Perso* perso, int collision_type);
     };
 } // namespace
 

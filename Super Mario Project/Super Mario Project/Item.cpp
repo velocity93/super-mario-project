@@ -45,20 +45,6 @@ namespace Collisions
         _itemOccurrences.push_back(new ItemOccurrence(this, name(), position, speed, state, side, _nbSpritesByState, _frameDelayByState));
     }
 
-    void Item::removeItemOccurrence(const ItemOccurrence* item)
-    {
-        vector<ItemOccurrence*>::iterator itItemOccurrence;
-
-        for(itItemOccurrence = _itemOccurrences.begin(); itItemOccurrence != _itemOccurrences.end(); ++itItemOccurrence)
-        {
-            if((*itItemOccurrence) == item)
-			{
-                _itemOccurrences.erase(itItemOccurrence);
-				break;
-			}
-        }
-    }
-
     void Item::updatePhysicData(float time, RenderWindow& app)
     {
         unsigned int initSize = _itemOccurrences.size();
@@ -140,6 +126,16 @@ namespace Collisions
                     istringstream nbSprites(word.substr(found + 11));
                     nbSprites >> _nbSprites;
 					_nbSpritesByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::NORMAL, _nbSprites));
+                }
+
+				/* Manage frame numbers here */
+                found = word.find("frame_delay=");
+                if(found != string::npos)
+                {
+					int _frameDelay;
+                    istringstream frameDelay(word.substr(found + 12));
+                    frameDelay >> _frameDelay;
+					_frameDelayByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::NORMAL, _frameDelay));
                 }
             }
         }

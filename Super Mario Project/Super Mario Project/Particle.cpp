@@ -17,7 +17,7 @@ namespace Collisions
 		return _life;
 	}
 
-	void Particle::onCollision(Collisionable*, vector<bool>&)
+	void Particle::onCollision(Collisionable*, int)
 	{
 		// NOTHING TO DO !
 	}

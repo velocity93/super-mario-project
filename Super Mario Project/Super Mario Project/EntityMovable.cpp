@@ -48,7 +48,7 @@ namespace Collisions
 	}
 
 	/* Initialize float physic constants */
-	const float PhysicConstants::EJECTION_SPEED_Y = 0.2F;
+	const float PhysicConstants::EJECTION_SPEED_Y = 600.0F;
 	const float PhysicConstants::RUN_SPEED = 0.6F;
 	const float PhysicConstants::AIR_COEFF_FRICTION = 0.5F;
 } // namespace

@@ -12,8 +12,6 @@
 
 #include "Collisionable.hpp"
 
-#define MONSTER_EXIT_TIME 4000
-
 namespace Collisions
 {
 	class Monster;
@@ -33,29 +31,17 @@ namespace Collisions
 			TO_LEFT,
 			TO_RIGHT,
 			TO_BOTTOM
-		}Direction;
+		} Direction;
     
 		/* Constructors */
-		Pipe(const string& textureName) : Collisionable("textures/pipes/" + textureName),
-			_direction(TO_TOP), 
-			_monster(nullptr), 
-			_monsterExitDuration(Clock()), 
-			_lenght(1) { }
-		Pipe(const string& textureName,Vector2f position,
+		Pipe(const std::string& textureName);
+		Pipe(const std::string& textureName, Vector2f& position,
 			int indexPipeDestination, 
-			const string& levelDestination, 
+			const std::string& levelDestination, 
 			State state, 
 			int lenght, 
 			Direction direction, 
-			Monster* monster)
-			: Collisionable("textures/pipes/" + textureName, position), 
-			_indexDestination(indexPipeDestination), 
-			_levelDestination(levelDestination), 
-			_state(state), 
-			_lenght(lenght), 
-			_direction(direction), 
-			_monster(monster),
-			_monsterExitDuration(Clock()) { }
+			Monster* monster);
 
 		/* getters and setters */
 		Direction getDirection();
@@ -76,6 +62,8 @@ namespace Collisions
 
 		/* Destructor */
         virtual ~Pipe();
+
+		static const int MONSTER_EXIT_TIME = 4000;
 		
     private:
 		int _indexDestination;

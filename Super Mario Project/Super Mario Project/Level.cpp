@@ -89,20 +89,6 @@ namespace SuperMarioProject
 		return _blocksOccurrences;
 	}
 
-	int Level::getMonsterIndex(Monster* monster)
-	{
-		int index = 0;
-		for(vector<Monster*>::iterator itMonsters = _monsters.begin();
-			itMonsters != _monsters.end(); ++itMonsters)
-		{
-			if((*itMonsters) == monster)
-				return index;
-
-			++index;
-		}
-		return -1;
-	}
-
 	void Level::setName(string name)
 	{
 		_name = name;
@@ -454,8 +440,13 @@ namespace SuperMarioProject
 				/* Update Physic */
 				itemOccurrence->updatePhysicData(time, app);
 
+				/* First, check if we need to remove it */
+				if(itemOccurrence->getState() == ItemOccurrence::TAKEN)
+				{
+					itItemOccurrences = (*itItems)->getItemOccurrences().erase(itItemOccurrences);
+				}
 				/* If item is in the view */
-				if(itemOccurrence->isActive())
+				else if(itemOccurrence->isActive())
 				{
 					/* Search in level QuadTree, all blocks will be able to have a collision with him */
 					Vector2f position = Vector2f(itemOccurrence->getHitboxPosition().x, itemOccurrence->getHitboxPosition().y);
@@ -466,7 +457,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able */
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(itemOccurrence, (*itBlocks), this, app);
+						Collisions::CollisionManager::solveCollisions(itemOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */
@@ -487,6 +478,10 @@ namespace SuperMarioProject
 				/* Update Physic */
 				monsterOccurrence->updatePhysicData(time, app);
 
+				/*if(monsterOccurrence->getState() == MonsterOccurrence::DEAD)
+				{
+					itMonsterOccurrence = (*itMonsters)->getMonsterOccurrences().erase(itMonsterOccurrence);
+				}*/
 				/* If monster is in the view */
 				if(monsterOccurrence->isActive())
 				{
@@ -499,7 +494,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able */
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(monsterOccurrence, (*itBlocks), this, app);
+						Collisions::CollisionManager::solveCollisions(monsterOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */
@@ -513,15 +508,19 @@ namespace SuperMarioProject
 		{			
 			vector<ProjectileOccurrence*>& projectileOccurrences = (*itProjectiles)->getProjectileOccurrences();
 			for(vector<ProjectileOccurrence*>::iterator itProjectileOccurrences = projectileOccurrences.begin();
-				itProjectileOccurrences != projectileOccurrences.end(); ++itProjectileOccurrences)
+				!projectileOccurrences.empty() && itProjectileOccurrences != projectileOccurrences.end(); ++itProjectileOccurrences)
 			{
 				ProjectileOccurrence* projectileOccurrence = (*itProjectileOccurrences);
 
 				/* Update Physic */
 				projectileOccurrence->updatePhysicData(time, app);
 
+				if(projectileOccurrence->getState() == ProjectileOccurrence::DEAD)
+				{
+					itProjectileOccurrences = projectileOccurrences.erase(itProjectileOccurrences);
+				}
 				/* If projectile is in the view */
-				if(projectileOccurrence->isActive())
+				else if(projectileOccurrence->isActive())
 				{
 					/* Search in level QuadTree, all blocks will be able to have a collision with him */
 					Vector2f position = Vector2f(projectileOccurrence->getHitboxPosition().x, projectileOccurrence->getHitboxPosition().y);
@@ -532,7 +531,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able*/
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(projectileOccurrence, (*itBlocks), this, app);
+						Collisions::CollisionManager::solveCollisions(projectileOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */
@@ -562,6 +561,12 @@ namespace SuperMarioProject
 			(*itCheckpoints)->updateGraphicData(app);
 		}
 
+		/* Finish */
+		for(vector<Finish*>::iterator itFinish = _finishes.begin(); itFinish != _finishes.end(); ++itFinish)
+		{
+			(*itFinish)->updateGraphicData(app);
+		}
+
 		/* Foregrounds */
 		for(vector<Foreground*>::iterator itForegrounds = this->_foregrounds.begin(); itForegrounds != this->_foregrounds.end(); ++itForegrounds)
 		{
@@ -586,16 +591,16 @@ namespace SuperMarioProject
 		}*/
 		
 		/* Finish */
-		/*for(vector<Finish*>::iterator itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
+		for(vector<Finish*>::iterator itFinish = this->_finishes.begin(); itFinish != this->_finishes.end(); ++itFinish)
 		{
 			(*itFinish)->render(app);
-		}*/
+		}
 
 		/* Items */
-		/*for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
+		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
 		{
 			(*itItems)->render(app);
-		}*/
+		}
 
 		/* Blocks */
 		for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
@@ -604,10 +609,10 @@ namespace SuperMarioProject
 		}
 
 		/* CheckPoints */
-		/*for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
+		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
 		{
 			(*itCheckpoints)->render(app);
-		}*/
+		}
 
 		/* Monsters */
 		for(vector<Monster*>::iterator itMonsters = this->_monsters.begin(); itMonsters != this->_monsters.end(); ++itMonsters)
@@ -616,10 +621,10 @@ namespace SuperMarioProject
 		}
 
 		/* Projectiles */
-		/*for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
+		for(vector<Projectile*>::iterator itProjectiles = this->_projectiles.begin(); itProjectiles != this->_projectiles.end(); ++itProjectiles)
 		{
 			(*itProjectiles)->render(app);
-		}*/
+		}
 		
 		/* Pipes */
 		for(vector<Pipe*>::iterator itPipes = this->_pipes.begin(); itPipes != this->_pipes.end(); ++itPipes)
@@ -664,10 +669,14 @@ namespace SuperMarioProject
 			delete (*itItems);
 		}
 
-		// BLOCKS 
+		/* Blocks */
+		for(vector<BlockOccurrence*>::iterator itBlocks = this->_blocksOccurrences.begin(); itBlocks != this->_blocksOccurrences.end(); ++itBlocks)
+		{
+			delete (*itBlocks);
+		}
 
 		/* CheckPoints */
-		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); itCheckpoints)
+		for(vector<Checkpoint*>::iterator itCheckpoints = this->_checkpoints.begin(); itCheckpoints != this->_checkpoints.end(); ++itCheckpoints)
 		{
 			delete (*itCheckpoints);
 		}
