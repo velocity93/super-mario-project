@@ -23,7 +23,7 @@ namespace Collisions
 			NORMAL
 		};
 
-		Particle(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), _life(0) { }
+		Particle(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), _life(0), _animation(1) { }
 
 		int getLife();
 

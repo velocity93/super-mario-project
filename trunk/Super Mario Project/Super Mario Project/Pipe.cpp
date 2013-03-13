@@ -158,7 +158,7 @@ namespace Collisions
 	{
 		if(_isActive)
 		{
-			ReversedSprite& sprite = _texture->getSprite();
+			Sprite& sprite = _texture->getSprite();
 
 			switch(_direction)
 			{
@@ -174,12 +174,13 @@ namespace Collisions
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y + (_lenght * BLOCK_WIDTH));
 				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+				sprite.setScale(1, -1); // FlipY
 
 				app.draw(sprite);
 				break;
 
 			case TO_RIGHT:
-				sprite.FlipX(true);
+				sprite.setScale(-1, 1); // FlipX
 				sprite.setOrigin(0.0f, sprite.getTexture()->getSize().y / 2.0f);
 				sprite.rotate(270);
 

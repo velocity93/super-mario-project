@@ -12,7 +12,6 @@
 #include <sstream>
 #include "World.hpp"
 #include "Block.hpp"
-#include "ReversedSprite.hpp"
 
 using namespace SuperMarioProject;
 using namespace Rendering;
@@ -55,20 +54,15 @@ int main(int, char**)
 {
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
-    App.setView(View(FloatRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)));
-	
+
+	sf::View view = View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT));
+
     // Limit to 60 FPS
     App.setFramerateLimit(60);
 
     // Create world
     World w(&App);
-	/*Level lvl;
-    lvl.loadLevel("levels/smb.xml");
-    Perso perso = Perso("fire_mario", Vector2f(0, 0));
-    InputState input = InputState(&App);*/
-	//Tileset tiles("speciaux/incassables/[Q]/overworld");
-	//tiles.addBlock(0, EMPTY);
-	//tiles.getBlocks()[0]->addNewBlockOccurrence(tiles.getBlocks()[0]);
+	
     try
     {
         // Start the game loop
@@ -100,7 +94,7 @@ int main(int, char**)
                     break;
                 }
             }
-
+			
             App.clear();
 
 			// Clear color and depth buffer
@@ -114,12 +108,12 @@ int main(int, char**)
 			glLoadIdentity();
 
             // Update World
-			w.update(App);
-			//tiles.update(App);
+			w.update(App, &view);
+
+			App.setView(view);
 
             // Draw World
 			w.render(App);
-			//tiles.render(App);
 
             // Update the window
             App.display();

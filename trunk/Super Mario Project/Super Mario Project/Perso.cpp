@@ -29,7 +29,7 @@ namespace Collisions
 		_hud(new HUD()),
 		_canClimb(false), 
 		_acceleration(Vector2f()), 
-		_animation(Animation<State>()),
+		_animation(Animation<State>(NB_STATES)),
 		_broughtMonster(nullptr)
 	{
 		loadPerso(_textureName);
@@ -38,8 +38,6 @@ namespace Collisions
 
 		/* Setting animation Data */
 		_animation.setCurrentState(_state);
-
-		_texture->setSpriteOrigin(_hitboxPosition.x, _hitboxPosition.y);
 	}
 
 	HUD* Perso::getHUD()
@@ -220,9 +218,9 @@ namespace Collisions
 		updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 		
 		/* Compute new position */
-		if(_hitboxPosition.y <= 0)
+		if(_hitboxPosition.y >= 992)
 		{
-			updatePositions(_hitboxPosition.x, 0);
+			updatePositions(_hitboxPosition.x, 992);
 			_environment = GROUND;
 		}
 	}
@@ -240,7 +238,7 @@ namespace Collisions
 
 		/* Modification de l'accélèration en fonction de l'appui
 		ou non sur la touche d'accélèration */
-		if(_state != FINISH || _state != CLIMB_LADDER)
+		if(_state != GO_TO_CASTLE && _state != CLIMB_LADDER)
 		{
 			if(inputState[KEY_RUN] == KEY_STATE_PRESSED)
 				_acceleration.x = PhysicConstants::RUN_ACCEL * coeff;
@@ -249,7 +247,7 @@ namespace Collisions
 		}
 		else
 		{
-			_acceleration.x = 10 * PhysicConstants::RUN_ACCEL * coeff;
+			_acceleration.x = 20 * PhysicConstants::RUN_ACCEL * coeff;
 		}
 	}
 
@@ -258,7 +256,7 @@ namespace Collisions
 		/* key just pressed, clock begins */
 		_jumpTime.Reset(true);
 
-		_speed.y = PhysicConstants::JUMP_SPEED;
+		_speed.y = -1 * PhysicConstants::JUMP_SPEED;
 
 		// Play jump sound here !
 
@@ -283,12 +281,13 @@ namespace Collisions
 
 	void Perso::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+		Vector2f spritePosition = Vector2f(_position.x + 2 * (_side == LEFT_SIDE) * _hitboxSize.x, _position.y);
+		_animation.render(_texture, app, spritePosition, _side == LEFT_SIDE);
 
 #ifdef _DEBUG
 		/* Drawing HitBox */
 		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
-		rect.setPosition(_hitboxPosition);
+		rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
 		rect.setFillColor(sf::Color(0, 255, 0, 122));
 
 		app.draw(rect);
@@ -297,8 +296,7 @@ namespace Collisions
 
 	void Perso::lateral_move(float time, InputState& inputState)
 	{		
-
-		if(_state != FINISH_CASTLE)
+		if(_state != GO_TO_CASTLE)
 		{
 			if(_state != FINISH)
 			{
@@ -557,8 +555,16 @@ namespace Collisions
 		Finish* finish = dynamic_cast<Finish*>(c);
 		if(finish != NULL)
 		{
-			finish->setState(Finish::FINISH);
-			setState(FINISH_CASTLE);
+			if(_hitboxPosition.x + _hitboxSize.x >= finish->getHitboxPosition().x + finish->getHitboxSize().x / 2)
+			{
+				setState(FINISH);
+				_speed.x = 0;
+			}
+			else
+			{
+				setState(GO_TO_CASTLE);
+				finish->setState(Finish::FINISH);
+			}
 		}
 	}
 
@@ -673,7 +679,7 @@ namespace Collisions
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - block->getHitboxSize().y);
 			_environment = GROUND;
 		}
 	}
@@ -761,7 +767,7 @@ namespace Collisions
 				if(found != string::npos)
 				{
 					istringstream ordonneeHaut(word.substr(found + 14));
-					ordonneeHaut >> ordonnee_haut;
+					ordonneeHaut >> _deltaY;
 					continue;
 				}
 
@@ -964,7 +970,7 @@ namespace Collisions
 						int nbSprites = 0;
 						istringstream nbSpriteStream(word.substr(found + 25));
 						nbSpriteStream >> nbSprites;
-						_animation.addNbSpritesForGivenState(FINISH_CASTLE, nbSprites);
+						_animation.addNbSpritesForGivenState(FINISH, nbSprites);
 						continue;
 					}
 
@@ -1113,7 +1119,8 @@ namespace Collisions
 			
 			/* Compute Hitbox Size */
 			_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
-			_hitboxSize.y = ordonnee_haut;
+			_hitboxSize.y = _texture->getSize().y / _animation.getNbStates();
+			_hitboxSize.y -= _deltaY;
 		}
 		else
 		{

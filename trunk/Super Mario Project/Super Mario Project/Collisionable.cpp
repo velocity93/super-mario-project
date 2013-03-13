@@ -31,9 +31,9 @@ namespace Collisions
 		const sf::Vector2f& center = view.getCenter();
 		const sf::Vector2f& halfSize = view.getSize();
 
-		_isActive = _hitboxPosition.x >= (center.x - halfSize.x / 2);
-		_isActive &= (_hitboxPosition.x + _hitboxSize.x) <= (center.x + halfSize.x / 2);
-		_isActive &= _hitboxPosition.y >= (center.y - halfSize.y / 2);
-		_isActive &= (_hitboxPosition.y + _hitboxSize.y) <= (center.y + halfSize.y / 2);
+		_isActive = _hitboxPosition.x + _hitboxSize.x >= (center.x - halfSize.x / 2);
+		_isActive &= _hitboxPosition.x <= (center.x + halfSize.x / 2);
+		_isActive &= _hitboxPosition.y + _hitboxSize.y >= (center.y - halfSize.y / 2);
+		_isActive &= _hitboxPosition.y <= (center.y + halfSize.y / 2);
 	}
 } // namespace

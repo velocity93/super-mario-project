@@ -27,7 +27,8 @@ namespace Collisions
 		map<ItemOccurrence::State, int>& frameDelayByState) : 
 		EntityMovable(textureName, position, speed, side), 
 			_state(state), 
-			_blockExitTime(PausableClock(true))
+			_blockExitTime(PausableClock(true)),
+			_animation(NB_STATES)
 	{
 		_item = item;
 

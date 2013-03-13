@@ -22,7 +22,8 @@ namespace Collisions
 		typedef enum 
 		{
 			OPEN,
-			CLOSED
+			CLOSED,
+			NB_STATES
 		} State;
 
 

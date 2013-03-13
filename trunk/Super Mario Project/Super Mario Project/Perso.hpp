@@ -58,7 +58,7 @@ namespace Collisions
 			LOWERED_SHELL,
 			LOOK_TOP_SHELL,
 			DEAD,
-			FINISH_CASTLE,
+			FINISH,
 			ATTACK,
 			SPECIAL_ATTACK,
 			NB_STATE_TEXTURE,
@@ -69,10 +69,10 @@ namespace Collisions
 			GET_OUT_FROM_PIPE_HORIZONTAL,
 			GET_IN_FROM_PIPE_HORIZONTAL,
 			GET_IN_FROM_PIPE_VERTICAL,
-			FINISH,
 			SWIMMING,
-			NB_STATE,
-			RUN_1 = 1
+			NB_STATES,
+			GO_TO_CASTLE,
+			RUN_1 = WALK
 		} State;
 
 		typedef enum Sound {

@@ -26,6 +26,7 @@ namespace Collisions
 			PUSHED_TO_LEFT,
 			PUSHED_TO_RIGHT,
 			PUSHED_TO_TOP,
+			NB_STATES
 		} State;
 
 		BlockOccurrence(

@@ -12,13 +12,7 @@
 
 namespace Rendering
 {
-	Object::Object(const string& textureName) : Drawable("textures/objects/" + textureName)
-	{
-		loadCfgObject();
-		_animation.setCurrentState(NORMAL);
-	}
-
-	Object::Object(const string& textureName,Vector2f& position) : Drawable("textures/objects/" + textureName, position)
+	Object::Object(const string& textureName, Vector2f& position) : Drawable("textures/objects/" + textureName, position), _animation(1)
 	{ 
 		loadCfgObject();
 		_animation.setCurrentState(NORMAL);

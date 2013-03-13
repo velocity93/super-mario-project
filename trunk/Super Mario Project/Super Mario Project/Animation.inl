@@ -44,6 +44,12 @@ int Animation<T>::getNbSpritesMax()
 }
 
 template<typename T>
+int Animation<T>::getNbStates()
+{
+	return _nbSpritesByState.size();
+}
+
+template<typename T>
 void Animation<T>::setMapNbSprites(map<T, int>& nbSpritesByState)
 {
 	_nbSpritesByState = nbSpritesByState;
@@ -80,7 +86,7 @@ int Animation<T>::getNbSpritesForCurrentState()
 template<typename T>
 void Animation<T>::setCurrentState(T state)
 {
-	_currentState = state;
+	_currentState = (T)(((int)state) % _nbStatesMax);
 	_frameDelayForCurrentState = getFrameDelayForCurrentState();
 	_nbSpritesForCurrentState = getNbSpritesForCurrentState();
 }
@@ -129,7 +135,7 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 	Vector2i spriteSize = Vector2i(
 		texture->getSize().x / _nbSpritesMax,
 		texture->getSize().y / _nbSpritesByState.size());
-    ReversedSprite& sprite = texture->getSprite();
+    Sprite& sprite = texture->getSprite();
 
 	if(_nbSpritesForCurrentState > 0)
 	{
@@ -144,12 +150,16 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 			spriteSize.y));
 	}
 
-	sprite.FlipX(isFlipX);
-
 	if(isFlipX)
-		sprite.setPosition(position.x + spriteSize.x, position.y + spriteSize.y);
+	{
+		sprite.setScale(-1, 1);
+	}
 	else
-		sprite.setPosition(position.x, position.y + spriteSize.y);
+	{
+		sprite.setScale(1, 1);
+	}
+
+	sprite.setPosition(position);
 
 	app.draw(sprite);
 }
@@ -158,11 +168,10 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 template<typename T>
 void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, Vector2i& coords, Vector2i& size)
 {
-	ReversedSprite& sprite = texture->getSprite();
+	Sprite& sprite = texture->getSprite();
 	sprite.setTextureRect(IntRect(coords.x, coords.y, size.x, size.y));
-	sprite.FlipX(false);
 
 	/* We must correspond graphic to physic */
-	sprite.setPosition(position.x, position.y + size.y);
+	sprite.setPosition(position.x, position.y);
 	app.draw(sprite);
 }

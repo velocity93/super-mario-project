@@ -51,6 +51,7 @@ namespace Collisions
 		Vector2f _speed;
 		Side _side;
 		int _deltaX;
+		int _deltaY;
 
 		void gravity(Vector2f &speed, float time);
     };

@@ -81,7 +81,7 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -135,7 +135,7 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -159,7 +159,7 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -212,7 +212,7 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = (float)atoi(attrs[i + 1]);
+				position.x = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
@@ -279,7 +279,7 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = (float)atoi(attrs[i + 1]);
+				position.x = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
@@ -307,7 +307,7 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -422,7 +422,7 @@ namespace XMLParsing
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "actual"))
 			{

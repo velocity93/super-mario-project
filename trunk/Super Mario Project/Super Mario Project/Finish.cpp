@@ -12,16 +12,18 @@
 
 namespace Collisions
 {
-	Finish::Finish(const string& textureName, Vector2f& position) : Collisionable("textures/objects/" + textureName, position) 
+	Finish::Finish(const string& textureName, Vector2f& position) : Collisionable("textures/objects/" + textureName, position),
+		_animation(NB_STATES)
 	{
 		loadFinish(textureName);
 		_animation.setCurrentState(WAITING);
 
 		/* Hitbox */
-		_position = position;
-		_hitboxPosition = position;
 		_hitboxSize.x = _texture->getSize().x;
 		_hitboxSize.y = _texture->getSize().y;
+
+		_position = Vector2f(position.x, position.y - _hitboxSize.y);
+		_hitboxPosition = _position;
 	}
 
 	void Finish::setState(const State& state)

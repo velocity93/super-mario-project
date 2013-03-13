@@ -32,15 +32,15 @@ namespace Collisions
 		_hitboxPosition.y = positionY;
 
 		setPositionX(_hitboxPosition.x - _deltaX);
-		setPositionY(_hitboxPosition.y);
+		setPositionY(_hitboxPosition.y - _deltaY);
 	}
 
 	void EntityMovable::gravity(Vector2f &speed, float time)
 	{
-		speed.y -= PhysicConstants::GRAVITY * time;
+		speed.y += PhysicConstants::GRAVITY * time;
 
-		if(speed.y < -PhysicConstants::SPEED_Y_MAX)
-			speed.y = -PhysicConstants::SPEED_Y_MAX;
+		if(speed.y > PhysicConstants::SPEED_Y_MAX)
+			speed.y = PhysicConstants::SPEED_Y_MAX;
 	}
 
 	EntityMovable::~EntityMovable()

@@ -27,7 +27,7 @@ namespace Collisions
 		MonsterOccurrence::Side side,
 		map<MonsterOccurrence::State, int>& nbSpritesByState,
 		map<MonsterOccurrence::State, int>& frameDelayByState)
-			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state)
+			: EntityMovable(textureName, position, speed, side), _initialPosition(position), _state(state), _animation(NB_STATES)
 	{
 		_monster = monster;
 

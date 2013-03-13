@@ -24,7 +24,7 @@ namespace Rendering
 		_sprite.setTexture(*this);
     }
 
-    ReversedSprite& Texture::getSprite()
+    Sprite& Texture::getSprite()
     {
         return _sprite;
     }
