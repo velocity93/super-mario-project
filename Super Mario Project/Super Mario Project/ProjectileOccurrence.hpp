@@ -29,7 +29,8 @@ namespace Collisions
 		enum State {
 			CHARGING = -1,
 			LAUNCHED,
-			DEAD
+			DEAD,
+			NB_STATES
 		};
     
 		/* Constructors */

@@ -41,7 +41,7 @@ namespace SuperMarioProject
 		/* Methods */
 		void addLevelName(string levelName);
 
-		void update(RenderWindow& app);
+		void update(RenderWindow& app, View* view);
 		void render(RenderWindow& app);
 
 		float getElapsedTime();

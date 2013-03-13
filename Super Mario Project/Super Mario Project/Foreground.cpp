@@ -12,7 +12,8 @@
 
 namespace Rendering
 {
-	Foreground::Foreground(const string& textureName) : Drawable("textures/backgrounds/" + textureName)
+	Foreground::Foreground(const string& textureName) : Drawable("textures/backgrounds/" + textureName),
+		_animation(1)
 	{ 
 		loadCfgForeground();
 	}

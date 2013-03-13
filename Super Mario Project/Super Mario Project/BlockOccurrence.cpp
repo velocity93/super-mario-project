@@ -24,15 +24,16 @@ namespace Collisions
 		Block* actual,
 		Block* alternative)
 		: EntityMovable(textureName, position, speed, side),
-		_state(state)
+		_state(state),
+		_animation(NB_STATES)
     {
 		/* initialize pointer to models */
 		_actualBlock = actual;
 		_alternativeBlock = alternative;
 
-		_hitboxPosition = position;
 		_hitboxSize.x = _texture->getSize().x / _actualBlock->getTileset()->getNbSprites().x;
 		_hitboxSize.y = _texture->getSize().y / _actualBlock->getTileset()->getNbSprites().y;
+		_hitboxPosition = Vector2f(position.x, position.y - _hitboxSize.y);
 
 		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
 
@@ -107,11 +108,11 @@ namespace Collisions
 		{
 			if(_animation.getNbSpritesMax() > 1)
 			{
-				_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+				_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
 			}
 			else
 			{
-				_animation.render(_texture, app, _position, _coordSprite, _size);
+				_animation.render(_texture, app, _hitboxPosition, _coordSprite, _size);
 			}
 		}
 	}

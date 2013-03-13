@@ -28,7 +28,8 @@ namespace Collisions
 			_sender(GENTILE),
 			_state(state),
 			_lifeTime(PausableClock()),
-			_appearanceTime(PausableClock())
+			_appearanceTime(PausableClock()),
+			_animation(NB_STATES)
 	{
 		_projectile = projectile;
 

@@ -23,9 +23,8 @@ namespace Rendering
 			NORMAL
 		};
 
-		/* Constructors */
-		Background(const string& textureName);
-		Background(const string& textureName, Vector2f& position);
+		/* Constructor */
+		Background(const string& textureName, const Vector2f& position = Vector2f(0,0));
 		
 		/* getter and setter */
 		bool getVerticalRepetition();

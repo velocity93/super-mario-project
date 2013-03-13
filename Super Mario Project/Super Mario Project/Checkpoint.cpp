@@ -12,7 +12,10 @@
 
 namespace Collisions
 {
-	Checkpoint::Checkpoint(const string& textureName) : Collisionable("textures/objects/" + textureName), _state(NOT_PASSED)
+	Checkpoint::Checkpoint(const string& textureName) : 
+		Collisionable("textures/objects/" + textureName), 
+			_state(NOT_PASSED),
+			_animation(NB_STATES)
 	{
 		loadCfgCheckpoint();
 		_animation.setCurrentState(NOT_PASSED);
@@ -24,15 +27,17 @@ namespace Collisions
 		_hitboxSize.y = _texture->getSize().y / NB_STATES;
 	}
 
-	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position), _state(state)
+	Checkpoint::Checkpoint(const string& textureName, Vector2f& position, State state) : Collisionable("textures/objects/" + textureName, position),
+		_state(state),
+		_animation(NB_STATES)
 	{
 		loadCfgCheckpoint();
 		_animation.setCurrentState(NOT_PASSED);
 
 		/* Hitbox */
-		_hitboxPosition = position;
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax();
 		_hitboxSize.y = _texture->getSize().y / NB_STATES;
+		_hitboxPosition = Vector2f(position.x, position.y - _hitboxSize.y);
 	}
 
 	Checkpoint::State Checkpoint::getState()
@@ -66,7 +71,7 @@ namespace Collisions
 	void Checkpoint::render(RenderWindow& app)
     {
 		if(_isActive)
-			_animation.render(_texture, app, _position, false);
+			_animation.render(_texture, app, _hitboxPosition, false);
     }
 
 	void Checkpoint::loadCfgCheckpoint()

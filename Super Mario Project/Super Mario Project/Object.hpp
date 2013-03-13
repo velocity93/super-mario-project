@@ -27,7 +27,6 @@ namespace Rendering
 			NORMAL
 		};
 
-		Object(const string& textureName);
 		Object(const string& textureName,Vector2f& position);
 		
 		void updateGraphicData(RenderWindow& app);

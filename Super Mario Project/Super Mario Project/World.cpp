@@ -50,7 +50,7 @@ namespace SuperMarioProject
 		_levelNames.push_back("levels/" + levelName);
 	}
 
-	void World::update(RenderWindow& app)
+	void World::update(RenderWindow& app, View* view)
 	{
 		_inputState.update();
 		
@@ -169,6 +169,8 @@ namespace SuperMarioProject
 				}
 			}
 
+			view->setCenter((*itPerso)->getHitboxPosition());
+
 			/* Update Graphic */
 			(*itPerso)->updateGraphicData(app);
 		}
@@ -206,7 +208,7 @@ namespace SuperMarioProject
 		
 		for (it = this->_persos.begin(); it < this->_persos.end(); ++it)
 		{
-			if((*it)->getState() != Perso::FINISH && (*it)->getState() != Perso::FINISH_CASTLE && (*it)->getState() != Perso::DEAD
+			if((*it)->getState() != Perso::FINISH && (*it)->getState() != Perso::GO_TO_CASTLE && (*it)->getState() != Perso::DEAD
 				&& (*it)->getHUD()->getTime() > 0)
 			{
 				(*it)->getHUD()->setTime((*it)->getHUD()->getTime() - _elapsedTime / 10);

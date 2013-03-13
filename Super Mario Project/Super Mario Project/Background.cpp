@@ -12,19 +12,11 @@
 
 namespace Rendering
 {
-	Background::Background(const string& textureName) : Drawable("textures/backgrounds/" + textureName), _verticalRepetition(false), _position(Vector2f(0,0))
-	{
-		/* Loading informations */
-		loadCfgBackground();
-
-		_animation.setCurrentState(NORMAL);
-		_texture->setRepeated(true);
-	}
-
-	Background::Background(const string& textureName, Vector2f& position) : 
-		Drawable(textureName, position),
+	Background::Background(const string& textureName, const Vector2f& position) : 
+		Drawable("textures/backgrounds/" + textureName, position),
 			_verticalRepetition(false),
-			_position(position)
+			_position(position),
+			_animation(1)
 	{
 
 		/* Loading informations */

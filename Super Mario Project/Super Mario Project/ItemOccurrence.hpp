@@ -29,7 +29,8 @@ namespace Collisions
 		{
 			NORMAL,
 			GET_OUT_FROM_BLOC,
-			TAKEN
+			TAKEN,
+			NB_STATES
 		} State;
 
 		ItemOccurrence(Item* item,

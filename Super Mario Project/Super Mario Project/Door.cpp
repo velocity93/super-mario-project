@@ -12,7 +12,7 @@
 
 namespace Collisions
 {
-	Door::Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination("") 
+	Door::Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination(""), _animation(NB_STATES)
 	{ 
 		loadDoor(textureName);
 	}
@@ -21,7 +21,8 @@ namespace Collisions
 			: Collisionable(textureName, position),
 			_indexDestination(indexDestination),
 			_levelDestination(levelDestination),
-			_state(state)
+			_state(state),
+			_animation(NB_STATES)
 	{
 		loadDoor(textureName);
 		_animation.setCurrentState(state);

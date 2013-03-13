@@ -25,10 +25,11 @@ namespace Rendering
     {
 	public:
 		/* Constructor */
-		Animation()
+		Animation(int nbStatesMax)
 		{
 			_frameNumber = 0;
 			_nbSpritesMax = 1;
+			_nbStatesMax = nbStatesMax;
 			_clock.Start();
 		}
 
@@ -37,6 +38,7 @@ namespace Rendering
 		void setCurrentState(T state);
 
 		int getNbSpritesMax();
+		int getNbStates();
 
 		/* Setting Maps directly */
 		void addNbSpritesForGivenState(T state, int nbSprites);
@@ -53,6 +55,7 @@ namespace Rendering
 		T _currentState;
 		int _frameNumber;
 		int _nbSpritesMax;
+		int _nbStatesMax;
 		int _frameDelayForCurrentState;
 		int _nbSpritesForCurrentState;
 		SuperMarioProject::PausableClock _clock;

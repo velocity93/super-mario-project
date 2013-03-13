@@ -21,7 +21,8 @@ namespace Collisions
 		enum State
 		{
 			WAITING,
-			FINISH
+			FINISH,
+			NB_STATES
 		};
 
 		Finish(const string& textureName, Vector2f& position);

@@ -41,11 +41,11 @@
       <occ_monster positionX="1520" positionY="64"/>
       <occ_monster positionX="1472" positionY="64"/>
       <occ_monster positionX="1088" positionY="64"/>
-      <occ_monster positionX="480" positionY="512"/>
+      <occ_monster positionX="980" positionY="512"/>
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="0" positionY="64" destination_pipe="0" level_destination="" state="1" length="1" direction="3" monster="goomba"/>
+		<pipe img="green_pipe" positionX="0" positionY="64" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">
