@@ -582,7 +582,7 @@ namespace Collisions
 		}
 		else if(type == CollisionManager::FROM_BOTTOM)
 		{
-			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
 			setEnvironment(GROUND);
 		}
 		else if(type == CollisionManager::FROM_TOP)
@@ -679,7 +679,7 @@ namespace Collisions
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - block->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
 			_environment = GROUND;
 		}
 	}

@@ -67,7 +67,8 @@ namespace SuperMarioProject
 			/* Resolve collisions with Blocks if able*/
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
-				Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks));
+				if((*itBlocks)->isActive())
+					Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks));
 			}
 
 			/* Resolve collisions with Items if able */
