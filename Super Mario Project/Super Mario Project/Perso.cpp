@@ -217,11 +217,16 @@ namespace Collisions
 
 		updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 		
-		/* Compute new position */
+		/* >pecial Cases */
 		if(_hitboxPosition.y >= 992)
 		{
 			updatePositions(_hitboxPosition.x, 992);
 			_environment = GROUND;
+		}
+
+		if(_hitboxPosition.x < 0)
+		{
+			updatePositions(0, _hitboxPosition.y);
 		}
 	}
 
