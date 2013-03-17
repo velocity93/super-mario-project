@@ -10,9 +10,7 @@
 	</backgrounds>
   <foregrounds />
   <objects />
-  <finishes>
-    <finish img="castle" positionX="350" positionY="64"/>
-  </finishes>
+  <finishes />
 	<projectiles>
 		<projectile img="debris"/>
 		<projectile img="fireball"/>
@@ -45,7 +43,7 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="64" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">
@@ -78,6 +76,7 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="224" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="32" actual="1" alt="-1" item="-1"/>
+      <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="64" actual="4" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="288" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="288" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="320" positionY="0" actual="0" alt="-1" item="-1"/>

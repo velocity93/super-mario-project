@@ -170,7 +170,19 @@ namespace SuperMarioProject
 				}
 			}
 
-			view->setCenter((*itPerso)->getHitboxPosition());
+			/* Set view coords according to perso coords */
+			float x, y;
+			if((*itPerso)->getHitboxPosition().x < WINDOW_WIDTH / 2)
+				x = WINDOW_WIDTH / 2;
+			else
+				x = (*itPerso)->getHitboxPosition().x;
+
+			if((*itPerso)->getHitboxPosition().y > _level->getSize().y - WINDOW_HEIGHT / 2)
+				y = _level->getSize().y - WINDOW_HEIGHT / 2;
+			else
+				y = (*itPerso)->getHitboxPosition().y;
+			
+			view->setCenter(x, y);
 
 			/* Update Graphic */
 			(*itPerso)->updateGraphicData(app);
