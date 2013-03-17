@@ -213,7 +213,7 @@ namespace Collisions
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().y, sprite.getTexture()->getSize().y));
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().y, sprite.getTexture()->getSize().y / 2));
 					app.draw(sprite);
 				}
 				break;
@@ -229,7 +229,7 @@ namespace Collisions
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 					app.draw(sprite);
 				}
 				break;

@@ -51,8 +51,8 @@ namespace Collisions
 
 		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, Type& collisions_info);
 		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, Type& collisions_info);
-		static void interprateCollisions(const InverseFloatRect& r1, const InverseFloatRect& r1Prec,
-										const InverseFloatRect& r2, const InverseFloatRect& r2Prec,Type& collisions_info);
+		static void interprateCollisions(const FloatRect& r1, const FloatRect& r1Prec,
+										const FloatRect& r2, const FloatRect& r2Prec,Type& collisions_info);
 	};
 } // namespace
 
