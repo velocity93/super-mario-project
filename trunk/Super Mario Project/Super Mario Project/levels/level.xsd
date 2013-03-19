@@ -91,6 +91,14 @@
             <xs:sequence>
               <xs:element name="item" minOccurs="0" maxOccurs="unbounded" >
                 <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="occ_item" minOccurs="0" maxOccurs="unbounded" >
+                      <xs:complexType>
+                        <xs:attribute name="positionX" type="xs:float" use="required" />
+                        <xs:attribute name="positionY" type="xs:float" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
                   <xs:attribute name="img" type="xs:string" use="required" />
                   <xs:attribute name="type" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
