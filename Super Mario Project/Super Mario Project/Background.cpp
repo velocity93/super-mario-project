@@ -14,9 +14,9 @@ namespace Rendering
 {
 	Background::Background(const string& textureName, const Vector2f& position) : 
 		Drawable("textures/backgrounds/" + textureName, position),
+			_animation(1),
 			_verticalRepetition(false),
-			_position(position),
-			_animation(1)
+			_position(position)
 	{
 
 		/* Loading informations */
@@ -108,8 +108,7 @@ namespace Rendering
 		}
 		else
 		{
-			string exceptionName = "Exception occured while opening " + fileName;
-			throw exception(exceptionName.c_str());
+			throw "Exception occured while opening " + fileName;
 		}
 	}
 

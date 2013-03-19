@@ -13,6 +13,7 @@
 #include "PausableClock.hpp"
 #include <SFML/Graphics.hpp>
 #include <map>
+#include <climits>
 
 using namespace std;
 using namespace sf;
