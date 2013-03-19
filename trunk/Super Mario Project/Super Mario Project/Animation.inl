@@ -9,7 +9,7 @@
 template<typename T>
 void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 {
-	pair<map<T,int>::iterator,bool> res;
+	pair<typename map<T, int>::iterator, bool> res;
 
 	res = _nbSpritesByState.insert(pair<T, int>(state, nbSprites));
 	
@@ -27,7 +27,7 @@ void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 template<typename T>
 void Animation<T>::addFrameDelayForGivenState(T state, int frameDelay)
 {
-	pair<map<T,int>::iterator,bool> res;
+	pair<typename map<T, int>::iterator, bool> res;
 
 	res = _frameDelayByState.insert(pair<T, int>(state, frameDelay));
 	
@@ -65,7 +65,7 @@ void Animation<T>::setMapFrameDelay(map<T, int>& frameDelayByState)
 template<typename T>
 int Animation<T>::getFrameDelayForCurrentState()
 {
-	map<T, int>::iterator itFrameDelay = _frameDelayByState.find(_currentState);
+	typename map<T, int>::iterator itFrameDelay = _frameDelayByState.find(_currentState);
 	if(itFrameDelay != _frameDelayByState.end())
 		return itFrameDelay->second;
 	else 
@@ -75,7 +75,7 @@ int Animation<T>::getFrameDelayForCurrentState()
 template<typename T>
 int Animation<T>::getNbSpritesForCurrentState()
 {
-	map<T, int>::iterator itNbSprites = _nbSpritesByState.find(_currentState);
+	typename map<T, int>::iterator itNbSprites = _nbSpritesByState.find(_currentState);
 
 	if(itNbSprites != _nbSpritesByState.end())
 		return itNbSprites->second;
@@ -94,7 +94,7 @@ void Animation<T>::setCurrentState(T state)
 template<typename T>
 int Animation<T>::computeNbSpritesMax()
 {
-	map<T, int>::iterator itNbSprites;
+	typename map<T, int>::iterator itNbSprites;
 	int nbSpritesMax = INT_MIN;
 
 	for(itNbSprites = _nbSpritesByState.begin(); itNbSprites !=  _nbSpritesByState.end(); ++itNbSprites)

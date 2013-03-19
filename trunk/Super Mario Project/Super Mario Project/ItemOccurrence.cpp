@@ -12,7 +12,6 @@
 #include "Block.hpp"
 #include "Item.hpp"
 #include "ItemOccurrence.hpp"
-#include <typeinfo.h>
 
 namespace Collisions
 {

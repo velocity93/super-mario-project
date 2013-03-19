@@ -16,6 +16,7 @@
 #include <libxml/parserInternals.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
+#include <cstring>
 
 namespace XMLParsing
 {

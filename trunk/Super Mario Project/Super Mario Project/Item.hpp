@@ -54,7 +54,7 @@ namespace Collisions
 		vector<ItemOccurrence*>& getItemOccurrences();
 
 		/* Add New Item Occurrence */
-		void Item::addNewItemOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
+		void addNewItemOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
 			ItemOccurrence::State state = ItemOccurrence::NORMAL, ItemOccurrence::Side side = ItemOccurrence::RIGHT_SIDE);
 
 		/* Update data */

@@ -10,7 +10,7 @@
 #ifndef HPP_QUADTREE
 #define HPP_QUADTREE
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "BlockOccurrence.hpp"
 
 namespace SuperMarioProject

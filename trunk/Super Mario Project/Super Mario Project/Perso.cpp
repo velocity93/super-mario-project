@@ -1129,8 +1129,7 @@ namespace Collisions
 		}
 		else
 		{
-			string exceptionName = "Exception occured while opening " + fileName;
-			throw exception(exceptionName.c_str());
+			throw "Exception occured while opening " + fileName;
 		}
 	}
 
