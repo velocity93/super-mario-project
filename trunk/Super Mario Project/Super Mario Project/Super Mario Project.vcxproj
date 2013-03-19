@@ -60,7 +60,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glu32.lib;sfml-main-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;libxml2.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
-      <ModuleDefinitionFile>InverseRect.inl</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,7 +79,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;glu32.lib;sfml-window.lib;sfml-system.lib;sfml-graphics.lib;sfml-audio.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;libxml2.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
-      <ModuleDefinitionFile>InverseRect.inl</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -98,7 +96,6 @@
     <ClInclude Include="Foreground.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="InputState.hpp" />
-    <ClInclude Include="InverseRect.hpp" />
     <ClInclude Include="Item.hpp" />
     <ClInclude Include="ItemOccurrence.hpp" />
     <ClInclude Include="Level.hpp" />
@@ -162,7 +159,6 @@
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="InverseRect.inl" />
     <None Include="levels\smb.xml">
       <SubType>Designer</SubType>
     </None>
@@ -177,9 +173,6 @@
     <None Include="textures\objects\checkpoint.obj">
       <FileType>Document</FileType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xsd Include="levels\level.xsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

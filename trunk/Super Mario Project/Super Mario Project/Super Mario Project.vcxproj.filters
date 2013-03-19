@@ -126,9 +126,6 @@
     <ClInclude Include="QuadTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InverseRect.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -254,9 +251,6 @@
     <None Include="textures\blocs\classiques\classiques.cfg">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="InverseRect.inl">
-      <Filter>Inline Files</Filter>
-    </None>
     <None Include="textures\objects\checkpoint.obj">
       <Filter>Resource Files</Filter>
     </None>
@@ -269,10 +263,5 @@
     <None Include="textures\persos\super_mario.perso">
       <Filter>Resource Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Xsd Include="levels\level.xsd">
-      <Filter>Resource Files</Filter>
-    </Xsd>
   </ItemGroup>
 </Project>
