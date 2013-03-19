@@ -12,7 +12,6 @@
 
 #include "EntityMovable.hpp"
 #include "Level.hpp"
-#include "InverseRect.hpp"
 
 using namespace SuperMarioProject;
 

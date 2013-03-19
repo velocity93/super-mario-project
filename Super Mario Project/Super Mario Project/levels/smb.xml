@@ -43,7 +43,7 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="64" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="64" positionY="64" destination_pipe="0" level_destination="" state="1" length="1" direction="2" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">

@@ -164,15 +164,15 @@ namespace Collisions
 			{
 			case TO_BOTTOM:
 				/* Body */
-				for(int step = 0; step < _lenght; step++)
+				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 					app.draw(sprite);
 				}
 
 				/* Top of pipe */
-				sprite.setPosition(_position.x, _position.y + (_lenght * BLOCK_WIDTH));
+				sprite.setPosition(_position.x, _position.y + ((_lenght + 1) * BLOCK_WIDTH));
 				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 				sprite.setScale(1, -1); // FlipY
 
@@ -188,7 +188,7 @@ namespace Collisions
 				for(int step = 0; step < _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y));
+					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 					app.draw(sprite);
 				}
 
@@ -235,6 +235,15 @@ namespace Collisions
 				break;
 			}
 		}
+
+		#ifdef _DEBUG
+		/* Drawing HitBox */
+		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
+		rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
+		rect.setFillColor(sf::Color(255, 0, 0, 122));
+
+		app.draw(rect);
+		#endif
     }
 
 	void Pipe::serialize(ofstream& file, const string& tabs)

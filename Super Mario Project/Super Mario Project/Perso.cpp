@@ -592,7 +592,8 @@ namespace Collisions
 		}
 		else if(type == CollisionManager::FROM_TOP)
 		{
-			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+			_speed.y = 0;
 		}
 	}
 
@@ -747,8 +748,6 @@ namespace Collisions
 
 	void Perso::loadPerso(const string& textureName)
 	{
-		int ordonnee_haut = 0;
-
 		string fileName = textureName + ".perso";
 		ifstream stream(fileName.c_str());
 
