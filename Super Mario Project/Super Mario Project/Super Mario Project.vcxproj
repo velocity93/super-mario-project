@@ -92,6 +92,7 @@
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Drawable.hpp" />
     <ClInclude Include="EntityMovable.hpp" />
+    <ClInclude Include="FileException.hpp" />
     <ClInclude Include="Finish.hpp" />
     <ClInclude Include="Foreground.hpp" />
     <ClInclude Include="HUD.hpp" />
@@ -159,6 +160,22 @@
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="textures\blocs\classiques\classiques.cfg" />
+    <None Include="textures\blocs\classiques\grass.png" />
+    <None Include="textures\blocs\classiques\snow.png" />
+    <None Include="textures\blocs\classiques\underground.png" />
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg" />
+    <None Include="textures\blocs\speciaux\cassables\overworld.png" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg" />
+    <None Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg" />
+    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png" />
+    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg" />
     <Resource Include="levels\smb.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>

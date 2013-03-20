@@ -34,6 +34,30 @@
     <Filter Include="Resource Files\Pipes">
       <UniqueIdentifier>{f6ec0b12-2f05-4185-866b-c4a63d069973}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Blocs">
+      <UniqueIdentifier>{8331310c-73d2-461c-ba74-2d32c790c906}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Classiques">
+      <UniqueIdentifier>{b86a01fb-d735-4300-8823-1d410d195501}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux">
+      <UniqueIdentifier>{a733e3e9-2b42-45e6-9b04-095a59cbf03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux\Cassables">
+      <UniqueIdentifier>{e41149c0-1d3c-491d-8342-dde81d0b4526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux\Incassables">
+      <UniqueIdentifier>{3010b48b-9d50-4096-aab6-e3faadc6efe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux\Incassables\[Q]">
+      <UniqueIdentifier>{4c9a5a69-e32a-4869-81c3-70d467ff243d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux\Incassables\Interaction">
+      <UniqueIdentifier>{be647bd2-340f-4139-884c-514e27e341de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Blocs\Speciaux\Incassables\Liquids">
+      <UniqueIdentifier>{2c5972fc-4061-4b1a-b791-39655a9ccd9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp">
@@ -142,6 +166,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuadTree.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileException.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -260,6 +287,54 @@
       <Filter>Inline Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <None Include="textures\blocs\classiques\classiques.cfg">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </None>
+    <None Include="textures\blocs\classiques\grass.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </None>
+    <None Include="textures\blocs\classiques\snow.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </None>
+    <None Include="textures\blocs\classiques\underground.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\cassables\overworld.png">
+      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </None>
+    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="levels\smb.xml">
