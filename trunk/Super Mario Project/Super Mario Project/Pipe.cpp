@@ -182,39 +182,43 @@ namespace Collisions
 			case TO_RIGHT:
 				sprite.setScale(-1, 1); // FlipX
 				sprite.setOrigin(0.0f, sprite.getTexture()->getSize().y / 2.0f);
-				sprite.rotate(270);
 
 				/* Body */
-				for(int step = 0; step < _lenght; step++)
+				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
 					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+					sprite.rotate(270);
 					app.draw(sprite);
+					sprite.rotate(90); // to replace the right rotation
 				}
 
 				/* Top of pipe */
-				sprite.setPosition(_position.x + (_lenght * BLOCK_WIDTH), _position.y);
+				sprite.setPosition(_position.x + ((_lenght + 1) * BLOCK_WIDTH), _position.y);
 				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
-
+				sprite.rotate(270);
 				app.draw(sprite);
+				sprite.rotate(90);
 				break;
 
 			case TO_LEFT:
-				sprite.setOrigin((float)sprite.getTexture()->getSize().x, 0.0f);
-				sprite.rotate(90);
+				sprite.setOrigin(0.0f, sprite.getTexture()->getSize().y / 2.0f);
 
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y);
 				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
-
+				sprite.rotate(90);
 				app.draw(sprite);
+				sprite.rotate(270); // to replace the right rotation
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
 					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().y, sprite.getTexture()->getSize().y / 2));
+					sprite.rotate(90);
 					app.draw(sprite);
+					sprite.rotate(270);
 				}
 				break;
 
