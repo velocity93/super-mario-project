@@ -248,20 +248,52 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\blocs\classiques\classiques.cfg">
+    <None Include="textures\items\champivie.item">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\objects\checkpoint.obj">
+    <None Include="textures\items\champivie.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\small_mario.perso">
+    <None Include="textures\items\etoile.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\fire_mario.perso">
+    <None Include="textures\items\fleur.item">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="textures\persos\super_mario.perso">
+    <None Include="textures\items\fleur.png">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="textures\items\piece.item">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\items\piece.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\monsters\red_koopa.mstr">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\monsters\red_koopa.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\objects\castle.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\objects\checkpoint.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\pipes\brown_pipe.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\pipes\green_pipe.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="textures\projectiles\fireball.proj">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="textures\objects\castle.obj">
+      <Filter>Resource Files</Filter>
+    </Object>
   </ItemGroup>
 </Project>
