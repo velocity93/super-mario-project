@@ -16,6 +16,24 @@
     <Filter Include="Inline Files">
       <UniqueIdentifier>{65c98d69-e65b-47f3-aa81-bb9d1035dc1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Items">
+      <UniqueIdentifier>{992a84fe-00d9-4c59-9ed3-a002e010a9de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Backgrounds">
+      <UniqueIdentifier>{7d1af39b-cdbb-4097-b091-6cf3a05be0da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Persos">
+      <UniqueIdentifier>{9700b602-379f-44e6-9481-0f072714ebe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Objects">
+      <UniqueIdentifier>{f0bf41b6-797d-42f7-85d3-3c169c167b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Monsters">
+      <UniqueIdentifier>{deb485ca-32a7-4e32-9870-6357db529d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Pipes">
+      <UniqueIdentifier>{f6ec0b12-2f05-4185-866b-c4a63d069973}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp">
@@ -241,59 +259,59 @@
     <None Include="Animation.inl">
       <Filter>Inline Files</Filter>
     </None>
-    <None Include="levels\smb.xml">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="worlds\world1.xml">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\items\champivie.item">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\champivie.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\etoile.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\fleur.item">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\fleur.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\piece.item">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\items\piece.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\monsters\red_koopa.mstr">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\monsters\red_koopa.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\objects\castle.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\objects\checkpoint.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\pipes\brown_pipe.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\pipes\green_pipe.png">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="textures\projectiles\fireball.proj">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="textures\objects\castle.obj">
+    <Resource Include="levels\smb.xml">
       <Filter>Resource Files</Filter>
-    </Object>
+    </Resource>
+    <Resource Include="worlds\world1.xml">
+      <Filter>Resource Files</Filter>
+    </Resource>
+    <Resource Include="textures\items\champivie.item">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\champivie.png">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\etoile.png">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.proj">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\fleur.item">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\fleur.png">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\piece.item">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\piece.png">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\objects\castle.obj">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\objects\castle.png">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\objects\checkpoint.png">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\red_koopa.mstr">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\red_koopa.png">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\pipes\brown_pipe.png">
+      <Filter>Resource Files\Pipes</Filter>
+    </Resource>
+    <Resource Include="textures\pipes\green_pipe.png">
+      <Filter>Resource Files\Pipes</Filter>
+    </Resource>
   </ItemGroup>
 </Project>
