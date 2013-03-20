@@ -674,7 +674,7 @@ namespace Collisions
 
 		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 			_speed.y = 0;
 		}
 
