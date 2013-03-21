@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Item.hpp"
+#include "Exceptions.hpp"
 #include <sstream>
 
 namespace Collisions
@@ -81,8 +82,10 @@ namespace Collisions
 		file << "type=\"" << _type << "\"/>" << endl;
 	}
 
+
 	void Item::loadItem()
     {
+        int line = 1;
         string fileName = name() + ".item";
         ifstream stream(fileName.c_str());
 
@@ -137,11 +140,13 @@ namespace Collisions
                     frameDelay >> _frameDelay;
 					_frameDelayByState.insert(pair<ItemOccurrence::State, int>(ItemOccurrence::NORMAL, _frameDelay));
                 }
+
+                line++;
             }
         }
         else
         {
-            throw "Exception occured while opening " + fileName;
+            throw FileNotFoundException(fileName);
         }
     }
 
@@ -158,3 +163,9 @@ namespace Collisions
 		release();
     }
 } // namespace
+
+
+class FileException: public exception
+{
+
+};
