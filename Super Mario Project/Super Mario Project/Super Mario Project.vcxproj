@@ -92,7 +92,7 @@
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Drawable.hpp" />
     <ClInclude Include="EntityMovable.hpp" />
-    <ClInclude Include="FileException.hpp" />
+    <ClInclude Include="Exceptions.hpp" />
     <ClInclude Include="Finish.hpp" />
     <ClInclude Include="Foreground.hpp" />
     <ClInclude Include="HUD.hpp" />
@@ -176,6 +176,7 @@
     <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png" />
     <None Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png" />
     <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg" />
+    <None Include="textures\items\etoile.item" />
     <Resource Include="levels\smb.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>

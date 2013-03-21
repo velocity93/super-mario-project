@@ -168,7 +168,7 @@
     <ClInclude Include="QuadTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileException.hpp">
+    <ClInclude Include="Exceptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -334,6 +334,9 @@
     </None>
     <None Include="textures\blocs\speciaux\incassables\liquids\poison.png">
       <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </None>
+    <None Include="textures\items\etoile.item">
+      <Filter>Resource Files\Items</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
