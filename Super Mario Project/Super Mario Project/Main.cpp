@@ -12,6 +12,7 @@
 #include <sstream>
 #include "World.hpp"
 #include "Block.hpp"
+#include "Exceptions.hpp"
 
 using namespace SuperMarioProject;
 using namespace Rendering;
@@ -49,9 +50,41 @@ void writeCapture(const sf::Image& img)
 	img.saveToFile(imgFileName);
 }
 
+// P1 TODO: check monster/character collision
+// P4 TODO: check collision with slope blocks
+// P1 TODO: check character transformations
+// P2 TODO: implement background layers
+// P2 TODO: check fireballs
+// P3 TODO: check if mario properly handles shells
+// P4 TODO: check behavior of pipes
+// P4 TODO: check characters' death
+// P4 TODO: check monsters and projectiles' death
+// P5 TODO: finalize the level
+// P9 TODO: integration of resources into the executable file?
+// P7 TODO: use only .xml files instead of .item . perso...
+// P6 TODO: use libxml++ instead of libxml
+// P4 TODO: check backgrounds animation
+// P8 TODO: other types of monsters (paratroopas...)
+// P9 TODO: particles generator
+// P4 TODO: add ice mario
+// P6 TODO: add a way to pause the game
+// P9 TODO: update the project webpage (images and description)
+// P8 TODO: add a boss
+// P8 TODO: levels with auto scrolling, based on key positions and timers
+// P6 TODO: attaque rodéo
+// P6 TODO: "twisted" jump
+// P8 TODO: allow mario to slide on slope blocks
+// P8 TODO: implement plant growing from [?] block
+// P4 TODO: check if mario can still climb on plants
+// P4 TODO: a [?] should move up when hit from behind by mario
+// P4 TODO: an item should jump when on a [?] block hit by mario
+// P4 TODO: an enemy should die when on a [?] block hit by mario
+// P4 TODO: implement [?] coins dispensers
+// P4 TODO: breakable blocks should break into multiple particles
 
 int main(int, char**)
 {
+
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 
@@ -60,11 +93,11 @@ int main(int, char**)
     // Limit to 60 FPS
     App.setFramerateLimit(60);
 
-    // Create world
-    World w(&App);
-	
     try
     {
+        // Create world
+        World w(&App);
+
         // Start the game loop
 		while (App.isOpen())
         {
@@ -119,9 +152,20 @@ int main(int, char**)
             App.display();
         }
     }
-    catch(exception e)
+    catch(FileException &fe)
     {
-        cout << e.what() << endl;
+        cout << fe.what() << endl;
+        return EXIT_FAILURE;
+    }
+    catch(exception &e)
+    {
+        cout << "Random exception occured: " << e.what() << endl;
+        return EXIT_FAILURE;
+    }
+    catch(...)
+    {
+        cout << "Oh boy, everything's seriously fucked up in there!" << endl;
+        return EXIT_FAILURE;
     }
 
     return EXIT_SUCCESS;
