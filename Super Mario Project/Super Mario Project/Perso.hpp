@@ -144,6 +144,7 @@ namespace Collisions
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */
+		void initPerso(const string& textureName);
 		void updateGraphicData(RenderWindow& app);
 		void updatePhysicData(float time, RenderWindow&);
 		void render(RenderWindow& app);

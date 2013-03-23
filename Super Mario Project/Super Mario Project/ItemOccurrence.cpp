@@ -106,7 +106,7 @@ namespace Collisions
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
 		}
 	}
 	

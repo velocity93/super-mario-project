@@ -38,6 +38,13 @@ void Animation<T>::addFrameDelayForGivenState(T state, int frameDelay)
 }
 
 template<typename T>
+void Animation<T>::reset()
+{
+	_frameDelayByState.clear();
+	_nbSpritesByState.clear();
+}
+
+template<typename T>
 int Animation<T>::getNbSpritesMax()
 {
 	return _nbSpritesMax;

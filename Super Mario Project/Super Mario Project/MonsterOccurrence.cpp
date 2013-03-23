@@ -40,7 +40,7 @@ namespace Collisions
 		_deltaX = _monster->getBottomLeft();
 		updatePositions(position.x, position.y);
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;
-		_hitboxSize.y = _texture->getSize().y / NB_STATES;
+		_hitboxSize.y = _texture->getSize().y / _animation.getNbStates();
 	}
 
 	MonsterOccurrence::State MonsterOccurrence::getState()
@@ -116,7 +116,8 @@ namespace Collisions
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			_speed.y = 0;
 		}
 	}
 
@@ -187,8 +188,9 @@ namespace Collisions
 			/* If it falls in hole */
 			/*if(_hitboxPosition.y + _hitboxSize.y < 0)
 				setState(DEAD);*/
-			if(_hitboxPosition.y < 0)
-				_hitboxPosition.y = 0;
+			/* Test */
+			if(_hitboxPosition.y + _hitboxSize.y > 1024)
+				updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
 		}
 	}
 
@@ -214,14 +216,12 @@ namespace Collisions
 
 	void MonsterOccurrence::setActivity(RenderWindow& app)
 	{
-		const View& view = app.getDefaultView();
+		Collisionable::setActivity(app);
+		
+		const View& view = app.getView();
 
-		if(_hitboxPosition.x > view.getCenter().x + view.getSize().x / 2
-			|| _hitboxPosition.x + _hitboxSize.x < view.getCenter().x - view.getSize().x / 2
-			|| _hitboxPosition.y > view.getCenter().y + view.getSize().y / 2
-			|| _hitboxPosition.y + _hitboxSize.y < view.getCenter().y - view.getSize().y / 2)
+		if(!_isActive)
 		{
-			
 			if(this->_initialPosition.x < view.getSize().x - view.getSize().x / 2
 			|| this->_initialPosition.x + _hitboxSize.x < view.getSize().x + view.getSize().x / 2
 			|| this->_initialPosition.y > view.getSize().y + view.getSize().y / 2
@@ -233,11 +233,7 @@ namespace Collisions
 				_speed.x = -MonsterConstants::MONSTER_SPEED_X;
 				_side = LEFT_SIDE;
 			}
-
-			_isActive = false;
 		}
-		else
-			_isActive = true;
 
 	}
 

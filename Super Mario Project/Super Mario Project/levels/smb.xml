@@ -5,8 +5,9 @@
     <checkpoint img="checkpoint" positionX="100" positionY="64"/>
   </checkpoints>
 	<backgrounds>
-    <background img="skyBlueHills" positionX="0" positionY="0"/>
-    <background img="BlueHills" positionX="0" positionY="0"/>
+    <!--<background img="skyBlueHills" positionX="0" positionY="0"/>
+    <background img="BlueHills" positionX="0" positionY="0"/>-->
+    <background img="waterfall" positionX="0" positionY="0"/>
 	</backgrounds>
   <foregrounds />
   <objects />
@@ -17,29 +18,18 @@
 	</projectiles>
 	<items>
     <item img="piece" type="0">
-      <occ_item positionX="200" positionY="100"/>
-      <occ_item positionX="300" positionY="100"/>
+      <!--<occ_item positionX="200" positionY="100"/>
+      <occ_item positionX="300" positionY="100"/>-->
     </item>
-		<item img="champignon" type="1"/>
+    <item img="champignon" type="1">
+      <occ_item positionX="200" positionY="200"/>
+    </item>
 		<item img="fleur" type="2"/>
 		<item img="etoile" type="6"/>
 	</items>
 	<monsters>
 		<walking_monster name="goomba">
-			<occ_monster positionX="5456" positionY="64"/>
-      <occ_monster positionX="5408" positionY="64"/>
-      <occ_monster positionX="4014" positionY="64"/>
-      <occ_monster positionX="3966" positionY="64"/>
-      <occ_monster positionX="3888" positionY="64"/>
-      <occ_monster positionX="3840" positionY="64"/>
-      <occ_monster positionX="2960" positionY="64"/>
-      <occ_monster positionX="2912" positionY="64"/>
-      <occ_monster positionX="2348" positionY="320"/>
-      <occ_monster positionX="2304" positionY="320"/>
-      <occ_monster positionX="1520" positionY="64"/>
-      <occ_monster positionX="1472" positionY="64"/>
-      <occ_monster positionX="1088" positionY="64"/>
-      <occ_monster positionX="980" positionY="512"/>
+			<occ_monster positionX="128" positionY="128"/>
 		</walking_monster>
 	</monsters>
 	<pipes>

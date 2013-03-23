@@ -338,6 +338,36 @@
     <None Include="textures\items\etoile.item">
       <Filter>Resource Files\Items</Filter>
     </None>
+    <None Include="textures\persos\fire_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\persos\fire_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\persos\small_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\persos\small_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\persos\super_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\persos\super_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </None>
+    <None Include="textures\monsters\goomba.mstr">
+      <Filter>Resource Files\Monsters</Filter>
+    </None>
+    <None Include="textures\monsters\goomba.png">
+      <Filter>Resource Files\Monsters</Filter>
+    </None>
+    <None Include="textures\monsters\koopa.mstr">
+      <Filter>Resource Files\Monsters</Filter>
+    </None>
+    <None Include="textures\monsters\koopa.png">
+      <Filter>Resource Files\Monsters</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="levels\smb.xml">

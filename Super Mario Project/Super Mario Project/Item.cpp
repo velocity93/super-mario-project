@@ -163,9 +163,3 @@ namespace Collisions
 		release();
     }
 } // namespace
-
-
-class FileException: public exception
-{
-
-};
