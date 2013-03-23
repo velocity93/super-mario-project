@@ -213,11 +213,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 		}
 
@@ -280,11 +280,11 @@ namespace XMLParsing
 		{
 			if(!strcmp(attrs[i], "positionX"))
 			{
-				position.x = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.x = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = (float)atoi(attrs[i + 1]);
+				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
 			}
 		}
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);

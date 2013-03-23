@@ -14,6 +14,8 @@
 #include "ProjectileOccurrence.hpp"
 #include "Pipe.hpp"
 #include "Item.hpp"
+#include "Exceptions.hpp"
+#include "ResourceManager.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -22,9 +24,8 @@ using namespace Rendering;
 namespace Collisions
 {
 	Perso::Perso(const string& textureName, const Vector2f& position) : EntityMovable("textures/persos/" + textureName, position),
-		_textureName("textures/persos/" + textureName),
 		_environment(GROUND), 
-		_transformation(FIRE_MARIO), 
+		_transformation(SMALL_MARIO), 
 		_state(STANDING),
 		_hud(new HUD()),
 		_canClimb(false), 
@@ -32,12 +33,22 @@ namespace Collisions
 		_animation(Animation<State>(NB_STATES)),
 		_broughtMonster(nullptr)
 	{
-		loadPerso(_textureName);
+		initPerso(textureName);
 		_invincibleStarTime.Reset(true);
 		_invincibleTime.Reset(true);
 
 		/* Setting animation Data */
 		_animation.setCurrentState(_state);
+	}
+
+	void Perso::initPerso(const string& textureName)
+	{
+		_textureName = "textures/persos/" + textureName;
+		_texture = SuperMarioProject::ResourceManager::getTexture(_textureName);
+
+		/* Fill Data for texture */
+		_animation.reset();
+		loadPerso(_textureName);
 	}
 
 	HUD* Perso::getHUD()
@@ -457,15 +468,23 @@ namespace Collisions
 
 	void Perso::hurted()
 	{
-		if(_transformation >= FIRE_MARIO)
+		switch(_transformation)
 		{
+		case FIRE_MARIO:
 			transform(SUPER_MARIO);
 			/*p->tps_invincible = 2000;
 			p->tps_transformation = 1000;
 			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_TOUCHE]);*/
-		}
-		else if(_transformation == SMALL_MARIO)
-		{
+			break;
+
+		case SUPER_MARIO:
+			transform(SMALL_MARIO);
+			/*p->tps_invincible = 2000;
+			p->tps_transformation = 1000;
+			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_TOUCHE]);*/
+			break;
+
+		default:
 			setState(DEAD);
 			_speed.x = 0;
 			_speed.y = PhysicConstants::EJECTION_SPEED_Y * 5;
@@ -473,36 +492,29 @@ namespace Collisions
 			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_DIE]);
 			FSOUND_Stream_Stop(n->musique);*/
 		}
-		else
-		{
-			transform(SMALL_MARIO);
-			/*p->tps_invincible = 2000;
-			p->tps_transformation = 1000;
-			FSOUND_PlaySound(FSOUND_FREE, p->sons[SND_TOUCHE]);*/
-		}
 	}
 
 	void Perso::transform(Transformation nextTransformation)
 	{
-		if(_transformation >= nextTransformation)
+		if(nextTransformation > _transformation)
 		{
 			/* According to actual transformation,
 			we load the desired texture */
 			switch(nextTransformation) {
 			case SMALL_MARIO :
-				loadPerso("small_mario");
+				initPerso("small_mario");
 				_transformation = SMALL_MARIO;
 				break;
 			case SUPER_MARIO :
-				loadPerso("super_mario");
+				initPerso("super_mario");
 				_transformation = SUPER_MARIO;
 				break;
 			case FIRE_MARIO :
-				loadPerso("fire_mario");
+				initPerso("fire_mario");
 				_transformation = FIRE_MARIO;
 				break;
 			case ICE_MARIO :
-				loadPerso("ice_mario");
+				initPerso("ice_mario");
 				_transformation = ICE_MARIO;
 				break;
 			default : break;
@@ -1128,7 +1140,7 @@ namespace Collisions
 		}
 		else
 		{
-			throw "Exception occured while opening " + fileName;
+			throw FileNotFoundException(fileName);
 		}
 	}
 

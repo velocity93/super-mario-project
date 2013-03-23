@@ -40,6 +40,7 @@ namespace Rendering
 
 		int getNbSpritesMax();
 		int getNbStates();
+		void reset();
 
 		/* Setting Maps directly */
 		void addNbSpritesForGivenState(T state, int nbSprites);

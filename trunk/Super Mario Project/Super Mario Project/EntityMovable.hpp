@@ -31,7 +31,8 @@ namespace Collisions
 			_previousHitboxPosition(position),
 			_speed(speed),
 			_side(side),
-			_deltaX(0) { }
+			_deltaX(0),
+			_deltaY(0) { }
 
 		/* getters and setters */
 		Vector2f& getSpeed();

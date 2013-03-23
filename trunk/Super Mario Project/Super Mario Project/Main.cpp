@@ -51,36 +51,37 @@ void writeCapture(const sf::Image& img)
 }
 
 // P1 TODO: check monster/character collision
-// P4 TODO: check collision with slope blocks
-// P1 TODO: check character transformations
+// P1 TODO: check character transformations									- En cours, reste encore probleme de postionnement
 // P2 TODO: implement background layers
 // P2 TODO: check fireballs
 // P3 TODO: check if mario properly handles shells
 // P4 TODO: check behavior of pipes
+// P4 TODO: check collision with slope blocks
 // P4 TODO: check characters' death
 // P4 TODO: check monsters and projectiles' death
-// P5 TODO: finalize the level
-// P9 TODO: integration of resources into the executable file?
-// P7 TODO: use only .xml files instead of .item . perso...
-// P6 TODO: use libxml++ instead of libxml
-// P4 TODO: check backgrounds animation
-// P8 TODO: other types of monsters (paratroopas...)
-// P9 TODO: particles generator
-// P4 TODO: add ice mario
-// P6 TODO: add a way to pause the game
-// P9 TODO: update the project webpage (images and description)
-// P8 TODO: add a boss
-// P8 TODO: levels with auto scrolling, based on key positions and timers
-// P6 TODO: attaque rodéo
-// P6 TODO: "twisted" jump
-// P8 TODO: allow mario to slide on slope blocks
-// P8 TODO: implement plant growing from [?] block
 // P4 TODO: check if mario can still climb on plants
 // P4 TODO: a [?] should move up when hit from behind by mario
 // P4 TODO: an item should jump when on a [?] block hit by mario
 // P4 TODO: an enemy should die when on a [?] block hit by mario
 // P4 TODO: implement [?] coins dispensers
 // P4 TODO: breakable blocks should break into multiple particles
+// P4 TODO: check backgrounds animation										- OK
+// P4 TODO: add ice mario
+// P5 TODO: finalize the level
+// P6 TODO: use libxml++ instead of libxml
+// P6 TODO: add a way to pause the game
+// P6 TODO: attaque rodéo
+// P6 TODO: "twisted" jump
+// P7 TODO: use only .xml files instead of .item . perso...
+// P8 TODO: add a boss
+// P8 TODO: levels with auto scrolling, based on key positions and timers
+// P8 TODO: other types of monsters (paratroopas...)
+// P8 TODO: allow mario to slide on slope blocks
+// P8 TODO: implement plant growing from [?] block
+// P9 TODO: particles generator
+// P9 TODO: integration of resources into the executable file?
+// P9 TODO: update the project webpage (images and description)
+
 
 int main(int, char**)
 {
