@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "World.hpp"
-#include "XMLParser.hpp"
+#include "XMLWorldParser.hpp"
 #include "CollisionManager.hpp"
 #include "HUD.hpp"
 #include <fstream>
@@ -247,7 +247,7 @@ namespace SuperMarioProject
 
 	void World::loadWorld()
 	{
-		XMLParser::loadWorld("worlds/world1.xml", this);
+		XMLWorldParser::getParser()->loadWorld("worlds/world1.xml", this);
 	}
 
     World::~World()

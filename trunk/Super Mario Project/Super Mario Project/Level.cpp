@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Level.hpp"
-#include "XMLParser.hpp"
+#include "XMLLevelParser.hpp"
 #include "MonsterTypes.hpp"
 #include "CollisionManager.hpp"
 #include "QuadTree.hpp"
@@ -176,7 +176,7 @@ namespace SuperMarioProject
 
 	void Level::loadLevel(string& fileName)
 	{
-		XMLParser::loadLevel(fileName, this);
+		XMLLevelParser::getParser()->loadLevel(fileName, this);
 	}
 
 	void Level::saveLevel(string& fileName)

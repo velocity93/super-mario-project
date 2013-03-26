@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// XMLParser.hpp
+// XMLWorldParser.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,27 +7,32 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_XMLPARSER
-#define HPP_XMLPARSER
+#ifndef HPP_XML_WORLD_PARSER
+#define HPP_XML_WORLD_PARSER
 
-#include <libxml/tree.h>
-#include <libxml/parser.h>
-#include <libxml/parserInternals.h>
-#include <libxml/xmlschemas.h>
-#include <libxml/xmlschemastypes.h>
+#include "XMLParser.hpp"
 #include <string>
 
 using namespace std;
 
 namespace SuperMarioProject
 {
-	class XMLParser abstract
+	/* Declaration */
+	class World;
+
+	class XMLWorldParser : XMLParser
 	{
 	public :
-		virtual ~XMLParser() { }
+		static XMLWorldParser* getParser();
 
-	protected :
-		int validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename);
+		void loadWorld(string fileName, World* world);
+		virtual ~XMLWorldParser();
+
+	private :
+		static XMLWorldParser* _parser;
+
+		XMLWorldParser() { }
 	};
 }
+
 #endif
