@@ -26,11 +26,11 @@ namespace SuperMarioProject
 		static XMLWorldParser* getParser();
 
 		void loadWorld(string fileName, World* world);
-		virtual ~XMLWorldParser();
+		void killParser();
 
 	private :
 		static XMLWorldParser* _parser;
-
+		virtual ~XMLWorldParser() { }
 		XMLWorldParser() { }
 	};
 }

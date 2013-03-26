@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// XMLLevelParser.hpp
+// XMLPersoParser.hpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -7,34 +7,31 @@
 ////////////////////////////////////////////////////////////////////////
 
 #pragma once
-#ifndef HPP_XML_LEVEL_PARSER
-#define HPP_XML_LEVEL_PARSER
+#ifndef HPP_XML_PERSO_PARSER
+#define HPP_XML_PERSO_PARSER
 
 #include "XMLParser.hpp"
+#include "Perso.hpp"
 #include <string>
 
 using namespace std;
 
 namespace SuperMarioProject
 {
-	/* Declaration in advance */
-	class Level;
-	typedef void (*balise_func)(Level *, const char **);
+	typedef void (*perso_func)(Collisions::Perso *, const char **);
 
-	class XMLLevelParser : XMLParser
+	class XMLPersoParser : XMLParser
 	{
 	public :
-		static XMLLevelParser* getParser();
+		static XMLPersoParser* getParser();
 
-		void loadLevel(string fileName, Level* level);
-		static void killParser();
+		void loadPerso(string fileName, Collisions::Perso* perso);
+		virtual ~XMLPersoParser();
 
 	private :
-		static XMLLevelParser* _parser;
+		static XMLPersoParser* _parser;
 
-		XMLLevelParser() { }
-
-		virtual ~XMLLevelParser() { }
+		XMLPersoParser() { }
 	};
 }
 

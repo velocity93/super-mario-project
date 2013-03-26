@@ -81,7 +81,7 @@ namespace Rendering
 		_nbLives--;
 	}
 
-	void HUD::updateGraphicData(RenderWindow& app)
+	void HUD::updateGraphicData(RenderWindow& )
 	{
 		//_time -= app.GetFrameTime();
 	}

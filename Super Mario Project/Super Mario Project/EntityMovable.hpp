@@ -39,6 +39,9 @@ namespace Collisions
 		Vector2f& getPreviousPosition();
 		Vector2f& getPreviousHitboxPosition();
 		void updatePositions(float positionX, float positionY);
+		void setDeltaX(int delta);
+		void setDeltaY(int delta);
+		
 
 		virtual void onCollision(Collisionable* c, int collision_type) = 0;
 		virtual void updatePhysicData(float time, RenderWindow& app) = 0;

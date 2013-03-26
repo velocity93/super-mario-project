@@ -133,6 +133,7 @@ namespace Collisions
 		int getDeathTime();
 		int getFinishTime();
 		int getJumpTime();
+		Animation<State>& getAnimation();
 
 		void setState(State state);
 		void setEnvironment(const Environment &environment);

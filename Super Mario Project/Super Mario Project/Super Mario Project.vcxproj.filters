@@ -177,6 +177,9 @@
     <ClInclude Include="XMLLevelParser.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XMLPersoParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -288,6 +291,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XMLLevelParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLPersoParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
