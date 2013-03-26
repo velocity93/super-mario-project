@@ -72,7 +72,7 @@ void writeCapture(const sf::Image& img)
 // P6 TODO: add a way to pause the game
 // P6 TODO: attaque rodéo
 // P6 TODO: "twisted" jump
-// P7 TODO: use only .xml files instead of .item . perso...
+// P7 TODO: use only .xml files instead of .item . perso...					- En cours
 // P8 TODO: add a boss
 // P8 TODO: levels with auto scrolling, based on key positions and timers
 // P8 TODO: other types of monsters (paratroopas...)

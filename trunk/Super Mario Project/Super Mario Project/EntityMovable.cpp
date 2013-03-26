@@ -25,6 +25,16 @@ namespace Collisions
 		return _previousHitboxPosition;
 	}
 
+	void EntityMovable::setDeltaX(int delta)
+	{
+		_deltaX = delta;
+	}
+
+	void EntityMovable::setDeltaY(int delta)
+	{
+		_deltaY = delta;
+	}
+
 	void EntityMovable::updatePositions(float positionX, float positionY)
 	{
 		/* Update hitbox position */

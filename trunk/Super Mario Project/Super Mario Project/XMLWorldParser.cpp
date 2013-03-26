@@ -57,7 +57,7 @@ namespace SuperMarioProject
 		xmlSAXUserParseFile(&sh, world, fileName.c_str());
 	}
 
-	XMLWorldParser::~XMLWorldParser()
+	void XMLWorldParser::killParser()
 	{
 		delete _parser;
 	}

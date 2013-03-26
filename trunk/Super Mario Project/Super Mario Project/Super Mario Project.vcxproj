@@ -120,6 +120,7 @@
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLLevelParser.hpp" />
     <ClInclude Include="XMLParser.hpp" />
+    <ClInclude Include="XMLPersoParser.hpp" />
     <ClInclude Include="XMLWorldParser.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClCompile Include="World.cpp" />
     <ClCompile Include="XMLLevelParser.cpp" />
     <ClCompile Include="XMLParser.cpp" />
+    <ClCompile Include="XMLPersoParser.cpp" />
     <ClCompile Include="XMLWorldParser.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -96,6 +96,11 @@ namespace Collisions
 		return _checkpointPassed;
 	}
 
+	Animation<Perso::State>& Perso::getAnimation()
+	{
+		return _animation;
+	}
+
 	void Perso::setState(Perso::State state)
 	{
 		_animation.setCurrentState(state);

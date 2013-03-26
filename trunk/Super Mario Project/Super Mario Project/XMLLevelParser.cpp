@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////
-// XMLLevelParser.hpp
+// XMLLevelParser.cpp
 // Super Mario Project
 // Copyright (C) 2011  
 // Lionel Joseph lionel.r.joseph@gmail.com
@@ -553,7 +553,7 @@ namespace SuperMarioProject
 			XMLLevelParsing::parseLevel(fileName, level);
 	}
 
-	XMLLevelParser::~XMLLevelParser()
+	void XMLLevelParser::killParser()
 	{
 		delete _parser;
 	}
