@@ -171,6 +171,12 @@
     <ClInclude Include="Exceptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="XMLWorldParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLLevelParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -276,6 +282,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QuadTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLWorldParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLLevelParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

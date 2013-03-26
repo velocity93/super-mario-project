@@ -50,7 +50,7 @@ void writeCapture(const sf::Image& img)
 	img.saveToFile(imgFileName);
 }
 
-// P1 TODO: check monster/character collision
+// P1 TODO: check monster/character collision								- Bof pour l'instant
 // P1 TODO: check character transformations									- En cours, reste encore probleme de postionnement
 // P2 TODO: implement background layers
 // P2 TODO: check fireballs

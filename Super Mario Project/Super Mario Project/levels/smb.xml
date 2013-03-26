@@ -5,9 +5,8 @@
     <checkpoint img="checkpoint" positionX="100" positionY="64"/>
   </checkpoints>
 	<backgrounds>
-    <!--<background img="skyBlueHills" positionX="0" positionY="0"/>
-    <background img="BlueHills" positionX="0" positionY="0"/>-->
-    <background img="waterfall" positionX="0" positionY="0"/>
+    <background img="skyBlueHills" positionX="0" positionY="0"/>
+    <background img="BlueHills" positionX="0" positionY="0"/>
 	</backgrounds>
   <foregrounds />
   <objects />
@@ -33,7 +32,8 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="2" monster="goomba"/>
+		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+    <pipe img="green_pipe" positionX="128" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">

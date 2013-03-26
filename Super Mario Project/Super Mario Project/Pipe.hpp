@@ -21,8 +21,8 @@ namespace Collisions
 	public:
 		typedef enum State
 		{
-			OPEN,
-			CLOSED
+			CLOSED,
+			OPEN
 		} State;
 
 		typedef enum Direction
