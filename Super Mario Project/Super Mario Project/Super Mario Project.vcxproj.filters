@@ -58,6 +58,15 @@
     <Filter Include="Resource Files\Blocs\Speciaux\Incassables\Liquids">
       <UniqueIdentifier>{2c5972fc-4061-4b1a-b791-39655a9ccd9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Projectiles">
+      <UniqueIdentifier>{5e57d885-b144-420e-80db-3688788570e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\XMLParsing">
+      <UniqueIdentifier>{da2ece7e-6a7f-44b4-9c35-e429248295fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\XMLParsing">
+      <UniqueIdentifier>{8984f9c2-e82c-485a-853f-1b17f3bedfd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp">
@@ -153,9 +162,6 @@
     <ClInclude Include="PausableClock.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="XMLParser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tileset.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -172,13 +178,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="XMLWorldParser.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
     <ClInclude Include="XMLLevelParser.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
     <ClInclude Include="XMLPersoParser.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLItemParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +284,6 @@
     <ClCompile Include="MonsterTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XMLParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tileset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -287,14 +296,20 @@
     <ClCompile Include="QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XMLWorldParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="XMLLevelParser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLWorldParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
     <ClCompile Include="XMLPersoParser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLItemParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,6 +453,24 @@
     </Resource>
     <Resource Include="textures\pipes\green_pipe.png">
       <Filter>Resource Files\Pipes</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.obj">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\BlueHills.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.png">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\BlueHills.obj">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.png">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.proj">
+      <Filter>Resource Files\Projectiles</Filter>
     </Resource>
   </ItemGroup>
 </Project>
