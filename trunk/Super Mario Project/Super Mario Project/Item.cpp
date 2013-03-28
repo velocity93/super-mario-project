@@ -31,9 +31,24 @@ namespace Collisions
         return _submission;
     }
 
+	void Item::setSubmission(int submission)
+	{
+		_submission = submission;
+	}
+
     Vector2f& Item::getInitialSpeed()
     {
         return _initialSpeed;
+    }
+
+	void Item::setInitialSpeedX(float x)
+    {
+		_initialSpeed.x = x;
+    }
+
+	void Item::setInitialSpeedY(float y)
+    {
+		_initialSpeed.y = y;
     }
 
 	vector<ItemOccurrence*>& Item::getItemOccurrences()
@@ -63,6 +78,16 @@ namespace Collisions
 			(*itItems)->updateGraphicData(app);
         }
     }
+
+	void Item::addNbSpritesForState(ItemOccurrence::State state, int nbSprites)
+	{
+		_nbSpritesByState.insert(pair<ItemOccurrence::State, int>(state, nbSprites));
+	}
+
+	void Item::addFrameDelayForState(ItemOccurrence::State state, int frameDelay)
+	{
+		_frameDelayByState.insert(pair<ItemOccurrence::State, int>(state, frameDelay));
+	}
 
     void Item::render(RenderWindow& app)
     {

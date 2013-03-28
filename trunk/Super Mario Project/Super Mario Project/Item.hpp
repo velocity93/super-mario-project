@@ -46,9 +46,12 @@ namespace Collisions
 
 		/* Physic submission */
 		int getSubmission();
+		void setSubmission(int submission);
 
 		/* Initial Speed of Item */
 		Vector2f& getInitialSpeed();
+		void setInitialSpeedX(float x);
+		void setInitialSpeedY(float y);
 
 		/* Access to all of his occurences */
 		vector<ItemOccurrence*>& getItemOccurrences();
@@ -60,6 +63,9 @@ namespace Collisions
 		/* Update data */
 		void updatePhysicData(float time, RenderWindow& app);
 		void updateGraphicData(RenderWindow& app);
+
+		void addNbSpritesForState(ItemOccurrence::State state, int nbSprites);
+		void addFrameDelayForState(ItemOccurrence::State state, int frameDelay);
 
 		/* Render all occurrences */
 		void render(RenderWindow& app);

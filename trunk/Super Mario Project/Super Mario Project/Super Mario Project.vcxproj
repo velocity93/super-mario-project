@@ -118,6 +118,7 @@
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
+    <ClInclude Include="XMLItemParser.hpp" />
     <ClInclude Include="XMLLevelParser.hpp" />
     <ClInclude Include="XMLParser.hpp" />
     <ClInclude Include="XMLPersoParser.hpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="XMLItemParser.cpp" />
     <ClCompile Include="XMLLevelParser.cpp" />
     <ClCompile Include="XMLParser.cpp" />
     <ClCompile Include="XMLPersoParser.cpp" />
@@ -166,6 +168,14 @@
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
+    <Resource Include="textures\backgrounds\BlueHills.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <None Include="textures\blocs\classiques\classiques.cfg" />
     <None Include="textures\blocs\classiques\grass.png" />
     <None Include="textures\blocs\classiques\snow.png" />
@@ -193,6 +203,10 @@
     <None Include="textures\persos\small_mario.png" />
     <None Include="textures\persos\super_mario.perso" />
     <None Include="textures\persos\super_mario.png" />
+    <Resource Include="textures\projectiles\fireball.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <Resource Include="levels\smb.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <SubType>Designer</SubType>
@@ -262,6 +276,20 @@
     <Resource Include="textures\objects\castle.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="textures\backgrounds\BlueHills.obj">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.obj">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.proj">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
