@@ -6,11 +6,19 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
+#include "Texture.hpp"
+#include "Item.hpp"
+#include "Monster.hpp"
+#include "Projectile.hpp"
 #include "ResourceManager.hpp"
+#include "Resource.hpp"
+#include <iostream>
 
-namespace SuperMarioProject
+using namespace std;
+
+namespace smp
 {
-    std::map<std::string, Resource*> ResourceManager::_resources = std::map<std::string, Resource*>();
+    map<std::string, Resource*> ResourceManager::_resources = map<std::string, Resource*>();
 	ResourceManager* ResourceManager::_manager = NULL;
 
 	ResourceManager* ResourceManager::getResourceManager()
@@ -39,27 +47,27 @@ namespace SuperMarioProject
     }
 
 
-    Rendering::Texture *ResourceManager::getTexture(const std::string &name)
+    Texture *ResourceManager::getTexture(const string &name)
     {
-        return get<Rendering::Texture>(name);
+        return get<Texture>(name);
     }
 
 
-    Collisions::Item *ResourceManager::getItem(const std::string &name)
+    Item *ResourceManager::getItem(const string &name)
     {
-        return get<Collisions::Item>(name);
+        return get<Item>(name);
     }
 
 
-    Collisions::Monster *ResourceManager::getMonster(const std::string &name)
+    Monster *ResourceManager::getMonster(const string &name)
     {
-        return get<Collisions::Monster>(name);
+        return get<Monster>(name);
     }
 
 
-    Collisions::Projectile *ResourceManager::getProjectile(const std::string &name)
+    Projectile *ResourceManager::getProjectile(const string &name)
     {
-        return get<Collisions::Projectile>(name);
+        return get<Projectile>(name);
     }
 
 
@@ -69,7 +77,7 @@ namespace SuperMarioProject
 
         if(_resources.find(name) == _resources.end())
             // une exception serait pas mal ici
-            std::cerr << "La ressource " + name + " n'est pas presente dans le gestionnaire: suppression impossible" << std::endl;
+            cerr << "La ressource " + name + " n'est pas presente dans le gestionnaire: suppression impossible" << std::endl;
         else
             _resources.erase(name);
 

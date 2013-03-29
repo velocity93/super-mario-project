@@ -10,7 +10,10 @@
 #include <fstream>
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	Checkpoint::Checkpoint(const string& textureName) : 
 		Collisionable("textures/objects/" + textureName), 

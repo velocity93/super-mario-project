@@ -12,7 +12,7 @@
 
 #include "Collisionable.hpp"
 
-namespace Collisions
+namespace smp
 {
     class EntityMovable : public Collisionable
     {
@@ -25,7 +25,7 @@ namespace Collisions
 
     
 		/* Constructors */
-		EntityMovable(const string& textureName, const Vector2f& position, const Vector2f& speed = Vector2f(0,0), Side side = RIGHT_SIDE) :
+		EntityMovable(const std::string& textureName, const sf::Vector2f& position, const sf::Vector2f& speed = sf::Vector2f(0,0), Side side = RIGHT_SIDE) :
 			Collisionable(textureName, position), 
 			_previousPosition(position),
 			_previousHitboxPosition(position),
@@ -35,29 +35,29 @@ namespace Collisions
 			_deltaY(0) { }
 
 		/* getters and setters */
-		Vector2f& getSpeed();
-		Vector2f& getPreviousPosition();
-		Vector2f& getPreviousHitboxPosition();
+		sf::Vector2f& getSpeed();
+		sf::Vector2f& getPreviousPosition();
+		sf::Vector2f& getPreviousHitboxPosition();
 		void updatePositions(float positionX, float positionY);
 		void setDeltaX(int delta);
 		void setDeltaY(int delta);
 		
 
 		virtual void onCollision(Collisionable* c, int collision_type) = 0;
-		virtual void updatePhysicData(float time, RenderWindow& app) = 0;
+		virtual void updatePhysicData(float time, sf::RenderWindow& app) = 0;
 
 		/* Destructors */
         virtual ~EntityMovable();
 		
     protected:
-		Vector2f _previousPosition;
-		Vector2f _previousHitboxPosition;
-		Vector2f _speed;
+		sf::Vector2f _previousPosition;
+		sf::Vector2f _previousHitboxPosition;
+		sf::Vector2f _speed;
 		Side _side;
 		int _deltaX;
 		int _deltaY;
 
-		void gravity(Vector2f &speed, float time);
+		void gravity(sf::Vector2f &speed, float time);
     };
 
 	class PhysicConstants

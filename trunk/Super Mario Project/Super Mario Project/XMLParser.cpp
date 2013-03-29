@@ -11,15 +11,21 @@
 #include "Level.hpp"
 #include "Block.hpp"
 #include "MonsterTypes.hpp"
+#include "Background.hpp"
+#include "Foreground.hpp"
+#include "Object.hpp"
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
 #include <cstring>
+#include <iostream>
 
+using namespace std;
+using sf::Vector2f;
 
-namespace SuperMarioProject
+namespace smp
 {
 
 	/*void XMLParser::loadLevel(string fileName, Level* level)
@@ -98,4 +104,6 @@ namespace SuperMarioProject
 
 		return vl_return;
 	}
+
+	XMLParser::~XMLParser() { }
 }

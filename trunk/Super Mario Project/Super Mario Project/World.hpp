@@ -10,14 +10,9 @@
 #ifndef HPP_WORLD
 #define HPP_WORLD
 
-#include "Perso.hpp"
-#include "Level.hpp"
 #include "InputState.hpp"
-#include "QuadTree.hpp"
 #include <SFML/Config.hpp>
 #include <string>
-#include <fstream>
-#include <iostream>
 
 #define WINDOW_WIDTH							800
 #define WINDOW_HEIGHT							600
@@ -26,23 +21,32 @@
 #define SCROLLING_HAUT                          (float)0.5
 #define SCROLLING_BAS                           (float)0.2
 
-
-using namespace Collisions;
-
-namespace SuperMarioProject
+// forward declaration
+namespace sf
 {
+	class View;
+	class RenderWindow;
+}
+
+namespace smp
+{
+	// forward declaration
+	class QuadTree;
+	class Perso;
+	class Level;
+
     class World
     {
     public:
-		World(const Window* window);
+		World(const sf::Window* window);
 
 		Level* getLevel();
 
 		/* Methods */
-		void addLevelName(string levelName);
+		void addLevelName(const std::string &levelName);
 
-		void update(RenderWindow& app, View* view);
-		void render(RenderWindow& app);
+		void update(sf::RenderWindow& app, sf::View* view);
+		void render(sf::RenderWindow& app);
 
 		float getElapsedTime();
 		void loadWorld();
@@ -50,12 +54,12 @@ namespace SuperMarioProject
         virtual ~World();
 		
     private:
-		vector<string> _levelNames;
-		vector<Perso*> _persos;
+		std::vector<std::string> _levelNames;
+		std::vector<Perso*> _persos;
 		Level* _level;
 		InputState _inputState;
-		Vector2i _windowSize;
-		Clock _clock;
+		sf::Vector2i _windowSize;
+		sf::Clock _clock;
 		float _fpsTime;
 		float _actualTime;
 		float _previousTime;

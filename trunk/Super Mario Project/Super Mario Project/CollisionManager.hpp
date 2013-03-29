@@ -10,13 +10,14 @@
 #ifndef HPP_COLLISIONMANAGER
 #define HPP_COLLISIONMANAGER
 
-#include "EntityMovable.hpp"
-#include "Level.hpp"
+#include <SFML/Graphics.hpp>
 
-using namespace SuperMarioProject;
-
-namespace Collisions
+namespace smp
 {
+	// forward declaration
+	class EntityMovable;
+	class Collisionable;
+
 	class CollisionManager
 	{
 		public:
@@ -50,8 +51,8 @@ namespace Collisions
 
 		static bool detectCollisions(EntityMovable* c1, Collisionable* c2, Type& collisions_info);
 		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, Type& collisions_info);
-		static void interprateCollisions(const FloatRect& r1, const FloatRect& r1Prec,
-										const FloatRect& r2, const FloatRect& r2Prec,Type& collisions_info);
+		static void interprateCollisions(const sf::FloatRect& r1, const sf::FloatRect& r1Prec,
+										const sf::FloatRect& r2, const sf::FloatRect& r2Prec,Type& collisions_info);
 	};
 } // namespace
 

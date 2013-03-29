@@ -10,7 +10,10 @@
 #include <fstream>
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::RenderWindow;
+
+namespace smp
 {
 	int Particle::getLife()
 	{

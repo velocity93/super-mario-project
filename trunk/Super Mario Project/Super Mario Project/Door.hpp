@@ -13,11 +13,10 @@
 #include "Collisionable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
 	class Door : public Collisionable
     {
-		
     public:
 		typedef enum 
 		{
@@ -26,31 +25,30 @@ namespace Collisions
 			NB_STATES
 		} State;
 
-
 		/* Constructors */
-		Door(const string& textureName);
-		Door(const string& textureName, Vector2f position, int indexDestination, const string& levelDestination, State state);
+		Door(const std::string& textureName);
+		Door(const std::string& textureName, sf::Vector2f position, int indexDestination, const std::string& levelDestination, State state);
 		/* getters and setters */
 		int getIndexDestination();
-		string& getLevelDestination();
+		std::string& getLevelDestination();
 		State getState();
 		void setIndexDestination(int indexDestination);
-		void setLevelDestination(const string& levelDestination);
+		void setLevelDestination(const std::string& levelDestination);
 		void setState(State state);
 
 		/* Methods */
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
         virtual ~Door();
 		
     private:
 		Animation<State> _animation;
 		int _indexDestination;
-		string _levelDestination;
+		std::string _levelDestination;
 		State _state;
 
-		void loadDoor(const string& textureName);
+		void loadDoor(const std::string& textureName);
     };
 } // namespace
 

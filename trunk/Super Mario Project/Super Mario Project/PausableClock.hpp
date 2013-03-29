@@ -52,7 +52,7 @@
  \namespace sftools
  \brief namespace containing tools using SFML library.
 */
-namespace SuperMarioProject {
+namespace smp {
 
 /*!
  \class PausableClock
@@ -140,7 +140,7 @@ class PausableClock
 		sf::Clock my_clock;
 };
 
-} // sftools namespace
+}
 
 #endif // PAUSABLECLOCK_HPP
 

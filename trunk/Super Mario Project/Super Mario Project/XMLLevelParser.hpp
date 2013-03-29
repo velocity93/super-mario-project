@@ -13,12 +13,11 @@
 #include "XMLParser.hpp"
 #include <string>
 
-using namespace std;
-
-namespace SuperMarioProject
+namespace smp
 {
-	/* Declaration in advance */
+	// forward declaration
 	class Level;
+
 	typedef void (*balise_func)(Level *, const char **);
 
 	class XMLLevelParser : XMLParser
@@ -26,7 +25,7 @@ namespace SuperMarioProject
 	public :
 		static XMLLevelParser* getParser();
 
-		void loadLevel(string fileName, Level* level);
+		void loadLevel(std::string fileName, Level* level);
 		static void killParser();
 
 	private :
@@ -34,7 +33,7 @@ namespace SuperMarioProject
 
 		XMLLevelParser() { }
 
-		virtual ~XMLLevelParser() { }
+		~XMLLevelParser() { }
 	};
 }
 

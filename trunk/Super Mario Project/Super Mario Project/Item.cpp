@@ -10,7 +10,11 @@
 #include "Exceptions.hpp"
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
     Item::Item(const string& textureName, Type type, int submission)
         : Resource("textures/items/" + textureName),

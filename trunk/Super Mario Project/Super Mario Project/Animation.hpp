@@ -11,15 +11,13 @@
 #define HPP_ANIMATION
 
 #include "PausableClock.hpp"
+#include "Texture.hpp"
 #include <SFML/Graphics.hpp>
 #include <map>
+#include <iostream>
 #include <climits>
 
-using namespace std;
-using namespace sf;
-using namespace SuperMarioProject;
-
-namespace Rendering
+namespace smp
 {
 	template <typename T>
 	class Animation
@@ -34,8 +32,8 @@ namespace Rendering
 			_clock.Start();
 		}
 
-		void setMapNbSprites(map<T, int>& nbSpritesByState);
-		void setMapFrameDelay(map<T, int>& frameDelayByState);
+		void setMapNbSprites(std::map<T, int>& nbSpritesByState);
+		void setMapFrameDelay(std::map<T, int>& frameDelayByState);
 		void setCurrentState(T state);
 
 		int getNbSpritesMax();
@@ -48,19 +46,19 @@ namespace Rendering
 
 		/* Drawing */
 		void update();
-		void render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, bool flipX, int delta = 0);
-		void render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, Vector2i& coords, Vector2i& size);
+		void render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, bool flipX, int delta = 0);
+		void render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size);
 
 	private:
-		map<T, int> _nbSpritesByState;
-		map<T, int> _frameDelayByState;
+		std::map<T, int> _nbSpritesByState;
+		std::map<T, int> _frameDelayByState;
 		T _currentState;
 		int _frameNumber;
 		int _nbSpritesMax;
 		int _nbStatesMax;
 		int _frameDelayForCurrentState;
 		int _nbSpritesForCurrentState;
-		SuperMarioProject::PausableClock _clock;
+		PausableClock _clock;
 
 		/* Get nbSprites for currentState */
 		int getNbSpritesForCurrentState();

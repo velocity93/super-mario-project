@@ -8,7 +8,10 @@
 
 #include "ParticleGenerator.hpp"
 
-namespace Collisions
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	Vector2i& ParticleGenerator::getParticleSize()
 	{

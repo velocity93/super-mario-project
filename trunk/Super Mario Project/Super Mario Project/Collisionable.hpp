@@ -12,29 +12,27 @@
 
 #include "Drawable.hpp"
 
-using namespace Rendering;
-
-namespace Collisions
+namespace smp
 {
-    class Collisionable : public Rendering::Drawable
+    class Collisionable : public Drawable
     {
 	public:
 		/* Constructors */
-		Collisionable(const string& textureName) : Drawable(textureName), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
-		Collisionable(const string& textureName, const Vector2f& position) : Drawable(textureName, position), _hitboxPosition(Vector2f()), _hitboxSize(Vector2i()) { }
+		Collisionable(const std::string& textureName) : Drawable(textureName), _hitboxPosition(sf::Vector2f()), _hitboxSize(sf::Vector2i()) { }
+		Collisionable(const std::string& textureName, const sf::Vector2f& position) : Drawable(textureName, position), _hitboxPosition(sf::Vector2f()), _hitboxSize(sf::Vector2i()) { }
 
 		/* Getters */
-		Vector2f& getHitboxPosition();
-		Vector2i& getHitboxSize();
+		sf::Vector2f& getHitboxPosition();
+		sf::Vector2i& getHitboxSize();
 
 		/* Destructors */
         virtual ~Collisionable();
 		
     protected:
-		Vector2f _hitboxPosition;
-		Vector2i _hitboxSize;
+		sf::Vector2f _hitboxPosition;
+		sf::Vector2i _hitboxSize;
 
-		void setActivity(RenderWindow& app);
+		void setActivity(sf::RenderWindow& app);
     };
 } // namespace
 

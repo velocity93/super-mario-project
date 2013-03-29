@@ -13,13 +13,15 @@
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Monster;
 	class Perso;
 	class Pipe;
 	class BlockOccurrence;
 	class ProjectileOccurrence;
+	
 	class MonsterOccurrence : public EntityMovable
 	{
 
@@ -49,31 +51,31 @@ namespace Collisions
 
 		MonsterOccurrence(
 			Monster* monster,
-			const string& textureName, 
-			const Vector2f& position,
-			const Vector2f& speed,
+			const std::string& textureName, 
+			const sf::Vector2f& position,
+			const sf::Vector2f& speed,
 			MonsterOccurrence::State state,
 			MonsterOccurrence::Side side,
-			map<MonsterOccurrence::State, int>& nbSpritesByState,
-			map<MonsterOccurrence::State, int>& frameDelayByState);
+			std::map<MonsterOccurrence::State, int>& nbSpritesByState,
+			std::map<MonsterOccurrence::State, int>& frameDelayByState);
 
 		State getState();
 		void setState(State state);
 		Monster* getModel();
 		void onCollision(Collisionable* c, int collision_type);
 
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
-		void setActivity(RenderWindow& app);
+		void setActivity(sf::RenderWindow& app);
 
 		virtual ~MonsterOccurrence();
 
 	private:
 		Animation<State> _animation;
 		Monster* _monster;
-		Vector2f _initialPosition;
+		sf::Vector2f _initialPosition;
 		State _state;
 
 		/* Collisions resolutions */

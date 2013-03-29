@@ -13,10 +13,12 @@
 #include "Monster.hpp"
 #include "Pipe.hpp"
 #include "Perso.hpp"
+#include "ProjectileOccurrence.hpp"
 
-using namespace SuperMarioProject;
+using namespace std;
+using namespace sf;
 
-namespace Collisions
+namespace smp
 {
 	MonsterOccurrence::MonsterOccurrence(
 		Monster* monster,

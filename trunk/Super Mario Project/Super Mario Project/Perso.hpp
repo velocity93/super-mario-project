@@ -14,18 +14,20 @@
 #define SPEED_X_MIN						0.008F
 
 #include "EntityMovable.hpp"
-#include "InputState.hpp"
-#include "HUD.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Pipe;
 	class Checkpoint;
 	class MonsterOccurrence;
 	class ProjectileOccurrence;
 	class BlockOccurrence;
 	class ItemOccurrence;
+	class InputState;
+	class HUD;
+	
 	class Perso : public EntityMovable
     {
 
@@ -112,7 +114,7 @@ namespace Collisions
 		} Transformation;
 
 		/* Constructors */
-		Perso(const string& textureName, const Vector2f& position);
+		Perso(const std::string& textureName, const sf::Vector2f& position);
 
 		/* getters and setters */
 		HUD* getHUD();
@@ -120,7 +122,7 @@ namespace Collisions
 		Environment getEnvironment();
 		Transformation getTransformation();
 		bool getCanClimb();
-		Vector2f& getAcceleration();
+		sf::Vector2f& getAcceleration();
 		MonsterOccurrence* getBroughtMonster();
 		Pipe* getInsidePipe();
 		Checkpoint* getCheckPointPassed();
@@ -145,15 +147,15 @@ namespace Collisions
 		void updatePerso(float time, InputState& inputState);
 
 		/* Methods */
-		void initPerso(const string& textureName);
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow&);
-		void render(RenderWindow& app);
+		void initPerso(const std::string& textureName);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow&);
+		void render(sf::RenderWindow& app);
 
 		void onCollision(Collisionable* c, int collision_type);
 
 		/* Loading character configuration */
-		void loadPerso(const string& textureName);
+		void loadPerso(const std::string& textureName);
 
 		/* Destructor */
         virtual ~Perso();
@@ -168,7 +170,7 @@ namespace Collisions
 		PausableClock _throwShellTime;
 		PausableClock _deathTime;
 		PausableClock _finishTime;
-		string _textureName;
+		std::string _textureName;
 		PausableClock _jumpTime;
 
 		Animation<State> _animation;
@@ -176,7 +178,7 @@ namespace Collisions
 		State _state;
 		Environment _environment;
 		Transformation _transformation;
-		Vector2f _acceleration;
+		sf::Vector2f _acceleration;
 		MonsterOccurrence* _broughtMonster;
 		Pipe* _insidePipe;
 		Checkpoint* _checkpointPassed;

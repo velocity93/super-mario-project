@@ -9,9 +9,27 @@
 #include "XMLLevelParser.hpp"
 #include "Level.hpp"
 #include "MonsterTypes.hpp"
+#include "Background.hpp"
+#include "Foreground.hpp"
+#include "Object.hpp"
+#include "Finish.hpp"
+#include "Projectile.hpp"
+#include "Item.hpp"
+#include "Checkpoint.hpp"
+#include "Pipe.hpp"
+#include "Tileset.hpp"
+#include "Block.hpp"
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/parserInternals.h>
+#include <libxml/xmlschemas.h>
+#include <libxml/xmlschemastypes.h>
+#include <cstring>
 
+using namespace std;
+using sf::Vector2f;
 
-namespace XMLLevelParsing
+namespace smp
 {
 	/* PARSING LEVEL XML */
 	int id_item;
@@ -459,7 +477,7 @@ namespace XMLLevelParsing
 		}
 	}
 
-	void error(void * /*ctx*/, const char * msg, ...)
+	static void error(void * /*ctx*/, const char * msg, ...)
 	{
 		cout << "error parsing level XML :" << msg << endl;
 	}
@@ -531,10 +549,8 @@ namespace XMLLevelParsing
 
 		xmlSAXUserParseFile(&sh, level, fileName.c_str());
 	}
-}
 
-namespace SuperMarioProject
-{
+
 	XMLLevelParser* XMLLevelParser::_parser = nullptr;
 
 	XMLLevelParser* XMLLevelParser::getParser()
@@ -550,7 +566,7 @@ namespace SuperMarioProject
 	void XMLLevelParser::loadLevel(string fileName, Level* level)
 	{
 		if(validateSchema("levels/level.xsd", fileName.c_str()) == 0)
-			XMLLevelParsing::parseLevel(fileName, level);
+			parseLevel(fileName, level);
 	}
 
 	void XMLLevelParser::killParser()

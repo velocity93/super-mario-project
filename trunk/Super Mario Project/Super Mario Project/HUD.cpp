@@ -8,7 +8,9 @@
 
 #include "HUD.hpp"
 
-namespace Rendering
+using sf::RenderWindow;
+
+namespace smp
 {
 	HUD::HUD()
 	{

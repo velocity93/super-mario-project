@@ -15,36 +15,35 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-using namespace std;
-using namespace sf;
-
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Block;
-	class Tileset : public SuperMarioProject::Resource
+
+	class Tileset : public Resource
 	{
 	public :
-		Tileset(const string& textureName);
+		Tileset(const std::string& textureName);
 
-		Vector2i& getNbSprites();
+		sf::Vector2i& getNbSprites();
 		int getFrameDelay();
-		vector<Block*>& getBlocks();
+		std::vector<Block*>& getBlocks();
 		int getBlockPhysic(int index);
 		void addBlock(int physicIndex, int type);
 		
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
 		/* Serialize Data */
-		void serialize(ofstream& file, string& tabs);
+		void serialize(std::ofstream& file, std::string& tabs);
 
 		virtual ~Tileset();
 	private:
-		vector<Block*> _blocks;
-		vector<int> _physics;
-		Vector2i _nbSprites;
+		std::vector<Block*> _blocks;
+		std::vector<int> _physics;
+		sf::Vector2i _nbSprites;
 		int _frameDelay;
 
-		void loadConfiguration(const string& textureName);
+		void loadConfiguration(const std::string& textureName);
 	};
 }
 

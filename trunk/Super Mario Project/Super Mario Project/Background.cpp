@@ -10,7 +10,11 @@
 #include <fstream>
 #include <sstream>
 
-namespace Rendering
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
 	Background::Background(const string& textureName, const Vector2f& position) : 
 		Drawable("textures/backgrounds/" + textureName, position),

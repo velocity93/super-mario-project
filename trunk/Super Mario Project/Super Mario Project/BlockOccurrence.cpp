@@ -12,7 +12,10 @@
 #include "Tileset.hpp"
 #include "Perso.hpp"
 
-namespace Collisions
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	BlockOccurrence::BlockOccurrence(
 		const string& textureName, 

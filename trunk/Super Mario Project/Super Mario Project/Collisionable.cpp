@@ -8,7 +8,9 @@
 
 #include "Collisionable.hpp"
 
-namespace Collisions
+using namespace sf;
+
+namespace smp
 {
 	Collisionable::~Collisionable()
 	{
@@ -27,9 +29,9 @@ namespace Collisions
 
 	void Collisionable::setActivity(RenderWindow& app)
 	{
-		const sf::View& view = app.getView();
-		const sf::Vector2f& center = view.getCenter();
-		const sf::Vector2f& halfSize = view.getSize();
+		const View& view = app.getView();
+		const Vector2f& center = view.getCenter();
+		const Vector2f& halfSize = view.getSize();
 
 		_isActive = _hitboxPosition.x + _hitboxSize.x >= (center.x - halfSize.x / 2);
 		_isActive &= _hitboxPosition.x <= (center.x + halfSize.x / 2);

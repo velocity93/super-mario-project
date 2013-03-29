@@ -13,7 +13,7 @@
 #include "Collisionable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
 	class Checkpoint : public Collisionable
 	{
@@ -26,15 +26,15 @@ namespace Collisions
 			NB_STATES
 		} State;
 
-		Checkpoint(const string& textureName);
-		Checkpoint(const string& textureName, Vector2f& position, State state);
+		Checkpoint(const std::string& textureName);
+		Checkpoint(const std::string& textureName, sf::Vector2f& position, State state);
 
 		State getState();
 		void setState(const State &state);
 
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
 
         virtual ~Checkpoint();
 		

@@ -6,17 +6,18 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/OpenGL.hpp>
-#include <sstream>
 #include "World.hpp"
 #include "Block.hpp"
 #include "Exceptions.hpp"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/OpenGL.hpp>
+#include <fstream>
+#include <sstream>
 
-using namespace SuperMarioProject;
-using namespace Rendering;
 using namespace sf;
+using namespace std;
+using namespace smp;
 
 void writeCapture(const sf::Image& img)
 {
@@ -99,6 +100,8 @@ int main(int, char**)
         // Create world
         World w(&App);
 
+        return 0;
+
         // Start the game loop
 		while (App.isOpen())
         {
@@ -106,13 +109,13 @@ int main(int, char**)
             // Static Events
             while(App.pollEvent(Event)) 
             {
-				switch(Event.type)
-                {
-                case Event::Closed : 
-                    App.close();
-                    break;
+    				switch(Event.type)
+                    {
+                    case Event::Closed : 
+                        App.close();
+                        break;
 
-                case Event::KeyPressed : 
+                    case Event::KeyPressed : 
                     {
                         switch(Event.key.code)
                         {
@@ -124,8 +127,9 @@ int main(int, char**)
                             writeCapture(img);
                             break;
                         }
+
+                        break;
                     }
-                    break;
                 }
             }
 			

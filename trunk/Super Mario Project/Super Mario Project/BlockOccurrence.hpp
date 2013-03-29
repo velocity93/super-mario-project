@@ -13,11 +13,13 @@
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Block;
 	class Perso;
 	class Item;
+	
 	class BlockOccurrence : public EntityMovable
     {
     public:
@@ -30,9 +32,9 @@ namespace Collisions
 		} State;
 
 		BlockOccurrence(
-			const string& textureName, 
-			const Vector2f& position, 
-			const Vector2f& speed, 
+			const std::string& textureName, 
+			const sf::Vector2f& position, 
+			const sf::Vector2f& speed, 
 			State state, 
 			Side side,
 			int physicIndex,
@@ -41,9 +43,9 @@ namespace Collisions
 
 		Block* getActualModel();
 		
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
 		void onCollision(Collisionable* c, int collision_type);
 
@@ -51,8 +53,8 @@ namespace Collisions
 		
     private:
 		Animation<State> _animation;
-		Vector2i _coordSprite;
-		Vector2i _size;
+		sf::Vector2i _coordSprite;
+		sf::Vector2i _size;
 		State _state;
 		Block* _actualBlock;
 		Block* _alternativeBlock;

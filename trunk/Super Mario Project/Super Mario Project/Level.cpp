@@ -11,15 +11,29 @@
 #include "MonsterTypes.hpp"
 #include "CollisionManager.hpp"
 #include "QuadTree.hpp"
+#include "Checkpoint.hpp"
+#include "Background.hpp"
+#include "Foreground.hpp"
+#include "Object.hpp"
+#include "Finish.hpp"
+#include "Projectile.hpp"
+#include "Item.hpp"
+#include "Pipe.hpp"
+#include "Tileset.hpp"
+#include "Monster.hpp"
+#include "BlockOccurrence.hpp"
 
-namespace SuperMarioProject
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
-	string& Level::getName()
+	const string& Level::getName()
 	{
 		return _name;
 	}
 
-	string& Level::getMusicTitle()
+	const string& Level::getMusicTitle()
 	{
 		return _musicTitle;
 	}
@@ -89,7 +103,7 @@ namespace SuperMarioProject
 		return _blocksOccurrences;
 	}
 
-	void Level::setName(string name)
+	void Level::setName(const string &name)
 	{
 		_name = name;
 	}
@@ -114,7 +128,7 @@ namespace SuperMarioProject
 		_size.y = height;
 	}
 
-	void Level::setMusicTitle(string title)
+	void Level::setMusicTitle(const string &title)
 	{
 		_musicTitle = title;
 	}
@@ -174,12 +188,12 @@ namespace SuperMarioProject
 		_blocksOccurrences.push_back(block);
 	}
 
-	void Level::loadLevel(string& fileName)
+	void Level::loadLevel(const string &fileName)
 	{
 		XMLLevelParser::getParser()->loadLevel(fileName, this);
 	}
 
-	void Level::saveLevel(string& fileName)
+	void Level::saveLevel(const string &fileName)
 	{
 		ofstream file(fileName.c_str());
 		
@@ -457,7 +471,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able */
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(itemOccurrence, (*itBlocks));
+						CollisionManager::solveCollisions(itemOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */
@@ -494,7 +508,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able */
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(monsterOccurrence, (*itBlocks));
+						CollisionManager::solveCollisions(monsterOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */
@@ -531,7 +545,7 @@ namespace SuperMarioProject
 					/* Resolve these collisions if able*/
 					for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 					{
-						Collisions::CollisionManager::solveCollisions(projectileOccurrence, (*itBlocks));
+						CollisionManager::solveCollisions(projectileOccurrence, (*itBlocks));
 					}
 
 					/* Update Graphic */

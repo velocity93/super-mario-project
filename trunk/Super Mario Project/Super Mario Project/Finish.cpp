@@ -10,7 +10,11 @@
 #include <fstream>
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
 	Finish::Finish(const string& textureName, Vector2f& position) : Collisionable("textures/objects/" + textureName, position),
 		_animation(NB_STATES)

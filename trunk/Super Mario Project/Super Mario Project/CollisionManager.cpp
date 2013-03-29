@@ -7,9 +7,12 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "CollisionManager.hpp"
+#include "EntityMovable.hpp"
 #include <iostream>
 
-namespace Collisions
+using sf::FloatRect;
+
+namespace smp
 {
 	CollisionManager* CollisionManager::_manager = NULL;
 
@@ -48,7 +51,7 @@ namespace Collisions
 	bool CollisionManager::detectCollisions(EntityMovable* et1, Collisionable* c2, Type& collision)
 	{
 		//InverseFloatrect
-		sf::FloatRect r1(et1->getHitboxPosition().x, et1->getHitboxPosition().y,
+		FloatRect r1(et1->getHitboxPosition().x, et1->getHitboxPosition().y,
 			et1->getHitboxSize().x, et1->getHitboxSize().y),
 
 			r1Prec(et1->getPreviousHitboxPosition().x, et1->getPreviousHitboxPosition().y,
@@ -76,7 +79,7 @@ namespace Collisions
 	bool CollisionManager::detectCollisions(EntityMovable* et1, EntityMovable* et2, Type& collision)
 	{
 		// inverseFloatRect
-		sf::FloatRect r1(et1->getHitboxPosition().x, et1->getHitboxPosition().y,
+		FloatRect r1(et1->getHitboxPosition().x, et1->getHitboxPosition().y,
 			et1->getHitboxSize().x, et1->getHitboxSize().y),
 
 			r1Prec(et1->getPreviousHitboxPosition().x, et1->getPreviousHitboxPosition().y,

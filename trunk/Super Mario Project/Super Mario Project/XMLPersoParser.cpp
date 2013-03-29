@@ -7,13 +7,21 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "XMLPersoParser.hpp"
+#include "Perso.hpp"
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/parserInternals.h>
+#include <libxml/xmlschemas.h>
+#include <libxml/xmlschemastypes.h>
 
-namespace XMLPersoParsing
+using namespace std;
+
+namespace smp
 {
 	/* To manage if we are in nb_sprites or in frame_delay */
 	string section;
 	
-	void AddDataToAnimation(Collisions::Perso* perso, Collisions::Perso::State state, int value)
+	void AddDataToAnimation(Perso* perso, Perso::State state, int value)
 	{
 		if(section == "nb_sprites")
 		{
@@ -25,172 +33,172 @@ namespace XMLPersoParsing
 		}
 	}
 	
-	void LeftDelta_tag(Collisions::Perso* perso, const char ** attrs)
+	void LeftDelta_tag(Perso* perso, const char ** attrs)
 	{
 		perso->setDeltaX(atoi(attrs[1]));
 	}
 	
-	void TopDelta_tag(Collisions::Perso* perso, const char ** attrs)
+	void TopDelta_tag(Perso* perso, const char ** attrs)
 	{
 		perso->setDeltaY(atoi(attrs[1]));
 	}
 	
-	void NbSprites_tag(Collisions::Perso*, const char **)
+	void NbSprites_tag(Perso*, const char **)
 	{
 		section = "nb_sprites";
 	}
 	
-	void FrameDelay_tag(Collisions::Perso*, const char **)
+	void FrameDelay_tag(Perso*, const char **)
 	{
 		section = "frame_delay";
 	}
 	
-	void Standing_tag(Collisions::Perso* perso, const char ** attrs)
+	void Standing_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::STANDING, value);
+		AddDataToAnimation(perso, Perso::STANDING, value);
 	}
 	
-	void Walk_tag(Collisions::Perso* perso, const char ** attrs)
+	void Walk_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::WALK, value);
+		AddDataToAnimation(perso, Perso::WALK, value);
 	}
 	
-	void Run_tag(Collisions::Perso* perso, const char ** attrs)
+	void Run_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::RUN_1, value);
-		AddDataToAnimation(perso, Collisions::Perso::RUN_2, value);
+		AddDataToAnimation(perso, Perso::RUN_1, value);
+		AddDataToAnimation(perso, Perso::RUN_2, value);
 	}
 	
-	void Skid_tag(Collisions::Perso* perso, const char ** attrs)
+	void Skid_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::SKID, value);
+		AddDataToAnimation(perso, Perso::SKID, value);
 	}
 	
-	void Jump_tag(Collisions::Perso* perso, const char ** attrs)
+	void Jump_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::JUMP, value);
+		AddDataToAnimation(perso, Perso::JUMP, value);
 	}
 	
-	void JumpFalling_tag(Collisions::Perso* perso, const char ** attrs)
+	void JumpFalling_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::JUMP_FALLING, value);
+		AddDataToAnimation(perso, Perso::JUMP_FALLING, value);
 	}
 	
-	void Fly_tag(Collisions::Perso* perso, const char ** attrs)
+	void Fly_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::FLY, value);
+		AddDataToAnimation(perso, Perso::FLY, value);
 	}
 	
-	void Face_tag(Collisions::Perso* perso, const char ** attrs)
+	void Face_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(perso, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
 	}
 	
-	void Back_tag(Collisions::Perso* perso, const char ** attrs)
+	void Back_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::FLY, value);
+		AddDataToAnimation(perso, Perso::FLY, value);
 	}
 	
-	void LookTop_tag(Collisions::Perso* perso, const char ** attrs)
+	void LookTop_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(perso, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
 	}
 	
-	void Lowered_tag(Collisions::Perso* perso, const char ** attrs)
+	void Lowered_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::FLY, value);
+		AddDataToAnimation(perso, Perso::FLY, value);
 	}
 	
-	void ClimbLadder_tag(Collisions::Perso* perso, const char ** attrs)
+	void ClimbLadder_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::CLIMB_LADDER, value);
+		AddDataToAnimation(perso, Perso::CLIMB_LADDER, value);
 	}
 	
-	void StandingShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void StandingShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::STANDING_SHELL, value);
+		AddDataToAnimation(perso, Perso::STANDING_SHELL, value);
 	}
 	
-	void WalkShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void WalkShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::WALK_SHELL, value);
+		AddDataToAnimation(perso, Perso::WALK_SHELL, value);
 	}
 	
-	void PushShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void PushShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::PUSH_SHELL, value);
+		AddDataToAnimation(perso, Perso::PUSH_SHELL, value);
 	}
 	
-	void JumpShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void JumpShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::JUMP_SHELL, value);
+		AddDataToAnimation(perso, Perso::JUMP_SHELL, value);
 	}
 	
-	void LoweredShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void LoweredShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::LOWERED_SHELL, value);
+		AddDataToAnimation(perso, Perso::LOWERED_SHELL, value);
 	}
 	
-	void LookTopShell_tag(Collisions::Perso* perso, const char ** attrs)
+	void LookTopShell_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::LOOK_TOP_SHELL, value);
+		AddDataToAnimation(perso, Perso::LOOK_TOP_SHELL, value);
 	}
 	
-	void Dead_tag(Collisions::Perso* perso, const char ** attrs)
+	void Dead_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::DEAD, value);
+		AddDataToAnimation(perso, Perso::DEAD, value);
 	}
 	
-	void FinishCastle_tag(Collisions::Perso* perso, const char ** attrs)
+	void FinishCastle_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::FINISH, value);
+		AddDataToAnimation(perso, Perso::FINISH, value);
 	}
 	
-	void FrameDelayRun2_tag(Collisions::Perso* perso, const char ** attrs)
+	void FrameDelayRun2_tag(Perso* perso, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Collisions::Perso::RUN_2, value);
+		AddDataToAnimation(perso, Perso::RUN_2, value);
 	}
 	
 
@@ -257,29 +265,27 @@ namespace XMLPersoParsing
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{
-				functions[i]((Collisions::Perso*)user_data, (const char **)attrs);
+				functions[i]((Perso*)user_data, (const char **)attrs);
 				break;
 			}
 		}	
 	}
 
-	void error(void * /*ctx*/, const char * msg, ...)
+	static void error(void * /*ctx*/, const char * msg, ...)
 	{
 		cout << "error parsing Perso XML :" << msg << endl;
 	}
 
-	void parsePerso(string fileName, Collisions::Perso* perso)
+	void parsePerso(string fileName, Perso* perso)
 	{
 		xmlSAXHandler sh = {NULL};
 		sh.startElement = start_perso_element;
-		sh.error = XMLPersoParsing::error;
+		sh.error = error;
 
 		xmlSAXUserParseFile(&sh, perso, fileName.c_str());
 	}
-}
 
-namespace SuperMarioProject
-{
+
 	XMLPersoParser* XMLPersoParser::_parser = nullptr;
 
 	XMLPersoParser* XMLPersoParser::getParser()
@@ -292,10 +298,10 @@ namespace SuperMarioProject
 		return _parser;
 	}
 
-	void XMLPersoParser::loadPerso(string fileName, Collisions::Perso* perso)
+	void XMLPersoParser::loadPerso(const string &fileName, Perso* perso)
 	{
 		if(validateSchema("persos/perso.xsd", fileName.c_str()) == 0)
-			XMLPersoParsing::parsePerso(fileName, perso);
+			parsePerso(fileName, perso);
 	}
 
 	XMLPersoParser::~XMLPersoParser()

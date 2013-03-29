@@ -9,9 +9,11 @@
 #include "Resource.hpp"
 #include "ResourceManager.hpp"
 
-namespace SuperMarioProject
+using std::string;
+
+namespace smp
 {
-    Resource::Resource(std::string name)
+    Resource::Resource(const string &name)
         : _name(name),
 		_shorterName(name.substr(name.find_last_of("/") + 1, name.size())),
         _refCount(0)
@@ -22,12 +24,12 @@ namespace SuperMarioProject
     {
     }
 
-    const std::string &Resource::name() const
+    const string &Resource::name() const
     {
         return _name;
     }
 	
-	const std::string &Resource::shorterName() const
+	const string &Resource::shorterName() const
     {
         return _shorterName;
     }

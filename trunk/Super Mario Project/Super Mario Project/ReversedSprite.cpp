@@ -8,7 +8,7 @@
 
 #include "ReversedSprite.hpp"
 
-namespace Rendering 
+namespace smp 
 {
     ReversedSprite::ReversedSprite()
         : Sprite()

@@ -7,9 +7,12 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "QuadTree.hpp"
+#include "BlockOccurrence.hpp"
 
+using namespace std;
+using namespace sf;
 
-namespace SuperMarioProject
+namespace smp
 {
 
 	bool QuadTree::isLeaf()
@@ -20,7 +23,7 @@ namespace SuperMarioProject
 			_subTree4 == nullptr;
 	}
 
-	void QuadTree::buildTree(vector<Collisions::BlockOccurrence*>& obj)
+	void QuadTree::buildTree(vector<BlockOccurrence*>& obj)
 	{
 		sf::Vector2i size;
 		sf::Vector2f center;
@@ -50,10 +53,10 @@ namespace SuperMarioProject
 				_subTree4 = new QuadTree(center, size, _depth + 1);
 
 				/* create subvector */
-				std::vector<Collisions::BlockOccurrence*> subTab1, subTab2, subTab3, subTab4;
+				std::vector<BlockOccurrence*> subTab1, subTab2, subTab3, subTab4;
 				center = _center;
 
-				for(vector<Collisions::BlockOccurrence*>::iterator itObj = obj.begin(); itObj != obj.end(); ++itObj)
+				for(vector<BlockOccurrence*>::iterator itObj = obj.begin(); itObj != obj.end(); ++itObj)
 				{
 					Vector2f point_BL = (*itObj)->getHitboxPosition();
 					Vector2f point_HR = Vector2f((*itObj)->getHitboxPosition().x + (*itObj)->getHitboxSize().x,
@@ -105,7 +108,7 @@ namespace SuperMarioProject
 		}
 	}
 
-	void QuadTree::getBlocks(sf::Vector2f& position, sf::Vector2i& size, vector<Collisions::BlockOccurrence*>* blocks)
+	void QuadTree::getBlocks(sf::Vector2f& position, sf::Vector2i& size, vector<BlockOccurrence*>* blocks)
 	{
 		if(!isLeaf())
 		{
@@ -192,6 +195,9 @@ namespace SuperMarioProject
 
 	QuadTree::~QuadTree()
 	{
-		delete _subTree1, _subTree2, _subTree3, _subTree4;
+		delete _subTree1;
+		delete _subTree2;
+		delete _subTree3;
+		delete _subTree4;
 	}
 }
