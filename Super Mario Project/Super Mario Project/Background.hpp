@@ -13,7 +13,7 @@
 #include "Drawable.hpp"
 #include "Animation.hpp"
 
-namespace Rendering
+namespace smp
 {
     class Background : public Drawable
     {
@@ -24,15 +24,15 @@ namespace Rendering
 		};
 
 		/* Constructor */
-		Background(const string& textureName, const Vector2f& position = Vector2f(0,0));
+		Background(const std::string& textureName, const sf::Vector2f& position = sf::Vector2f(0,0));
 		
 		/* getter and setter */
 		bool getVerticalRepetition();
 
 		/* Methods */
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
 		
 		/* Destructor */
         virtual ~Background();
@@ -40,7 +40,7 @@ namespace Rendering
     private:
 		Animation<State> _animation;
 		bool _verticalRepetition;
-		Vector2f _position;
+		sf::Vector2f _position;
 
 		void loadCfgBackground();
     };

@@ -6,14 +6,17 @@
 // Olivier Guittonneau openmengine@gmail.com
 ////////////////////////////////////////////////////////////////////////
 
-#include "ResourceManager.hpp"
 #include "CollisionManager.hpp"
 #include "ProjectileOccurrence.hpp"
 #include "Projectile.hpp"
+#include "BlockOccurrence.hpp"
+#include "Block.hpp"
 
-using namespace SuperMarioProject;
+using namespace std;
+using sf::RenderWindow;
+using sf::Vector2f;
 
-namespace Collisions
+namespace smp
 {
 	ProjectileOccurrence::ProjectileOccurrence(
 		Projectile* projectile,

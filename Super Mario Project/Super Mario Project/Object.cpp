@@ -10,7 +10,10 @@
 #include <sstream>
 #include <exception>
 
-namespace Rendering
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	Object::Object(const string& textureName, Vector2f& position) : Drawable("textures/objects/" + textureName, position), _animation(1)
 	{ 

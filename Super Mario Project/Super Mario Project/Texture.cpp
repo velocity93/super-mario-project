@@ -7,8 +7,13 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Texture.hpp"
+#include "iostream"
 
-namespace Rendering
+using namespace std;
+using sf::Sprite;
+using sf::IntRect;
+
+namespace smp
 {
     Texture::Texture(const string& name)
 		: Resource(name), sf::Texture()

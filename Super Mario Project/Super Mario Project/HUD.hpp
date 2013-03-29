@@ -12,14 +12,11 @@
 
 #define NB_POINTS 7
 
+#include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
-#include <SFML/Graphics.hpp>
 
-using namespace std;
-using namespace sf;
-
-namespace Rendering
+namespace smp
 {
     class HUD
     {
@@ -36,8 +33,8 @@ namespace Rendering
 		void removeLife();
 		void addCoin();
 		void addPoints(int nbPoints);
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
         virtual ~HUD();
 		
@@ -47,12 +44,12 @@ namespace Rendering
 		int _nbCoins;
 		int _score;
 		float _time;
-		string _levelName;
+		std::string _levelName;
 		//Item* item;
 		int _nbMonstersKilled;
 		int _nbMonstersKilledByShell;
-		vector<int> _points; 
-		vector<int> _queue_points;
+		std::vector<int> _points; 
+		std::vector<int> _queue_points;
 
     };
 } // namespace

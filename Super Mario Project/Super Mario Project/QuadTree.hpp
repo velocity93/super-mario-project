@@ -11,10 +11,12 @@
 #define HPP_QUADTREE
 
 #include <SFML/Graphics.hpp>
-#include "BlockOccurrence.hpp"
 
-namespace SuperMarioProject
+namespace smp
 {
+	// forward declaration
+	class BlockOccurrence;
+
 	class QuadTree
 	{
 	public :
@@ -26,18 +28,18 @@ namespace SuperMarioProject
 				_subTree1(nullptr), _subTree2(nullptr), _subTree3(nullptr), _subTree4(nullptr)
 				{ }
 
-		void buildTree(vector<Collisions::BlockOccurrence*>& obj);
-		void getBlocks(sf::Vector2f& position, sf::Vector2i& size, vector<Collisions::BlockOccurrence*>* blocks);
+		void buildTree(std::vector<BlockOccurrence*>& obj);
+		void getBlocks(sf::Vector2f& position, sf::Vector2i& size, std::vector<BlockOccurrence*>* blocks);
 
 		bool isLeaf();
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 		virtual ~QuadTree();
 
 	private :
 		int _depth;
-		Vector2f _center;
-		Vector2i _size;
-		vector<Collisions::BlockOccurrence*> _elements;
+		sf::Vector2f _center;
+		sf::Vector2i _size;
+		std::vector<BlockOccurrence*> _elements;
 
 		/* Sub Tree Disposition (C=Center)
 		 * 			 ----- -----

@@ -9,7 +9,10 @@
 #include "Pipe.hpp"
 #include "Monster.hpp"
 
-namespace Collisions
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	Pipe::Pipe(const string& textureName) 
 		: Collisionable("textures/pipes/" + textureName),
@@ -117,7 +120,7 @@ namespace Collisions
 						Vector2f(_position.x + BLOCK_WIDTH / 2, _position.y),
 						Vector2f(0, MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y), 
 						MonsterOccurrence::GET_OUT_FROM_PIPE, 
-						Collisions::MonsterOccurrence::LEFT_SIDE);
+						MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_BOTTOM:
@@ -125,7 +128,7 @@ namespace Collisions
 						 Vector2f(_position.x + BLOCK_WIDTH / 2, _position.y),
 						 Vector2f(0, -MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y), 
 						 MonsterOccurrence::GET_OUT_FROM_PIPE, 
-						 Collisions::MonsterOccurrence::LEFT_SIDE);
+						 MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_LEFT:
@@ -133,7 +136,7 @@ namespace Collisions
 						Vector2f(_position.x + BLOCK_WIDTH / 2, _position.y),
 						Vector2f(-MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y, 0),
 						MonsterOccurrence::GET_OUT_FROM_PIPE,
-						Collisions::MonsterOccurrence::LEFT_SIDE);
+						MonsterOccurrence::LEFT_SIDE);
 					break;
 
 				case TO_RIGHT:
@@ -141,7 +144,7 @@ namespace Collisions
 						Vector2f(_position.x + BLOCK_WIDTH / 2, _position.y),
 						Vector2f(MonsterConstants::MONSTER_EXIT_PIPE_SPEED_Y, 0),
 						MonsterOccurrence::GET_OUT_FROM_PIPE,
-						Collisions::MonsterOccurrence::RIGHT_SIDE);
+						MonsterOccurrence::RIGHT_SIDE);
 					break;
 
 				default:

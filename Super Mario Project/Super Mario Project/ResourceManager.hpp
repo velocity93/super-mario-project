@@ -12,14 +12,16 @@
 
 #include <map>
 #include <string>
-#include "Resource.hpp"
-#include "Texture.hpp"
-#include "Item.hpp"
-#include "Monster.hpp"
-#include "Projectile.hpp"
 
-namespace SuperMarioProject
+namespace smp
 {
+    // forward declaration
+    class Resource;
+    class Texture;
+    class Item;
+    class Monster;
+    class Projectile;
+
     class ResourceManager
     {
     public:
@@ -27,10 +29,10 @@ namespace SuperMarioProject
 		static void killManager();
 
         static void remove(Resource *res);
-        static Rendering::Texture *getTexture(const std::string &name);
-        static Collisions::Item *getItem(const std::string &name);
-        static Collisions::Monster *getMonster(const std::string &name);
-        static Collisions::Projectile *getProjectile(const std::string &name);
+        static Texture *getTexture(const std::string &name);
+        static Item *getItem(const std::string &name);
+        static Monster *getMonster(const std::string &name);
+        static Projectile *getProjectile(const std::string &name);
 
     private:
 		ResourceManager();

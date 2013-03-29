@@ -9,7 +9,11 @@
 #include "Projectile.hpp"
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
     Projectile::Projectile(const string& textureName, Type type)
         : Resource("textures/projectiles/" + textureName),

@@ -10,21 +10,12 @@
 #ifndef HPP_XMLPARSER
 #define HPP_XMLPARSER
 
-#include <libxml/tree.h>
-#include <libxml/parser.h>
-#include <libxml/parserInternals.h>
-#include <libxml/xmlschemas.h>
-#include <libxml/xmlschemastypes.h>
-#include <string>
-
-using namespace std;
-
-namespace SuperMarioProject
+namespace smp
 {
-	class XMLParser abstract
+	class XMLParser
 	{
 	public :
-		virtual ~XMLParser() { }
+		virtual ~XMLParser() = 0;
 
 	protected :
 		int validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename);

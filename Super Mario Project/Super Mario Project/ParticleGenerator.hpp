@@ -14,50 +14,50 @@
 #include "Collisionable.hpp"
 
 
-namespace Collisions
+namespace smp
 {
     class ParticleGenerator : public Collisionable
     {
     public:
 		/* Constructors */ 
-		ParticleGenerator(const string& textureName) : Collisionable(textureName), _flow(0), _hasGravity(false), 
-			_startColor(Color(0, 0, 0)), _endColor(Color(0, 0, 0)) , _particleLife(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1),
+		ParticleGenerator(const std::string& textureName) : Collisionable(textureName), _flow(0), _hasGravity(false), 
+			_startColor(sf::Color(0, 0, 0)), _endColor(sf::Color(0, 0, 0)) , _particleLife(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1),
 			_eTBeforeCreatingParticles(0) { }
-		ParticleGenerator(const string& textureName,Vector2f position, int particleLife, int flow, bool hasGravity, Color startColor, Color endColor) 
+		ParticleGenerator(const std::string& textureName, sf::Vector2f position, int particleLife, int flow, bool hasGravity, sf::Color startColor, sf::Color endColor) 
 			: Collisionable(textureName, position), _flow(flow), _hasGravity(hasGravity), _startColor(startColor), _endColor(endColor), _particleLife(particleLife),
 			_eTBeforeCreatingParticles(0), _nbMaxParticles((_particleLife / 1000) * _flow + 1) { }
 
 		/* getters and setters */
-		Vector2i& getParticleSize();
+		sf::Vector2i& getParticleSize();
 		int getNbMaxParticles();
 		int getFlow();
 		bool getHasGravity();
-		Color& getStartColor();
-		Color& getEndColor();
-		void setParticleSize(Vector2i& particleSize);
+		sf::Color& getStartColor();
+		sf::Color& getEndColor();
+		void setParticleSize(sf::Vector2i& particleSize);
 		void setNbMaxParticles(int nbMaxParticles);
 		void setFlow(int flow);
 		void setHasGravity(bool hasGravity);
-		void setStartColor(Color& startColor);
-		void setEndColor(Color& endColor);
+		void setStartColor(sf::Color& startColor);
+		void setEndColor(sf::Color& endColor);
 
 		/* Methods */
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
 		/* Destructor */
         virtual ~ParticleGenerator();
 		
     private:
-		Vector2i _particleSize;
-		vector<Particle> _particles;
+		sf::Vector2i _particleSize;
+		std::vector<Particle> _particles;
 		int _particleLife;
 		int _nbMaxParticles;
 		int _eTBeforeCreatingParticles;
 		int _flow;
 		bool _hasGravity;
-		Color _startColor;
-		Color _endColor;
+		sf::Color _startColor;
+		sf::Color _endColor;
     };
 } // namespace
 

@@ -10,18 +10,16 @@
 #ifndef HPP_DRAWABLE
 #define HPP_DRAWABLE
 
-#include "Texture.hpp"
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <string>
 
 #define BLOCK_WIDTH 32
 
-using namespace std;
-using namespace sf;
-
-namespace Rendering
+namespace smp
 {
+	// forward declaration
 	class Texture;
+
 	class Drawable
 	{
 	
@@ -47,31 +45,31 @@ namespace Rendering
 		} Angle;
 	
 		/* Constructors */
-		Drawable(const string& textureName);
-		Drawable(const string& textureName, const Vector2f& position);
+		Drawable(const std::string& textureName);
+		Drawable(const std::string& textureName, const sf::Vector2f& position);
 
 		/* getters and setters */
-		Vector2f& getPosition();
-		Rendering::Texture* getTexture();
+		sf::Vector2f& getPosition();
+		Texture* getTexture();
 		bool isActive();
 		void setPositionX(float x);
 		void setPositionY(float y);
 
 		/* It will be defined in subclasses */
 		/* update drawable object context */
-		virtual void updateGraphicData(RenderWindow& app) = 0;
+		virtual void updateGraphicData(sf::RenderWindow& app) = 0;
 
 		/* Draw actual object state */
-		virtual void render(RenderWindow& app) = 0;
+		virtual void render(sf::RenderWindow& app) = 0;
 
 		virtual ~Drawable();
 
 	protected:
-		Rendering::Texture* _texture;
-		Vector2f _position;
+		Texture* _texture;
+		sf::Vector2f _position;
 		bool _isActive;
 
-		void InitializeDrawable(const string& textureName);
+		void InitializeDrawable(const std::string& textureName);
 	};
 } // namespace
 

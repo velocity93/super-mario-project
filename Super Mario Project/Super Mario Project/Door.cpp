@@ -10,7 +10,11 @@
 #include <fstream>
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
 	Door::Door(const string& textureName) : Collisionable(textureName), _indexDestination(-1), _state(CLOSED), _levelDestination(""), _animation(NB_STATES)
 	{ 

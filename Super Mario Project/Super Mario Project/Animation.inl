@@ -9,13 +9,13 @@
 template<typename T>
 void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 {
-	pair<typename map<T, int>::iterator, bool> res;
+	std::pair<typename std::map<T, int>::iterator, bool> res;
 
-	res = _nbSpritesByState.insert(pair<T, int>(state, nbSprites));
+	res = _nbSpritesByState.insert(std::pair<T, int>(state, nbSprites));
 	
 	if(res.second == false)
 	{
-		cout << "State : " << state << " already exists." << endl;
+		std::cout << "State : " << state << " already exists." << std::endl;
 	}
 	else
 	{
@@ -27,13 +27,13 @@ void Animation<T>::addNbSpritesForGivenState(T state, int nbSprites)
 template<typename T>
 void Animation<T>::addFrameDelayForGivenState(T state, int frameDelay)
 {
-	pair<typename map<T, int>::iterator, bool> res;
+	std::pair<typename std::map<T, int>::iterator, bool> res;
 
-	res = _frameDelayByState.insert(pair<T, int>(state, frameDelay));
+	res = _frameDelayByState.insert(std::pair<T, int>(state, frameDelay));
 	
 	if(res.second == false)
 	{
-		cout << "State : " << state << " already exists." << endl;
+		std::cout << "State : " << state << " already exists." << std::endl;
 	}
 }
 
@@ -57,14 +57,14 @@ int Animation<T>::getNbStates()
 }
 
 template<typename T>
-void Animation<T>::setMapNbSprites(map<T, int>& nbSpritesByState)
+void Animation<T>::setMapNbSprites(std::map<T, int>& nbSpritesByState)
 {
 	_nbSpritesByState = nbSpritesByState;
 	_nbSpritesMax = computeNbSpritesMax();
 }
 
 template<typename T>
-void Animation<T>::setMapFrameDelay(map<T, int>& frameDelayByState)
+void Animation<T>::setMapFrameDelay(std::map<T, int>& frameDelayByState)
 {
 	_frameDelayByState = frameDelayByState;
 }
@@ -72,7 +72,7 @@ void Animation<T>::setMapFrameDelay(map<T, int>& frameDelayByState)
 template<typename T>
 int Animation<T>::getFrameDelayForCurrentState()
 {
-	typename map<T, int>::iterator itFrameDelay = _frameDelayByState.find(_currentState);
+	typename std::map<T, int>::iterator itFrameDelay = _frameDelayByState.find(_currentState);
 	if(itFrameDelay != _frameDelayByState.end())
 		return itFrameDelay->second;
 	else 
@@ -82,7 +82,7 @@ int Animation<T>::getFrameDelayForCurrentState()
 template<typename T>
 int Animation<T>::getNbSpritesForCurrentState()
 {
-	typename map<T, int>::iterator itNbSprites = _nbSpritesByState.find(_currentState);
+	typename std::map<T, int>::iterator itNbSprites = _nbSpritesByState.find(_currentState);
 
 	if(itNbSprites != _nbSpritesByState.end())
 		return itNbSprites->second;
@@ -101,7 +101,7 @@ void Animation<T>::setCurrentState(T state)
 template<typename T>
 int Animation<T>::computeNbSpritesMax()
 {
-	typename map<T, int>::iterator itNbSprites;
+	typename std::map<T, int>::iterator itNbSprites;
 	int nbSpritesMax = INT_MIN;
 
 	for(itNbSprites = _nbSpritesByState.begin(); itNbSprites !=  _nbSpritesByState.end(); ++itNbSprites)
@@ -136,13 +136,13 @@ void Animation<T>::update()
 }
 
 template<typename T>
-void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, bool isFlipX, int delta)
+void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, bool isFlipX, int delta)
 {
 	int numState = (int)_currentState - delta;
-	Vector2i spriteSize = Vector2i(
+	sf::Vector2i spriteSize = sf::Vector2i(
 		texture->getSize().x / _nbSpritesMax,
 		texture->getSize().y / _nbSpritesByState.size());
-    Sprite& sprite = texture->getSprite();
+    sf::Sprite& sprite = texture->getSprite();
 
 	if(_nbSpritesForCurrentState > 0)
 	{
@@ -150,7 +150,7 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 		int top = numState * spriteSize.y;
 
 		sprite.setTextureRect(
-			IntRect(
+			sf::IntRect(
 			left,
 			top,
 			spriteSize.x,
@@ -173,10 +173,10 @@ void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector
 
 /* Special method for blocks with no animation */
 template<typename T>
-void Animation<T>::render(Rendering::Texture* texture, RenderWindow& app, Vector2f& position, Vector2i& coords, Vector2i& size)
+void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size)
 {
-	Sprite& sprite = texture->getSprite();
-	sprite.setTextureRect(IntRect(coords.x, coords.y, size.x, size.y));
+	sf::Sprite& sprite = texture->getSprite();
+	sprite.setTextureRect(sf::IntRect(coords.x, coords.y, size.x, size.y));
 
 	/* We must correspond graphic to physic */
 	sprite.setPosition(position.x, position.y);

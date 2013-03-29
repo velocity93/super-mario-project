@@ -13,11 +13,9 @@
 #include "XMLParser.hpp"
 #include <string>
 
-using namespace std;
-
-namespace SuperMarioProject
+namespace smp
 {
-	/* Declaration */
+	// forward declaration
 	class World;
 
 	class XMLWorldParser : XMLParser
@@ -25,7 +23,7 @@ namespace SuperMarioProject
 	public :
 		static XMLWorldParser* getParser();
 
-		void loadWorld(string fileName, World* world);
+		void loadWorld(const std::string &fileName, World* world);
 		void killParser();
 
 	private :

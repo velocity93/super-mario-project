@@ -10,14 +10,12 @@
 #ifndef HPP_OBJECT
 #define HPP_OBJECT
 
-#include <SFML/Graphics.hpp>
 #include "Drawable.hpp"
 #include "Animation.hpp"
+#include <SFML/Graphics.hpp>
 #include <fstream>
 
-using namespace sf;
-
-namespace Rendering
+namespace smp
 {
     class Object : public Drawable
     {
@@ -27,12 +25,12 @@ namespace Rendering
 			NORMAL
 		};
 
-		Object(const string& textureName,Vector2f& position);
+		Object(const std::string& textureName, sf::Vector2f& position);
 		
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
-		void setActivity(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
+		void setActivity(sf::RenderWindow& app);
 
         virtual ~Object();
 		

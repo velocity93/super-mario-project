@@ -9,7 +9,11 @@
 #include "Monster.hpp"
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
     Monster::Monster(const string& textureName, bool canBeKilledByFire, bool canBeKilledByJump, bool canBeJumpedOn) 
         : Resource("textures/monsters/" + textureName),

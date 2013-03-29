@@ -8,8 +8,12 @@
 
 #include "Drawable.hpp"
 #include "ResourceManager.hpp"
+#include "Texture.hpp"
 
-namespace Rendering
+using namespace std;
+using sf::Vector2f;
+
+namespace smp
 {
 	Drawable::Drawable(const string& textureName) : _isActive(true)
 	{
@@ -24,11 +28,11 @@ namespace Rendering
 
 	void Drawable::InitializeDrawable(const string& textureName)
 	{
-        _texture = SuperMarioProject::ResourceManager::getTexture(textureName);
+        _texture = ResourceManager::getTexture(textureName);
 		_position = Vector2f();
 	}
 
-	Rendering::Texture* Drawable::getTexture()
+	Texture* Drawable::getTexture()
 	{
 		return _texture;
 	}

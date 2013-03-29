@@ -13,7 +13,7 @@
 #include "EntityMovable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
     class Particle : public EntityMovable
     {
@@ -23,14 +23,14 @@ namespace Collisions
 			NORMAL
 		};
 
-		Particle(const string& textureName, Vector2f& position) : EntityMovable(textureName, position), _life(0), _animation(1) { }
+		Particle(const std::string& textureName, sf::Vector2f& position) : EntityMovable(textureName, position), _life(0), _animation(1) { }
 
 		int getLife();
 
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow&);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow&);
 		void update(float time, bool hasGravity);
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 		void onCollision(Collisionable *c, int collision_type);
 
         virtual ~Particle();
@@ -39,7 +39,7 @@ namespace Collisions
 		Animation<State> _animation;
 		int _life;
 
-		void loadParticle(const string& textureName);
+		void loadParticle(const std::string& textureName);
     };
 } // namespace
 

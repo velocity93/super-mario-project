@@ -16,12 +16,9 @@
 #include <fstream>
 #include <vector>
 
-using namespace std;
-using namespace sf;
-
-namespace Collisions
+namespace smp
 {
-    class Projectile : public SuperMarioProject::Resource
+    class Projectile : public Resource
     {
 	
 	public:
@@ -37,7 +34,7 @@ namespace Collisions
 		};
 
 		/* Constructor */
-		Projectile(const string& textureName, Type type = FRAGMENT);
+		Projectile(const std::string& textureName, Type type = FRAGMENT);
 
 		/* Physic submission */
 		int getSubmission();
@@ -49,10 +46,10 @@ namespace Collisions
 		int getTop();
 
 		/* get all occurrences */
-		vector<ProjectileOccurrence*>& getProjectileOccurrences();
+		std::vector<ProjectileOccurrence*>& getProjectileOccurrences();
 
 		/* Add occurrence to list */
-		void addNewProjectileOccurrence(const Vector2f& position = Vector2f(0,0),
+		void addNewProjectileOccurrence(const sf::Vector2f& position = sf::Vector2f(0,0),
 			ProjectileOccurrence::State state = ProjectileOccurrence::LAUNCHED,
 			ProjectileOccurrence::Side side = ProjectileOccurrence::RIGHT_SIDE);
 
@@ -60,27 +57,27 @@ namespace Collisions
 		void removeProjectileOccurrence(const ProjectileOccurrence* projectile);
 
 		/* Update data */
-		void updatePhysicData(float time, RenderWindow& app);
-		void updateGraphicData(RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
 
 		/* Render all occurrences */
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
 		/* Serialize data */
-		void serialize(ofstream& file, const string& tabs);
+		void serialize(std::ofstream& file, const std::string& tabs);
 
 		/* Destructor */
         virtual ~Projectile();
 		
     private:
 		Type _type;
-		Vector2f _initialSpeed;
+		sf::Vector2f _initialSpeed;
 		int _bottomLeft;
 		int _top;
 		int _submission;
-		vector<ProjectileOccurrence*> _projectileOccurences;
-		map<ProjectileOccurrence::State, int> _nbSpritesByState;
-		map<ProjectileOccurrence::State, int> _frameDelayByState;
+		std::vector<ProjectileOccurrence*> _projectileOccurences;
+		std::map<ProjectileOccurrence::State, int> _nbSpritesByState;
+		std::map<ProjectileOccurrence::State, int> _frameDelayByState;
 
 		/* Loading Projectile */
 		void loadProjectile();

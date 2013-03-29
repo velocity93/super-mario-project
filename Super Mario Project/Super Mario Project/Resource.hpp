@@ -12,14 +12,15 @@
 
 #include <string>
 
-namespace SuperMarioProject
+namespace smp
 {
+    // forward declaration
     class ResourceManager;
 
     class Resource
     {
     public:
-        Resource(std::string name);
+        Resource(const std::string &name);
         virtual ~Resource() = 0;
         const std::string &name() const;
 		const std::string &shorterName() const;

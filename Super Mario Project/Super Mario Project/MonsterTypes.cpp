@@ -12,7 +12,7 @@
 
 using namespace std;
 
-namespace Collisions
+namespace smp
 {
 	WalkingMonster::WalkingMonster(const string& textureName, bool canBeKilledByJump, bool canBeKilledByFire, bool canBeJumpedOn, bool stayOnPlateForm)
 		: Monster(textureName, canBeKilledByJump, canBeKilledByFire, canBeJumpedOn), 

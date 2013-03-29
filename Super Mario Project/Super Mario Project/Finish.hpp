@@ -13,7 +13,7 @@
 #include "Collisionable.hpp"
 #include "Animation.hpp"
 
-namespace Collisions
+namespace smp
 {
     class Finish : public Collisionable
     {
@@ -25,11 +25,11 @@ namespace Collisions
 			NB_STATES
 		};
 
-		Finish(const string& textureName, Vector2f& position);
+		Finish(const std::string& textureName, sf::Vector2f& position);
 
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
 		void setState(const State& state);
 
         virtual ~Finish();
@@ -37,7 +37,7 @@ namespace Collisions
     private:
 		Animation<State> _animation;
 
-		void loadFinish(const string& textureName);
+		void loadFinish(const std::string& textureName);
     };
 } // namespace
 

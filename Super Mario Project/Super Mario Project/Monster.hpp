@@ -15,9 +15,7 @@
 #include "MonsterOccurrence.hpp"
 #include "Resource.hpp"
 
-using namespace std;
-
-namespace Collisions
+namespace smp
 {
 	class MonsterConstants
 	{
@@ -26,16 +24,16 @@ namespace Collisions
 		static const float MONSTER_EXIT_PIPE_SPEED_Y;
 	};
 
-    class Monster : public SuperMarioProject::Resource
+    class Monster : public Resource
     {
     public:
-		Monster(const string& textureName, 
+		Monster(const std::string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false);
 
 		/* Add Occurrence */
-		void addNewMonsterOccurrence(const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(MonsterConstants::MONSTER_SPEED_X,0), 
+		void addNewMonsterOccurrence(const sf::Vector2f& position = sf::Vector2f(0,0), const sf::Vector2f& speed = sf::Vector2f(MonsterConstants::MONSTER_SPEED_X,0), 
 			MonsterOccurrence::State state = MonsterOccurrence::WALK,
 			MonsterOccurrence::Side side = MonsterOccurrence::LEFT_SIDE);
 
@@ -44,13 +42,13 @@ namespace Collisions
 		bool canBeKilledByJump();
 		bool canBeKilledByFire();
 		bool canBeJumpedOn();
-		vector<MonsterOccurrence*>& getMonsterOccurrences();
+		std::vector<MonsterOccurrence*>& getMonsterOccurrences();
 
 		/* render all occurrence */
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
 		/* Serialize data */
-		void serialize(ofstream& file, const string& tabs);
+		void serialize(std::ofstream& file, const std::string& tabs);
 
 		/* Destructor */
 		virtual ~Monster();
@@ -61,9 +59,9 @@ namespace Collisions
 		bool _canBeKilledByFire;
 		bool _canBeKilledByJump;
 		bool _canBeJumpedOn;
-		vector<MonsterOccurrence*> _monsterOccurrences;
-		map<MonsterOccurrence::State, int> _nbSpritesByState;
-		map<MonsterOccurrence::State, int> _frameDelayByState;
+		std::vector<MonsterOccurrence*> _monsterOccurrences;
+		std::map<MonsterOccurrence::State, int> _nbSpritesByState;
+		std::map<MonsterOccurrence::State, int> _frameDelayByState;
 
     private:
 		/* Load monster configuration */

@@ -12,8 +12,13 @@
 #include "Block.hpp"
 #include "Item.hpp"
 #include "ItemOccurrence.hpp"
+#include "Pipe.hpp"
 
-namespace Collisions
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
+
+namespace smp
 {
 	ItemOccurrence::ItemOccurrence(
 		Item* item,

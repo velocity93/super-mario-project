@@ -10,10 +10,10 @@
 #ifndef HPP_INPUTSTATE
 #define HPP_INPUTSTATE
 
-#include <vector>
 #include <SFML/Window.hpp>
+#include <vector>
 
-namespace SuperMarioProject
+namespace smp
 {
     enum KeyState {
         KEY_STATE_RELEASED,

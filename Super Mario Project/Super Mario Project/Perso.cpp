@@ -16,12 +16,17 @@
 #include "Item.hpp"
 #include "Exceptions.hpp"
 #include "ResourceManager.hpp"
+#include "HUD.hpp"
+#include "InputState.hpp"
+#include "Finish.hpp"
 #include <fstream>
 #include <sstream>
 
-using namespace Rendering;
+using namespace std;
+using sf::Vector2f;
+using sf::RenderWindow;
 
-namespace Collisions
+namespace smp
 {
 	Perso::Perso(const string& textureName, const Vector2f& position) : EntityMovable("textures/persos/" + textureName, position),
 		_environment(GROUND), 
@@ -44,7 +49,7 @@ namespace Collisions
 	void Perso::initPerso(const string& textureName)
 	{
 		_textureName = "textures/persos/" + textureName;
-		_texture = SuperMarioProject::ResourceManager::getTexture(_textureName);
+		_texture = ResourceManager::getTexture(_textureName);
 
 		/* Fill Data for texture */
 		_animation.reset();

@@ -11,9 +11,11 @@
 #include <fstream>
 #include <sstream>
 
-using namespace SuperMarioProject;
+using namespace std;
+using sf::RenderWindow;
+using sf::Vector2f;
 
-namespace Collisions
+namespace smp
 {
 	Tileset* Block::getTileset()
 	{
@@ -30,7 +32,7 @@ namespace Collisions
 		return _type;
 	}
 
-	BlockOccurrence* Block::addNewBlockOccurrence(Block* alternativeBlock, const Vector2f &position, const Vector2f &speed, Collisions::BlockOccurrence::State state, Collisions::EntityMovable::Side side)
+	BlockOccurrence* Block::addNewBlockOccurrence(Block* alternativeBlock, const Vector2f &position, const Vector2f &speed, BlockOccurrence::State state, EntityMovable::Side side)
 	{
 		BlockOccurrence* block = new BlockOccurrence( _tileset->name(), position, speed, state, side, _physicIndex, this, alternativeBlock);
 		_blockOccurrences.push_back(block);

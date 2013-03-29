@@ -15,12 +15,14 @@
 
 #define ITEM_EXIT_BLOCK_TIME			650
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Item;
 	class Pipe;
 	class Perso;
 	class BlockOccurrence;
+	
 	class ItemOccurrence : public EntityMovable
     {
 	
@@ -34,13 +36,13 @@ namespace Collisions
 		} State;
 
 		ItemOccurrence(Item* item,
-			const string& textureName, 
-			const Vector2f& position, 
-			const Vector2f& speed, 
+			const std::string& textureName, 
+			const sf::Vector2f& position, 
+			const sf::Vector2f& speed, 
 			State state, 
 			Side side, 
-			map<ItemOccurrence::State, int>& nbSpritesByState,
-			map<ItemOccurrence::State, int>& frameDelayByState);
+			std::map<ItemOccurrence::State, int>& nbSpritesByState,
+			std::map<ItemOccurrence::State, int>& frameDelayByState);
 
 		State getState();
 		bool getIsActive();
@@ -49,9 +51,9 @@ namespace Collisions
 
 		void onCollision(Collisionable* c, int collision_type);
 
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow& app);
-		void render(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
         virtual ~ItemOccurrence();
 		

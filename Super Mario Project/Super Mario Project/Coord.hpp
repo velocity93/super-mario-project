@@ -10,7 +10,7 @@
 #ifndef HPP_COORD
 #define HPP_COORD
 
-namespace Utils
+namespace smp
 {
     template<class C> class Coord
     {

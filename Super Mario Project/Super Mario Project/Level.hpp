@@ -10,76 +10,78 @@
 #ifndef HPP_LEVEL
 #define HPP_LEVEL
 
-#include "Checkpoint.hpp"
-#include "Background.hpp"
-#include "Foreground.hpp"
-#include "Object.hpp"
-#include "ParticleGenerator.hpp"
-#include "Item.hpp"
-#include "Monster.hpp"
-#include "Projectile.hpp"
-#include "Finish.hpp"
-#include "Pipe.hpp"
-#include "Tileset.hpp"
-#include "BlockOccurrence.hpp"
-
+#include <SFML/System.hpp>
 #include <string>
+#include <vector>
 
-using namespace Collisions;
-using namespace Rendering;
+// forward declaration
+namespace sf { class RenderWindow; }
 
-namespace SuperMarioProject
+namespace smp
 {
+	// forward declaration
 	class QuadTree;
+	class Checkpoint;
+	class Background;
+	class Foreground;
+	class Monster;
+	class Pipe;
+	class Item;
+	class BlockOccurrence;
+	class Object;
+	class Tileset;
+	class Finish;
+	class Projectile;
+
     class Level
     {
     public:
 		Level() : _name("") { }
 
 		/* Level Name */
-		string& getName();
+		const std::string& getName();
 
 		/* Level Music title */
-		string& getMusicTitle();
+		const std::string& getMusicTitle();
 
 		/* Level Spawn */
-		Vector2f& getSpawn();
+		sf::Vector2f& getSpawn();
 
 		/* Size of level */
-		Vector2i& getSize();
+		sf::Vector2i& getSize();
 
 		/* All objects */
-		vector<Object*>& getObjects();
+		std::vector<Object*>& getObjects();
 
 		/* All Checkpoints */
-		vector<Checkpoint*>& getCheckpoints();
+		std::vector<Checkpoint*>& getCheckpoints();
 
 		/* All Projectiles */
-		vector<Projectile*>& getProjectiles();
+		std::vector<Projectile*>& getProjectiles();
 
 		/* All monsters */
-		vector<Monster*>& getMonsters();
+		std::vector<Monster*>& getMonsters();
 
 		/* All pipes */
-		vector<Pipe*>& getPipes();
+		std::vector<Pipe*>& getPipes();
 
 		/* All items */
-		vector<Item*>& getItems();
+		std::vector<Item*>& getItems();
 
 		/* All backgrounds */
-		vector<Background*>& getBackgrounds();
+		std::vector<Background*>& getBackgrounds();
 
 		/* All foregrounds */
-		vector<Foreground*>& getForegrounds();
+		std::vector<Foreground*>& getForegrounds();
 
 		/* All finishes */
-		vector<Finish*>& getFinishes();
+		std::vector<Finish*>& getFinishes();
 
 		/* All Tilesets */
-		vector<Tileset*>& getTilesets();
+		std::vector<Tileset*>& getTilesets();
 
 		/* All Blocks occurrences */
-		vector<BlockOccurrence*>& getBlocksOccurrences();
+		std::vector<BlockOccurrence*>& getBlocksOccurrences();
 
 		/* Set spawn coord */
 		void setSpawnX(float x);
@@ -88,7 +90,7 @@ namespace SuperMarioProject
 		void setSpawnY(float y);
 
 		/* Set Level name */
-		void setName(string name);
+		void setName(const std::string &name);
 
 		/* Set Level width */
 		void setWidth(int width);
@@ -97,7 +99,7 @@ namespace SuperMarioProject
 		void setHeight(int height);
 
 		/* Set level music */
-		void setMusicTitle(string title);
+		void setMusicTitle(const std::string &title);
 
 		/* Add Checkpoint */
 		void addCheckpoint(Checkpoint* checkpoint);
@@ -133,37 +135,37 @@ namespace SuperMarioProject
 		void addBlockOccurrence(BlockOccurrence* block);
 
 		/* Load Level */
-		void loadLevel(string& fileName);
+		void loadLevel(const std::string& fileName);
 
 		/* Save Level */
-		void saveLevel(string& fileName);
+		void saveLevel(const std::string& fileName);
 
 		/* Update Graphic and physic data */
-		void update(float time, QuadTree* tree, RenderWindow& app);
+		void update(float time, QuadTree* tree, sf::RenderWindow& app);
 		
 		/* Render all objects */
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
         virtual ~Level();
 		
     private:
-		string _name;
-		string _musicTitle;
-		Vector2i _size;
-		Vector2f _spawn;
-		vector<Checkpoint*> _checkpoints;
-		vector<Background*> _backgrounds;
-		vector<Foreground*> _foregrounds;
-		vector<Finish*> _finishes;
-		vector<Projectile*> _projectiles;
-		vector<Monster*> _monsters;
-		vector<Pipe*> _pipes;
-		vector<Item*> _items;
-		vector<Object*> _objects;
-		vector<Tileset*> _tilesets;
+		std::string _name;
+		std::string _musicTitle;
+		sf::Vector2i _size;
+		sf::Vector2f _spawn;
+		std::vector<Checkpoint*> _checkpoints;
+		std::vector<Background*> _backgrounds;
+		std::vector<Foreground*> _foregrounds;
+		std::vector<Finish*> _finishes;
+		std::vector<Projectile*> _projectiles;
+		std::vector<Monster*> _monsters;
+		std::vector<Pipe*> _pipes;
+		std::vector<Item*> _items;
+		std::vector<Object*> _objects;
+		std::vector<Tileset*> _tilesets;
 
 		//Utile étant donné qu'on a une position dans la classe Block ?
-		vector<BlockOccurrence*> _blocksOccurrences; 
+		std::vector<BlockOccurrence*> _blocksOccurrences; 
     };
 } // namespace
 

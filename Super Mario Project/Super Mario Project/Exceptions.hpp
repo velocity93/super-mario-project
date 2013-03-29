@@ -13,7 +13,7 @@
 #include <exception>
 #include <sstream>
 
-namespace SuperMarioProject
+namespace smp
 {
 	class FileException: public std::exception
 	{

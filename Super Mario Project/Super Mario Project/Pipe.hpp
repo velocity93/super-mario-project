@@ -12,9 +12,11 @@
 
 #include "Collisionable.hpp"
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Monster;
+	
 	class Pipe : public Collisionable
     {
 
@@ -35,7 +37,7 @@ namespace Collisions
     
 		/* Constructors */
 		Pipe(const std::string& textureName);
-		Pipe(const std::string& textureName, Vector2f& position,
+		Pipe(const std::string& textureName, sf::Vector2f& position,
 			int indexPipeDestination, 
 			const std::string& levelDestination, 
 			State state, 
@@ -48,17 +50,17 @@ namespace Collisions
 		Monster* getMonster();
 		int getLenght();
 		int getState();
-		string& getLevelDestination();
+		std::string& getLevelDestination();
 		int getPipeDestination();
 		float getMonsterExitDuration();
 		void setDirection(Direction Direction);
 		void setMonster(Monster* Monster);
 
 		/* Methods */
-		void updateGraphicData(RenderWindow& app);
-		void updatePhysicData(float time, RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
+		void updateGraphicData(sf::RenderWindow& app);
+		void updatePhysicData(float time, sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
 
 		/* Destructor */
         virtual ~Pipe();
@@ -67,12 +69,12 @@ namespace Collisions
 		
     private:
 		int _indexDestination;
-		string _levelDestination;
+		std::string _levelDestination;
 		State _state;
 		Direction _direction;
 		Monster* _monster;
 		int _lenght;
-		Clock _monsterExitDuration;
+		sf::Clock _monsterExitDuration;
     };
 } // namespace
 

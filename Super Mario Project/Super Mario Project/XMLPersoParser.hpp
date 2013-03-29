@@ -11,21 +11,21 @@
 #define HPP_XML_PERSO_PARSER
 
 #include "XMLParser.hpp"
-#include "Perso.hpp"
 #include <string>
 
-using namespace std;
-
-namespace SuperMarioProject
+namespace smp
 {
-	typedef void (*perso_func)(Collisions::Perso *, const char **);
+	// forward declaration
+	class Perso;
+
+	typedef void (*perso_func)(Perso *, const char **);
 
 	class XMLPersoParser : XMLParser
 	{
 	public :
 		static XMLPersoParser* getParser();
 
-		void loadPerso(string fileName, Collisions::Perso* perso);
+		void loadPerso(const std::string &fileName, Perso* perso);
 		virtual ~XMLPersoParser();
 
 	private :

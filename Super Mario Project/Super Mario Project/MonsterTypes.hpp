@@ -12,20 +12,18 @@
 
 #include "Monster.hpp"
 
-using namespace std;
-
-namespace Collisions
+namespace smp
 {
 	class WalkingMonster : public Monster
 	{
 	public :
-		WalkingMonster(const string& textureName, 
+		WalkingMonster(const std::string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
-		void serialize(ofstream& file, string& tabs);
+		void serialize(std::ofstream& file, std::string& tabs);
 
 	private :
 		bool _stayOnPlateForm;
@@ -37,12 +35,12 @@ namespace Collisions
 	{
 
 	public :
-		ShellMonster(const string& textureName, 
+		ShellMonster(const std::string& textureName, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false,
 			bool stayOnPlateForm = false);
 
-		void serialize(ofstream& file, string& tabs);
+		void serialize(std::ofstream& file, std::string& tabs);
 
 	private :
 		void loadShellMonster();
@@ -51,12 +49,12 @@ namespace Collisions
 	class FlyingMonster : public Monster
 	{
 	public :
-		FlyingMonster(const string& textureName, 
+		FlyingMonster(const std::string& textureName, 
 			bool canBeKilledByJump = false, 
 			bool canBeKilledByFire = false, 
 			bool canBeJumpedOn = false);
 
-		void serialize(ofstream& file, string& tabs);
+		void serialize(std::ofstream& file, std::string& tabs);
 
 	private:
 		void loadFlyingMonster();

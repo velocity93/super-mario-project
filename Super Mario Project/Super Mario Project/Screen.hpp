@@ -12,32 +12,30 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-
-namespace Rendering
+namespace smp
 {
     class Screen
     {
     public:
 		/* Constructors */
-		Screen() : _origine(Vector2i()), _size(Vector2i()), _scrolling(Vector2f()) { }
-		Screen(Vector2i& origine,Vector2i& size,Vector2f& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
+		Screen() : _origine(sf::Vector2i()), _size(sf::Vector2i()), _scrolling(sf::Vector2f()) { }
+		Screen(sf::Vector2i& origine,sf::Vector2i& size,sf::Vector2f& scrolling) : _origine(origine), _size(size), _scrolling(scrolling) { }
 
 		/* getters and setters */
-		Vector2i getOrigine();
-		Vector2i getSize();
-		Vector2f getScrolling();
-		void setOrigine(Vector2i& Origine);
-		void setSize(Vector2i& Size);
-		void setScrolling(Vector2f& Scrolling);
+		sf::Vector2i getOrigine();
+		sf::Vector2i getSize();
+		sf::Vector2f getScrolling();
+		void setOrigine(sf::Vector2i& Origine);
+		void setSize(sf::Vector2i& Size);
+		void setScrolling(sf::Vector2f& Scrolling);
 
 		/* Destructor */
 		virtual ~Screen();
 		
     private:
-		Vector2i _origine;
-		Vector2i _size;
-		Vector2f _scrolling;
+		sf::Vector2i _origine;
+		sf::Vector2i _size;
+		sf::Vector2f _scrolling;
     };
 } // namespace
 

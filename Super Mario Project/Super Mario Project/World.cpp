@@ -10,10 +10,26 @@
 #include "XMLWorldParser.hpp"
 #include "CollisionManager.hpp"
 #include "HUD.hpp"
+#include "Level.hpp"
+#include "QuadTree.hpp"
+#include "Perso.hpp"
+#include "Item.hpp"
+#include "ItemOccurrence.hpp"
+#include "Monster.hpp"
+#include "MonsterOccurrence.hpp"
+#include "Projectile.hpp"
+#include "ProjectileOccurrence.hpp"
+#include "Pipe.hpp"
+#include "Finish.hpp"
+#include "Checkpoint.hpp"
+#include "BlockOccurrence.hpp"
 #include <fstream>
 #include <iostream>
 
-namespace SuperMarioProject
+using namespace std;
+using namespace sf;
+
+namespace smp
 {
 	World::World(const Window* window) : _inputState(InputState(window)),
 		_level(new Level()),
@@ -45,7 +61,7 @@ namespace SuperMarioProject
 		return _clock.getElapsedTime().asMilliseconds();
 	}
 
-	void World::addLevelName(string levelName)
+	void World::addLevelName(const string &levelName)
 	{
 		_levelNames.push_back("levels/" + levelName);
 	}
@@ -68,7 +84,7 @@ namespace SuperMarioProject
 			for (vector<BlockOccurrence*>::iterator itBlocks = blocks.begin(); itBlocks != blocks.end(); ++itBlocks)
 			{
 				if((*itBlocks)->isActive())
-					Collisions::CollisionManager::solveCollisions((*itPerso), (*itBlocks));
+					CollisionManager::solveCollisions((*itPerso), (*itBlocks));
 			}
 
 			/* Resolve collisions with Items if able */
@@ -80,7 +96,7 @@ namespace SuperMarioProject
 				{
 					if((*itItemOcc)->isActive())
 					{
-						Collisions::CollisionManager::solveCollisions((*itPerso), (*itItemOcc));
+						CollisionManager::solveCollisions((*itPerso), (*itItemOcc));
 						if((*itItemOcc)->getState() == ItemOccurrence::TAKEN)
 						{
 							itItemOcc = (*itItems)->getItemOccurrences().erase(itItemOcc);
@@ -105,7 +121,7 @@ namespace SuperMarioProject
 						&& (*itMonsterOcc)->getState() != MonsterOccurrence::DEAD_BY_JUMP_ON
 						&& (*itMonsterOcc)->getState() != MonsterOccurrence::DEAD_BY_PROJ)
 					{
-						Collisions::CollisionManager::solveCollisions((*itPerso), (*itMonsterOcc));
+						CollisionManager::solveCollisions((*itPerso), (*itMonsterOcc));
 						if((*itMonsterOcc)->getState() == MonsterOccurrence::DEAD)
 						{
 							//itMonsterOcc = (*itMonsters)->getMonsterOccurrences().erase(itMonsterOcc);
@@ -127,7 +143,7 @@ namespace SuperMarioProject
 				{
 					if((*itPojectileOcc)->isActive())
 					{
-						Collisions::CollisionManager::solveCollisions((*itPerso), (*itPojectileOcc));
+						CollisionManager::solveCollisions((*itPerso), (*itPojectileOcc));
 						if((*itPojectileOcc)->getState() == ProjectileOccurrence::DEAD)
 						{
 							itPojectileOcc = (*itProjectile)->getProjectileOccurrences().erase(itPojectileOcc);
@@ -146,7 +162,7 @@ namespace SuperMarioProject
 			{
 				if((*itPipes)->isActive())
 				{
-					Collisions::CollisionManager::solveCollisions((*itPerso), (*itPipes));
+					CollisionManager::solveCollisions((*itPerso), (*itPipes));
 				}
 			}
 
@@ -156,7 +172,7 @@ namespace SuperMarioProject
 			{
 				if((*itFinish)->isActive())
 				{
-					Collisions::CollisionManager::solveCollisions((*itPerso), (*itFinish));
+					CollisionManager::solveCollisions((*itPerso), (*itFinish));
 				}
 			}
 
@@ -166,7 +182,7 @@ namespace SuperMarioProject
 			{
 				if((*itCheckpoint)->isActive())
 				{
-					Collisions::CollisionManager::solveCollisions((*itPerso), (*itCheckpoint));
+					CollisionManager::solveCollisions((*itPerso), (*itCheckpoint));
 				}
 			}
 

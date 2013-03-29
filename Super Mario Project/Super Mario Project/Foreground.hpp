@@ -13,7 +13,7 @@
 #include "Drawable.hpp"
 #include "Animation.hpp"
 
-namespace Rendering
+namespace smp
 {
 	class Foreground : public Drawable
     {
@@ -24,13 +24,13 @@ namespace Rendering
 		};
 
         /* Constructors */
-		Foreground(const string& textureName);
+		Foreground(const std::string& textureName);
 
 		/* Methods */
-		void updateGraphicData(RenderWindow& app);
-		void render(RenderWindow& app);
-		void serialize(ofstream& file, const string& tabs);
-		void setActivity(RenderWindow& app);
+		void updateGraphicData(sf::RenderWindow& app);
+		void render(sf::RenderWindow& app);
+		void serialize(std::ofstream& file, const std::string& tabs);
+		void setActivity(sf::RenderWindow& app);
 		
 		/* Destructor */
         virtual ~Foreground();

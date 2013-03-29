@@ -10,7 +10,10 @@
 #include <fstream>
 #include <sstream>
 
-namespace Rendering
+using namespace std;
+using sf::RenderWindow;
+
+namespace smp
 {
 	Foreground::Foreground(const string& textureName) : Drawable("textures/backgrounds/" + textureName),
 		_animation(1)

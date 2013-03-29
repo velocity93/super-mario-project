@@ -12,9 +12,11 @@
 
 #include "BlockOccurrence.hpp"
 
-namespace Collisions
+namespace smp
 {
+	// forward declaration
 	class Tileset;
+	
 	class Block
     {
     public:
@@ -25,20 +27,20 @@ namespace Collisions
 		int getPhysic();
 		int getType();
 
-		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, const Vector2f& position = Vector2f(0,0), const Vector2f& speed = Vector2f(0,0), 
-			Collisions::BlockOccurrence::State state = Collisions::BlockOccurrence::UNMOVABLE,
-			Collisions::BlockOccurrence::Side side = Collisions::BlockOccurrence::RIGHT_SIDE);
+		BlockOccurrence* addNewBlockOccurrence(Block* alternativeBlock, const sf::Vector2f& position = sf::Vector2f(0,0), const sf::Vector2f& speed = sf::Vector2f(0,0), 
+			BlockOccurrence::State state = BlockOccurrence::UNMOVABLE,
+			BlockOccurrence::Side side = BlockOccurrence::RIGHT_SIDE);
 
 		void removeBlockOccurrence(const BlockOccurrence* block);
 
-		void render(RenderWindow& app);
+		void render(sf::RenderWindow& app);
 
-		void serialize(ofstream& file, string& tabs);
+		void serialize(std::ofstream& file, std::string& tabs);
 
         virtual ~Block();
 		
     private:
-		vector<BlockOccurrence*> _blockOccurrences;
+		std::vector<BlockOccurrence*> _blockOccurrences;
 		Tileset* _tileset;
 		int _physicIndex;
 		int _type;

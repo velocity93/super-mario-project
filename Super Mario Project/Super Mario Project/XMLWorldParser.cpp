@@ -8,8 +8,16 @@
 
 #include "XMLWorldParser.hpp"
 #include "World.hpp"
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/parserInternals.h>
+#include <libxml/xmlschemas.h>
+#include <libxml/xmlschemastypes.h>
+#include <iostream>
 
-namespace XMLWorldParsing
+using namespace std;
+
+namespace smp
 {
 	void level_tag(World* world, const char ** attrs)
 	{
@@ -22,15 +30,12 @@ namespace XMLWorldParsing
 			level_tag((World*)user_data, (const char**)attrs);
 	}
 
-	void error(void * /*ctx*/, const char * msg, ...)
+	static void error(void * /*ctx*/, const char * msg, ...)
 	{
 		cout << "error parsing world XML :" << msg << endl;
 	}
-}
 
 
-namespace SuperMarioProject
-{
 	XMLWorldParser* XMLWorldParser::_parser = nullptr;
 
 	XMLWorldParser* XMLWorldParser::getParser()
@@ -44,15 +49,15 @@ namespace SuperMarioProject
 	}
 
 
-	void XMLWorldParser::loadWorld(string fileName, World* world)
+	void XMLWorldParser::loadWorld(const string &fileName, World* world)
 	{
 		if(validateSchema("worlds/world.xsd", fileName.c_str()) != 0)
 			return;
 
 		/* Initialize parser */
 		xmlSAXHandler sh = {NULL};
-		sh.startElement = XMLWorldParsing::startElement;
-		sh.error = XMLWorldParsing::error;
+		sh.startElement = startElement;
+		sh.error = error;
 
 		xmlSAXUserParseFile(&sh, world, fileName.c_str());
 	}

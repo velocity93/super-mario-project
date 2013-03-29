@@ -11,7 +11,11 @@
 #include <fstream>
 #include <sstream>
 
-namespace Collisions
+using namespace std;
+using sf::RenderWindow;
+using sf::Vector2i;
+
+namespace smp
 {
 	Tileset::Tileset(const string& textureName) : Resource("textures/blocs/" + textureName)
 	{

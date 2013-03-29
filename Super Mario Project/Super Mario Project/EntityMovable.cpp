@@ -8,7 +8,9 @@
 
 #include "EntityMovable.hpp"
 
-namespace Collisions
+using sf::Vector2f;
+
+namespace smp
 {
 	Vector2f& EntityMovable::getSpeed()
 	{
