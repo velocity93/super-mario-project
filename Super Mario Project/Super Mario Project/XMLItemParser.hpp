@@ -11,21 +11,21 @@
 #define HPP_XML_ITEM_PARSER
 
 #include "XMLParser.hpp"
-#include "Item.hpp"
 #include <string>
 
-using namespace std;
-
-namespace SuperMarioProject
+namespace smp
 {
-	typedef void (*item_func)(Collisions::Item *, const char **);
+	// Forward declaration
+	class Item;
+
+	typedef void (*item_func)(Item *, const char **);
 
 	class XMLItemParser : XMLParser
 	{
 	public :
 		static XMLItemParser* getParser();
 
-		void loadItem(string fileName, Collisions::Item* item);
+		void loadItem(const std::string &fileName, Item* item);
 		virtual ~XMLItemParser();
 
 	private :

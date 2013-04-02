@@ -7,11 +7,19 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "XMLItemParser.hpp"
+#include "Item.hpp"
+#include <libxml/tree.h>
+#include <libxml/parser.h>
+#include <libxml/parserInternals.h>
+#include <libxml/xmlschemas.h>
+#include <libxml/xmlschemastypes.h>
 #include <sstream>
 
-namespace XMLItemParsing
+using namespace std;
+
+namespace smp
 {
-	void Speed_tag(Collisions::Item* item, const char ** attrs)
+	void Speed_tag(Item* item, const char ** attrs)
 	{
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -26,7 +34,7 @@ namespace XMLItemParsing
 		}
 	}
 
-	void Submission_tag(Collisions::Item* item, const char ** attrs)
+	void Submission_tag(Item* item, const char ** attrs)
 	{
 		int value;
 		
@@ -37,14 +45,14 @@ namespace XMLItemParsing
 		item->setSubmission(value);		
 	}
 
-	void NbSprites_tag(Collisions::Item* item, const char ** attrs)
+	void NbSprites_tag(Item* item, const char ** attrs)
 	{
-		item->addNbSpritesForState(Collisions::ItemOccurrence::NORMAL, atoi(attrs[0]));
+		item->addNbSpritesForState(ItemOccurrence::NORMAL, atoi(attrs[0]));
 	}
 
-	void FrameDelay_tag(Collisions::Item* item, const char ** attrs)
+	void FrameDelay_tag(Item* item, const char ** attrs)
 	{
-		item->addFrameDelayForState(Collisions::ItemOccurrence::NORMAL, atoi(attrs[0]));
+		item->addFrameDelayForState(ItemOccurrence::NORMAL, atoi(attrs[0]));
 	}
 
 
@@ -69,29 +77,26 @@ namespace XMLItemParsing
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{
-				functions[i]((Collisions::Item*)user_data, (const char **)attrs);
+				functions[i]((Item*)user_data, (const char **)attrs);
 				break;
 			}
 		}	
 	}
 
-	void error(void * /*ctx*/, const char * msg, ...)
+	static void error(void * /*ctx*/, const char * msg, ...)
 	{
 		cout << "error parsing Perso XML :" << msg << endl;
 	}
 
-	void parseItem(string fileName, Collisions::Item* item)
+	void parseItem(const std::string &fileName, Item* item)
 	{
 		xmlSAXHandler sh = {NULL};
 		sh.startElement = start_item_element;
-		sh.error = XMLItemParsing::error;
+		sh.error = error;
 
 		xmlSAXUserParseFile(&sh, item, fileName.c_str());
 	}
-}
 
-namespace SuperMarioProject
-{
 	XMLItemParser* XMLItemParser::_parser = nullptr;
 
 	XMLItemParser* XMLItemParser::getParser()
@@ -104,10 +109,10 @@ namespace SuperMarioProject
 		return _parser;
 	}
 
-	void XMLItemParser::loadItem(string fileName, Collisions::Item* item)
+	void XMLItemParser::loadItem(const std::string &fileName, Item* item)
 	{
 		if(validateSchema("items/item.xsd", fileName.c_str()) == 0)
-			XMLItemParsing::parseItem(fileName, item);
+			parseItem(fileName, item);
 	}
 
 	XMLItemParser::~XMLItemParser()
