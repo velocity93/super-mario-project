@@ -18,7 +18,12 @@ namespace smp
 	// forward declaration
 	class Perso;
 
-	typedef void (*perso_func)(Perso *, const char **);
+	typedef struct : XMLParserContext
+	{
+		std::string section;
+	} XMLPersoContext;
+
+	typedef void (*perso_func)(XMLPersoContext *, const char **);
 
 	class XMLPersoParser : XMLParser
 	{
