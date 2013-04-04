@@ -18,7 +18,15 @@ namespace smp
 	// forward declaration
 	class Level;
 
-	typedef void (*balise_func)(Level *, const char **);
+	/* Context for initializing entities */
+	typedef struct : XMLParserContext
+	{
+		int id_monster;
+		int id_tileset;
+		int id_item;
+	} XMLLevelContext;
+
+	typedef void (*balise_func)(XMLLevelContext *, const char **);
 
 	class XMLLevelParser : XMLParser
 	{

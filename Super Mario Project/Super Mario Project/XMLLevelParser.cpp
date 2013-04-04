@@ -36,8 +36,10 @@ namespace smp
 	int id_monster;
 	int id_tileset;
 
-	void level_tag(Level * level, const char **attrs)
+	void level_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
+		Level* level = (Level*)(lvlctxt->ctxt);
+
 		for(int i = 0; i < 8; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "name"))
@@ -59,8 +61,10 @@ namespace smp
 		}
 	}
 
-	void spawn_tag(Level * level, const char **attrs)
+	void spawn_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
+		Level* level = (Level*)(lvlctxt->ctxt);
+
 		for(int i = 0; i < 4; i = i + 2)
 		{
 			if(!strcmp(attrs[i], "positionX"))
@@ -74,10 +78,11 @@ namespace smp
 		}
 	}
 
-	void checkpoint_tag(Level * level, const char **attrs)
+	void checkpoint_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 6; i = i + 2)
 		{
@@ -97,11 +102,12 @@ namespace smp
 		level->addCheckpoint(new Checkpoint(img, position, Checkpoint::NOT_PASSED));
 	}
 
-	void background_tag(Level * level, const char **attrs)
+	void background_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		//Vector2f position(atoi(attrs[3]), atoi(attrs[5]));
 		//level->addBackground(new Background(attrs[1], position));
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -113,9 +119,10 @@ namespace smp
 		level->addBackground(new Background(img));
 	}
 
-	void foreground_tag(Level * level, const char **attrs)
+	void foreground_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -128,10 +135,11 @@ namespace smp
 		level->addForeground(new Foreground(img));
 	}
 
-	void object_tag(Level * level, const char **attrs)
+	void object_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 6; i = i + 2)
 		{
@@ -152,10 +160,11 @@ namespace smp
 		level->addObject(new Object(img, position));
 	}
 
-	void finish_tag(Level * level, const char **attrs)
+	void finish_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 6; i = i + 2)
 		{
@@ -176,9 +185,10 @@ namespace smp
 		level->addFinish(new Finish(img, position));
 	}
 
-	void projectile_tag(Level * level, const char **attrs)
+	void projectile_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -190,10 +200,11 @@ namespace smp
 		level->addProjectile(new Projectile(img));
 	}
 
-	void item_tag(Level * level, const char **attrs)
+	void item_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
 		Item::Type type = Item::COIN;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -210,9 +221,10 @@ namespace smp
 		id_item++;
 	}
 
-	void occ_item_tag(Level * level, const char **attrs)
+	void occ_item_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -229,9 +241,10 @@ namespace smp
 		level->getItems()[id_item - 1]->addNewItemOccurrence(position);
 	}
 
-	void walking_monster_tag(Level * level, const char **attrs)
+	void walking_monster_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -245,9 +258,10 @@ namespace smp
 		id_monster++;
 	}
 
-	void shell_monster_tag(Level * level, const char **attrs)
+	void shell_monster_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -261,9 +275,10 @@ namespace smp
 		id_monster++;
 	}
 
-	void flying_monster_tag(Level * level, const char **attrs)
+	void flying_monster_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -277,9 +292,10 @@ namespace smp
 		id_monster++;
 	}
 
-	void occ_monster_tag(Level * level, const char **attrs)
+	void occ_monster_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -295,7 +311,7 @@ namespace smp
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);
 	}
 
-	void pipe_tag(Level * level, const char **attrs)
+	void pipe_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
 		string img = "", level_destination = "";
@@ -304,6 +320,7 @@ namespace smp
 		int length = 1;
 		Pipe::State state = Pipe::CLOSED;
 		Pipe::Direction direction = Pipe::TO_TOP;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 18; i = i + 2)
 		{
@@ -372,9 +389,10 @@ namespace smp
 	}
 
 	// <tileset img="nomTexture.png">
-	void tileset_tag(Level * level, const char **attrs)
+	void tileset_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		string img = "";
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 2; i = i + 2)
 		{
@@ -389,10 +407,11 @@ namespace smp
 	}
 
 	// <block physIndex="" type="" />
-	void block_tag(Level * level, const char **attrs)
+	void block_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		int physicIndex = 0;
 		int type = 0;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 4; i = i + 2)
 		{
@@ -411,7 +430,7 @@ namespace smp
 	}
 
 	//<occ_block actualModel="" alternativeModel="" pos="x:y"/>
-	void occ_block_tag(Level* level, const char** attrs)
+	void occ_block_tag(XMLLevelContext * lvlctxt, const char **attrs)
 	{
 		Vector2f position;
 		int id_model = -1, 
@@ -419,6 +438,7 @@ namespace smp
 			id_item = -1,
 			id_tileset_actual = -1, 
 			id_tileset_alt = -1;
+		Level* level = (Level*)(lvlctxt->ctxt);
 
 		for(int i = 0; i < 14; i = i + 2)
 		{
@@ -530,7 +550,7 @@ namespace smp
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{
-				functions[i]((Level*)user_data, (const char **)attrs);
+				functions[i]((XMLLevelContext*)user_data, (const char **)attrs);
 				break;
 			}
 		}	
@@ -538,16 +558,19 @@ namespace smp
 
 	void parseLevel(string fileName, Level* level)
 	{
-		/* Initialization of ids */
-		id_monster = 0;
-		id_tileset = 0;
-		id_item = 0;
+		XMLLevelContext lvlCtxt;
+
+		/* Initialization of context */
+		lvlCtxt.ctxt = level;
+		lvlCtxt.id_monster = 0;
+		lvlCtxt.id_tileset = 0;
+		lvlCtxt.id_item = 0;
 
 		xmlSAXHandler sh = {NULL};
 		sh.startElement = start_level_element;
 		sh.error = error;
 
-		xmlSAXUserParseFile(&sh, level, fileName.c_str());
+		xmlSAXUserParseFile(&sh, &lvlCtxt, fileName.c_str());
 	}
 
 
