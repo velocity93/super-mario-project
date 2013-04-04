@@ -192,6 +192,9 @@
     <ClInclude Include="XMLItemParser.hpp">
       <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
+    <ClInclude Include="XMLBackgroundParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -309,6 +312,9 @@
       <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
     <ClCompile Include="XMLItemParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLBackgroundParser.cpp">
       <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
   </ItemGroup>

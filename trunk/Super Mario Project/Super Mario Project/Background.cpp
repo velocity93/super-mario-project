@@ -35,6 +35,16 @@ namespace smp
 		return _verticalRepetition;
 	}
 
+	void Background::setVerticalRepetition(bool verticalRepetition)
+	{
+		_verticalRepetition = verticalRepetition;
+	}
+
+	Animation<Background::State>& Background::getAnimation()
+	{
+		return _animation;
+	}
+
 	void Background::updateGraphicData(RenderWindow&/*app*/)
 	{
 		if(_isActive)
