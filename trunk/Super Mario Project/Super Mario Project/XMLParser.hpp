@@ -12,6 +12,11 @@
 
 namespace smp
 {
+	typedef struct
+	{
+		void* ctxt;
+	} XMLParserContext;
+
 	class XMLParser
 	{
 	public :
