@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="monster">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="left_delta">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="can_be_jumped_on">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="can_be_kill_by_jump">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="can_be_kill_by_fire">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="points">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="nb_sprites">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="walk">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="retracted">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="get_out_from_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dead_by_jump">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dead_by_proj">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="frame_delay">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="walk">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="retracted">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="get_out_from_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dead_by_jump">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dead_by_proj">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

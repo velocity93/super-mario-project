@@ -398,9 +398,6 @@
     <None Include="textures\monsters\koopa.mstr">
       <Filter>Resource Files\Monsters</Filter>
     </None>
-    <None Include="textures\monsters\koopa.png">
-      <Filter>Resource Files\Monsters</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="levels\smb.xml">
@@ -472,5 +469,32 @@
     <Resource Include="textures\projectiles\fireball.proj">
       <Filter>Resource Files\Projectiles</Filter>
     </Resource>
+    <Resource Include="textures\projectiles\fireball.proj" />
+    <Resource Include="textures\backgrounds\backgrounds.xsd">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\blocs.xsd">
+      <Filter>Resource Files\Blocs</Filter>
+    </Resource>
+    <Resource Include="textures\items\items.xsd">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\koopa.png">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\objects\objects.xsd">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\persos\persos.xsd">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\projectiles.xsd">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="textures\monsters\monsters.xsd">
+      <Filter>Resource Files\Monsters</Filter>
+    </Xsd>
   </ItemGroup>
 </Project>

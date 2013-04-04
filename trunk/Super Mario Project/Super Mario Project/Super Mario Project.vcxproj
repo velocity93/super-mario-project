@@ -196,7 +196,10 @@
     <None Include="textures\monsters\goomba.mstr" />
     <None Include="textures\monsters\goomba.png" />
     <None Include="textures\monsters\koopa.mstr" />
-    <None Include="textures\monsters\koopa.png" />
+    <Resource Include="textures\monsters\koopa.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <None Include="textures\persos\fire_mario.perso" />
     <None Include="textures\persos\fire_mario.png" />
     <None Include="textures\persos\small_mario.perso" />
@@ -289,6 +292,31 @@
     </Resource>
     <Resource Include="textures\projectiles\fireball.proj">
       <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="textures\backgrounds\backgrounds.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="textures\blocs\blocs.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="textures\items\items.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Xsd Include="textures\monsters\monsters.xsd" />
+    <Resource Include="textures\objects\objects.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\persos.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\projectiles\projectiles.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
   </ItemGroup>
