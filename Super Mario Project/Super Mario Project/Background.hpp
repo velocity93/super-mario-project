@@ -28,6 +28,8 @@ namespace smp
 		
 		/* getter and setter */
 		bool getVerticalRepetition();
+		void setVerticalRepetition(bool verticalRepetition);
+		Animation<State>& getAnimation();
 
 		/* Methods */
 		void updateGraphicData(sf::RenderWindow& app);

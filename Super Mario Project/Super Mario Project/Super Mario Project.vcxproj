@@ -118,6 +118,7 @@
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
+    <ClInclude Include="XMLBackgroundParser.hpp" />
     <ClInclude Include="XMLItemParser.hpp" />
     <ClInclude Include="XMLLevelParser.hpp" />
     <ClInclude Include="XMLParser.hpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="XMLBackgroundParser.cpp" />
     <ClCompile Include="XMLItemParser.cpp" />
     <ClCompile Include="XMLLevelParser.cpp" />
     <ClCompile Include="XMLParser.cpp" />
