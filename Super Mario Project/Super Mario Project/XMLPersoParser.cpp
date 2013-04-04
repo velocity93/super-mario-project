@@ -13,192 +13,196 @@
 #include <libxml/parserInternals.h>
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
+#include <string>
 
 using namespace std;
 
 namespace smp
-{
-	/* To manage if we are in nb_sprites or in frame_delay */
-	string section;
-	
-	void AddDataToAnimation(Perso* perso, Perso::State state, int value)
+{	
+	void AddDataToAnimation(XMLPersoContext* persoCtxt, Perso::State state, int value)
 	{
-		if(section == "nb_sprites")
+		Perso* perso = (Perso *)persoCtxt->ctxt;
+
+		if(persoCtxt->section == "nb_sprites")
 		{
 			perso->getAnimation().addNbSpritesForGivenState(state, value);
 		}
-		else if(section == "frame_delay")
+		else if(persoCtxt->section == "frame_delay")
 		{
 			perso->getAnimation().addFrameDelayForGivenState(state, value);
 		}
 	}
 	
-	void LeftDelta_tag(Perso* perso, const char ** attrs)
+	void LeftDelta_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
+		Perso* perso = (Perso *)persoCtxt->ctxt;
+
 		perso->setDeltaX(atoi(attrs[1]));
 	}
 	
-	void TopDelta_tag(Perso* perso, const char ** attrs)
+	void TopDelta_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
+		Perso* perso = (Perso *)persoCtxt->ctxt;
+
 		perso->setDeltaY(atoi(attrs[1]));
 	}
 	
-	void NbSprites_tag(Perso*, const char **)
+	void NbSprites_tag(XMLPersoContext* persoCtxt, const char **)
 	{
-		section = "nb_sprites";
+		persoCtxt->section = "nb_sprites";
 	}
 	
-	void FrameDelay_tag(Perso*, const char **)
+	void FrameDelay_tag(XMLPersoContext* persoCtxt, const char **)
 	{
-		section = "frame_delay";
+		persoCtxt->section = "frame_delay";
 	}
 	
-	void Standing_tag(Perso* perso, const char ** attrs)
+	void Standing_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);		
+		
+		AddDataToAnimation(persoCtxt, Perso::STANDING, value);
+	}
+	
+	void Walk_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);
+
+		AddDataToAnimation(persoCtxt, Perso::WALK, value);
+	}
+	
+	void Run_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::STANDING, value);
+		AddDataToAnimation(persoCtxt, Perso::RUN_1, value);
+		AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
 	}
 	
-	void Walk_tag(Perso* perso, const char ** attrs)
+	void Skid_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::WALK, value);
+		AddDataToAnimation(persoCtxt, Perso::SKID, value);
 	}
 	
-	void Run_tag(Perso* perso, const char ** attrs)
+	void Jump_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);		
+		
+		AddDataToAnimation(persoCtxt, Perso::JUMP, value);
+	}
+	
+	void JumpFalling_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);		
+		
+		AddDataToAnimation(persoCtxt, Perso::JUMP_FALLING, value);
+	}
+	
+	void Fly_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::RUN_1, value);
-		AddDataToAnimation(perso, Perso::RUN_2, value);
+		AddDataToAnimation(persoCtxt, Perso::FLY, value);
 	}
 	
-	void Skid_tag(Perso* perso, const char ** attrs)
+	void Face_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::SKID, value);
+		AddDataToAnimation(persoCtxt, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
 	}
 	
-	void Jump_tag(Perso* perso, const char ** attrs)
+	void Back_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::JUMP, value);
+		AddDataToAnimation(persoCtxt, Perso::FLY, value);
 	}
 	
-	void JumpFalling_tag(Perso* perso, const char ** attrs)
+	void LookTop_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::JUMP_FALLING, value);
+		AddDataToAnimation(persoCtxt, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
 	}
 	
-	void Fly_tag(Perso* perso, const char ** attrs)
+	void Lowered_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::FLY, value);
+		AddDataToAnimation(persoCtxt, Perso::FLY, value);
 	}
 	
-	void Face_tag(Perso* perso, const char ** attrs)
+	void ClimbLadder_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(persoCtxt, Perso::CLIMB_LADDER, value);
 	}
 	
-	void Back_tag(Perso* perso, const char ** attrs)
+	void StandingShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::FLY, value);
+		AddDataToAnimation(persoCtxt, Perso::STANDING_SHELL, value);
 	}
 	
-	void LookTop_tag(Perso* perso, const char ** attrs)
+	void WalkShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(persoCtxt, Perso::WALK_SHELL, value);
 	}
 	
-	void Lowered_tag(Perso* perso, const char ** attrs)
+	void PushShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);		
+		
+		AddDataToAnimation(persoCtxt, Perso::PUSH_SHELL, value);
+	}
+	
+	void JumpShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::FLY, value);
+		AddDataToAnimation(persoCtxt, Perso::JUMP_SHELL, value);
 	}
 	
-	void ClimbLadder_tag(Perso* perso, const char ** attrs)
+	void LoweredShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::CLIMB_LADDER, value);
+		AddDataToAnimation(persoCtxt, Perso::LOWERED_SHELL, value);
 	}
 	
-	void StandingShell_tag(Perso* perso, const char ** attrs)
+	void LookTopShell_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::STANDING_SHELL, value);
+		AddDataToAnimation(persoCtxt, Perso::LOOK_TOP_SHELL, value);
 	}
 	
-	void WalkShell_tag(Perso* perso, const char ** attrs)
+	void Dead_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::WALK_SHELL, value);
+		AddDataToAnimation(persoCtxt, Perso::DEAD, value);
 	}
 	
-	void PushShell_tag(Perso* perso, const char ** attrs)
+	void FinishCastle_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::PUSH_SHELL, value);
+		AddDataToAnimation(persoCtxt, Perso::FINISH, value);
 	}
 	
-	void JumpShell_tag(Perso* perso, const char ** attrs)
+	void FrameDelayRun2_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(perso, Perso::JUMP_SHELL, value);
-	}
-	
-	void LoweredShell_tag(Perso* perso, const char ** attrs)
-	{
-		int value = atoi(attrs[1]);
-		
-		AddDataToAnimation(perso, Perso::LOWERED_SHELL, value);
-	}
-	
-	void LookTopShell_tag(Perso* perso, const char ** attrs)
-	{
-		int value = atoi(attrs[1]);
-		
-		AddDataToAnimation(perso, Perso::LOOK_TOP_SHELL, value);
-	}
-	
-	void Dead_tag(Perso* perso, const char ** attrs)
-	{
-		int value = atoi(attrs[1]);
-		
-		AddDataToAnimation(perso, Perso::DEAD, value);
-	}
-	
-	void FinishCastle_tag(Perso* perso, const char ** attrs)
-	{
-		int value = atoi(attrs[1]);
-		
-		AddDataToAnimation(perso, Perso::FINISH, value);
-	}
-	
-	void FrameDelayRun2_tag(Perso* perso, const char ** attrs)
-	{
-		int value = atoi(attrs[1]);
-		
-		AddDataToAnimation(perso, Perso::RUN_2, value);
+		AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
 	}
 	
 
@@ -265,7 +269,7 @@ namespace smp
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{
-				functions[i]((Perso*)user_data, (const char **)attrs);
+				functions[i]((XMLPersoContext*)user_data, (const char **)attrs);
 				break;
 			}
 		}	
@@ -278,11 +282,17 @@ namespace smp
 
 	void parsePerso(string fileName, Perso* perso)
 	{
+		XMLPersoContext persoCtxt;
+
+		/* Initialization of context */
+		persoCtxt.ctxt = perso;
+		persoCtxt.section = "";
+
 		xmlSAXHandler sh = {NULL};
 		sh.startElement = start_perso_element;
 		sh.error = error;
 
-		xmlSAXUserParseFile(&sh, perso, fileName.c_str());
+		xmlSAXUserParseFile(&sh, &persoCtxt, fileName.c_str());
 	}
 
 

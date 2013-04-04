@@ -18,7 +18,7 @@ namespace smp
 	// forward declaration
 	class Level;
 
-	/* Context for initializing entities */
+	/* Context for initializing level entities */
 	typedef struct : XMLParserContext
 	{
 		int id_monster;
