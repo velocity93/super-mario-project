@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="perso">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="leftDelta">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:decimal" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TopDelta">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:decimal" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="nb_sprites">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="standing">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="walk">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="run">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="skid">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="jump">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="jump_falling">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="fly">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="face">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="back">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="look_top">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="lowered">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="climb_ladder">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="standing_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="walk_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="push_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="jump_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="lowered_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="look_top_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dead">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="finish_castle">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="attack">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="special_attack">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="frame_delay">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="walk">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="run">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="run2">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="climb_ladder">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="walk_shell">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="attack">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="special_attack">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
