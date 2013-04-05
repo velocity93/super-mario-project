@@ -119,10 +119,13 @@
     <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
     <ClInclude Include="XMLBackgroundParser.hpp" />
+    <ClInclude Include="XMLCheckpointParser.hpp" />
     <ClInclude Include="XMLItemParser.hpp" />
     <ClInclude Include="XMLLevelParser.hpp" />
+    <ClInclude Include="XMLObjectParser.hpp" />
     <ClInclude Include="XMLParser.hpp" />
     <ClInclude Include="XMLPersoParser.hpp" />
+    <ClInclude Include="XMLTilesetParser.hpp" />
     <ClInclude Include="XMLWorldParser.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +164,13 @@
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="XMLBackgroundParser.cpp" />
+    <ClCompile Include="XMLCheckpointParser.cpp" />
     <ClCompile Include="XMLItemParser.cpp" />
     <ClCompile Include="XMLLevelParser.cpp" />
+    <ClCompile Include="XMLObjectParser.cpp" />
     <ClCompile Include="XMLParser.cpp" />
     <ClCompile Include="XMLPersoParser.cpp" />
+    <ClCompile Include="XMLTilesetParser.cpp" />
     <ClCompile Include="XMLWorldParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +318,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
     <Xsd Include="textures\monsters\monsters.xsd" />
-    <Resource Include="textures\objects\objects.xsd">
+    <Resource Include="textures\objects\checkpoints.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
     <Resource Include="textures\persos\persos.xsd">

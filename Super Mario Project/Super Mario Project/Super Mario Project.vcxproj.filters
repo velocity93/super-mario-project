@@ -195,6 +195,15 @@
     <ClInclude Include="XMLBackgroundParser.hpp">
       <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
+    <ClInclude Include="XMLCheckpointParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLObjectParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLTilesetParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -315,6 +324,15 @@
       <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
     <ClCompile Include="XMLBackgroundParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLCheckpointParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLObjectParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLTilesetParser.cpp">
       <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
   </ItemGroup>
@@ -487,9 +505,6 @@
     <Resource Include="textures\monsters\koopa.png">
       <Filter>Resource Files\Monsters</Filter>
     </Resource>
-    <Resource Include="textures\objects\objects.xsd">
-      <Filter>Resource Files\Objects</Filter>
-    </Resource>
     <Resource Include="textures\persos\persos.xsd">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
@@ -498,6 +513,10 @@
     </Resource>
     <Resource Include="textures\projectiles\fireball.proj">
       <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.proj" />
+    <Resource Include="textures\objects\checkpoints.xsd">
+      <Filter>Resource Files\Objects</Filter>
     </Resource>
   </ItemGroup>
   <ItemGroup>

@@ -27,6 +27,7 @@ namespace smp
 
 		Object(const std::string& textureName, sf::Vector2f& position);
 		
+		Animation<State>& getAnimation();
 		void updateGraphicData(sf::RenderWindow& app);
 		void render(sf::RenderWindow& app);
 		void serialize(std::ofstream& file, const std::string& tabs);
