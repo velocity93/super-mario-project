@@ -7,7 +7,8 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Texture.hpp"
-#include "iostream"
+#include "Exceptions.hpp"
+#include <iostream>
 
 using namespace std;
 using sf::Sprite;
@@ -22,7 +23,7 @@ namespace smp
 		
         if(!loadFromFile(name + ".png"))
         {
-            cout << "Error in loading texture " << name << endl;
+			throw FileException(name + ".png");
         }
 
         setSmooth(false);

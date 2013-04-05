@@ -20,20 +20,13 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
 #include <cstring>
-#include <iostream>
+#include <sstream>
 
 using namespace std;
 using sf::Vector2f;
 
 namespace smp
 {
-
-	/*void XMLParser::loadLevel(string fileName, Level* level)
-	{
-		if(validateSchema("levels/level.xsd", fileName.c_str()) == 0)
-			XMLParsing::parseLevel(fileName, level);
-	}*/
-
 	int XMLParser::validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename)
 	{
 		xmlSchemaPtr ptr_schema = NULL;

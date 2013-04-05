@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Monster.hpp"
+#include "Exceptions.hpp"
 #include <sstream>
 
 using namespace std;
@@ -221,7 +222,7 @@ namespace smp
         }
         else
         {
-            throw "Exception occured while opening " + fileName;
+			throw FileNotFoundException(fileName);
         }
     }
 

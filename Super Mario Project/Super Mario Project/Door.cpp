@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Door.hpp"
+#include "Exceptions.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -120,7 +121,7 @@ namespace smp
 		}
 		else
 		{
-			throw "Exception occured while opening " + fileName;
+			throw FileNotFoundException(fileName);
 		}
 	}
 
