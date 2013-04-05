@@ -36,7 +36,7 @@ namespace smp
 
 	void Submission_tag(Item* item, const char ** attrs)
 	{
-		int value;
+		int value = 0;
 		
 		std::stringstream ss;
 		ss << std::hex << attrs[0];

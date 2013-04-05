@@ -344,83 +344,8 @@
       <Filter>Inline Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\blocs\classiques\classiques.cfg">
-      <Filter>Resource Files\Blocs\Classiques</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\grass.png">
-      <Filter>Resource Files\Blocs\Classiques</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\snow.png">
-      <Filter>Resource Files\Blocs\Classiques</Filter>
-    </None>
-    <None Include="textures\blocs\classiques\underground.png">
-      <Filter>Resource Files\Blocs\Classiques</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\cassables\cassables.cfg">
-      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\cassables\overworld.png">
-      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
-    </None>
-    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
-    </None>
     <None Include="textures\items\etoile.item">
       <Filter>Resource Files\Items</Filter>
-    </None>
-    <None Include="textures\persos\fire_mario.perso">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\persos\fire_mario.png">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.perso">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\persos\small_mario.png">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.perso">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\persos\super_mario.png">
-      <Filter>Resource Files\Persos</Filter>
-    </None>
-    <None Include="textures\monsters\goomba.mstr">
-      <Filter>Resource Files\Monsters</Filter>
-    </None>
-    <None Include="textures\monsters\goomba.png">
-      <Filter>Resource Files\Monsters</Filter>
-    </None>
-    <None Include="textures\monsters\koopa.mstr">
-      <Filter>Resource Files\Monsters</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -437,9 +362,6 @@
       <Filter>Resource Files\Items</Filter>
     </Resource>
     <Resource Include="textures\items\etoile.png">
-      <Filter>Resource Files\Items</Filter>
-    </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
       <Filter>Resource Files\Items</Filter>
     </Resource>
     <Resource Include="textures\items\fleur.item">
@@ -514,14 +436,89 @@
     <Resource Include="textures\projectiles\fireball.proj">
       <Filter>Resource Files\Projectiles</Filter>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj" />
     <Resource Include="textures\objects\checkpoints.xsd">
       <Filter>Resource Files\Objects</Filter>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Xsd Include="textures\monsters\monsters.xsd">
+    <Resource Include="textures\projectiles\fireball.proj">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\monsters.xsd">
       <Filter>Resource Files\Monsters</Filter>
-    </Xsd>
+    </Resource>
+    <Resource Include="textures\monsters\goomba.png">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\koopa.mstr">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\goomba.mstr">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\poison.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\lava.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\cassables\overworld.png">
+      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\cassables\cassables.cfg">
+      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\snow.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\grass.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\underground.png">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\classiques.cfg">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </Resource>
+    <Resource Include="textures\persos\super_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\small_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\small_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\fire_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\super_mario.png">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\fire_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
   </ItemGroup>
 </Project>

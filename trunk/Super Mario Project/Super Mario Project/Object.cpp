@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Object.hpp"
+#include "Exceptions.hpp"
 #include <sstream>
 #include <exception>
 
@@ -101,7 +102,7 @@ namespace smp
 		}
 		else
 		{
-			throw "Exception occured while opening " + fileName;
+			throw FileNotFoundException(fileName);
 		}
 	}
 

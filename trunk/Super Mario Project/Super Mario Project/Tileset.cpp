@@ -8,6 +8,7 @@
 
 #include "Tileset.hpp"
 #include "Block.hpp"
+#include "Exceptions.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -120,7 +121,7 @@ namespace smp
 		}
 		else
 		{
-			// Exception
+			throw FileNotFoundException(fileName);
 		}
 	}
 

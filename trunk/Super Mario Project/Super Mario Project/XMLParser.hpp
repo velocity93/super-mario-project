@@ -26,6 +26,7 @@ namespace smp
 
 	protected :
 		int validateSchema(const char * XMLSchemaFile_shorterNamename, const char * XMLfile_shorterNamename);
+		int convertHexToInt(const char* hexa);
 	};
 }
 #endif

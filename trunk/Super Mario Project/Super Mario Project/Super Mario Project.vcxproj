@@ -184,36 +184,111 @@
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
-    <None Include="textures\blocs\classiques\classiques.cfg" />
-    <None Include="textures\blocs\classiques\grass.png" />
-    <None Include="textures\blocs\classiques\snow.png" />
-    <None Include="textures\blocs\classiques\underground.png" />
-    <None Include="textures\blocs\speciaux\cassables\cassables.cfg" />
-    <None Include="textures\blocs\speciaux\cassables\overworld.png" />
-    <None Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png" />
-    <None Include="textures\blocs\speciaux\incassables\interaction\green_plant.png" />
-    <None Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg" />
-    <None Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png" />
-    <None Include="textures\blocs\speciaux\incassables\liquids\lava.png" />
-    <None Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg" />
-    <None Include="textures\blocs\speciaux\incassables\liquids\poison.png" />
-    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld.png" />
-    <None Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png" />
-    <None Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg" />
+    <Resource Include="textures\blocs\classiques\classiques.cfg">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\grass.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\snow.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\underground.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\cassables\cassables.cfg">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\cassables\overworld.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\blue_plant.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\lava.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\poison.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\overworld2.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <None Include="textures\items\etoile.item" />
-    <None Include="textures\monsters\goomba.mstr" />
-    <None Include="textures\monsters\goomba.png" />
-    <None Include="textures\monsters\koopa.mstr" />
+    <Resource Include="textures\monsters\goomba.mstr">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\monsters\goomba.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\monsters\koopa.mstr">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <Resource Include="textures\monsters\koopa.png">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
-    <None Include="textures\persos\fire_mario.perso" />
-    <None Include="textures\persos\fire_mario.png" />
-    <None Include="textures\persos\small_mario.perso" />
-    <None Include="textures\persos\small_mario.png" />
-    <None Include="textures\persos\super_mario.perso" />
-    <None Include="textures\persos\super_mario.png" />
+    <Resource Include="textures\persos\fire_mario.perso">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\fire_mario.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\small_mario.perso">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\small_mario.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\super_mario.perso">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\persos\super_mario.png">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <Resource Include="textures\projectiles\fireball.png">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -275,10 +350,6 @@
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Resource>
     <Resource Include="worlds\world1.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
@@ -298,10 +369,6 @@
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="textures\backgrounds\backgrounds.xsd">
@@ -317,7 +384,9 @@
     <Resource Include="textures\items\items.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
-    <Xsd Include="textures\monsters\monsters.xsd" />
+    <Resource Include="textures\monsters\monsters.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <Resource Include="textures\objects\checkpoints.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
