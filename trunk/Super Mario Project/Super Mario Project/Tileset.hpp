@@ -28,9 +28,12 @@ namespace smp
 		sf::Vector2i& getNbSprites();
 		int getFrameDelay();
 		std::vector<Block*>& getBlocks();
+		std::vector<int>& getPhysics();
 		int getBlockPhysic(int index);
 		void addBlock(int physicIndex, int type);
 		
+		void setNbSprites(int x, int y);
+		void setFrameDelay(int frameDelay);
 		void render(sf::RenderWindow& app);
 
 		/* Serialize Data */

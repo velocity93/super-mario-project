@@ -54,6 +54,11 @@ namespace smp
 		_animation.setCurrentState(state);
 	}
 
+	Animation<Checkpoint::State>& Checkpoint::getAnimation()
+	{
+		return _animation;
+	}
+
     void Checkpoint::updateGraphicData(RenderWindow& app)
     {
 		setActivity(app);

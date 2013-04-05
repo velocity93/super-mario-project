@@ -10,6 +10,8 @@
 #ifndef HPP_XMLPARSER
 #define HPP_XMLPARSER
 
+#include <iostream>
+
 namespace smp
 {
 	typedef struct

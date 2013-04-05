@@ -42,6 +42,22 @@ namespace smp
 		return _blocks;
 	}
 
+	vector<int>& Tileset::getPhysics()
+	{
+		return _physics;
+	}
+
+	void Tileset::setNbSprites(int x, int y)
+	{
+		_nbSprites.x = x;
+		_nbSprites.y = y;
+	}
+
+	void Tileset::setFrameDelay(int frameDelay)
+	{
+		_frameDelay = frameDelay;
+	}
+
 	void Tileset::addBlock(int physicIndex, int type)
 	{
 		Block* block = new Block(this, physicIndex, type);

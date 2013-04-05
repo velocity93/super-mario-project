@@ -31,6 +31,7 @@ namespace smp
 
 		State getState();
 		void setState(const State &state);
+		Animation<State>& getAnimation();
 
 		void updateGraphicData(sf::RenderWindow& app);
 		void render(sf::RenderWindow& app);

@@ -20,6 +20,11 @@ namespace smp
 		loadCfgObject();
 		_animation.setCurrentState(NORMAL);
 	}
+	
+	Animation<Object::State>& Object::getAnimation()
+	{
+		return _animation;
+	}
 
 	void Object::updateGraphicData(RenderWindow& app)
 	{
