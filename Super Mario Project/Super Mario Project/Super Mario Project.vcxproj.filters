@@ -412,9 +412,6 @@
     <Resource Include="textures\projectiles\fireball.png">
       <Filter>Resource Files\Projectiles</Filter>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
-      <Filter>Resource Files\Projectiles</Filter>
-    </Resource>
     <Resource Include="textures\backgrounds\backgrounds.xsd">
       <Filter>Resource Files\Backgrounds</Filter>
     </Resource>
@@ -508,9 +505,6 @@
     <Resource Include="textures\persos\small_mario.png">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
-    <Resource Include="textures\persos\small_mario.perso">
-      <Filter>Resource Files\Persos</Filter>
-    </Resource>
     <Resource Include="textures\persos\fire_mario.png">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
@@ -518,6 +512,9 @@
       <Filter>Resource Files\Persos</Filter>
     </Resource>
     <Resource Include="textures\persos\fire_mario.perso">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\small_mario.xml">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
   </ItemGroup>

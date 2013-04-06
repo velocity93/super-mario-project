@@ -3,12 +3,12 @@
   <xs:element name="perso">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="leftDelta">
+        <xs:element name="left_delta">
           <xs:complexType>
             <xs:attribute name="value" type="xs:decimal" use="required" />
           </xs:complexType>
         </xs:element>
-        <xs:element name="TopDelta">
+        <xs:element name="top_delta">
           <xs:complexType>
             <xs:attribute name="value" type="xs:decimal" use="required" />
           </xs:complexType>
@@ -116,14 +116,14 @@
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="attack">
+              <xs:element name="attack" minOccurs="0">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="special_attack">
+              <xs:element name="special_attack" minOccurs="0">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -134,37 +134,37 @@
             <xs:sequence>
               <xs:element name="walk">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="run">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="run2">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="climb_ladder">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="walk_shell">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="attack">
+              <xs:element name="attack" minOccurs="0">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="special_attack">
+              <xs:element name="special_attack" minOccurs="0">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                  <xs:attribute name="value" type="xs:int" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
