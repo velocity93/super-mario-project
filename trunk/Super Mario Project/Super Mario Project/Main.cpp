@@ -100,8 +100,6 @@ int main(int, char**)
         // Create world
         World w(&App);
 
-        return 0;
-
         // Start the game loop
 		while (App.isOpen())
         {

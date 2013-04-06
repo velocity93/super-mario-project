@@ -76,7 +76,7 @@ namespace smp
 		int value = atoi(attrs[1]);
 		
 		AddDataToAnimation(persoCtxt, Perso::RUN_1, value);
-		AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
+		//AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
 	}
 	
 	void Skid_tag(XMLPersoContext* persoCtxt, const char ** attrs)
@@ -118,21 +118,21 @@ namespace smp
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(persoCtxt, Perso::FLY, value);
+		AddDataToAnimation(persoCtxt, Perso::BACK, value);
 	}
 	
 	void LookTop_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(persoCtxt, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(persoCtxt, Perso::LOOK_TOP, value);
 	}
 	
 	void Lowered_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(persoCtxt, Perso::FLY, value);
+		AddDataToAnimation(persoCtxt, Perso::LOWERED, value);
 	}
 	
 	void ClimbLadder_tag(XMLPersoContext* persoCtxt, const char ** attrs)
@@ -210,31 +210,31 @@ namespace smp
 	void start_perso_element(void *user_data, const xmlChar *name, const xmlChar **attrs) 
 	{
 		static const xmlChar *elements[] = {
-			BAD_CAST"LeftDelta", 
-			BAD_CAST"TopDelta",
-			BAD_CAST"NbSprites",
-			BAD_CAST"Standing",
-			BAD_CAST"Walk",
-			BAD_CAST"Run",
-			BAD_CAST"Skid",
-			BAD_CAST"Jump",
-			BAD_CAST"JumpFalling",
-			BAD_CAST"Fly",
-			BAD_CAST"Face",
-			BAD_CAST"Back",
-			BAD_CAST"LookTop",
-			BAD_CAST"Lowered",
-			BAD_CAST"ClimbLadder",
-			BAD_CAST"StandingShell",
-			BAD_CAST"WalkShell",
-			BAD_CAST"PushShell",
-			BAD_CAST"JumpShell",
-			BAD_CAST"LoweredShell",
-			BAD_CAST"LookTopShell",
-			BAD_CAST"Dead",
-			BAD_CAST"FinishCastle",
-			BAD_CAST"FrameDelay",
-			BAD_CAST"Run2"
+			BAD_CAST"left_delta", 
+			BAD_CAST"top_delta",
+			BAD_CAST"nb_sprites",
+			BAD_CAST"standing",
+			BAD_CAST"walk",
+			BAD_CAST"run",
+			BAD_CAST"skid",
+			BAD_CAST"jump",
+			BAD_CAST"jump_falling",
+			BAD_CAST"fly",
+			BAD_CAST"face",
+			BAD_CAST"back",
+			BAD_CAST"look_top",
+			BAD_CAST"lowered",
+			BAD_CAST"climb_ladder",
+			BAD_CAST"standing_shell",
+			BAD_CAST"walk_shell",
+			BAD_CAST"push_shell",
+			BAD_CAST"jump_shell",
+			BAD_CAST"lowered_shell",
+			BAD_CAST"look_top_shell",
+			BAD_CAST"dead",
+			BAD_CAST"finish_castle",
+			BAD_CAST"frame_delay",
+			BAD_CAST"run2"
 		};
 		static const perso_func functions[] = {
 			LeftDelta_tag, 
@@ -310,7 +310,7 @@ namespace smp
 
 	void XMLPersoParser::loadPerso(const string &fileName, Perso* perso)
 	{
-		if(validateSchema("persos/perso.xsd", fileName.c_str()) == 0)
+		if(validateSchema("textures/persos/persos.xsd", fileName.c_str()) == 0)
 			parsePerso(fileName, perso);
 	}
 

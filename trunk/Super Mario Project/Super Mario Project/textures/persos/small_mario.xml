@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<perso>
+  <left_delta value="9" />
+  <top_delta value="19" />
+  <nb_sprites>
+    <standing value="1" />
+    <walk value="2" />
+    <run value="2" />
+    <skid value="1" />
+    <jump value="1" />
+    <jump_falling value="1" />
+    <fly value="2" />
+    <face value="1" />
+    <back value="1" />
+    <look_top value="1" />
+    <lowered value="1" />
+    <climb_ladder value="2" />
+    <standing_shell value="1" />
+    <walk_shell value="2" />
+    <push_shell value="1" />
+    <jump_shell value="1" />
+    <lowered_shell value="1" />
+    <look_top_shell value="1" />
+    <dead value="1" />
+    <finish_castle value="1" />
+  </nb_sprites>
+  <frame_delay>
+    <walk value="200" />
+    <run value="100" />
+    <run2 value="50" />
+    <climb_ladder value="400" />
+    <walk_shell value="200" />
+  </frame_delay>
+</perso>
