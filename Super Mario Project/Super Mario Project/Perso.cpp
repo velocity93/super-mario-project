@@ -14,7 +14,6 @@
 #include "ProjectileOccurrence.hpp"
 #include "Pipe.hpp"
 #include "Item.hpp"
-#include "Exceptions.hpp"
 #include "ResourceManager.hpp"
 #include "HUD.hpp"
 #include "InputState.hpp"
@@ -54,7 +53,7 @@ namespace smp
 
 		/* Fill Data for texture */
 		_animation.reset();
-		loadPerso(_textureName);
+		loadPerso();
 	}
 
 	HUD* Perso::getHUD()
@@ -769,9 +768,9 @@ namespace smp
 		// Play sound pipe here !
 	}
 
-	void Perso::loadPerso(const string& textureName)
+	void Perso::loadPerso()
 	{
-		XMLPersoParser::getParser()->loadPerso(textureName + ".xml", this);
+		XMLPersoParser::getParser()->loadPerso(_texture->name() + ".xml", this);
 
 		/* Compute Hitbox Size */
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax() - 2 * _deltaX;

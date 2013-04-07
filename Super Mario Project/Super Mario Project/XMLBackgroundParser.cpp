@@ -21,7 +21,7 @@ namespace smp
 {
 	void NbSprites_tag(Background* background, const char ** attrs)
 	{
-		background->getAnimation().addNbSpritesForGivenState(Background::NORMAL, atoi(attrs[0]));
+		background->getAnimation().addNbSpritesForGivenState(Background::NORMAL, atoi(attrs[1]));
 	}
 
 	void VerticalRepetition_tag(Background* background, const char ** attrs)
@@ -34,7 +34,7 @@ namespace smp
 	void start_background_element(void *user_data, const xmlChar *name, const xmlChar **attrs) 
 	{
 		static const xmlChar *elements[] = {
-			BAD_CAST"nb_Sprites",
+			BAD_CAST"nb_sprites",
 			BAD_CAST"vertical_repetition"
 		};
 		static const background_func functions[] = {
@@ -81,7 +81,7 @@ namespace smp
 
 	void XMLBackgroundParser::loadBackground(const std::string &fileName, Background* background)
 	{
-		if(validateSchema("backgrounds/backgrounds.xsd", fileName.c_str()) == 0)
+		if(validateSchema("textures/backgrounds/backgrounds.xsd", fileName.c_str()) == 0)
 			parseItem(fileName, background);
 	}
 

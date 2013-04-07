@@ -385,16 +385,10 @@
     <Resource Include="textures\pipes\green_pipe.png">
       <Filter>Resource Files\Pipes</Filter>
     </Resource>
-    <Resource Include="textures\backgrounds\skyBlueHills.obj">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Resource>
     <Resource Include="textures\backgrounds\BlueHills.png">
       <Filter>Resource Files\Backgrounds</Filter>
     </Resource>
     <Resource Include="textures\backgrounds\skyBlueHills.png">
-      <Filter>Resource Files\Backgrounds</Filter>
-    </Resource>
-    <Resource Include="textures\backgrounds\BlueHills.obj">
       <Filter>Resource Files\Backgrounds</Filter>
     </Resource>
     <Resource Include="textures\projectiles\fireball.png">
@@ -519,6 +513,12 @@
     </Resource>
     <Resource Include="textures\items\champignon.xml">
       <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.xml">
+      <Filter>Resource Files\Backgrounds</Filter>
+    </Resource>
+    <Resource Include="textures\backgrounds\BlueHills.xml">
+      <Filter>Resource Files\Backgrounds</Filter>
     </Resource>
   </ItemGroup>
 </Project>
