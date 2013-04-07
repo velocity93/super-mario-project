@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Checkpoint.hpp"
-#include "Exceptions.hpp"
+#include "XMLCheckpointParser.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -85,63 +85,7 @@ namespace smp
 
 	void Checkpoint::loadCfgCheckpoint()
 	{
-		string fileName = _texture->name() + ".obj";		
-		ifstream stream(fileName.c_str());
-		
-		/* test if the stream is open*/
-		if(stream)
-		{
-			string word;
-
-			/* We read file to search keywords and read his value */
-			while(getline(stream, word))
-			{
-				unsigned int found = word.find("nb_sprites_active=");
-				if(found != string::npos)
-                {
-					int nbSpritesActive;
-					istringstream nbActiveSprites(word.substr(found + 18));
-					nbActiveSprites >> nbSpritesActive;
-					_animation.addNbSpritesForGivenState(PASSED, nbSpritesActive);
-					continue;
-				}
-
-				/* 'nb_sprites_inactive' keyword */
-				found = word.find("nb_sprites_inactive=");
-				if(found != string::npos)
-                {
-					int nbSpritesInactive;
-					istringstream nbInactiveSprites(word.substr(found + 20));
-					nbInactiveSprites >> nbSpritesInactive;
-					_animation.addNbSpritesForGivenState(NOT_PASSED, nbSpritesInactive);
-					continue;
-				}
-
-				/* 'v_anim_active' keyword */
-				found = word.find("v_anim_active=");
-                if(found != string::npos)
-                {
-					int vAnim;
-                    istringstream vAnimStream(word.substr(found + 14));
-					vAnimStream >> vAnim;
-					_animation.addFrameDelayForGivenState(PASSED, vAnim);
-                }
-
-				/* 'v_anim_inactive' keyword */
-				found = word.find("v_anim_inactive=");
-                if(found != string::npos)
-                {
-					int vAnim;
-                    istringstream vAnimStream(word.substr(found + 16));
-					vAnimStream >> vAnim;
-					_animation.addFrameDelayForGivenState(NOT_PASSED, vAnim);
-                }
-			}
-		}
-		else
-		{
-			throw FileNotFoundException(fileName);
-		}
+		XMLCheckpointParser::getParser()->loadCheckpoint(_texture->name() + ".xml", this);
 	}
 
 

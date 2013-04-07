@@ -24,12 +24,12 @@
             <xs:sequence>
               <xs:element name="active">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:integer" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="inactive">
                 <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="value" type="xs:integer" use="required" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

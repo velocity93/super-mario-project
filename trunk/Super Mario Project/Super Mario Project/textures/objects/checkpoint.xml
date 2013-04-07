@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkpoint>
+  <nb_sprites>
+    <active value="6" />
+    <inactive value="3" />
+  </nb_sprites>
+  <frame_delay>
+    <active value="100" />
+    <inactive value="400" />
+  </frame_delay>
+</checkpoint>
