@@ -520,5 +520,8 @@
     <Resource Include="textures\backgrounds\BlueHills.xml">
       <Filter>Resource Files\Backgrounds</Filter>
     </Resource>
+    <Resource Include="textures\objects\checkpoint.xml">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
   </ItemGroup>
 </Project>
