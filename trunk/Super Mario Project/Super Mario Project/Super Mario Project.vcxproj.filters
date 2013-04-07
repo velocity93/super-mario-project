@@ -344,9 +344,6 @@
       <Filter>Inline Files</Filter>
     </None>
     <None Include="ClassDiagram1.cd" />
-    <None Include="textures\items\etoile.item">
-      <Filter>Resource Files\Items</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="levels\smb.xml">
@@ -355,22 +352,13 @@
     <Resource Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </Resource>
-    <Resource Include="textures\items\champivie.item">
-      <Filter>Resource Files\Items</Filter>
-    </Resource>
     <Resource Include="textures\items\champivie.png">
       <Filter>Resource Files\Items</Filter>
     </Resource>
     <Resource Include="textures\items\etoile.png">
       <Filter>Resource Files\Items</Filter>
     </Resource>
-    <Resource Include="textures\items\fleur.item">
-      <Filter>Resource Files\Items</Filter>
-    </Resource>
     <Resource Include="textures\items\fleur.png">
-      <Filter>Resource Files\Items</Filter>
-    </Resource>
-    <Resource Include="textures\items\piece.item">
       <Filter>Resource Files\Items</Filter>
     </Resource>
     <Resource Include="textures\items\piece.png">
@@ -513,6 +501,24 @@
     </Resource>
     <Resource Include="textures\persos\fire_mario.xml">
       <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\items\piece.xml">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\fleur.xml">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\etoile.xml">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\champivie.xml">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\champignon.png">
+      <Filter>Resource Files\Items</Filter>
+    </Resource>
+    <Resource Include="textures\items\champignon.xml">
+      <Filter>Resource Files\Items</Filter>
     </Resource>
   </ItemGroup>
 </Project>

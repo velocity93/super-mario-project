@@ -75,8 +75,8 @@ namespace smp
 	{
 		int value = atoi(attrs[1]);
 		
-		AddDataToAnimation(persoCtxt, Perso::RUN_1, value);
-		//AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
+		//AddDataToAnimation(persoCtxt, Perso::RUN, value);
+		AddDataToAnimation(persoCtxt, Perso::RUN_2, value);
 	}
 	
 	void Skid_tag(XMLPersoContext* persoCtxt, const char ** attrs)
@@ -265,7 +265,7 @@ namespace smp
 		};
 		int i;
 
-		for(i = 0; i < 24; i++)
+		for(i = 0; i < 25; i++)
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{
