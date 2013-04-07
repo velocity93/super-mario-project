@@ -430,9 +430,6 @@
     <Resource Include="textures\projectiles\projectiles.xsd">
       <Filter>Resource Files\Projectiles</Filter>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
-      <Filter>Resource Files\Projectiles</Filter>
-    </Resource>
     <Resource Include="textures\objects\checkpoints.xsd">
       <Filter>Resource Files\Objects</Filter>
     </Resource>
@@ -499,9 +496,6 @@
     <Resource Include="textures\blocs\classiques\classiques.cfg">
       <Filter>Resource Files\Blocs\Classiques</Filter>
     </Resource>
-    <Resource Include="textures\persos\super_mario.perso">
-      <Filter>Resource Files\Persos</Filter>
-    </Resource>
     <Resource Include="textures\persos\small_mario.png">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
@@ -511,10 +505,13 @@
     <Resource Include="textures\persos\super_mario.png">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
-    <Resource Include="textures\persos\fire_mario.perso">
+    <Resource Include="textures\persos\small_mario.xml">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
-    <Resource Include="textures\persos\small_mario.xml">
+    <Resource Include="textures\persos\super_mario.xml">
+      <Filter>Resource Files\Persos</Filter>
+    </Resource>
+    <Resource Include="textures\persos\fire_mario.xml">
       <Filter>Resource Files\Persos</Filter>
     </Resource>
   </ItemGroup>
