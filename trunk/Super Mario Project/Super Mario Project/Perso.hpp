@@ -155,7 +155,7 @@ namespace smp
 		void onCollision(Collisionable* c, int collision_type);
 
 		/* Loading character configuration */
-		void loadPerso(const std::string& textureName);
+		void loadPerso();
 
 		/* Destructor */
         virtual ~Perso();

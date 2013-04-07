@@ -176,6 +176,12 @@
   <ItemGroup>
     <None Include="Animation.inl" />
     <None Include="ClassDiagram1.cd" />
+    <Resource Include="textures\backgrounds\BlueHills.xml">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
+    <Resource Include="textures\backgrounds\skyBlueHills.xml">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </Resource>
     <Resource Include="textures\items\etoile.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
@@ -361,16 +367,6 @@
     <Resource Include="textures\objects\castle.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <FileType>Document</FileType>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="textures\backgrounds\BlueHills.obj">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </Resource>
-    <Resource Include="textures\backgrounds\skyBlueHills.obj">
-      <FileType>Document</FileType>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </Resource>
   </ItemGroup>
   <ItemGroup>

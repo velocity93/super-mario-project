@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Background.hpp"
-#include "Exceptions.hpp"
+#include "XMLBackgroundParser.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -79,52 +79,7 @@ namespace smp
 
 	void Background::loadCfgBackground()
 	{
-		string fileName = _texture->name() + ".obj";
-		ifstream stream(fileName.c_str());
-		
-		if(stream)
-		{
-			string word;
-
-			/* We read file to search the keyword and read his value */
-			while(getline(stream, word))
-			{
-				unsigned int found = word.find("nb_sprites=");
-				if(found != string::npos)
-				{
-					int nb_sprites = 0;
-					istringstream nbSprites(word.substr(found + 11));
-					nbSprites >> nb_sprites;
-					_animation.addNbSpritesForGivenState(NORMAL, nb_sprites);
-
-					if(nb_sprites == 1)
-						break; /* No animation */
-					else
-						continue;
-				}
-
-				found = word.find("frame_delay=");
-				if(found != string::npos)
-				{
-					int frame_delay = 0;
-					istringstream frameDelay(word.substr(found + 12));
-					frameDelay >> frame_delay;
-					_animation.addFrameDelayForGivenState(NORMAL, frame_delay);
-				}
-
-				found = word.find("vertical_repetition=");
-				if(found != string::npos)
-				{
-					istringstream verticalRepetition(word.substr(found + 20));
-					verticalRepetition >> _verticalRepetition;
-					break; // We don't have to read more
-				}
-			}
-		}
-		else
-		{
-			throw FileNotFoundException(fileName);
-		}
+		XMLBackgroundParser::getParser()->loadBackground(_texture->name() + ".xml", this);
 	}
 
     Background::~Background()
