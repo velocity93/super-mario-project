@@ -5,13 +5,13 @@
       <xs:sequence>
         <xs:element name="speed">
           <xs:complexType>
-            <xs:attribute name="x" type="xs:unsignedByte" use="required" />
-            <xs:attribute name="y" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="x" type="xs:decimal" use="required" />
+            <xs:attribute name="y" type="xs:decimal" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="submission">
           <xs:complexType>
-            <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="value" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="nb_sprites">
@@ -21,7 +21,7 @@
         </xs:element>
         <xs:element name="frame_delay">
           <xs:complexType>
-            <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="value" type="xs:integer" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
