@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<monster>
+  <left_delta value="6" />
+  <features value="1101" />
+  <points value="200" />
+  <nb_sprites>
+    <walk value="8" />
+    <retracted value="6" />
+    <get_out_from_shell value="9" />
+    <dead_by_proj value="1" />
+  </nb_sprites>
+  <frame_delay>
+    <walk value="100" />
+    <retracted value="200" />
+    <get_out_from_shell value="150" />
+    <dead_by_proj value="100" />
+  </frame_delay>
+</monster>

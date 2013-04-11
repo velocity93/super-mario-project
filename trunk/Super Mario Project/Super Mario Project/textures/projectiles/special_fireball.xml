@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<projectile>
+  <speed_x value="25" />
+  <left_delta value="0" />
+  <top_delta value="0" />
+  <submission value="0x0000001" />
+  <nb_sprites>
+    <run value="3" />
+    <dead value="3" />
+  </nb_sprites>
+  <frame_delay>
+    <run value="175" />
+    <dead value="100" />
+  </frame_delay>
+  <appearance_time value="750" />
+  <life_time value="10000"  />
+</projectile>

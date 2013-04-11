@@ -636,10 +636,10 @@ namespace smp
 			&& _invincibleStarTime.GetElapsedTime() == 0 && _invincibleTime.GetElapsedTime() == 0)
 			hurted();
 
-		if(type == CollisionManager::FROM_BOTTOM && monster->canBeKilledByJump())
+		if(type == CollisionManager::FROM_BOTTOM && monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP))
 			_speed.y = PhysicConstants::EJECTION_SPEED_Y;
 
-		if(type == CollisionManager::FROM_BOTTOM && !monster->canBeJumpedOn())
+		if(type == CollisionManager::FROM_BOTTOM && !monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP))
 			hurted();
 	}
 

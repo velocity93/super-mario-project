@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 #include "Projectile.hpp"
-#include "Exceptions.hpp"
+#include "XMLProjectileParser.hpp"
 #include <sstream>
 
 using namespace std;
@@ -28,15 +28,35 @@ namespace smp
         return _submission;
     }
 
+	void Projectile::setSubmission(int submission)
+    {
+        _submission = submission;
+    }
+
 	int Projectile::getBottomLeft()
 	{
 		return _bottomLeft;
+	}
+
+	void Projectile::setBottomLeft(int bottomLeft)
+	{
+		_bottomLeft = bottomLeft;
 	}
 
 	int Projectile::getTop()
 	{
 		return _top;
 	}
+
+	void Projectile::setTop(int top)
+	{
+		_top = top;
+	}
+
+	void Projectile::setInitialSpeedX(float x)
+    {
+		_initialSpeed.x = x;
+    }
 
 	vector<ProjectileOccurrence*>& Projectile::getProjectileOccurrences()
 	{
@@ -80,6 +100,16 @@ namespace smp
         }
     }
 
+	void Projectile::addNbSpritesForState(ProjectileOccurrence::State state, int nbSprites)
+	{
+		_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(state, nbSprites));
+	}
+
+	void Projectile::addFrameDelayForState(ProjectileOccurrence::State state, int frameDelay)
+	{
+		_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(state, frameDelay));
+	}
+
     void Projectile::render(RenderWindow& app)
     {
 		
@@ -100,98 +130,99 @@ namespace smp
 
 	void Projectile::loadProjectile()
     {
-        string fileName = name() + ".proj";
-        ifstream stream(fileName.c_str());
-		
-		if(stream)
-		{
-			string word;
+		XMLProjectileParser::getParser()->loadProjectile(name() + ".xml", this);
+  //      string fileName = name() + ".proj";
+  //      ifstream stream(fileName.c_str());
+		//
+		//if(stream)
+		//{
+		//	string word;
 
-            /* We read file to search keywords and read his value */
-            while(getline(stream, word))
-            {
-                unsigned int found = word.find("speed_x=");
-                if(found != string::npos)
-                {
-                    istringstream InitialSpeedX(word.substr(found + 8));
-                    InitialSpeedX >> _initialSpeed.x;
-                }
+  //          /* We read file to search keywords and read his value */
+  //          while(getline(stream, word))
+  //          {
+  //              unsigned int found = word.find("speed_x=");
+  //              if(found != string::npos)
+  //              {
+  //                  istringstream InitialSpeedX(word.substr(found + 8));
+  //                  InitialSpeedX >> _initialSpeed.x;
+  //              }
 
-                found = word.find("abscisse_bas=");
-                if(found != string::npos)
-                {
-                    istringstream abscisseBas(word.substr(found + 13));
-                    abscisseBas >> _bottomLeft;
-                    continue;
-                }
+  //              found = word.find("abscisse_bas=");
+  //              if(found != string::npos)
+  //              {
+  //                  istringstream abscisseBas(word.substr(found + 13));
+  //                  abscisseBas >> _bottomLeft;
+  //                  continue;
+  //              }
 
-                found = word.find("ordonnee_haut=");
-                if(found != string::npos)
-                {
-                    istringstream ordonneeHaut(word.substr(found + 14));
-					ordonneeHaut >> _top;
-                    continue;
-                }
+  //              found = word.find("ordonnee_haut=");
+  //              if(found != string::npos)
+  //              {
+  //                  istringstream ordonneeHaut(word.substr(found + 14));
+		//			ordonneeHaut >> _top;
+  //                  continue;
+  //              }
 
-                found = word.find("submission=");
-                if(found != string::npos)
-                {
-                    /* Read hexadecimal value */
-                    istringstream submission(word.substr(found + 11));
-                    submission >> hex >> _submission;
-                    continue;
-                }
+  //              found = word.find("submission=");
+  //              if(found != string::npos)
+  //              {
+  //                  /* Read hexadecimal value */
+  //                  istringstream submission(word.substr(found + 11));
+  //                  submission >> hex >> _submission;
+  //                  continue;
+  //              }
 
-                /* Manage sprites numbers here */
-                found = word.find("nb_sprites_run=");
-                if(found != string::npos)
-                {
-					int _nbWalkingSprites;
-                    istringstream nbWalkingSprites(word.substr(found + 15));
-					nbWalkingSprites >> _nbWalkingSprites;
-					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _nbWalkingSprites));
-                    continue;
-                }
+  //              /* Manage sprites numbers here */
+  //              found = word.find("nb_sprites_run=");
+  //              if(found != string::npos)
+  //              {
+		//			int _nbWalkingSprites;
+  //                  istringstream nbWalkingSprites(word.substr(found + 15));
+		//			nbWalkingSprites >> _nbWalkingSprites;
+		//			_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _nbWalkingSprites));
+  //                  continue;
+  //              }
 
-                /* Manage sprites numbers here */
-                found = word.find("nb_sprites_dead=");
-                if(found != string::npos)
-                {
-					int _nbDeadSprites;
-                    istringstream nbDeadSprites(word.substr(found + 16));
-					nbDeadSprites >> _nbDeadSprites;
-					_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _nbDeadSprites));
-                    continue;
-                }
+  //              /* Manage sprites numbers here */
+  //              found = word.find("nb_sprites_dead=");
+  //              if(found != string::npos)
+  //              {
+		//			int _nbDeadSprites;
+  //                  istringstream nbDeadSprites(word.substr(found + 16));
+		//			nbDeadSprites >> _nbDeadSprites;
+		//			_nbSpritesByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _nbDeadSprites));
+  //                  continue;
+  //              }
 
-                /* Manage speed of animation numbers here */
-                found = word.find("v_anim_run=");
-                if(found != string::npos)
-                {
-					int _vWalkingAnim;
-                    istringstream vWalkingAnim(word.substr(found + 11));
-					vWalkingAnim >> _vWalkingAnim;
-					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _vWalkingAnim));
-                    continue;
-                }
+  //              /* Manage speed of animation numbers here */
+  //              found = word.find("v_anim_run=");
+  //              if(found != string::npos)
+  //              {
+		//			int _vWalkingAnim;
+  //                  istringstream vWalkingAnim(word.substr(found + 11));
+		//			vWalkingAnim >> _vWalkingAnim;
+		//			_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::LAUNCHED, _vWalkingAnim));
+  //                  continue;
+  //              }
 
-                /* Manage speed of animation numbers here */
-                found = word.find("v_anim_dead=");
-                if(found != string::npos)
-                {
-					int _vDeadAnim;
-					istringstream vDeadAnim(word.substr(found + 12));
-                    vDeadAnim >> _vDeadAnim;
-					_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _vDeadAnim));
-                }
+  //              /* Manage speed of animation numbers here */
+  //              found = word.find("v_anim_dead=");
+  //              if(found != string::npos)
+  //              {
+		//			int _vDeadAnim;
+		//			istringstream vDeadAnim(word.substr(found + 12));
+  //                  vDeadAnim >> _vDeadAnim;
+		//			_frameDelayByState.insert(pair<ProjectileOccurrence::State, int>(ProjectileOccurrence::DEAD, _vDeadAnim));
+  //              }
 
-                /* Add apparition_time and disappearing_time later */
-            }
-        }
-        else
-        {
-            throw FileNotFoundException(fileName);
-        }
+  //              /* Add apparition_time and disappearing_time later */
+  //          }
+  //      }
+  //      else
+  //      {
+  //          throw FileNotFoundException(fileName);
+  //      }
     }
 
     Projectile::~Projectile()

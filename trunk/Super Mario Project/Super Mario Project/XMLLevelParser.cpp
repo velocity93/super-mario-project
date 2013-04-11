@@ -19,6 +19,7 @@
 #include "Pipe.hpp"
 #include "Tileset.hpp"
 #include "Block.hpp"
+#include "ResourceManager.hpp"
 #include <libxml/tree.h>
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
@@ -372,7 +373,7 @@ namespace smp
 				state,
 				length,
 				direction,
-				new Monster(monster_name)));
+				ResourceManager::getMonster(monster_name)));
 		}
 		else
 		{

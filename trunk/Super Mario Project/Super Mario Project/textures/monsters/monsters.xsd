@@ -8,19 +8,9 @@
             <xs:attribute name="value" type="xs:unsignedByte" use="required" />
           </xs:complexType>
         </xs:element>
-        <xs:element name="can_be_jumped_on">
+        <xs:element name="features">
           <xs:complexType>
-            <xs:attribute name="value" type="xs:boolean" use="required" />
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="can_be_kill_by_jump">
-          <xs:complexType>
-            <xs:attribute name="value" type="xs:boolean" use="required" />
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="can_be_kill_by_fire">
-          <xs:complexType>
-            <xs:attribute name="value" type="xs:boolean" use="required" />
+            <xs:attribute name="value" type="xs:integer" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="points">
@@ -36,22 +26,22 @@
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="retracted">
+              <xs:element name="retracted" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="get_out_from_shell">
+              <xs:element name="get_out_from_shell" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="dead_by_jump">
+              <xs:element name="dead_by_jump" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="dead_by_proj">
+              <xs:element name="dead_by_proj" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
@@ -67,22 +57,22 @@
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="retracted">
+              <xs:element name="retracted" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="get_out_from_shell">
+              <xs:element name="get_out_from_shell" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="dead_by_jump">
+              <xs:element name="dead_by_jump" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="dead_by_proj">
+              <xs:element name="dead_by_proj" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>

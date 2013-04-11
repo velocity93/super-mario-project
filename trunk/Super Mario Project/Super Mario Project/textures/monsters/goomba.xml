@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<monster>
+  <left_delta value="3" />
+  <features value="111" />
+  <points value="100" />
+  <nb_sprites>
+    <walk value="7" />
+    <dead_by_jump value="1" />
+    <dead_by_proj value="1" />
+  </nb_sprites>
+  <frame_delay>
+    <walk value="100" />
+    <dead_by_jump value="100" />
+    <dead_by_proj value="100" />
+  </frame_delay>
+</monster>

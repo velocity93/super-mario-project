@@ -14,6 +14,7 @@
 #include <libxml/xmlschemas.h>
 #include <libxml/xmlschemastypes.h>
 #include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -25,17 +26,17 @@ namespace smp
 
 		for(int i = 0; i < 6; i += 2)
 		{
-			if(!strcmp(attrs[i], "lines") == 0)
+			if(!strcmp(attrs[i], "lines"))
 			{
-				x = atoi(attrs[i]);
+				y = atoi(attrs[i + 1]);
 			}
-			else if (!strcmp(attrs[i], "columns") == 0)
+			else if (!strcmp(attrs[i], "columns"))
 			{
-				y = atoi(attrs[i]);
+				x = atoi(attrs[i + 1]);
 			}
-			else if (!strcmp(attrs[i], "frame_delay") == 0)
+			else if (!strcmp(attrs[i], "frame_delay"))
 			{
-				tileset->setFrameDelay(atoi(attrs[i]));
+				tileset->setFrameDelay(atoi(attrs[i + 1]));
 			}
 		}
 
@@ -103,7 +104,7 @@ namespace smp
 
 	void XMLTilesetParser::loadTileset(const std::string &fileName, Tileset* tileset)
 	{
-		if(validateSchema("blocs/blocs.xsd", fileName.c_str()) == 0)
+		if(validateSchema("textures/blocs/blocs.xsd", fileName.c_str()) == 0)
 			parseTileset(fileName, tileset);
 	}
 

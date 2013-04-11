@@ -17,47 +17,26 @@ namespace smp
 	class WalkingMonster : public Monster
 	{
 	public :
-		WalkingMonster(const std::string& textureName, 
-			bool canBeKilledByJump = false, 
-			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false,
-			bool stayOnPlateForm = false);
+		WalkingMonster(const std::string& textureName);
 
 		void serialize(std::ofstream& file, std::string& tabs);
-
-	private :
-		bool _stayOnPlateForm;
-
-		void loadWalkingMonster();
 	};
 
 	class ShellMonster : public WalkingMonster
 	{
 
 	public :
-		ShellMonster(const std::string& textureName, 
-			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false,
-			bool stayOnPlateForm = false);
+		ShellMonster(const std::string& textureName);
 
 		void serialize(std::ofstream& file, std::string& tabs);
-
-	private :
-		void loadShellMonster();
 	};
 
 	class FlyingMonster : public Monster
 	{
 	public :
-		FlyingMonster(const std::string& textureName, 
-			bool canBeKilledByJump = false, 
-			bool canBeKilledByFire = false, 
-			bool canBeJumpedOn = false);
+		FlyingMonster(const std::string& textureName);
 
 		void serialize(std::ofstream& file, std::string& tabs);
-
-	private:
-		void loadFlyingMonster();
 	};
 }
 #endif

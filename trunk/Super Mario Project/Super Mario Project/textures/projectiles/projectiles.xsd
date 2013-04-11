@@ -3,6 +3,11 @@
   <xs:element name="projectile">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="speed_x">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+          </xs:complexType>
+        </xs:element>
         <xs:element name="left_delta">
           <xs:complexType>
             <xs:attribute name="value" type="xs:decimal" use="required" />
@@ -11,11 +16,6 @@
         <xs:element name="top_delta">
           <xs:complexType>
             <xs:attribute name="value" type="xs:decimal" use="required" />
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="speed">
-          <xs:complexType>
-            <xs:attribute name="x" type="xs:unsignedByte" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="submission">
@@ -55,25 +55,14 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="times">
+        <xs:element name="appearance_time">
           <xs:complexType>
-            <xs:sequence>
-              <xs:element name="appearance">
-                <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="life">
-                <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="disappearance">
-                <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
+            <xs:attribute name="value" type="xs:integer" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="life_time">
+          <xs:complexType>
+            <xs:attribute name="value" type="xs:integer" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>

@@ -161,9 +161,9 @@ namespace smp
 	{
 		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
 
-		if(type == CollisionManager::FROM_BOTTOM && _monster->canBeJumpedOn())
+		if(type == CollisionManager::FROM_BOTTOM && _monster->checkFeature(MonsterConstants::CAN_BE_JUMP_ON))
 		{
-			if(_monster->canBeKilledByJump())
+			if(_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP))
 				setState(DEAD_BY_JUMP_ON);
 			else
 				setState(RETRACTED);
@@ -210,7 +210,7 @@ namespace smp
 			int delta = 0;
 			if(_state != WALK)
 			{
-				delta = !_monster->canBeKilledByJump() + !_monster->canBeKilledByFire();
+				delta = !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP) + !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_PROJ);
 			}
 			_animation.render(_texture, app, _position, _side == LEFT_SIDE, delta);
 		}
