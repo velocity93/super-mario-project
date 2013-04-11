@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tileset lines="1" columns="4" frame_delay="50">
+  <physic value="0x00001E" />
+</tileset>

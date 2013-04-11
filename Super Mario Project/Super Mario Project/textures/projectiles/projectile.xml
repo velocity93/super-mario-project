@@ -1,0 +1,19 @@
+<projectile>
+  <left_delta value="1.0" />
+  <top_delta value="1.0" />
+  <speed x="1" />
+  <submission value="0x00000" />
+  <nb_sprites>
+    <run value="1" />
+    <dead value="1" />
+  </nb_sprites>
+  <frame_delay>
+    <run value="1" />
+    <dead value="1" />
+  </frame_delay>
+  <times>
+    <appearance value="100" />
+    <life value="100" />
+    <disappearance value="100" />
+  </times>
+</projectile>

@@ -204,6 +204,12 @@
     <ClInclude Include="XMLTilesetParser.hpp">
       <Filter>Header Files\XMLParsing</Filter>
     </ClInclude>
+    <ClInclude Include="XMLMonsterParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLProjectileParser.hpp">
+      <Filter>Header Files\XMLParsing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -335,6 +341,12 @@
     <ClCompile Include="XMLTilesetParser.cpp">
       <Filter>Source Files\XMLParsing</Filter>
     </ClCompile>
+    <ClCompile Include="XMLMonsterParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLProjectileParser.cpp">
+      <Filter>Source Files\XMLParsing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceManager.inl">
@@ -372,9 +384,6 @@
     </Resource>
     <Resource Include="textures\objects\checkpoint.png">
       <Filter>Resource Files\Objects</Filter>
-    </Resource>
-    <Resource Include="textures\monsters\red_koopa.mstr">
-      <Filter>Resource Files\Monsters</Filter>
     </Resource>
     <Resource Include="textures\monsters\red_koopa.png">
       <Filter>Resource Files\Monsters</Filter>
@@ -415,34 +424,19 @@
     <Resource Include="textures\objects\checkpoints.xsd">
       <Filter>Resource Files\Objects</Filter>
     </Resource>
-    <Resource Include="textures\projectiles\fireball.proj">
-      <Filter>Resource Files\Projectiles</Filter>
-    </Resource>
     <Resource Include="textures\monsters\monsters.xsd">
       <Filter>Resource Files\Monsters</Filter>
     </Resource>
     <Resource Include="textures\monsters\goomba.png">
       <Filter>Resource Files\Monsters</Filter>
     </Resource>
-    <Resource Include="textures\monsters\koopa.mstr">
-      <Filter>Resource Files\Monsters</Filter>
-    </Resource>
-    <Resource Include="textures\monsters\goomba.mstr">
-      <Filter>Resource Files\Monsters</Filter>
-    </Resource>
     <Resource Include="textures\blocs\speciaux\incassables\liquids\poison.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
-    </Resource>
-    <Resource Include="textures\blocs\speciaux\incassables\liquids\liquids.cfg">
       <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
     </Resource>
     <Resource Include="textures\blocs\speciaux\incassables\liquids\lava.png">
       <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
     </Resource>
     <Resource Include="textures\blocs\speciaux\incassables\interaction\orange_plant.png">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
-    </Resource>
-    <Resource Include="textures\blocs\speciaux\incassables\interaction\interaction.cfg">
       <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
     </Resource>
     <Resource Include="textures\blocs\speciaux\incassables\interaction\green_plant.png">
@@ -457,13 +451,7 @@
     <Resource Include="textures\blocs\speciaux\incassables\[Q]\overworld.png">
       <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
     </Resource>
-    <Resource Include="textures\blocs\speciaux\incassables\[Q]\[Q].cfg">
-      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
-    </Resource>
     <Resource Include="textures\blocs\speciaux\cassables\overworld.png">
-      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
-    </Resource>
-    <Resource Include="textures\blocs\speciaux\cassables\cassables.cfg">
       <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
     </Resource>
     <Resource Include="textures\blocs\classiques\snow.png">
@@ -473,9 +461,6 @@
       <Filter>Resource Files\Blocs\Classiques</Filter>
     </Resource>
     <Resource Include="textures\blocs\classiques\underground.png">
-      <Filter>Resource Files\Blocs\Classiques</Filter>
-    </Resource>
-    <Resource Include="textures\blocs\classiques\classiques.cfg">
       <Filter>Resource Files\Blocs\Classiques</Filter>
     </Resource>
     <Resource Include="textures\persos\small_mario.png">
@@ -522,6 +507,51 @@
     </Resource>
     <Resource Include="textures\objects\checkpoint.xml">
       <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\cassables\cassables.xml">
+      <Filter>Resource Files\Blocs\Speciaux\Cassables</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\[Q]\[Q].xml">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\[Q]</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\interaction\interaction.xml">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Interaction</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\speciaux\incassables\liquids\liquids.xml">
+      <Filter>Resource Files\Blocs\Speciaux\Incassables\Liquids</Filter>
+    </Resource>
+    <Resource Include="textures\blocs\classiques\classiques.xml">
+      <Filter>Resource Files\Blocs\Classiques</Filter>
+    </Resource>
+    <Resource Include="textures\objects\object.xml">
+      <Filter>Resource Files\Objects</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\special_fireball.xml">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\special_fireball.png">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\projectile.xml">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\fireball.xml">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\debris.xml">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\projectiles\debris.png">
+      <Filter>Resource Files\Projectiles</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\red_koopa.xml">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\koopa.xml">
+      <Filter>Resource Files\Monsters</Filter>
+    </Resource>
+    <Resource Include="textures\monsters\goomba.xml">
+      <Filter>Resource Files\Monsters</Filter>
     </Resource>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@
 
 #include "Tileset.hpp"
 #include "Block.hpp"
-#include "Exceptions.hpp"
+#include "XMLTilesetParser.hpp"
 #include <fstream>
 #include <sstream>
 
@@ -92,37 +92,39 @@ namespace smp
 				fileName += fileName.substr(fileName.find_last_of("/"), fileName.length()); 
 		}
 
-		fileName += ".cfg";
+		fileName += ".xml";
 
-		ifstream stream(fileName.c_str());
+		XMLTilesetParser::getParser()->loadTileset(fileName, this);
 
-		if(stream)
-		{
-			int phys;
+		//ifstream stream(fileName.c_str());
 
-			/* Number of sprites in width and height */
-			stream >> _nbSprites.y;
-			stream >> _nbSprites.x;
+		//if(stream)
+		//{
+		//	int phys;
 
-			/* Frame delay */
-			stream >> _frameDelay;
+		//	/* Number of sprites in width and height */
+		//	stream >> _nbSprites.y;
+		//	stream >> _nbSprites.x;
 
-			for(int i = 0; i < _nbSprites.x * _nbSprites.y; ++i)
-			{
-				/* If we have only one line, then we have only one block 
-				 * following by his animation, with the same physic obviously 
-				 */
-				stream >> hex >> phys;
-				_physics.push_back(phys);
-				
-				if(_nbSprites.y == 1 && i == 0)
-					break;
-			}
-		}
-		else
-		{
-			throw FileNotFoundException(fileName);
-		}
+		//	/* Frame delay */
+		//	stream >> _frameDelay;
+
+		//	for(int i = 0; i < _nbSprites.x * _nbSprites.y; ++i)
+		//	{
+		//		/* If we have only one line, then we have only one block 
+		//		 * following by his animation, with the same physic obviously 
+		//		 */
+		//		stream >> hex >> phys;
+		//		_physics.push_back(phys);
+		//		
+		//		if(_nbSprites.y == 1 && i == 0)
+		//			break;
+		//	}
+		//}
+		//else
+		//{
+		//	throw FileNotFoundException(fileName);
+		//}
 	}
 
 	void Tileset::serialize(ofstream& file, string& tabs)

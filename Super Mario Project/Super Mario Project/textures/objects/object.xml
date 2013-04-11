@@ -1,0 +1,10 @@
+<object>
+  <nb_sprites>
+    <active value="1" />
+    <inactive value="1" />
+  </nb_sprites>
+  <frame_delay>
+    <active value="100" />
+    <inactive value="100" />
+  </frame_delay>
+</object>

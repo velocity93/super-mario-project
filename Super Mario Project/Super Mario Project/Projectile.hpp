@@ -38,12 +38,19 @@ namespace smp
 
 		/* Physic submission */
 		int getSubmission();
+		void setSubmission(int submission);
 
 		/* Bottom Left of hitbox size from left of sprite */
 		int getBottomLeft();
+		void setBottomLeft(int bottomLeft);
 
 		/* Top of hitbox size */
 		int getTop();
+		void setTop(int top);
+
+		/* Initial Speed */
+		void setInitialSpeedX(float x);
+		void setInitialSpeedY(float y);
 
 		/* get all occurrences */
 		std::vector<ProjectileOccurrence*>& getProjectileOccurrences();
@@ -59,6 +66,9 @@ namespace smp
 		/* Update data */
 		void updatePhysicData(float time, sf::RenderWindow& app);
 		void updateGraphicData(sf::RenderWindow& app);
+
+		void addNbSpritesForState(ProjectileOccurrence::State state, int nbSprites);
+		void addFrameDelayForState(ProjectileOccurrence::State state, int FrameDelay);
 
 		/* Render all occurrences */
 		void render(sf::RenderWindow& app);
