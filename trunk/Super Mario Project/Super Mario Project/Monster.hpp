@@ -42,7 +42,7 @@ namespace smp
 		/* Add Occurrence */
 		void addNewMonsterOccurrence(const sf::Vector2f& position = sf::Vector2f(0,0), const sf::Vector2f& speed = sf::Vector2f(MonsterConstants::MONSTER_SPEED_X,0), 
 			MonsterOccurrence::State state = MonsterOccurrence::WALK,
-			MonsterOccurrence::Side side = MonsterOccurrence::LEFT_SIDE);
+			MonsterOccurrence::Side side = MonsterOccurrence::RIGHT_SIDE);
 
 		/* Getters/Setters */
 		int getBottomLeft();

@@ -229,6 +229,7 @@
     </Resource>
     <Resource Include="textures\objects\checkpoint.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <SubType>Designer</SubType>
     </Resource>
     <Resource Include="textures\backgrounds\BlueHills.xml">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
