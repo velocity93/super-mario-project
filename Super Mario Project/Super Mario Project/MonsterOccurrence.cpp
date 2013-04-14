@@ -212,7 +212,16 @@ namespace smp
 			{
 				delta = !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP) + !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_PROJ);
 			}
-			_animation.render(_texture, app, _position, _side == LEFT_SIDE, delta);
+			_animation.render(_texture, app, _position, _side == RIGHT_SIDE, delta);
+
+#ifdef _DEBUG
+			/* Drawing HitBox */
+			sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
+			rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
+			rect.setFillColor(sf::Color(255, 0, 0, 122));
+
+			app.draw(rect);
+#endif
 		}
 	}
 

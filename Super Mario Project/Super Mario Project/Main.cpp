@@ -69,11 +69,11 @@ void writeCapture(const sf::Image& img)
 // P4 TODO: check backgrounds animation										- OK
 // P4 TODO: add ice mario
 // P5 TODO: finalize the level
-// P6 TODO: use libxml++ instead of libxml
+// P6 TODO: use libxml++ instead of libxml									- libxml++ not compatible with Win32 system for the moment
 // P6 TODO: add a way to pause the game
-// P6 TODO: attaque rodéo
+// P6 TODO: attaque rodéo													- Sprites have been downloaded
 // P6 TODO: "twisted" jump
-// P7 TODO: use only .xml files instead of .item . perso...					- En cours
+// P7 TODO: use only .xml files instead of .item . perso...					- OK
 // P8 TODO: add a boss
 // P8 TODO: levels with auto scrolling, based on key positions and timers
 // P8 TODO: other types of monsters (paratroopas...)
