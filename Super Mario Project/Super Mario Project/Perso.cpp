@@ -148,8 +148,10 @@ namespace smp
 		// Nothing because we need InputState
 	}
 
-	void Perso::updatePerso(float time, InputState& inputState)
+	void Perso::updatePerso(float time)
 	{
+		InputState& inputState = *(InputState::getInput());
+
 		/* Applying gravity */
 		if(_state != GET_IN_FROM_PIPE_HORIZONTAL && _state != GET_OUT_FROM_PIPE_HORIZONTAL
 			&& _state != GET_IN_FROM_PIPE_VERTICAL && _state != GET_OUT_FROM_PIPE_VERTICAL
@@ -629,6 +631,8 @@ namespace smp
 
 	void Perso::onCollision(MonsterOccurrence* monsterOccurrence, int collision_type)
 	{
+		InputState& input = *InputState::getInput();
+
 		CollisionManager::Type type = static_cast<CollisionManager::Type>(collision_type);
 
 		Monster* monster = monsterOccurrence->getModel();
@@ -637,7 +641,8 @@ namespace smp
 			hurted();
 
 		if(type == CollisionManager::FROM_BOTTOM && monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP))
-			_speed.y = PhysicConstants::EJECTION_SPEED_Y;
+			if(input[KEY_JUMP] == KEY_STATE_PRESSED && input[KEY_UP] == KEY_STATE_RELEASED)
+				jump();
 
 		if(type == CollisionManager::FROM_BOTTOM && !monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP))
 			hurted();

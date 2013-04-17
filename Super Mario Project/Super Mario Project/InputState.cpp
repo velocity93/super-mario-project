@@ -13,9 +13,25 @@ using sf::Window;
 
 namespace smp
 {
-    InputState::InputState(const Window *window)
-        : _window(window),
-        _states(KEY_NB_KEYS, KEY_STATE_RELEASED),
+	InputState* InputState::_inputState = nullptr;
+
+	InputState* InputState::getInput()
+	{
+		if(_inputState == nullptr)
+		{
+			_inputState = new InputState();
+		}
+
+		return _inputState;
+	}
+
+	void InputState::killInput()
+	{
+		delete _inputState;
+	}
+
+    InputState::InputState()
+        : _states(KEY_NB_KEYS, KEY_STATE_RELEASED),
         _sfmlKeys()
     {
 		_sfmlKeys.push_back(Keyboard::Left);	// KEY_BACKWARD

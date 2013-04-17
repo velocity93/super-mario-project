@@ -144,7 +144,7 @@ namespace smp
 		void setBroughtMonster(MonsterOccurrence* monster);
 		void setInsidePipe(Pipe* pipe);
 
-		void updatePerso(float time, InputState& inputState);
+		void updatePerso(float time);
 
 		/* Methods */
 		void initPerso(const std::string& textureName);

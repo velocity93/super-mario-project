@@ -39,14 +39,19 @@ namespace smp
     class InputState
     {
     public:
-        InputState(const sf::Window *window);
+        static InputState* getInput();
         void update();
         KeyState operator[](Key k);
+		static void killInput();
 
     private:
-        const sf::Window *_window;
         std::vector<KeyState> _states;
 		std::vector<sf::Keyboard::Key> _sfmlKeys;
+		
+		static InputState* _inputState;
+		
+		InputState();
+		virtual ~InputState() { }
     };
 } // namespace
 
