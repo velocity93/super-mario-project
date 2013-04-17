@@ -57,7 +57,7 @@ namespace smp
 		std::vector<std::string> _levelNames;
 		std::vector<Perso*> _persos;
 		Level* _level;
-		InputState _inputState;
+		InputState* _inputState;
 		sf::Vector2i _windowSize;
 		sf::Clock _clock;
 		float _fpsTime;

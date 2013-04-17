@@ -31,7 +31,7 @@ using namespace sf;
 
 namespace smp
 {
-	World::World(const Window* window) : _inputState(InputState(window)),
+	World::World(const Window* window) : _inputState(InputState::getInput()),
 		_level(new Level()),
 		_actualTime(0),
 		_previousTime(0),
@@ -68,12 +68,12 @@ namespace smp
 
 	void World::update(RenderWindow& app, View* view)
 	{
-		_inputState.update();
+		_inputState->update();
 		
 		for (vector<Perso*>::iterator itPerso = this->_persos.begin(); itPerso != this->_persos.end(); ++itPerso)
 		{
 			/* Update Physic */
-			(*itPerso)->updatePerso(_elapsedTime, _inputState);
+			(*itPerso)->updatePerso(_elapsedTime);
 			
 			/* Search in level QuadTree, all blocks will be able to have a collision with him */
 			Vector2f position = Vector2f((*itPerso)->getHitboxPosition().x, (*itPerso)->getHitboxPosition().y);
@@ -268,6 +268,8 @@ namespace smp
 
     World::~World()
     {
+		_inputState->killInput();
+
 		if(_level != nullptr)
 			delete _level;
 
@@ -276,6 +278,5 @@ namespace smp
 		{
 			delete (*itPersos);
 		}
-
     }
 } // namespace
