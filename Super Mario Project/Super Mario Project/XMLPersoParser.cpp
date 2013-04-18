@@ -112,6 +112,7 @@ namespace smp
 		int value = atoi(attrs[1]);
 		
 		AddDataToAnimation(persoCtxt, Perso::GET_OUT_FROM_PIPE_VERTICAL, value);
+		AddDataToAnimation(persoCtxt, Perso::GET_IN_FROM_PIPE_VERTICAL, value);
 	}
 	
 	void Back_tag(XMLPersoContext* persoCtxt, const char ** attrs)
@@ -197,6 +198,20 @@ namespace smp
 		
 		AddDataToAnimation(persoCtxt, Perso::FINISH, value);
 	}
+
+	void Attack_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);
+		
+		AddDataToAnimation(persoCtxt, Perso::ATTACK, value);
+	}
+
+	void SpecialAttack_tag(XMLPersoContext* persoCtxt, const char ** attrs)
+	{
+		int value = atoi(attrs[1]);
+		
+		AddDataToAnimation(persoCtxt, Perso::SPECIAL_ATTACK, value);
+	}
 	
 	void FrameDelayRun2_tag(XMLPersoContext* persoCtxt, const char ** attrs)
 	{
@@ -233,6 +248,8 @@ namespace smp
 			BAD_CAST"look_top_shell",
 			BAD_CAST"dead",
 			BAD_CAST"finish_castle",
+			BAD_CAST"attack",
+			BAD_CAST"special_attack",
 			BAD_CAST"frame_delay",
 			BAD_CAST"run2"
 		};
@@ -260,12 +277,14 @@ namespace smp
 			LookTopShell_tag,
 			Dead_tag,
 			FinishCastle_tag,
+			Attack_tag,
+			SpecialAttack_tag,
 			FrameDelay_tag,
 			FrameDelayRun2_tag
 		};
 		int i;
 
-		for(i = 0; i < 25; i++)
+		for(i = 0; i < 27; i++)
 		{
 			if(!xmlStrcmp(name, elements[i]))
 			{

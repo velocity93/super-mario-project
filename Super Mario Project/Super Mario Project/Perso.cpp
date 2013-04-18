@@ -153,9 +153,7 @@ namespace smp
 		InputState& inputState = *(InputState::getInput());
 
 		/* Applying gravity */
-		if(_state != GET_IN_FROM_PIPE_HORIZONTAL && _state != GET_OUT_FROM_PIPE_HORIZONTAL
-			&& _state != GET_IN_FROM_PIPE_VERTICAL && _state != GET_OUT_FROM_PIPE_VERTICAL
-			&& _state != CLIMB_LADDER)
+		if(_environment != PIPE	&& _state != CLIMB_LADDER)
 			gravity(_speed, time);
 
 		/* compute acceleration */
@@ -240,10 +238,10 @@ namespace smp
 
 		updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 		
-		/* >pecial Cases */
-		if(_hitboxPosition.y >= 992)
+		/* Special Cases */
+		if(_hitboxPosition.y + _hitboxSize.y >= 1024)
 		{
-			updatePositions(_hitboxPosition.x, 992);
+			updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
 			_environment = GROUND;
 		}
 
@@ -444,7 +442,7 @@ namespace smp
 								//else
 								//	setState(STANDING);
 							}
-							else
+							else if(_environment == GROUND)
 							{
 								setState(STANDING);
 								_hud->setNbMonstersKilled(0);
@@ -458,7 +456,7 @@ namespace smp
 							if(inputState[KEY_BACKWARD] == KEY_STATE_PRESSED)
 							setState(LOWERED_JUMP_SHELL);
 						}
-						else
+						else if(_environment == GROUND)
 						{
 							setState(STANDING_SHELL);
 							_hud->setNbMonstersKilled(0);
@@ -537,62 +535,65 @@ namespace smp
 
 	void Perso::onCollision(Collisionable* c, int collision_type)
 	{
-		/* Collision with a BlockOccurrence */
-		BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
-		if(block != NULL)
+		if(_environment != PIPE)
 		{
-			return onCollision(block, collision_type);
-		}
-
-		/* Collision with an Item */
-		ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
-		if(itemOccurrence != NULL)
-		{
-			return onCollision(itemOccurrence);
-		}
-
-		/* Collision with a Projectile */
-		ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
-		if(projectileOccurrence != NULL)
-		{
-			return onCollision(projectileOccurrence);
-		}
-
-		/* Collision with a Pipe */
-		Pipe* pipe = dynamic_cast<Pipe*>(c);
-		if(pipe != NULL)
-		{
-			return onCollision(pipe, collision_type);
-		}
-
-		/* Collision with a MonsterOccurrence */
-		MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
-		if(monsterOccurrence != NULL)
-		{
-			return onCollision(monsterOccurrence, collision_type);
-		}
-
-		/* Collision with Checkpoint */
-		Checkpoint* checkpoint = dynamic_cast<Checkpoint*>(c);
-		if(checkpoint != NULL)
-		{
-			checkpoint->setState(Checkpoint::PASSED);
-			return;
-		}
-
-		/* Collision with Finish */
-		Finish* finish = dynamic_cast<Finish*>(c);
-		if(finish != NULL)
-		{
-			if(_hitboxPosition.x + _hitboxSize.x >= finish->getHitboxPosition().x + finish->getHitboxSize().x / 2)
+			/* Collision with a BlockOccurrence */
+			BlockOccurrence* block = dynamic_cast<BlockOccurrence*>(c);
+			if(block != NULL)
 			{
-				setState(FINISH);
-				_speed.x = 0;
+				return onCollision(block, collision_type);
 			}
-			else
+
+			/* Collision with an Item */
+			ItemOccurrence* itemOccurrence = dynamic_cast<ItemOccurrence*>(c);
+			if(itemOccurrence != NULL)
 			{
-				setState(GO_TO_CASTLE);
-				finish->setState(Finish::FINISH);
+				return onCollision(itemOccurrence);
+			}
+
+			/* Collision with a Projectile */
+			ProjectileOccurrence* projectileOccurrence = dynamic_cast<ProjectileOccurrence*>(c);
+			if(projectileOccurrence != NULL)
+			{
+				return onCollision(projectileOccurrence);
+			}
+
+			/* Collision with a Pipe */
+			Pipe* pipe = dynamic_cast<Pipe*>(c);
+			if(pipe != NULL)
+			{
+				return onCollision(pipe, collision_type);
+			}
+
+			/* Collision with a MonsterOccurrence */
+			MonsterOccurrence* monsterOccurrence = dynamic_cast<MonsterOccurrence*>(c);
+			if(monsterOccurrence != NULL)
+			{
+				return onCollision(monsterOccurrence, collision_type);
+			}
+
+			/* Collision with Checkpoint */
+			Checkpoint* checkpoint = dynamic_cast<Checkpoint*>(c);
+			if(checkpoint != NULL)
+			{
+				checkpoint->setState(Checkpoint::PASSED);
+				return;
+			}
+
+			/* Collision with Finish */
+			Finish* finish = dynamic_cast<Finish*>(c);
+			if(finish != NULL)
+			{
+				if(_hitboxPosition.x + _hitboxSize.x >= finish->getHitboxPosition().x + finish->getHitboxSize().x / 2)
+				{
+					setState(FINISH);
+					_speed.x = 0;
+				}
+				else
+				{
+					setState(GO_TO_CASTLE);
+					finish->setState(Finish::FINISH);
+				}
 			}
 		}
 	}
@@ -612,7 +613,7 @@ namespace smp
 		else if(type == CollisionManager::FROM_BOTTOM)
 		{
 			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
-			setEnvironment(GROUND);
+			_environment = GROUND;
 		}
 		else if(type == CollisionManager::FROM_TOP)
 		{
