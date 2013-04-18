@@ -51,8 +51,11 @@ void writeCapture(const sf::Image& img)
 	img.saveToFile(imgFileName);
 }
 
-// P1 TODO: check monster/character collision								- Bof pour l'instant
+// P0 TODO : Exception launched when loading Fire_mario.png. 
+//	Apparently, texture is too big											- Thor Library On Github SFML Project ?
+// P1 TODO: check monster/character collision								- 50 %
 // P1 TODO: check character transformations									- En cours, reste encore probleme de postionnement
+// P1 TODO : check collisions between other entities than Perso
 // P2 TODO: implement background layers
 // P2 TODO: check fireballs
 // P3 TODO: check if mario properly handles shells

@@ -131,12 +131,12 @@ namespace smp
 
 		if(type == CollisionManager::FROM_LEFT)
 		{
-			updatePositions(pipe->getHitboxPosition().x + pipe->getHitboxSize().x, _position.y);
+			_speed.x *= -1;
 		}
 
 		if(type == CollisionManager::FROM_RIGHT)
 		{
-			updatePositions(pipe->getHitboxPosition().x - pipe->getHitboxSize().x, _position.y);
+			_speed.x *= -1;
 		}
 	}
 	
@@ -163,8 +163,11 @@ namespace smp
 				/* If it falls in hole */
 				/*if(_hitboxPosition.y + _hitboxSize.y < 0)
 					_item->removeItemOccurrence(this);*/
-				if(_hitboxPosition.y < 0)
-					_hitboxPosition.y = 0;
+				/* Special Cases */
+				if(_hitboxPosition.y + _hitboxSize.y >= 1024)
+				{
+					updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
+				}
 			}
 			else
 			{
@@ -198,7 +201,18 @@ namespace smp
 	void ItemOccurrence::render(RenderWindow& app)
 	{
 		if(_isActive)
+		{
 			_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
+
+#ifdef _DEBUG
+			/* Drawing HitBox */
+			sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
+			rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
+			rect.setFillColor(sf::Color(0, 0, 255, 122));
+
+			app.draw(rect);
+#endif
+		}
 	}
 
 	ItemOccurrence::~ItemOccurrence()

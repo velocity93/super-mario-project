@@ -21,19 +21,21 @@
       <occ_item positionX="300" positionY="100"/>-->
     </item>
     <item img="champignon" type="1">
-      <occ_item positionX="200" positionY="200"/>
+      <occ_item positionX="100" positionY="200"/>
     </item>
-		<item img="fleur" type="2"/>
+    <item img="fleur" type="2">
+          <occ_item positionX="60" positionY="200"/>
+    </item>
 		<item img="etoile" type="6"/>
 	</items>
 	<monsters>
-		<walking_monster name="goomba">
+		<!--<walking_monster name="goomba">
 			<occ_monster positionX="128" positionY="128"/>
-		</walking_monster>
+		</walking_monster>-->
 	</monsters>
 	<pipes>
 		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
-    <pipe img="green_pipe" positionX="128" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+    <pipe img="green_pipe" positionX="256" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">

@@ -35,6 +35,7 @@ namespace smp
 		typedef enum Environment
 		{
 			GROUND,
+			PIPE,
 			AIR,
 			WATER
 		} Environment;
@@ -70,11 +71,11 @@ namespace smp
 			SLIDE,
 			GET_OUT_FROM_PIPE_HORIZONTAL,
 			GET_IN_FROM_PIPE_HORIZONTAL,
-			GET_IN_FROM_PIPE_VERTICAL,
 			SWIMMING,
 			NB_STATES,
 			GO_TO_CASTLE,
-			RUN_1 = WALK
+			RUN_1 = WALK,
+			GET_IN_FROM_PIPE_VERTICAL = GET_OUT_FROM_PIPE_VERTICAL
 		} State;
 
 		typedef enum Sound {
