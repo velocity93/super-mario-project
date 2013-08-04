@@ -9,31 +9,32 @@
 #include "World.hpp"
 #include "Block.hpp"
 #include "Exceptions.hpp"
+#include "ResourceManager.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/OpenGL.hpp>
 #include <fstream>
 #include <sstream>
 
+using namespace smp;
 using namespace sf;
 using namespace std;
-using namespace smp;
 
 void writeCapture(const sf::Image& img)
 {
 	/* Building fileName */
-	string prefix = "capture";
+	std::string prefix = "capture";
 	int id = 0;
-	std::ostringstream out;
+	std::stringstream out;
 	out << id;
-	string fileName = prefix + out.str();
-	string imgFileName = fileName + ".png";
+	std::string fileName = prefix + out.str();
+	std::string imgFileName = fileName + ".png";
 
 	bool loopingAgain = true;
 
 	while(loopingAgain)
 	{
-		ifstream file(imgFileName.c_str());
+		std::ifstream file(imgFileName.c_str());
 		if(!file)
 		{
 			loopingAgain = false;
@@ -49,6 +50,31 @@ void writeCapture(const sf::Image& img)
 
 
 	img.saveToFile(imgFileName);
+}
+
+/* Trick to have origin at bottom left even if using SFML */ 
+void InitializeTextureMatrice(RenderWindow& App)
+{
+	/* Bidouille pour mettre l'origine en bas à gauche !!! \o/
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	sprite.set(x,y);
+
+	App.draw(sprite);
+	glMatrixMode(GL_TEXTURE);
+	glScalef(1.f, -1.f, 1.f);
+	*/
+
+	/* Save the default texture in case of texture loading error */
+	smp::Texture* texture = ResourceManager::getTexture("textures/default");
+
+	sf::Sprite sprite;
+	sprite.setTexture(*texture);
+	sprite.setOrigin(sprite.getLocalBounds().width / 2, 0);
+
+	App.draw(sprite);
+	glMatrixMode(GL_TEXTURE);
+	glScalef(1.f, -1.f, 1.f);
 }
 
 // P1 TODO: check monster/character collision								- 50 %
@@ -86,18 +112,19 @@ void writeCapture(const sf::Image& img)
 // P9 TODO: integration of resources into the executable file?
 // P9 TODO: update the project webpage (images and description)
 
-
 int main(int, char**)
 {
 
     // Create the main window
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 
-	sf::View view = View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT));
+	sf::View view = View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, -WINDOW_HEIGHT));
 
     // Limit to 60 FPS
     App.setFramerateLimit(60);
 
+	InitializeTextureMatrice(App);
+	
     try
     {
         // Create world
@@ -136,16 +163,6 @@ int main(int, char**)
 			
             App.clear();
 
-			// Clear color and depth buffer
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-			glMatrixMode(GL_PROJECTION);
-			glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-			glLoadIdentity();
-			gluOrtho2D(0.0f, (float)WINDOW_WIDTH, 0.0f, (float)WINDOW_HEIGHT); // set origin to bottom left corner
-			glMatrixMode(GL_MODELVIEW);
-			glLoadIdentity();
-
             // Update World
 			w.update(App, &view);
 
@@ -159,7 +176,7 @@ int main(int, char**)
         }
     }
     catch(FileException &fe)
-    {
+	{
         cout << fe.what() << endl;
         return EXIT_FAILURE;
     }

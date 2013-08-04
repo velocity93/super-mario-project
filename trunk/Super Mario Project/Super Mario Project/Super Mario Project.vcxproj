@@ -114,7 +114,6 @@
     <ClInclude Include="QuadTree.hpp" />
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
-    <ClInclude Include="ReversedSprite.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
@@ -161,7 +160,6 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="ReversedSprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="World.cpp" />

@@ -24,9 +24,7 @@ namespace smp
 
 		/* getters and setters */
         sf::Sprite& getSprite();
-		void setSubRect(int left, int top, int right, int bottom);
 		void setPosition(float x, float y);
-		void setSpriteOrigin(float x, float y);
 
 		/* Destructor */
 		virtual ~Texture();
