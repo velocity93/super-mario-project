@@ -35,19 +35,9 @@ namespace smp
         return _sprite;
     }
 
-    void Texture::setSubRect(int left, int top, int right, int bottom)
-    {
-        _sprite.setTextureRect(IntRect(left, top, right, bottom));
-    }
-
     void Texture::setPosition(float x, float y)
     {
         _sprite.setPosition(x, y);
-    }
-
-	void Texture::setSpriteOrigin(float x, float y)
-    {
-        _sprite.setOrigin(x, y);
     }
 
     Texture::~Texture()

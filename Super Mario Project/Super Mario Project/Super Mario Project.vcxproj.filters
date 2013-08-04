@@ -168,9 +168,6 @@
     <ClInclude Include="Block.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReversedSprite.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="QuadTree.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -306,9 +303,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReversedSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="QuadTree.cpp">
