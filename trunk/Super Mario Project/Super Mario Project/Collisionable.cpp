@@ -29,7 +29,7 @@ namespace smp
 
 	void Collisionable::setActivity(RenderWindow& app)
 	{
-		const View& view = app.getView();
+		const View& view = app.getDefaultView();
 		const Vector2f& center = view.getCenter();
 		const Vector2f& halfSize = view.getSize();
 

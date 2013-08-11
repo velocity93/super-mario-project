@@ -36,7 +36,7 @@ namespace smp
 
 		_hitboxSize.x = _texture->getSize().x / _actualBlock->getTileset()->getNbSprites().x;
 		_hitboxSize.y = _texture->getSize().y / _actualBlock->getTileset()->getNbSprites().y;
-		_hitboxPosition = Vector2f(position.x, position.y - _hitboxSize.y);
+		_hitboxPosition = Vector2f(position.x, position.y);
 
 		Vector2i nbSprites = _actualBlock->getTileset()->getNbSprites();
 

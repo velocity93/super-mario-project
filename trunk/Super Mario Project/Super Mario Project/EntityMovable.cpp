@@ -49,9 +49,9 @@ namespace smp
 
 	void EntityMovable::gravity(Vector2f &speed, float time)
 	{
-		speed.y += PhysicConstants::GRAVITY * time;
+		speed.y -= PhysicConstants::GRAVITY * time;
 
-		if(speed.y > PhysicConstants::SPEED_Y_MAX)
+		if(speed.y < -PhysicConstants::SPEED_Y_MAX)
 			speed.y = PhysicConstants::SPEED_Y_MAX;
 	}
 

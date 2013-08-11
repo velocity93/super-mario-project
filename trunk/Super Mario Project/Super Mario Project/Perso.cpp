@@ -239,9 +239,9 @@ namespace smp
 		updatePositions(_hitboxPosition.x + time * _speed.x, _hitboxPosition.y + time * _speed.y);
 		
 		/* Special Cases */
-		if(_hitboxPosition.y + _hitboxSize.y >= 1024)
+		if(_hitboxPosition.y < 0)
 		{
-			updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, 0);
 			_environment = GROUND;
 		}
 
@@ -282,7 +282,7 @@ namespace smp
 		/* key just pressed, clock begins */
 		_jumpTime.Reset(true);
 
-		_speed.y = -1 * PhysicConstants::JUMP_SPEED;
+		_speed.y = PhysicConstants::JUMP_SPEED;
 
 		// Play jump sound here !
 
@@ -310,7 +310,7 @@ namespace smp
 		Vector2f spritePosition = Vector2f(_position.x + 2 * (_side == LEFT_SIDE) * _hitboxSize.x, _position.y);
 		_animation.render(_texture, app, spritePosition, _side == LEFT_SIDE);
 
-#ifdef _DEBUG
+#ifdef _RELEASE
 		/* Drawing HitBox */
 		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
 		rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <level name="World 1-1" width="1024" height="1024" music="world1-1.mp3">
-	<spawn positionX="64" positionY="1024"/>
+	<spawn positionX="32" positionY="192"/>
   <checkpoints>
     <checkpoint img="checkpoint" positionX="100" positionY="64"/>
   </checkpoints>
@@ -34,15 +34,15 @@
 		</walking_monster>-->
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
-    <pipe img="green_pipe" positionX="256" positionY="128" destination_pipe="0" level_destination="" state="1" length="1" direction="0" monster="goomba"/>
+		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
+    <pipe img="green_pipe" positionX="256" positionY="128" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">
       <!--  -->
       <block physicIndex="13" type_bloc="2097152"/>
-      <block physicIndex="1" type_bloc="2097152"/>
-      <block physicIndex="2" type_bloc="2097152"/>
+      <block physicIndex="25" type_bloc="2097152"/>
+      <block physicIndex="26" type_bloc="2097152"/>
       <block physicIndex="12" type_bloc="2097152"/>
       <block physicIndex="14" type_bloc="2097152"/>
       <block physicIndex="25" type_bloc="2097152"/>
@@ -69,7 +69,6 @@
       <occ_block tileset_actual="0" tileset_alt="0" positionX="224" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="32" actual="1" alt="-1" item="-1"/>
-      <occ_block tileset_actual="0" tileset_alt="0" positionX="256" positionY="128" actual="6" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="288" positionY="0" actual="0" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="288" positionY="32" actual="1" alt="-1" item="-1"/>
       <occ_block tileset_actual="0" tileset_alt="0" positionX="320" positionY="0" actual="0" alt="-1" item="-1"/>

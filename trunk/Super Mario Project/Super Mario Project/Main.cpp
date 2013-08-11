@@ -52,29 +52,18 @@ void writeCapture(const sf::Image& img)
 	img.saveToFile(imgFileName);
 }
 
-/* Trick to have origin at bottom left even if using SFML */ 
-void InitializeTextureMatrice(RenderWindow& App)
+void init_OpenGL(int largeurFenetre, int hauteurFenetre)
 {
-	/* Bidouille pour mettre l'origine en bas à gauche !!! \o/
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
-	sprite.set(x,y);
-
-	App.draw(sprite);
-	glMatrixMode(GL_TEXTURE);
-	glScalef(1.f, -1.f, 1.f);
-	*/
-
-	/* Save the default texture in case of texture loading error */
-	smp::Texture* texture = ResourceManager::getTexture("textures/default");
-
-	sf::Sprite sprite;
-	sprite.setTexture(*texture);
-	sprite.setOrigin(sprite.getLocalBounds().width / 2, 0);
-
-	App.draw(sprite);
-	glMatrixMode(GL_TEXTURE);
-	glScalef(1.f, -1.f, 1.f);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0, largeurFenetre, 0, hauteurFenetre, -1000, 1000);
+    glEnable(GL_BGR_EXT);
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_ALPHA_TEST);
+    //glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glAlphaFunc(GL_GREATER, 0.1);
 }
 
 // P1 TODO: check monster/character collision								- 50 %
@@ -119,12 +108,13 @@ int main(int, char**)
     sf::RenderWindow App(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Super Mario project");
 
 	sf::View view = View(FloatRect(0, WINDOW_HEIGHT, WINDOW_WIDTH, -WINDOW_HEIGHT));
+	App.setView(view);
 
     // Limit to 60 FPS
     App.setFramerateLimit(60);
 
-	InitializeTextureMatrice(App);
-	
+	init_OpenGL(WINDOW_WIDTH, WINDOW_HEIGHT);
+
     try
     {
         // Create world
@@ -163,10 +153,13 @@ int main(int, char**)
 			
             App.clear();
 
-            // Update World
-			w.update(App, &view);
+			// Clear color and depth buffer
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			App.setView(view);
+            // Update World
+			//w.update(App, &view);
+			
+			//App.setView(view);
 
             // Draw World
 			w.render(App);

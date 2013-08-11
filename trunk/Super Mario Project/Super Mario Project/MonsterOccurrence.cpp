@@ -214,7 +214,7 @@ namespace smp
 			}
 			_animation.render(_texture, app, _position, _side == RIGHT_SIDE, delta);
 
-#ifdef _DEBUG
+#ifdef _RELEASE
 			/* Drawing HitBox */
 			sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
 			rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);

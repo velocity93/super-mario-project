@@ -1,29 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tileset lines="3" columns="12" frame_delay="0">
-  <physic value="0x000012" />
-  <physic value="0x000002" />
-  <physic value="0x00000A" />
-  <physic value="0x000002" />
-  <physic value="0x000002" />
-  <physic value="0x000002" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000010" />
-  <physic value="0x000001" />
-  <physic value="0x000008" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000001" />
-  <physic value="0x000300" />
-  <physic value="0x000400" />
-  <physic value="0x001000" />
   <physic value="0x000014" />
   <physic value="0x000004" />
   <physic value="0x00000C" />
@@ -36,4 +12,30 @@
   <physic value="0x000800" />
   <physic value="0x000200" />
   <physic value="0x000100" />
+  <physic value="0x000010" />
+  <physic value="0x000001" />
+  <physic value="0x000008" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000300" />
+  <physic value="0x000400" />
+  <physic value="0x001000" />
+  <physic value="0x000012" />
+  <physic value="0x000002" />
+  <physic value="0x00000A" />
+  <physic value="0x000002" />
+  <physic value="0x000002" />
+  <physic value="0x000002" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  <physic value="0x000001" />
+  
+  
 </tileset>

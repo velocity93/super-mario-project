@@ -22,15 +22,8 @@ namespace smp
 		/* Constructor */
 		Texture(const std::string& name);
 
-		/* getters and setters */
-        sf::Sprite& getSprite();
-		void setPosition(float x, float y);
-
 		/* Destructor */
 		virtual ~Texture();
-		
-    private:
-        sf::Sprite _sprite;
     };
 } // namespace
 

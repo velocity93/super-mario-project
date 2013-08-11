@@ -161,7 +161,7 @@ namespace smp
 	{
 		if(_isActive)
 		{
-			Sprite& sprite = _texture->getSprite();
+			Sprite sprite(*_texture);
 
 			switch(_direction)
 			{
@@ -170,37 +170,42 @@ namespace smp
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
-					app.draw(sprite);
+					sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+					//app.draw(sprite);
+					sprite.draw();
 				}
 
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y + ((_lenght + 1) * BLOCK_WIDTH));
-				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+				sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 				sprite.setScale(1, -1); // FlipY
 
-				app.draw(sprite);
+				//app.draw(sprite);
+				sprite.draw();
 				break;
 
 			case TO_RIGHT:
 				sprite.setScale(-1, 1); // FlipX
-				sprite.setOrigin(0.0f, sprite.getTexture()->getSize().y / 2.0f);
+				sprite.setOrigin(0.0f, _texture->getSize().y / 2.0f);
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+					sprite.setTextureRect(sf::IntRect(0, 0, _texture->getSize().x, _texture->getSize().y / 2));					
 					sprite.rotate(270);
-					app.draw(sprite);
+					//app.draw(sprite);
+					sprite.draw();
 					sprite.rotate(90); // to replace the right rotation
 				}
 
 				/* Top of pipe */
 				sprite.setPosition(_position.x + ((_lenght + 1) * BLOCK_WIDTH), _position.y);
-				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+				sprite.setTextureRect(sf::IntRect(0, _texture->getSize().y / 2, _texture->getSize().x, _texture->getSize().y / 2));
+
 				sprite.rotate(270);
-				app.draw(sprite);
+				//app.draw(sprite);
+				sprite.draw();
 				sprite.rotate(90);
 				break;
 
@@ -209,18 +214,20 @@ namespace smp
 
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y);
-				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+				sprite.setTextureRect(sf::IntRect(0, _texture->getSize().y / 2, _texture->getSize().y, _texture->getSize().y / 2));				
 				sprite.rotate(90);
-				app.draw(sprite);
+				/*app.draw(sprite);*/
+				sprite.draw();
 				sprite.rotate(270); // to replace the right rotation
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().y, sprite.getTexture()->getSize().y / 2));
+					sprite.setTextureRect(sf::IntRect(0, 0, _texture->getSize().x, _texture->getSize().y / 2));
 					sprite.rotate(90);
-					app.draw(sprite);
+					/*app.draw(sprite);*/
+					sprite.draw();
 					sprite.rotate(270);
 				}
 				break;
@@ -228,22 +235,24 @@ namespace smp
 			default:
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y);
-				sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
+				sprite.setTextureRect(sf::IntRect(0, _texture->getSize().y / 2, _texture->getSize().x, _texture->getSize().y / 2));
 
-				app.draw(sprite);
+				/*app.draw(sprite);*/
+				sprite.draw();
 
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
-					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
-					sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
-					app.draw(sprite);
+					sprite.setPosition(_position.x, _position.y - (step * BLOCK_WIDTH));
+					sprite.setTextureRect(sf::IntRect(0, 0, _texture->getSize().x, _texture->getSize().y / 2));
+					//app.draw(sprite);
+					sprite.draw();
 				}
 				break;
 			}
 		}
 
-		#ifdef _DEBUG
+		#ifdef _RELEASE
 		/* Drawing HitBox */
 		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
 		rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
