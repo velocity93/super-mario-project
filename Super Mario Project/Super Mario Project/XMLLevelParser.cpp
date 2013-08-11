@@ -93,7 +93,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -150,7 +150,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -175,7 +175,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -235,7 +235,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 		}
 
@@ -306,7 +306,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 		}
 		level->getMonsters()[id_monster - 1]->addNewMonsterOccurrence(position);
@@ -331,7 +331,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "img"))
 			{
@@ -449,7 +449,7 @@ namespace smp
 			}
 			else if(!strcmp(attrs[i], "positionY"))
 			{
-				position.y = level->getSize().y - (float)atoi(attrs[i + 1]);
+				position.y = (float)atoi(attrs[i + 1]);
 			}
 			else if(!strcmp(attrs[i], "actual"))
 			{

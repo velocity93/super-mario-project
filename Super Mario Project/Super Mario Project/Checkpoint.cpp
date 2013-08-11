@@ -41,7 +41,7 @@ namespace smp
 		/* Hitbox */
 		_hitboxSize.x = _texture->getSize().x / _animation.getNbSpritesMax();
 		_hitboxSize.y = _texture->getSize().y / NB_STATES;
-		_hitboxPosition = Vector2f(position.x, position.y - _hitboxSize.y);
+		_hitboxPosition = Vector2f(position.x, position.y);
 	}
 
 	Checkpoint::State Checkpoint::getState()

@@ -27,17 +27,7 @@ namespace smp
         }
 
         setSmooth(false);
-		_sprite.setTexture(*this);
-    }
-
-    Sprite& Texture::getSprite()
-    {
-        return _sprite;
-    }
-
-    void Texture::setPosition(float x, float y)
-    {
-        _sprite.setPosition(x, y);
+		setRepeated(true);
     }
 
     Texture::~Texture()

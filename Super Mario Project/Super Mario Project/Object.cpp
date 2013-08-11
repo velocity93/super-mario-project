@@ -54,8 +54,8 @@ namespace smp
 		const sf::View& view = app.getDefaultView();
 		const sf::Vector2f& center = view.getCenter();
 		const sf::Vector2f& halfSize = view.getSize();
-		float width = _texture->getSprite().getTextureRect().width / _animation.getNbSpritesMax();
-		float height = _texture->getSprite().getTextureRect().height;
+		float width = _texture->getSize().x / _animation.getNbSpritesMax();
+		float height = _texture->getSize().y;
 
 		_isActive = _position.x >= (center.x - halfSize.x);
 		_isActive &= (_position.x + width) <= (center.x + halfSize.x);

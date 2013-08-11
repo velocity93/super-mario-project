@@ -12,6 +12,7 @@
 
 #include "PausableClock.hpp"
 #include "Texture.hpp"
+#include "Sprite.hpp"
 #include <SFML/Graphics.hpp>
 #include <map>
 #include <iostream>

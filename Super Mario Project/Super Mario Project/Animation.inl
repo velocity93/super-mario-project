@@ -142,7 +142,8 @@ void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f&
 	sf::Vector2i spriteSize = sf::Vector2i(
 		texture->getSize().x / _nbSpritesMax,
 		texture->getSize().y / _nbSpritesByState.size());
-    sf::Sprite& sprite = texture->getSprite();
+    //sf::Sprite& sprite = texture->getSprite();
+	smp::Sprite sprite(*texture);
 
 	if(_nbSpritesForCurrentState > 0)
 	{
@@ -168,17 +169,20 @@ void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f&
 
 	sprite.setPosition(position);
 
-	app.draw(sprite);
+	sprite.draw();
+
+	//app.draw(sprite);
 }
 
 /* Special method for blocks with no animation */
 template<typename T>
 void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size)
 {
-	sf::Sprite& sprite = texture->getSprite();
+	smp::Sprite sprite(*texture);
 	sprite.setTextureRect(sf::IntRect(coords.x, coords.y, size.x, size.y));
 
 	/* We must correspond graphic to physic */
 	sprite.setPosition(position.x, position.y);
-	app.draw(sprite);
+	sprite.draw();
+	/*app.draw(sprite);*/
 }

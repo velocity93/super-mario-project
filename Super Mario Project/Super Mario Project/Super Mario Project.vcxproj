@@ -114,6 +114,7 @@
     <ClInclude Include="QuadTree.hpp" />
     <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ResourceManager.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Tileset.hpp" />
     <ClInclude Include="World.hpp" />
