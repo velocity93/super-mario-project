@@ -148,7 +148,7 @@ void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f&
 	if(_nbSpritesForCurrentState > 0)
 	{
 		int left = _frameNumber * spriteSize.x;
-		int top = numState * spriteSize.y;
+		int top = (getNbStates() - numState - 1) * spriteSize.y;
 
 		sprite.setTextureRect(
 			sf::IntRect(

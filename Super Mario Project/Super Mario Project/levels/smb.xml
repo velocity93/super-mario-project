@@ -29,9 +29,9 @@
 		<item img="etoile" type="6"/>
 	</items>
 	<monsters>
-		<!--<walking_monster name="goomba">
+		<walking_monster name="goomba">
 			<occ_monster positionX="128" positionY="128"/>
-		</walking_monster>-->
+		</walking_monster>
 	</monsters>
 	<pipes>
 		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
