@@ -44,7 +44,7 @@ namespace smp
 		_hitboxPosition.y = positionY;
 
 		setPositionX(_hitboxPosition.x - _deltaX);
-		setPositionY(_hitboxPosition.y - _deltaY);
+		setPositionY(_hitboxPosition.y);
 	}
 
 	void EntityMovable::gravity(Vector2f &speed, float time)
@@ -52,7 +52,7 @@ namespace smp
 		speed.y -= PhysicConstants::GRAVITY * time;
 
 		if(speed.y < -PhysicConstants::SPEED_Y_MAX)
-			speed.y = PhysicConstants::SPEED_Y_MAX;
+			speed.y = -PhysicConstants::SPEED_Y_MAX;
 	}
 
 	EntityMovable::~EntityMovable()

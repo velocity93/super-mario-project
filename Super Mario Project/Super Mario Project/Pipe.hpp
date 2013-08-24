@@ -36,7 +36,6 @@ namespace smp
 		} Direction;
     
 		/* Constructors */
-		Pipe(const std::string& textureName);
 		Pipe(const std::string& textureName, sf::Vector2f& position,
 			int indexPipeDestination, 
 			const std::string& levelDestination, 

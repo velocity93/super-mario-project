@@ -157,7 +157,7 @@ int main(int, char**)
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             // Update World
-			//w.update(App, &view);
+			w.update(App, &view);
 			
 			//App.setView(view);
 

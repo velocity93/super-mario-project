@@ -47,7 +47,6 @@ namespace smp
 		/* Getters/Setters */
 		int getBottomLeft();
 		void setDeltaX(int x);
-		void setDeltaY(int y);
 		std::vector<MonsterOccurrence*>& getMonsterOccurrences();
 		
 		/* To determine if monster can be jumped for example */

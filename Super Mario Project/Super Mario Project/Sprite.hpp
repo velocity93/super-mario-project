@@ -32,6 +32,21 @@ namespace smp
 			sf::Vector2f bottomLeft((float)textureRect.left / textureSize.x, (float)(textureRect.top + textureRect.height) / textureSize.y);
 			sf::Vector2f topRight((float)(textureRect.left + textureRect.width) / textureSize.x, (float)textureRect.top / textureSize.y);
 
+			sf::Vector2f scale = this->getScale();
+			if(scale.x < 0)
+			{
+				float tmpX = bottomLeft.x;
+				bottomLeft.x = topRight.x;
+				topRight.x = tmpX;
+			}
+
+			if(scale.y < 0)
+			{
+				float tmpY = bottomLeft.y;
+				bottomLeft.y = topRight.y;
+				topRight.y = tmpY;
+			}
+
 			glBegin(GL_QUADS);
 			glTexCoord2f(bottomLeft.x, -bottomLeft.y);
 			glVertex2i(position.x, position.y + textureRect.height);

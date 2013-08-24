@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <perso>
   <left_delta value="8" />
-  <top_delta value="17" />
   <nb_sprites>
     <standing value="1" />
     <walk value="3" />

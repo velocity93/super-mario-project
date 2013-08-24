@@ -307,16 +307,18 @@ namespace smp
 
 	void Perso::render(RenderWindow& app)
 	{
-		Vector2f spritePosition = Vector2f(_position.x + 2 * (_side == LEFT_SIDE) * _hitboxSize.x, _position.y);
+		Vector2f spritePosition = Vector2f(_hitboxPosition.x - (_side == LEFT_SIDE) * _hitboxSize.x, _hitboxPosition.y);
 		_animation.render(_texture, app, spritePosition, _side == LEFT_SIDE);
 
 #ifdef _RELEASE
 		/* Drawing HitBox */
 		sf::RectangleShape rect = sf::RectangleShape(sf::Vector2f(_hitboxSize.x, _hitboxSize.y));
-		rect.setPosition(_hitboxPosition.x, _hitboxPosition.y);
+		rect.setPosition(spritePosition);
 		rect.setFillColor(sf::Color(0, 255, 0, 122));
 
+		app.pushGLStates();
 		app.draw(rect);
+		app.popGLStates();
 #endif
 	}
 
@@ -612,12 +614,12 @@ namespace smp
 		}
 		else if(type == CollisionManager::FROM_BOTTOM)
 		{
-			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
 			_environment = GROUND;
 		}
 		else if(type == CollisionManager::FROM_TOP)
 		{
-			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y + pipe->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, pipe->getHitboxPosition().y - _hitboxSize.y);
 			_speed.y = 0;
 		}
 	}
@@ -702,7 +704,7 @@ namespace smp
 
 		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y);
 			_speed.y = 0;
 		}
 
@@ -713,7 +715,7 @@ namespace smp
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y - _hitboxSize.y);
+			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
 			_environment = GROUND;
 		}
 	}

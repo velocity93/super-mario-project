@@ -58,14 +58,13 @@ namespace smp
 			et1->getHitboxSize().x, et1->getHitboxSize().y),
 
 			r2(c2->getHitboxPosition().x, c2->getHitboxPosition().y,
-			c2->getHitboxSize().x, c2->getHitboxSize().y),
-			zone;
+			c2->getHitboxSize().x, c2->getHitboxSize().y);
 		bool collisionDetected = false;
 		
-		bool intersectsPrec = r1Prec.intersects(r2);
-		bool intersects = r1.intersects(r2, zone);
+		bool intersectPrec = intersects(r1Prec, r2);
+		bool intersect = intersects(r1, r2);
 
-		if(intersects && !intersectsPrec)
+		if(intersect && !intersectPrec)
 		{
 			collisionDetected = true;
 
@@ -92,10 +91,10 @@ namespace smp
 			et2->getHitboxSize().x, et2->getHitboxSize().y);
 		bool collisionDetected = false;
 
-		bool intersectsPrec = r1Prec.intersects(r2Prec);
-		bool intersects = r1.intersects(r2);
+		bool intersectPrec = intersects(r1Prec, r2Prec);
+		bool intersect = intersects(r1, r2);
 
-		if(intersects && !intersectsPrec)
+		if(intersect && !intersectPrec)
 		{
 			collisionDetected = true;
 
@@ -118,8 +117,8 @@ namespace smp
 		float r2PrecRight = r2Prec.left + r2Prec.width;
 		float r2PrecBottom = r2Prec.top + r2Prec.height;
 
-		if(r1.top <= r2Bottom
-			&& r1Prec.top >= r2PrecBottom
+		if(r1.top >= r2Bottom
+			&& r1Prec.top <= r2PrecBottom
 			&&
 			((r2.left <= r1.left && r1.left <= r1Right)
 			|| (r2.left <= r1Right && r1Right <= r1Right)
@@ -127,8 +126,8 @@ namespace smp
 			|| (r1.left <= r2Right && r2Right <= r1Right)))
 			collision = FROM_TOP;
 
-		else if(r1Bottom >= r2.top
-			&& r1PrecBottom <= r2Prec.top
+		else if(r1.top <= r2Bottom
+			&& r1Prec.top >= r2PrecBottom
 			&&
 			((r2.left <= r1.left && r1.left <= r2Right)
 			|| (r2.left <= r1Right && r1Right <= r2Right)
@@ -139,20 +138,53 @@ namespace smp
 		else if(r1Right >= r2.left
 			&& r1PrecRight <= r2Prec.left
 			&&
-			((r2.top <= r1.top && r1.top <= r2Bottom)
-			|| (r2.top <= r1Bottom && r1.top <= r2Bottom)
-			|| (r1.top <= r2.top && r2.top <= r1Bottom)
-			|| (r1.top <= r2Bottom && r2Bottom <= r2.top)))
+			((r2Bottom >= r1.top && r1.top >= r2.top)
+			|| (r2Bottom >= r1.top && r1.top >= r2.top)
+			|| (r1Bottom >= r2.top && r2.top >= r1.top)
+			|| (r2.top >= r2Bottom && r2Bottom >= r1.top)))
 			collision = FROM_RIGHT;
 
 		else if(r1.left <= r2Right
 			&& r1Prec.left >= r2PrecRight
 			&&
-			((r2.left <= r1.left && r1.left <= r2Right)
-			|| (r2.left <= r1Right && r1Right <= r2Right)
-			|| (r1.left <= r2.left && r2.left <= r1Right)
-			|| (r1.left <= r2Right && r2Right <= r1Right)))
+			((r2Bottom >= r1.top && r1.top >= r2.top)
+			|| (r2Bottom >= r1.top && r1.top >= r2.top)
+			|| (r1Bottom >= r2.top && r2.top >= r1.top)
+			|| (r2.top >= r2Bottom && r2Bottom >= r1.top)))
 			collision = FROM_LEFT;
+	}
+
+	bool CollisionManager::intersects(const sf::FloatRect& r1, const sf::FloatRect& r2)
+	{
+		// Rectangles with negative dimensions are allowed, so we must handle them correctly
+
+		// Compute the min and max of the first rectangle on both axes
+		float r1MinX = std::min(r1.left, r1.left + r1.width);
+		float r1MaxX = std::max(r1.left, r1.left + r1.width);
+		float r1MinY = std::min(r1.top, r1.top + r1.height);
+		float r1MaxY = std::max(r1.top, r1.top + r1.height);
+
+		// Compute the min and max of the second rectangle on both axes
+		float r2MinX = std::min(r2.left, r2.left + r2.width);
+		float r2MaxX = std::max(r2.left, r2.left + r2.width);
+		float r2MinY = std::min(r2.top, r2.top + r2.height);
+		float r2MaxY = std::max(r2.top, r2.top + r2.height);
+
+		// Compute the intersection boundaries
+		float interLeft   = std::max(r1MinX, r2MinX);
+		float interTop    = std::max(r1MinY, r2MinY);
+		float interRight  = std::min(r1MaxX, r2MaxX);
+		float interBottom = std::min(r1MaxY, r2MaxY);
+
+		// If the intersection is valid (positive non zero area), then there is an intersection
+		if ((interLeft < interRight) && (interTop < interBottom))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	void CollisionManager::killManager()
