@@ -53,6 +53,7 @@ namespace smp
 		static bool detectCollisions(EntityMovable* et1, EntityMovable* et2, Type& collisions_info);
 		static void interprateCollisions(const sf::FloatRect& r1, const sf::FloatRect& r1Prec,
 										const sf::FloatRect& r2, const sf::FloatRect& r2Prec,Type& collisions_info);
+		static bool intersects(const sf::FloatRect& r1, const sf::FloatRect& r2);
 	};
 } // namespace
 

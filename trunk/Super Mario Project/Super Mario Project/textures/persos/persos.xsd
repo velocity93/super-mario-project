@@ -7,12 +7,7 @@
           <xs:complexType>
             <xs:attribute name="value" type="xs:decimal" use="required" />
           </xs:complexType>
-        </xs:element>
-        <xs:element name="top_delta">
-          <xs:complexType>
-            <xs:attribute name="value" type="xs:decimal" use="required" />
-          </xs:complexType>
-        </xs:element>
+       </xs:element>
         <xs:element name="nb_sprites">
           <xs:complexType>
             <xs:sequence>

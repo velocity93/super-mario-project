@@ -17,8 +17,8 @@
 	</projectiles>
 	<items>
     <item img="piece" type="0">
-      <!--<occ_item positionX="200" positionY="100"/>
-      <occ_item positionX="300" positionY="100"/>-->
+      <occ_item positionX="200" positionY="100"/>
+      <occ_item positionX="300" positionY="100"/>
     </item>
     <item img="champignon" type="1">
       <occ_item positionX="100" positionY="200"/>
@@ -34,8 +34,8 @@
 		</walking_monster>
 	</monsters>
 	<pipes>
-		<pipe img="green_pipe" positionX="0" positionY="128" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
-    <pipe img="green_pipe" positionX="256" positionY="128" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
+		<pipe img="green_pipe" positionX="0" positionY="64" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
+    <pipe img="green_pipe" positionX="256" positionY="0" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
 	</pipes>
   <tilesets>
     <tileset img="classiques/grass">
