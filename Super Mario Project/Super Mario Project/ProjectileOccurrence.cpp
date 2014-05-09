@@ -149,7 +149,7 @@ namespace smp
 	void ProjectileOccurrence::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+			_animation.render(_texture, _position, _side == LEFT_SIDE);
 	}
 
 	ProjectileOccurrence::~ProjectileOccurrence()

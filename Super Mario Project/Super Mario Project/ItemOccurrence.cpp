@@ -164,9 +164,10 @@ namespace smp
 				/*if(_hitboxPosition.y + _hitboxSize.y < 0)
 					_item->removeItemOccurrence(this);*/
 				/* Special Cases */
-				if(_hitboxPosition.y + _hitboxSize.y >= 1024)
+				/* Special Cases */
+				if(_hitboxPosition.y < 0)
 				{
-					updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
+					updatePositions(_hitboxPosition.x, 0);
 				}
 			}
 			else
@@ -187,7 +188,6 @@ namespace smp
 				}
 			}
 		}
-
 	}
 
 	void ItemOccurrence::updateGraphicData(RenderWindow&)
@@ -202,7 +202,10 @@ namespace smp
 	{
 		if(_isActive)
 		{
-			_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
+			smp::Sprite sprite(*_texture);
+			sprite.setPosition(_hitboxPosition);
+			sprite.draw(_side == LEFT_SIDE);
+			//_animation.render(_texture, _hitboxPosition, _side == LEFT_SIDE);
 
 #ifdef _RELEASE
 			/* Drawing HitBox */

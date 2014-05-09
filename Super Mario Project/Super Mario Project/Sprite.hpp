@@ -21,7 +21,7 @@ namespace smp
 	{
 	public :
 		Sprite(smp::Texture& texture) : sf::Sprite(texture) { }
-		void draw()
+		void draw(bool isFlipX)
 		{
 			Texture::bind(this->getTexture());
 
@@ -32,19 +32,11 @@ namespace smp
 			sf::Vector2f bottomLeft((float)textureRect.left / textureSize.x, (float)(textureRect.top + textureRect.height) / textureSize.y);
 			sf::Vector2f topRight((float)(textureRect.left + textureRect.width) / textureSize.x, (float)textureRect.top / textureSize.y);
 
-			sf::Vector2f scale = this->getScale();
-			if(scale.x < 0)
+			if(isFlipX)
 			{
-				float tmpX = bottomLeft.x;
+				float temp = bottomLeft.x;
 				bottomLeft.x = topRight.x;
-				topRight.x = tmpX;
-			}
-
-			if(scale.y < 0)
-			{
-				float tmpY = bottomLeft.y;
-				bottomLeft.y = topRight.y;
-				topRight.y = tmpY;
+				topRight.x = temp;
 			}
 
 			glBegin(GL_QUADS);
@@ -58,7 +50,6 @@ namespace smp
 			glVertex2i(position.x, position.y);
 
 			glEnd();
-
 		}
 	};
 }

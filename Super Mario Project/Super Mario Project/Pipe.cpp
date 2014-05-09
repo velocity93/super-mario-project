@@ -156,14 +156,14 @@ namespace smp
 				sprite.setPosition(_position.x, _position.y);
 				sprite.setTextureRect(sf::IntRect(0, sprite.getTexture()->getSize().y / 2, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
 				sprite.setScale(1, -1); // FlipY
-				sprite.draw();
+				sprite.draw(false);
 				
 				/* Body */
 				for(int step = 1; step <= _lenght; step++)
 				{
 					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
 					sprite.setTextureRect(sf::IntRect(0, 0, sprite.getTexture()->getSize().x, sprite.getTexture()->getSize().y / 2));
-					sprite.draw();
+					sprite.draw(false);
 				}
 
 				break;
@@ -178,7 +178,7 @@ namespace smp
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
 					sprite.setTextureRect(sf::IntRect(0, 0, _texture->getSize().x, _texture->getSize().y / 2));					
 					sprite.rotate(270);
-					sprite.draw();
+					sprite.draw(false);
 					sprite.rotate(90); // to replace the right rotation
 				}
 
@@ -188,7 +188,7 @@ namespace smp
 
 				sprite.rotate(270);
 				//app.draw(sprite);
-				sprite.draw();
+				sprite.draw(false);
 				sprite.rotate(90);
 				break;
 
@@ -200,7 +200,7 @@ namespace smp
 				sprite.setTextureRect(sf::IntRect(0, _texture->getSize().y / 2, _texture->getSize().y, _texture->getSize().y / 2));				
 				sprite.rotate(90);
 				/*app.draw(sprite);*/
-				sprite.draw();
+				sprite.draw(false);
 				sprite.rotate(270); // to replace the right rotation
 
 				/* Body */
@@ -209,7 +209,7 @@ namespace smp
 					sprite.setPosition(_position.x + (step * BLOCK_WIDTH), _position.y);
 					sprite.setTextureRect(sf::IntRect(0, 0, _texture->getSize().x, _texture->getSize().y / 2));
 					sprite.rotate(90);
-					sprite.draw();
+					sprite.draw(false);
 					sprite.rotate(270);
 				}
 				break;
@@ -221,14 +221,14 @@ namespace smp
 				for(int step = 0; step < _lenght; ++step)
 				{
 					sprite.setPosition(_position.x, _position.y + (step * BLOCK_WIDTH));
-					sprite.draw();
+					sprite.draw(false);
 				}
 
 				/* Top of pipe */
 				sprite.setPosition(_position.x, _position.y + (_lenght * BLOCK_WIDTH));
 				sprite.setTextureRect(sf::IntRect(0, _texture->getSize().y / 2, _texture->getSize().x, _texture->getSize().y / 2));
 
-				sprite.draw();
+				sprite.draw(false);
 				break;
 			}
 		}

@@ -308,7 +308,7 @@ namespace smp
 	void Perso::render(RenderWindow& app)
 	{
 		Vector2f spritePosition = Vector2f(_hitboxPosition.x - (_side == LEFT_SIDE) * _hitboxSize.x, _hitboxPosition.y);
-		_animation.render(_texture, app, spritePosition, _side == LEFT_SIDE);
+		_animation.render(_texture, spritePosition, _side == LEFT_SIDE);
 
 #ifdef _RELEASE
 		/* Drawing HitBox */

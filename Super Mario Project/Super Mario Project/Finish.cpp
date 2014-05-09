@@ -47,7 +47,7 @@ namespace smp
 	void Finish::render(RenderWindow& app)
     {
 		if(_isActive)
-			_animation.render(_texture, app, _hitboxPosition, false);
+			_animation.render(_texture, _hitboxPosition, false);
     }
 
 	void Finish::serialize(ofstream& file, const string& tabs)
