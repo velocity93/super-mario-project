@@ -136,14 +136,15 @@ void Animation<T>::update()
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, bool isFlipX, int delta)
+void Animation<T>::render(Texture* texture, sf::Vector2f& position, bool isFlipX, int delta)
 {
 	int numState = (int)_currentState - delta;
 	sf::Vector2i spriteSize = sf::Vector2i(
 		texture->getSize().x / _nbSpritesMax,
 		texture->getSize().y / _nbSpritesByState.size());
-    //sf::Sprite& sprite = texture->getSprite();
+    
 	smp::Sprite sprite(*texture);
+	sprite.setOrigin(position.x + spriteSize.x / 2, position.y + spriteSize.y / 2);
 
 	if(_nbSpritesForCurrentState > 0)
 	{
@@ -158,31 +159,20 @@ void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f&
 			spriteSize.y));
 	}
 
-	if(isFlipX)
-	{
-		sprite.setScale(-1, 1);
-	}
-	else
-	{
-		sprite.setScale(1, 1);
-	}
-
 	sprite.setPosition(position);
 
-	sprite.draw();
-
-	//app.draw(sprite);
+	sprite.draw(isFlipX);
 }
 
 /* Special method for blocks with no animation */
 template<typename T>
-void Animation<T>::render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size)
+void Animation<T>::render(Texture* texture, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size)
 {
 	smp::Sprite sprite(*texture);
 	sprite.setTextureRect(sf::IntRect(coords.x, coords.y, size.x, size.y));
 
 	/* We must correspond graphic to physic */
 	sprite.setPosition(position.x, position.y);
-	sprite.draw();
+	sprite.draw(false);
 	/*app.draw(sprite);*/
 }

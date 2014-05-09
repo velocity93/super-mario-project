@@ -47,8 +47,8 @@ namespace smp
 
 		/* Drawing */
 		void update();
-		void render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, bool flipX, int delta = 0);
-		void render(Texture* texture, sf::RenderWindow& app, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size);
+		void render(Texture* texture, sf::Vector2f& position, bool flipX, int delta = 0);
+		void render(Texture* texture, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size);
 
 	private:
 		std::map<T, int> _nbSpritesByState;

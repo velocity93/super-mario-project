@@ -64,7 +64,7 @@ namespace smp
 	void Door::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, false);
+			_animation.render(_texture, _position, false);
 	}
 
 	void Door::loadDoor(const string& textureName)

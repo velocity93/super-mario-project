@@ -62,7 +62,7 @@ namespace smp
 		{
 			Vector2f newPosition = Vector2f(x, _position.y);
 
-			_animation.render(_texture, app, newPosition, false);
+			_animation.render(_texture, newPosition, false);
 
 			x += _texture->getSize().x / _animation.getNbSpritesMax();
 			widthX = x + _texture->getSize().x / _animation.getNbSpritesMax();

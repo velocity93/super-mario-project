@@ -212,7 +212,7 @@ namespace smp
 			{
 				delta = !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP) + !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_PROJ);
 			}
-			_animation.render(_texture, app, _position, _side == RIGHT_SIDE, delta);
+			_animation.render(_texture, _position, _side == RIGHT_SIDE, delta);
 
 #ifdef _RELEASE
 			/* Drawing HitBox */

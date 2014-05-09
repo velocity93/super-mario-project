@@ -111,11 +111,11 @@ namespace smp
 		{
 			if(_animation.getNbSpritesMax() > 1)
 			{
-				_animation.render(_texture, app, _hitboxPosition, _side == LEFT_SIDE);
+				_animation.render(_texture, _hitboxPosition, _side == LEFT_SIDE);
 			}
 			else
 			{
-				_animation.render(_texture, app, _hitboxPosition, _coordSprite, _size);
+				_animation.render(_texture, _hitboxPosition, _coordSprite, _size);
 			}
 		}
 	}

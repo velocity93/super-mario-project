@@ -33,7 +33,7 @@ namespace smp
 	void Foreground::render(RenderWindow& app)
 	{
 		if(_isActive)
-			_animation.render(_texture, app, _position, false);
+			_animation.render(_texture, _position, false);
 	}
 
 	void Foreground::serialize(ofstream& file, const string& tabs)

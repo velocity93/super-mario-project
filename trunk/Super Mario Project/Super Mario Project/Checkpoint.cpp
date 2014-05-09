@@ -80,7 +80,7 @@ namespace smp
 	void Checkpoint::render(RenderWindow& app)
     {
 		if(_isActive)
-			_animation.render(_texture, app, _hitboxPosition, false);
+			_animation.render(_texture, _hitboxPosition, false);
     }
 
 	void Checkpoint::loadCfgCheckpoint()

@@ -55,7 +55,7 @@ namespace smp
 
 	void Particle::render(RenderWindow& app)
 	{
-		_animation.render(_texture, app, _position, _side == LEFT_SIDE);
+		_animation.render(_texture, _position, _side == LEFT_SIDE);
 	}
 
 	void Particle::loadParticle(const string& textureName)
