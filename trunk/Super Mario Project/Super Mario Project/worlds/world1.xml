@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <world>
-  <level name="smb.xml"/>
+  <level name="smb0.xml"/>
+  <level name="smb.xml" />
   <level name="smb2.xml"/>
   <level name="smb3.xml"/>
 </world>

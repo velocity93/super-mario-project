@@ -59,8 +59,9 @@ namespace smp
 				for(vector<BlockOccurrence*>::iterator itObj = obj.begin(); itObj != obj.end(); ++itObj)
 				{
 					Vector2f point_BL = (*itObj)->getHitboxPosition();
-					Vector2f point_HR = Vector2f((*itObj)->getHitboxPosition().x + (*itObj)->getHitboxSize().x,
-						(*itObj)->getHitboxPosition().y + (*itObj)->getHitboxSize().y);
+					float x = point_BL.x + (*itObj)->getHitboxSize().x;
+					float y = point_BL.y + (*itObj)->getHitboxSize().y;
+					Vector2f point_HR = Vector2f(x,y);
 
 					if(point_HR.x <= center.x)
 					{

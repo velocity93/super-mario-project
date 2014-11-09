@@ -22,6 +22,11 @@ namespace smp
 		return _previousPosition;
 	}
 
+	Vector2f& EntityMovable::getHitboxPosition()
+	{
+		return Vector2f(_hitboxPosition.x + _deltaX, _hitboxPosition.y);
+	}
+
 	Vector2f& EntityMovable::getPreviousHitboxPosition()
 	{
 		return _previousHitboxPosition;

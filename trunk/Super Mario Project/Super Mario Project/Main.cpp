@@ -68,7 +68,7 @@ void init_OpenGL(int largeurFenetre, int hauteurFenetre)
 
 // P1 TODO: check monster/character collision								- 50 %
 // P1 TODO: check character transformations									- 75 %
-// P1 TODO : check collisions between other entities than Perso
+// P1 TODO: check collisions between other entities than Perso
 // P2 TODO: implement background layers
 // P2 TODO: check fireballs
 // P3 TODO: check if mario properly handles shells

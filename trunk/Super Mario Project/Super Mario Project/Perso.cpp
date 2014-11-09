@@ -610,7 +610,7 @@ namespace smp
 		}
 		else if(type == CollisionManager::FROM_RIGHT)
 		{
-			updatePositions(pipe->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
+			updatePositions(pipe->getHitboxPosition().x - _hitboxSize.x - _deltaX, _hitboxPosition.y);
 		}
 		else if(type == CollisionManager::FROM_BOTTOM)
 		{
