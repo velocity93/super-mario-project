@@ -37,6 +37,7 @@ namespace smp
 		/* getters and setters */
 		sf::Vector2f& getSpeed();
 		sf::Vector2f& getPreviousPosition();
+		sf::Vector2f& getHitboxPosition();
 		sf::Vector2f& getPreviousHitboxPosition();
 		void updatePositions(float positionX, float positionY);
 		void setDeltaX(int delta);

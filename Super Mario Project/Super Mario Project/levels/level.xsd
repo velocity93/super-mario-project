@@ -173,7 +173,7 @@
         <xs:element name="tilesets">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="tileset" minOccurs="1" maxOccurs="unbounded">
+              <xs:element name="tileset" minOccurs="0" maxOccurs="unbounded">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="block" maxOccurs="unbounded" minOccurs="1">
@@ -192,7 +192,7 @@
         <xs:element name="layers">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="layer" minOccurs="1">
+              <xs:element name="layer" minOccurs="0">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="occ_block" maxOccurs="unbounded" minOccurs="0">

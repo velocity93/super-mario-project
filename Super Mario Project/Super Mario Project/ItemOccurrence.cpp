@@ -198,14 +198,14 @@ namespace smp
 
 	}
 
-	void ItemOccurrence::render(RenderWindow& app)
+	void ItemOccurrence::render(RenderWindow&)
 	{
 		if(_isActive)
 		{
-			smp::Sprite sprite(*_texture);
+			/*smp::Sprite sprite(*_texture);
 			sprite.setPosition(_hitboxPosition);
-			sprite.draw(_side == LEFT_SIDE);
-			//_animation.render(_texture, _hitboxPosition, _side == LEFT_SIDE);
+			sprite.draw(_side == LEFT_SIDE);*/
+			_animation.render(_texture, _hitboxPosition, _side == LEFT_SIDE);
 
 #ifdef _RELEASE
 			/* Drawing HitBox */

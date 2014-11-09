@@ -67,6 +67,9 @@
     <Filter Include="Header Files\XMLParsing">
       <UniqueIdentifier>{8984f9c2-e82c-485a-853f-1b17f3bedfd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{0ff13a6b-078c-48f5-b65f-2edae7030b47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.hpp">
@@ -355,9 +358,6 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="levels\smb.xml">
-      <Filter>Resource Files</Filter>
-    </Resource>
     <Resource Include="worlds\world1.xml">
       <Filter>Resource Files</Filter>
     </Resource>
@@ -550,5 +550,18 @@
     <Resource Include="textures\monsters\goomba.xml">
       <Filter>Resource Files\Monsters</Filter>
     </Resource>
+    <Resource Include="levels\smb.xml">
+      <Filter>Resource Files\Levels</Filter>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="levels\level.xsd">
+      <Filter>Resource Files\Levels</Filter>
+    </Xsd>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="levels\smb0.xml">
+      <Filter>Resource Files\Levels</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

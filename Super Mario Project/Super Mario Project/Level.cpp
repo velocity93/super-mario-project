@@ -610,16 +610,16 @@ namespace smp
 			(*itFinish)->render(app);
 		}
 
-		/* Items */
-		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
-		{
-			(*itItems)->render(app);
-		}
-
 		/* Blocks */
 		for(vector<BlockOccurrence*>::iterator itBlocksOccurrences = this->_blocksOccurrences.begin(); itBlocksOccurrences != this->_blocksOccurrences.end(); ++itBlocksOccurrences)
 		{
 			(*itBlocksOccurrences)->render(app);
+		}
+
+		/* Items */
+		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
+		{
+			(*itItems)->render(app);
 		}
 
 		/* CheckPoints */
@@ -677,16 +677,16 @@ namespace smp
 			delete (*itFinish);
 		}
 
-		/* Items */
-		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
-		{
-			delete (*itItems);
-		}
-
 		/* Blocks */
 		for(vector<BlockOccurrence*>::iterator itBlocks = this->_blocksOccurrences.begin(); itBlocks != this->_blocksOccurrences.end(); ++itBlocks)
 		{
 			delete (*itBlocks);
+		}
+
+		/* Items */
+		for(vector<Item*>::iterator itItems = this->_items.begin(); itItems != this->_items.end(); ++itItems)
+		{
+			delete (*itItems);
 		}
 
 		/* CheckPoints */
