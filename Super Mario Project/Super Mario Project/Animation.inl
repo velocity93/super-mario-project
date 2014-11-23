@@ -94,6 +94,7 @@ template<typename T>
 void Animation<T>::setCurrentState(T state)
 {
 	_currentState = (T)(((int)state) % _nbStatesMax);
+	_indexOfCurrentState = std::distance(_nbSpritesByState.begin(), _nbSpritesByState.find(_currentState));
 	_frameDelayForCurrentState = getFrameDelayForCurrentState();
 	_nbSpritesForCurrentState = getNbSpritesForCurrentState();
 }
@@ -136,9 +137,8 @@ void Animation<T>::update()
 }
 
 template<typename T>
-void Animation<T>::render(Texture* texture, sf::Vector2f& position, bool isFlipX, int delta)
+void Animation<T>::render(Texture* texture, sf::Vector2f& position, bool isFlipX)
 {
-	int numState = (int)_currentState - delta;
 	sf::Vector2i spriteSize = sf::Vector2i(
 		texture->getSize().x / _nbSpritesMax,
 		texture->getSize().y / _nbSpritesByState.size());
@@ -149,7 +149,7 @@ void Animation<T>::render(Texture* texture, sf::Vector2f& position, bool isFlipX
 	if(_nbSpritesForCurrentState > 0)
 	{
 		int left = _frameNumber * spriteSize.x;
-		int top = (getNbStates() - numState - 1) * spriteSize.y;
+		int top = (getNbStates() - _indexOfCurrentState - 1) * spriteSize.y;
 
 		sprite.setTextureRect(
 			sf::IntRect(

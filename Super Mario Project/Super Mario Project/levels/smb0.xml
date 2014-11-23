@@ -15,7 +15,11 @@
       <occ_item positionX="60" positionY="200"/>
     </item>
   </items>
-  <monsters />
+  <monsters>
+    <walking_monster name="goomba">
+      <occ_monster positionX="512" positionY="128"/>
+    </walking_monster>
+  </monsters>
   <pipes />
   <tilesets>
     <tileset img="classiques/grass">

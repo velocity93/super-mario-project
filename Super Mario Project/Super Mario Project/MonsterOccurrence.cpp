@@ -191,8 +191,8 @@ namespace smp
 			/*if(_hitboxPosition.y + _hitboxSize.y < 0)
 				setState(DEAD);*/
 			/* Test */
-			if(_hitboxPosition.y + _hitboxSize.y > 1024)
-				updatePositions(_hitboxPosition.x, 1024 - _hitboxSize.y);
+			if(_hitboxPosition.y < 0)
+				updatePositions(_hitboxPosition.x, 0);
 		}
 	}
 
@@ -207,12 +207,12 @@ namespace smp
 		if(_isActive)
 		{
 			/* Update animation data */
-			int delta = 0;
+			/*int delta = 0;
 			if(_state != WALK)
 			{
 				delta = !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_JUMP) + !_monster->checkFeature(MonsterConstants::CAN_BE_KILL_BY_PROJ);
-			}
-			_animation.render(_texture, _position, _side == RIGHT_SIDE, delta);
+			}*/
+			_animation.render(_texture, _position, _side == RIGHT_SIDE);
 
 #ifdef _RELEASE
 			/* Drawing HitBox */

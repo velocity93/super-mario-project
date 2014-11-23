@@ -26,16 +26,6 @@
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
                 </xs:complexType>
               </xs:element>
-              <xs:element name="retracted" minOccurs="0">
-                <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="get_out_from_shell" minOccurs="0">
-                <xs:complexType>
-                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
-                </xs:complexType>
-              </xs:element>
               <xs:element name="dead_by_jump" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
@@ -44,6 +34,16 @@
               <xs:element name="dead_by_proj" minOccurs="0">
                 <xs:complexType>
                   <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="retracted" minOccurs="0">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="get_out_from_shell" minOccurs="0">
+                <xs:complexType>
+                  <xs:attribute name="value" type="xs:unsignedByte" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>

@@ -89,6 +89,7 @@ namespace smp
 
 			r2Prec(et2->getPreviousHitboxPosition().x, et2->getPreviousHitboxPosition().y,
 			et2->getHitboxSize().x, et2->getHitboxSize().y);
+
 		bool collisionDetected = false;
 
 		bool intersectPrec = intersects(r1Prec, r2Prec);

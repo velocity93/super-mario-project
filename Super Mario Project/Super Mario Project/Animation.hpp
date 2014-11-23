@@ -47,12 +47,13 @@ namespace smp
 
 		/* Drawing */
 		void update();
-		void render(Texture* texture, sf::Vector2f& position, bool flipX, int delta = 0);
+		void render(Texture* texture, sf::Vector2f& position, bool flipX);
 		void render(Texture* texture, sf::Vector2f& position, sf::Vector2i& coords, sf::Vector2i& size);
 
 	private:
 		std::map<T, int> _nbSpritesByState;
 		std::map<T, int> _frameDelayByState;
+		int _indexOfCurrentState;
 		T _currentState;
 		int _frameNumber;
 		int _nbSpritesMax;
