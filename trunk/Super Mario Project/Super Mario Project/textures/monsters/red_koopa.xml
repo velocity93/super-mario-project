@@ -5,14 +5,14 @@
   <points value="200" />
   <nb_sprites>
     <walk value="8" />
+    <dead_by_proj value="1" />
     <retracted value="6" />
     <get_out_from_shell value="9" />
-    <dead_by_proj value="1" />
   </nb_sprites>
   <frame_delay>
     <walk value="100" />
+    <dead_by_proj value="100" />
     <retracted value="200" />
     <get_out_from_shell value="150" />
-    <dead_by_proj value="100" />
   </frame_delay>
 </monster>
