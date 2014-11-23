@@ -699,7 +699,9 @@ namespace smp
 
 		if(type == CollisionManager::FROM_RIGHT && (block->getActualModel()->getPhysic() & BlocksConstants::LEFT_WALL))
 		{
-			updatePositions(block->getHitboxPosition().x - _hitboxSize.x, _hitboxPosition.y);
+			float hitboxPositionBlockX = block->getHitboxPosition().x;
+			int hitboxSizeBlockX = block->getHitboxSize().x;
+			updatePositions(hitboxPositionBlockX - hitboxSizeBlockX, _hitboxPosition.y);
 		}
 
 		if(type == CollisionManager::FROM_TOP && (block->getActualModel()->getPhysic() & BlocksConstants::ROOF))
@@ -715,7 +717,9 @@ namespace smp
 
 		if(type == CollisionManager::FROM_BOTTOM && (block->getActualModel()->getPhysic() & BlocksConstants::GROUND))
 		{
-			updatePositions(_hitboxPosition.x, block->getHitboxPosition().y + block->getHitboxSize().y);
+			float hitboxPositionBlockY = block->getHitboxPosition().y;
+			int hitboxSizeBlockY = block->getHitboxSize().y;
+			updatePositions(_hitboxPosition.x, hitboxPositionBlockY + hitboxSizeBlockY);
 			_environment = GROUND;
 		}
 	}

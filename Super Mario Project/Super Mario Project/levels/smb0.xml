@@ -11,16 +11,14 @@
   <finishes />
   <projectiles />
   <items>
-    <item img="fleur" type="0">
+    <item img="fleur" type="2">
       <occ_item positionX="60" positionY="200"/>
     </item>
   </items>
-  <monsters>
-    <walking_monster name="goomba">
-      <occ_monster positionX="512" positionY="128"/>
-    </walking_monster>
-  </monsters>
-  <pipes />
+  <monsters/>
+  <pipes>
+    <pipe img="green_pipe" positionX="96" positionY="0" destination_pipe="0" level_destination="" state="1" length="2" direction="0" monster=""/>
+  </pipes>
   <tilesets>
     <tileset img="classiques/grass">
       <!--  -->

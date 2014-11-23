@@ -144,7 +144,6 @@ void Animation<T>::render(Texture* texture, sf::Vector2f& position, bool isFlipX
 		texture->getSize().y / _nbSpritesByState.size());
     
 	smp::Sprite sprite(*texture);
-	sprite.setOrigin(position.x + spriteSize.x / 2, position.y + spriteSize.y / 2);
 
 	if(_nbSpritesForCurrentState > 0)
 	{
